@@ -129,7 +129,7 @@ class _AssetPageState extends State<AssetPage> {
     return Container(
       padding: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), bottom: ScreenUtil().setHeight(25), right: ScreenUtil().setWidth(40)),
       decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
             gradient: LinearGradient(
               colors: [Colors.blue[800], Colors.blue[800]],
               begin: Alignment.topCenter,

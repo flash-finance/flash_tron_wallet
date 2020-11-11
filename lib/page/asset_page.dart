@@ -117,7 +117,7 @@ class _AssetPageState extends State<AssetPage> {
             _cardWidget(context),
             SizedBox(height: ScreenUtil().setHeight(30)),
             _assetTitleWidget(context),
-            SizedBox(height: ScreenUtil().setHeight(10)),
+            SizedBox(height: ScreenUtil().setHeight(5)),
             _assetDataWidget(context),
           ],
         ),
@@ -188,7 +188,7 @@ class _AssetPageState extends State<AssetPage> {
                   letterSpacing: 0.2,
                   color: Colors.white,
                   fontSize: ScreenUtil().setSp(40),
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),
@@ -361,7 +361,7 @@ class _AssetPageState extends State<AssetPage> {
                 Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    '≈  258.34',
+                    '≈  \$ 258.34',
                     style: TextStyle(
                       color: Colors.grey[400],
                       fontSize: ScreenUtil().setSp(24),
@@ -377,4 +377,6 @@ class _AssetPageState extends State<AssetPage> {
       ),
     );
   }
+
+
 }

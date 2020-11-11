@@ -27,9 +27,9 @@ class _AssetPageState extends State<AssetPage> {
           children: <Widget>[
             _headWidget(context),
             SizedBox(height: ScreenUtil().setHeight(15)),
-            _cardWidget(context),
-            SizedBox(height: ScreenUtil().setHeight(30)),
-            _assetTitleWidget(context),
+            Expanded(
+              child: _bodyWidget(context),
+            ),
           ],
         ),
       ),
@@ -108,6 +108,23 @@ class _AssetPageState extends State<AssetPage> {
     );
   }
 
+  Widget _bodyWidget(BuildContext context) {
+    return Container(
+      child: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Column(
+          children: <Widget>[
+            _cardWidget(context),
+            SizedBox(height: ScreenUtil().setHeight(30)),
+            _assetTitleWidget(context),
+            SizedBox(height: ScreenUtil().setHeight(10)),
+            _assetDataWidget(context),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _cardWidget(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), bottom: ScreenUtil().setHeight(25), right: ScreenUtil().setWidth(40)),
@@ -171,6 +188,7 @@ class _AssetPageState extends State<AssetPage> {
                   letterSpacing: 0.2,
                   color: Colors.white,
                   fontSize: ScreenUtil().setSp(40),
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ),
@@ -197,7 +215,7 @@ class _AssetPageState extends State<AssetPage> {
                         style: GoogleFonts.lato(
                           letterSpacing: 0.2,
                           color: Colors.white,
-                          fontSize: ScreenUtil().setSp(28),
+                          fontSize: ScreenUtil().setSp(26),
                         ),
                       ),
                     ),
@@ -221,7 +239,7 @@ class _AssetPageState extends State<AssetPage> {
                         style: GoogleFonts.lato(
                           letterSpacing: 0.2,
                           color: Colors.white,
-                          fontSize: ScreenUtil().setSp(28),
+                          fontSize: ScreenUtil().setSp(26),
                         ),
                       ),
                     ),
@@ -245,7 +263,7 @@ class _AssetPageState extends State<AssetPage> {
                         style: GoogleFonts.lato(
                           letterSpacing: 0.2,
                           color: Colors.white,
-                          fontSize: ScreenUtil().setSp(28),
+                          fontSize: ScreenUtil().setSp(26),
                         ),
                       ),
                     ),
@@ -271,6 +289,90 @@ class _AssetPageState extends State<AssetPage> {
             fontWeight: FontWeight.w600,
           ),
         )
+    );
+  }
+
+  Widget _assetDataWidget(BuildContext context) {
+    return Container(
+      child: ListView.builder(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          scrollDirection: Axis.vertical,
+          itemCount: 20,
+          itemBuilder: (context, index) {
+            return _assetDataItemWidget(context);
+          }),
+    );
+  }
+
+  Widget _assetDataItemWidget(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(20)),
+      decoration: BoxDecoration(
+        border: Border(bottom: BorderSide(color: Colors.black45, width: 0.3)),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Container(
+            child: Row(
+              children: <Widget>[
+                  Container(
+                    child: Image.asset(
+                      'images/trx.png',
+                      width: ScreenUtil().setWidth(50),
+                      height: ScreenUtil().setWidth(50),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                SizedBox(width: ScreenUtil().setWidth(30)),
+                Container(
+                    child: Text(
+                      'TRX',
+                      style: TextStyle(
+                        color: Colors.grey[800],
+                        fontSize: ScreenUtil().setSp(31),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    )
+                ),
+              ],
+            ),
+          ),
+          Container(
+            child: Column(
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    '78665.98',
+                    style: TextStyle(
+                        color: Colors.grey[800],
+                        fontSize: ScreenUtil().setSp(29),
+                        fontWeight: FontWeight.w500,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                SizedBox(height: ScreenUtil().setHeight(5)),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    '≈  258.34',
+                    style: TextStyle(
+                      color: Colors.grey[400],
+                      fontSize: ScreenUtil().setSp(24),
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -279,7 +279,8 @@ class _AssetPageState extends State<AssetPage> {
 
   Widget _assetTitleWidget(BuildContext context) {
     return Container(
-      alignment: Alignment.centerLeft,
+        margin: EdgeInsets.only(left: ScreenUtil().setWidth(10), right: ScreenUtil().setWidth(10)),
+        alignment: Alignment.centerLeft,
         child: Text(
           '资产',
           style: TextStyle(
@@ -294,6 +295,7 @@ class _AssetPageState extends State<AssetPage> {
 
   Widget _assetDataWidget(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(left: ScreenUtil().setWidth(10), right: ScreenUtil().setWidth(10)),
       child: ListView.builder(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),

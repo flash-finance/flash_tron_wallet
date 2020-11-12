@@ -59,7 +59,7 @@ class _AssetPageState extends State<AssetPage> {
                       ),
                     ),
                   ),
-                  SizedBox(width: ScreenUtil().setWidth(10)),
+                  SizedBox(width: ScreenUtil().setWidth(5)),
                   Container(
                       alignment: Alignment.center,
                       height: ScreenUtil().setHeight(40),

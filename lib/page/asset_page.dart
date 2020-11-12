@@ -13,49 +13,53 @@ class AssetPage extends StatefulWidget {
 class _AssetPageState extends State<AssetPage> {
   @override
   Widget build(BuildContext context) {
-    /*return Scaffold(
-      backgroundColor: MyColors.lightBg,
-      //extendBodyBehindAppBar: true,
-      appBar: PreferredSize(
-        child: AppBar(
-          backgroundColor: MyColors.lightBg,
-          brightness: Brightness.light,
-          elevation: 0,
-        ),
-        preferredSize: Size.fromHeight(ScreenUtil().setHeight(0)),
-      ),
-      body: _mainWidget(context),
-    );*/
-    return Container(
-      width: ScreenUtil().setWidth(750),
-      height: ScreenUtil().setHeight(300),
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('images/bg.jpeg'),
-          fit: BoxFit.fill,
-        ),
-      ),
-      child: Scaffold(
-          backgroundColor: Colors.transparent,
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            // elevation: 0,//appbar的阴影
-            title: Text('aaaa'),
-          ),
-          body: Center(
-            child: Text('Hello World', style: TextStyle(color: Colors.white),),
-          )),
-    );
-  }
-
-  Widget _mainWidget(BuildContext context) {
     String tronAddress = Provider.of<HomeProvider>(context).tronAddress;
     if (tronAddress != null) {
-      return _logInWidget(context);
+      return Scaffold(
+        backgroundColor: MyColors.lightBg,
+        appBar: PreferredSize(
+          child: AppBar(
+            backgroundColor: MyColors.lightBg,
+            brightness: Brightness.light,
+            elevation: 0,
+          ),
+          preferredSize: Size.fromHeight(ScreenUtil().setHeight(0)),
+        ),
+        body: _logInWidget(context),
+      );
     } else {
-      return _logOutWidget(context);
+      return Container(
+        color: Colors.white,
+        child: Column(
+          children: <Widget>[
+            Container(
+              width: ScreenUtil().setWidth(750),
+              height: ScreenUtil().setHeight(500),
+              decoration: BoxDecoration(
+                border: Border.all(width: 0, color: Colors.black12),
+                borderRadius: BorderRadius.circular(25),
+                image: DecorationImage(
+                  image: AssetImage('images/bg.jpeg'),
+                  fit: BoxFit.fill,
+                ),
+              ),
+              child: Scaffold(
+                backgroundColor: Colors.transparent,
+                appBar: AppBar(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                ),
+                body: _logOutHeadWidget(context),
+              ),
+            ),
+            _logOutBodyWidget(context),
+          ],
+        ),
+      );
     }
+
   }
+
 
   Widget _logInWidget(BuildContext context) {
     return Container(
@@ -110,7 +114,8 @@ class _AssetPageState extends State<AssetPage> {
                         Icons.arrow_forward_ios,
                         size: ScreenUtil().setSp(22),
                         color: Colors.blue[800],
-                      )),
+                      ),
+                  ),
                 ],
               ),
             ),
@@ -426,42 +431,136 @@ class _AssetPageState extends State<AssetPage> {
     );
   }
 
-  Widget _logOutWidget(BuildContext context) {
-    print('_logOutWidget ');
-
+  Widget _logOutHeadWidget(BuildContext context) {
     return Container(
-      width: ScreenUtil().setWidth(750),
-      height: ScreenUtil().setHeight(300),
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('images/bg.jpeg'),
-          fit: BoxFit.fill,
-        ),
-      ),
-      child: Column(
+      margin: EdgeInsets.only(top: ScreenUtil().setHeight(70)),
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
+              child: Column(
+            children: <Widget>[
+              Container(
+                child: Container(
+                  child: Image.asset(
+                    'images/flash.png',
+                    width: ScreenUtil().setWidth(120),
+                    height: ScreenUtil().setWidth(120),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              SizedBox(height: ScreenUtil().setHeight(20)),
+              Container(
+                child: Text(
+                  'Flash  Wallet',
+                  style: GoogleFonts.lato(
+                    letterSpacing: 0.2,
+                    color: Colors.white,
+                    fontSize: ScreenUtil().setSp(36),
+                  ),
+                ),
+              ),
+            ],
+          )),
+        ],
+      ),
+    );
+  }
+
+  Widget _logOutBodyWidget(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(30)),
+      child: Column(
+        children: <Widget>[
+          Container(
+            alignment: Alignment.centerLeft,
+            margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), bottom: ScreenUtil().setHeight(10)),
             child: Text(
-              '开源  安全  易用',
-              style: GoogleFonts.lato(
-                letterSpacing: 0.2,
-                color: Colors.white,
-                fontSize: ScreenUtil().setSp(35),
+              '数字资产钱包',
+              style: TextStyle(
+                  fontSize: ScreenUtil().setSp(32),
+                  color: Colors.grey[900]),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+            ),
+            child: ListTile(
+              leading: Image.asset(
+                'icons/key.png',
+                width: ScreenUtil().setWidth(40),
+                height: ScreenUtil().setWidth(40),
+                color: Colors.black87,
+                fit: BoxFit.fill,
+              ),
+              title: Text(
+                '导入私钥',
+                style: TextStyle(
+                    fontSize: ScreenUtil().setSp(29),
+                    color: Colors.grey[900]),
+              ),
+              trailing: Icon(
+                Icons.arrow_forward_ios,
+                size: ScreenUtil().setSp(27),
+                color: Colors.grey[700],
               ),
             ),
           ),
-          SizedBox(height: ScreenUtil().setHeight(30)),
           Container(
-            child: Image.asset(
-              'images/flash.png',
-              width: ScreenUtil().setWidth(80),
-              height: ScreenUtil().setWidth(80),
-              fit: BoxFit.cover,
+            decoration: BoxDecoration(
+              color: Colors.white,
+            ),
+            child: ListTile(
+              leading: Image.asset(
+                'icons/panel.png',
+                width: ScreenUtil().setWidth(40),
+                height: ScreenUtil().setWidth(40),
+                color: Colors.black87,
+                fit: BoxFit.fill,
+              ),
+              title: Text(
+                '导入助记词',
+                style: TextStyle(
+                    fontSize: ScreenUtil().setSp(29),
+                    color: Colors.grey[900]),
+              ),
+              trailing: Icon(
+                Icons.arrow_forward_ios,
+                size: ScreenUtil().setSp(27),
+                color: Colors.grey[700],
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+            ),
+            child: ListTile(
+              leading: Image.asset(
+                'icons/wallet.png',
+                width: ScreenUtil().setWidth(40),
+                height: ScreenUtil().setWidth(40),
+                color: Colors.black87,
+                fit: BoxFit.fill,
+              ),
+              title: Text(
+                '创建钱包',
+                style: TextStyle(
+                    fontSize: ScreenUtil().setSp(29),
+                    color: Colors.grey[900]),
+              ),
+              trailing: Icon(
+                Icons.arrow_forward_ios,
+                size: ScreenUtil().setSp(27),
+                color: Colors.grey[700],
+              ),
             ),
           ),
         ],
       ),
     );
   }
+
 }

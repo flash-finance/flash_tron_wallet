@@ -2,6 +2,7 @@
 
 import 'package:flash_tron_wallet/page/defi_page.dart';
 import 'package:flash_tron_wallet/provider/index_provider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
@@ -17,11 +18,13 @@ class IndexPage extends StatefulWidget {
 class _IndexPageState extends State<IndexPage> {
   final List<BottomNavigationBarItem> bottomTabs = [
     BottomNavigationBarItem(
-      icon: Icon(Icons.account_balance_wallet),
+      //icon: Icon(Icons.sync),
+      icon: Icon(Icons.donut_small),
       label: '资产',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.broken_image),
+      //icon: Icon(Icons.photo_filter),
+      icon: Icon(Icons.explore),
       label: 'DeFi',
     ),
     BottomNavigationBarItem(

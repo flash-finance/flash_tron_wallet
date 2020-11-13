@@ -40,8 +40,8 @@ class _AssetPageState extends State<AssetPage> {
                 borderRadius: BorderRadius.circular(25),
                 color: Colors.blue[900],
                 /*image: DecorationImage(
-                  image: AssetImage('images/bg.jpeg'),
-                  fit: BoxFit.fill,
+                  image: AssetImage('images/666.jpeg'),
+                  fit: BoxFit.cover,
                 ),*/
               ),
               child: Scaffold(
@@ -439,14 +439,14 @@ class _AssetPageState extends State<AssetPage> {
 
   Widget _logOutHeadWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: ScreenUtil().setHeight(70)),
+      margin: EdgeInsets.only(top: ScreenUtil().setHeight(50)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
               child: Column(
             children: <Widget>[
-              Container(
+              /*Container(
                 child: Container(
                   child: Image.asset(
                     'images/flash.png',
@@ -455,8 +455,8 @@ class _AssetPageState extends State<AssetPage> {
                     fit: BoxFit.cover,
                   ),
                 ),
-              ),
-              SizedBox(height: ScreenUtil().setHeight(20)),
+              ),*/
+              //SizedBox(height: ScreenUtil().setHeight(20)),
               Container(
                 child: Text(
                   'Flash  Wallet',
@@ -479,7 +479,7 @@ class _AssetPageState extends State<AssetPage> {
       margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(30)),
       child: Column(
         children: <Widget>[
-          Container(
+          /*Container(
             alignment: Alignment.centerLeft,
             margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), bottom: ScreenUtil().setHeight(10)),
             child: Text(
@@ -488,145 +488,151 @@ class _AssetPageState extends State<AssetPage> {
                   fontSize: ScreenUtil().setSp(32),
                   color: Colors.grey[900]),
             ),
+          ),*/
+          SizedBox(height: ScreenUtil().setHeight(20)),
+          InkWell(
+            child: Container(
+              padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(40)),
+              decoration: BoxDecoration(
+                border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      SizedBox(width: ScreenUtil().setWidth(10)),
+                      Container(
+                        child: Image.asset(
+                          'icons/key.png',
+                          width: ScreenUtil().setWidth(40),
+                          height: ScreenUtil().setWidth(40),
+                          color: Colors.black87,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      SizedBox(width: ScreenUtil().setWidth(20)),
+                      Container(
+                        child: Text(
+                          '导入私钥',
+                          style: TextStyle(
+                              fontSize: ScreenUtil().setSp(29),
+                              color: Colors.grey[900]),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        child: Icon(
+                          Icons.arrow_forward_ios,
+                          size: ScreenUtil().setSp(27),
+                          color: Colors.grey[700],
+                        ),
+                      ),
+                      SizedBox(width: ScreenUtil().setWidth(10)),
+                    ],
+                  ),
+
+                ],
+              ),
+            ),
           ),
           SizedBox(height: ScreenUtil().setHeight(20)),
-          Container(
-            padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(40)),
-            decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    SizedBox(width: ScreenUtil().setWidth(10)),
-                    Container(
-                      child: Image.asset(
-                        'icons/key.png',
-                        width: ScreenUtil().setWidth(40),
-                        height: ScreenUtil().setWidth(40),
-                        color: Colors.black87,
-                        fit: BoxFit.fill,
+          InkWell(
+            child: Container(
+              padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(40)),
+              decoration: BoxDecoration(
+                border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      SizedBox(width: ScreenUtil().setWidth(10)),
+                      Container(
+                        child: Image.asset(
+                          'icons/panel.png',
+                          width: ScreenUtil().setWidth(40),
+                          height: ScreenUtil().setWidth(40),
+                          color: Colors.black87,
+                          fit: BoxFit.fill,
+                        ),
                       ),
-                    ),
-                    SizedBox(width: ScreenUtil().setWidth(20)),
-                    Container(
-                      child: Text(
-                        '导入私钥',
-                        style: TextStyle(
-                            fontSize: ScreenUtil().setSp(29),
-                            color: Colors.grey[900]),
+                      SizedBox(width: ScreenUtil().setWidth(20)),
+                      Container(
+                        child: Text(
+                          '导入助记词',
+                          style: TextStyle(
+                              fontSize: ScreenUtil().setSp(29),
+                              color: Colors.grey[900]),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Container(
-                      child: Icon(
-                        Icons.arrow_forward_ios,
-                        size: ScreenUtil().setSp(27),
-                        color: Colors.grey[700],
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        child: Icon(
+                          Icons.arrow_forward_ios,
+                          size: ScreenUtil().setSp(27),
+                          color: Colors.grey[700],
+                        ),
                       ),
-                    ),
-                    SizedBox(width: ScreenUtil().setWidth(10)),
-                  ],
-                ),
+                      SizedBox(width: ScreenUtil().setWidth(10)),
+                    ],
+                  ),
 
-              ],
-            ),
-          ),
-          SizedBox(height: ScreenUtil().setHeight(20)),
-          Container(
-            padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(40)),
-            decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    SizedBox(width: ScreenUtil().setWidth(10)),
-                    Container(
-                      child: Image.asset(
-                        'icons/panel.png',
-                        width: ScreenUtil().setWidth(40),
-                        height: ScreenUtil().setWidth(40),
-                        color: Colors.black87,
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    SizedBox(width: ScreenUtil().setWidth(20)),
-                    Container(
-                      child: Text(
-                        '导入助记词',
-                        style: TextStyle(
-                            fontSize: ScreenUtil().setSp(29),
-                            color: Colors.grey[900]),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Container(
-                      child: Icon(
-                        Icons.arrow_forward_ios,
-                        size: ScreenUtil().setSp(27),
-                        color: Colors.grey[700],
-                      ),
-                    ),
-                    SizedBox(width: ScreenUtil().setWidth(10)),
-                  ],
-                ),
-
-              ],
+                ],
+              ),
             ),
           ),
           SizedBox(height: ScreenUtil().setHeight(40)),
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    SizedBox(width: ScreenUtil().setWidth(10)),
-                    Container(
-                      child: Image.asset(
-                        'icons/wallet.png',
-                        width: ScreenUtil().setWidth(40),
-                        height: ScreenUtil().setWidth(40),
-                        color: Colors.black87,
-                        fit: BoxFit.fill,
+          InkWell(
+            child: Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      SizedBox(width: ScreenUtil().setWidth(10)),
+                      Container(
+                        child: Image.asset(
+                          'icons/wallet.png',
+                          width: ScreenUtil().setWidth(40),
+                          height: ScreenUtil().setWidth(40),
+                          color: Colors.black87,
+                          fit: BoxFit.fill,
+                        ),
                       ),
-                    ),
-                    SizedBox(width: ScreenUtil().setWidth(20)),
-                    Container(
-                      child: Text(
-                        '创建钱包',
-                        style: TextStyle(
-                            fontSize: ScreenUtil().setSp(29),
-                            color: Colors.grey[900]),
+                      SizedBox(width: ScreenUtil().setWidth(20)),
+                      Container(
+                        child: Text(
+                          '创建钱包',
+                          style: TextStyle(
+                              fontSize: ScreenUtil().setSp(29),
+                              color: Colors.grey[900]),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Container(
-                      child: Icon(
-                        Icons.arrow_forward_ios,
-                        size: ScreenUtil().setSp(27),
-                        color: Colors.grey[700],
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        child: Icon(
+                          Icons.arrow_forward_ios,
+                          size: ScreenUtil().setSp(27),
+                          color: Colors.grey[700],
+                        ),
                       ),
-                    ),
-                    SizedBox(width: ScreenUtil().setWidth(10)),
-                  ],
-                ),
+                      SizedBox(width: ScreenUtil().setWidth(10)),
+                    ],
+                  ),
 
-              ],
+                ],
+              ),
             ),
           ),
         ],

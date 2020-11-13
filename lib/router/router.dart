@@ -9,8 +9,8 @@ class Routes {
   static String deFi = '/deFi';
   static String mine = '/mine';
 
-  static String importWallet = '/mine/importWallet';
-  static String importKey = '/mine/importKey';
+  static String importWallet = '/asset/importWallet';
+  static String importKey = '/asset/importKey';
   static String importMnemonic = '/mine/importMnemonic';
   static String backupKey = '/mine/backupKey';
   static String backupMnemonic = '/mine/backupMnemonic';

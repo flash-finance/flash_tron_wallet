@@ -1,4 +1,3 @@
-
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/model/dex_info_model.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
@@ -8,8 +7,7 @@ import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
 
 class ImportKeyPage extends StatefulWidget {
@@ -80,7 +78,41 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
       ),
     );
   }
-  
+
+  Widget _descWidget() {
+    return Container(
+      width: ScreenUtil().setWidth(750),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5.0),
+        color: Colors.blue[900],
+      ),
+      child: Column(
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.fromLTRB(40, 15, 10, 0),
+            alignment: Alignment.centerLeft,
+            child: Text(
+              '1. 需要设置6位数字的密码，用于钱包管理和交易授权',
+              style: TextStyle(fontSize: ScreenUtil().setSp(22), color: Colors.white),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.fromLTRB(40, 5, 10, 15),
+            alignment: Alignment.centerLeft,
+            child: Text(
+              '2. 平台不存储密码，也无法找回，请务必妥善保管',
+              style: TextStyle(fontSize: ScreenUtil().setSp(22), color: Colors.white),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _nameWidget() {
     return Container(
       child: TextFormField(
@@ -143,18 +175,18 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
         keyboardType: TextInputType.numberWithOptions(decimal: true),
         inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
         decoration: InputDecoration(
-          labelText: '设置密码',
-          labelStyle: TextStyle(fontSize: ScreenUtil().setSp(28)),
-          suffixIcon: IconButton(
-            icon: Icon(_setPwdClickEye ? Icons.visibility_off : Icons.remove_red_eye,
+            labelText: '设置密码',
+            labelStyle: TextStyle(fontSize: ScreenUtil().setSp(28)),
+            suffixIcon: IconButton(
+              icon: Icon(_setPwdClickEye ? Icons.visibility_off : Icons.remove_red_eye,
                 color: _setPwdEyeColor, size: ScreenUtil().setSp(38),),
-            onPressed: () {
-              setState(() {
-                _setPwdClickEye = !_setPwdClickEye;
-                _setPwdEyeColor = _setPwdClickEye ? Colors.grey : Colors.blue[900];
-              });
-            },
-          )
+              onPressed: () {
+                setState(() {
+                  _setPwdClickEye = !_setPwdClickEye;
+                  _setPwdEyeColor = _setPwdClickEye ? Colors.grey : Colors.blue[900];
+                });
+              },
+            )
         ),
         validator: (String value) {
           if (value.isEmpty) {
@@ -240,40 +272,6 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
             shape: StadiumBorder(side: BorderSide(color: Colors.blue[900])),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _descWidget() {
-    return Container(
-      width: ScreenUtil().setWidth(750),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5.0),
-        color: Colors.blue[900],
-      ),
-      child: Column(
-        children: <Widget>[
-          Container(
-            padding: EdgeInsets.fromLTRB(40, 15, 10, 0),
-            alignment: Alignment.centerLeft,
-            child: Text(
-              '1. 需要设置6位数字的密码，用于钱包管理和交易授权',
-              style: TextStyle(fontSize: ScreenUtil().setSp(22), color: Colors.white),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.fromLTRB(40, 5, 10, 15),
-            alignment: Alignment.centerLeft,
-            child: Text(
-              '2. 平台不存储密码，也无法找回，请务必妥善保管',
-              style: TextStyle(fontSize: ScreenUtil().setSp(22), color: Colors.white),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-        ],
       ),
     );
   }

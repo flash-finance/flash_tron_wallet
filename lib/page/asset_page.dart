@@ -355,8 +355,7 @@ class _AssetPageState extends State<AssetPage> {
 
   Widget _assetDataWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(
-          left: ScreenUtil().setWidth(10), right: ScreenUtil().setWidth(10)),
+      margin: EdgeInsets.only(left: ScreenUtil().setWidth(10), right: ScreenUtil().setWidth(10)),
       child: ListView.builder(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
@@ -546,6 +545,9 @@ class _AssetPageState extends State<AssetPage> {
           ),
           SizedBox(height: ScreenUtil().setHeight(20)),
           InkWell(
+            onTap: () {
+              Application.router.navigateTo(context, 'asset/importMnemonic', transition: TransitionType.cupertino);
+            },
             child: Container(
               padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(40)),
               decoration: BoxDecoration(

@@ -1,4 +1,5 @@
 import 'package:flash_tron_wallet/page/asset/import_key_page.dart';
+import 'package:flash_tron_wallet/page/asset/import_mnemonic_page.dart';
 import 'package:flash_tron_wallet/page/asset_page.dart';
 import 'package:flash_tron_wallet/page/defi_page.dart';
 import 'package:flash_tron_wallet/page/mine/wallet/backup_key_page.dart';
@@ -6,7 +7,6 @@ import 'package:flash_tron_wallet/page/mine/wallet/backup_mnemonic_page.dart';
 import 'package:flash_tron_wallet/page/mine/wallet/build_wallet_first_page.dart';
 import 'package:flash_tron_wallet/page/mine/wallet/build_wallet_second_page.dart';
 import 'package:flash_tron_wallet/page/mine/wallet/build_wallet_third_page.dart';
-import 'package:flash_tron_wallet/page/mine/wallet/import_mnemonic_page.dart';
 import 'package:flash_tron_wallet/page/mine/wallet/import_wallet_page.dart';
 import 'package:flash_tron_wallet/page/mine/wallet/receive_wallet_page.dart';
 import 'package:flash_tron_wallet/page/mine/wallet/send_wallet_page.dart';

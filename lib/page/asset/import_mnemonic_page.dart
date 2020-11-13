@@ -1,4 +1,3 @@
-
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/model/dex_info_model.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
@@ -8,8 +7,9 @@ import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
+
 import 'package:bip39/bip39.dart' as bip39;
 
 class ImportMnemonicPage extends StatefulWidget {
@@ -82,6 +82,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
     );
   }
 
+
   Widget _nameWidget() {
     return Container(
       child: TextFormField(
@@ -145,7 +146,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
             labelStyle: TextStyle(fontSize: ScreenUtil().setSp(28)),
             suffixIcon: IconButton(
               icon: Icon(_setPwdClickEye ? Icons.visibility_off : Icons.remove_red_eye,
-                  color: _setPwdEyeColor, size: ScreenUtil().setSp(38),),
+                color: _setPwdEyeColor, size: ScreenUtil().setSp(38),),
               onPressed: () {
                 setState(() {
                   _setPwdClickEye = !_setPwdClickEye;
@@ -289,7 +290,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
     }
     String tempMnemonic = '';
     for (String temp in _list) {
-        tempMnemonic += temp + ' ';
+      tempMnemonic += temp + ' ';
     }
     _mnemonic = tempMnemonic.trim();
     return bip39.validateMnemonic(_mnemonic);

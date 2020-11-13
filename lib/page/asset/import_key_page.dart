@@ -262,7 +262,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
                     Provider.of<HomeProvider>(context, listen: false).changeImportKeyLoading(false);
                     if (val == true) {
                       Util.showToast('导入成功');
-                      Navigator.of(context)..pop()..pop();
+                      Navigator.of(context)..pop();
                     } else {
                       Util.showToast('导入失败，请再尝试');
                     }});

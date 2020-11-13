@@ -29,7 +29,7 @@ class _AssetPageState extends State<AssetPage> {
       );
     } else {
       return Container(
-        color: Colors.white,
+        color: MyColors.lightBg,
         child: Column(
           children: <Widget>[
             Container(
@@ -38,10 +38,11 @@ class _AssetPageState extends State<AssetPage> {
               decoration: BoxDecoration(
                 border: Border.all(width: 0, color: Colors.black12),
                 borderRadius: BorderRadius.circular(25),
-                image: DecorationImage(
+                color: Colors.blue[900],
+                /*image: DecorationImage(
                   image: AssetImage('images/bg.jpeg'),
                   fit: BoxFit.fill,
-                ),
+                ),*/
               ),
               child: Scaffold(
                 backgroundColor: Colors.transparent,
@@ -52,7 +53,12 @@ class _AssetPageState extends State<AssetPage> {
                 body: _logOutHeadWidget(context),
               ),
             ),
-            _logOutBodyWidget(context),
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.only(top: ScreenUtil().setHeight(0)),
+                child: _logOutBodyWidget(context),
+              ),
+            ),
           ],
         ),
       );
@@ -483,79 +489,144 @@ class _AssetPageState extends State<AssetPage> {
                   color: Colors.grey[900]),
             ),
           ),
+          SizedBox(height: ScreenUtil().setHeight(20)),
           Container(
+            padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(40)),
             decoration: BoxDecoration(
-              color: Colors.white,
+              border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
             ),
-            child: ListTile(
-              leading: Image.asset(
-                'icons/key.png',
-                width: ScreenUtil().setWidth(40),
-                height: ScreenUtil().setWidth(40),
-                color: Colors.black87,
-                fit: BoxFit.fill,
-              ),
-              title: Text(
-                '导入私钥',
-                style: TextStyle(
-                    fontSize: ScreenUtil().setSp(29),
-                    color: Colors.grey[900]),
-              ),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                size: ScreenUtil().setSp(27),
-                color: Colors.grey[700],
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    SizedBox(width: ScreenUtil().setWidth(10)),
+                    Container(
+                      child: Image.asset(
+                        'icons/key.png',
+                        width: ScreenUtil().setWidth(40),
+                        height: ScreenUtil().setWidth(40),
+                        color: Colors.black87,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                    SizedBox(width: ScreenUtil().setWidth(20)),
+                    Container(
+                      child: Text(
+                        '导入私钥',
+                        style: TextStyle(
+                            fontSize: ScreenUtil().setSp(29),
+                            color: Colors.grey[900]),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Container(
+                      child: Icon(
+                        Icons.arrow_forward_ios,
+                        size: ScreenUtil().setSp(27),
+                        color: Colors.grey[700],
+                      ),
+                    ),
+                    SizedBox(width: ScreenUtil().setWidth(10)),
+                  ],
+                ),
+
+              ],
             ),
           ),
+          SizedBox(height: ScreenUtil().setHeight(20)),
           Container(
+            padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(40)),
             decoration: BoxDecoration(
-              color: Colors.white,
+              border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
             ),
-            child: ListTile(
-              leading: Image.asset(
-                'icons/panel.png',
-                width: ScreenUtil().setWidth(40),
-                height: ScreenUtil().setWidth(40),
-                color: Colors.black87,
-                fit: BoxFit.fill,
-              ),
-              title: Text(
-                '导入助记词',
-                style: TextStyle(
-                    fontSize: ScreenUtil().setSp(29),
-                    color: Colors.grey[900]),
-              ),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                size: ScreenUtil().setSp(27),
-                color: Colors.grey[700],
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    SizedBox(width: ScreenUtil().setWidth(10)),
+                    Container(
+                      child: Image.asset(
+                        'icons/panel.png',
+                        width: ScreenUtil().setWidth(40),
+                        height: ScreenUtil().setWidth(40),
+                        color: Colors.black87,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                    SizedBox(width: ScreenUtil().setWidth(20)),
+                    Container(
+                      child: Text(
+                        '导入助记词',
+                        style: TextStyle(
+                            fontSize: ScreenUtil().setSp(29),
+                            color: Colors.grey[900]),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Container(
+                      child: Icon(
+                        Icons.arrow_forward_ios,
+                        size: ScreenUtil().setSp(27),
+                        color: Colors.grey[700],
+                      ),
+                    ),
+                    SizedBox(width: ScreenUtil().setWidth(10)),
+                  ],
+                ),
+
+              ],
             ),
           ),
+          SizedBox(height: ScreenUtil().setHeight(40)),
           Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-            ),
-            child: ListTile(
-              leading: Image.asset(
-                'icons/wallet.png',
-                width: ScreenUtil().setWidth(40),
-                height: ScreenUtil().setWidth(40),
-                color: Colors.black87,
-                fit: BoxFit.fill,
-              ),
-              title: Text(
-                '创建钱包',
-                style: TextStyle(
-                    fontSize: ScreenUtil().setSp(29),
-                    color: Colors.grey[900]),
-              ),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                size: ScreenUtil().setSp(27),
-                color: Colors.grey[700],
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    SizedBox(width: ScreenUtil().setWidth(10)),
+                    Container(
+                      child: Image.asset(
+                        'icons/wallet.png',
+                        width: ScreenUtil().setWidth(40),
+                        height: ScreenUtil().setWidth(40),
+                        color: Colors.black87,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                    SizedBox(width: ScreenUtil().setWidth(20)),
+                    Container(
+                      child: Text(
+                        '创建钱包',
+                        style: TextStyle(
+                            fontSize: ScreenUtil().setSp(29),
+                            color: Colors.grey[900]),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Container(
+                      child: Icon(
+                        Icons.arrow_forward_ios,
+                        size: ScreenUtil().setSp(27),
+                        color: Colors.grey[700],
+                      ),
+                    ),
+                    SizedBox(width: ScreenUtil().setWidth(10)),
+                  ],
+                ),
+
+              ],
             ),
           ),
         ],

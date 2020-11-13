@@ -13,9 +13,9 @@ class Routes {
   static String importKey = '/asset/importKey';
   static String importMnemonic = '/asset/importMnemonic';
   static String backupKey = '/mine/backupKey';
-  static String backupMnemonic = '/mine/backupMnemonic';
-  static String buildFirstWallet = '/mine/buildFirstWallet';
-  static String buildSecondWallet = '/mine/buildSecondWallet';
+  static String backupMnemonic = '/asset/backupMnemonic';
+  static String buildFirstWallet = '/asset/buildFirstWallet';
+  static String buildSecondWallet = '/asset/buildSecondWallet';
   static String buildThirdWallet = '/mine/buildThirdWallet';
   static String receiveWallet = '/mine/receiveWallet';
   static String sendWallet = '/mine/sendWallet';

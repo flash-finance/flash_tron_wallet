@@ -1,4 +1,5 @@
 
+
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/model/dex_info_model.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
@@ -10,7 +11,7 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
 
 class BuildWalletFirstPage extends StatefulWidget {
@@ -122,7 +123,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
             labelStyle: TextStyle(fontSize: ScreenUtil().setSp(28)),
             suffixIcon: IconButton(
               icon: Icon(_setPwdClickEye ? Icons.visibility_off : Icons.remove_red_eye,
-                  color: _setPwdEyeColor, size: ScreenUtil().setSp(38),),
+                color: _setPwdEyeColor, size: ScreenUtil().setSp(38),),
               onPressed: () {
                 setState(() {
                   _setPwdClickEye = !_setPwdClickEye;
@@ -204,7 +205,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
                   _submit().then((val) {
                     Provider.of<HomeProvider>(context, listen: false).changeBuildWalletLoading(false);
                     if (val == true) {
-                      Application.router.navigateTo(context, 'mine/buildSecondWallet', transition: TransitionType.cupertino);
+                      Application.router.navigateTo(context, 'asset/buildSecondWallet', transition: TransitionType.cupertino);
                     } else {
                       Util.showToast('创建出错，请再尝试');
                     }
@@ -269,6 +270,4 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
     List<TokenRows> tokenList = Provider.of<HomeProvider>(context, listen: false).tokenList;
     return await TronAsset().getAsset(context, tronAddress, tokenList);
   }
-
 }
-

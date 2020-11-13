@@ -598,6 +598,9 @@ class _AssetPageState extends State<AssetPage> {
           ),
           SizedBox(height: ScreenUtil().setHeight(40)),
           InkWell(
+            onTap: () {
+              Application.router.navigateTo(context, 'asset/buildFirstWallet', transition: TransitionType.cupertino);
+            },
             child: Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

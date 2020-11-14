@@ -1,6 +1,11 @@
+import 'dart:async';
+
 import 'package:flash_tron_wallet/common/color.dart';
+import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
+import 'package:flash_tron_wallet/model/dex_info_model.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
+import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
@@ -13,6 +18,24 @@ class AssetPage extends StatefulWidget {
 }
 
 class _AssetPageState extends State<AssetPage> {
+  Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _reloadAsset();
+  }
+
+  @override
+  void dispose() {
+    if (_timer != null) {
+      if (_timer.isActive) {
+        _timer.cancel();
+      }
+    }
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     String tronAddress = Provider.of<HomeProvider>(context).tronAddress;
@@ -176,6 +199,18 @@ class _AssetPageState extends State<AssetPage> {
   }
 
   Widget _cardWidget(BuildContext context) {
+    List<AssetEntity> assetList = Provider.of<HomeProvider>(context).assetList;
+    DexInfo dexInfo = Provider.of<HomeProvider>(context).dexInfo;
+    double trxPrice4Cny = dexInfo.trxPriceUsdt * dexInfo.usdtPriceCny;
+    double totalAssetCny = 0.0;
+    double totalAssetUsd = 0.0;
+
+    if (assetList != null && assetList.length > 0) {
+      for (AssetEntity item in assetList) {
+        totalAssetCny += double.parse(Util.formatNumberSub(item.cny, 2));
+      }
+      totalAssetUsd = totalAssetCny / 6.75;
+    }
     return Container(
       padding: EdgeInsets.only(
           left: ScreenUtil().setWidth(40),
@@ -238,7 +273,7 @@ class _AssetPageState extends State<AssetPage> {
             alignment: Alignment.centerLeft,
             margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
             child: Text(
-              '7864.38',
+              '${Util.formatNumberSub(totalAssetUsd, 2)}',
               style: GoogleFonts.lato(
                 letterSpacing: 0.2,
                 color: Colors.white,
@@ -354,20 +389,21 @@ class _AssetPageState extends State<AssetPage> {
   }
 
   Widget _assetDataWidget(BuildContext context) {
+    List<AssetEntity> assetList = Provider.of<HomeProvider>(context).assetList;
     return Container(
       margin: EdgeInsets.only(left: ScreenUtil().setWidth(10), right: ScreenUtil().setWidth(10)),
       child: ListView.builder(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
           scrollDirection: Axis.vertical,
-          itemCount: 20,
+          itemCount: assetList.length,
           itemBuilder: (context, index) {
-            return _assetDataItemWidget(context);
+            return _assetDataItemWidget(context, assetList[index]);
           }),
     );
   }
 
-  Widget _assetDataItemWidget(BuildContext context) {
+  Widget _assetDataItemWidget(BuildContext context, AssetEntity item) {
     return Container(
       padding: EdgeInsets.only(
           top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(20)),
@@ -381,8 +417,8 @@ class _AssetPageState extends State<AssetPage> {
             child: Row(
               children: <Widget>[
                 Container(
-                  child: Image.asset(
-                    'images/trx.png',
+                  child: Image.network(
+                    '${item.logoUrl}',
                     width: ScreenUtil().setWidth(50),
                     height: ScreenUtil().setWidth(50),
                     fit: BoxFit.fill,
@@ -391,7 +427,7 @@ class _AssetPageState extends State<AssetPage> {
                 SizedBox(width: ScreenUtil().setWidth(30)),
                 Container(
                     child: Text(
-                  'TRX',
+                  '${item.name}',
                   style: TextStyle(
                     color: Colors.grey[800],
                     fontSize: ScreenUtil().setSp(31),
@@ -407,7 +443,7 @@ class _AssetPageState extends State<AssetPage> {
                 Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    '78665.98',
+                    '${Util.formatNumberSub(item.balance, 4)}',
                     style: TextStyle(
                       color: Colors.grey[800],
                       fontSize: ScreenUtil().setSp(29),
@@ -421,7 +457,7 @@ class _AssetPageState extends State<AssetPage> {
                 Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    '≈  \$ 258.34',
+                    '≈  \$ ${Util.formatNumberSub(item.cny/6.75, 2)}',
                     style: TextStyle(
                       color: Colors.grey[400],
                       fontSize: ScreenUtil().setSp(24),
@@ -480,16 +516,6 @@ class _AssetPageState extends State<AssetPage> {
       margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(30)),
       child: Column(
         children: <Widget>[
-          /*Container(
-            alignment: Alignment.centerLeft,
-            margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), bottom: ScreenUtil().setHeight(10)),
-            child: Text(
-              '数字资产钱包',
-              style: TextStyle(
-                  fontSize: ScreenUtil().setSp(32),
-                  color: Colors.grey[900]),
-            ),
-          ),*/
           SizedBox(height: ScreenUtil().setHeight(20)),
           InkWell(
             onTap: () {
@@ -649,5 +675,16 @@ class _AssetPageState extends State<AssetPage> {
       ),
     );
   }
+
+  Future _reloadAsset() async {
+    _timer = Timer.periodic(Duration(milliseconds: 3000), (timer) async{
+      bool backgroundFlag = Provider.of<HomeProvider>(context, listen: false).backgroundFlag;
+      if (!backgroundFlag) {
+        await Provider.of<HomeProvider>(context, listen: false).getWalletEntity();
+        await  Provider.of<HomeProvider>(context, listen: false).getAsset4Init();
+      }
+    });
+  }
+
 
 }

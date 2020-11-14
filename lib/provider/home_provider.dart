@@ -405,8 +405,7 @@ class HomeProvider with ChangeNotifier {
     final stub = WalletClient(channel);
     Uint8List originAddress = base58.decode(userAddress).sublist(0, 21);
     try {
-      Account response =
-          await stub.getAccount(Account()..address = originAddress);
+      Account response = await stub.getAccount(Account()..address = originAddress);
       for (int i = 0; i < tokenList.length; i++) {
         if (tokenList[i].tokenType == 0) {
           AssetEntity trxEntity = TronAsset().getTrxBalance(response, userAddress, tokenList[i], trxPriceCny);

@@ -5,9 +5,11 @@ import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
 import 'package:flash_tron_wallet/model/dex_info_model.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
+import 'package:flash_tron_wallet/tron/service/tron_asset.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -182,19 +184,26 @@ class _AssetPageState extends State<AssetPage> {
   }
 
   Widget _bodyWidget(BuildContext context) {
-    return Container(
-      child: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Column(
-          children: <Widget>[
-            _cardWidget(context),
-            SizedBox(height: ScreenUtil().setHeight(30)),
-            _assetTitleWidget(context),
-            SizedBox(height: ScreenUtil().setHeight(5)),
-            _assetDataWidget(context),
-          ],
+    return EasyRefresh(
+      header: MaterialHeader(enableHapticFeedback: true),
+      footer: MaterialFooter(enableHapticFeedback: true, enableInfiniteLoad: false),
+        child: Container(
+          child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
+            child: Column(
+              children: <Widget>[
+                _cardWidget(context),
+                SizedBox(height: ScreenUtil().setHeight(30)),
+                _assetTitleWidget(context),
+                SizedBox(height: ScreenUtil().setHeight(5)),
+                _assetDataWidget(context),
+              ],
+            ),
+          ),
         ),
-      ),
+      onRefresh: () async {
+        _getAsset();
+      },
     );
   }
 
@@ -684,6 +693,12 @@ class _AssetPageState extends State<AssetPage> {
         await  Provider.of<HomeProvider>(context, listen: false).getAsset4Init();
       }
     });
+  }
+
+  Future<bool> _getAsset() async {
+    String tronAddress = Provider.of<HomeProvider>(context, listen: false).tronAddress;
+    List<TokenRows> tokenList = Provider.of<HomeProvider>(context, listen: false).tokenList;
+    return await TronAsset().getAsset(context, tronAddress, tokenList);
   }
 
 

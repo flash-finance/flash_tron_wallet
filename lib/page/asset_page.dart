@@ -449,9 +449,9 @@ class _AssetPageState extends State<AssetPage> {
           ),
           Container(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>[
                 Container(
-                  alignment: Alignment.centerLeft,
                   child: Text(
                     '${Util.formatNumberSub(item.balance, 4)}',
                     style: TextStyle(
@@ -465,7 +465,6 @@ class _AssetPageState extends State<AssetPage> {
                 ),
                 SizedBox(height: ScreenUtil().setHeight(5)),
                 Container(
-                  alignment: Alignment.centerRight,
                   child: Text(
                     '≈  \$ ${Util.formatNumberSub(item.cny/6.75, 2)}',
                     style: TextStyle(

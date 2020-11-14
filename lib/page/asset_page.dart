@@ -110,6 +110,7 @@ class _AssetPageState extends State<AssetPage> {
   }
 
   Widget _headWidget(BuildContext context) {
+    String name = Provider.of<HomeProvider>(context).name;
     return Container(
       margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
       child: Row(
@@ -126,7 +127,7 @@ class _AssetPageState extends State<AssetPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      'BG-TRON01',
+                      '$name',
                       style: GoogleFonts.lato(
                         letterSpacing: 0.2,
                         color: Colors.white,
@@ -464,7 +465,7 @@ class _AssetPageState extends State<AssetPage> {
                 ),
                 SizedBox(height: ScreenUtil().setHeight(5)),
                 Container(
-                  alignment: Alignment.centerLeft,
+                  alignment: Alignment.centerRight,
                   child: Text(
                     '≈  \$ ${Util.formatNumberSub(item.cny/6.75, 2)}',
                     style: TextStyle(

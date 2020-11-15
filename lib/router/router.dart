@@ -16,6 +16,7 @@ class Routes {
   static String walletDetail = 'asset/walletDetail';
   static String backupKey = '/asset/backupKey';
   static String backupMnemonic = '/asset/backupMnemonic';
+  static String updatePwd = '/asset/updatePwd';
 
 
 
@@ -23,7 +24,6 @@ class Routes {
   static String buildThirdWallet = '/mine/buildThirdWallet';
   static String receiveWallet = '/mine/receiveWallet';
   static String sendWallet = '/mine/sendWallet';
-  static String updatePwd = '/mine/updatePwd';
   static String updateName = '/mine/updateName';
 
   static void configureRouter(FluroRouter router) {

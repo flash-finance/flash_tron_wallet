@@ -1,9 +1,9 @@
-
+import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
 
 class UpdatePwdPage extends StatefulWidget {
@@ -27,20 +27,34 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
 
   @override
   Widget build(BuildContext context) {
-    String pwd = Provider.of<HomeProvider>(context).pwd;
+    String pwd = Provider.of<HomeProvider>(context, listen: false).pwd;
     return Scaffold(
+      backgroundColor: MyColors.lightBg,
       appBar: AppBar(
-        title: Text(
-          '修改密码',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: ScreenUtil().setSp(35),
-          ),
+      backgroundColor: Colors.grey[100],
+      brightness: Brightness.light,
+      title: Text(
+        '修改密码',
+        style: TextStyle(
+          color: Colors.grey[800],
+          fontSize: ScreenUtil().setSp(32),
+          letterSpacing: 1.0,
+          fontWeight: FontWeight.w600,
         ),
-        backgroundColor: Colors.blue[900],
-        centerTitle: true,
-        elevation: 0,
       ),
+      centerTitle: true,
+      elevation: 0,
+      leading: InkWell(
+        onTap: (){
+          Navigator.of(context)..pop();
+        },
+        child: Icon(
+          Icons.arrow_back,
+          size: ScreenUtil().setSp(45),
+          color: Colors.grey[800],
+        ),
+      ),
+    ),
       body: GestureDetector(
         onTap: (){
           FocusScope.of(context).requestFocus(FocusNode());
@@ -116,7 +130,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
             labelStyle: TextStyle(fontSize: ScreenUtil().setSp(28)),
             suffixIcon: IconButton(
               icon: Icon(_setPwdClickEye ? Icons.visibility_off : Icons.remove_red_eye,
-                  color: _setPwdEyeColor, size: ScreenUtil().setSp(38),),
+                color: _setPwdEyeColor, size: ScreenUtil().setSp(38),),
               onPressed: () {
                 setState(() {
                   _setPwdClickEye = !_setPwdClickEye;
@@ -150,7 +164,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
             labelText: '确认新密码',
             labelStyle: TextStyle(fontSize: ScreenUtil().setSp(28)),
             suffixIcon: IconButton(
-              icon: Icon(_confirmPwdClickEye ? Icons.visibility_off :Icons.remove_red_eye, 
+              icon: Icon(_confirmPwdClickEye ? Icons.visibility_off :Icons.remove_red_eye,
                 color: _confirmPwdEyeColor, size: ScreenUtil().setSp(38),),
               onPressed: () {
                 setState(() {

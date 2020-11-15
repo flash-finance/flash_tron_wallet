@@ -17,8 +17,9 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
   Widget build(BuildContext context) {
     String mnemonic = Provider.of<HomeProvider>(context, listen: false).mnemonic;
     return Scaffold(
+      backgroundColor: MyColors.lightBg,
       appBar: AppBar(
-        backgroundColor: MyColors.lightBg,
+        backgroundColor: Colors.grey[100],
         brightness: Brightness.light,
         title: Text(
           '备份助记词',
@@ -43,7 +44,6 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
         ),
       ),
       body: Container(
-        color: Colors.white,
         child: ListView(
           padding: EdgeInsets.all(15),
           children: <Widget>[

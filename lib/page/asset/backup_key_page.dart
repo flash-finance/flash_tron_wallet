@@ -16,8 +16,9 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
   Widget build(BuildContext context) {
     String privateKey = Provider.of<HomeProvider>(context, listen: false).privateKey;
     return Scaffold(
+      backgroundColor: MyColors.lightBg,
       appBar: AppBar(
-        backgroundColor: MyColors.lightBg,
+        backgroundColor: Colors.grey[100],
         brightness: Brightness.light,
         title: Text(
           '备份私钥',
@@ -42,7 +43,6 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
         ),
       ),
       body: Container(
-        color: Colors.white,
         child: ListView(
           padding: EdgeInsets.all(15),
           children: <Widget>[

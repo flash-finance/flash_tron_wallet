@@ -20,7 +20,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
     return Scaffold(
       backgroundColor: MyColors.lightBg,
       appBar: AppBar(
-        backgroundColor: MyColors.lightBg,
+        backgroundColor: Colors.grey[100],
         brightness: Brightness.light,
         title: Text(
           '钱包详情',
@@ -223,7 +223,9 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
 
   Widget _updatePwdWidget(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Application.router.navigateTo(context, 'asset/updatePwd', transition: TransitionType.cupertino);
+      },
       child: Container(
         margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40)),
         padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),

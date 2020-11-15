@@ -154,29 +154,34 @@ class _AssetPageState extends State<AssetPage> {
               ),
             ),
           ),
-          Container(
-            child: Row(
-              children: <Widget>[
-                Container(
-                  child: Image.asset(
-                    'icons/plus.png',
-                    width: ScreenUtil().setWidth(50),
-                    height: ScreenUtil().setWidth(50),
-                    color: Colors.grey[800],
-                    fit: BoxFit.fill,
+          InkWell(
+            onTap: () {
+              Application.router.navigateTo(context, 'asset/addWallet', transition: TransitionType.cupertino);
+            },
+            child: Container(
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    child: Image.asset(
+                      'icons/plus.png',
+                      width: ScreenUtil().setWidth(50),
+                      height: ScreenUtil().setWidth(50),
+                      color: Colors.grey[800],
+                      fit: BoxFit.fill,
+                    ),
                   ),
-                ),
-                SizedBox(width: ScreenUtil().setWidth(20)),
-                Container(
-                  child: Image.asset(
-                    'icons/scan.png',
-                    width: ScreenUtil().setWidth(55),
-                    height: ScreenUtil().setWidth(55),
-                    color: Colors.grey[800],
-                    fit: BoxFit.fill,
+                  SizedBox(width: ScreenUtil().setWidth(20)),
+                  Container(
+                    child: Image.asset(
+                      'icons/scan.png',
+                      width: ScreenUtil().setWidth(55),
+                      height: ScreenUtil().setWidth(55),
+                      color: Colors.grey[800],
+                      fit: BoxFit.fill,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],
@@ -532,13 +537,13 @@ class _AssetPageState extends State<AssetPage> {
       margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(30)),
       child: Column(
         children: <Widget>[
-          SizedBox(height: ScreenUtil().setHeight(20)),
+          SizedBox(height: ScreenUtil().setHeight(30)),
           InkWell(
             onTap: () {
               Application.router.navigateTo(context, 'asset/importKey', transition: TransitionType.cupertino);
             },
             child: Container(
-              padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(40)),
+              padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
               decoration: BoxDecoration(
                 border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
               ),
@@ -557,7 +562,7 @@ class _AssetPageState extends State<AssetPage> {
                           fit: BoxFit.fill,
                         ),
                       ),
-                      SizedBox(width: ScreenUtil().setWidth(20)),
+                      SizedBox(width: ScreenUtil().setWidth(30)),
                       Container(
                         child: Text(
                           '导入私钥',
@@ -586,13 +591,13 @@ class _AssetPageState extends State<AssetPage> {
               ),
             ),
           ),
-          SizedBox(height: ScreenUtil().setHeight(20)),
+          SizedBox(height: ScreenUtil().setHeight(30)),
           InkWell(
             onTap: () {
               Application.router.navigateTo(context, 'asset/importMnemonic', transition: TransitionType.cupertino);
             },
             child: Container(
-              padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(40)),
+              padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
               decoration: BoxDecoration(
                 border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
               ),
@@ -611,7 +616,7 @@ class _AssetPageState extends State<AssetPage> {
                           fit: BoxFit.fill,
                         ),
                       ),
-                      SizedBox(width: ScreenUtil().setWidth(20)),
+                      SizedBox(width: ScreenUtil().setWidth(30)),
                       Container(
                         child: Text(
                           '导入助记词',
@@ -639,12 +644,13 @@ class _AssetPageState extends State<AssetPage> {
               ),
             ),
           ),
-          SizedBox(height: ScreenUtil().setHeight(40)),
+          SizedBox(height: ScreenUtil().setHeight(30)),
           InkWell(
             onTap: () {
               Application.router.navigateTo(context, 'asset/buildFirstWallet', transition: TransitionType.cupertino);
             },
             child: Container(
+              padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -660,7 +666,7 @@ class _AssetPageState extends State<AssetPage> {
                           fit: BoxFit.fill,
                         ),
                       ),
-                      SizedBox(width: ScreenUtil().setWidth(20)),
+                      SizedBox(width: ScreenUtil().setWidth(30)),
                       Container(
                         child: Text(
                           '创建钱包',

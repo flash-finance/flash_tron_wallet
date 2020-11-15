@@ -17,6 +17,8 @@ class Routes {
   static String backupKey = '/asset/backupKey';
   static String backupMnemonic = '/asset/backupMnemonic';
   static String updatePwd = '/asset/updatePwd';
+  static String addWallet = '/asset/addWallet';
+
 
 
 
@@ -43,6 +45,7 @@ class Routes {
     router.define(buildSecondWallet, handler: buildWalletSecondHandler);
     router.define(walletDetail, handler: walletDetailHandler);
     router.define(backupKey, handler: backupKeyHandler);
+    router.define(addWallet, handler: addWalletHandler);
 
 
     router.define(backupMnemonic, handler: backupMnemonicHandler);

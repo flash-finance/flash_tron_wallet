@@ -32,7 +32,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
     return Scaffold(
       backgroundColor: MyColors.lightBg,
       appBar: AppBar(
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Colors.white,
         brightness: Brightness.light,
         title: Text(
           '钱包详情',
@@ -59,7 +59,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
       body: Container(
         child: ListView(
           children: <Widget>[
-           //IntervalPage(ScreenUtil().setHeight(25)),
+           IntervalPage(ScreenUtil().setHeight(25)),
             _topWidget(context),
             IntervalPage(ScreenUtil().setHeight(25)),
             _backupMnemonicWidget(context),

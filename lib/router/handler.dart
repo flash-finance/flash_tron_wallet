@@ -1,3 +1,4 @@
+import 'package:flash_tron_wallet/page/asset/add_wallet_page.dart';
 import 'package:flash_tron_wallet/page/asset/backup_key_page.dart';
 import 'package:flash_tron_wallet/page/asset/backup_mnemonic_page.dart';
 import 'package:flash_tron_wallet/page/asset/build_wallet_first_page.dart';
@@ -29,6 +30,11 @@ Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
 Handler mineHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   return MinePage();
+});
+
+Handler walletDetailHandler =
+Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+  return WalletDetailPage();
 });
 
 Handler importKeyHandler =
@@ -67,6 +73,16 @@ Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   return BackupMnemonicPage();
 });
 
+
+Handler addWalletHandler =
+Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+  return AddWalletPage();
+});
+
+
+
+
+
 Handler receiveWalletHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   return ReceiveWalletPage();
@@ -87,9 +103,4 @@ Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   return UpdateNamePage();
 });
 
-
-Handler walletDetailHandler =
-Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-  return WalletDetailPage();
-});
 

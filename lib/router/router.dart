@@ -9,6 +9,9 @@ class Routes {
   static String deFi = '/deFi';
   static String mine = '/mine';
 
+  static String addWallet = '/asset/addWallet';
+  static String sendToken = '/asset/sendToken';
+
   static String importKey = '/asset/importKey';
   static String importMnemonic = '/asset/importMnemonic';
   static String buildFirstWallet = '/asset/buildFirstWallet';
@@ -17,7 +20,7 @@ class Routes {
   static String backupKey = '/asset/backupKey';
   static String backupMnemonic = '/asset/backupMnemonic';
   static String updatePwd = '/asset/updatePwd';
-  static String addWallet = '/asset/addWallet';
+
 
 
 
@@ -25,7 +28,6 @@ class Routes {
   static String importWallet = '/asset/importWallet';
   static String buildThirdWallet = '/mine/buildThirdWallet';
   static String receiveWallet = '/mine/receiveWallet';
-  static String sendWallet = '/mine/sendWallet';
   static String updateName = '/mine/updateName';
 
   static void configureRouter(FluroRouter router) {
@@ -39,18 +41,18 @@ class Routes {
     router.define(deFi, handler: deFiHandler);
     router.define(mine, handler: mineHandler);
 
+    router.define(addWallet, handler: addWalletHandler);
+    router.define(sendToken, handler: sendTokenHandler);
+
     router.define(importKey, handler: importKeyHandler);
     router.define(importMnemonic, handler: importMnemonicHandler);
     router.define(buildFirstWallet, handler: buildWalletFirstHandler);
     router.define(buildSecondWallet, handler: buildWalletSecondHandler);
     router.define(walletDetail, handler: walletDetailHandler);
     router.define(backupKey, handler: backupKeyHandler);
-    router.define(addWallet, handler: addWalletHandler);
-
 
     router.define(backupMnemonic, handler: backupMnemonicHandler);
     router.define(receiveWallet, handler: receiveWalletHandler);
-    router.define(sendWallet, handler: sendWalletHandler);
     router.define(updatePwd, handler: updatePwdHandler);
     router.define(updateName, handler: updateNameHandler);
   }

@@ -5,12 +5,12 @@ import 'package:flash_tron_wallet/page/asset/build_wallet_first_page.dart';
 import 'package:flash_tron_wallet/page/asset/build_wallet_second_page.dart';
 import 'package:flash_tron_wallet/page/asset/import_key_page.dart';
 import 'package:flash_tron_wallet/page/asset/import_mnemonic_page.dart';
+import 'package:flash_tron_wallet/page/asset/send_token_page.dart';
 import 'package:flash_tron_wallet/page/asset/update_pwd_page.dart';
 import 'package:flash_tron_wallet/page/asset/wallet_detail_page.dart';
 import 'package:flash_tron_wallet/page/asset_page.dart';
 import 'package:flash_tron_wallet/page/defi_page.dart';
 import 'package:flash_tron_wallet/page/mine/wallet/receive_wallet_page.dart';
-import 'package:flash_tron_wallet/page/mine/wallet/send_wallet_page.dart';
 import 'package:flash_tron_wallet/page/mine/wallet/update_name_page.dart';
 import 'package:flash_tron_wallet/page/mine_page.dart';
 import 'package:fluro/fluro.dart';
@@ -31,6 +31,17 @@ Handler mineHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   return MinePage();
 });
+
+Handler addWalletHandler =
+Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+  return AddWalletPage();
+});
+
+Handler sendTokenHandler =
+Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+  return SendTokenPage();
+});
+
 
 Handler walletDetailHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
@@ -74,11 +85,6 @@ Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
 });
 
 
-Handler addWalletHandler =
-Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-  return AddWalletPage();
-});
-
 
 
 
@@ -88,10 +94,6 @@ Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   return ReceiveWalletPage();
 });
 
-Handler sendWalletHandler =
-Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-  return SendWalletPage();
-});
 
 Handler updatePwdHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {

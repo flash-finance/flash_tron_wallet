@@ -1,5 +1,5 @@
-
 import 'package:fixnum/fixnum.dart';
+import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/tron/service/tron_transaction.dart';
@@ -8,48 +8,61 @@ import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
 
-
-class SendWalletPage extends StatefulWidget {
+class SendTokenPage extends StatefulWidget {
   @override
-  _SendWalletPageState createState() => _SendWalletPageState();
+  _SendTokenPageState createState() => _SendTokenPageState();
 }
 
-class _SendWalletPageState extends State<SendWalletPage> {
+class _SendTokenPageState extends State<SendTokenPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: MyColors.lightBg,
       appBar: AppBar(
+        backgroundColor: Colors.grey[100],
+        brightness: Brightness.light,
         title: Text(
           '转账',
           style: TextStyle(
-            color: Colors.white,
-            fontSize: ScreenUtil().setSp(35),
+            color: Colors.grey[800],
+            fontSize: ScreenUtil().setSp(32),
+            letterSpacing: 1.0,
+            fontWeight: FontWeight.w600,
           ),
         ),
-        backgroundColor: Colors.blue[900],
         centerTitle: true,
         elevation: 0,
+        leading: InkWell(
+          onTap: (){
+            Navigator.of(context)..pop();
+          },
+          child: Icon(
+            Icons.arrow_back,
+            size: ScreenUtil().setSp(45),
+            color: Colors.grey[800],
+          ),
+        ),
       ),
       body: GestureDetector(
         onTap: (){
           FocusScope.of(context).requestFocus(FocusNode());
         },
-        child: SendWalletSubPage(),
+        child: SendTokenSubPage(),
       ),
     );
   }
 }
 
 
-class SendWalletSubPage extends StatefulWidget {
+class SendTokenSubPage extends StatefulWidget {
   @override
-  _SendWalletSubPageState createState() => _SendWalletSubPageState();
+  _SendTokenSubPageState createState() => _SendTokenSubPageState();
 }
 
-class _SendWalletSubPageState extends State<SendWalletSubPage> {
+class _SendTokenSubPageState extends State<SendTokenSubPage> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _receiveAddressController = new TextEditingController();
@@ -589,4 +602,3 @@ class _SendWalletSubPageState extends State<SendWalletSubPage> {
   }
 
 }
-

@@ -14,12 +14,12 @@ class Routes {
   static String buildFirstWallet = '/asset/buildFirstWallet';
   static String buildSecondWallet = '/asset/buildSecondWallet';
   static String walletDetail = 'asset/walletDetail';
+  static String backupKey = '/asset/backupKey';
+  static String backupMnemonic = '/asset/backupMnemonic';
 
 
 
   static String importWallet = '/asset/importWallet';
-  static String backupKey = '/mine/backupKey';
-  static String backupMnemonic = '/asset/backupMnemonic';
   static String buildThirdWallet = '/mine/buildThirdWallet';
   static String receiveWallet = '/mine/receiveWallet';
   static String sendWallet = '/mine/sendWallet';
@@ -42,11 +42,10 @@ class Routes {
     router.define(buildFirstWallet, handler: buildWalletFirstHandler);
     router.define(buildSecondWallet, handler: buildWalletSecondHandler);
     router.define(walletDetail, handler: walletDetailHandler);
-
-    router.define(importWallet, handler: importWalletHandler);
     router.define(backupKey, handler: backupKeyHandler);
+
+
     router.define(backupMnemonic, handler: backupMnemonicHandler);
-    router.define(buildThirdWallet, handler: buildWalletThirdHandler);
     router.define(receiveWallet, handler: receiveWalletHandler);
     router.define(sendWallet, handler: sendWalletHandler);
     router.define(updatePwd, handler: updatePwdHandler);

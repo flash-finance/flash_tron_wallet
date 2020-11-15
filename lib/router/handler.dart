@@ -1,14 +1,12 @@
+import 'package:flash_tron_wallet/page/asset/backup_key_page.dart';
+import 'package:flash_tron_wallet/page/asset/backup_mnemonic_page.dart';
 import 'package:flash_tron_wallet/page/asset/build_wallet_first_page.dart';
+import 'package:flash_tron_wallet/page/asset/build_wallet_second_page.dart';
 import 'package:flash_tron_wallet/page/asset/import_key_page.dart';
 import 'package:flash_tron_wallet/page/asset/import_mnemonic_page.dart';
 import 'package:flash_tron_wallet/page/asset/wallet_detail_page.dart';
 import 'package:flash_tron_wallet/page/asset_page.dart';
 import 'package:flash_tron_wallet/page/defi_page.dart';
-import 'package:flash_tron_wallet/page/mine/wallet/backup_key_page.dart';
-import 'package:flash_tron_wallet/page/mine/wallet/backup_mnemonic_page.dart';
-import 'package:flash_tron_wallet/page/mine/wallet/build_wallet_second_page.dart';
-import 'package:flash_tron_wallet/page/mine/wallet/build_wallet_third_page.dart';
-import 'package:flash_tron_wallet/page/mine/wallet/import_wallet_page.dart';
 import 'package:flash_tron_wallet/page/mine/wallet/receive_wallet_page.dart';
 import 'package:flash_tron_wallet/page/mine/wallet/send_wallet_page.dart';
 import 'package:flash_tron_wallet/page/mine/wallet/update_name_page.dart';
@@ -59,12 +57,6 @@ Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
 });
 
 
-
-Handler importWalletHandler =
-Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-  return ImportWalletPage();
-});
-
 Handler backupKeyHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   return BackupKeyPage();
@@ -73,11 +65,6 @@ Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
 Handler backupMnemonicHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   return BackupMnemonicPage();
-});
-
-Handler buildWalletThirdHandler =
-Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-  return BuildWalletThirdPage();
 });
 
 Handler receiveWalletHandler =

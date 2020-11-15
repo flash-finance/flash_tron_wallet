@@ -1,5 +1,7 @@
 import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
+import 'package:flash_tron_wallet/router/application.dart';
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -147,7 +149,9 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
 
   Widget _backupKeyWidget(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Application.router.navigateTo(context, 'asset/backupKey', transition: TransitionType.cupertino);
+      },
       child: Container(
         margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40)),
         padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
@@ -182,7 +186,9 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
 
   Widget _backupMnemonicWidget(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Application.router.navigateTo(context, 'asset/backupMnemonic', transition: TransitionType.cupertino);
+      },
       child: Container(
         margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40)),
         padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),

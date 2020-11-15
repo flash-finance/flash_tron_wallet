@@ -1,41 +1,55 @@
 
+import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
 
-class BackupKeyPage extends StatefulWidget {
+class BackupMnemonicPage extends StatefulWidget {
   @override
-  _BackupKeyPageState createState() => _BackupKeyPageState();
+  _BackupMnemonicPageState createState() => _BackupMnemonicPageState();
 }
 
-class _BackupKeyPageState extends State<BackupKeyPage> {
+class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
   @override
   Widget build(BuildContext context) {
-    String privateKey = Provider.of<HomeProvider>(context).privateKey;
+    String mnemonic = Provider.of<HomeProvider>(context, listen: false).mnemonic;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: MyColors.lightBg,
+        brightness: Brightness.light,
         title: Text(
-          '备份私钥',
+          '备份助记词',
           style: TextStyle(
-            color: Colors.white,
-            fontSize: ScreenUtil().setSp(35),
+            color: Colors.grey[800],
+            fontSize: ScreenUtil().setSp(32),
+            letterSpacing: 1.0,
+            fontWeight: FontWeight.w600,
           ),
         ),
-        backgroundColor: Colors.blue[900],
         centerTitle: true,
         elevation: 0,
+        leading: InkWell(
+          onTap: (){
+            Navigator.of(context)..pop();
+          },
+          child: Icon(
+            Icons.arrow_back,
+            size: ScreenUtil().setSp(45),
+            color: Colors.grey[800],
+          ),
+        ),
       ),
       body: Container(
+        color: Colors.white,
         child: ListView(
           padding: EdgeInsets.all(15),
           children: <Widget>[
             _descWidget(),
             SizedBox(height: ScreenUtil().setHeight(20)),
-            _dataWidget(context, privateKey),
+            _dataWidget(context, mnemonic),
             SizedBox(height: ScreenUtil().setHeight(150)),
             _submitButton(context),
           ],
@@ -57,7 +71,7 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
             padding: EdgeInsets.fromLTRB(0, 15, 10, 15),
             alignment: Alignment.center,
             child: Text(
-              '请将私钥备份到安全的地方, 私钥一旦丢失，无法找回',
+              '请将助记词备份到安全的地方, 助记词一旦丢失，无法找回',
               style: TextStyle(fontSize: ScreenUtil().setSp(22), color: Colors.white),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
@@ -67,8 +81,8 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
       ),
     );
   }
-  
-  Widget _dataWidget(BuildContext context, String key) {
+
+  Widget _dataWidget(BuildContext context, String mnemonic) {
     return Container(
       width: ScreenUtil().setWidth(700),
       decoration: BoxDecoration(
@@ -79,12 +93,12 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
           Container(
             width: ScreenUtil().setWidth(600),
             padding: EdgeInsets.fromLTRB(0, 15, 0, 10),
-            child: Text('$key', style: TextStyle(color: Colors.black87, fontSize: ScreenUtil().setSp(28)),
+            child: Text('$mnemonic', style: TextStyle(color: Colors.grey[800], fontSize: ScreenUtil().setSp(28)),
               maxLines: 3, overflow: TextOverflow.ellipsis,),
           ),
           InkWell(
             onTap: () {
-              Clipboard.setData(ClipboardData(text: key));
+              Clipboard.setData(ClipboardData(text: mnemonic));
               Util.showToast('复制成功');
             },
             child: Container(
@@ -118,4 +132,6 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
       ),
     );
   }
+
 }
+

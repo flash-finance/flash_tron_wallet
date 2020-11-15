@@ -5,12 +5,12 @@ import 'package:flash_tron_wallet/page/asset/build_wallet_first_page.dart';
 import 'package:flash_tron_wallet/page/asset/build_wallet_second_page.dart';
 import 'package:flash_tron_wallet/page/asset/import_key_page.dart';
 import 'package:flash_tron_wallet/page/asset/import_mnemonic_page.dart';
+import 'package:flash_tron_wallet/page/asset/receive_token_page.dart';
 import 'package:flash_tron_wallet/page/asset/send_token_page.dart';
 import 'package:flash_tron_wallet/page/asset/update_pwd_page.dart';
 import 'package:flash_tron_wallet/page/asset/wallet_detail_page.dart';
 import 'package:flash_tron_wallet/page/asset_page.dart';
 import 'package:flash_tron_wallet/page/defi_page.dart';
-import 'package:flash_tron_wallet/page/mine/wallet/receive_wallet_page.dart';
 import 'package:flash_tron_wallet/page/mine/wallet/update_name_page.dart';
 import 'package:flash_tron_wallet/page/mine_page.dart';
 import 'package:fluro/fluro.dart';
@@ -42,6 +42,11 @@ Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   return SendTokenPage();
 });
 
+
+Handler receiveTokenHandler =
+Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+  return ReceiveTokenPage();
+});
 
 Handler walletDetailHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
@@ -88,11 +93,6 @@ Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
 
 
 
-
-Handler receiveWalletHandler =
-Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-  return ReceiveWalletPage();
-});
 
 
 Handler updatePwdHandler =

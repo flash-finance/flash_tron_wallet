@@ -225,25 +225,25 @@ class _AssetPageState extends State<AssetPage> {
       }
       totalAssetUsd = totalAssetCny / 6.75;
     }
-    return InkWell(
-      onTap: () {
-        Application.router.navigateTo(context, 'asset/walletDetail', transition: TransitionType.cupertino);
-      },
-      child: Container(
-        padding: EdgeInsets.only(
-            left: ScreenUtil().setWidth(40),
-            top: ScreenUtil().setHeight(30),
-            right: ScreenUtil().setWidth(40)),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            gradient: LinearGradient(
-              colors: [Colors.blue[800], Colors.blue[800]],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            )),
-        child: Column(
-          children: <Widget>[
-            Container(
+    return Container(
+      padding: EdgeInsets.only(
+          left: ScreenUtil().setWidth(40),
+          top: ScreenUtil().setHeight(30),
+          right: ScreenUtil().setWidth(40)),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          gradient: LinearGradient(
+            colors: [Colors.blue[800], Colors.blue[800]],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          )),
+      child: Column(
+        children: <Widget>[
+          InkWell(
+            onTap: () {
+              Application.router.navigateTo(context, 'asset/walletDetail', transition: TransitionType.cupertino);
+            },
+            child: Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -286,9 +286,14 @@ class _AssetPageState extends State<AssetPage> {
                 ],
               ),
             ),
-            Container(
+          ),
+          InkWell(
+            onTap: () {
+              Application.router.navigateTo(context, 'asset/walletDetail', transition: TransitionType.cupertino);
+            },
+            child: Container(
               alignment: Alignment.centerLeft,
-              margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
+              padding: EdgeInsets.only(top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(50)),
               child: Text(
                 '${Util.formatNumberSub(totalAssetUsd, 2)}',
                 style: GoogleFonts.lato(
@@ -299,111 +304,113 @@ class _AssetPageState extends State<AssetPage> {
                 ),
               ),
             ),
-            Container(
-              margin: EdgeInsets.only(top: ScreenUtil().setHeight(50)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  InkWell(
-                    onTap: () {
-                      Application.router.navigateTo(context, 'asset/sendToken', transition: TransitionType.cupertino);
-                    },
-                    child: Container(
-                      padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(25)),
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(4)),
-                            child: Icon(
-                              Icons.transit_enterexit_sharp,
-                              size: ScreenUtil().setSp(34),
+          ),
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                InkWell(
+                  onTap: () {
+                    Application.router.navigateTo(context, 'asset/sendToken', transition: TransitionType.cupertino);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(25)),
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(4)),
+                          child: Icon(
+                            Icons.transit_enterexit_sharp,
+                            size: ScreenUtil().setSp(34),
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(width: ScreenUtil().setWidth(10)),
+                        Container(
+                          padding:
+                          EdgeInsets.only(bottom: ScreenUtil().setHeight(6)),
+                          child: Text(
+                            '转账',
+                            style: GoogleFonts.lato(
+                              letterSpacing: 0.2,
                               color: Colors.white,
+                              fontSize: ScreenUtil().setSp(26),
                             ),
                           ),
-                          SizedBox(width: ScreenUtil().setWidth(10)),
-                          Container(
-                            padding:
-                            EdgeInsets.only(bottom: ScreenUtil().setHeight(6)),
-                            child: Text(
-                              '转账',
-                              style: GoogleFonts.lato(
-                                letterSpacing: 0.2,
-                                color: Colors.white,
-                                fontSize: ScreenUtil().setSp(26),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                  InkWell(
-                    child: Container(
-                      padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(25)),
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            padding:
-                            EdgeInsets.only(bottom: ScreenUtil().setHeight(2)),
-                            child: Icon(
-                              Icons.download_sharp,
-                              size: ScreenUtil().setSp(32),
+                ),
+                InkWell(
+                  onTap: () {
+                    Application.router.navigateTo(context, 'asset/receiveToken', transition: TransitionType.cupertino);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(25)),
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          padding:
+                          EdgeInsets.only(bottom: ScreenUtil().setHeight(2)),
+                          child: Icon(
+                            Icons.download_sharp,
+                            size: ScreenUtil().setSp(32),
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(width: ScreenUtil().setWidth(10)),
+                        Container(
+                          padding:
+                          EdgeInsets.only(bottom: ScreenUtil().setHeight(6)),
+                          child: Text(
+                            '收款',
+                            style: GoogleFonts.lato(
+                              letterSpacing: 0.2,
                               color: Colors.white,
+                              fontSize: ScreenUtil().setSp(26),
                             ),
                           ),
-                          SizedBox(width: ScreenUtil().setWidth(10)),
-                          Container(
-                            padding:
-                            EdgeInsets.only(bottom: ScreenUtil().setHeight(6)),
-                            child: Text(
-                              '收款',
-                              style: GoogleFonts.lato(
-                                letterSpacing: 0.2,
-                                color: Colors.white,
-                                fontSize: ScreenUtil().setSp(26),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                  InkWell(
-                    child: Container(
-                      padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(25)),
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            padding:
-                            EdgeInsets.only(bottom: ScreenUtil().setHeight(3)),
-                            child: Icon(
-                              Icons.sync_rounded,
-                              size: ScreenUtil().setSp(32),
+                ),
+                InkWell(
+                  child: Container(
+                    padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(25)),
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          padding:
+                          EdgeInsets.only(bottom: ScreenUtil().setHeight(3)),
+                          child: Icon(
+                            Icons.sync_rounded,
+                            size: ScreenUtil().setSp(32),
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(width: ScreenUtil().setWidth(10)),
+                        Container(
+                          padding:
+                          EdgeInsets.only(bottom: ScreenUtil().setHeight(6)),
+                          child: Text(
+                            '交易',
+                            style: GoogleFonts.lato(
+                              letterSpacing: 0.2,
                               color: Colors.white,
+                              fontSize: ScreenUtil().setSp(26),
                             ),
                           ),
-                          SizedBox(width: ScreenUtil().setWidth(10)),
-                          Container(
-                            padding:
-                            EdgeInsets.only(bottom: ScreenUtil().setHeight(6)),
-                            child: Text(
-                              '交易',
-                              style: GoogleFonts.lato(
-                                letterSpacing: 0.2,
-                                color: Colors.white,
-                                fontSize: ScreenUtil().setSp(26),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -1,32 +1,47 @@
+import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class ReceiveWalletPage extends StatefulWidget {
+class ReceiveTokenPage extends StatefulWidget {
   @override
-  _ReceiveWalletPageState createState() => _ReceiveWalletPageState();
+  _ReceiveTokenPageState createState() => _ReceiveTokenPageState();
 }
 
-class _ReceiveWalletPageState extends State<ReceiveWalletPage> {
+class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
   @override
   Widget build(BuildContext context) {
     String address = Provider.of<HomeProvider>(context).tronAddress;
     return Scaffold(
+      backgroundColor: MyColors.lightBg,
       appBar: AppBar(
+        backgroundColor: Colors.grey[100],
+        brightness: Brightness.light,
         title: Text(
           '收款',
           style: TextStyle(
-            color: Colors.white,
-            fontSize: ScreenUtil().setSp(35),
+            color: Colors.grey[800],
+            fontSize: ScreenUtil().setSp(32),
+            letterSpacing: 1.0,
+            fontWeight: FontWeight.w600,
           ),
         ),
-        backgroundColor: Colors.blue[900],
         centerTitle: true,
         elevation: 0,
+        leading: InkWell(
+          onTap: (){
+            Navigator.of(context)..pop();
+          },
+          child: Icon(
+            Icons.arrow_back,
+            size: ScreenUtil().setSp(45),
+            color: Colors.grey[800],
+          ),
+        ),
       ),
       body: Container(
         child: ListView(
@@ -42,6 +57,7 @@ class _ReceiveWalletPageState extends State<ReceiveWalletPage> {
       ),
     );
   }
+
 
   Widget _descWidget() {
     return Container(
@@ -115,4 +131,5 @@ class _ReceiveWalletPageState extends State<ReceiveWalletPage> {
       ),
     );
   }
+
 }

@@ -221,163 +221,168 @@ class _AssetPageState extends State<AssetPage> {
       }
       totalAssetUsd = totalAssetCny / 6.75;
     }
-    return Container(
-      padding: EdgeInsets.only(
-          left: ScreenUtil().setWidth(40),
-          top: ScreenUtil().setHeight(30),
-          bottom: ScreenUtil().setHeight(25),
-          right: ScreenUtil().setWidth(40)),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-          gradient: LinearGradient(
-            colors: [Colors.blue[800], Colors.blue[800]],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          )),
-      child: Column(
-        children: <Widget>[
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Container(
-                  child: Text(
-                    '我的资产 (\$)',
-                    style: GoogleFonts.lato(
-                      letterSpacing: 0.2,
-                      color: Colors.white,
-                      fontSize: ScreenUtil().setSp(23),
+    return InkWell(
+      onTap: () {
+        Application.router.navigateTo(context, 'asset/walletDetail', transition: TransitionType.cupertino);
+      },
+      child: Container(
+        padding: EdgeInsets.only(
+            left: ScreenUtil().setWidth(40),
+            top: ScreenUtil().setHeight(30),
+            bottom: ScreenUtil().setHeight(25),
+            right: ScreenUtil().setWidth(40)),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            gradient: LinearGradient(
+              colors: [Colors.blue[800], Colors.blue[800]],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            )),
+        child: Column(
+          children: <Widget>[
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                    child: Text(
+                      '我的资产 (\$)',
+                      style: GoogleFonts.lato(
+                        letterSpacing: 0.2,
+                        color: Colors.white,
+                        fontSize: ScreenUtil().setSp(23),
+                      ),
                     ),
                   ),
+                  Container(
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          child: Text(
+                            '详情',
+                            style: GoogleFonts.lato(
+                              letterSpacing: 0.2,
+                              color: Colors.grey[300],
+                              fontSize: ScreenUtil().setSp(23),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: ScreenUtil().setWidth(10)),
+                        Container(
+                          padding:
+                          EdgeInsets.only(top: ScreenUtil().setHeight(2)),
+                          child: Icon(
+                            Icons.arrow_forward_ios,
+                            size: ScreenUtil().setSp(22),
+                            color: Colors.grey[300],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              alignment: Alignment.centerLeft,
+              margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
+              child: Text(
+                '${Util.formatNumberSub(totalAssetUsd, 2)}',
+                style: GoogleFonts.lato(
+                  letterSpacing: 0.2,
+                  color: Colors.white,
+                  fontSize: ScreenUtil().setSp(40),
+                  fontWeight: FontWeight.w600,
                 ),
-                Container(
-                  child: Row(
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: ScreenUtil().setHeight(50)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Row(
                     children: <Widget>[
                       Container(
-                        child: Text(
-                          '详情',
-                          style: GoogleFonts.lato(
-                            letterSpacing: 0.2,
-                            color: Colors.grey[300],
-                            fontSize: ScreenUtil().setSp(23),
-                          ),
+                        padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(4)),
+                        child: Icon(
+                          Icons.transit_enterexit_sharp,
+                          size: ScreenUtil().setSp(34),
+                          color: Colors.white,
                         ),
                       ),
                       SizedBox(width: ScreenUtil().setWidth(10)),
                       Container(
                         padding:
-                            EdgeInsets.only(top: ScreenUtil().setHeight(2)),
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          size: ScreenUtil().setSp(22),
-                          color: Colors.grey[300],
+                        EdgeInsets.only(bottom: ScreenUtil().setHeight(6)),
+                        child: Text(
+                          '转账',
+                          style: GoogleFonts.lato(
+                            letterSpacing: 0.2,
+                            color: Colors.white,
+                            fontSize: ScreenUtil().setSp(26),
+                          ),
                         ),
                       ),
                     ],
                   ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            alignment: Alignment.centerLeft,
-            margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
-            child: Text(
-              '${Util.formatNumberSub(totalAssetUsd, 2)}',
-              style: GoogleFonts.lato(
-                letterSpacing: 0.2,
-                color: Colors.white,
-                fontSize: ScreenUtil().setSp(40),
-                fontWeight: FontWeight.w600,
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        padding:
+                        EdgeInsets.only(bottom: ScreenUtil().setHeight(2)),
+                        child: Icon(
+                          Icons.download_sharp,
+                          size: ScreenUtil().setSp(32),
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(width: ScreenUtil().setWidth(10)),
+                      Container(
+                        padding:
+                        EdgeInsets.only(bottom: ScreenUtil().setHeight(6)),
+                        child: Text(
+                          '收款',
+                          style: GoogleFonts.lato(
+                            letterSpacing: 0.2,
+                            color: Colors.white,
+                            fontSize: ScreenUtil().setSp(26),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        padding:
+                        EdgeInsets.only(bottom: ScreenUtil().setHeight(3)),
+                        child: Icon(
+                          Icons.sync_rounded,
+                          size: ScreenUtil().setSp(32),
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(width: ScreenUtil().setWidth(10)),
+                      Container(
+                        padding:
+                        EdgeInsets.only(bottom: ScreenUtil().setHeight(6)),
+                        child: Text(
+                          '交易',
+                          style: GoogleFonts.lato(
+                            letterSpacing: 0.2,
+                            color: Colors.white,
+                            fontSize: ScreenUtil().setSp(26),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: ScreenUtil().setHeight(50)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Container(
-                      padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(4)),
-                      child: Icon(
-                        Icons.transit_enterexit_sharp,
-                        size: ScreenUtil().setSp(34),
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(width: ScreenUtil().setWidth(10)),
-                    Container(
-                      padding:
-                          EdgeInsets.only(bottom: ScreenUtil().setHeight(6)),
-                      child: Text(
-                        '转账',
-                        style: GoogleFonts.lato(
-                          letterSpacing: 0.2,
-                          color: Colors.white,
-                          fontSize: ScreenUtil().setSp(26),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Container(
-                      padding:
-                          EdgeInsets.only(bottom: ScreenUtil().setHeight(2)),
-                      child: Icon(
-                        Icons.download_sharp,
-                        size: ScreenUtil().setSp(32),
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(width: ScreenUtil().setWidth(10)),
-                    Container(
-                      padding:
-                          EdgeInsets.only(bottom: ScreenUtil().setHeight(6)),
-                      child: Text(
-                        '收款',
-                        style: GoogleFonts.lato(
-                          letterSpacing: 0.2,
-                          color: Colors.white,
-                          fontSize: ScreenUtil().setSp(26),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Container(
-                      padding:
-                          EdgeInsets.only(bottom: ScreenUtil().setHeight(3)),
-                      child: Icon(
-                        Icons.sync_rounded,
-                        size: ScreenUtil().setSp(32),
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(width: ScreenUtil().setWidth(10)),
-                    Container(
-                      padding:
-                          EdgeInsets.only(bottom: ScreenUtil().setHeight(6)),
-                      child: Text(
-                        '交易',
-                        style: GoogleFonts.lato(
-                          letterSpacing: 0.2,
-                          color: Colors.white,
-                          fontSize: ScreenUtil().setSp(26),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -408,17 +413,19 @@ class _AssetPageState extends State<AssetPage> {
           scrollDirection: Axis.vertical,
           itemCount: assetList.length,
           itemBuilder: (context, index) {
-            return _assetDataItemWidget(context, assetList[index]);
+            return _assetDataItemWidget(context, assetList, index);
           }),
     );
   }
 
-  Widget _assetDataItemWidget(BuildContext context, AssetEntity item) {
+  Widget _assetDataItemWidget(BuildContext context, List<AssetEntity> assetList, int index) {
+    AssetEntity item = assetList[index];
+    bool flag = index != assetList.length-1;
     return Container(
       padding: EdgeInsets.only(
           top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(20)),
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: Colors.black45, width: 0.3)),
+        border: Border(bottom: BorderSide(color: flag ? Colors.black45 : Colors.white, width: 0.3)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -556,7 +563,8 @@ class _AssetPageState extends State<AssetPage> {
                           '导入私钥',
                           style: TextStyle(
                               fontSize: ScreenUtil().setSp(29),
-                              color: Colors.grey[900]),
+                              color: Colors.grey[900],
+                          ),
                         ),
                       ),
                     ],

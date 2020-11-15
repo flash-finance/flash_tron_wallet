@@ -1,6 +1,7 @@
 import 'package:flash_tron_wallet/page/asset/build_wallet_first_page.dart';
 import 'package:flash_tron_wallet/page/asset/import_key_page.dart';
 import 'package:flash_tron_wallet/page/asset/import_mnemonic_page.dart';
+import 'package:flash_tron_wallet/page/asset/wallet_detail_page.dart';
 import 'package:flash_tron_wallet/page/asset_page.dart';
 import 'package:flash_tron_wallet/page/defi_page.dart';
 import 'package:flash_tron_wallet/page/mine/wallet/backup_key_page.dart';
@@ -32,12 +33,6 @@ Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   return MinePage();
 });
 
-
-Handler importWalletHandler =
-Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-  return ImportWalletPage();
-});
-
 Handler importKeyHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   return ImportKeyPage();
@@ -48,16 +43,6 @@ Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   return ImportMnemonicPage();
 });
 
-Handler backupKeyHandler =
-Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-  return BackupKeyPage();
-});
-
-Handler backupMnemonicHandler =
-Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-  return BackupMnemonicPage();
-});
-
 Handler buildWalletFirstHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   return BuildWalletFirstPage();
@@ -66,6 +51,28 @@ Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
 Handler buildWalletSecondHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   return BuildWalletSecondPage();
+});
+
+Handler walletDetailPageHandler =
+Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+  return WalletDetailPage();
+});
+
+
+
+Handler importWalletHandler =
+Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+  return ImportWalletPage();
+});
+
+Handler backupKeyHandler =
+Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+  return BackupKeyPage();
+});
+
+Handler backupMnemonicHandler =
+Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+  return BackupMnemonicPage();
 });
 
 Handler buildWalletThirdHandler =
@@ -93,4 +100,9 @@ Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   return UpdateNamePage();
 });
 
+
+Handler walletDetailHandler =
+Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+  return WalletDetailPage();
+});
 

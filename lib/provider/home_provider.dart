@@ -18,8 +18,8 @@ import 'package:synchronized/synchronized.dart';
 
 class HomeProvider with ChangeNotifier {
   init() async {
-    await getDexInfo();
     await getWalletEntity();
+    await getDexInfo();
     await getAssetHide();
     await getAsset4Init();
   }

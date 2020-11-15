@@ -71,7 +71,7 @@ class _AssetPageState extends State<AssetPage> with AutomaticKeepAliveClientMixi
       bool backgroundFlag = Provider.of<HomeProvider>(context, listen: false).backgroundFlag;
       if (!backgroundFlag) {
         await Provider.of<HomeProvider>(context, listen: false).getWalletEntity();
-        await  Provider.of<HomeProvider>(context, listen: false).getAsset4Init();
+        await  Provider.of<HomeProvider>(context, listen: false).getAsset4Reload();
       }
     });
   }

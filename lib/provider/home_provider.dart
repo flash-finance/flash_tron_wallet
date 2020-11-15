@@ -21,6 +21,7 @@ class HomeProvider with ChangeNotifier {
     await getDexInfo();
     await getWalletEntity();
     await getAssetHide();
+    await getAsset4Init();
   }
 
   bool _backgroundFlag = false;
@@ -386,7 +387,28 @@ class HomeProvider with ChangeNotifier {
 
   getAsset4Init() async {
     if (_tronAddress == null) {
-      //print('getAsset4Init _tronAddress is null');
+      if (_assetList != null && _assetList.length > 0) {
+        _assetList = [];
+      }
+      notifyListeners();
+      return;
+    }
+    try {
+      List<AssetEntity> list = [];
+      for (int i = 0; i < tokenList.length; i++) {
+        TokenRows item = tokenList[i];
+        AssetEntity entity = AssetEntity(type: 0, address: item.tokenAddress, name: item.tokenShort, precision: item.tokenPrecision, balance: 0, frozen: 0, order: 0, cny: 0, logoUrl: item.logoUrl);
+        list.add(entity);
+      }
+      _assetList = list;
+      notifyListeners();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  getAsset4Reload() async {
+    if (_tronAddress == null) {
       if (_assetList != null && _assetList.length > 0) {
         _assetList = [];
       }

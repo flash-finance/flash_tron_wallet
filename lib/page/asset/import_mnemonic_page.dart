@@ -38,16 +38,29 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
     importMnemonicLoading = Provider.of<HomeProvider>(context).importMnemonicLoading;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.grey[100],
+        brightness: Brightness.light,
         title: Text(
           '导入助记词',
           style: TextStyle(
-            color: Colors.white,
-            fontSize: ScreenUtil().setSp(35),
+            color: Colors.grey[800],
+            fontSize: ScreenUtil().setSp(32),
+            letterSpacing: 1.0,
+            fontWeight: FontWeight.w600,
           ),
         ),
-        backgroundColor: Colors.blue[900],
         centerTitle: true,
         elevation: 0,
+        leading: InkWell(
+          onTap: (){
+            Navigator.of(context)..pop();
+          },
+          child: Icon(
+            Icons.arrow_back,
+            size: ScreenUtil().setSp(45),
+            color: Colors.grey[800],
+          ),
+        ),
       ),
       body: GestureDetector(
         onTap: (){

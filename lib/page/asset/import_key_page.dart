@@ -35,16 +35,29 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
     importKeyLoading = Provider.of<HomeProvider>(context).importKeyLoading;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.grey[100],
+        brightness: Brightness.light,
         title: Text(
           '导入私钥',
           style: TextStyle(
-            color: Colors.white,
-            fontSize: ScreenUtil().setSp(35),
+            color: Colors.grey[800],
+            fontSize: ScreenUtil().setSp(32),
+            letterSpacing: 1.0,
+            fontWeight: FontWeight.w600,
           ),
         ),
-        backgroundColor: Colors.blue[900],
         centerTitle: true,
         elevation: 0,
+        leading: InkWell(
+          onTap: (){
+            Navigator.of(context)..pop();
+          },
+          child: Icon(
+            Icons.arrow_back,
+            size: ScreenUtil().setSp(45),
+            color: Colors.grey[800],
+          ),
+        ),
       ),
       body: GestureDetector(
         onTap: (){

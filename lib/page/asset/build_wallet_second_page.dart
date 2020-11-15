@@ -16,9 +16,30 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
   Widget build(BuildContext context) {
     String mnemonic = Provider.of<HomeProvider>(context).mnemonic;
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(ScreenUtil().setHeight(135)),
-        child: _topWidget(context),
+      appBar: AppBar(
+        backgroundColor: Colors.grey[100],
+        brightness: Brightness.light,
+        title: Text(
+          '创建钱包',
+          style: TextStyle(
+            color: Colors.grey[800],
+            fontSize: ScreenUtil().setSp(32),
+            letterSpacing: 1.0,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        centerTitle: true,
+        elevation: 0,
+        leading: InkWell(
+          onTap: (){
+            Navigator.of(context)..pop();
+          },
+          child: Icon(
+            Icons.arrow_back,
+            size: ScreenUtil().setSp(45),
+            color: Colors.grey[800],
+          ),
+        ),
       ),
       body: mnemonic != null ? Container(
         width: ScreenUtil().setWidth(750),
@@ -38,40 +59,6 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
     );
   }
 
-  Widget _topWidget(BuildContext context) {
-     return Container(
-      width: ScreenUtil().setWidth(750),
-      height: ScreenUtil().setHeight(135),
-       decoration: BoxDecoration(
-        color: Colors.blue[900],
-      ),
-      child: Row(
-        children: <Widget>[
-          InkWell(
-            onTap: () {
-              Navigator.of(context)..pop()..pop();
-            },
-            child: Container(
-              padding: EdgeInsets.fromLTRB(15, 30, 0, 0),
-              child: Icon(Icons.arrow_back, color: Colors.white,
-                size: ScreenUtil().setSp(47),),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.fromLTRB(120, 30, 0, 0),
-            alignment: Alignment.center,
-            child: Text(
-              '创建钱包',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: ScreenUtil().setSp(36),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
   Widget _descWidget() {
     return Container(

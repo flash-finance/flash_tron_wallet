@@ -63,7 +63,7 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
       width: ScreenUtil().setWidth(700),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5.0),
-        color: Colors.blue[900],
+        color: Colors.blue[800],
       ),
       child: Column(
         children: <Widget>[
@@ -122,11 +122,11 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
               padding: EdgeInsets.all(12),
               child: Text('完成', style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(31))),
             ),
-            color: Colors.blue[900],
+            color: Colors.blue[800],
             onPressed: () {
               Navigator.pop(context);
             },
-            shape: StadiumBorder(side: BorderSide(color: Colors.blue[900])),
+            shape: StadiumBorder(side: BorderSide(color: Colors.blue[800])),
           ),
         ),
       ),

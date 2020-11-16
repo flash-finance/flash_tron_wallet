@@ -120,12 +120,12 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
               padding: EdgeInsets.all(12),
               child: Text('复制地址', style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(31))),
             ),
-            color: Colors.blue[900],
+            color: Colors.blue[800],
             onPressed: () {
               Clipboard.setData(ClipboardData(text: address));
               Util.showToast('复制成功');
             },
-            shape: StadiumBorder(side: BorderSide(color: Colors.blue[900])),
+            shape: StadiumBorder(side: BorderSide(color: Colors.blue[800])),
           ),
         ),
       ),

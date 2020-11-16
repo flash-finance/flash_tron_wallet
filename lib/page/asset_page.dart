@@ -64,7 +64,7 @@ class _AssetPageState extends State<AssetPage> {
               decoration: BoxDecoration(
                 border: Border.all(width: 0, color: Colors.black12),
                 borderRadius: BorderRadius.circular(25),
-                color: Colors.blue[900],
+                color: Colors.blue[800],
                 /*image: DecorationImage(
                   image: AssetImage('images/666.jpeg'),
                   fit: BoxFit.cover,

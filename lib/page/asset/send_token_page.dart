@@ -445,7 +445,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
               padding: EdgeInsets.all(12),
               child: Text('发送', style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(31))),
             ),
-            color: Colors.blue[900],
+            color: Colors.blue[800],
             onPressed:() {
               FocusScope.of(context).requestFocus(FocusNode());
               if (_formKey.currentState.validate()) {
@@ -468,7 +468,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                 }
               }
             },
-            shape: StadiumBorder(side: BorderSide(color: Colors.blue[900])),
+            shape: StadiumBorder(side: BorderSide(color: Colors.blue[800])),
           ),
         ),
       ),

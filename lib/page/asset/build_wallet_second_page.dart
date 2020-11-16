@@ -65,7 +65,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
       width: ScreenUtil().setWidth(750),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5.0),
-        color: Colors.blue[900],
+        color: Colors.blue[800],
       ),
       child: Column(
         children: <Widget>[
@@ -184,7 +184,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
               padding: EdgeInsets.all(12),
               child: Text('已安全保存', style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(31))),
             ),
-            color: Colors.blue[900],
+            color: Colors.blue[800],
             onPressed: () {
               // 受重复刷新的影响 BuildWalletThirdPage页面有问题(闪退)
               //Provider.of<HomeProvider>(context, listen: false).changeFirstRandom('');
@@ -193,7 +193,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
               //Application.router.navigateTo(context, 'mine/buildThirdWallet', transition: TransitionType.cupertino);
               Navigator.of(context)..pop()..pop();
             },
-            shape: StadiumBorder(side: BorderSide(color: Colors.blue[900])),
+            shape: StadiumBorder(side: BorderSide(color: Colors.blue[800])),
           ),
         ),
       ),

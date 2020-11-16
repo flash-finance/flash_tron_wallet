@@ -18,7 +18,7 @@ class _MinePageState extends State<MinePage> {
     return Scaffold(
       appBar: PreferredSize(
         child: Container(
-          color: Colors.blue[900],
+          color: Colors.blue[800],
         ),
         preferredSize: Size.fromHeight(ScreenUtil().setHeight(0)),
       ),

@@ -97,7 +97,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
               onPressed: () {
                 setState(() {
                   _oldPwdClickEye = !_oldPwdClickEye;
-                  _oldPwdEyeColor = _oldPwdClickEye ? Colors.grey : Colors.blue[900];
+                  _oldPwdEyeColor = _oldPwdClickEye ? Colors.grey : Colors.blue[800];
                 });
               },
             )
@@ -134,7 +134,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
               onPressed: () {
                 setState(() {
                   _setPwdClickEye = !_setPwdClickEye;
-                  _setPwdEyeColor = _setPwdClickEye ? Colors.grey : Colors.blue[900];
+                  _setPwdEyeColor = _setPwdClickEye ? Colors.grey : Colors.blue[800];
                 });
               },
             )
@@ -169,7 +169,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
               onPressed: () {
                 setState(() {
                   _confirmPwdClickEye = !_confirmPwdClickEye;
-                  _confirmPwdEyeColor = _confirmPwdClickEye ? Colors.grey : Colors.blue[900];
+                  _confirmPwdEyeColor = _confirmPwdClickEye ? Colors.grey : Colors.blue[800];
                 });
               },
             )
@@ -195,7 +195,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
               padding: EdgeInsets.all(12),
               child: Text('提交', style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(31))),
             ),
-            color: Colors.blue[900],
+            color: Colors.blue[800],
             onPressed: () {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
@@ -213,7 +213,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
                 }
               }
             },
-            shape: StadiumBorder(side: BorderSide(color: Colors.blue[900])),
+            shape: StadiumBorder(side: BorderSide(color: Colors.blue[800])),
           ),
         ),
       ),
@@ -226,7 +226,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
       width: ScreenUtil().setWidth(750),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5.0),
-        color: Colors.blue[900],
+        color: Colors.blue[800],
       ),
       child: Column(
         children: <Widget>[

@@ -24,7 +24,7 @@ class _BizTopPageState extends State<BizTopPage> {
       width: ScreenUtil().setWidth(750),
       padding: EdgeInsets.only(top: 0),
       decoration: BoxDecoration(
-        color: Colors.blue[900],
+        color: Colors.blue[800],
       ),
       //child: ,
       child: name != null ? _logInWidget(context, name, tronAddress) : _logOutWidget(context),
@@ -61,7 +61,7 @@ class _BizTopPageState extends State<BizTopPage> {
               margin: EdgeInsets.only(top: 30),
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: Colors.blue[900],
+                color: Colors.blue[800],
                 borderRadius: BorderRadius.circular(24.0),
                 border: Border.all(width: 0.4, color: Colors.white),
               ),
@@ -85,7 +85,7 @@ class _BizTopPageState extends State<BizTopPage> {
               margin: EdgeInsets.only(top: 30),
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: Colors.blue[900],
+                color: Colors.blue[800],
                 borderRadius: BorderRadius.circular(24.0),
                 border: Border.all(width: 0.4, color: Colors.white),
               ),

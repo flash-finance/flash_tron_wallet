@@ -199,7 +199,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
               onPressed: () {
                 setState(() {
                   _setPwdClickEye = !_setPwdClickEye;
-                  _setPwdEyeColor = _setPwdClickEye ? Colors.grey : Colors.blue[900];
+                  _setPwdEyeColor = _setPwdClickEye ? Colors.grey : Colors.blue[800];
                 });
               },
             )
@@ -240,7 +240,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
               onPressed: () {
                 setState(() {
                   _confirmPwdClickEye = !_confirmPwdClickEye;
-                  _confirmPwdEyeColor = _confirmPwdClickEye ? Colors.grey : Colors.blue[900];
+                  _confirmPwdEyeColor = _confirmPwdClickEye ? Colors.grey : Colors.blue[800];
                 });
               },
             )

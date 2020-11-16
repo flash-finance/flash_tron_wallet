@@ -140,7 +140,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
               onPressed: () {
                 setState(() {
                   _setPwdClickEye = !_setPwdClickEye;
-                  _setPwdEyeColor = _setPwdClickEye ? Colors.grey : Colors.blue[900];
+                  _setPwdEyeColor = _setPwdClickEye ? Colors.grey : Colors.blue[800];
                 });
               },
             )
@@ -181,7 +181,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
               onPressed: () {
                 setState(() {
                   _confirmPwdClickEye = !_confirmPwdClickEye;
-                  _confirmPwdEyeColor = _confirmPwdClickEye ? Colors.grey : Colors.blue[900];
+                  _confirmPwdEyeColor = _confirmPwdClickEye ? Colors.grey : Colors.blue[800];
                 });
               },
             )
@@ -207,7 +207,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
               padding: EdgeInsets.all(12),
               child: Text('提交', style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(31))),
             ),
-            color: Colors.blue[900],
+            color: Colors.blue[800],
             onPressed: !buildWalletLoading ? () {
               FocusScope.of(context).requestFocus(FocusNode());
               if (_formKey.currentState.validate()) {
@@ -226,7 +226,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
                 }
               }
             } : () {},
-            shape: StadiumBorder(side: BorderSide(color: Colors.blue[900])),
+            shape: StadiumBorder(side: BorderSide(color: Colors.blue[800])),
           ),
         ),
       ),
@@ -238,7 +238,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
       width: ScreenUtil().setWidth(750),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5.0),
-        color: Colors.blue[900],
+        color: Colors.blue[800],
       ),
       child: Column(
         children: <Widget>[

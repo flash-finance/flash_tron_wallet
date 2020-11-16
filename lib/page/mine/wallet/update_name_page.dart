@@ -25,7 +25,7 @@ class _UpdateNamePageState extends State<UpdateNamePage> {
             fontSize: ScreenUtil().setSp(35),
           ),
         ),
-        backgroundColor: Colors.blue[900],
+        backgroundColor: Colors.blue[800],
         centerTitle: true,
         elevation: 0,
       ),
@@ -79,7 +79,7 @@ class _UpdateNamePageState extends State<UpdateNamePage> {
               padding: EdgeInsets.all(12),
               child: Text('提交', style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(31))),
             ),
-            color: Colors.blue[900],
+            color: Colors.blue[800],
             onPressed: () {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
@@ -93,7 +93,7 @@ class _UpdateNamePageState extends State<UpdateNamePage> {
                 });
               }
             },
-            shape: StadiumBorder(side: BorderSide(color: Colors.blue[900])),
+            shape: StadiumBorder(side: BorderSide(color: Colors.blue[800])),
           ),
         ),
       ),

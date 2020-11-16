@@ -304,7 +304,7 @@ class _AssetPageState extends State<AssetPage> {
                     child: Row(
                       children: <Widget>[
                         Container(
-                          padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(4) : ScreenUtil().setHeight(1)),
+                          padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(4) : ScreenUtil().setHeight(0.5)),
                           child: Icon(
                             Icons.transit_enterexit_sharp,
                             size: ScreenUtil().setSp(34),
@@ -334,7 +334,7 @@ class _AssetPageState extends State<AssetPage> {
                       children: <Widget>[
                         Container(
                           padding:
-                          EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(2) : ScreenUtil().setHeight(2.2)),
+                          EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(2) : ScreenUtil().setHeight(2.3)),
                           child: Icon(
                             Icons.download_sharp,
                             size: ScreenUtil().setSp(32),
@@ -370,7 +370,7 @@ class _AssetPageState extends State<AssetPage> {
                         ),
                         SizedBox(width: ScreenUtil().setWidth(10)),
                         Container(
-                          padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(6) : ScreenUtil().setHeight(4)),
+                          padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(6) : ScreenUtil().setHeight(4.5)),
                           child: Text(
                             '交易',
                             style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 26),

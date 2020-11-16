@@ -231,7 +231,10 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
           child: RaisedButton(
             child: Container(
               padding: EdgeInsets.all(12),
-              child: Text('提交', style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(31))),
+              child: Text(
+                '提交',
+                style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 31),
+              ),
             ),
             color: Colors.blue[800],
             onPressed: !importMnemonicLoading ? () {
@@ -266,7 +269,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
     return Container(
       margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5.0),
+        borderRadius: BorderRadius.circular(10),
         color: Colors.blue[800],
       ),
       child: Column(

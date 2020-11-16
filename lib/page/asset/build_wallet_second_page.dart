@@ -16,17 +16,13 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
   Widget build(BuildContext context) {
     String mnemonic = Provider.of<HomeProvider>(context).mnemonic;
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Colors.white,
         brightness: Brightness.light,
         title: Text(
           '创建钱包',
-          style: TextStyle(
-            color: Colors.grey[800],
-            fontSize: ScreenUtil().setSp(32),
-            letterSpacing: 1.0,
-            fontWeight: FontWeight.w600,
-          ),
+          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 32),
         ),
         centerTitle: true,
         elevation: 0,
@@ -37,22 +33,29 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
           child: Icon(
             Icons.arrow_back,
             size: ScreenUtil().setSp(45),
-            color: Colors.grey[800],
+            color: Colors.grey[900],
           ),
         ),
       ),
       body: mnemonic != null ? Container(
         width: ScreenUtil().setWidth(750),
-        padding: EdgeInsets.all(15),
         child: ListView(
           children: <Widget>[
             _descWidget(),
             SizedBox(height: ScreenUtil().setHeight(10)),
-            _tipsWidget(mnemonic),
-            SizedBox(height: ScreenUtil().setHeight(10)),
-            _dataWidget(mnemonic),
-            SizedBox(height: ScreenUtil().setHeight(50)),
-            _submitButton(context),
+            Container(
+             margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
+             child: Column(
+               children: <Widget>[
+                 SizedBox(height: ScreenUtil().setHeight(10)),
+                 _tipsWidget(mnemonic),
+                 SizedBox(height: ScreenUtil().setHeight(10)),
+                 _dataWidget(mnemonic),
+                 SizedBox(height: ScreenUtil().setHeight(60)),
+                 _submitButton(context),
+               ],
+             ),
+           ),
           ],
         ),
       ) : Container(),
@@ -62,29 +65,29 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
 
   Widget _descWidget() {
     return Container(
-      width: ScreenUtil().setWidth(750),
+      margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5.0),
+        borderRadius: BorderRadius.circular(10),
         color: Colors.blue[800],
       ),
       child: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.fromLTRB(40, 15, 10, 0),
+            padding: EdgeInsets.fromLTRB(30, 15, 10, 0),
             alignment: Alignment.centerLeft,
             child: Text(
               '1. 助记词即私钥，用于恢复钱包，请备份到安全的地方',
-              style: TextStyle(fontSize: ScreenUtil().setSp(22), color: Colors.white),
+              style: Util.textStyle(context, 1, Colors.white, spacing: 0.1, size: 22.5),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(40, 5, 10, 15),
+            padding: EdgeInsets.fromLTRB(30, 5, 10, 15),
             alignment: Alignment.centerLeft,
             child: Text(
               '2. 请勿截图，如有人获取助记词，可直接获取您的资产',
-              style: TextStyle(fontSize: ScreenUtil().setSp(22), color: Colors.white),
+              style: Util.textStyle(context, 1, Colors.white, spacing: 0.1, size: 22.5),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
@@ -99,12 +102,12 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
       width: ScreenUtil().setWidth(750),
       margin: EdgeInsets.only(top: 10, bottom: 10),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
-            padding: EdgeInsets.fromLTRB(110, 0, 0, 0),
             child: Text(
               '请备份您的助记词',
-              style: TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(30)),
+              style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.4, size: 30),
             ),
           ),
           InkWell(
@@ -114,7 +117,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             },
             child: Container(
               padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-              child: Icon(Icons.content_copy, size: ScreenUtil().setSp(40), color: Colors.black87,),
+              child: Icon(Icons.content_copy, size: ScreenUtil().setSp(38), color: Colors.grey[800],),
             ),
           ),
         ],
@@ -130,7 +133,6 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
         _listWidget.add(_itemWidget(i+1, _list[i]));
       }
       return Container(
-        padding: EdgeInsets.only(left: 18),
         child: Wrap(
           spacing: 3,
           children: _listWidget,
@@ -178,19 +180,17 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
     return Container(
       child: Align(
         child: SizedBox(
-          width: ScreenUtil().setWidth(400),
+          width: ScreenUtil().setWidth(350),
           child: RaisedButton(
             child: Container(
               padding: EdgeInsets.all(12),
-              child: Text('已安全保存', style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(31))),
+              child: Text(
+                  '已安全保存',
+                style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 31),
+              ),
             ),
             color: Colors.blue[800],
             onPressed: () {
-              // 受重复刷新的影响 BuildWalletThirdPage页面有问题(闪退)
-              //Provider.of<HomeProvider>(context, listen: false).changeFirstRandom('');
-              //Provider.of<HomeProvider>(context, listen: false).changeSecondRandom('');
-              //Provider.of<HomeProvider>(context, listen: false).changeThirdRandom('');
-              //Application.router.navigateTo(context, 'mine/buildThirdWallet', transition: TransitionType.cupertino);
               Navigator.of(context)..pop()..pop();
             },
             shape: StadiumBorder(side: BorderSide(color: Colors.blue[800])),

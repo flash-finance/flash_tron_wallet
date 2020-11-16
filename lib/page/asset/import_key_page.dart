@@ -99,7 +99,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
     return Container(
       margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5.0),
+        borderRadius: BorderRadius.circular(10),
         color: Colors.blue[800],
       ),
       child: Column(
@@ -266,7 +266,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
               padding: EdgeInsets.all(12),
               child: Text(
                 '提交',
-                style: Util.textStyle(context, 2, Colors.white, spacing: 0.6, size: 32),
+                style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 32),
               ),
             ),
             color: Colors.blue[800],

@@ -1,5 +1,6 @@
 import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/router/application.dart';
+import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
@@ -86,10 +87,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                       Container(
                         child: Text(
                           '导入私钥',
-                          style: TextStyle(
-                            color: Colors.grey[900],
-                            fontSize: ScreenUtil().setSp(29),
-                          ),
+                          style: Util.textStyle(context, Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],
@@ -140,10 +138,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                       Container(
                         child: Text(
                           '导入助记词',
-                          style: TextStyle(
-                            color: Colors.grey[900],
-                            fontSize: ScreenUtil().setSp(29),
-                          ),
+                          style: Util.textStyle(context, Colors.grey[850], spacing: 0.0, size: 30),
                         ),
 
                       ),
@@ -192,10 +187,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                       Container(
                         child: Text(
                           '创建钱包',
-                          style: TextStyle(
-                            color: Colors.grey[900],
-                            fontSize: ScreenUtil().setSp(29),
-                          ),
+                          style: Util.textStyle(context, Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],

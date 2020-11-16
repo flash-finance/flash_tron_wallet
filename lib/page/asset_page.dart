@@ -488,7 +488,7 @@ class _AssetPageState extends State<AssetPage> {
           Container(
               child: Column(
             children: <Widget>[
-              /*Container(
+              Container(
                 child: Container(
                   child: Image.asset(
                     'images/flash.png',
@@ -497,16 +497,12 @@ class _AssetPageState extends State<AssetPage> {
                     fit: BoxFit.cover,
                   ),
                 ),
-              ),*/
-              //SizedBox(height: ScreenUtil().setHeight(20)),
+              ),
+              SizedBox(height: ScreenUtil().setHeight(20)),
               Container(
                 child: Text(
                   'Flash  Wallet',
-                  style: GoogleFonts.lato(
-                    letterSpacing: 0.2,
-                    color: Colors.white,
-                    fontSize: ScreenUtil().setSp(36),
-                  ),
+                  style: Util.textStyle(context, Colors.white, spacing: 0.2, size: 36),
                 ),
               ),
             ],
@@ -542,7 +538,7 @@ class _AssetPageState extends State<AssetPage> {
                           'icons/key.png',
                           width: ScreenUtil().setWidth(40),
                           height: ScreenUtil().setWidth(40),
-                          color: Colors.black87,
+                          color: Colors.black,
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -550,10 +546,7 @@ class _AssetPageState extends State<AssetPage> {
                       Container(
                         child: Text(
                           '导入私钥',
-                          style: TextStyle(
-                              fontSize: ScreenUtil().setSp(29),
-                              color: Colors.grey[900],
-                          ),
+                          style: Util.textStyle(context, Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],
@@ -564,7 +557,7 @@ class _AssetPageState extends State<AssetPage> {
                         child: Icon(
                           Icons.arrow_forward_ios,
                           size: ScreenUtil().setSp(27),
-                          color: Colors.grey[700],
+                          color: Colors.grey[900],
                         ),
                       ),
                       SizedBox(width: ScreenUtil().setWidth(10)),
@@ -596,7 +589,7 @@ class _AssetPageState extends State<AssetPage> {
                           'icons/panel.png',
                           width: ScreenUtil().setWidth(40),
                           height: ScreenUtil().setWidth(40),
-                          color: Colors.black87,
+                          color: Colors.black,
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -604,9 +597,7 @@ class _AssetPageState extends State<AssetPage> {
                       Container(
                         child: Text(
                           '导入助记词',
-                          style: TextStyle(
-                              fontSize: ScreenUtil().setSp(29),
-                              color: Colors.grey[900]),
+                          style: Util.textStyle(context, Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],
@@ -617,7 +608,7 @@ class _AssetPageState extends State<AssetPage> {
                         child: Icon(
                           Icons.arrow_forward_ios,
                           size: ScreenUtil().setSp(27),
-                          color: Colors.grey[700],
+                          color: Colors.grey[900],
                         ),
                       ),
                       SizedBox(width: ScreenUtil().setWidth(10)),
@@ -646,7 +637,7 @@ class _AssetPageState extends State<AssetPage> {
                           'icons/wallet.png',
                           width: ScreenUtil().setWidth(40),
                           height: ScreenUtil().setWidth(40),
-                          color: Colors.black87,
+                          color: Colors.black,
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -654,9 +645,7 @@ class _AssetPageState extends State<AssetPage> {
                       Container(
                         child: Text(
                           '创建钱包',
-                          style: TextStyle(
-                              fontSize: ScreenUtil().setSp(29),
-                              color: Colors.grey[900]),
+                          style: Util.textStyle(context, Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],
@@ -667,7 +656,7 @@ class _AssetPageState extends State<AssetPage> {
                         child: Icon(
                           Icons.arrow_forward_ios,
                           size: ScreenUtil().setSp(27),
-                          color: Colors.grey[700],
+                          color: Colors.grey[900],
                         ),
                       ),
                       SizedBox(width: ScreenUtil().setWidth(10)),

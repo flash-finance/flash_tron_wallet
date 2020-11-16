@@ -21,14 +21,14 @@ class Util {
     );
   }
 
-  static TextStyle textStyle(BuildContext context, {double spacing, double size}) {
+  static TextStyle textStyle(BuildContext context, Color color, {double spacing, double size}) {
     double letterSpacing = spacing != null ? spacing : 0.0;
     double fontSize = size != null ? size : 23.0;
     //bool flag = Provider.of<IndexProvider>(context, listen: false).langType;
     //print('flag:$flag');
     return TextStyle(
       letterSpacing: letterSpacing,
-      color: Colors.white,
+      color: color,
       fontSize: ScreenUtil().setSp(fontSize),
     );
   }

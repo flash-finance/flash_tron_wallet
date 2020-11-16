@@ -22,7 +22,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
         title: Text(
           '添加钱包',
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.grey[900],
             fontSize: ScreenUtil().setSp(32),
             letterSpacing: 0.6,
           ),
@@ -88,7 +88,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                           '导入私钥',
                           style: TextStyle(
                             letterSpacing: 0.5,
-                            color: Colors.black,
+                            color: Colors.grey[900],
                             fontSize: ScreenUtil().setSp(29),
                           ),
                         ),
@@ -143,7 +143,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                           '导入助记词',
                           style: TextStyle(
                             letterSpacing: 0.5,
-                            color: Colors.black,
+                            color: Colors.grey[900],
                             fontSize: ScreenUtil().setSp(29),
                           ),
                         ),
@@ -196,7 +196,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                           '创建钱包',
                           style: TextStyle(
                             letterSpacing: 0.5,
-                            color: Colors.black,
+                            color: Colors.grey[900],
                             fontSize: ScreenUtil().setSp(29),
                           ),
                         ),

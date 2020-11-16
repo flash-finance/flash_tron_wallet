@@ -22,10 +22,9 @@ class _AddWalletPageState extends State<AddWalletPage> {
         title: Text(
           '添加钱包',
           style: TextStyle(
-            color: Colors.grey[800],
+            color: Colors.black,
             fontSize: ScreenUtil().setSp(32),
-            letterSpacing: 1.0,
-            fontWeight: FontWeight.w600,
+            letterSpacing: 0.6,
           ),
         ),
         centerTitle: true,
@@ -37,7 +36,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
           child: Icon(
             Icons.arrow_back,
             size: ScreenUtil().setSp(45),
-            color: Colors.grey[800],
+            color: Colors.grey[900],
           ),
         ),
       ),
@@ -79,7 +78,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                           'icons/key.png',
                           width: ScreenUtil().setWidth(40),
                           height: ScreenUtil().setWidth(40),
-                          color: Colors.black87,
+                          color: Colors.black,
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -88,8 +87,9 @@ class _AddWalletPageState extends State<AddWalletPage> {
                         child: Text(
                           '导入私钥',
                           style: TextStyle(
+                            letterSpacing: 0.5,
+                            color: Colors.black,
                             fontSize: ScreenUtil().setSp(29),
-                            color: Colors.grey[900],
                           ),
                         ),
                       ),
@@ -101,7 +101,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                         child: Icon(
                           Icons.arrow_forward_ios,
                           size: ScreenUtil().setSp(27),
-                          color: Colors.grey[700],
+                          color: Colors.grey[900],
                         ),
                       ),
                       SizedBox(width: ScreenUtil().setWidth(10)),
@@ -133,7 +133,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                           'icons/panel.png',
                           width: ScreenUtil().setWidth(40),
                           height: ScreenUtil().setWidth(40),
-                          color: Colors.black87,
+                          color: Colors.black,
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -142,9 +142,12 @@ class _AddWalletPageState extends State<AddWalletPage> {
                         child: Text(
                           '导入助记词',
                           style: TextStyle(
-                              fontSize: ScreenUtil().setSp(29),
-                              color: Colors.grey[900]),
+                            letterSpacing: 0.5,
+                            color: Colors.black,
+                            fontSize: ScreenUtil().setSp(29),
+                          ),
                         ),
+
                       ),
                     ],
                   ),
@@ -154,7 +157,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                         child: Icon(
                           Icons.arrow_forward_ios,
                           size: ScreenUtil().setSp(27),
-                          color: Colors.grey[700],
+                          color: Colors.grey[900],
                         ),
                       ),
                       SizedBox(width: ScreenUtil().setWidth(10)),
@@ -183,7 +186,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                           'icons/wallet.png',
                           width: ScreenUtil().setWidth(40),
                           height: ScreenUtil().setWidth(40),
-                          color: Colors.black87,
+                          color: Colors.black,
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -192,8 +195,10 @@ class _AddWalletPageState extends State<AddWalletPage> {
                         child: Text(
                           '创建钱包',
                           style: TextStyle(
-                              fontSize: ScreenUtil().setSp(29),
-                              color: Colors.grey[900]),
+                            letterSpacing: 0.5,
+                            color: Colors.black,
+                            fontSize: ScreenUtil().setSp(29),
+                          ),
                         ),
                       ),
                     ],
@@ -204,7 +209,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                         child: Icon(
                           Icons.arrow_forward_ios,
                           size: ScreenUtil().setSp(27),
-                          color: Colors.grey[700],
+                          color: Colors.grey[900],
                         ),
                       ),
                       SizedBox(width: ScreenUtil().setWidth(10)),

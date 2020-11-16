@@ -74,6 +74,15 @@ flutter:
   assets:
     - icons/
     - images/
+    -
+  fonts:
+    - family: SourceHanSansCN
+      fonts:
+        - asset: fonts/SourceHanSansCN-Medium.ttf
+          weight: 700
+
+
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

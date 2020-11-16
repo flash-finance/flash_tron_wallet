@@ -40,6 +40,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         onGenerateRoute: Application.router.generator,
         theme: ThemeData(
+          fontFamily: 'SourceHanSansCN',
           brightness: Brightness.light,
           primaryColor: Colors.blue[800],
           accentColor: Colors.blue[800],

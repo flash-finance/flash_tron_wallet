@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
 import 'package:flash_tron_wallet/model/dex_info_model.dart';
@@ -109,7 +110,7 @@ class _AssetPageState extends State<AssetPage> {
   }
 
   Widget _headWidget(BuildContext context) {
-    String name = Provider.of<HomeProvider>(context).name;
+    String name = Provider.of<HomeProvider>(context, listen: true).name;
     return Container(
       margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
       child: Row(
@@ -209,7 +210,8 @@ class _AssetPageState extends State<AssetPage> {
   }
 
   Widget _cardWidget(BuildContext context) {
-    List<AssetEntity> assetList = Provider.of<HomeProvider>(context).assetList;
+    bool flag = Platform.isAndroid;
+    List<AssetEntity> assetList = Provider.of<HomeProvider>(context, listen: true).assetList;
     DexInfo dexInfo = Provider.of<HomeProvider>(context).dexInfo;
     double trxPrice4Cny = dexInfo.trxPriceUsdt * dexInfo.usdtPriceCny;
     double totalAssetCny = 0.0;
@@ -306,7 +308,7 @@ class _AssetPageState extends State<AssetPage> {
                     child: Row(
                       children: <Widget>[
                         Container(
-                          padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(4)),
+                          padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(4) : ScreenUtil().setHeight(0)),
                           child: Icon(
                             Icons.transit_enterexit_sharp,
                             size: ScreenUtil().setSp(34),
@@ -336,7 +338,7 @@ class _AssetPageState extends State<AssetPage> {
                       children: <Widget>[
                         Container(
                           padding:
-                          EdgeInsets.only(bottom: ScreenUtil().setHeight(2)),
+                          EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(2) : ScreenUtil().setHeight(0)),
                           child: Icon(
                             Icons.download_sharp,
                             size: ScreenUtil().setSp(32),
@@ -372,7 +374,7 @@ class _AssetPageState extends State<AssetPage> {
                         ),
                         SizedBox(width: ScreenUtil().setWidth(10)),
                         Container(
-                          padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(6)),
+                          padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(6) : ScreenUtil().setHeight(0)),
                           child: Text(
                             '交易',
                             style: Util.textStyle(context, Colors.white, spacing: 0.6, size: 26),

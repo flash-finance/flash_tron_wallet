@@ -128,7 +128,7 @@ class _AssetPageState extends State<AssetPage> {
                   Container(
                     child: Text(
                       '$name',
-                      style: Util.textStyle(context, Colors.white, spacing: 0.2, size: 23),
+                      style: Util.textStyle(context, 1, Colors.white, spacing: 0.2, size: 23),
                     ),
                   ),
                   SizedBox(width: ScreenUtil().setWidth(5)),
@@ -248,7 +248,7 @@ class _AssetPageState extends State<AssetPage> {
                   Container(
                     child: Text(
                       '我的资产 (\$)',
-                      style: Util.textStyle(context, Colors.white, spacing: 0.5, size: 23),
+                      style: Util.textStyle(context, 1, Colors.white, spacing: 0.5, size: 23),
                     ),
                   ),
                   Container(
@@ -257,7 +257,7 @@ class _AssetPageState extends State<AssetPage> {
                         Container(
                           child: Text(
                             '详情',
-                            style: Util.textStyle(context, Colors.white, spacing: 0.5, size: 23),
+                            style: Util.textStyle(context, 1, Colors.white, spacing: 0.5, size: 23),
                           ),
                         ),
                         SizedBox(width: ScreenUtil().setWidth(10)),
@@ -286,12 +286,8 @@ class _AssetPageState extends State<AssetPage> {
               padding: EdgeInsets.only(top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(50)),
               child: Text(
                 '${Util.formatNumberSub(totalAssetUsd, 2)}',
-                style: GoogleFonts.lato(
-                  letterSpacing: 0.2,
-                  color: Colors.white,
-                  fontSize: ScreenUtil().setSp(40),
-                  fontWeight: FontWeight.w600,
-                ),
+                style: Util.textStyle(context, 2, Colors.white, spacing: 0.2, size: 42),
+
               ),
             ),
           ),
@@ -308,7 +304,7 @@ class _AssetPageState extends State<AssetPage> {
                     child: Row(
                       children: <Widget>[
                         Container(
-                          padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(4) : ScreenUtil().setHeight(0)),
+                          padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(4) : ScreenUtil().setHeight(1)),
                           child: Icon(
                             Icons.transit_enterexit_sharp,
                             size: ScreenUtil().setSp(34),
@@ -321,7 +317,7 @@ class _AssetPageState extends State<AssetPage> {
                           EdgeInsets.only(bottom: ScreenUtil().setHeight(6)),
                           child: Text(
                             '转账',
-                            style: Util.textStyle(context, Colors.white, spacing: 0.6, size: 26),
+                            style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 26),
                           ),
                         ),
                       ],
@@ -338,7 +334,7 @@ class _AssetPageState extends State<AssetPage> {
                       children: <Widget>[
                         Container(
                           padding:
-                          EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(2) : ScreenUtil().setHeight(0)),
+                          EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(2) : ScreenUtil().setHeight(2.2)),
                           child: Icon(
                             Icons.download_sharp,
                             size: ScreenUtil().setSp(32),
@@ -351,7 +347,7 @@ class _AssetPageState extends State<AssetPage> {
                           EdgeInsets.only(bottom: ScreenUtil().setHeight(6)),
                           child: Text(
                             '收款',
-                            style: Util.textStyle(context, Colors.white, spacing: 0.6, size: 26),
+                            style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 26),
                           ),
                         ),
                       ],
@@ -374,10 +370,10 @@ class _AssetPageState extends State<AssetPage> {
                         ),
                         SizedBox(width: ScreenUtil().setWidth(10)),
                         Container(
-                          padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(6) : ScreenUtil().setHeight(0)),
+                          padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(6) : ScreenUtil().setHeight(4)),
                           child: Text(
                             '交易',
-                            style: Util.textStyle(context, Colors.white, spacing: 0.6, size: 26),
+                            style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 26),
                           ),
                         ),
                       ],
@@ -399,7 +395,7 @@ class _AssetPageState extends State<AssetPage> {
         alignment: Alignment.centerLeft,
         child: Text(
           '资产',
-          style: Util.textStyle(context, Colors.grey[800], spacing: 0.6, size: 30),
+          style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.6, size: 30),
         ));
   }
 
@@ -445,7 +441,7 @@ class _AssetPageState extends State<AssetPage> {
                 Container(
                     child: Text(
                   '${item.name}',
-                  style: Util.textStyle(context, Colors.grey[800], spacing: 0.0, size: 31),
+                  style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.0, size: 31),
                 )),
               ],
             ),
@@ -457,7 +453,7 @@ class _AssetPageState extends State<AssetPage> {
                 Container(
                   child: Text(
                     '${Util.formatNumberSub(item.balance, 4)}',
-                    style: Util.textStyle(context, Colors.grey[800], spacing: 0.0, size: 29),
+                    style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.1, size: 29),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -466,7 +462,7 @@ class _AssetPageState extends State<AssetPage> {
                 Container(
                   child: Text(
                     '≈  \$ ${Util.formatNumberSub(item.cny/6.75, 2)}',
-                    style: Util.textStyle(context, Colors.grey[500], spacing: 0.0, size: 24),
+                    style: Util.textStyle(context, 2, Colors.grey[500], spacing: 0.1, size: 24),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -502,7 +498,7 @@ class _AssetPageState extends State<AssetPage> {
               Container(
                 child: Text(
                   'Flash  Wallet',
-                  style: Util.textStyle(context, Colors.white, spacing: 0.2, size: 36),
+                  style: Util.textStyle(context, 1, Colors.white, spacing: 0.2, size: 36),
                 ),
               ),
             ],
@@ -546,7 +542,7 @@ class _AssetPageState extends State<AssetPage> {
                       Container(
                         child: Text(
                           '导入私钥',
-                          style: Util.textStyle(context, Colors.grey[850], spacing: 0.0, size: 30),
+                          style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],
@@ -597,7 +593,7 @@ class _AssetPageState extends State<AssetPage> {
                       Container(
                         child: Text(
                           '导入助记词',
-                          style: Util.textStyle(context, Colors.grey[850], spacing: 0.0, size: 30),
+                          style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],
@@ -645,7 +641,7 @@ class _AssetPageState extends State<AssetPage> {
                       Container(
                         child: Text(
                           '创建钱包',
-                          style: Util.textStyle(context, Colors.grey[850], spacing: 0.0, size: 30),
+                          style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],

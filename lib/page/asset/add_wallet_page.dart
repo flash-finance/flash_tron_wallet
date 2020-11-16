@@ -87,7 +87,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                       Container(
                         child: Text(
                           '导入私钥',
-                          style: Util.textStyle(context, Colors.grey[850], spacing: 0.0, size: 30),
+                          style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],
@@ -138,7 +138,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                       Container(
                         child: Text(
                           '导入助记词',
-                          style: Util.textStyle(context, Colors.grey[850], spacing: 0.0, size: 30),
+                          style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
                         ),
 
                       ),
@@ -187,7 +187,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                       Container(
                         child: Text(
                           '创建钱包',
-                          style: Util.textStyle(context, Colors.grey[850], spacing: 0.0, size: 30),
+                          style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],

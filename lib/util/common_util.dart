@@ -1,23 +1,13 @@
 import 'dart:math';
 
+import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/screenutil.dart';
-
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 
 class Util {
-
-  //static const Color greenColor = Colors.teal;
-  //static const Color redColor = Color(0xffC15466);
-  static const Color greenColor = Color(0xE6009688);
-  static const Color redColor = Color(0xF5C15466);
-
-
-  static const Color greenColor4Kline = Color(0xE6009688);
-  static const Color redColor4Kline = Color(0xF5C15466);
-  static const Color greyColor4Kline = Color(0xff60738E);
-
 
   static showToast(String msg) {
     Fluttertoast.showToast(
@@ -30,6 +20,28 @@ class Util {
       backgroundColor: Colors.grey[850],
     );
   }
+
+  static TextStyle textStyle(BuildContext context, {double spacing, double size}) {
+    double letterSpacing = spacing != null ? spacing : 0.0;
+    double fontSize = size != null ? size : 23.0;
+    //bool flag = Provider.of<IndexProvider>(context, listen: false).langType;
+    //print('flag:$flag');
+    return TextStyle(
+      letterSpacing: letterSpacing,
+      color: Colors.white,
+      fontSize: ScreenUtil().setSp(fontSize),
+    );
+  }
+
+  //static const Color greenColor = Colors.teal;
+  //static const Color redColor = Color(0xffC15466);
+  static const Color greenColor = Color(0xE6009688);
+  static const Color redColor = Color(0xF5C15466);
+
+
+  static const Color greenColor4Kline = Color(0xE6009688);
+  static const Color redColor4Kline = Color(0xF5C15466);
+  static const Color greyColor4Kline = Color(0xff60738E);
 
   static String removeDecimalZeroFormat(double x){
     int i = x.truncate() ;

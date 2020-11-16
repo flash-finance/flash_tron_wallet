@@ -18,12 +18,10 @@ class IndexPage extends StatefulWidget {
 class _IndexPageState extends State<IndexPage> {
   final List<BottomNavigationBarItem> bottomTabs = [
     BottomNavigationBarItem(
-      //icon: Icon(Icons.sync),
       icon: Icon(Icons.donut_small),
       label: '资产',
     ),
     BottomNavigationBarItem(
-      //icon: Icon(Icons.photo_filter),
       icon: Icon(Icons.explore),
       label: 'DeFi',
     ),

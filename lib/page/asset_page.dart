@@ -127,11 +127,7 @@ class _AssetPageState extends State<AssetPage> {
                   Container(
                     child: Text(
                       '$name',
-                      style: GoogleFonts.lato(
-                        letterSpacing: 0.2,
-                        color: Colors.white,
-                        fontSize: ScreenUtil().setSp(23),
-                      ),
+                      style: Util.textStyle(context, spacing: 0.2, size: 23),
                     ),
                   ),
                   SizedBox(width: ScreenUtil().setWidth(5)),
@@ -250,11 +246,7 @@ class _AssetPageState extends State<AssetPage> {
                   Container(
                     child: Text(
                       '我的资产 (\$)',
-                      style: GoogleFonts.lato(
-                        letterSpacing: 0.2,
-                        color: Colors.white,
-                        fontSize: ScreenUtil().setSp(23),
-                      ),
+                      style: Util.textStyle(context, spacing: 0.5, size: 23),
                     ),
                   ),
                   Container(
@@ -263,11 +255,7 @@ class _AssetPageState extends State<AssetPage> {
                         Container(
                           child: Text(
                             '详情',
-                            style: GoogleFonts.lato(
-                              letterSpacing: 0.2,
-                              color: Colors.grey[300],
-                              fontSize: ScreenUtil().setSp(23),
-                            ),
+                            style: Util.textStyle(context, spacing: 0.5, size: 23),
                           ),
                         ),
                         SizedBox(width: ScreenUtil().setWidth(10)),
@@ -331,11 +319,7 @@ class _AssetPageState extends State<AssetPage> {
                           EdgeInsets.only(bottom: ScreenUtil().setHeight(6)),
                           child: Text(
                             '转账',
-                            style: GoogleFonts.lato(
-                              letterSpacing: 0.2,
-                              color: Colors.white,
-                              fontSize: ScreenUtil().setSp(26),
-                            ),
+                            style: Util.textStyle(context, spacing: 0.6, size: 26),
                           ),
                         ),
                       ],
@@ -365,11 +349,7 @@ class _AssetPageState extends State<AssetPage> {
                           EdgeInsets.only(bottom: ScreenUtil().setHeight(6)),
                           child: Text(
                             '收款',
-                            style: GoogleFonts.lato(
-                              letterSpacing: 0.2,
-                              color: Colors.white,
-                              fontSize: ScreenUtil().setSp(26),
-                            ),
+                            style: Util.textStyle(context, spacing: 0.6, size: 26),
                           ),
                         ),
                       ],
@@ -392,15 +372,10 @@ class _AssetPageState extends State<AssetPage> {
                         ),
                         SizedBox(width: ScreenUtil().setWidth(10)),
                         Container(
-                          padding:
-                          EdgeInsets.only(bottom: ScreenUtil().setHeight(6)),
+                          padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(6)),
                           child: Text(
                             '交易',
-                            style: GoogleFonts.lato(
-                              letterSpacing: 0.2,
-                              color: Colors.white,
-                              fontSize: ScreenUtil().setSp(26),
-                            ),
+                            style: Util.textStyle(context, spacing: 0.6, size: 26),
                           ),
                         ),
                       ],

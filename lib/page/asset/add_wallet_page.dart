@@ -87,7 +87,6 @@ class _AddWalletPageState extends State<AddWalletPage> {
                         child: Text(
                           '导入私钥',
                           style: TextStyle(
-                            letterSpacing: 0.5,
                             color: Colors.grey[900],
                             fontSize: ScreenUtil().setSp(29),
                           ),
@@ -142,7 +141,6 @@ class _AddWalletPageState extends State<AddWalletPage> {
                         child: Text(
                           '导入助记词',
                           style: TextStyle(
-                            letterSpacing: 0.5,
                             color: Colors.grey[900],
                             fontSize: ScreenUtil().setSp(29),
                           ),
@@ -195,7 +193,6 @@ class _AddWalletPageState extends State<AddWalletPage> {
                         child: Text(
                           '创建钱包',
                           style: TextStyle(
-                            letterSpacing: 0.5,
                             color: Colors.grey[900],
                             fontSize: ScreenUtil().setSp(29),
                           ),

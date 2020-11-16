@@ -36,12 +36,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         brightness: Brightness.light,
         title: Text(
           '钱包详情',
-          style: TextStyle(
-            color: Colors.grey[800],
-            fontSize: ScreenUtil().setSp(32),
-            letterSpacing: 1.0,
-            fontWeight: FontWeight.w600,
-          ),
+          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.4, size: 32),
         ),
         centerTitle: true,
         elevation: 0,
@@ -100,12 +95,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                       Container(
                         child: Text(
                           '$name',
-                          style: GoogleFonts.lato(
-                            letterSpacing: 0.2,
-                            color: Colors.grey[700],
-                            fontSize: ScreenUtil().setSp(28),
-                            fontWeight: FontWeight.w600,
-                          ),
+                          style: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.1, size: 28),
                         ),
                       ),
                       SizedBox(width: ScreenUtil().setWidth(20)),
@@ -115,7 +105,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                           'icons/pen.png',
                           width: ScreenUtil().setWidth(30),
                           height: ScreenUtil().setWidth(30),
-                          color: Colors.grey[800],
+                          color: Colors.grey[700],
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -129,12 +119,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                       Container(
                         child: Text(
                           '$tronAddress',
-                          style: GoogleFonts.lato(
-                            letterSpacing: 0.2,
-                            color: Colors.grey[800],
-                            fontSize: ScreenUtil().setSp(28),
-                            fontWeight: FontWeight.w600,
-                          ),
+                          style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.1, size: 28),
                         ),
                       ),
                       SizedBox(width: ScreenUtil().setWidth(20)),
@@ -159,43 +144,6 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
     );
   }
 
-  Widget _backupKeyWidget(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        return _showInputPwdDialLog(context, 2);
-      },
-      child: Container(
-        margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40)),
-        padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
-        decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Container(
-              child: Text(
-                '备份私钥',
-                style: TextStyle(
-                    fontSize: ScreenUtil().setSp(29),
-                    color: Colors.grey[900],
-                    letterSpacing: 0.5,
-                ),
-              ),
-            ),
-            Container(
-              child: Icon(
-                Icons.arrow_forward_ios,
-                size: ScreenUtil().setSp(27),
-                color: Colors.grey[700],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget _backupMnemonicWidget(BuildContext context) {
     return InkWell(
       onTap: () {
@@ -213,11 +161,40 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
             Container(
               child: Text(
                 '备份助记词',
-                style: TextStyle(
-                  fontSize: ScreenUtil().setSp(29),
-                  color: Colors.grey[900],
-                  letterSpacing: 0.5,
-                ),
+                style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
+              ),
+            ),
+            Container(
+              child: Icon(
+                Icons.arrow_forward_ios,
+                size: ScreenUtil().setSp(27),
+                color: Colors.grey[700],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _backupKeyWidget(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        return _showInputPwdDialLog(context, 2);
+      },
+      child: Container(
+        margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40)),
+        padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
+        decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Container(
+              child: Text(
+                '备份私钥',
+                style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
               ),
             ),
             Container(
@@ -250,11 +227,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
             Container(
               child: Text(
                 '修改密码',
-                style: TextStyle(
-                  fontSize: ScreenUtil().setSp(29),
-                  color: Colors.grey[900],
-                  letterSpacing: 0.5,
-                ),
+                style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
               ),
             ),
             Container(
@@ -284,11 +257,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
             Container(
               child: Text(
                 '删除钱包',
-                style: TextStyle(
-                  fontSize: ScreenUtil().setSp(29),
-                  color: Colors.grey[900],
-                  letterSpacing: 0.5,
-                ),
+                style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
               ),
             ),
             Container(

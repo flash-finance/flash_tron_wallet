@@ -553,7 +553,7 @@ class _AssetPageState extends State<AssetPage> {
                         child: Icon(
                           Icons.arrow_forward_ios,
                           size: ScreenUtil().setSp(27),
-                          color: Colors.grey[900],
+                          color: Colors.grey[700],
                         ),
                       ),
                       SizedBox(width: ScreenUtil().setWidth(10)),
@@ -604,7 +604,7 @@ class _AssetPageState extends State<AssetPage> {
                         child: Icon(
                           Icons.arrow_forward_ios,
                           size: ScreenUtil().setSp(27),
-                          color: Colors.grey[900],
+                          color: Colors.grey[700],
                         ),
                       ),
                       SizedBox(width: ScreenUtil().setWidth(10)),
@@ -652,7 +652,7 @@ class _AssetPageState extends State<AssetPage> {
                         child: Icon(
                           Icons.arrow_forward_ios,
                           size: ScreenUtil().setSp(27),
-                          color: Colors.grey[900],
+                          color: Colors.grey[700],
                         ),
                       ),
                       SizedBox(width: ScreenUtil().setWidth(10)),

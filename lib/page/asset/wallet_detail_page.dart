@@ -7,7 +7,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../common_page.dart';
@@ -279,11 +278,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         builder: (context) => CupertinoAlertDialog(
           title: Text(
             '请输入密码',
-            style: TextStyle(
-                fontSize: ScreenUtil().setSp(30),
-                letterSpacing: 0.5,
-                color: Colors.grey[800],
-            ),
+            style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.5, size: 30),
           ),
           content: Card(
             elevation: 0.0,
@@ -302,7 +297,6 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                       hintText: '',
                       filled: true,
                       fillColor: Colors.white,
-                      //border:InputBorder.none,
                     ),
                     obscureText: true,
                     maxLength: 6,
@@ -327,22 +321,14 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
             FlatButton(
               child: Text(
                 '取消',
-                style: TextStyle(
-                    fontSize: ScreenUtil().setSp(30),
-                    letterSpacing: 0.5,
-                    color: Colors.blue[800],
-                ),
+                style: Util.textStyle(context, 2, Colors.blue[800], spacing: 0.5, size: 30),
               ),
               onPressed: () => Navigator.pop(context),
             ),
             FlatButton(
                 child: Text(
                   '确定',
-                  style: TextStyle(
-                      fontSize: ScreenUtil().setSp(30),
-                    letterSpacing: 0.5,
-                    color: Colors.red[500],
-                  ),
+                  style: Util.textStyle(context, 2, Colors.blue[800], spacing: 0.5, size: 30),
                 ),
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
@@ -373,32 +359,20 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         builder: (context) => CupertinoAlertDialog(
           title: Text(
             '请确保私钥或助记词已备份，确定删除?',
-            style: TextStyle(
-                fontSize: ScreenUtil().setSp(28),
-                letterSpacing: 0.5,
-                color: Colors.grey[800],
-            ),
+            style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.5, size: 28),
           ),
           actions: <Widget>[
             FlatButton(
               child: Text(
                 '取消',
-                style: TextStyle(
-                    fontSize: ScreenUtil().setSp(30),
-                    letterSpacing: 0.5,
-                    color: Colors.blue[800],
-                ),
+                style: Util.textStyle(context, 2, Colors.blue[800], spacing: 0.5, size: 30),
               ),
               onPressed: () => Navigator.pop(context),
             ),
             FlatButton(
                 child: Text(
                   '确定',
-                  style: TextStyle(
-                      fontSize: ScreenUtil().setSp(30),
-                      letterSpacing: 0.5,
-                      color: Colors.red[500],
-                  ),
+                  style: Util.textStyle(context, 2, Colors.blue[800], spacing: 0.5, size: 30),
                 ),
                 onPressed: () {
                   _delWallet().then((val) {

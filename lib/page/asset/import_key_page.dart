@@ -266,7 +266,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
               padding: EdgeInsets.all(12),
               child: Text(
                 '提交',
-                style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 32),
+                style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 31),
               ),
             ),
             color: Colors.blue[800],

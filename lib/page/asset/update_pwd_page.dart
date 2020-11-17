@@ -29,18 +29,13 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
   Widget build(BuildContext context) {
     String pwd = Provider.of<HomeProvider>(context, listen: false).pwd;
     return Scaffold(
-      backgroundColor: MyColors.lightBg,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-      backgroundColor: Colors.grey[100],
+        backgroundColor: Colors.white,
       brightness: Brightness.light,
       title: Text(
         '修改密码',
-        style: TextStyle(
-          color: Colors.grey[800],
-          fontSize: ScreenUtil().setSp(32),
-          letterSpacing: 1.0,
-          fontWeight: FontWeight.w600,
-        ),
+        style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 32),
       ),
       centerTitle: true,
       elevation: 0,
@@ -51,7 +46,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
         child: Icon(
           Icons.arrow_back,
           size: ScreenUtil().setSp(45),
-          color: Colors.grey[800],
+          color: Colors.grey[900],
         ),
       ),
     ),
@@ -62,17 +57,23 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
         child: Form(
           key: _formKey,
           child: ListView(
-            padding: EdgeInsets.all(15),
             children: <Widget>[
               _descWidget(),
-              SizedBox(height: ScreenUtil().setHeight(15)),
-              _oldPwdWidget(pwd),
-              SizedBox(height: ScreenUtil().setHeight(15)),
-              _setPwdWidget(),
-              SizedBox(height: ScreenUtil().setHeight(15)),
-              _confirmPwdWidget(),
-              SizedBox(height: ScreenUtil().setHeight(50)),
-              _submitButton(context),
+              SizedBox(height: ScreenUtil().setHeight(20)),
+              Container(
+                margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
+                child: Column(
+                  children: <Widget>[
+                    _oldPwdWidget(pwd),
+                    SizedBox(height: ScreenUtil().setHeight(15)),
+                    _setPwdWidget(),
+                    SizedBox(height: ScreenUtil().setHeight(15)),
+                    _confirmPwdWidget(),
+                    SizedBox(height: ScreenUtil().setHeight(50)),
+                    _submitButton(context),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -90,7 +91,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
         inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
         decoration: InputDecoration(
             labelText: '输入旧密码',
-            labelStyle: TextStyle(fontSize: ScreenUtil().setSp(28)),
+            labelStyle: Util.textStyle(context, 1, Colors.grey[700], spacing: 0.1, size: 26),
             suffixIcon: IconButton(
               icon: Icon(_oldPwdClickEye ? Icons.visibility_off : Icons.remove_red_eye,
                 color: _oldPwdEyeColor, size: ScreenUtil().setSp(38),),
@@ -127,7 +128,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
         inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
         decoration: InputDecoration(
             labelText: '设置新密码',
-            labelStyle: TextStyle(fontSize: ScreenUtil().setSp(28)),
+            labelStyle: Util.textStyle(context, 1, Colors.grey[700], spacing: 0.1, size: 26),
             suffixIcon: IconButton(
               icon: Icon(_setPwdClickEye ? Icons.visibility_off : Icons.remove_red_eye,
                 color: _setPwdEyeColor, size: ScreenUtil().setSp(38),),
@@ -162,7 +163,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
             labelText: '确认新密码',
-            labelStyle: TextStyle(fontSize: ScreenUtil().setSp(28)),
+            labelStyle: Util.textStyle(context, 1, Colors.grey[700], spacing: 0.1, size: 26),
             suffixIcon: IconButton(
               icon: Icon(_confirmPwdClickEye ? Icons.visibility_off :Icons.remove_red_eye,
                 color: _confirmPwdEyeColor, size: ScreenUtil().setSp(38),),
@@ -189,11 +190,14 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
     return Container(
       child: Align(
         child: SizedBox(
-          width: ScreenUtil().setWidth(400),
+          width: ScreenUtil().setWidth(350),
           child: RaisedButton(
             child: Container(
               padding: EdgeInsets.all(12),
-              child: Text('提交', style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(31))),
+              child: Text(
+                '提交',
+                style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 31),
+              ),
             ),
             color: Colors.blue[800],
             onPressed: () {
@@ -223,29 +227,29 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
 
   Widget _descWidget() {
     return Container(
-      width: ScreenUtil().setWidth(750),
+      margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5.0),
+        borderRadius: BorderRadius.circular(10),
         color: Colors.blue[800],
       ),
       child: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.fromLTRB(40, 15, 10, 0),
+            padding: EdgeInsets.fromLTRB(30, 15, 10, 0),
             alignment: Alignment.centerLeft,
             child: Text(
               '1. 需要设置6位数字的密码，用于钱包管理和交易授权',
-              style: TextStyle(fontSize: ScreenUtil().setSp(22), color: Colors.white),
+              style: Util.textStyle(context, 1, Colors.white, spacing: 0.1, size: 22.5),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(40, 5, 10, 15),
+            padding: EdgeInsets.fromLTRB(30, 5, 10, 15),
             alignment: Alignment.centerLeft,
             child: Text(
               '2. 平台不存储密码，也无法找回，请务必妥善保管',
-              style: TextStyle(fontSize: ScreenUtil().setSp(22), color: Colors.white),
+              style: Util.textStyle(context, 1, Colors.white, spacing: 0.1, size: 22.5),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),

@@ -282,7 +282,7 @@ class _AssetPageState extends State<AssetPage> {
             },
             child: Container(
               alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(50)),
+              padding: EdgeInsets.only(top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(20)),
               child: Text(
                 '${Util.formatNumberSub(totalAssetUsd, 2)}',
                 style: Util.textStyle(context, 2, Colors.white, spacing: 0.2, size: 42),
@@ -290,6 +290,7 @@ class _AssetPageState extends State<AssetPage> {
               ),
             ),
           ),
+          SizedBox(height: ScreenUtil().setHeight(30)),
           Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

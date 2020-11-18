@@ -221,7 +221,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
         children: <Widget>[
           Container(
             child: Text(
-              '金额',
+              '余额',
               style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
             ),
           ),

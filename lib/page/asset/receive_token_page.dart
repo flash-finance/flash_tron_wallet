@@ -1,4 +1,3 @@
-import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:flutter/material.dart';
@@ -15,20 +14,16 @@ class ReceiveTokenPage extends StatefulWidget {
 class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
   @override
   Widget build(BuildContext context) {
+    String name = Provider.of<HomeProvider>(context).name;
     String address = Provider.of<HomeProvider>(context).tronAddress;
     return Scaffold(
-      backgroundColor: MyColors.lightBg,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Colors.white,
         brightness: Brightness.light,
         title: Text(
-          '收款',
-          style: TextStyle(
-            color: Colors.grey[800],
-            fontSize: ScreenUtil().setSp(32),
-            letterSpacing: 1.0,
-            fontWeight: FontWeight.w600,
-          ),
+          '收款二维码',
+          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 32),
         ),
         centerTitle: true,
         elevation: 0,
@@ -39,19 +34,22 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
           child: Icon(
             Icons.arrow_back,
             size: ScreenUtil().setSp(45),
-            color: Colors.grey[800],
+            color: Colors.grey[900],
           ),
         ),
       ),
       body: Container(
+        margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
         child: ListView(
-          padding: EdgeInsets.all(15),
           children: <Widget>[
-            _descWidget(),
+            SizedBox(height: ScreenUtil().setHeight(30)),
             _qrCodeWidget(context, address.trim()),
-            _addressWidget(address),
-            SizedBox(height: ScreenUtil().setHeight(50)),
-            _copyButton(address.trim()),
+            SizedBox(height: ScreenUtil().setHeight(20)),
+            _nameWidget(context, name),
+            SizedBox(height: ScreenUtil().setHeight(10)),
+            _addressWidget(context, address),
+            SizedBox(height: ScreenUtil().setHeight(80)),
+            _copyButtonWidget(context, address),
           ],
         ),
       ),
@@ -59,17 +57,33 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
   }
 
 
-  Widget _descWidget() {
+  Widget _qrCodeWidget(BuildContext context, String address) {
     return Container(
-      width: ScreenUtil().setWidth(750),
+      margin: EdgeInsets.only(left: ScreenUtil().setWidth(50), right: ScreenUtil().setWidth(50)),
+      child: Card(
+        elevation: 3,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
+        child: Container(
+          padding: EdgeInsets.only(top: ScreenUtil().setWidth(50), bottom: ScreenUtil().setWidth(50)),
+          alignment: Alignment.center,
+          child: QrImage(
+            data: address,
+            size: ScreenUtil().setWidth(400),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _nameWidget(BuildContext context, String name) {
+    return Container(
       child: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.fromLTRB(0, 10, 10, 0),
             alignment: Alignment.center,
             child: Text(
-              '收款二维码',
-              style: TextStyle(fontSize: ScreenUtil().setSp(32), color: Colors.black),
+              '$name',
+              style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 30),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -79,28 +93,15 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
     );
   }
 
-  Widget _qrCodeWidget(BuildContext context, String address) {
+  Widget _addressWidget(BuildContext context, String address) {
     return Container(
-      width: ScreenUtil().setWidth(750),
-      alignment: Alignment.center,
-      child: QrImage(
-        data: address,
-        size: ScreenUtil().setWidth(400),
-      ),
-    );
-  }
-
-  Widget _addressWidget(String address) {
-    return Container(
-      width: ScreenUtil().setWidth(750),
       child: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.fromLTRB(0, 10, 10, 0),
             alignment: Alignment.center,
             child: Text(
               '$address',
-              style: TextStyle(fontSize: ScreenUtil().setSp(28), color: Colors.black87),
+              style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.0, size: 27),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -110,15 +111,18 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
     );
   }
 
-  Widget _copyButton(String address) {
+  Widget _copyButtonWidget(BuildContext context, String address) {
     return Container(
       child: Align(
         child: SizedBox(
-          width: ScreenUtil().setWidth(400),
+          width: ScreenUtil().setWidth(350),
           child: RaisedButton(
             child: Container(
               padding: EdgeInsets.all(12),
-              child: Text('复制地址', style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(31))),
+              child: Text(
+                  '复制地址',
+                  style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 31),
+              ),
             ),
             color: Colors.blue[800],
             onPressed: () {

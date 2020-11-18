@@ -146,9 +146,25 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
           ),
           SizedBox(height: ScreenUtil().setHeight(15)),
           Container(
-            child: Text(
-              '输入或粘贴钱包地址',
-              style: Util.textStyle(context, 2, Colors.grey[500], spacing: 0.2, size: 27),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Container(
+                  child: Text(
+                    '输入或粘贴钱包地址',
+                    style: Util.textStyle(context, 2, Colors.grey[500], spacing: 0.2, size: 27),
+                  ),
+                ),
+                Container(
+                  child: Image.asset(
+                    'icons/scan.png',
+                    width: ScreenUtil().setWidth(45),
+                    height: ScreenUtil().setWidth(45),
+                    color: Colors.grey[850],
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
@@ -174,9 +190,22 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
           ),
           SizedBox(height: ScreenUtil().setHeight(15)),
           Container(
-            child: Text(
-              '输入转出金额',
-              style: Util.textStyle(context, 2, Colors.grey[500], spacing: 0.2, size: 27),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Container(
+                  child: Text(
+                    '输入转出金额',
+                    style: Util.textStyle(context, 2, Colors.grey[500], spacing: 0.2, size: 27),
+                  ),
+                ),
+                Container(
+                  child: Text(
+                    '最大',
+                    style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 27),
+                  ),
+                ),
+              ],
             ),
           ),
         ],

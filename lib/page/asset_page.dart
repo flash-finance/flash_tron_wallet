@@ -165,7 +165,7 @@ class _AssetPageState extends State<AssetPage> {
                       fit: BoxFit.fill,
                     ),
                   ),
-                  SizedBox(width: ScreenUtil().setWidth(20)),
+                  SizedBox(width: ScreenUtil().setWidth(30)),
                   Container(
                     child: Image.asset(
                       'icons/scan.png',

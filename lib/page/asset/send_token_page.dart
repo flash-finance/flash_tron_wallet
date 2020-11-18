@@ -11,6 +11,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
 
+import '../common_page.dart';
+
 class SendTokenPage extends StatefulWidget {
   @override
   _SendTokenPageState createState() => _SendTokenPageState();
@@ -20,18 +22,13 @@ class _SendTokenPageState extends State<SendTokenPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColors.lightBg,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Colors.white,
         brightness: Brightness.light,
         title: Text(
           '转账',
-          style: TextStyle(
-            color: Colors.grey[800],
-            fontSize: ScreenUtil().setSp(32),
-            letterSpacing: 1.0,
-            fontWeight: FontWeight.w600,
-          ),
+          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 32),
         ),
         centerTitle: true,
         elevation: 0,
@@ -42,7 +39,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
           child: Icon(
             Icons.arrow_back,
             size: ScreenUtil().setSp(45),
-            color: Colors.grey[800],
+            color: Colors.grey[900],
           ),
         ),
       ),
@@ -93,35 +90,18 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
     List<AssetEntity> assetFilterConList = Provider.of<HomeProvider>(context).assetList;
     int selectAssetFilterIndex = Provider.of<HomeProvider>(context).selectAssetFilterIndex;
     return Container(
-      child: Stack(
+      child: ListView(
         children: <Widget>[
-          Form(
-            key: _formKey,
-            child: ListView(
-              padding: EdgeInsets.all(15),
-              children: <Widget>[
-                _sendWidget(context),
-                SizedBox(height: ScreenUtil().setHeight(50)),
-                _receiveWidget(context),
-                SizedBox(height: ScreenUtil().setHeight(50)),
-                Stack(
-                  children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        _selectAssetWidget(context, assetFilterShowHide, assetFilterConList, selectAssetFilterIndex),
-                        SizedBox(height: ScreenUtil().setHeight(50)),
-                        _amountWidget(context, assetFilterConList, selectAssetFilterIndex),
-                        SizedBox(height: ScreenUtil().setHeight(100)),
-                        _submitButton(context),
-                      ],
-                    ),
-                    assetFilterShowHide ? Container() : _dropDownWidget(context, assetFilterConList, selectAssetFilterIndex),
-                  ],
-
-                ),
-              ],
-            ),
-          ),
+          IntervalPage(ScreenUtil().setHeight(25)),
+          _sendWidget(context),
+          IntervalPage(ScreenUtil().setHeight(25)),
+          _receiveWidget(context),
+          IntervalPage(ScreenUtil().setHeight(25)),
+          _amountWidget(context, assetFilterConList, selectAssetFilterIndex),
+          _balanceWidget(context),
+          IntervalPage(ScreenUtil().setHeight(25)),
+          SizedBox(height: ScreenUtil().setHeight(120)),
+          _submitButtonWidget(context),
         ],
       ),
     );
@@ -130,37 +110,21 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
   Widget _sendWidget(BuildContext context) {
     String tronAddress = Provider.of<HomeProvider>(context).tronAddress;
     return Container(
-      width: ScreenUtil().setWidth(750),
+      margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(25), right: ScreenUtil().setWidth(40), bottom: ScreenUtil().setHeight(25)),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            width: ScreenUtil().setWidth(600),
-            alignment: Alignment.centerLeft,
-            margin: EdgeInsets.fromLTRB(0, 5, 0, 10),
             child: Text(
-              '发送地址',
-              style: TextStyle(
-                fontSize: ScreenUtil().setSp(28),
-                color: Colors.grey[700],
-              ),),
-          ),
-          Container(
-            width: ScreenUtil().setWidth(600),
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-            decoration: BoxDecoration(
-              color: Color(0x80EEEEEE),
-              borderRadius: BorderRadius.circular(3.0),
+              '转出地址',
+              style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
             ),
-            child: Container(
-              padding: EdgeInsets.only(top: 13, bottom: 13),
-              child: Text(
-                '$tronAddress',
-                style: TextStyle(
-                  color: Colors.black87,
-                  fontSize: ScreenUtil().setSp(25),
-                ),
-              ),
+          ),
+          SizedBox(height: ScreenUtil().setHeight(15)),
+          Container(
+            child: Text(
+              '$tronAddress',
+              style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.0, size: 27),
             ),
           ),
         ],
@@ -170,108 +134,21 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
 
   Widget _receiveWidget(BuildContext context) {
     return Container(
-      width: ScreenUtil().setWidth(750),
+      margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(25), right: ScreenUtil().setWidth(40), bottom: ScreenUtil().setHeight(25)),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            width: ScreenUtil().setWidth(600),
-            alignment: Alignment.centerLeft,
-            margin: EdgeInsets.fromLTRB(0, 5, 0, 10),
             child: Text(
-                '接收地址',
-                style: TextStyle(
-                  fontSize: ScreenUtil().setSp(28),
-                  color: Colors.grey[700],
-                )),
-          ),
-          Container(
-            width: ScreenUtil().setWidth(600),
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-            decoration: BoxDecoration(
-              color: Color(0x80EEEEEE),
-              borderRadius: BorderRadius.circular(3.0),
-            ),
-            child: Container(
-              alignment: Alignment.centerLeft,
-              child: TextFormField(
-                readOnly: !transferLoading ? false : true,
-                controller: _receiveAddressController,
-                decoration: InputDecoration(
-                  isDense: true,
-                  contentPadding: EdgeInsets.only(top: 13, bottom: 13),
-                  border: InputBorder.none,
-                ),
-                style: TextStyle(
-                  color: Colors.black87, fontSize: ScreenUtil().setSp(26),),
-                onSaved: (String value) => _receiveAddress = value,
-                maxLines: 1,
-                inputFormatters: [
-                  WhitelistingTextInputFormatter(RegExp("[a-zA-Z]|[0-9]")),
-                ],
-              ),
+              '收款地址',
+              style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _selectAssetWidget(BuildContext context, bool assetFilterShowHide, List<AssetEntity> assetFilterConList, int index) {
-    bool flag = assetFilterConList.length == 0 ? true : false;
-    return Container(
-      width: ScreenUtil().setWidth(750),
-      child: Column(
-        children: <Widget>[
+          SizedBox(height: ScreenUtil().setHeight(15)),
           Container(
-            width: ScreenUtil().setWidth(600),
-            alignment: Alignment.centerLeft,
-            margin: EdgeInsets.fromLTRB(0, 5, 0, 10),
             child: Text(
-              '选择资产',
-              style: TextStyle(
-                fontSize: ScreenUtil().setSp(28),
-                color: Colors.grey[700],
-              ),),
-          ),
-          Container(
-            width: ScreenUtil().setWidth(600),
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.fromLTRB(10, 10, 0, 10),
-            decoration: BoxDecoration(
-              color: Color(0x80EEEEEE),
-              borderRadius: BorderRadius.circular(3.0),
-            ),
-            child: InkWell(
-              onTap: () {
-                if (!transferLoading && assetFilterShowHide) {
-                  Provider.of<HomeProvider>(context, listen: false).changeAssetFilterShowHide(false);
-                } else {
-                  Provider.of<HomeProvider>(context, listen: false).changeAssetFilterShowHide(true);
-                }
-              },
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    width: ScreenUtil().setWidth(400),
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      !flag ? '${assetFilterConList[index].name}' : '',
-                      style: TextStyle(
-                        color: Colors.black87,
-                        fontSize: ScreenUtil().setSp(26),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: ScreenUtil().setWidth(150),
-                    alignment: Alignment.centerRight,
-                    child: Icon(
-                      assetFilterShowHide ? Icons.arrow_drop_down : Icons.arrow_drop_up,
-                      size: ScreenUtil().setSp(45), color: Colors.black87,),
-                  ),
-                ],
-              ),
+              '输入或粘贴钱包地址',
+              style: Util.textStyle(context, 2, Colors.grey[500], spacing: 0.2, size: 27),
             ),
           ),
         ],
@@ -280,65 +157,26 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
   }
 
   Widget _amountWidget(BuildContext context, List<AssetEntity> assetFilterConList, int index) {
-    bool flag = assetFilterConList.length == 0 ? true : false;
     return Container(
-      width: ScreenUtil().setWidth(750),
+      margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(25), right: ScreenUtil().setWidth(40)),
+      padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(10)),
+      decoration: BoxDecoration(
+        border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
+      ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            width: ScreenUtil().setWidth(600),
-            alignment: Alignment.centerLeft,
-            margin: EdgeInsets.fromLTRB(0, 5, 0, 10),
             child: Text(
-              !flag ? '可转账数额  ${assetFilterConList[index].balance}' : '可转账数额',
-              style: TextStyle(
-                fontSize: ScreenUtil().setSp(28),
-                color: Colors.black87,
-              ),),
-          ),
-          Container(
-            width: ScreenUtil().setWidth(600),
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-            decoration: BoxDecoration(
-              color: Color(0x80EEEEEE),
-              borderRadius: BorderRadius.circular(3.0),
+              '转账数量',
+              style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
             ),
-            child: Row(
-              children: <Widget>[
-                Container(
-                  width: ScreenUtil().setWidth(480),
-                  alignment: Alignment.centerLeft,
-                  child: TextFormField(
-                    readOnly: !transferLoading ? false : true,
-                    controller: _assetAmountController,
-                    decoration: InputDecoration(
-                      isDense: true,
-                      contentPadding: EdgeInsets.only(top: 13, bottom: 13),
-                      border: InputBorder.none,
-                    ),
-                    style: TextStyle(
-                      color: Colors.black87, fontSize: ScreenUtil().setSp(28),),
-                    onSaved: (String value) => _assetAmount = value,
-                    maxLines: 1,
-                    keyboardType: TextInputType.numberWithOptions(decimal: true),
-                    inputFormatters: [DoubleFormat()],
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      _assetAmountController.text = !flag ? assetFilterConList[index].balance.toString() : '';
-                    });
-                  },
-                  child: Container(
-                    width: ScreenUtil().setWidth(70),
-                    alignment: Alignment.centerRight,
-                    child: Text('MAX', style: TextStyle(color: Colors.black87,
-                        fontSize: ScreenUtil().setSp(28)),),
-                  ),
-                ),
-              ],
+          ),
+          SizedBox(height: ScreenUtil().setHeight(15)),
+          Container(
+            child: Text(
+              '输入转出金额',
+              style: Util.textStyle(context, 2, Colors.grey[500], spacing: 0.2, size: 27),
             ),
           ),
         ],
@@ -346,92 +184,31 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
     );
   }
 
-  Widget _dropDownWidget(BuildContext context, List<AssetEntity> assetFilterConList, int selectAssetFilterIndex) {
+  Widget _balanceWidget(BuildContext context) {
     return Container(
-      width: ScreenUtil().setWidth(750),
-      margin: EdgeInsets.fromLTRB(23, 88, 23, 0),
-      padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-      decoration: BoxDecoration(
-        color: Color(0xFFEEEEEE),
-        borderRadius: BorderRadius.circular(2.0),
-        border: Border.all(color: Colors.black12, width: 0.3),
-      ),
-      child: ListView.builder(
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
-        itemCount: assetFilterConList.length,
-        itemBuilder: (context, index) {
-          return _itemWidget(context, index, assetFilterConList[index], selectAssetFilterIndex);
-        },
-      ),
-    );
-  }
-
-  Widget _itemWidget(BuildContext context, int index, AssetEntity item, int selectAssetFilterIndex) {
-    bool flag = index == selectAssetFilterIndex ? true : false;
-    String address = item.address;
-    if (item.type == 0) {
-      address = '';
-    }
-    if (item.type == 2) {
-      address = address.substring(0, 4) + '****' + address.substring(address.length - 4, address.length);
-    }
-    return InkWell(
-      onTap: () {
-        Provider.of<HomeProvider>(context, listen: false).changeSelectAssetFilterIndex(index);
-        Provider.of<HomeProvider>(context, listen: false).changeAssetFilterShowHide(true);
-      },
-      child: Container(
-        width: ScreenUtil().setWidth(600),
-        padding: EdgeInsets.only(top: 6, bottom: 6),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Container(
-              width: ScreenUtil().setWidth(130),
-              padding: EdgeInsets.fromLTRB(10, 6, 0, 0),
-              alignment: Alignment.centerLeft,
-              child: Text(
-                '${item.name}',
-                style: TextStyle(
-                  color: !flag ? Colors.black87 : Colors.blue[800],
-                  fontSize: ScreenUtil().setSp(26),
-                ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
+      margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(25), right: ScreenUtil().setWidth(40), bottom: ScreenUtil().setHeight(25)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Container(
+            child: Text(
+              '金额',
+              style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
             ),
-            Container(
-              width: ScreenUtil().setWidth(400),
-              padding: EdgeInsets.fromLTRB(0, 6, 0, 0),
-              alignment: Alignment.centerLeft,
-              child: Text(
-                address != '' ? '$address' : '',
-                style: TextStyle(
-                  color: !flag ? Colors.grey : Colors.blue[800],
-                  fontSize: ScreenUtil().setSp(26),
-                ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
+          ),
+          Container(
+            child: Text(
+              '4711.432  TRX',
+              style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.2, size: 26),
             ),
-            Container(
-              width: ScreenUtil().setWidth(60),
-              padding: EdgeInsets.fromLTRB(0, 6, 10, 0),
-              alignment: Alignment.centerRight,
-              child: !flag ? Container() : Icon(
-                Icons.check,
-                color: Colors.blue[800],
-                size: ScreenUtil().setSp(30),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
-  Widget _submitButton(BuildContext context) {
+
+  Widget _submitButtonWidget(BuildContext context) {
     List<AssetEntity> assetList = Provider.of<HomeProvider>(context).assetList;
     int index = Provider.of<HomeProvider>(context).selectAssetFilterIndex;
     String ownerAddress = Provider.of<HomeProvider>(context).tronAddress;
@@ -439,11 +216,14 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
     return Container(
       child: Align(
         child: SizedBox(
-          width: ScreenUtil().setWidth(400),
+          width: ScreenUtil().setWidth(350),
           child: RaisedButton(
             child: Container(
               padding: EdgeInsets.all(12),
-              child: Text('发送', style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(31))),
+              child: Text(
+                  '发送',
+                style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 31),
+              ),
             ),
             color: Colors.blue[800],
             onPressed:() {

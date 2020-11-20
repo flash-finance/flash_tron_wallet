@@ -62,7 +62,7 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
       margin: EdgeInsets.only(left: ScreenUtil().setWidth(50), right: ScreenUtil().setWidth(50)),
       child: Card(
         elevation: 3,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
         child: Container(
           padding: EdgeInsets.only(top: ScreenUtil().setWidth(75), bottom: ScreenUtil().setWidth(75)),
           alignment: Alignment.center,

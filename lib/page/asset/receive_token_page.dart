@@ -64,7 +64,7 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
         elevation: 3,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
         child: Container(
-          padding: EdgeInsets.only(top: ScreenUtil().setWidth(50), bottom: ScreenUtil().setWidth(50)),
+          padding: EdgeInsets.only(top: ScreenUtil().setWidth(75), bottom: ScreenUtil().setWidth(75)),
           alignment: Alignment.center,
           child: QrImage(
             data: address,

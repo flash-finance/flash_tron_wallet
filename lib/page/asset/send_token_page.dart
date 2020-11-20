@@ -301,7 +301,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
               '4711.432  TRX',
               style: TextStyle(
                 color: Colors.grey[800],
-                letterSpacing: 0.2,
+                letterSpacing: 0.0,
                 fontSize: ScreenUtil().setSp(28),
                 fontWeight: FontWeight.w500,
               ),

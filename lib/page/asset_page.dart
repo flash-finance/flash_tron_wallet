@@ -304,7 +304,7 @@ class _AssetPageState extends State<AssetPage> {
                     child: Row(
                       children: <Widget>[
                         Container(
-                          padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(4) : ScreenUtil().setHeight(1.5)),
+                          padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(1) : ScreenUtil().setHeight(1.5)),
                           child: Icon(
                             Icons.transit_enterexit_sharp,
                             size: ScreenUtil().setSp(34),
@@ -313,8 +313,7 @@ class _AssetPageState extends State<AssetPage> {
                         ),
                         SizedBox(width: ScreenUtil().setWidth(10)),
                         Container(
-                          padding:
-                          EdgeInsets.only(bottom: ScreenUtil().setHeight(6)),
+                          padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(3)),
                           child: Text(
                             '转账',
                             style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 26),

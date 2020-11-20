@@ -134,7 +134,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
 
   Widget _receiveWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(25), right: ScreenUtil().setWidth(40), bottom: ScreenUtil().setHeight(25)),
+      margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(25), right: ScreenUtil().setWidth(40), bottom: ScreenUtil().setHeight(15)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -144,15 +144,30 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
               style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
             ),
           ),
-          SizedBox(height: ScreenUtil().setHeight(15)),
+          SizedBox(height: ScreenUtil().setHeight(5)),
           Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  child: Text(
-                    '输入或粘贴钱包地址',
-                    style: Util.textStyle(context, 2, Colors.grey[500], spacing: 0.2, size: 27),
+                  width: ScreenUtil().setWidth(600),
+                  child: TextFormField(
+                    controller: _receiveAddressController,
+                    enableInteractiveSelection: false,
+                    cursorColor: Colors.grey[850],
+                    decoration: InputDecoration(
+                      isDense: true,
+                      hintText: '输入或粘贴钱包地址',
+                      hintStyle: Util.textStyle(context, 2, Colors.grey[400], spacing: 0.2, size: 27),
+                      border: InputBorder.none,
+                    ),
+                    style: TextStyle(
+                      color: Colors.grey[850],
+                      fontSize: ScreenUtil().setSp(30),
+                      fontWeight: FontWeight.w500,
+                    ),
+                    maxLines: 1,
+                    inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]|[0-9]"))],
                   ),
                 ),
                 Container(
@@ -188,15 +203,31 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
               style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
             ),
           ),
-          SizedBox(height: ScreenUtil().setHeight(15)),
+          SizedBox(height: ScreenUtil().setHeight(5)),
           Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  child: Text(
-                    '输入转出金额',
-                    style: Util.textStyle(context, 2, Colors.grey[500], spacing: 0.2, size: 27),
+                  width: ScreenUtil().setWidth(600),
+                  child: TextFormField(
+                    controller: _assetAmountController,
+                    enableInteractiveSelection: false,
+                    cursorColor: Colors.grey[850],
+                    decoration: InputDecoration(
+                      isDense: true,
+                      hintText: '输入数量',
+                      hintStyle: Util.textStyle(context, 2, Colors.grey[400], spacing: 0.2, size: 27),
+                      border: InputBorder.none,
+                    ),
+                    style: TextStyle(
+                      color: Colors.grey[850],
+                      fontSize: ScreenUtil().setSp(30),
+                      fontWeight: FontWeight.w500,
+                    ),
+                    maxLines: 1,
+                    keyboardType: TextInputType.numberWithOptions(decimal: true),
+                    inputFormatters: [DoubleFormat()],
                   ),
                 ),
                 Container(
@@ -228,7 +259,12 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
           Container(
             child: Text(
               '4711.432  TRX',
-              style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.2, size: 26),
+              style: TextStyle(
+                color: Colors.grey[800],
+                letterSpacing: 0.2,
+                fontSize: ScreenUtil().setSp(28),
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
         ],

@@ -191,7 +191,6 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
   Widget _amountWidget(BuildContext context, List<AssetEntity> assetFilterConList, int index) {
     bool flag = assetFilterConList.length == 0 ? true : false;
     return Container(
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(25), right: ScreenUtil().setWidth(40)),
       padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(10)),
       decoration: BoxDecoration(
         border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
@@ -200,13 +199,44 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            child: Text(
-              '转账数量',
-              style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
+            margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(25), right: ScreenUtil().setWidth(35)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Container(
+                  child: Text(
+                    '转账数量',
+                    style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                  },
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        child: Text(
+                          !flag ? '${assetFilterConList[index].name} ' : '',
+                          style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(top: ScreenUtil().setHeight(3)),
+                        child: Icon(
+                          Icons.arrow_forward_ios,
+                          size: ScreenUtil().setSp(25),
+                          color: Colors.grey[800],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
           SizedBox(height: ScreenUtil().setHeight(5)),
           Container(
+            margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), right: ScreenUtil().setWidth(40)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -242,7 +272,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                   child: Container(
                     child: Text(
                       '最大',
-                      style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 27),
+                      style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 25),
                     ),
                   ),
                 ),

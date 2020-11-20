@@ -168,6 +168,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                     ),
                     maxLines: 1,
                     inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]|[0-9]"))],
+                    onSaved: (String value) => _receiveAddress = value,
                   ),
                 ),
                 Container(
@@ -188,6 +189,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
   }
 
   Widget _amountWidget(BuildContext context, List<AssetEntity> assetFilterConList, int index) {
+    bool flag = assetFilterConList.length == 0 ? true : false;
     return Container(
       margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(25), right: ScreenUtil().setWidth(40)),
       padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(10)),
@@ -228,12 +230,20 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                     maxLines: 1,
                     keyboardType: TextInputType.numberWithOptions(decimal: true),
                     inputFormatters: [DoubleFormat()],
+                    onSaved: (String value) => _assetAmount = value,
                   ),
                 ),
-                Container(
-                  child: Text(
-                    '最大',
-                    style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 27),
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      _assetAmountController.text = !flag ? assetFilterConList[index].balance.toString() : '';
+                    });
+                  },
+                  child: Container(
+                    child: Text(
+                      '最大',
+                      style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 27),
+                    ),
                   ),
                 ),
               ],

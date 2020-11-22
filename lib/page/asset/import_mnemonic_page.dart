@@ -318,7 +318,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
   Future<bool> _submit() async {
     Provider.of<HomeProvider>(context, listen: false).changeImportMnemonicLoading(true);
     WalletEntity entity =  TronWallet().importWalletByMnemonic(_name, _setPwd, _mnemonic);
-    bool result =  await Provider.of<HomeProvider>(context, listen: false).saveWalletEntity(entity);
+    bool result =  await Provider.of<HomeProvider>(context, listen: false).addWallet(entity);
     if (result) {
       await _getAsset();
     }
@@ -327,7 +327,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
 
   Future<bool> _getAsset() async {
     print('_getAsset 000');
-    String tronAddress = Provider.of<HomeProvider>(context, listen: false).tronAddress;
+    String tronAddress = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity.tronAddress;
     List<TokenRows> tokenList = Provider.of<HomeProvider>(context, listen: false).tokenList;
     return await TronAsset().getAsset(context, tronAddress, tokenList);
   }

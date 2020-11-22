@@ -219,7 +219,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
                 if (_setPwd != _confirmPwd) {
                   Util.showToast('两次输入密码不一致');
                 } else {
-                  _submit().then((val) {
+                  _submit(context).then((val) {
                     Provider.of<HomeProvider>(context, listen: false).changeBuildWalletLoading(false);
                     if (val == true) {
                       Application.router.navigateTo(context, 'asset/buildSecondWallet', transition: TransitionType.cupertino);
@@ -271,19 +271,19 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
     );
   }
 
-  Future<bool> _submit() async {
+  Future<bool> _submit(BuildContext context) async {
     Provider.of<HomeProvider>(context, listen: false).changeBuildWalletLoading(true);
     WalletEntity entity = TronWallet().createWallet(_name, _setPwd);
-    bool result =  await Provider.of<HomeProvider>(context, listen: false).saveWalletEntity(entity);
+    bool result =  await Provider.of<HomeProvider>(context, listen: false).addWallet(entity);
     if (result) {
-      await _getAsset();
+      await _getAsset(context);
     }
     return result;
   }
 
-  Future<bool> _getAsset() async {
+  Future<bool> _getAsset(BuildContext context) async {
     print('_getAsset 000');
-    String tronAddress = Provider.of<HomeProvider>(context, listen: false).tronAddress;
+    String tronAddress = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity.tronAddress;
     List<TokenRows> tokenList = Provider.of<HomeProvider>(context, listen: false).tokenList;
     return await TronAsset().getAsset(context, tronAddress, tokenList);
   }

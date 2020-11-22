@@ -1,6 +1,7 @@
 import 'package:fixnum/fixnum.dart';
 import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
+import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/tron/service/tron_transaction.dart';
 import 'package:flash_tron_wallet/tron/service/tron_wallet.dart';
@@ -89,11 +90,12 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
     bool assetFilterShowHide = Provider.of<HomeProvider>(context).assetFilterShowHide;
     List<AssetEntity> assetFilterConList = Provider.of<HomeProvider>(context).assetList;
     int selectAssetFilterIndex = Provider.of<HomeProvider>(context).selectAssetFilterIndex;
+    WalletEntity wallet = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
     return Container(
       child: ListView(
         children: <Widget>[
           IntervalPage(ScreenUtil().setHeight(25)),
-          _sendWidget(context),
+          _sendWidget(context,wallet),
           IntervalPage(ScreenUtil().setHeight(25)),
           _receiveWidget(context),
           IntervalPage(ScreenUtil().setHeight(25)),
@@ -101,14 +103,13 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
           _balanceWidget(context),
           IntervalPage(ScreenUtil().setHeight(25)),
           SizedBox(height: ScreenUtil().setHeight(120)),
-          _submitButtonWidget(context),
+          _submitButtonWidget(context, wallet),
         ],
       ),
     );
   }
 
-  Widget _sendWidget(BuildContext context) {
-    String tronAddress = Provider.of<HomeProvider>(context).tronAddress;
+  Widget _sendWidget(BuildContext context, WalletEntity wallet) {
     return Container(
       margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(25), right: ScreenUtil().setWidth(40), bottom: ScreenUtil().setHeight(25)),
       child: Column(
@@ -123,7 +124,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
           SizedBox(height: ScreenUtil().setHeight(15)),
           Container(
             child: Text(
-              '$tronAddress',
+              '${wallet.tronAddress}',
               style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.0, size: 27),
             ),
           ),
@@ -313,11 +314,9 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
   }
 
 
-  Widget _submitButtonWidget(BuildContext context) {
+  Widget _submitButtonWidget(BuildContext context, WalletEntity wallet) {
     List<AssetEntity> assetList = Provider.of<HomeProvider>(context).assetList;
     int index = Provider.of<HomeProvider>(context).selectAssetFilterIndex;
-    String ownerAddress = Provider.of<HomeProvider>(context).tronAddress;
-    String userPwd = Provider.of<HomeProvider>(context).pwd;
     return Container(
       child: Align(
         child: SizedBox(
@@ -339,7 +338,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                   Util.showToast('接收地址不能为空');
                 } else if (!TronWallet().checkTronAddress(_receiveAddress.trim())) {
                   Util.showToast('接收地址格式不正确');
-                } else if (_receiveAddress.trim() == ownerAddress) {
+                } else if (_receiveAddress.trim() == wallet.tronAddress) {
                   Util.showToast('接收地址和发送地址不能相同');
                 } else if (_assetAmount.isEmpty) {
                   Util.showToast('转账数量不能为空');
@@ -349,7 +348,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                 if (double.parse(_assetAmount) > assetList[index].balance) {
                   Util.showToast('转账数量不足');
                 } else {
-                  _showPwdDialog(context, ownerAddress, userPwd, assetList[index]);
+                  _showPwdDialog(context, wallet.tronAddress, wallet.pwd, assetList[index]);
                 }
               }
             },

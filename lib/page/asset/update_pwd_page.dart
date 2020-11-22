@@ -1,4 +1,4 @@
-import 'package:flash_tron_wallet/common/color.dart';
+import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +27,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
 
   @override
   Widget build(BuildContext context) {
-    String pwd = Provider.of<HomeProvider>(context, listen: false).pwd;
+    WalletEntity wallet = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -64,7 +64,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
                 margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
                 child: Column(
                   children: <Widget>[
-                    _oldPwdWidget(pwd),
+                    _oldPwdWidget(wallet.pwd),
                     SizedBox(height: ScreenUtil().setHeight(15)),
                     _setPwdWidget(),
                     SizedBox(height: ScreenUtil().setHeight(15)),
@@ -206,7 +206,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
                 if (_setPwd != _confirmPwd) {
                   Util.showToast('两次输入新密码不一致');
                 } else {
-                  _submit().then((val) {
+                  _submit(context).then((val) {
                     if (val == true) {
                       Util.showToast('修改成功');
                       Navigator.pop(context);
@@ -259,8 +259,9 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
     );
   }
 
-  Future<bool> _submit() async {
-    return await Provider.of<HomeProvider>(context, listen: false).updatePwd(_setPwd);
+  Future<bool> _submit(BuildContext context) async {
+    int index = Provider.of<HomeProvider>(context, listen: false).selectWalletIndex;
+    return await Provider.of<HomeProvider>(context, listen: false).updatePwd(index, _setPwd);
   }
 
 }

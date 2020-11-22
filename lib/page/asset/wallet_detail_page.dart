@@ -1,4 +1,5 @@
 import 'package:flash_tron_wallet/common/color.dart';
+import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
@@ -24,10 +25,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    HomeProvider homeProvider = Provider.of<HomeProvider>(context, listen: true);
-    _name = homeProvider.name;
-    _mnemonic = homeProvider.mnemonic;
-    _pwd = homeProvider.pwd;
+    WalletEntity wallet = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
     return Scaffold(
       backgroundColor: MyColors.lightBg,
       appBar: AppBar(
@@ -54,7 +52,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         child: ListView(
           children: <Widget>[
            IntervalPage(ScreenUtil().setHeight(25)),
-            _topWidget(context),
+            _topWidget(context, wallet),
             IntervalPage(ScreenUtil().setHeight(25)),
             _backupMnemonicWidget(context),
             _backupKeyWidget(context),
@@ -67,9 +65,8 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
     );
   }
 
-  Widget _topWidget(BuildContext context) {
-    String name = Provider.of<HomeProvider>(context, listen: false).name;
-    String temp = Provider.of<HomeProvider>(context, listen: false).tronAddress;
+  Widget _topWidget(BuildContext context, WalletEntity wallet) {
+    String temp = wallet.tronAddress;
     String tronAddress = temp.substring(0, 8) + '...' + temp.substring(temp.length-8, temp.length);
     return Container(
       padding: EdgeInsets.only(left: ScreenUtil().setWidth(30), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(30), bottom: ScreenUtil().setHeight(30)),
@@ -93,7 +90,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                     children: <Widget>[
                       Container(
                         child: Text(
-                          '$name',
+                          '${wallet.name}',
                           style: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.1, size: 28),
                         ),
                       ),
@@ -333,7 +330,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
-                    _backupKey().then((val) {
+                    _backupKey(context).then((val) {
                       if (val == true) {
                         Navigator.pop(context);
                         if (type == 1) {
@@ -375,7 +372,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                   style: Util.textStyle(context, 2, Colors.blue[800], spacing: 0.5, size: 30),
                 ),
                 onPressed: () {
-                  _delWallet().then((val) {
+                  _delWallet(context).then((val) {
                     if (val == true) {
                       Navigator.pop(context);
                     } else {
@@ -388,12 +385,13 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         ));
   }
 
-  Future<bool> _backupKey() async {
+  Future<bool> _backupKey(BuildContext context) async {
     return true;
   }
 
-  Future<bool> _delWallet() async {
-    return await Provider.of<HomeProvider>(context, listen: false).delWallet();
+  Future<bool> _delWallet(BuildContext context) async {
+    int index = Provider.of<HomeProvider>(context, listen: false).selectWalletIndex;
+    return await Provider.of<HomeProvider>(context, listen: false).delWallet(index);
   }
 
 }

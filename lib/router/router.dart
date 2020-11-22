@@ -23,12 +23,6 @@ class Routes {
   static String updatePwd = '/asset/updatePwd';
 
 
-
-
-  static String importWallet = '/asset/importWallet';
-  static String buildThirdWallet = '/mine/buildThirdWallet';
-  static String updateName = '/mine/updateName';
-
   static void configureRouter(FluroRouter router) {
     router.notFoundHandler = Handler(
         handlerFunc: (BuildContext context, Map<String, List<String>> params) {
@@ -53,6 +47,5 @@ class Routes {
     router.define(backupMnemonic, handler: backupMnemonicHandler);
 
     router.define(updatePwd, handler: updatePwdHandler);
-    router.define(updateName, handler: updateNameHandler);
   }
 }

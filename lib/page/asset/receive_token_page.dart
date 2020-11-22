@@ -1,3 +1,4 @@
+import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +15,7 @@ class ReceiveTokenPage extends StatefulWidget {
 class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
   @override
   Widget build(BuildContext context) {
-    String name = Provider.of<HomeProvider>(context).name;
-    String address = Provider.of<HomeProvider>(context).tronAddress;
+    WalletEntity wallet = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -43,13 +43,13 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
         child: ListView(
           children: <Widget>[
             SizedBox(height: ScreenUtil().setHeight(30)),
-            _qrCodeWidget(context, address.trim()),
+            _qrCodeWidget(context, wallet.tronAddress.trim()),
             SizedBox(height: ScreenUtil().setHeight(20)),
-            _nameWidget(context, name),
+            _nameWidget(context, wallet.name),
             SizedBox(height: ScreenUtil().setHeight(10)),
-            _addressWidget(context, address),
+            _addressWidget(context, wallet.tronAddress),
             SizedBox(height: ScreenUtil().setHeight(80)),
-            _copyButtonWidget(context, address),
+            _copyButtonWidget(context, wallet.tronAddress),
           ],
         ),
       ),

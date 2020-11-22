@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
+import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/model/dex_info_model.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
@@ -39,8 +40,8 @@ class _AssetPageState extends State<AssetPage> {
 
   @override
   Widget build(BuildContext context) {
-    String tronAddress = Provider.of<HomeProvider>(context).tronAddress;
-    if (tronAddress != null) {
+    WalletEntity wallet = Provider.of<HomeProvider>(context, listen: true).selectWalletEntity;
+    if (wallet != null && wallet.tronAddress != null) {
       return Scaffold(
         backgroundColor: MyColors.lightBg,
         appBar: PreferredSize(
@@ -109,7 +110,7 @@ class _AssetPageState extends State<AssetPage> {
   }
 
   Widget _headWidget(BuildContext context) {
-    String name = Provider.of<HomeProvider>(context, listen: true).name;
+    WalletEntity item = Provider.of<HomeProvider>(context, listen: true).selectWalletEntity;
     return Container(
       margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
       child: Row(
@@ -126,7 +127,7 @@ class _AssetPageState extends State<AssetPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      '$name',
+                      '${item.name}',
                       style: Util.textStyle(context, 1, Colors.white, spacing: 0.2, size: 23),
                     ),
                   ),
@@ -671,17 +672,17 @@ class _AssetPageState extends State<AssetPage> {
     _timer = Timer.periodic(Duration(milliseconds: 3000), (timer) async{
       bool backgroundFlag = Provider.of<HomeProvider>(context, listen: false).backgroundFlag;
       if (!backgroundFlag) {
-        await Provider.of<HomeProvider>(context, listen: false).getWalletEntity();
         await  Provider.of<HomeProvider>(context, listen: false).getAsset4Reload();
       }
     });
   }
 
   Future<bool> _getAsset() async {
-    String tronAddress = Provider.of<HomeProvider>(context, listen: false).tronAddress;
-    List<TokenRows> tokenList = Provider.of<HomeProvider>(context, listen: false).tokenList;
-    return await TronAsset().getAsset(context, tronAddress, tokenList);
+    WalletEntity wallet = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
+    if (wallet != null && wallet.tronAddress != null) {
+      List<TokenRows> tokenList = Provider.of<HomeProvider>(context, listen: false).tokenList;
+      return await TronAsset().getAsset(context, wallet.tronAddress, tokenList);
+    }
   }
-
 
 }

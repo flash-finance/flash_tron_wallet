@@ -44,7 +44,7 @@ class TronTransaction {
       Transaction_raw rawData = trxResult.transaction.rawData;
       Uint8List hash = sha256.convert(rawData.writeToBuffer()).bytes;
 
-      String hexPrivateKey = Provider.of<HomeProvider>(context, listen: false).privateKey;
+      String hexPrivateKey = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity.privateKey;
 
       MsgSignature msgSignature = sign(hash, hexToBytes(hexPrivateKey));
 
@@ -92,7 +92,7 @@ class TronTransaction {
       Transaction_raw rawData = trxResult.transaction.rawData;
       Uint8List hash = sha256.convert(rawData.writeToBuffer()).bytes;
 
-      String hexPrivateKey = Provider.of<HomeProvider>(context, listen: false).privateKey;
+      String hexPrivateKey = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity.privateKey;
 
       MsgSignature msgSignature = sign(hash, hexToBytes(hexPrivateKey));
 
@@ -158,7 +158,7 @@ class TronTransaction {
       Uint8List dataList = hexToBytes(bytesToHex(methodID) + bytesToHex(rawEncode));
       //print('encode dataList1 hex: ${bytesToHex(dataList)}');
 
-      String hexPrivateKey = Provider.of<HomeProvider>(context, listen: false).privateKey;
+      String hexPrivateKey = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity.privateKey;
 
       bool flag = await execute(stub, hexPrivateKey, fromAddress, contractAddress, dataList, 0);
       await channel.shutdown();
@@ -210,7 +210,7 @@ class TronTransaction {
       Uint8List dataList = hexToBytes(bytesToHex(methodID) + bytesToHex(rawEncode));
       //print('encode dataList1 hex: ${bytesToHex(dataList)}');
 
-      String hexPrivateKey = Provider.of<HomeProvider>(context, listen: false).privateKey;
+      String hexPrivateKey = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity.privateKey;
 
       bool flag = await execute(stub, hexPrivateKey, fromAddress, contractAddress, dataList, 0);
       await channel.shutdown();
@@ -272,7 +272,7 @@ class TronTransaction {
       Uint8List dataList = hexToBytes(bytesToHex(methodID) + bytesToHex(rawEncode));
       //print('encode dataList1 hex: ${bytesToHex(dataList)}');
 
-      String hexPrivateKey = Provider.of<HomeProvider>(context, listen: false).privateKey;
+      String hexPrivateKey = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity.privateKey;
 
 
       int callValue = 0;
@@ -327,7 +327,7 @@ class TronTransaction {
       Uint8List dataList = hexToBytes(bytesToHex(methodID) + bytesToHex(rawEncode));
       //print('encode dataList1 hex: ${bytesToHex(dataList)}');
 
-      String hexPrivateKey = Provider.of<HomeProvider>(context, listen: false).privateKey;
+      String hexPrivateKey = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity.privateKey;
 
       int callValue = 0;
       bool flag = await execute(stub, hexPrivateKey, userAddress, contractAddress, dataList, callValue);

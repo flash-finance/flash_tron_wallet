@@ -1,4 +1,5 @@
 
+import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class BuildWalletSecondPage extends StatefulWidget {
 class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
   @override
   Widget build(BuildContext context) {
-    String mnemonic = Provider.of<HomeProvider>(context).mnemonic;
+    WalletEntity wallet = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -37,7 +38,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
           ),
         ),
       ),
-      body: mnemonic != null ? Container(
+      body: wallet != null && wallet.mnemonic != null ? Container(
         width: ScreenUtil().setWidth(750),
         child: ListView(
           children: <Widget>[
@@ -48,9 +49,9 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
              child: Column(
                children: <Widget>[
                  SizedBox(height: ScreenUtil().setHeight(10)),
-                 _tipsWidget(mnemonic),
+                 _tipsWidget(wallet.mnemonic),
                  SizedBox(height: ScreenUtil().setHeight(10)),
-                 _dataWidget(mnemonic),
+                 _dataWidget(wallet.mnemonic),
                  SizedBox(height: ScreenUtil().setHeight(60)),
                  _submitButton(context),
                ],

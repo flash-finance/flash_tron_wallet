@@ -1,3 +1,4 @@
+import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class BackupKeyPage extends StatefulWidget {
 class _BackupKeyPageState extends State<BackupKeyPage> {
   @override
   Widget build(BuildContext context) {
-    String privateKey = Provider.of<HomeProvider>(context, listen: false).privateKey;
+    WalletEntity wallet = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -45,7 +46,7 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
               margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
               child: Column(
                 children: <Widget>[
-                  _dataWidget(context, privateKey),
+                  _dataWidget(context, wallet.privateKey),
                   SizedBox(height: ScreenUtil().setHeight(150)),
                   _submitButton(context),
                 ],

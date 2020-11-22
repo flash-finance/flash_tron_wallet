@@ -11,7 +11,6 @@ import 'package:flash_tron_wallet/page/asset/update_pwd_page.dart';
 import 'package:flash_tron_wallet/page/asset/wallet_detail_page.dart';
 import 'package:flash_tron_wallet/page/asset_page.dart';
 import 'package:flash_tron_wallet/page/defi_page.dart';
-import 'package:flash_tron_wallet/page/mine/wallet/update_name_page.dart';
 import 'package:flash_tron_wallet/page/mine_page.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
@@ -90,19 +89,16 @@ Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
 });
 
 
-
-
-
-
-
 Handler updatePwdHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   return UpdatePwdPage();
 });
 
-Handler updateNameHandler =
-Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-  return UpdateNamePage();
-});
+
+
+
+
+
+
 
 

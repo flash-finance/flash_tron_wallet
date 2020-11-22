@@ -1,4 +1,5 @@
 
+import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class BackupMnemonicPage extends StatefulWidget {
 class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
   @override
   Widget build(BuildContext context) {
-    String mnemonic = Provider.of<HomeProvider>(context, listen: false).mnemonic;
+    WalletEntity wallet = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -46,7 +47,7 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
               margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
               child: Column(
                 children: <Widget>[
-                  _dataWidget(context, mnemonic),
+                  _dataWidget(context, wallet.mnemonic),
                   SizedBox(height: ScreenUtil().setHeight(150)),
                   _submitButton(context),
                 ],

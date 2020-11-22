@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:bs58check/bs58check.dart';
@@ -18,8 +19,8 @@ import 'package:synchronized/synchronized.dart';
 
 class HomeProvider with ChangeNotifier {
   init() async {
-    await getWalletEntity();
-    await getDexInfo();
+    await getSelectWalletIndex();
+    await getSelectWallet();
     await getAssetHide();
     await getAsset4Init();
   }
@@ -37,162 +38,159 @@ class HomeProvider with ChangeNotifier {
 
   final _lock = Lock();
 
-  WalletEntity _walletEntity;
+  List<WalletEntity> _walletList = [];
+  List<WalletEntity> get walletList => _walletList;
 
-  WalletEntity get walletEntity => _walletEntity;
 
-  String _nameKey = 'name';
+  int _selectWalletIndex = -1;
+  int get selectWalletIndex => _selectWalletIndex;
 
-  String _pwdKey = 'pwd';
+  WalletEntity _selectWalletEntity;
+  WalletEntity get selectWalletEntity => _selectWalletEntity;
 
-  String _mnemonicKey = 'mnemonic';
+  String _selectWalletIndexKey = 'selectWalletIndexKey';
+  String _selectWalletListKey = 'selectWalletListKey';
 
-  String _privKey = 'private';
-
-  String _addressKey = 'address';
-
-  getWalletEntity() async {
+  getSelectWalletIndex() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    _name = prefs.getString(_nameKey);
-    _pwd = prefs.getString(_pwdKey);
-    _mnemonic = prefs.getString(_mnemonicKey);
-    _privateKey = prefs.getString(_privKey);
-    _tronAddress = prefs.getString(_addressKey);
+    int temp = prefs.getInt(_selectWalletIndexKey);
+    if (temp != null) {
+      _selectWalletIndex = temp;
+    }
     notifyListeners();
   }
 
-  Future<bool> saveWalletEntity(WalletEntity entity) async {
-    //print('saveWalletEntity start');
+  getSelectWallet() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> tempList = prefs.getStringList(_selectWalletListKey);
+    _walletList = [];
+    if (tempList != null) {
+      for (int i = 0; i < tempList.length; i++) {
+        String temp = tempList[_selectWalletIndex];
+        WalletEntity item = json.decode(temp);
+        _walletList.add(item);
+      }
+      if (_walletList.length > _selectWalletIndex) {
+        _selectWalletEntity = _walletList[_selectWalletIndex];
+      }
+    }
+    notifyListeners();
+  }
+
+  Future<bool> saveSelectWalletIndex(int value) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      _name = entity.name;
-      prefs.setString(_nameKey, entity.name);
-      _pwd = entity.pwd;
-      prefs.setString(_pwdKey, entity.pwd);
-      _mnemonic = entity.mnemonic;
-      prefs.setString(_mnemonicKey, entity.mnemonic);
-      _privateKey = entity.privateKey;
-      prefs.setString(_privKey, entity.privateKey);
-      _tronAddress = entity.tronAddress;
-      prefs.setString(_addressKey, entity.tronAddress);
+      _selectWalletIndex = value;
+      prefs.setInt(_selectWalletIndexKey, _selectWalletIndex);
     } catch (e) {
       print(e);
       return false;
     }
-    //print('saveWalletEntity end');
     notifyListeners();
     return true;
   }
 
-  Future<bool> updateName(String newName) async {
-    //print('updateName start');
+  Future<bool> saveSelectWalletList(List<WalletEntity> dataList) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      _name = newName;
-      prefs.setString(_nameKey, newName);
+      _walletList = dataList;
+      List<String> tempList = [];
+      for (int i = 0; i < tempList.length; i++) {
+        String temp = json.encode(tempList[i]);
+        tempList.add(temp);
+      }
+      prefs.setStringList(_selectWalletIndexKey, tempList);
     } catch (e) {
       print(e);
       return false;
     }
-    //print('updateName end');
     notifyListeners();
     return true;
   }
 
-  Future<bool> updatePwd(String newPwd) async {
-    //print('updatePwd start');
+  Future<bool> addWallet(WalletEntity item) async {
     try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      _pwd = newPwd;
-      prefs.setString(_pwdKey, newPwd);
-    } catch (e) {
-      print(e);
-      return false;
-    }
-    //print('updatePwd end');
-    notifyListeners();
-    return true;
-  }
-
-  Future<bool> delWallet() async {
-    //print('delWallet start');
-    try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      _name = null;
-      prefs.remove(_nameKey);
-      _pwd = null;
-      prefs.remove(_pwdKey);
-      _mnemonic = null;
-      prefs.remove(_mnemonicKey);
-      _privateKey = null;
-      prefs.remove(_privKey);
-      _tronAddress = null;
-      prefs.remove(_addressKey);
+      _walletList.insert(0, item);
+      _selectWalletIndex = 0;
+      _selectWalletEntity = _walletList[0];
       notifyListeners();
-      _assetList = [];
-      notifyListeners();
+      await saveSelectWalletList(_walletList);
     } catch (e) {
       print(e);
       return false;
     }
-    //print('delWallet end');
     return true;
   }
 
-  String _name;
-
-  String get name => _name;
-
-  Future<String> getName() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    _name = prefs.getString(_nameKey);
-    notifyListeners();
-    return _name;
+  Future<bool> changeSelectWallet(int index) async {
+    try {
+      if (_walletList.length > index) {
+        _selectWalletIndex = index;
+        _selectWalletEntity = _walletList[index];
+      }
+    } catch (e) {
+      print(e);
+      return false;
+    }
+    return true;
   }
 
-  String _pwd;
 
-  String get pwd => _pwd;
-
-  Future<String> getPwd() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    _pwd = prefs.getString(_pwdKey);
-    notifyListeners();
-    return _pwd;
+  Future<bool> updateName(int index, String newName) async {
+    try {
+      if (_walletList.length > index) {
+        _walletList[index].name = newName;
+        notifyListeners();
+        await saveSelectWalletList(_walletList);
+      }
+    } catch (e) {
+      print(e);
+      return false;
+    }
+    return true;
   }
 
-  String _mnemonic;
-
-  String get mnemonic => _mnemonic;
-
-  Future<String> getMnemonic() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    _mnemonic = prefs.getString(_mnemonicKey);
-    notifyListeners();
-    return _mnemonic;
+  Future<bool> updatePwd(int index, String newPwd) async {
+    try {
+      if (_walletList.length > index) {
+        _walletList[index].pwd = newPwd;
+        notifyListeners();
+        await saveSelectWalletList(_walletList);
+      }
+    } catch (e) {
+      print(e);
+      return false;
+    }
+    return true;
   }
 
-  String _privateKey;
+  Future<bool> delWallet(int index) async {
+    try {
+      if (_walletList.length > index) {
+        _walletList.removeAt(index);
+        if (_selectWalletIndex == index) {
+          if (_walletList.length > 0) {
+            _selectWalletIndex = 0;
+            _selectWalletEntity = _walletList[0];
+          } else {
+            _selectWalletIndex = -1;
+            _selectWalletEntity = null;
+          }
+        } else if (_selectWalletIndex > index) {
+          _selectWalletIndex--;
+          _selectWalletEntity = _walletList[_selectWalletIndex];
+        }
+        notifyListeners();
+        await saveSelectWalletList(_walletList);
+      }
 
-  String get privateKey => _privateKey;
-
-  Future<String> getPrivateKey(String pwd) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    _privateKey = prefs.getString(_privKey);
-    notifyListeners();
-    return _privateKey;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+    return true;
   }
 
-  String _tronAddress;
-
-  String get tronAddress => _tronAddress;
-
-  Future<String> getTronAddress() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    _tronAddress = prefs.getString(_addressKey);
-    notifyListeners();
-    return _tronAddress;
-  }
 
   String _firstRandom = '';
 
@@ -209,15 +207,6 @@ class HomeProvider with ChangeNotifier {
 
   changeSecondRandom(String value) {
     _secondRandom = value;
-    notifyListeners();
-  }
-
-  String _thirdRandom = '';
-
-  String get thirdRandom => _thirdRandom;
-
-  changeThirdRandom(String value) {
-    _thirdRandom = value;
     notifyListeners();
   }
 
@@ -368,25 +357,9 @@ class HomeProvider with ChangeNotifier {
     //print('getDexInfo end');
   }
 
-  int _selectTransferFilterIndex = 0;
-
-  int get selectTransferFilterIndex => _selectTransferFilterIndex;
-
-  changeSelectTransferFilterIndex(int index) {
-    _selectTransferFilterIndex = index;
-    notifyListeners();
-  }
-
-  List<TransferFilterModel> get transferFilterList => _transferFilterList;
-
-  List<TransferFilterModel> _transferFilterList = [
-    TransferFilterModel(name: '全部', value: 'all'),
-    TransferFilterModel(name: '转出', value: 'out'),
-    TransferFilterModel(name: '转入', value: 'in'),
-  ];
 
   getAsset4Init() async {
-    if (_tronAddress == null) {
+    if (_selectWalletEntity == null && _selectWalletEntity.tronAddress == null) {
       if (_assetList != null && _assetList.length > 0) {
         _assetList = [];
       }
@@ -408,14 +381,14 @@ class HomeProvider with ChangeNotifier {
   }
 
   getAsset4Reload() async {
-    if (_tronAddress == null) {
+    if (_selectWalletEntity == null && _selectWalletEntity.tronAddress == null) {
       if (_assetList != null && _assetList.length > 0) {
         _assetList = [];
       }
       notifyListeners();
       return;
     }
-    String userAddress = _tronAddress;
+    String userAddress = _selectWalletEntity.tronAddress;
     String tronGrpcIP = _tronGrpcIP;
     double trxPriceCny = _trxPriceCny;
     List<AssetEntity> list = [];

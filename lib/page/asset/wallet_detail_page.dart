@@ -2,6 +2,7 @@ import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/common/page.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
+import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:fluro/fluro.dart';
@@ -373,7 +374,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                 onPressed: () {
                   _delWallet(context).then((val) {
                     if (val == true) {
-                      Navigator.pop(context);
+                      Navigator.of(context)..pop()..pop();
                     } else {
                       Util.showToast('执行出错，请再尝试');
                     }

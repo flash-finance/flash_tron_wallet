@@ -275,9 +275,9 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
     Provider.of<HomeProvider>(context, listen: false).changeBuildWalletLoading(true);
     WalletEntity entity = TronWallet().createWallet(_name, _setPwd);
     bool result =  await Provider.of<HomeProvider>(context, listen: false).addWallet(entity);
-    if (result) {
+    /*if (result) {
       await _getAsset(context);
-    }
+    }*/
     return result;
   }
 

@@ -21,6 +21,7 @@ class HomeProvider with ChangeNotifier {
   init() async {
     await getSelectWalletIndex();
     await getSelectWallet();
+    await getDexInfo();
     await getAssetHide();
     await getAsset4Init();
   }
@@ -57,17 +58,20 @@ class HomeProvider with ChangeNotifier {
     if (temp != null) {
       _selectWalletIndex = temp;
     }
+    print("getSelectWalletIndex:$_selectWalletIndex");
     notifyListeners();
   }
 
   getSelectWallet() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String> tempList = prefs.getStringList(_selectWalletListKey);
+    print('getSelectWallet:${tempList.length}');
     _walletList = [];
     if (tempList != null) {
       for (int i = 0; i < tempList.length; i++) {
         String temp = tempList[_selectWalletIndex];
-        WalletEntity item = json.decode(temp);
+        var respData = Map<String, dynamic>.from(json.decode(temp));
+        WalletEntity item = WalletEntity.fromJson(respData);
         _walletList.add(item);
       }
       if (_walletList.length > _selectWalletIndex) {
@@ -92,14 +96,17 @@ class HomeProvider with ChangeNotifier {
 
   Future<bool> saveSelectWalletList(List<WalletEntity> dataList) async {
     try {
+      print('saveSelectWalletList 000');
       SharedPreferences prefs = await SharedPreferences.getInstance();
       _walletList = dataList;
       List<String> tempList = [];
-      for (int i = 0; i < tempList.length; i++) {
-        String temp = json.encode(tempList[i]);
+      for (int i = 0; i < dataList.length; i++) {
+        String temp = json.encode(dataList[i]);
         tempList.add(temp);
       }
-      prefs.setStringList(_selectWalletIndexKey, tempList);
+      print('saveSelectWalletList 111');
+      prefs.setStringList(_selectWalletListKey, tempList);
+      print('saveSelectWalletList 222');
     } catch (e) {
       print(e);
       return false;
@@ -113,8 +120,20 @@ class HomeProvider with ChangeNotifier {
       _walletList.insert(0, item);
       _selectWalletIndex = 0;
       _selectWalletEntity = _walletList[0];
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+
+      _selectWalletIndex = _selectWalletIndex;
+      prefs.setInt(_selectWalletIndexKey, _selectWalletIndex);
+
+      List<String> tempList = [];
+      for (int i = 0; i < _walletList.length; i++) {
+        String temp = json.encode(_walletList[i]);
+        tempList.add(temp);
+      }
+      print('saveSelectWalletList 111');
+      prefs.setStringList(_selectWalletListKey, tempList);
       notifyListeners();
-      await saveSelectWalletList(_walletList);
     } catch (e) {
       print(e);
       return false;

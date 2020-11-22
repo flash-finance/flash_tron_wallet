@@ -359,7 +359,7 @@ class HomeProvider with ChangeNotifier {
 
 
   getAsset4Init() async {
-    if (_selectWalletEntity == null && _selectWalletEntity.tronAddress == null) {
+    if (_selectWalletEntity == null) {
       if (_assetList != null && _assetList.length > 0) {
         _assetList = [];
       }
@@ -381,7 +381,7 @@ class HomeProvider with ChangeNotifier {
   }
 
   getAsset4Reload() async {
-    if (_selectWalletEntity == null && _selectWalletEntity.tronAddress == null) {
+    if (_selectWalletEntity == null) {
       if (_assetList != null && _assetList.length > 0) {
         _assetList = [];
       }

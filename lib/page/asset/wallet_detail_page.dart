@@ -1,4 +1,5 @@
 import 'package:flash_tron_wallet/common/color.dart';
+import 'package:flash_tron_wallet/common/page.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
@@ -9,8 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
-
-import '../common_page.dart';
 
 class WalletDetailPage extends StatefulWidget {
   @override

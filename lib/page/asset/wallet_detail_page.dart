@@ -2,7 +2,6 @@ import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/common/page.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
-import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:fluro/fluro.dart';
@@ -21,7 +20,6 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
   final _formKey = GlobalKey<FormState>();
   String _name;
   String _mnemonic;
-  String _pwd;
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +52,8 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
            IntervalPage(ScreenUtil().setHeight(25)),
             _topWidget(context, wallet),
             IntervalPage(ScreenUtil().setHeight(25)),
-            _backupMnemonicWidget(context),
-            _backupKeyWidget(context),
+            _backupMnemonicWidget(context, wallet.pwd),
+            _backupKeyWidget(context, wallet.pwd),
             _updatePwdWidget(context),
             _delWalletWidget(context),
             IntervalPage(ScreenUtil().setHeight(25)),
@@ -140,10 +138,10 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
     );
   }
 
-  Widget _backupMnemonicWidget(BuildContext context) {
+  Widget _backupMnemonicWidget(BuildContext context, String pwd) {
     return InkWell(
       onTap: () {
-        return _showInputPwdDialLog(context, 1);
+        return _showInputPwdDialLog(context, 1, pwd);
       },
       child: Container(
         margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40)),
@@ -173,10 +171,10 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
     );
   }
 
-  Widget _backupKeyWidget(BuildContext context) {
+  Widget _backupKeyWidget(BuildContext context, String pwd) {
     return InkWell(
       onTap: () {
-        return _showInputPwdDialLog(context, 2);
+        return _showInputPwdDialLog(context, 2, pwd);
       },
       child: Container(
         margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40)),
@@ -269,7 +267,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
     );
   }
 
-  _showInputPwdDialLog(BuildContext context, int type) {
+  _showInputPwdDialLog(BuildContext context, int type, String pwd) {
     showCupertinoDialog(
         context: context,
         builder: (context) => CupertinoAlertDialog(
@@ -288,7 +286,6 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                       if (value.length > 6) {
                         value = value.substring(0, 6);
                       }
-                      _pwd = value;
                     },
                     decoration: InputDecoration(
                       hintText: '',
@@ -299,11 +296,11 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                     maxLength: 6,
                     maxLengthEnforced: true,
                     keyboardType: TextInputType.number,
-                    inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                    inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
                     validator: (String value) {
                       if (value.length < 6) {
                         return '密码为6位';
-                      } else if (value.substring(0, 6) != _pwd) {
+                      } else if (value.substring(0, 6) != pwd) {
                         return '密码不正确';
                       } else {
                         return null;

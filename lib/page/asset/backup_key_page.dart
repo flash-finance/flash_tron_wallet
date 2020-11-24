@@ -48,7 +48,7 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
                 children: <Widget>[
                   _dataWidget(context, wallet.privateKey),
                   SizedBox(height: ScreenUtil().setHeight(150)),
-                  _submitButton(context),
+                  _submitWidget(context),
                 ],
               ),
             ),
@@ -116,7 +116,7 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
     );
   }
 
-  Widget _submitButton(BuildContext context) {
+  Widget _submitWidget(BuildContext context) {
     return Container(
       child: Align(
         child: SizedBox(

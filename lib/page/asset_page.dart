@@ -487,7 +487,7 @@ class _AssetPageState extends State<AssetPage> {
               Container(
                 child: Container(
                   child: Image.asset(
-                    'images/flash.png',
+                    'images/flash-logo.png',
                     width: ScreenUtil().setWidth(120),
                     height: ScreenUtil().setWidth(120),
                     fit: BoxFit.cover,

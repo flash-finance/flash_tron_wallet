@@ -122,17 +122,21 @@ class _AssetPageState extends State<AssetPage> {
                   left: ScreenUtil().setWidth(8),
                   right: ScreenUtil().setWidth(0)),
               backgroundColor: Colors.blue[800],
-              label: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Container(
-                    child: Text(
-                      '${item.name}',
-                      style: Util.textStyle(context, 1, Colors.white, spacing: 0.2, size: 23),
+              label: InkWell(
+                onTap: () {
+                  _showBottomSheet(context);
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Container(
+                      child: Text(
+                        '${item.name}',
+                        style: Util.textStyle(context, 1, Colors.white, spacing: 0.2, size: 23),
+                      ),
                     ),
-                  ),
-                  SizedBox(width: ScreenUtil().setWidth(5)),
-                  Container(
+                    SizedBox(width: ScreenUtil().setWidth(5)),
+                    Container(
                       alignment: Alignment.center,
                       height: ScreenUtil().setHeight(40),
                       width: ScreenUtil().setHeight(40),
@@ -145,8 +149,9 @@ class _AssetPageState extends State<AssetPage> {
                         size: ScreenUtil().setSp(22),
                         color: Colors.blue[800],
                       ),
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -683,6 +688,32 @@ class _AssetPageState extends State<AssetPage> {
       List<TokenRows> tokenList = Provider.of<HomeProvider>(context, listen: false).tokenList;
       return await TronAsset().getAsset(context, wallet.tronAddress, tokenList);
     }
+  }
+
+  _showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15.0))
+        ),
+        builder: (BuildContext context) {
+          return Container(
+            height: ScreenUtil().setHeight(800),
+            child: ListView(
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.only(top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(20)),
+                  child: Text(
+                    '钱包列表',
+                    style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.4, size: 32),
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
   }
 
 }

@@ -22,7 +22,6 @@ class Routes {
   static String backupMnemonic = '/asset/backupMnemonic';
   static String updatePwd = '/asset/updatePwd';
 
-
   static void configureRouter(FluroRouter router) {
     router.notFoundHandler = Handler(
         handlerFunc: (BuildContext context, Map<String, List<String>> params) {

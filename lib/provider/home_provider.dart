@@ -69,7 +69,7 @@ class HomeProvider with ChangeNotifier {
     _walletList = [];
     if (tempList != null) {
       for (int i = 0; i < tempList.length; i++) {
-        String temp = tempList[_selectWalletIndex];
+        String temp = tempList[i];
         var respData = Map<String, dynamic>.from(json.decode(temp));
         WalletEntity item = WalletEntity.fromJson(respData);
         _walletList.add(item);
@@ -146,6 +146,7 @@ class HomeProvider with ChangeNotifier {
       if (_walletList.length > index) {
         _selectWalletIndex = index;
         _selectWalletEntity = _walletList[index];
+        notifyListeners();
       }
     } catch (e) {
       print(e);

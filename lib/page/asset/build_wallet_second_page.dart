@@ -53,7 +53,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
                  SizedBox(height: ScreenUtil().setHeight(10)),
                  _dataWidget(wallet.mnemonic),
                  SizedBox(height: ScreenUtil().setHeight(60)),
-                 _submitButton(context),
+                 _submitWidget(context),
                ],
              ),
            ),
@@ -177,7 +177,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
     );
   }
 
-  Widget _submitButton(BuildContext context) {
+  Widget _submitWidget(BuildContext context) {
     return Container(
       child: Align(
         child: SizedBox(

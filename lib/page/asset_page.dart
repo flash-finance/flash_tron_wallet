@@ -65,11 +65,11 @@ class _AssetPageState extends State<AssetPage> {
               decoration: BoxDecoration(
                 border: Border.all(width: 0, color: Colors.black12),
                 borderRadius: BorderRadius.circular(25),
-                color: Colors.blue[700],
-                /*image: DecorationImage(
-                  image: AssetImage('images/666.jpeg'),
+                //color: Colors.blue[700],
+                image: DecorationImage(
+                  image: AssetImage('images/222.png'),
                   fit: BoxFit.cover,
-                ),*/
+                ),
               ),
               child: Scaffold(
                 backgroundColor: Colors.transparent,
@@ -700,6 +700,8 @@ class _AssetPageState extends State<AssetPage> {
     showModalBottomSheet(
         context: context,
         isScrollControlled: true,
+        enableDrag: false,
+        barrierColor: Colors.grey[900].withOpacity(0.98),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(15.0))
         ),
@@ -711,9 +713,9 @@ class _AssetPageState extends State<AssetPage> {
                 Container(
                   alignment: Alignment.center,
                   padding: EdgeInsets.only(top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(20)),
-                  margin: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
+                  margin: EdgeInsets.only(bottom: ScreenUtil().setHeight(20)),
                   decoration: BoxDecoration(
-                    border: Border(bottom: BorderSide(color: Colors.grey[400], width: 0.3)),
+                    border: Border(bottom: BorderSide(color: Colors.black45, width: 0.3)),
                   ),
                   child: Text(
                     '钱包列表',
@@ -739,50 +741,77 @@ class _AssetPageState extends State<AssetPage> {
   }
 
   Widget _walletItemWidget(BuildContext context, List<WalletEntity> list, int index) {
+    int selectIndex = Provider.of<HomeProvider>(context, listen: false).selectWalletIndex;
     String name = list[index].name;
     String tronAddress = list[index].tronAddress.substring(0, 8) + '...' + list[index].tronAddress.substring(list[index].tronAddress.length-8, list[index].tronAddress.length);
     return Container(
       margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30), bottom: ScreenUtil().setHeight(15)),
       padding: EdgeInsets.only(
           left: ScreenUtil().setWidth(40),
-          top: ScreenUtil().setHeight(20),
+          top: ScreenUtil().setHeight(30),
           right: ScreenUtil().setWidth(40),
-          bottom: ScreenUtil().setHeight(20),
+          bottom: ScreenUtil().setHeight(30),
       ),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-          gradient: LinearGradient(
-            colors: [Colors.blue[800], Colors.blue[800]],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          )),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          InkWell(
-            onTap: () {
-            },
-            child: Container(
-              child: Text(
-                  '$name',
-                style: Util.textStyle(context, 1, Colors.white, spacing: 0.5, size: 28),
-              ),
-            ),
-          ),
-          SizedBox(height: ScreenUtil().setHeight(20)),
-          Container(
-            child: Row(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          color: Color(0xFFB22222).withOpacity(0.9),
+          //color: MyColors.themeColor,
+      ),
+      child: InkWell(
+        onTap: () {
+          Provider.of<HomeProvider>(context, listen: false).changeSelectWallet(index);
+          Navigator.pop(context);
+        },
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
                   child: Text(
-                    '$tronAddress',
-                    style: Util.textStyle(context, 1, Colors.white, spacing: 0.5, size: 23),
+                    '$name',
+                    style: Util.textStyle(context, 1, Colors.white, spacing: 0.5, size: 30),
+                  ),
+                ),
+                SizedBox(height: ScreenUtil().setHeight(10)),
+                InkWell(
+                  onTap: () {
+
+                  },
+                  child: Container(
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          child: Text(
+                            '$tronAddress',
+                            style: Util.textStyle(context, 1, Colors.grey[350], spacing: 0.5, size: 24),
+                          ),
+                        ),
+                        SizedBox(width: ScreenUtil().setWidth(20)),
+                        Container(
+                          child: Image.asset(
+                            'icons/copy.png',
+                            width: ScreenUtil().setWidth(28),
+                            height: ScreenUtil().setWidth(28),
+                            color: Colors.grey[350],
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
             ),
-          ),
-        ],
+            selectIndex == index ? Container(
+              child: Icon(
+                Icons.done_rounded,
+                size: ScreenUtil().setSp(38), color: Colors.white,
+              ),
+            ) : Container(),
+          ],
+        ),
       ),
     );
   }

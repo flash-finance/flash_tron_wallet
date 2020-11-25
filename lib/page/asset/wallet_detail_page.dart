@@ -315,14 +315,14 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
             FlatButton(
               child: Text(
                 '取消',
-                style: Util.textStyle(context, 2, Colors.blue[800], spacing: 0.5, size: 30),
+                style: Util.textStyle(context, 2,  MyColors.themeColor, spacing: 0.5, size: 30),
               ),
               onPressed: () => Navigator.pop(context),
             ),
             FlatButton(
                 child: Text(
                   '确定',
-                  style: Util.textStyle(context, 2, Colors.blue[800], spacing: 0.5, size: 30),
+                  style: Util.textStyle(context, 2,  MyColors.themeColor, spacing: 0.5, size: 30),
                 ),
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
@@ -359,14 +359,14 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
             FlatButton(
               child: Text(
                 '取消',
-                style: Util.textStyle(context, 2, Colors.blue[800], spacing: 0.5, size: 30),
+                style: Util.textStyle(context, 2,  MyColors.themeColor, spacing: 0.5, size: 30),
               ),
               onPressed: () => Navigator.pop(context),
             ),
             FlatButton(
                 child: Text(
                   '确定',
-                  style: Util.textStyle(context, 2, Colors.blue[800], spacing: 0.5, size: 30),
+                  style: Util.textStyle(context, 2,  MyColors.themeColor, spacing: 0.5, size: 30),
                 ),
                 onPressed: () {
                   _delWallet(context).then((val) {

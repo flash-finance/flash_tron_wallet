@@ -1,3 +1,4 @@
+import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/model/dex_info_model.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
@@ -100,7 +101,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
       margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.blue[800],
+        color:  MyColors.themeColor,
       ),
       child: Column(
         children: <Widget>[
@@ -199,7 +200,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
               onPressed: () {
                 setState(() {
                   _setPwdClickEye = !_setPwdClickEye;
-                  _setPwdEyeColor = _setPwdClickEye ? Colors.grey : Colors.blue[800];
+                  _setPwdEyeColor = _setPwdClickEye ? Colors.grey :  MyColors.themeColor;
                 });
               },
             )
@@ -240,7 +241,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
               onPressed: () {
                 setState(() {
                   _confirmPwdClickEye = !_confirmPwdClickEye;
-                  _confirmPwdEyeColor = _confirmPwdClickEye ? Colors.grey : Colors.blue[800];
+                  _confirmPwdEyeColor = _confirmPwdClickEye ? Colors.grey :  MyColors.themeColor;
                 });
               },
             )
@@ -269,7 +270,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
                 style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 31),
               ),
             ),
-            color: Colors.blue[800],
+            color:  MyColors.themeColor,
             onPressed: !importKeyLoading ? () {
               FocusScope.of(context).requestFocus(FocusNode());
               if (_formKey.currentState.validate()) {
@@ -288,7 +289,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
                 }
               }
             } : (){},
-            shape: StadiumBorder(side: BorderSide(color: Colors.blue[800])),
+            shape: StadiumBorder(side: BorderSide(color:  MyColors.themeColor)),
           ),
         ),
       ),

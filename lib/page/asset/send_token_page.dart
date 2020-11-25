@@ -1,4 +1,5 @@
 import 'package:fixnum/fixnum.dart';
+import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/common/page.dart';
 import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
@@ -328,7 +329,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                 style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 31),
               ),
             ),
-            color: Colors.blue[800],
+            color:  MyColors.themeColor,
             onPressed:() {
               FocusScope.of(context).requestFocus(FocusNode());
               if (_formKey.currentState.validate()) {
@@ -351,7 +352,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                 }
               }
             },
-            shape: StadiumBorder(side: BorderSide(color: Colors.blue[800])),
+            shape: StadiumBorder(side: BorderSide(color:  MyColors.themeColor)),
           ),
         ),
       ),
@@ -409,7 +410,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
               ),
               actions: <Widget>[
                 FlatButton(
-                  child: Text('取消', style: TextStyle(fontSize: ScreenUtil().setSp(30), color: Colors.blue[800]),),
+                  child: Text('取消', style: TextStyle(fontSize: ScreenUtil().setSp(30), color:  MyColors.themeColor),),
                   onPressed: () {
                     FocusScope.of(context).requestFocus(FocusNode());
                     if (!transferLoading) {
@@ -420,7 +421,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                   },
                 ),
                 FlatButton(
-                    child: Text('确定', style: TextStyle(fontSize: ScreenUtil().setSp(30), color: Colors.blue[800]),),
+                    child: Text('确定', style: TextStyle(fontSize: ScreenUtil().setSp(30), color:  MyColors.themeColor),),
                     onPressed: () {
                       FocusScope.of(context).requestFocus(FocusNode());
                       if (_sendFormKey.currentState.validate()){

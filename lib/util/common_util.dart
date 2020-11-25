@@ -19,8 +19,7 @@ class Util {
     );
   }
 
-  static TextStyle textStyle(BuildContext context, int type, Color color,
-      {double spacing, double size}) {
+  static TextStyle textStyle(BuildContext context, int type, Color color, {double spacing, double size}) {
     double letterSpacing = spacing != null ? spacing : 0.0;
     double fontSize = size != null ? size : 23.0;
     //bool flag = Provider.of<IndexProvider>(context, listen: false).langType;

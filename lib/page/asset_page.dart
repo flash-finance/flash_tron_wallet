@@ -111,22 +111,23 @@ class _AssetPageState extends State<AssetPage> {
 
   Widget _headWidget(BuildContext context) {
     WalletEntity item = Provider.of<HomeProvider>(context, listen: true).selectWalletEntity;
+    List<WalletEntity> walletList = Provider.of<HomeProvider>(context, listen: true).walletList;
     return Container(
       margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Container(
-            child: Chip(
-              padding: EdgeInsets.only(
-                  left: ScreenUtil().setWidth(8),
-                  right: ScreenUtil().setWidth(0)),
-              backgroundColor: Colors.blue[800],
-              label: InkWell(
-                onTap: () {
-                  _showBottomSheet(context);
-                },
-                child: Row(
+          InkWell(
+            onTap: () {
+              _showBottomSheet(context, walletList);
+            },
+            child: Container(
+              child: Chip(
+                padding: EdgeInsets.only(
+                    left: ScreenUtil().setWidth(8),
+                    right: ScreenUtil().setWidth(0)),
+                backgroundColor: Colors.blue[800],
+                label: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
@@ -155,14 +156,14 @@ class _AssetPageState extends State<AssetPage> {
               ),
             ),
           ),
-          InkWell(
-            onTap: () {
-              Application.router.navigateTo(context, 'asset/addWallet', transition: TransitionType.cupertino);
-            },
-            child: Container(
-              child: Row(
-                children: <Widget>[
-                  Container(
+          Container(
+            child: Row(
+              children: <Widget>[
+                InkWell(
+                  onTap: () {
+                    Application.router.navigateTo(context, 'asset/addWallet', transition: TransitionType.cupertino);
+                  },
+                  child: Container(
                     child: Image.asset(
                       'icons/plus.png',
                       width: ScreenUtil().setWidth(50),
@@ -171,8 +172,12 @@ class _AssetPageState extends State<AssetPage> {
                       fit: BoxFit.fill,
                     ),
                   ),
-                  SizedBox(width: ScreenUtil().setWidth(30)),
-                  Container(
+                ),
+                SizedBox(width: ScreenUtil().setWidth(30)),
+                InkWell(
+                  onTap: () {
+                  },
+                  child: Container(
                     child: Image.asset(
                       'icons/scan.png',
                       width: ScreenUtil().setWidth(55),
@@ -181,8 +186,8 @@ class _AssetPageState extends State<AssetPage> {
                       fit: BoxFit.fill,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ],
@@ -690,7 +695,7 @@ class _AssetPageState extends State<AssetPage> {
     }
   }
 
-  _showBottomSheet(BuildContext context) {
+  _showBottomSheet(BuildContext context, List<WalletEntity> walletList) {
     showModalBottomSheet(
         context: context,
         isScrollControlled: true,
@@ -700,20 +705,85 @@ class _AssetPageState extends State<AssetPage> {
         builder: (BuildContext context) {
           return Container(
             height: ScreenUtil().setHeight(800),
-            child: ListView(
+            child: Column(
               children: <Widget>[
                 Container(
                   alignment: Alignment.center,
                   padding: EdgeInsets.only(top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(20)),
+                  margin: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
+                  decoration: BoxDecoration(
+                    border: Border(bottom: BorderSide(color: Colors.grey[400], width: 0.3)),
+                  ),
                   child: Text(
                     '钱包列表',
                     style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.4, size: 32),
                   ),
                 ),
+                Expanded(
+                    child: Container(
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: BouncingScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          itemCount: walletList.length,
+                          itemBuilder: (context, index) {
+                            return _walletItemWidget(context, walletList, index);
+                          }),
+                    ),
+                ),
               ],
             ),
           );
         });
+  }
+
+  Widget _walletItemWidget(BuildContext context, List<WalletEntity> list, int index) {
+    String name = list[index].name;
+    String tronAddress = list[index].tronAddress.substring(0, 8) + '...' + list[index].tronAddress.substring(list[index].tronAddress.length-8, list[index].tronAddress.length);
+    return Container(
+      margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30), bottom: ScreenUtil().setHeight(15)),
+      padding: EdgeInsets.only(
+          left: ScreenUtil().setWidth(40),
+          top: ScreenUtil().setHeight(20),
+          right: ScreenUtil().setWidth(40),
+          bottom: ScreenUtil().setHeight(20),
+      ),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+          gradient: LinearGradient(
+            colors: [Colors.blue[800], Colors.blue[800]],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          )),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          InkWell(
+            onTap: () {
+            },
+            child: Container(
+              child: Text(
+                  '$name',
+                style: Util.textStyle(context, 1, Colors.white, spacing: 0.5, size: 28),
+              ),
+            ),
+          ),
+          SizedBox(height: ScreenUtil().setHeight(20)),
+          Container(
+            child: Row(
+              children: <Widget>[
+                Container(
+                  child: Text(
+                    '$tronAddress',
+                    style: Util.textStyle(context, 1, Colors.white, spacing: 0.5, size: 23),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
 }

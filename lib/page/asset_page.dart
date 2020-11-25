@@ -713,7 +713,7 @@ class _AssetPageState extends State<AssetPage> {
                 Container(
                   alignment: Alignment.center,
                   padding: EdgeInsets.only(top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(20)),
-                  margin: EdgeInsets.only(bottom: ScreenUtil().setHeight(20)),
+                  margin: EdgeInsets.only(bottom: ScreenUtil().setHeight(25)),
                   decoration: BoxDecoration(
                     border: Border(bottom: BorderSide(color: Colors.black45, width: 0.3)),
                   ),
@@ -743,9 +743,9 @@ class _AssetPageState extends State<AssetPage> {
   Widget _walletItemWidget(BuildContext context, List<WalletEntity> list, int index) {
     int selectIndex = Provider.of<HomeProvider>(context, listen: false).selectWalletIndex;
     String name = list[index].name;
-    String tronAddress = list[index].tronAddress.substring(0, 8) + '...' + list[index].tronAddress.substring(list[index].tronAddress.length-8, list[index].tronAddress.length);
+    String tronAddress = list[index].tronAddress.substring(0, 10) + '...' + list[index].tronAddress.substring(list[index].tronAddress.length-10, list[index].tronAddress.length);
     return Container(
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30), bottom: ScreenUtil().setHeight(15)),
+      margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30), bottom: ScreenUtil().setHeight(20)),
       padding: EdgeInsets.only(
           left: ScreenUtil().setWidth(40),
           top: ScreenUtil().setHeight(30),

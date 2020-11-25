@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 class MyColors {
 
+  static const Color themeColor = Color(0xFF4D80E6);
+
   static const Color lightBg = Color(0xFFFFFFFF);
   static const Color lightSub = Color(0xFFF1F3F4);
 

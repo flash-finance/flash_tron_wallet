@@ -126,7 +126,7 @@ class _AssetPageState extends State<AssetPage> {
                 padding: EdgeInsets.only(
                     left: ScreenUtil().setWidth(8),
                     right: ScreenUtil().setWidth(0)),
-                backgroundColor: Color(0xFF4D80E6),
+                backgroundColor: MyColors.themeColor,
                 label: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -148,7 +148,7 @@ class _AssetPageState extends State<AssetPage> {
                       child: Icon(
                         Icons.arrow_forward_ios,
                         size: ScreenUtil().setSp(22),
-                        color: Colors.blue[800],
+                        color: MyColors.themeColor,
                       ),
                     ),
                   ],

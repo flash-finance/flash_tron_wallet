@@ -41,8 +41,8 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: Application.router.generator,
         theme: ThemeData(
           brightness: Brightness.light,
-          primaryColor: Colors.blue[800],
-          accentColor: Colors.blue[800],
+          primaryColor: Color(0xFF4D80E6),
+          accentColor: Color(0xFF4D80E6),
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
         ),

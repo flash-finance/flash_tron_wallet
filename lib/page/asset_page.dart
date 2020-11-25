@@ -65,7 +65,7 @@ class _AssetPageState extends State<AssetPage> {
               decoration: BoxDecoration(
                 border: Border.all(width: 0, color: Colors.black12),
                 borderRadius: BorderRadius.circular(25),
-                color: Colors.blue[800],
+                color: Colors.blue[700],
                 /*image: DecorationImage(
                   image: AssetImage('images/666.jpeg'),
                   fit: BoxFit.cover,
@@ -126,7 +126,7 @@ class _AssetPageState extends State<AssetPage> {
                 padding: EdgeInsets.only(
                     left: ScreenUtil().setWidth(8),
                     right: ScreenUtil().setWidth(0)),
-                backgroundColor: Colors.blue[800],
+                backgroundColor: Color(0xFF4D80E6),
                 label: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -240,11 +240,12 @@ class _AssetPageState extends State<AssetPage> {
           right: ScreenUtil().setWidth(40)),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
-          gradient: LinearGradient(
-            colors: [Colors.blue[800], Colors.blue[800]],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          )),
+
+        image: DecorationImage(
+          image: AssetImage('images/333.png'),
+          fit: BoxFit.cover,
+        ),
+      ),
       child: Column(
         children: <Widget>[
           InkWell(

@@ -161,7 +161,7 @@ class _AssetPageState extends State<AssetPage> {
               children: <Widget>[
                 InkWell(
                   onTap: () {
-                    Application.router.navigateTo(context, 'asset/addWallet', transition: TransitionType.cupertino);
+                    Application.router.navigateTo(context, 'asset/addWallet/2', transition: TransitionType.cupertino);
                   },
                   child: Container(
                     child: Image.asset(
@@ -629,7 +629,7 @@ class _AssetPageState extends State<AssetPage> {
           SizedBox(height: ScreenUtil().setHeight(30)),
           InkWell(
             onTap: () {
-              Application.router.navigateTo(context, 'asset/buildFirstWallet', transition: TransitionType.cupertino);
+              Application.router.navigateTo(context, 'asset/buildFirstWallet/1', transition: TransitionType.cupertino);
             },
             child: Container(
               padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),

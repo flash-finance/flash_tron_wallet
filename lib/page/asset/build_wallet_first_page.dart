@@ -14,6 +14,9 @@ import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
 
 class BuildWalletFirstPage extends StatefulWidget {
+  final String type;
+  BuildWalletFirstPage(this.type);
+
   @override
   _BuildWalletFirstPageState createState() => _BuildWalletFirstPageState();
 }
@@ -79,7 +82,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
                         SizedBox(height: ScreenUtil().setHeight(15)),
                         _confirmPwdWidget(),
                         SizedBox(height: ScreenUtil().setHeight(50)),
-                        _submitButton(context),
+                        _submitWidget(context),
                       ],
                     ),
                   ),
@@ -199,7 +202,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
     );
   }
 
-  Widget _submitButton(BuildContext context) {
+  Widget _submitWidget(BuildContext context) {
     return Container(
       child: Align(
         child: SizedBox(
@@ -223,7 +226,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
                   _submit(context).then((val) {
                     Provider.of<HomeProvider>(context, listen: false).changeBuildWalletLoading(false);
                     if (val == true) {
-                      Application.router.navigateTo(context, 'asset/buildSecondWallet', transition: TransitionType.cupertino);
+                      Application.router.navigateTo(context, 'asset/buildSecondWallet/${widget.type}', transition: TransitionType.cupertino);
                     } else {
                       Util.showToast('创建出错，请再尝试');
                     }

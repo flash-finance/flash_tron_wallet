@@ -64,12 +64,14 @@ Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
 
 Handler buildWalletFirstHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-  return BuildWalletFirstPage();
+  String type = params['type'][0];
+  return BuildWalletFirstPage(type);
 });
 
 Handler buildWalletSecondHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-  return BuildWalletSecondPage();
+  String type = params['type'][0];
+  return BuildWalletSecondPage(type);
 });
 
 Handler walletDetailPageHandler =

@@ -9,6 +9,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class BuildWalletSecondPage extends StatefulWidget {
+  final String type;
+  BuildWalletSecondPage(this.type);
+
   @override
   _BackupMnemonicSecondPageState createState() => _BackupMnemonicSecondPageState();
 }
@@ -193,7 +196,10 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             ),
             color:  MyColors.themeColor,
             onPressed: () {
-              Navigator.of(context)..pop()..pop();
+              if (widget.type == '1') {
+              } else if (widget.type == '2') {
+                Navigator.of(context)..pop()..pop()..pop();
+              }
             },
             shape: StadiumBorder(side: BorderSide(color:  MyColors.themeColor)),
           ),

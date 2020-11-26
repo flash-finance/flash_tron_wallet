@@ -7,6 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 
 class AddWalletPage extends StatefulWidget {
+  final String type;
+  AddWalletPage(this.type);
+
   @override
   _AddWalletPageState createState() => _AddWalletPageState();
 }
@@ -159,7 +162,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
           SizedBox(height: ScreenUtil().setHeight(30)),
           InkWell(
             onTap: () {
-              Application.router.navigateTo(context, 'asset/buildFirstWallet', transition: TransitionType.cupertino);
+              Application.router.navigateTo(context, 'asset/buildFirstWallet/${widget.type}', transition: TransitionType.cupertino);
             },
             child: Container(
               padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),

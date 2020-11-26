@@ -9,14 +9,14 @@ class Routes {
   static String deFi = '/deFi';
   static String mine = '/mine';
 
-  static String addWallet = '/asset/addWallet';
+  static String addWallet = '/asset/addWallet/:type';
   static String sendToken = '/asset/sendToken';
   static String receiveToken = '/asset/receiveToken';
 
   static String importKey = '/asset/importKey';
   static String importMnemonic = '/asset/importMnemonic';
-  static String buildFirstWallet = '/asset/buildFirstWallet';
-  static String buildSecondWallet = '/asset/buildSecondWallet';
+  static String buildFirstWallet = '/asset/buildFirstWallet/:type';
+  static String buildSecondWallet = '/asset/buildSecondWallet/:type';
   static String walletDetail = 'asset/walletDetail';
   static String backupKey = '/asset/backupKey';
   static String backupMnemonic = '/asset/backupMnemonic';

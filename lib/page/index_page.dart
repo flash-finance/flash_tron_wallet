@@ -1,5 +1,3 @@
-
-
 import 'package:flash_tron_wallet/page/defi_page.dart';
 import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flutter/cupertino.dart';
@@ -36,7 +34,6 @@ class _IndexPageState extends State<IndexPage> {
     DeFiPage(),
     MinePage(),
   ];
-
 
   @override
   Widget build(BuildContext context) {

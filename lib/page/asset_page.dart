@@ -43,10 +43,10 @@ class _AssetPageState extends State<AssetPage> {
     WalletEntity wallet = Provider.of<HomeProvider>(context, listen: true).selectWalletEntity;
     if (wallet != null && wallet.tronAddress != null) {
       return Scaffold(
-        backgroundColor: MyColors.lightBg,
+        backgroundColor: Colors.white,
         appBar: PreferredSize(
           child: AppBar(
-            backgroundColor: MyColors.lightBg,
+            backgroundColor: Colors.white,
             brightness: Brightness.light,
             elevation: 0,
           ),
@@ -56,7 +56,7 @@ class _AssetPageState extends State<AssetPage> {
       );
     } else {
       return Container(
-        color: MyColors.lightBg,
+        color: Colors.white,
         child: Column(
           children: <Widget>[
             Container(
@@ -65,9 +65,8 @@ class _AssetPageState extends State<AssetPage> {
               decoration: BoxDecoration(
                 border: Border.all(width: 0, color: Colors.black12),
                 borderRadius: BorderRadius.circular(25),
-                //color: Colors.blue[700],
                 image: DecorationImage(
-                  image: AssetImage('images/222.png'),
+                  image: AssetImage('images/bg01.png'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -90,9 +89,7 @@ class _AssetPageState extends State<AssetPage> {
         ),
       );
     }
-
   }
-
 
   Widget _logInWidget(BuildContext context) {
     return Container(
@@ -123,9 +120,7 @@ class _AssetPageState extends State<AssetPage> {
             },
             child: Container(
               child: Chip(
-                padding: EdgeInsets.only(
-                    left: ScreenUtil().setWidth(8),
-                    right: ScreenUtil().setWidth(0)),
+                padding: EdgeInsets.only(left: ScreenUtil().setWidth(8), right: ScreenUtil().setWidth(0)),
                 backgroundColor: MyColors.themeColor,
                 label: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -142,9 +137,7 @@ class _AssetPageState extends State<AssetPage> {
                       height: ScreenUtil().setHeight(40),
                       width: ScreenUtil().setHeight(40),
                       decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage('icons/circle.png'),
-                              fit: BoxFit.fill)),
+                          image: DecorationImage(image: AssetImage('icons/circle.png'), fit: BoxFit.fill)),
                       child: Icon(
                         Icons.arrow_forward_ios,
                         size: ScreenUtil().setSp(22),
@@ -175,8 +168,7 @@ class _AssetPageState extends State<AssetPage> {
                 ),
                 SizedBox(width: ScreenUtil().setWidth(30)),
                 InkWell(
-                  onTap: () {
-                  },
+                  onTap: () {},
                   child: Container(
                     child: Image.asset(
                       'icons/scan.png',
@@ -199,20 +191,20 @@ class _AssetPageState extends State<AssetPage> {
     return EasyRefresh(
       header: MaterialHeader(enableHapticFeedback: true),
       footer: MaterialFooter(enableHapticFeedback: true, enableInfiniteLoad: false),
-        child: Container(
-          child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
-            child: Column(
-              children: <Widget>[
-                _cardWidget(context),
-                SizedBox(height: ScreenUtil().setHeight(30)),
-                _assetTitleWidget(context),
-                SizedBox(height: ScreenUtil().setHeight(5)),
-                _assetDataWidget(context),
-              ],
-            ),
+      child: Container(
+        child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Column(
+            children: <Widget>[
+              _cardWidget(context),
+              SizedBox(height: ScreenUtil().setHeight(30)),
+              _assetTitleWidget(context),
+              SizedBox(height: ScreenUtil().setHeight(5)),
+              _assetDataWidget(context),
+            ],
           ),
         ),
+      ),
       onRefresh: () async {
         _getAsset();
       },
@@ -234,13 +226,9 @@ class _AssetPageState extends State<AssetPage> {
       totalAssetUsd = totalAssetCny / 6.75;
     }
     return Container(
-      padding: EdgeInsets.only(
-          left: ScreenUtil().setWidth(40),
-          top: ScreenUtil().setHeight(30),
-          right: ScreenUtil().setWidth(40)),
+      padding: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40)),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
         image: DecorationImage(
           image: AssetImage('images/333.png'),
           fit: BoxFit.cover,
@@ -273,8 +261,7 @@ class _AssetPageState extends State<AssetPage> {
                         ),
                         SizedBox(width: ScreenUtil().setWidth(10)),
                         Container(
-                          padding:
-                          EdgeInsets.only(top: ScreenUtil().setHeight(2)),
+                          padding: EdgeInsets.only(top: ScreenUtil().setHeight(2)),
                           child: Icon(
                             Icons.arrow_forward_ios,
                             size: ScreenUtil().setSp(22),
@@ -298,7 +285,6 @@ class _AssetPageState extends State<AssetPage> {
               child: Text(
                 '${Util.formatNumberSub(totalAssetUsd, 2)}',
                 style: Util.textStyle(context, 2, Colors.white, spacing: 0.2, size: 42),
-
               ),
             ),
           ),
@@ -316,7 +302,8 @@ class _AssetPageState extends State<AssetPage> {
                     child: Row(
                       children: <Widget>[
                         Container(
-                          padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(1) : ScreenUtil().setHeight(1.5)),
+                          padding: EdgeInsets.only(
+                              bottom: flag ? ScreenUtil().setHeight(1) : ScreenUtil().setHeight(1.5)),
                           child: Icon(
                             Icons.transit_enterexit_sharp,
                             size: ScreenUtil().setSp(34),
@@ -344,8 +331,7 @@ class _AssetPageState extends State<AssetPage> {
                     child: Row(
                       children: <Widget>[
                         Container(
-                          padding:
-                          EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(2) : ScreenUtil().setHeight(2.3)),
+                          padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(2) : ScreenUtil().setHeight(2.3)),
                           child: Icon(
                             Icons.download_sharp,
                             size: ScreenUtil().setSp(32),
@@ -354,11 +340,12 @@ class _AssetPageState extends State<AssetPage> {
                         ),
                         SizedBox(width: ScreenUtil().setWidth(10)),
                         Container(
-                          padding:
-                          EdgeInsets.only(bottom: ScreenUtil().setHeight(6)),
+                          padding: EdgeInsets.only(
+                              bottom: ScreenUtil().setHeight(6)),
                           child: Text(
                             '收款',
-                            style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 26),
+                            style: Util.textStyle(context, 1, Colors.white,
+                                spacing: 0.6, size: 26),
                           ),
                         ),
                       ],
@@ -371,8 +358,7 @@ class _AssetPageState extends State<AssetPage> {
                     child: Row(
                       children: <Widget>[
                         Container(
-                          padding:
-                          EdgeInsets.only(bottom: ScreenUtil().setHeight(3)),
+                          padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(3)),
                           child: Icon(
                             Icons.sync_rounded,
                             size: ScreenUtil().setSp(32),
@@ -401,8 +387,7 @@ class _AssetPageState extends State<AssetPage> {
 
   Widget _assetTitleWidget(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(
-            left: ScreenUtil().setWidth(10), right: ScreenUtil().setWidth(10)),
+        margin: EdgeInsets.only(left: ScreenUtil().setWidth(10), right: ScreenUtil().setWidth(10)),
         alignment: Alignment.centerLeft,
         child: Text(
           '资产',
@@ -427,10 +412,9 @@ class _AssetPageState extends State<AssetPage> {
 
   Widget _assetDataItemWidget(BuildContext context, List<AssetEntity> assetList, int index) {
     AssetEntity item = assetList[index];
-    bool flag = index != assetList.length-1;
+    bool flag = index != assetList.length - 1;
     return Container(
-      padding: EdgeInsets.only(
-          top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(20)),
+      padding: EdgeInsets.only(top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(20)),
       decoration: BoxDecoration(
         border: Border(bottom: BorderSide(color: flag ? Colors.black45 : Colors.white, width: 0.3)),
       ),
@@ -472,7 +456,7 @@ class _AssetPageState extends State<AssetPage> {
                 SizedBox(height: ScreenUtil().setHeight(5)),
                 Container(
                   child: Text(
-                    '≈  \$ ${Util.formatNumberSub(item.cny/6.75, 2)}',
+                    '≈  \$ ${Util.formatNumberSub(item.cny / 6.75, 2)}',
                     style: Util.textStyle(context, 2, Colors.grey[500], spacing: 0.1, size: 24),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -570,7 +554,6 @@ class _AssetPageState extends State<AssetPage> {
                       SizedBox(width: ScreenUtil().setWidth(10)),
                     ],
                   ),
-
                 ],
               ),
             ),
@@ -621,7 +604,6 @@ class _AssetPageState extends State<AssetPage> {
                       SizedBox(width: ScreenUtil().setWidth(10)),
                     ],
                   ),
-
                 ],
               ),
             ),
@@ -669,7 +651,6 @@ class _AssetPageState extends State<AssetPage> {
                       SizedBox(width: ScreenUtil().setWidth(10)),
                     ],
                   ),
-
                 ],
               ),
             ),
@@ -680,10 +661,10 @@ class _AssetPageState extends State<AssetPage> {
   }
 
   Future _reloadAsset() async {
-    _timer = Timer.periodic(Duration(milliseconds: 3000), (timer) async{
+    _timer = Timer.periodic(Duration(milliseconds: 3000), (timer) async {
       bool backgroundFlag = Provider.of<HomeProvider>(context, listen: false).backgroundFlag;
       if (!backgroundFlag) {
-        await  Provider.of<HomeProvider>(context, listen: false).getAsset4Reload();
+        await Provider.of<HomeProvider>(context, listen: false).getAsset4Reload();
       }
     });
   }
@@ -702,9 +683,7 @@ class _AssetPageState extends State<AssetPage> {
         isScrollControlled: true,
         enableDrag: false,
         barrierColor: Colors.grey[900].withOpacity(0.98),
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(15.0))
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15.0))),
         builder: (BuildContext context) {
           return Container(
             height: ScreenUtil().setHeight(800),
@@ -712,7 +691,9 @@ class _AssetPageState extends State<AssetPage> {
               children: <Widget>[
                 Container(
                   alignment: Alignment.center,
-                  padding: EdgeInsets.only(top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(20)),
+                  padding: EdgeInsets.only(
+                      top: ScreenUtil().setHeight(20),
+                      bottom: ScreenUtil().setHeight(20)),
                   margin: EdgeInsets.only(bottom: ScreenUtil().setHeight(25)),
                   decoration: BoxDecoration(
                     border: Border(bottom: BorderSide(color: Colors.black45, width: 0.3)),
@@ -723,16 +704,16 @@ class _AssetPageState extends State<AssetPage> {
                   ),
                 ),
                 Expanded(
-                    child: Container(
-                      child: ListView.builder(
-                          shrinkWrap: true,
-                          physics: BouncingScrollPhysics(),
-                          scrollDirection: Axis.vertical,
-                          itemCount: walletList.length,
-                          itemBuilder: (context, index) {
-                            return _walletItemWidget(context, walletList, index);
-                          }),
-                    ),
+                  child: Container(
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: BouncingScrollPhysics(),
+                        scrollDirection: Axis.vertical,
+                        itemCount: walletList.length,
+                        itemBuilder: (context, index) {
+                          return _walletItemWidget(context, walletList, index);
+                        }),
+                  ),
                 ),
               ],
             ),
@@ -743,19 +724,14 @@ class _AssetPageState extends State<AssetPage> {
   Widget _walletItemWidget(BuildContext context, List<WalletEntity> list, int index) {
     int selectIndex = Provider.of<HomeProvider>(context, listen: false).selectWalletIndex;
     String name = list[index].name;
-    String tronAddress = list[index].tronAddress.substring(0, 10) + '...' + list[index].tronAddress.substring(list[index].tronAddress.length-10, list[index].tronAddress.length);
+    String tronAddress = list[index].tronAddress.substring(0, 10) + '...' + list[index].tronAddress.substring(list[index].tronAddress.length - 10, list[index].tronAddress.length);
     return Container(
       margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30), bottom: ScreenUtil().setHeight(20)),
-      padding: EdgeInsets.only(
-          left: ScreenUtil().setWidth(40),
-          top: ScreenUtil().setHeight(30),
-          right: ScreenUtil().setWidth(40),
-          bottom: ScreenUtil().setHeight(30),
-      ),
+      padding: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40), bottom: ScreenUtil().setHeight(30)),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-          color: Color(0xFFB22222).withOpacity(0.9),
-          //color: MyColors.themeColor,
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        color: Color(0xFFB22222).withOpacity(0.9),
+        //color: MyColors.themeColor,
       ),
       child: InkWell(
         onTap: () {
@@ -776,9 +752,7 @@ class _AssetPageState extends State<AssetPage> {
                 ),
                 SizedBox(height: ScreenUtil().setHeight(10)),
                 InkWell(
-                  onTap: () {
-
-                  },
+                  onTap: () {},
                   child: Container(
                     child: Row(
                       children: <Widget>[
@@ -804,16 +778,18 @@ class _AssetPageState extends State<AssetPage> {
                 ),
               ],
             ),
-            selectIndex == index ? Container(
-              child: Icon(
-                Icons.done_rounded,
-                size: ScreenUtil().setSp(38), color: Colors.white,
-              ),
-            ) : Container(),
+            selectIndex == index
+                ? Container(
+                    child: Icon(
+                      Icons.done_rounded,
+                      size: ScreenUtil().setSp(38),
+                      color: Colors.white,
+                    ),
+                  )
+                : Container(),
           ],
         ),
       ),
     );
   }
-
 }

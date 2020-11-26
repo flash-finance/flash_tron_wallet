@@ -197,6 +197,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             color:  MyColors.themeColor,
             onPressed: () {
               if (widget.type == '1') {
+                Navigator.of(context)..pop()..pop();
               } else if (widget.type == '2') {
                 Navigator.of(context)..pop()..pop()..pop();
               }

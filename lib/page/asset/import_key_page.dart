@@ -66,6 +66,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
               key: _formKey,
               child: ListView(
                 children: <Widget>[
+                  SizedBox(height: ScreenUtil().setHeight(20)),
                   _descWidget(),
                   SizedBox(height: ScreenUtil().setHeight(20)),
                   Container(
@@ -73,13 +74,14 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
                     child: Column(
                       children: <Widget>[
                         _nameWidget(),
+                        SizedBox(height: ScreenUtil().setHeight(0)),
                         _keyWidget(),
-                        SizedBox(height: ScreenUtil().setHeight(15)),
+                        SizedBox(height: ScreenUtil().setHeight(0)),
                         _setPwdWidget(),
-                        SizedBox(height: ScreenUtil().setHeight(15)),
+                        SizedBox(height: ScreenUtil().setHeight(0)),
                         _confirmPwdWidget(),
                         SizedBox(height: ScreenUtil().setHeight(50)),
-                        _submitButton(context),
+                        _submitWidget(context),
                       ],
                     ),
                   ),
@@ -141,6 +143,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
           labelText: '钱包名称',
           labelStyle: Util.textStyle(context, 1, Colors.grey[700], spacing: 0.1, size: 26),
         ),
+        style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 30),
         validator: (String value) {
           if (value.isEmpty) {
             return '钱包名称不能为空';
@@ -164,6 +167,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
           labelText: '私钥',
           labelStyle: Util.textStyle(context, 1, Colors.grey[700], spacing: 0.1, size: 26),
         ),
+        style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 28),
         validator: (String value) {
           if (value.isEmpty) {
             return '私钥不能为空';
@@ -204,6 +208,12 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
                 });
               },
             )
+        ),
+        style: TextStyle(
+          color: Colors.grey[850],
+          fontSize: ScreenUtil().setSp(30),
+          letterSpacing: 0.2,
+          fontWeight: FontWeight.w500,
         ),
         validator: (String value) {
           if (value.isEmpty) {
@@ -246,6 +256,12 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
               },
             )
         ),
+        style: TextStyle(
+          color: Colors.grey[850],
+          fontSize: ScreenUtil().setSp(30),
+          letterSpacing: 0.2,
+          fontWeight: FontWeight.w500,
+        ),
         validator: (String value) {
           if (value.isEmpty) {
             return '确认密码不能为空';
@@ -257,11 +273,11 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
     );
   }
 
-  Widget _submitButton(BuildContext context) {
+  Widget _submitWidget(BuildContext context) {
     return Container(
       child: Align(
         child: SizedBox(
-          width: ScreenUtil().setWidth(350),
+          width: ScreenUtil().setWidth(320),
           child: RaisedButton(
             child: Container(
               padding: EdgeInsets.all(12),

@@ -78,9 +78,9 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
                     child: Column(
                       children: <Widget>[
                         _nameWidget(),
-                        SizedBox(height: ScreenUtil().setHeight(10)),
+                        SizedBox(height: ScreenUtil().setHeight(0)),
                         _setPwdWidget(),
-                        SizedBox(height: ScreenUtil().setHeight(10)),
+                        SizedBox(height: ScreenUtil().setHeight(0)),
                         _confirmPwdWidget(),
                         SizedBox(height: ScreenUtil().setHeight(50)),
                         _submitWidget(context),
@@ -105,7 +105,6 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
     return Container(
       child: TextFormField(
         readOnly: !buildWalletLoading ? false : true,
-        cursorColor: Colors.grey[850],
         onSaved: (String value) => _name = value,
         maxLength: 10,
         inputFormatters: [],
@@ -113,6 +112,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
           labelText: '钱包名称',
           labelStyle: Util.textStyle(context, 1, Colors.grey[700], spacing: 0.1, size: 26),
         ),
+        style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 30),
         validator: (String value) {
           if (value.isEmpty) {
             return '钱包名称不能为空';
@@ -128,7 +128,6 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
     return Container(
       child: TextFormField(
         readOnly: !buildWalletLoading ? false : true,
-        cursorColor: Colors.grey[850],
         obscureText: _setPwdClickEye,
         onSaved: (String value) {
           if (value.length > 6) {
@@ -153,6 +152,12 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
               },
             )
         ),
+        style: TextStyle(
+          color: Colors.grey[850],
+          fontSize: ScreenUtil().setSp(30),
+          letterSpacing: 0.2,
+          fontWeight: FontWeight.w500,
+        ),
         validator: (String value) {
           if (value.isEmpty) {
             return '设置密码不能为空';
@@ -170,7 +175,6 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
     return Container(
       child: TextFormField(
         readOnly: !buildWalletLoading ? false : true,
-        cursorColor: Colors.grey[850],
         obscureText: _confirmPwdClickEye,
         onSaved: (String value) {
           if (value.length > 6) {
@@ -195,6 +199,12 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
               },
             )
         ),
+        style: TextStyle(
+          color: Colors.grey[850],
+          fontSize: ScreenUtil().setSp(30),
+          letterSpacing: 0.2,
+          fontWeight: FontWeight.w500,
+        ),
         validator: (String value) {
           if (value.isEmpty) {
             return '确认密码不能为空';
@@ -210,7 +220,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
     return Container(
       child: Align(
         child: SizedBox(
-          width: ScreenUtil().setWidth(350),
+          width: ScreenUtil().setWidth(320),
           child: RaisedButton(
             child: Container(
               padding: EdgeInsets.all(12),

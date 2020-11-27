@@ -243,7 +243,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  width: ScreenUtil().setWidth(600),
+                  width: ScreenUtil().setWidth(500),
                   child: TextFormField(
                     controller: _assetAmountController,
                     enableInteractiveSelection: false,
@@ -273,9 +273,16 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                     });
                   },
                   child: Container(
+                    width: ScreenUtil().setWidth(80),
+                    padding: EdgeInsets.only(top: ScreenUtil().setHeight(5), bottom: ScreenUtil().setHeight(5)),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(3.0)),
+                      color: MyColors.themeColor.withOpacity(0.95),
+                    ),
                     child: Text(
                       '最大',
-                      style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 25),
+                      style: Util.textStyle(context, 2, Colors.white, spacing: 0.2, size: 20),
                     ),
                   ),
                 ),

@@ -137,8 +137,7 @@ class _AssetPageState extends State<AssetPage> {
                       alignment: Alignment.center,
                       height: ScreenUtil().setHeight(40),
                       width: ScreenUtil().setHeight(40),
-                      decoration: BoxDecoration(
-                          image: DecorationImage(image: AssetImage('icons/circle.png'), fit: BoxFit.fill)),
+                      decoration: BoxDecoration(image: DecorationImage(image: AssetImage('icons/circle.png'), fit: BoxFit.fill)),
                       child: Icon(
                         Icons.arrow_forward_ios,
                         size: ScreenUtil().setSp(22),

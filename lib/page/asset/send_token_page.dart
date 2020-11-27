@@ -236,7 +236,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
               ],
             ),
           ),
-          SizedBox(height: ScreenUtil().setHeight(5)),
+          SizedBox(height: ScreenUtil().setHeight(10)),
           Container(
             margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), right: ScreenUtil().setWidth(40)),
             child: Row(
@@ -277,7 +277,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                     padding: EdgeInsets.only(top: ScreenUtil().setHeight(5), bottom: ScreenUtil().setHeight(5)),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(3.0)),
+                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
                       color: MyColors.themeColor,
                     ),
                     child: Text(
@@ -311,9 +311,9 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
               '4711.432  TRX',
               style: GoogleFonts.roboto(
                 letterSpacing: 0.0,
-                color: Colors.grey[800],
+                color: Colors.grey[850],
                 fontWeight: FontWeight.w500,
-                fontSize: ScreenUtil().setSp(30),
+                fontSize: ScreenUtil().setSp(28),
               ),
             ),
           ),

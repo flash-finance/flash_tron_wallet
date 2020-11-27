@@ -12,6 +12,7 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class AssetPage extends StatefulWidget {
@@ -66,7 +67,7 @@ class _AssetPageState extends State<AssetPage> {
                 border: Border.all(width: 0, color: Colors.black12),
                 borderRadius: BorderRadius.circular(25),
                 image: DecorationImage(
-                  image: AssetImage('images/bg01.png'),
+                  image: AssetImage('images/bg02.png'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -154,7 +155,7 @@ class _AssetPageState extends State<AssetPage> {
               children: <Widget>[
                 InkWell(
                   onTap: () {
-                    Application.router.navigateTo(context, 'asset/addWallet/2', transition: TransitionType.cupertino);
+                    Application.router.navigateTo(context, 'asset/addWallet', transition: TransitionType.cupertino);
                   },
                   child: Container(
                     child: Image.asset(
@@ -230,7 +231,7 @@ class _AssetPageState extends State<AssetPage> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
         image: DecorationImage(
-          image: AssetImage('images/333.png'),
+          image: AssetImage('images/bg02.png'),
           fit: BoxFit.cover,
         ),
       ),
@@ -275,6 +276,7 @@ class _AssetPageState extends State<AssetPage> {
               ),
             ),
           ),
+          SizedBox(height: ScreenUtil().setHeight(10)),
           InkWell(
             onTap: () {
               Application.router.navigateTo(context, 'asset/walletDetail', transition: TransitionType.cupertino);
@@ -283,12 +285,18 @@ class _AssetPageState extends State<AssetPage> {
               alignment: Alignment.centerLeft,
               padding: EdgeInsets.only(top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(20)),
               child: Text(
-                '${Util.formatNumberSub(totalAssetUsd, 2)}',
-                style: Util.textStyle(context, 2, Colors.white, spacing: 0.2, size: 42),
+                //'${Util.formatNumberSub(totalAssetUsd, 2)}',
+                '8796.44',
+                style: GoogleFonts.roboto(
+                  letterSpacing: 0.2,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                  fontSize: ScreenUtil().setSp(45),
+                ),
               ),
             ),
           ),
-          SizedBox(height: ScreenUtil().setHeight(30)),
+          SizedBox(height: ScreenUtil().setHeight(20)),
           Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -298,7 +306,7 @@ class _AssetPageState extends State<AssetPage> {
                     Application.router.navigateTo(context, 'asset/sendToken', transition: TransitionType.cupertino);
                   },
                   child: Container(
-                    padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(25)),
+                    padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(20)),
                     child: Row(
                       children: <Widget>[
                         Container(
@@ -327,7 +335,7 @@ class _AssetPageState extends State<AssetPage> {
                     Application.router.navigateTo(context, 'asset/receiveToken', transition: TransitionType.cupertino);
                   },
                   child: Container(
-                    padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(25)),
+                    padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(20)),
                     child: Row(
                       children: <Widget>[
                         Container(
@@ -354,7 +362,7 @@ class _AssetPageState extends State<AssetPage> {
                 ),
                 InkWell(
                   child: Container(
-                    padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(25)),
+                    padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(20)),
                     child: Row(
                       children: <Widget>[
                         Container(
@@ -524,7 +532,7 @@ class _AssetPageState extends State<AssetPage> {
                   Row(
                     children: <Widget>[
                       SizedBox(width: ScreenUtil().setWidth(10)),
-                      Container(
+                      /*Container(
                         child: Image.asset(
                           'icons/key.png',
                           width: ScreenUtil().setWidth(40),
@@ -533,7 +541,7 @@ class _AssetPageState extends State<AssetPage> {
                           fit: BoxFit.fill,
                         ),
                       ),
-                      SizedBox(width: ScreenUtil().setWidth(30)),
+                      SizedBox(width: ScreenUtil().setWidth(30)),*/
                       Container(
                         child: Text(
                           '导入私钥',
@@ -574,7 +582,7 @@ class _AssetPageState extends State<AssetPage> {
                   Row(
                     children: <Widget>[
                       SizedBox(width: ScreenUtil().setWidth(10)),
-                      Container(
+                     /*Container(
                         child: Image.asset(
                           'icons/panel.png',
                           width: ScreenUtil().setWidth(40),
@@ -583,7 +591,7 @@ class _AssetPageState extends State<AssetPage> {
                           fit: BoxFit.fill,
                         ),
                       ),
-                      SizedBox(width: ScreenUtil().setWidth(30)),
+                      SizedBox(width: ScreenUtil().setWidth(30)),*/
                       Container(
                         child: Text(
                           '导入助记词',
@@ -615,13 +623,16 @@ class _AssetPageState extends State<AssetPage> {
             },
             child: Container(
               padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
+              decoration: BoxDecoration(
+                border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Row(
                     children: <Widget>[
                       SizedBox(width: ScreenUtil().setWidth(10)),
-                      Container(
+                      /*Container(
                         child: Image.asset(
                           'icons/wallet.png',
                           width: ScreenUtil().setWidth(40),
@@ -630,7 +641,7 @@ class _AssetPageState extends State<AssetPage> {
                           fit: BoxFit.fill,
                         ),
                       ),
-                      SizedBox(width: ScreenUtil().setWidth(30)),
+                      SizedBox(width: ScreenUtil().setWidth(30)),*/
                       Container(
                         child: Text(
                           '创建钱包',
@@ -730,8 +741,11 @@ class _AssetPageState extends State<AssetPage> {
       padding: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40), bottom: ScreenUtil().setHeight(30)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
-        color: Color(0xFFB22222).withOpacity(0.9),
-        //color: MyColors.themeColor,
+        //color: Color(0xFFB22222).withOpacity(0.9),
+        image: DecorationImage(
+          image: AssetImage('images/bg02.png'),
+          fit: BoxFit.cover,
+        ),
       ),
       child: InkWell(
         onTap: () {

@@ -156,7 +156,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
           _setPwd = value;
         },
         maxLength: 6,
-        inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+        inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
             labelText: '设置密码',
@@ -197,7 +197,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
           _confirmPwd = value;
         },
         maxLength: 6,
-        inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+        inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
             labelText: '确认密码',

@@ -9,7 +9,7 @@ class Routes {
   static String deFi = '/deFi';
   static String mine = '/mine';
 
-  static String addWallet = '/asset/addWallet/:type';
+  static String addWallet = '/asset/addWallet';
   static String sendToken = '/asset/sendToken';
   static String receiveToken = '/asset/receiveToken';
 

@@ -33,8 +33,7 @@ Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
 
 Handler addWalletHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-  String type = params['type'][0];
-  return AddWalletPage(type);
+  return AddWalletPage();
 });
 
 Handler sendTokenHandler =

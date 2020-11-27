@@ -89,7 +89,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
         onSaved: (String value) => _oldPwd = value,
         maxLength: 6,
         keyboardType: TextInputType.numberWithOptions(decimal: true),
-        inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+        inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
         decoration: InputDecoration(
             labelText: '输入旧密码',
             labelStyle: Util.textStyle(context, 1, Colors.grey[700], spacing: 0.1, size: 26),
@@ -126,7 +126,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
         onSaved: (String value) => _setPwd = value,
         maxLength: 6,
         keyboardType: TextInputType.numberWithOptions(decimal: true),
-        inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+        inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
         decoration: InputDecoration(
             labelText: '设置新密码',
             labelStyle: Util.textStyle(context, 1, Colors.grey[700], spacing: 0.1, size: 26),
@@ -160,7 +160,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
         obscureText: _confirmPwdClickEye,
         onSaved: (String value) => _confirmPwd = value,
         maxLength: 6,
-        inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+        inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
             labelText: '确认新密码',

@@ -159,7 +159,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
         onSaved: (String value) => _key = value,
         maxLines: 2,
         maxLength: 64,
-        inputFormatters: [WhitelistingTextInputFormatter(RegExp("[a-zA-Z]|[0-9]")),],
+        inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]|[0-9]"))],
         decoration: InputDecoration(
           labelText: '私钥',
           labelStyle: Util.textStyle(context, 1, Colors.grey[700], spacing: 0.1, size: 26),
@@ -190,7 +190,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
         },
         maxLength: 6,
         keyboardType: TextInputType.numberWithOptions(decimal: true),
-        inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+        inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
         decoration: InputDecoration(
             labelText: '设置密码',
             labelStyle: Util.textStyle(context, 1, Colors.grey[700], spacing: 0.1, size: 26),
@@ -230,7 +230,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
           _confirmPwd = value;
         },
         maxLength: 6,
-        inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+        inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
             labelText: '确认密码',

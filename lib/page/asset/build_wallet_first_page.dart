@@ -70,6 +70,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
               key: _formKey,
               child: ListView(
                 children: <Widget>[
+                  SizedBox(height: ScreenUtil().setHeight(20)),
                   _descWidget(),
                   SizedBox(height: ScreenUtil().setHeight(20)),
                   Container(
@@ -77,9 +78,9 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
                     child: Column(
                       children: <Widget>[
                         _nameWidget(),
-                        SizedBox(height: ScreenUtil().setHeight(15)),
+                        SizedBox(height: ScreenUtil().setHeight(10)),
                         _setPwdWidget(),
-                        SizedBox(height: ScreenUtil().setHeight(15)),
+                        SizedBox(height: ScreenUtil().setHeight(10)),
                         _confirmPwdWidget(),
                         SizedBox(height: ScreenUtil().setHeight(50)),
                         _submitWidget(context),
@@ -104,6 +105,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
     return Container(
       child: TextFormField(
         readOnly: !buildWalletLoading ? false : true,
+        cursorColor: Colors.grey[850],
         onSaved: (String value) => _name = value,
         maxLength: 10,
         inputFormatters: [],
@@ -126,6 +128,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
     return Container(
       child: TextFormField(
         readOnly: !buildWalletLoading ? false : true,
+        cursorColor: Colors.grey[850],
         obscureText: _setPwdClickEye,
         onSaved: (String value) {
           if (value.length > 6) {
@@ -134,7 +137,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
           _setPwd = value;
         },
         maxLength: 6,
-        inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+        inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
             labelText: '设置密码',
@@ -167,6 +170,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
     return Container(
       child: TextFormField(
         readOnly: !buildWalletLoading ? false : true,
+        cursorColor: Colors.grey[850],
         obscureText: _confirmPwdClickEye,
         onSaved: (String value) {
           if (value.length > 6) {
@@ -175,7 +179,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
           _confirmPwd = value;
         },
         maxLength: 6,
-        inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+        inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
             labelText: '确认密码',

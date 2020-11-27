@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 
 class AddWalletPage extends StatefulWidget {
-  final String type;
-  AddWalletPage(this.type);
 
   @override
   _AddWalletPageState createState() => _AddWalletPageState();
@@ -24,7 +22,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
         brightness: Brightness.light,
         title: Text(
           '添加钱包',
-          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.4, size: 32),
+          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2 , size: 32),
         ),
         centerTitle: true,
         elevation: 0,
@@ -162,7 +160,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
           SizedBox(height: ScreenUtil().setHeight(30)),
           InkWell(
             onTap: () {
-              Application.router.navigateTo(context, 'asset/buildFirstWallet/${widget.type}', transition: TransitionType.cupertino);
+              Application.router.navigateTo(context, 'asset/buildFirstWallet/2', transition: TransitionType.cupertino);
             },
             child: Container(
               padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
@@ -202,7 +200,6 @@ class _AddWalletPageState extends State<AddWalletPage> {
                       SizedBox(width: ScreenUtil().setWidth(10)),
                     ],
                   ),
-
                 ],
               ),
             ),

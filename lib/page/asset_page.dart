@@ -284,14 +284,8 @@ class _AssetPageState extends State<AssetPage> {
               alignment: Alignment.centerLeft,
               padding: EdgeInsets.only(top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(20)),
               child: Text(
-                //'${Util.formatNumberSub(totalAssetUsd, 2)}',
-                '8796.44',
-                style: GoogleFonts.roboto(
-                  letterSpacing: 0.2,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                  fontSize: ScreenUtil().setSp(45),
-                ),
+                '${Util.formatNumberSub(totalAssetUsd, 2)}',
+                style: Util.textStyle(context, 2, Colors.white, spacing: 0.2, size: 42),
               ),
             ),
           ),

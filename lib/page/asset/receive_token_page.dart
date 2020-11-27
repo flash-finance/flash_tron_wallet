@@ -84,7 +84,7 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
             alignment: Alignment.center,
             child: Text(
               '$name',
-              style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 30),
+              style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.2, size: 30),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -102,7 +102,7 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
             alignment: Alignment.center,
             child: Text(
               '$address',
-              style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.0, size: 27),
+              style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 27),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -116,7 +116,7 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
     return Container(
       child: Align(
         child: SizedBox(
-          width: ScreenUtil().setWidth(350),
+          width: ScreenUtil().setWidth(320),
           child: RaisedButton(
             child: Container(
               padding: EdgeInsets.all(12),

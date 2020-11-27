@@ -11,6 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 
@@ -103,7 +104,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
           _balanceWidget(context),
           IntervalPage(ScreenUtil().setHeight(25)),
           SizedBox(height: ScreenUtil().setHeight(120)),
-          _submitButtonWidget(context, wallet),
+          _submitWidget(context, wallet),
         ],
       ),
     );
@@ -164,7 +165,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                     ),
                     style: TextStyle(
                       color: Colors.grey[850],
-                      fontSize: ScreenUtil().setSp(30),
+                      fontSize: ScreenUtil().setSp(28),
                       fontWeight: FontWeight.w500,
                     ),
                     maxLines: 1,
@@ -253,10 +254,11 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                       hintStyle: Util.textStyle(context, 2, Colors.grey[400], spacing: 0.2, size: 27),
                       border: InputBorder.none,
                     ),
-                    style: TextStyle(
+                    style: GoogleFonts.roboto(
+                      letterSpacing: 0.2,
                       color: Colors.grey[850],
-                      fontSize: ScreenUtil().setSp(30),
                       fontWeight: FontWeight.w500,
+                      fontSize: ScreenUtil().setSp(30),
                     ),
                     maxLines: 1,
                     keyboardType: TextInputType.numberWithOptions(decimal: true),
@@ -300,11 +302,11 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
           Container(
             child: Text(
               '4711.432  TRX',
-              style: TextStyle(
-                color: Colors.grey[800],
+              style: GoogleFonts.roboto(
                 letterSpacing: 0.0,
-                fontSize: ScreenUtil().setSp(28),
+                color: Colors.grey[800],
                 fontWeight: FontWeight.w500,
+                fontSize: ScreenUtil().setSp(30),
               ),
             ),
           ),
@@ -314,13 +316,13 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
   }
 
 
-  Widget _submitButtonWidget(BuildContext context, WalletEntity wallet) {
+  Widget _submitWidget(BuildContext context, WalletEntity wallet) {
     List<AssetEntity> assetList = Provider.of<HomeProvider>(context).assetList;
     int index = Provider.of<HomeProvider>(context).selectAssetFilterIndex;
     return Container(
       child: Align(
         child: SizedBox(
-          width: ScreenUtil().setWidth(350),
+          width: ScreenUtil().setWidth(320),
           child: RaisedButton(
             child: Container(
               padding: EdgeInsets.all(12),

@@ -524,7 +524,7 @@ class _AssetPageState extends State<AssetPage> {
             child: Container(
               padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
               decoration: BoxDecoration(
-                border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
+                border: Border(bottom: BorderSide(color: Colors.grey[350], width: 0.5)),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -532,16 +532,6 @@ class _AssetPageState extends State<AssetPage> {
                   Row(
                     children: <Widget>[
                       SizedBox(width: ScreenUtil().setWidth(10)),
-                      /*Container(
-                        child: Image.asset(
-                          'icons/key.png',
-                          width: ScreenUtil().setWidth(40),
-                          height: ScreenUtil().setWidth(40),
-                          color: Colors.black,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      SizedBox(width: ScreenUtil().setWidth(30)),*/
                       Container(
                         child: Text(
                           '导入私钥',
@@ -574,7 +564,7 @@ class _AssetPageState extends State<AssetPage> {
             child: Container(
               padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
               decoration: BoxDecoration(
-                border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
+                border: Border(bottom: BorderSide(color: Colors.grey[350], width: 0.5)),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -582,16 +572,6 @@ class _AssetPageState extends State<AssetPage> {
                   Row(
                     children: <Widget>[
                       SizedBox(width: ScreenUtil().setWidth(10)),
-                     /*Container(
-                        child: Image.asset(
-                          'icons/panel.png',
-                          width: ScreenUtil().setWidth(40),
-                          height: ScreenUtil().setWidth(40),
-                          color: Colors.black,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      SizedBox(width: ScreenUtil().setWidth(30)),*/
                       Container(
                         child: Text(
                           '导入助记词',
@@ -623,25 +603,12 @@ class _AssetPageState extends State<AssetPage> {
             },
             child: Container(
               padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
-              decoration: BoxDecoration(
-                border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
-              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Row(
                     children: <Widget>[
                       SizedBox(width: ScreenUtil().setWidth(10)),
-                      /*Container(
-                        child: Image.asset(
-                          'icons/wallet.png',
-                          width: ScreenUtil().setWidth(40),
-                          height: ScreenUtil().setWidth(40),
-                          color: Colors.black,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      SizedBox(width: ScreenUtil().setWidth(30)),*/
                       Container(
                         child: Text(
                           '创建钱包',

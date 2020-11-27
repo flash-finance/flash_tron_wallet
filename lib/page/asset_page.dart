@@ -674,7 +674,7 @@ class _AssetPageState extends State<AssetPage> {
                       bottom: ScreenUtil().setHeight(20)),
                   margin: EdgeInsets.only(bottom: ScreenUtil().setHeight(25)),
                   decoration: BoxDecoration(
-                    border: Border(bottom: BorderSide(color: Colors.black45, width: 0.3)),
+                    border: Border(bottom: BorderSide(color: Colors.grey[400], width: 0.3)),
                   ),
                   child: Text(
                     '钱包列表',
@@ -763,7 +763,7 @@ class _AssetPageState extends State<AssetPage> {
                 ? Container(
                     child: Icon(
                       Icons.done_rounded,
-                      size: ScreenUtil().setSp(38),
+                      size: ScreenUtil().setSp(40),
                       color: Colors.white,
                     ),
                   )

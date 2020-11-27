@@ -278,7 +278,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(3.0)),
-                      color: MyColors.themeColor.withOpacity(0.95),
+                      color: MyColors.themeColor,
                     ),
                     child: Text(
                       '最大',

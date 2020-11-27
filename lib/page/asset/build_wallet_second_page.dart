@@ -45,6 +45,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
         width: ScreenUtil().setWidth(750),
         child: ListView(
           children: <Widget>[
+            SizedBox(height: ScreenUtil().setHeight(20)),
             _descWidget(),
             SizedBox(height: ScreenUtil().setHeight(10)),
             Container(
@@ -55,7 +56,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
                  _tipsWidget(wallet.mnemonic),
                  SizedBox(height: ScreenUtil().setHeight(10)),
                  _dataWidget(wallet.mnemonic),
-                 SizedBox(height: ScreenUtil().setHeight(60)),
+                 SizedBox(height: ScreenUtil().setHeight(80)),
                  _submitWidget(context),
                ],
              ),
@@ -111,7 +112,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
           Container(
             child: Text(
               '请备份您的助记词',
-              style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.4, size: 30),
+              style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.4, size: 26),
             ),
           ),
           InkWell(
@@ -120,8 +121,14 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
               Util.showToast('复制成功');
             },
             child: Container(
-              padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-              child: Icon(Icons.content_copy, size: ScreenUtil().setSp(38), color: Colors.grey[800],),
+              padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
+              child: Image.asset(
+                'icons/copy.png',
+                width: ScreenUtil().setWidth(35),
+                height: ScreenUtil().setWidth(35),
+                color: Colors.grey[850],
+                fit: BoxFit.fill,
+              ),
             ),
           ),
         ],
@@ -170,7 +177,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             padding: EdgeInsets.only(bottom: 13),
             child: Text(
               '$value',
-              style: TextStyle(color: Colors.grey[900], fontSize: ScreenUtil().setSp(27)),
+              style: TextStyle(color: Colors.grey[850], fontSize: ScreenUtil().setSp(27)),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -184,13 +191,13 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
     return Container(
       child: Align(
         child: SizedBox(
-          width: ScreenUtil().setWidth(350),
+          width: ScreenUtil().setWidth(320),
           child: RaisedButton(
             child: Container(
               padding: EdgeInsets.all(12),
               child: Text(
                   '已安全保存',
-                style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 31),
+                style: Util.textStyle(context, 1, Colors.white, spacing: 0.2, size: 30),
               ),
             ),
             color:  MyColors.themeColor,

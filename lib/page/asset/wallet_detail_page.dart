@@ -24,6 +24,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
   @override
   Widget build(BuildContext context) {
     WalletEntity wallet = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
+    bool flag = wallet.mnemonic != null;
     return Scaffold(
       backgroundColor: MyColors.lightBg,
       appBar: AppBar(
@@ -31,7 +32,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         brightness: Brightness.light,
         title: Text(
           '钱包详情',
-          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.4, size: 32),
+          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 32),
         ),
         centerTitle: true,
         elevation: 0,
@@ -52,7 +53,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
            IntervalPage(ScreenUtil().setHeight(25)),
             _topWidget(context, wallet),
             IntervalPage(ScreenUtil().setHeight(25)),
-            _backupMnemonicWidget(context, wallet.pwd),
+            flag ? _backupMnemonicWidget(context, wallet.pwd) : Container(),
             _backupKeyWidget(context, wallet.pwd),
             _updatePwdWidget(context),
             _delWalletWidget(context),
@@ -89,17 +90,17 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                       Container(
                         child: Text(
                           '${wallet.name}',
-                          style: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.1, size: 28),
+                          style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.1, size: 28),
                         ),
                       ),
-                      SizedBox(width: ScreenUtil().setWidth(20)),
+                      SizedBox(width: ScreenUtil().setWidth(30)),
                       InkWell(
                         onTap: () {},
                         child: Image.asset(
                           'icons/pen.png',
                           width: ScreenUtil().setWidth(30),
                           height: ScreenUtil().setWidth(30),
-                          color: Colors.grey[700],
+                          color: Colors.grey[800],
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -116,7 +117,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                           style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.1, size: 28),
                         ),
                       ),
-                      SizedBox(width: ScreenUtil().setWidth(20)),
+                      SizedBox(width: ScreenUtil().setWidth(30)),
                       InkWell(
                         onTap: () {},
                         child: Image.asset(
@@ -273,7 +274,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         builder: (context) => CupertinoAlertDialog(
           title: Text(
             '请输入密码',
-            style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.5, size: 30),
+            style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 30),
           ),
           content: Card(
             elevation: 0.0,
@@ -353,7 +354,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         builder: (context) => CupertinoAlertDialog(
           title: Text(
             '请确保私钥或助记词已备份，确定删除?',
-            style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.5, size: 28),
+            style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 28),
           ),
           actions: <Widget>[
             FlatButton(

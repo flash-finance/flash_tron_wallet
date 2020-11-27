@@ -41,6 +41,7 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
       body: Container(
         child: ListView(
           children: <Widget>[
+            SizedBox(height: ScreenUtil().setHeight(20)),
             _descWidget(),
             SizedBox(height: ScreenUtil().setHeight(20)),
             Container(
@@ -63,7 +64,7 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
     return Container(
       margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5.0),
+        borderRadius: BorderRadius.circular(10.0),
         color:  MyColors.themeColor,
       ),
       child: Column(
@@ -93,10 +94,10 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
         children: <Widget>[
           Container(
             width: ScreenUtil().setWidth(600),
-            padding: EdgeInsets.fromLTRB(0, 15, 0, 10),
+            padding: EdgeInsets.fromLTRB(5, 15, 0, 10),
             child: Text(
               '$key',
-              style: TextStyle(color: Colors.grey[800], fontSize: ScreenUtil().setSp(28),
+              style: TextStyle(color: Colors.grey[850], fontSize: ScreenUtil().setSp(28),
               ),
               maxLines: 3, overflow: TextOverflow.ellipsis,
             ),
@@ -109,7 +110,13 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
             child: Container(
               width: ScreenUtil().setWidth(80),
               alignment: Alignment.centerRight,
-              child: Icon(Icons.content_copy, size: ScreenUtil().setSp(42), color: Colors.grey[800],),
+              child: Image.asset(
+                'icons/copy.png',
+                width: ScreenUtil().setWidth(40),
+                height: ScreenUtil().setWidth(40),
+                color: Colors.grey[800],
+                fit: BoxFit.fill,
+              ),
             ),
           ),
         ],
@@ -121,7 +128,7 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
     return Container(
       child: Align(
         child: SizedBox(
-          width: ScreenUtil().setWidth(350),
+          width: ScreenUtil().setWidth(320),
           child: RaisedButton(
             child: Container(
               padding: EdgeInsets.all(12),

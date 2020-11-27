@@ -1,4 +1,3 @@
-
 import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
@@ -42,6 +41,7 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
       body: Container(
         child: ListView(
           children: <Widget>[
+            SizedBox(height: ScreenUtil().setHeight(20)),
             _descWidget(),
             SizedBox(height: ScreenUtil().setHeight(20)),
             Container(
@@ -94,10 +94,10 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
         children: <Widget>[
           Container(
             width: ScreenUtil().setWidth(600),
-            padding: EdgeInsets.fromLTRB(0, 15, 0, 10),
+            padding: EdgeInsets.fromLTRB(5, 15, 0, 10),
             child: Text(
               '$mnemonic',
-              style: TextStyle(color: Colors.grey[800], fontSize: ScreenUtil().setSp(28),
+              style: TextStyle(color: Colors.grey[850], fontSize: ScreenUtil().setSp(28),
               ),
               maxLines: 3, overflow: TextOverflow.ellipsis,),
           ),
@@ -109,7 +109,13 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
             child: Container(
               width: ScreenUtil().setWidth(80),
               alignment: Alignment.centerRight,
-              child: Icon(Icons.content_copy, size: ScreenUtil().setSp(42), color: Colors.grey[800],),
+              child: Image.asset(
+                'icons/copy.png',
+                width: ScreenUtil().setWidth(40),
+                height: ScreenUtil().setWidth(40),
+                color: Colors.grey[800],
+                fit: BoxFit.fill,
+              ),
             ),
           ),
         ],
@@ -121,7 +127,7 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
     return Container(
       child: Align(
         child: SizedBox(
-          width: ScreenUtil().setWidth(350),
+          width: ScreenUtil().setWidth(320),
           child: RaisedButton(
             child: Container(
               padding: EdgeInsets.all(12),

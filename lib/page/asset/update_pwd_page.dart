@@ -59,6 +59,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
           key: _formKey,
           child: ListView(
             children: <Widget>[
+              SizedBox(height: ScreenUtil().setHeight(20)),
               _descWidget(),
               SizedBox(height: ScreenUtil().setHeight(20)),
               Container(
@@ -66,12 +67,12 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
                 child: Column(
                   children: <Widget>[
                     _oldPwdWidget(wallet.pwd),
-                    SizedBox(height: ScreenUtil().setHeight(15)),
+                    SizedBox(height: ScreenUtil().setHeight(0)),
                     _setPwdWidget(),
-                    SizedBox(height: ScreenUtil().setHeight(15)),
+                    SizedBox(height: ScreenUtil().setHeight(0)),
                     _confirmPwdWidget(),
                     SizedBox(height: ScreenUtil().setHeight(50)),
-                    _submitButton(context),
+                    _submitWidget(context),
                   ],
                 ),
               ),
@@ -103,6 +104,12 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
                 });
               },
             )
+        ),
+        style: TextStyle(
+          color: Colors.grey[850],
+          fontSize: ScreenUtil().setSp(30),
+          letterSpacing: 0.2,
+          fontWeight: FontWeight.w500,
         ),
         validator: (String value) {
           if (value.isEmpty) {
@@ -141,6 +148,12 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
               },
             )
         ),
+        style: TextStyle(
+          color: Colors.grey[850],
+          fontSize: ScreenUtil().setSp(30),
+          letterSpacing: 0.2,
+          fontWeight: FontWeight.w500,
+        ),
         validator: (String value) {
           if (value.isEmpty) {
             return '设置新密码不能为空';
@@ -176,6 +189,12 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
               },
             )
         ),
+        style: TextStyle(
+          color: Colors.grey[850],
+          fontSize: ScreenUtil().setSp(30),
+          letterSpacing: 0.2,
+          fontWeight: FontWeight.w500,
+        ),
         validator: (String value) {
           if (value.isEmpty) {
             return '确认新密码不能为空';
@@ -187,11 +206,11 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
     );
   }
 
-  Widget _submitButton(BuildContext context) {
+  Widget _submitWidget(BuildContext context) {
     return Container(
       child: Align(
         child: SizedBox(
-          width: ScreenUtil().setWidth(350),
+          width: ScreenUtil().setWidth(320),
           child: RaisedButton(
             child: Container(
               padding: EdgeInsets.all(12),

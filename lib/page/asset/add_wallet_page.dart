@@ -71,16 +71,6 @@ class _AddWalletPageState extends State<AddWalletPage> {
                     children: <Widget>[
                       SizedBox(width: ScreenUtil().setWidth(10)),
                       Container(
-                        child: Image.asset(
-                          'icons/key.png',
-                          width: ScreenUtil().setWidth(40),
-                          height: ScreenUtil().setWidth(40),
-                          color: Colors.black,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      SizedBox(width: ScreenUtil().setWidth(30)),
-                      Container(
                         child: Text(
                           '导入私钥',
                           style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
@@ -122,16 +112,6 @@ class _AddWalletPageState extends State<AddWalletPage> {
                     children: <Widget>[
                       SizedBox(width: ScreenUtil().setWidth(10)),
                       Container(
-                        child: Image.asset(
-                          'icons/panel.png',
-                          width: ScreenUtil().setWidth(40),
-                          height: ScreenUtil().setWidth(40),
-                          color: Colors.black,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      SizedBox(width: ScreenUtil().setWidth(30)),
-                      Container(
                         child: Text(
                           '导入助记词',
                           style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
@@ -170,16 +150,6 @@ class _AddWalletPageState extends State<AddWalletPage> {
                   Row(
                     children: <Widget>[
                       SizedBox(width: ScreenUtil().setWidth(10)),
-                      Container(
-                        child: Image.asset(
-                          'icons/wallet.png',
-                          width: ScreenUtil().setWidth(40),
-                          height: ScreenUtil().setWidth(40),
-                          color: Colors.black,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      SizedBox(width: ScreenUtil().setWidth(30)),
                       Container(
                         child: Text(
                           '创建钱包',

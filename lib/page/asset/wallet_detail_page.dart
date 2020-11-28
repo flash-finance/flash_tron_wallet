@@ -118,7 +118,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                 SizedBox(height: ScreenUtil().setHeight(15)),
                 InkWell(
                   onTap: () {
-                    Clipboard.setData(ClipboardData(text: tronAddress));
+                    Clipboard.setData(ClipboardData(text: wallet.tronAddress));
                     Util.showToast('复制成功');
                   },
                   child: Container(

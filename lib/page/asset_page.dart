@@ -729,7 +729,7 @@ class _AssetPageState extends State<AssetPage> {
                 SizedBox(height: ScreenUtil().setHeight(15)),
                 InkWell(
                   onTap: () {
-                    Clipboard.setData(ClipboardData(text: tronAddress));
+                    Clipboard.setData(ClipboardData(text: list[index].tronAddress));
                     Util.showToast('复制成功');
                   },
                   child: Container(

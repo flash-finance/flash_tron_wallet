@@ -169,14 +169,14 @@ class _MinePageState extends State<MinePage> {
                         FlatButton(
                           child: Text(
                             '以后再说',
-                            style: Util.textStyle(context, 2,  MyColors.themeColor, spacing: 0.2, size: 30),
+                            style: Util.textStyle(context, 2,  Colors.blue[700], spacing: 0.1, size: 30),
                           ),
                           onPressed: () => Navigator.pop(context),
                         ),
                         FlatButton(
                             child: Text(
                               '立即体验',
-                              style: Util.textStyle(context, 2,  MyColors.themeColor, spacing: 0.2, size: 30),
+                              style: Util.textStyle(context, 2,  Colors.blue[700], spacing: 0.1, size: 30),
                             ),
                             onPressed: () {
                               Navigator.pop(context);
@@ -220,14 +220,14 @@ class _MinePageState extends State<MinePage> {
                         FlatButton(
                           child: Text(
                             '以后再说',
-                            style: Util.textStyle(context, 2,  MyColors.themeColor, spacing: 0.2, size: 30),
+                            style: Util.textStyle(context, 2, Colors.blue[700], spacing: 0.1, size: 30),
                           ),
                           onPressed: () => Navigator.pop(context),
                         ),
                         FlatButton(
                             child: Text(
                               '立即体验',
-                              style: Util.textStyle(context, 2,  MyColors.themeColor, spacing: 0.2, size: 30),
+                              style: Util.textStyle(context, 2,  Colors.blue[700], spacing: 0.1, size: 30),
                             ),
                             onPressed: () async {
                               if (await canLaunch(dexInfo.iosDownloadUrl)) {
@@ -283,7 +283,7 @@ class _MinePageState extends State<MinePage> {
       child: Row(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(right: ScreenUtil().setWidth(5), bottom: ScreenUtil().setHeight(3)),
+            padding: EdgeInsets.only(right: ScreenUtil().setWidth(5), bottom: Platform.isAndroid ? ScreenUtil().setHeight(3) : ScreenUtil().setHeight(0)),
             alignment: Alignment.centerRight,
             child: Text(
               '$currentVersion',

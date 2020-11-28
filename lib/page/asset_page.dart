@@ -67,7 +67,7 @@ class _AssetPageState extends State<AssetPage> {
                 border: Border.all(width: 0, color: Colors.black12),
                 borderRadius: BorderRadius.circular(25),
                 image: DecorationImage(
-                  image: AssetImage('images/bg02.png'),
+                  image: AssetImage('images/bg.png'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -230,7 +230,7 @@ class _AssetPageState extends State<AssetPage> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
         image: DecorationImage(
-          image: AssetImage('images/bg02.png'),
+          image: AssetImage('images/bg.png'),
           fit: BoxFit.cover,
         ),
       ),
@@ -703,7 +703,7 @@ class _AssetPageState extends State<AssetPage> {
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
         //color: Color(0xFFB22222).withOpacity(0.9),
         image: DecorationImage(
-          image: AssetImage('images/bg02.png'),
+          image: AssetImage('images/bg.png'),
           fit: BoxFit.cover,
         ),
       ),

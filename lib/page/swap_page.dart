@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DeFiPage extends StatefulWidget {
+class SwapPage extends StatefulWidget {
   @override
-  _DeFiPageState createState() => _DeFiPageState();
+  _SwapPageState createState() => _SwapPageState();
 }
 
-class _DeFiPageState extends State<DeFiPage> {
+class _SwapPageState extends State<SwapPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

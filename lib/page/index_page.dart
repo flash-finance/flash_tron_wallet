@@ -1,4 +1,4 @@
-import 'package:flash_tron_wallet/page/defi_page.dart';
+import 'package:flash_tron_wallet/page/swap_page.dart';
 import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +21,7 @@ class _IndexPageState extends State<IndexPage> {
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.explore),
-      label: 'DeFi',
+      label: '交易',
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.account_circle),
@@ -31,7 +31,7 @@ class _IndexPageState extends State<IndexPage> {
 
   final List<Widget> tabBodies = [
     AssetPage(),
-    DeFiPage(),
+    SwapPage(),
     MinePage(),
   ];
 

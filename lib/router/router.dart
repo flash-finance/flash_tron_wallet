@@ -6,7 +6,7 @@ import 'handler.dart';
 class Routes {
   static String root = '/';
   static String asset = '/asset';
-  static String deFi = '/deFi';
+  static String swap = '/swap';
   static String mine = '/mine';
 
   static String addWallet = '/asset/addWallet';
@@ -30,7 +30,7 @@ class Routes {
     });
 
     router.define(asset, handler: assetHandler);
-    router.define(deFi, handler: deFiHandler);
+    router.define(swap, handler: swapHandler);
     router.define(mine, handler: mineHandler);
 
     router.define(addWallet, handler: addWalletHandler);

@@ -22,9 +22,11 @@ class Routes {
   static String backupMnemonic = '/asset/backupMnemonic';
   static String updatePwd = '/asset/updatePwd';
 
+  static String walletManage = '/mine/walletManage';
+
+
   static void configureRouter(FluroRouter router) {
-    router.notFoundHandler = Handler(
-        handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+    router.notFoundHandler = Handler(handlerFunc: (BuildContext context, Map<String, List<String>> params) {
       print('error, route was not found');
       return null;
     });
@@ -46,5 +48,7 @@ class Routes {
     router.define(backupMnemonic, handler: backupMnemonicHandler);
 
     router.define(updatePwd, handler: updatePwdHandler);
+
+    router.define(walletManage, handler: walletManageHandler);
   }
 }

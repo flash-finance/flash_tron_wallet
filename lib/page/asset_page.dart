@@ -724,7 +724,7 @@ class _AssetPageState extends State<AssetPage> {
                     style: Util.textStyle(context, 1, Colors.white, spacing: 0.5, size: 30),
                   ),
                 ),
-                SizedBox(height: ScreenUtil().setHeight(10)),
+                SizedBox(height: ScreenUtil().setHeight(15)),
                 InkWell(
                   onTap: () {},
                   child: Container(

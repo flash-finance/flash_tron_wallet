@@ -4,7 +4,9 @@ import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/common/page.dart';
 import 'package:flash_tron_wallet/model/dex_info_model.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
+import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
+import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -52,7 +54,9 @@ class _MinePageState extends State<MinePage> {
 
   Widget _walletManageWidget(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Application.router.navigateTo(context, 'mine/walletManage', transition: TransitionType.cupertino);
+      },
       child: Container(
         margin: EdgeInsets.only(left: ScreenUtil().setWidth(40),
             top: ScreenUtil().setHeight(30),
@@ -89,9 +93,7 @@ class _MinePageState extends State<MinePage> {
     return InkWell(
       onTap: () {},
       child: Container(
-        margin: EdgeInsets.only(left: ScreenUtil().setWidth(40),
-            top: ScreenUtil().setHeight(30),
-            right: ScreenUtil().setWidth(40)),
+        margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40)),
         padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
         decoration: BoxDecoration(
           border: Border(

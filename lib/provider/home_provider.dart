@@ -58,14 +58,12 @@ class HomeProvider with ChangeNotifier {
     if (temp != null) {
       _selectWalletIndex = temp;
     }
-    print("getSelectWalletIndex:$_selectWalletIndex");
     notifyListeners();
   }
 
   getSelectWallet() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String> tempList = prefs.getStringList(_selectWalletListKey);
-    print('getSelectWallet:${tempList.length}');
     _walletList = [];
     if (tempList != null) {
       for (int i = 0; i < tempList.length; i++) {
@@ -96,7 +94,6 @@ class HomeProvider with ChangeNotifier {
 
   Future<bool> saveSelectWalletList(List<WalletEntity> dataList) async {
     try {
-      print('saveSelectWalletList 000');
       SharedPreferences prefs = await SharedPreferences.getInstance();
       _walletList = dataList;
       List<String> tempList = [];
@@ -104,9 +101,7 @@ class HomeProvider with ChangeNotifier {
         String temp = json.encode(dataList[i]);
         tempList.add(temp);
       }
-      print('saveSelectWalletList 111');
       prefs.setStringList(_selectWalletListKey, tempList);
-      print('saveSelectWalletList 222');
     } catch (e) {
       print(e);
       return false;
@@ -131,7 +126,6 @@ class HomeProvider with ChangeNotifier {
         String temp = json.encode(_walletList[i]);
         tempList.add(temp);
       }
-      print('saveSelectWalletList 111');
       prefs.setStringList(_selectWalletListKey, tempList);
       notifyListeners();
     } catch (e) {
@@ -154,8 +148,7 @@ class HomeProvider with ChangeNotifier {
     }
     return true;
   }
-
-
+  
   Future<bool> updateName(int index, String newName) async {
     try {
       if (_walletList.length > index) {

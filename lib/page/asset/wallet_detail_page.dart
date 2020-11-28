@@ -23,8 +23,7 @@ class WalletDetailPage extends StatefulWidget {
 class _WalletDetailPageState extends State<WalletDetailPage> {
   final _formKey = GlobalKey<FormState>();
   String _name;
-  String _mnemonic;
-
+  
   @override
   Widget build(BuildContext context) {
     List<WalletEntity> walletList = Provider.of<HomeProvider>(context,listen: false).walletList;
@@ -89,56 +88,60 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Container(
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        child: Text(
-                          '${wallet.name}',
-                          style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.1, size: 28),
+                InkWell(
+                  onTap: () {
+                    _showUpdateNameDialLog(context, int.parse(widget.selectIndex));
+                  },
+                  child: Container(
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          child: Text(
+                            '${wallet.name}',
+                            style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.1, size: 28),
+                          ),
                         ),
-                      ),
-                      SizedBox(width: ScreenUtil().setWidth(30)),
-                      InkWell(
-                        onTap: () {
-
-                        },
-                        child: Image.asset(
-                          'icons/pen.png',
-                          width: ScreenUtil().setWidth(30),
-                          height: ScreenUtil().setWidth(30),
-                          color: Colors.grey[800],
-                          fit: BoxFit.fill,
+                        SizedBox(width: ScreenUtil().setWidth(30)),
+                        Container(
+                          child: Image.asset(
+                            'icons/pen.png',
+                            width: ScreenUtil().setWidth(30),
+                            height: ScreenUtil().setWidth(30),
+                            color: Colors.grey[800],
+                            fit: BoxFit.fill,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-                SizedBox(height: ScreenUtil().setHeight(10)),
-                Container(
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        child: Text(
-                          '$tronAddress',
-                          style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.1, size: 28),
+                SizedBox(height: ScreenUtil().setHeight(15)),
+                InkWell(
+                  onTap: () {
+                    Clipboard.setData(ClipboardData(text: tronAddress));
+                    Util.showToast('复制成功');
+                  },
+                  child: Container(
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          child: Text(
+                            '$tronAddress',
+                            style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.1, size: 28),
+                          ),
                         ),
-                      ),
-                      SizedBox(width: ScreenUtil().setWidth(30)),
-                      InkWell(
-                        onTap: () {
-                          Clipboard.setData(ClipboardData(text: tronAddress));
-                          Util.showToast('复制成功');
-                        },
-                        child: Image.asset(
-                          'icons/copy.png',
-                          width: ScreenUtil().setWidth(30),
-                          height: ScreenUtil().setWidth(30),
-                          color: Colors.grey[700],
-                          fit: BoxFit.fill,
+                        SizedBox(width: ScreenUtil().setWidth(30)),
+                        Container(
+                          child: Image.asset(
+                            'icons/copy.png',
+                            width: ScreenUtil().setWidth(30),
+                            height: ScreenUtil().setWidth(30),
+                            color: Colors.grey[700],
+                            fit: BoxFit.fill,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -358,6 +361,76 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         ));
   }
 
+  _showUpdateNameDialLog(BuildContext context, int index) {
+    showCupertinoDialog(
+        context: context,
+        builder: (context) => CupertinoAlertDialog(
+          title: Text(
+            '修改钱包名字',
+            style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 30),
+          ),
+          content: Card(
+            elevation: 0.0,
+            child: Column(
+              children: <Widget>[
+                Form(
+                  key: _formKey,
+                  child: TextFormField(
+                    onSaved: (String value) {
+                      _name = value;
+                    },
+                    decoration: InputDecoration(
+                      hintText: '',
+                      filled: true,
+                      fillColor: Colors.white,
+                    ),
+                    //obscureText: true,
+                    maxLength: 10,
+                    maxLengthEnforced: true,
+                    validator: (String value) {
+                      if (value.length > 10) {
+                        return '名称过长';
+                      }  else {
+                        return null;
+                      }
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text(
+                '取消',
+                style: Util.textStyle(context, 2,  MyColors.themeColor, spacing: 0.5, size: 30),
+              ),
+              onPressed: () => Navigator.pop(context),
+            ),
+            FlatButton(
+                child: Text(
+                  '确定',
+                  style: Util.textStyle(context, 2,  MyColors.themeColor, spacing: 0.5, size: 30),
+                ),
+                onPressed: () {
+                  if (_formKey.currentState.validate()) {
+                    _formKey.currentState.save();
+                    _updateName(context, index).then((val) {
+                      if (val == true) {
+                        Util.showToast('修改成功');
+                        Navigator.pop(context);
+                      } else {
+                        Util.showToast('执行出错，请再尝试');
+                      }
+                    });
+                  }
+
+                }
+            ),
+          ],
+        ));
+  }
+
   _showDelWalletDialLog(BuildContext context) {
     showCupertinoDialog(
         context: context,
@@ -391,6 +464,10 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
             ),
           ],
         ));
+  }
+
+  Future<bool> _updateName(BuildContext context, int index) async {
+    return await Provider.of<HomeProvider>(context, listen: false).updateName(index, _name);
   }
 
   Future<bool> _backupKey(BuildContext context) async {

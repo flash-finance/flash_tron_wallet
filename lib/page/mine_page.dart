@@ -31,7 +31,7 @@ class _MinePageState extends State<MinePage> {
         title: Text(
           '我的',
           style: Util.textStyle(
-              context, 2, Colors.grey[900], spacing: 0.2, size: 32),
+              context, 2, Colors.grey[900], spacing: 1.0, size: 32),
         ),
         centerTitle: true,
         elevation: 0,

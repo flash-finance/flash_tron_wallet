@@ -56,14 +56,14 @@ Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
 
 Handler importKeyHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-  String selectIndex = params['selectIndex'][0];
-  return ImportKeyPage(selectIndex);
+  String type = params['type'][0];
+  return ImportKeyPage(type);
 });
 
 Handler importMnemonicHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-  String selectIndex = params['selectIndex'][0];
-  return ImportMnemonicPage(selectIndex);
+  String type = params['type'][0];
+  return ImportMnemonicPage(type);
 });
 
 Handler buildWalletFirstHandler =

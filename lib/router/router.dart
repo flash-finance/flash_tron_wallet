@@ -13,8 +13,8 @@ class Routes {
   static String sendToken = '/asset/sendToken';
   static String receiveToken = '/asset/receiveToken';
 
-  static String importKey = '/asset/importKey';
-  static String importMnemonic = '/asset/importMnemonic';
+  static String importKey = '/asset/importKey/:type';
+  static String importMnemonic = '/asset/importMnemonic/:type';
   static String buildFirstWallet = '/asset/buildFirstWallet/:type';
   static String buildSecondWallet = '/asset/buildSecondWallet/:type';
   static String walletDetail = 'asset/walletDetail/:selectIndex';

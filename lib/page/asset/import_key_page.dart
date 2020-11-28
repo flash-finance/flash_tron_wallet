@@ -12,6 +12,10 @@ import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
 
 class ImportKeyPage extends StatefulWidget {
+  final String type;
+
+  ImportKeyPage(this.type);
+
   @override
   _ImportKeyPageState createState() => _ImportKeyPageState();
 }
@@ -298,7 +302,11 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
                     Provider.of<HomeProvider>(context, listen: false).changeImportKeyLoading(false);
                     if (val == true) {
                       Util.showToast('导入成功');
-                      Navigator.of(context)..pop();
+                      if (widget.type == '1') {
+                        Navigator.of(context)..pop();
+                      } else if (widget.type == '2') {
+                        Navigator.of(context)..pop()..pop();
+                      }
                     } else {
                       Util.showToast('导入失败，请再尝试');
                     }});

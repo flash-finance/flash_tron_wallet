@@ -514,7 +514,7 @@ class _AssetPageState extends State<AssetPage> {
           SizedBox(height: ScreenUtil().setHeight(30)),
           InkWell(
             onTap: () {
-              Application.router.navigateTo(context, 'asset/importKey', transition: TransitionType.cupertino);
+              Application.router.navigateTo(context, 'asset/importKey/1', transition: TransitionType.cupertino);
             },
             child: Container(
               padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
@@ -554,7 +554,7 @@ class _AssetPageState extends State<AssetPage> {
           SizedBox(height: ScreenUtil().setHeight(30)),
           InkWell(
             onTap: () {
-              Application.router.navigateTo(context, 'asset/importMnemonic', transition: TransitionType.cupertino);
+              Application.router.navigateTo(context, 'asset/importMnemonic/1', transition: TransitionType.cupertino);
             },
             child: Container(
               padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),

@@ -57,7 +57,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
           SizedBox(height: ScreenUtil().setHeight(30)),
           InkWell(
             onTap: () {
-              Application.router.navigateTo(context, 'asset/importKey', transition: TransitionType.cupertino);
+              Application.router.navigateTo(context, 'asset/importKey/2', transition: TransitionType.cupertino);
             },
             child: Container(
               padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
@@ -98,7 +98,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
           SizedBox(height: ScreenUtil().setHeight(30)),
           InkWell(
             onTap: () {
-              Application.router.navigateTo(context, 'asset/importMnemonic', transition: TransitionType.cupertino);
+              Application.router.navigateTo(context, 'asset/importMnemonic/2', transition: TransitionType.cupertino);
             },
             child: Container(
               padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),

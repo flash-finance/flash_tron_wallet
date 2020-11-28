@@ -14,6 +14,10 @@ import 'package:provider/provider.dart';
 import 'package:bip39/bip39.dart' as bip39;
 
 class ImportMnemonicPage extends StatefulWidget {
+  final String type;
+
+  ImportMnemonicPage(this.type);
+
   @override
   _ImportMnemonicPageState createState() => _ImportMnemonicPageState();
 }
@@ -266,7 +270,11 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
                     Provider.of<HomeProvider>(context, listen: false).changeImportMnemonicLoading(false);
                     if(val == true) {
                       Util.showToast('导入成功');
-                      Navigator.of(context)..pop();
+                      if (widget.type == '1') {
+                        Navigator.of(context)..pop();
+                      } else if (widget.type == '2') {
+                        Navigator.of(context)..pop()..pop();
+                      }
                     } else {
                       Util.showToast('导入失败，请再尝试');
                     }

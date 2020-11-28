@@ -10,9 +10,9 @@ import 'package:flash_tron_wallet/tron/service/tron_asset.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class AssetPage extends StatefulWidget {
@@ -219,6 +219,8 @@ class _AssetPageState extends State<AssetPage> {
     double totalAssetCny = 0.0;
     double totalAssetUsd = 0.0;
 
+    int selectIndex = Provider.of<HomeProvider>(context, listen: true).selectWalletIndex;
+
     if (assetList != null && assetList.length > 0) {
       for (AssetEntity item in assetList) {
         totalAssetCny += double.parse(Util.formatNumberSub(item.cny, 2));
@@ -238,7 +240,7 @@ class _AssetPageState extends State<AssetPage> {
         children: <Widget>[
           InkWell(
             onTap: () {
-              Application.router.navigateTo(context, 'asset/walletDetail', transition: TransitionType.cupertino);
+              Application.router.navigateTo(context, 'asset/walletDetail/$selectIndex', transition: TransitionType.cupertino);
             },
             child: Container(
               child: Row(
@@ -278,7 +280,7 @@ class _AssetPageState extends State<AssetPage> {
           SizedBox(height: ScreenUtil().setHeight(10)),
           InkWell(
             onTap: () {
-              Application.router.navigateTo(context, 'asset/walletDetail', transition: TransitionType.cupertino);
+              Application.router.navigateTo(context, 'asset/walletDetail/$selectIndex', transition: TransitionType.cupertino);
             },
             child: Container(
               alignment: Alignment.centerLeft,
@@ -726,7 +728,10 @@ class _AssetPageState extends State<AssetPage> {
                 ),
                 SizedBox(height: ScreenUtil().setHeight(15)),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Clipboard.setData(ClipboardData(text: tronAddress));
+                    Util.showToast('复制成功');
+                  },
                   child: Container(
                     child: Row(
                       children: <Widget>[
@@ -736,7 +741,7 @@ class _AssetPageState extends State<AssetPage> {
                             style: Util.textStyle(context, 1, Colors.grey[350], spacing: 0.5, size: 24),
                           ),
                         ),
-                        SizedBox(width: ScreenUtil().setWidth(20)),
+                        SizedBox(width: ScreenUtil().setWidth(50)),
                         Container(
                           child: Image.asset(
                             'icons/copy.png',

@@ -1,9 +1,11 @@
 import 'package:flash_tron_wallet/common/color.dart';
-import 'package:flash_tron_wallet/common/page.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
+import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
 
@@ -82,6 +84,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
       ),
       child: InkWell(
         onTap: () {
+          Application.router.navigateTo(context, 'asset/walletDetail/$index', transition: TransitionType.cupertino);
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,7 +130,10 @@ class _WalletManagePageState extends State<WalletManagePage> {
 
             SizedBox(height: ScreenUtil().setHeight(10)),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Clipboard.setData(ClipboardData(text: tronAddress));
+                Util.showToast('复制成功');
+              },
               child: Container(
                 child: Row(
                   children: <Widget>[
@@ -137,7 +143,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
                         style: Util.textStyle(context, 1, Colors.grey[350], spacing: 0.5, size: 24),
                       ),
                     ),
-                    SizedBox(width: ScreenUtil().setWidth(20)),
+                    SizedBox(width: ScreenUtil().setWidth(50)),
                     Container(
                       child: Image.asset(
                         'icons/copy.png',

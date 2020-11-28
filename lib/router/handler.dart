@@ -50,7 +50,8 @@ Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
 
 Handler walletDetailHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-  return WalletDetailPage();
+  String selectIndex = params['selectIndex'][0];
+  return WalletDetailPage(selectIndex);
 });
 
 Handler importKeyHandler =
@@ -73,11 +74,6 @@ Handler buildWalletSecondHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   String type = params['type'][0];
   return BuildWalletSecondPage(type);
-});
-
-Handler walletDetailPageHandler =
-Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-  return WalletDetailPage();
 });
 
 

@@ -12,6 +12,10 @@ import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
 
 class WalletDetailPage extends StatefulWidget {
+  final String selectIndex;
+
+  WalletDetailPage(this.selectIndex);
+
   @override
   _WalletDetailPageState createState() => _WalletDetailPageState();
 }
@@ -23,7 +27,8 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    WalletEntity wallet = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
+    List<WalletEntity> walletList = Provider.of<HomeProvider>(context,listen: false).walletList;
+    WalletEntity wallet = walletList[int.parse(widget.selectIndex)];
     bool flag = wallet.mnemonic != null;
     return Scaffold(
       backgroundColor: Colors.white,
@@ -95,7 +100,9 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                       ),
                       SizedBox(width: ScreenUtil().setWidth(30)),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+
+                        },
                         child: Image.asset(
                           'icons/pen.png',
                           width: ScreenUtil().setWidth(30),
@@ -119,7 +126,10 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                       ),
                       SizedBox(width: ScreenUtil().setWidth(30)),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Clipboard.setData(ClipboardData(text: tronAddress));
+                          Util.showToast('复制成功');
+                        },
                         child: Image.asset(
                           'icons/copy.png',
                           width: ScreenUtil().setWidth(30),

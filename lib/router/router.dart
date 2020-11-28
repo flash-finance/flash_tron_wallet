@@ -17,7 +17,7 @@ class Routes {
   static String importMnemonic = '/asset/importMnemonic';
   static String buildFirstWallet = '/asset/buildFirstWallet/:type';
   static String buildSecondWallet = '/asset/buildSecondWallet/:type';
-  static String walletDetail = 'asset/walletDetail';
+  static String walletDetail = 'asset/walletDetail/:selectIndex';
   static String backupKey = '/asset/backupKey';
   static String backupMnemonic = '/asset/backupMnemonic';
   static String updatePwd = '/asset/updatePwd';

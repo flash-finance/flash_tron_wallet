@@ -576,6 +576,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.29.0"
+  scan:
+    dependency: "direct main"
+    description:
+      name: scan
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.3"
   shared_preferences:
     dependency: "direct main"
     description:

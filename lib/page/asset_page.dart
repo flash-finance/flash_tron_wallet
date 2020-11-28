@@ -168,7 +168,9 @@ class _AssetPageState extends State<AssetPage> {
                 ),
                 SizedBox(width: ScreenUtil().setWidth(30)),
                 InkWell(
-                  onTap: () {},
+                  onTap: ()  {
+                    Application.router.navigateTo(context, 'asset/qrScan', transition: TransitionType.cupertino);
+                  },
                   child: Container(
                     child: Image.asset(
                       'icons/scan.png',
@@ -771,4 +773,5 @@ class _AssetPageState extends State<AssetPage> {
       ),
     );
   }
+
 }

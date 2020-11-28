@@ -5,6 +5,7 @@ import 'package:flash_tron_wallet/page/asset/build_wallet_first_page.dart';
 import 'package:flash_tron_wallet/page/asset/build_wallet_second_page.dart';
 import 'package:flash_tron_wallet/page/asset/import_key_page.dart';
 import 'package:flash_tron_wallet/page/asset/import_mnemonic_page.dart';
+import 'package:flash_tron_wallet/page/asset/qr_scan_page.dart';
 import 'package:flash_tron_wallet/page/asset/receive_token_page.dart';
 import 'package:flash_tron_wallet/page/asset/send_token_page.dart';
 import 'package:flash_tron_wallet/page/asset/update_pwd_page.dart';
@@ -78,7 +79,6 @@ Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   return BuildWalletSecondPage(type);
 });
 
-
 Handler backupKeyHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   return BackupKeyPage();
@@ -89,16 +89,19 @@ Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   return BackupMnemonicPage();
 });
 
-
 Handler updatePwdHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   return UpdatePwdPage();
 });
 
-
 Handler walletManageHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   return WalletManagePage();
+});
+
+Handler qrScanHandler =
+Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+  return QrScanPage();
 });
 
 

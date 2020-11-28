@@ -14,4 +14,14 @@ class IndexProvider with ChangeNotifier {
 
   bool get langType => _langType;
 
+  String _qrCode = '';
+
+  String get qrCode => _qrCode;
+
+  changeQrCode(String value) {
+    print('changeQrCode value:$value');
+    _qrCode = value;
+    notifyListeners();
+  }
+
 }

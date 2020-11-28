@@ -44,17 +44,38 @@ class _WalletManagePageState extends State<WalletManagePage> {
   }
 
   Widget _bodyWidget(BuildContext context) {
+    List<WalletEntity> walletList = Provider.of<HomeProvider>(context, listen: true).walletList;
     return Container(
       child: Column(
         children: <Widget>[
-          Expanded(child: _walletListWidget(context)),
+         walletList.length > 0 ? Expanded(child: _walletListWidget(context, walletList)) : _notWalletWidget(context),
         ],
       ),
     );
   }
 
-  Widget _walletListWidget(BuildContext context) {
-    List<WalletEntity> walletList = Provider.of<HomeProvider>(context, listen: true).walletList;
+  Widget _notWalletWidget(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), top: ScreenUtil().setHeight(10), right: ScreenUtil().setWidth(30), bottom: ScreenUtil().setHeight(20)),
+      padding: EdgeInsets.only(top: ScreenUtil().setHeight(50), bottom: ScreenUtil().setHeight(50)),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        image: DecorationImage(
+          image: AssetImage('images/bg.png'),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Container(
+        alignment: Alignment.center,
+        child: Text(
+          '暂无钱包',
+          style: Util.textStyle(context, 1, Colors.white, spacing: 0.5, size: 28),
+        ),
+      ),
+    );
+  }
+
+  Widget _walletListWidget(BuildContext context, List<WalletEntity> walletList) {
     return Container(
       child: ListView.builder(
           shrinkWrap: true,
@@ -68,7 +89,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
   }
 
   Widget _walletItemWidget(BuildContext context, List<WalletEntity> list, int index) {
-    int selectIndex = Provider.of<HomeProvider>(context, listen: false).selectWalletIndex;
+    int selectIndex = Provider.of<HomeProvider>(context, listen: true).selectWalletIndex;
     bool flag = selectIndex == index;
     String name = list[index].name;
     String tronAddress = list[index].tronAddress.substring(0, 10) + '...' + list[index].tronAddress.substring(list[index].tronAddress.length - 10, list[index].tronAddress.length);

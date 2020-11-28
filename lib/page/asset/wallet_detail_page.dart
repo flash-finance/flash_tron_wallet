@@ -26,7 +26,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
     WalletEntity wallet = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
     bool flag = wallet.mnemonic != null;
     return Scaffold(
-      backgroundColor: MyColors.lightBg,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         brightness: Brightness.light,

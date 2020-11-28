@@ -20,7 +20,7 @@ class _IndexPageState extends State<IndexPage> {
       label: '资产',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.broken_image),
+      icon: Icon(Icons.explore),
       label: '交易',
     ),
     BottomNavigationBarItem(

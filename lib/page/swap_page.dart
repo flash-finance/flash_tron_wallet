@@ -14,7 +14,7 @@ class _SwapPageState extends State<SwapPage> {
       appBar: AppBar(
         elevation: 0,
         title: Text(
-          'DeFi',
+          '交易',
           style: GoogleFonts.lato(
             color: Colors.white,
             fontSize: ScreenUtil().setSp(35),

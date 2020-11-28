@@ -12,6 +12,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'mine/download_page.dart';
+
 
 class MinePage extends StatefulWidget {
   @override
@@ -41,6 +43,7 @@ class _MinePageState extends State<MinePage> {
             _walletManageWidget(context),
             _langWidget(context),
             _versionWidget(context),
+            IntervalPage(ScreenUtil().setHeight(25)),
           ],
         ),
       ),
@@ -135,10 +138,6 @@ class _MinePageState extends State<MinePage> {
       }
     }
 
-    //print('_versionWidget currentVersion: $currentVersion');
-    //print('_versionWidget androidNeedUpdateType:$androidNeedUpdateType');
-    //print('_versionWidget iosNeedUpdateType:$iosNeedUpdateType');
-
     return InkWell(
       onTap: () async {
         if (Platform.isAndroid && dexInfo.androidVersionNum != null) {
@@ -184,8 +183,7 @@ class _MinePageState extends State<MinePage> {
                               return showDialog(
                                 context: context,
                                 barrierDismissible: false,
-                                //child: DownloadPage(dexInfo.androidDownloadUrl)
-                                child: Container(),
+                                child: DownloadPage(dexInfo.androidDownloadUrl)
                               );
                             }
                         ),

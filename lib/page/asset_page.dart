@@ -65,7 +65,6 @@ class _AssetPageState extends State<AssetPage> {
               width: ScreenUtil().setWidth(750),
               height: ScreenUtil().setHeight(500),
               decoration: BoxDecoration(
-                border: Border.all(width: 0, color: Colors.black12),
                 borderRadius: BorderRadius.circular(25),
                 image: DecorationImage(
                   image: AssetImage('images/bg.png'),

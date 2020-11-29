@@ -21,43 +21,23 @@ class QrScanPage extends StatefulWidget {
 }
 
 class _QrScanPageState extends State<QrScanPage> {
-  String _platformVersion = 'Unknown';
   ScanController controller = ScanController();
 
-  /*Future<void> initPlatformState() async {
-    String platformVersion;
-    try {
-      platformVersion = await Scan.platformVersion;
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
-  }*/
   @override
   void initState() {
     super.initState();
-    //initPlatformState();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
       appBar: PreferredSize(
-        child: AppBar(
-          backgroundColor: Colors.transparent,
-          brightness: Brightness.dark,
-          elevation: 0,
+        child: Container(
+          width: double.infinity,
+          child: _qrCodeWidget(context),
         ),
-        preferredSize: Size.fromHeight(ScreenUtil().setHeight(0)),
+        preferredSize: Size(double.infinity, ScreenUtil().setHeight(1334)),
       ),
-      body: _qrCodeWidget(context),
     );
   }
 
@@ -80,7 +60,7 @@ class _QrScanPageState extends State<QrScanPage> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), top: ScreenUtil().setHeight(20), right: ScreenUtil().setWidth(30)),
+            margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), top: ScreenUtil().setHeight(65), right: ScreenUtil().setWidth(30)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -98,7 +78,7 @@ class _QrScanPageState extends State<QrScanPage> {
                 ),
                 Container(
                   child: Text(
-                    '扫一扫 ($_platformVersion)',
+                    '扫一扫',
                     style: Util.textStyle(context, 2, Colors.white, spacing: 0.2, size: 32),
                   ),
                 ),

@@ -1,6 +1,7 @@
 import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
+import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
@@ -49,8 +50,38 @@ class _QrScanPageState extends State<QrScanPage> {
             ),
           ),
           Container(
-            child: Text('bbb'),
+            margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), top: ScreenUtil().setHeight(20), right: ScreenUtil().setWidth(30)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context)..pop();
+                  },
+                  child: Container(
+                    child: Icon(
+                      Icons.arrow_back,
+                      size: ScreenUtil().setSp(45),
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                Container(
+                  child: Text(
+                    '扫一扫',
+                    style: Util.textStyle(context, 2, Colors.white, spacing: 0.2, size: 32),
+                  ),
+                ),
+                Container(
+                  child: Text(
+                    '相册',
+                    style: Util.textStyle(context, 2, Colors.white, spacing: 0.2, size: 32),
+                  ),
+                ),
+              ],
+            ),
           ),
+          Container(),
         ],
       ),
     );

@@ -5,6 +5,7 @@ import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/model/dex_info_model.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
+import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/tron/service/tron_asset.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
@@ -300,6 +301,7 @@ class _AssetPageState extends State<AssetPage> {
               children: <Widget>[
                 InkWell(
                   onTap: () {
+                    Provider.of<IndexProvider>(context, listen: false).changeQrCode('');
                     Application.router.navigateTo(context, 'asset/sendToken', transition: TransitionType.cupertino);
                   },
                   child: Container(
@@ -307,8 +309,7 @@ class _AssetPageState extends State<AssetPage> {
                     child: Row(
                       children: <Widget>[
                         Container(
-                          padding: EdgeInsets.only(
-                              bottom: flag ? ScreenUtil().setHeight(1) : ScreenUtil().setHeight(1.5)),
+                          padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(1) : ScreenUtil().setHeight(1.5)),
                           child: Icon(
                             Icons.transit_enterexit_sharp,
                             size: ScreenUtil().setSp(34),

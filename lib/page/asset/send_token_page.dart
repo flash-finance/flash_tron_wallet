@@ -4,6 +4,7 @@ import 'package:flash_tron_wallet/common/page.dart';
 import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
+import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flash_tron_wallet/tron/service/tron_transaction.dart';
 import 'package:flash_tron_wallet/tron/service/tron_wallet.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
@@ -64,7 +65,7 @@ class SendTokenSubPage extends StatefulWidget {
 class _SendTokenSubPageState extends State<SendTokenSubPage> {
   final _formKey = GlobalKey<FormState>();
 
-  final TextEditingController _receiveAddressController = new TextEditingController();
+  TextEditingController _receiveAddressController;
 
   String _receiveAddress;
 
@@ -88,9 +89,13 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
 
   @override
   Widget build(BuildContext context) {
-    bool assetFilterShowHide = Provider.of<HomeProvider>(context).assetFilterShowHide;
-    List<AssetEntity> assetFilterConList = Provider.of<HomeProvider>(context).assetList;
-    int selectAssetFilterIndex = Provider.of<HomeProvider>(context).selectAssetFilterIndex;
+    _receiveAddress = Provider.of<IndexProvider>(context, listen: true).qrCodeValue;
+    _receiveAddressController =  TextEditingController.fromValue(TextEditingValue(text: _receiveAddress,
+        selection: TextSelection.fromPosition(TextPosition(affinity: TextAffinity.downstream, offset: _receiveAddress.length))));
+
+    bool assetFilterShowHide = Provider.of<HomeProvider>(context, listen: true).assetFilterShowHide;
+    List<AssetEntity> assetFilterConList = Provider.of<HomeProvider>(context, listen: true).assetList;
+    int selectAssetFilterIndex = Provider.of<HomeProvider>(context, listen: true).selectAssetFilterIndex;
     WalletEntity wallet = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
     return Container(
       child: ListView(

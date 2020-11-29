@@ -24,7 +24,7 @@ class _QrScanPageState extends State<QrScanPage> {
   String _platformVersion = 'Unknown';
   ScanController controller = ScanController();
 
-  Future<void> initPlatformState() async {
+  /*Future<void> initPlatformState() async {
     String platformVersion;
     try {
       platformVersion = await Scan.platformVersion;
@@ -36,11 +36,11 @@ class _QrScanPageState extends State<QrScanPage> {
     setState(() {
       _platformVersion = platformVersion;
     });
-  }
+  }*/
   @override
   void initState() {
     super.initState();
-    initPlatformState();
+    //initPlatformState();
   }
 
 

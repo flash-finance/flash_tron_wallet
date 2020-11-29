@@ -182,7 +182,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                 ),
                 InkWell(
                   onTap: () {
-                    Application.router.navigateTo(context, 'asset/qrScan/2', transition: TransitionType.cupertino);
+                    Application.router.navigateTo(context, 'asset/qrScan/2', transition: TransitionType.fadeIn);
                   },
                   child: Container(
                     child: Image.asset(

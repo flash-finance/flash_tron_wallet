@@ -1,11 +1,9 @@
-
 import 'dart:async';
 
 import 'package:flutter/services.dart';
 
 class ImagesPicker {
-  static const MethodChannel _channel =
-  const MethodChannel('chavesgu/images_picker');
+  static const MethodChannel _channel = const MethodChannel('chavesgu/images_picker');
 
   static Future<String> get platformVersion async {
     final String version = await _channel.invokeMethod('getPlatformVersion');
@@ -35,26 +33,29 @@ class ImagesPicker {
         "gif": gif,
         "maxSize": maxSize ?? null,
         "quality": quality ?? -1,
-        "cropOption": cropOpt!=null?{
-          "quality": quality ?? 1,
-          "cropType": cropOpt.cropType?.toString(),
-          "aspectRatioX": cropOpt.aspectRatio?.aspectRatioX,
-          "aspectRatioY": cropOpt.aspectRatio?.aspectRatioY,
-        }:null,
+        "cropOption": cropOpt != null
+            ? {
+                "quality": quality ?? 1,
+                "cropType": cropOpt.cropType?.toString(),
+                "aspectRatioX": cropOpt.aspectRatio?.aspectRatioX,
+                "aspectRatioY": cropOpt.aspectRatio?.aspectRatioY,
+              }
+            : null,
       });
       if (res.length > 0) {
         List<Media> output = (res ?? []).map((image) {
           Media media = Media();
           media.thumbPath = image["thumbPath"];
           media.path = image["path"];
-          if (image["size"]!=null) media.size = (image["size"]/1024).toDouble();
+          if (image["size"] != null)
+            media.size = (image["size"] / 1024).toDouble();
           return media;
         }).toList();
         return output;
       }
       return null;
     } catch (e) {
-//      print(e);
+      print(e);
       return null;
     }
   }
@@ -79,19 +80,22 @@ class ImagesPicker {
         "maxTime": maxTime,
         "maxSize": maxSize ?? null,
         "quality": quality ?? -1,
-        "cropOption": cropOpt!=null?{
-          "quality": quality ?? 1,
-          "cropType": cropOpt.cropType?.toString(),
-          "aspectRatioX": cropOpt.aspectRatio?.aspectRatioX,
-          "aspectRatioY": cropOpt.aspectRatio?.aspectRatioY,
-        }:null,
+        "cropOption": cropOpt != null
+            ? {
+                "quality": quality ?? 1,
+                "cropType": cropOpt.cropType?.toString(),
+                "aspectRatioX": cropOpt.aspectRatio?.aspectRatioX,
+                "aspectRatioY": cropOpt.aspectRatio?.aspectRatioY,
+              }
+            : null,
       });
       if (res.length > 0) {
         List<Media> output = (res ?? []).map((image) {
           Media media = Media();
           media.thumbPath = image["thumbPath"];
           media.path = image["path"];
-          if (image["size"]!=null) media.size = (image["size"]/1024).toDouble();
+          if (image["size"] != null)
+            media.size = (image["size"] / 1024).toDouble();
           return media;
         }).toList();
         return output;
@@ -120,8 +124,7 @@ class CropAspectRatio {
   final double aspectRatioY;
 
   const CropAspectRatio(this.aspectRatioX, this.aspectRatioY)
-      :
-        assert(aspectRatioX > 0.0, 'aspectRatioX must > 0'),
+      : assert(aspectRatioX > 0.0, 'aspectRatioX must > 0'),
         assert(aspectRatioY > 0.0, 'aspectRatioY must > 0');
 
   static const custom = null;

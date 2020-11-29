@@ -19,7 +19,6 @@ class IndexProvider with ChangeNotifier {
   String get qrCodeValue => _qrCodeValue;
 
   changeQrCode(String value) {
-    print('changeQrCode value:$value');
     _qrCodeValue = value;
     notifyListeners();
   }

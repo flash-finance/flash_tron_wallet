@@ -26,6 +26,12 @@ class _QrScanPageState extends State<QrScanPage> {
   }
 
   @override
+  void dispose() {
+    controller.pause();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(

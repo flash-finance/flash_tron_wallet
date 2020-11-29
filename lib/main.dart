@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: MaterialApp(
-        title: 'Flash Tron Wallet',
+        title: 'Flash钱包',
         debugShowCheckedModeBanner: false,
         onGenerateRoute: Application.router.generator,
         theme: ThemeData(

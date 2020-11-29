@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>NSCameraUsageDescription</key>
-    <string>Flash QR Scan</string>
+    <string>  </string>
     <key>io.flutter.embedded_views_preview</key>
     <string>YES</string>
 

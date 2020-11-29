@@ -4,12 +4,9 @@ import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:scan/scan.dart';
-
-import 'images_picker.dart';
 
 class QrScanPage extends StatefulWidget {
   final String type;
@@ -77,24 +74,16 @@ class _QrScanPageState extends State<QrScanPage> {
                   ),
                 ),
                 Container(
+                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(20)),
                   child: Text(
                     '扫一扫',
                     style: Util.textStyle(context, 2, Colors.white, spacing: 0.2, size: 32),
                   ),
                 ),
-                InkWell(
-                  onTap: () async {
-                    List<Media> res = await ImagesPicker.pick();
-                    if (res != null) {
-                      String qrCode = await Scan.parse(res[0].path);
-                      print(qrCode);
-                    }
-                  },
-                  child: Container(
-                    child: Text(
-                      '相册',
-                      style: Util.textStyle(context, 2, Colors.white, spacing: 0.2, size: 32),
-                    ),
+                Container(
+                  child: Text(
+                    '相册',
+                    style: Util.textStyle(context, 2, Colors.white.withOpacity(0), spacing: 0.2, size: 32),
                   ),
                 ),
               ],

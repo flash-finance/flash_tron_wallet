@@ -15,14 +15,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:scan/scan.dart';
 
 class AssetPage extends StatefulWidget {
   @override
   _AssetPageState createState() => _AssetPageState();
 }
 
-class _AssetPageState extends State<AssetPage> {
+class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
   Timer _timer;
+  ScanController controller = ScanController();
 
   @override
   void initState() {
@@ -31,7 +33,28 @@ class _AssetPageState extends State<AssetPage> {
   }
 
   @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    print('didChangeAppLifecycleState:${state.toString()}');
+    switch(state) {
+      case AppLifecycleState.inactive:
+        break;
+      case AppLifecycleState.resumed:
+        Provider.of<HomeProvider>(context, listen: false).changeBackgroundFlag(false);
+        controller.pause();
+        break;
+      case AppLifecycleState.paused:
+        Provider.of<HomeProvider>(context, listen: false).changeBackgroundFlag(true);
+        controller.pause();
+        break;
+      default:
+        break;
+    }
+  }
+
+  @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     if (_timer != null) {
       if (_timer.isActive) {
         _timer.cancel();
@@ -39,6 +62,7 @@ class _AssetPageState extends State<AssetPage> {
     }
     super.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {

@@ -5,9 +5,11 @@ import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/provider/index_provider.dart';
+import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/tron/service/tron_transaction.dart';
 import 'package:flash_tron_wallet/tron/service/tron_wallet.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
+import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -178,13 +180,18 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                     onSaved: (String value) => _receiveAddress = value,
                   ),
                 ),
-                Container(
-                  child: Image.asset(
-                    'icons/scan.png',
-                    width: ScreenUtil().setWidth(45),
-                    height: ScreenUtil().setWidth(45),
-                    color: Colors.grey[850],
-                    fit: BoxFit.fill,
+                InkWell(
+                  onTap: () {
+                    Application.router.navigateTo(context, 'asset/qrScan/2', transition: TransitionType.cupertino);
+                  },
+                  child: Container(
+                    child: Image.asset(
+                      'icons/scan.png',
+                      width: ScreenUtil().setWidth(45),
+                      height: ScreenUtil().setWidth(45),
+                      color: Colors.grey[850],
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ),
               ],

@@ -4,9 +4,12 @@ import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:scan/scan.dart';
+
+import 'images_picker.dart';
 
 class QrScanPage extends StatefulWidget {
   @override
@@ -14,7 +17,27 @@ class QrScanPage extends StatefulWidget {
 }
 
 class _QrScanPageState extends State<QrScanPage> {
+  String _platformVersion = 'Unknown';
   ScanController controller = ScanController();
+
+  Future<void> initPlatformState() async {
+    String platformVersion;
+    try {
+      platformVersion = await Scan.platformVersion;
+    } on PlatformException {
+      platformVersion = 'Failed to get platform version.';
+    }
+    if (!mounted) return;
+
+    setState(() {
+      _platformVersion = platformVersion;
+    });
+  }
+  @override
+  void initState() {
+    super.initState();
+    initPlatformState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,10 +95,20 @@ class _QrScanPageState extends State<QrScanPage> {
                     style: Util.textStyle(context, 2, Colors.white, spacing: 0.2, size: 32),
                   ),
                 ),
-                Container(
-                  child: Text(
-                    '相册',
-                    style: Util.textStyle(context, 2, Colors.white, spacing: 0.2, size: 32),
+                InkWell(
+                  onTap: () async {
+                    print('1111');
+                    List<Media> res = await ImagesPicker.pick();
+                    if (res != null) {
+                      String qrCode = await Scan.parse(res[0].path);
+                      print(qrCode);
+                    }
+                  },
+                  child: Container(
+                    child: Text(
+                      '相册',
+                      style: Util.textStyle(context, 2, Colors.white, spacing: 0.2, size: 32),
+                    ),
                   ),
                 ),
               ],

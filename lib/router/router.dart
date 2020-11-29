@@ -24,7 +24,7 @@ class Routes {
 
   static String walletManage = '/mine/walletManage';
 
-  static String qrScan = '/asset/qrScan';
+  static String qrScan = '/asset/qrScan/:type';
 
   static void configureRouter(FluroRouter router) {
     router.notFoundHandler = Handler(handlerFunc: (BuildContext context, Map<String, List<String>> params) {

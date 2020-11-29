@@ -101,7 +101,8 @@ Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
 
 Handler qrScanHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-  return QrScanPage();
+  String type = params['type'][0];
+  return QrScanPage(type);
 });
 
 

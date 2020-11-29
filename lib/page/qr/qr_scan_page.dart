@@ -12,6 +12,10 @@ import 'package:scan/scan.dart';
 import 'images_picker.dart';
 
 class QrScanPage extends StatefulWidget {
+  final String type;
+
+  QrScanPage(this.type);
+
   @override
   _QrScanPageState createState() => _QrScanPageState();
 }
@@ -39,6 +43,8 @@ class _QrScanPageState extends State<QrScanPage> {
     initPlatformState();
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,12 +69,13 @@ class _QrScanPageState extends State<QrScanPage> {
             child: ScanView(
               controller: controller,
               scanAreaScale: 0.7,
-              //scanLineColor: Colors.green.shade400,
               scanLineColor: MyColors.themeColor,
               onCapture: (data) {
                 Provider.of<IndexProvider>(context, listen: false).changeQrCode(data);
                 Navigator.pop(context);
-                Application.router.navigateTo(context, 'asset/sendToken', transition: TransitionType.cupertino);
+                if (widget.type == '1') {
+                  Application.router.navigateTo(context, 'asset/sendToken', transition: TransitionType.cupertino);
+                }
               },
             ),
           ),
@@ -91,13 +98,12 @@ class _QrScanPageState extends State<QrScanPage> {
                 ),
                 Container(
                   child: Text(
-                    '扫一扫',
+                    '扫一扫 ($_platformVersion)',
                     style: Util.textStyle(context, 2, Colors.white, spacing: 0.2, size: 32),
                   ),
                 ),
                 InkWell(
                   onTap: () async {
-                    print('1111');
                     List<Media> res = await ImagesPicker.pick();
                     if (res != null) {
                       String qrCode = await Scan.parse(res[0].path);
@@ -114,7 +120,6 @@ class _QrScanPageState extends State<QrScanPage> {
               ],
             ),
           ),
-          Container(),
         ],
       ),
     );

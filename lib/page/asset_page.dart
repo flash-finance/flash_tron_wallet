@@ -169,7 +169,7 @@ class _AssetPageState extends State<AssetPage> {
                 SizedBox(width: ScreenUtil().setWidth(30)),
                 InkWell(
                   onTap: ()  {
-                    Application.router.navigateTo(context, 'asset/qrScan', transition: TransitionType.cupertino);
+                    Application.router.navigateTo(context, 'asset/qrScan/1', transition: TransitionType.cupertino);
                   },
                   child: Container(
                     child: Image.asset(

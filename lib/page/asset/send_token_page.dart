@@ -108,7 +108,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
           _receiveWidget(context),
           IntervalPage(ScreenUtil().setHeight(25)),
           _amountWidget(context, assetFilterConList, selectAssetFilterIndex),
-          _balanceWidget(context),
+          _balanceWidget(context, assetFilterConList, selectAssetFilterIndex),
           IntervalPage(ScreenUtil().setHeight(25)),
           SizedBox(height: ScreenUtil().setHeight(120)),
           _submitWidget(context, wallet),
@@ -216,32 +216,37 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
+                  width:ScreenUtil().setWidth(200),
                   child: Text(
                     '转账数量',
                     style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
                   ),
                 ),
-                InkWell(
-                  onTap: () {
-                  },
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        child: Text(
-                          !flag ? '${assetFilterConList[index].name} ' : '',
-                          style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
-                        ),
+                Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        _showSelectTokenDialLog(context, assetFilterConList);
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Container(
+                            child: Text(
+                              !flag ? '${assetFilterConList[index].name} ' : '',
+                              style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(top: ScreenUtil().setHeight(3)),
+                            child: Icon(
+                              Icons.arrow_forward_ios,
+                              size: ScreenUtil().setSp(25),
+                              color: Colors.grey[800],
+                            ),
+                          ),
+                        ],
                       ),
-                      Container(
-                        padding: EdgeInsets.only(top: ScreenUtil().setHeight(3)),
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          size: ScreenUtil().setSp(25),
-                          color: Colors.grey[800],
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
                 ),
               ],
             ),
@@ -304,7 +309,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
     );
   }
 
-  Widget _balanceWidget(BuildContext context) {
+  Widget _balanceWidget(BuildContext context, List<AssetEntity> assetFilterConList, int index) {
     return Container(
       margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(25), right: ScreenUtil().setWidth(40), bottom: ScreenUtil().setHeight(25)),
       child: Row(
@@ -318,7 +323,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
           ),
           Container(
             child: Text(
-              '4711.432  TRX',
+              '${assetFilterConList[index].balance}  ${assetFilterConList[index].name}',
               style: GoogleFonts.roboto(
                 letterSpacing: 0.0,
                 color: Colors.grey[850],
@@ -330,6 +335,106 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
         ],
       ),
     );
+  }
+
+  _showSelectTokenDialLog(BuildContext context, List<AssetEntity> list) {
+    showDialog(
+      context: context,
+      child: AlertDialog(
+        elevation: 3,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))
+        ),
+        content: Container(
+          width: ScreenUtil().setWidth(600),
+          height: ScreenUtil().setHeight(500),
+          padding: EdgeInsets.only(top: ScreenUtil().setHeight(0)),
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    itemCount: list.length,
+                    itemBuilder: (context, index) {
+                      return _selectTokenWidget(context, index, list[index]);
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _selectTokenWidget(BuildContext context, int index, AssetEntity item) {
+    int selectAssetFilterIndex = Provider.of<HomeProvider>(context, listen: true).selectAssetFilterIndex;
+    bool flag = index == selectAssetFilterIndex;
+    String address = item.address;
+    if (item.type == 0) {
+      address = '';
+    }
+    if (item.type == 2) {
+      address = address.substring(0, 4) + '****' + address.substring(address.length - 4, address.length);
+    }
+
+    return InkWell(
+      onTap: () {
+        Provider.of<HomeProvider>(context, listen: false).changeSelectAssetFilterIndex(index);
+        Navigator.pop(context);
+      },
+      child: Container(
+        width: ScreenUtil().setWidth(600),
+        padding: EdgeInsets.only(top: ScreenUtil().setHeight(15), bottom: ScreenUtil().setHeight(15)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Container(
+              width: ScreenUtil().setWidth(300),
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.only(left: ScreenUtil().setWidth(10)),
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    child: ClipOval(
+                      child: Image.network(
+                        '${item.logoUrl}',
+                        width: ScreenUtil().setWidth(40),
+                        height: ScreenUtil().setWidth(40),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(left: ScreenUtil().setWidth(20)),
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      '${item.name}',
+                      style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 28),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              width: ScreenUtil().setWidth(60),
+              padding: EdgeInsets.only(right: ScreenUtil().setWidth(10)),
+              alignment: Alignment.centerRight,
+              child: !flag ? Container() : Icon(
+                Icons.check,
+                color: Colors.grey[850],
+                size: ScreenUtil().setSp(40),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+
   }
 
 

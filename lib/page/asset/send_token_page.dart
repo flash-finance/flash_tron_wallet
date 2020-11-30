@@ -100,19 +100,22 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
     int selectAssetFilterIndex = Provider.of<HomeProvider>(context, listen: true).selectAssetFilterIndex;
     WalletEntity wallet = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
     return Container(
-      child: ListView(
-        children: <Widget>[
-          IntervalPage(ScreenUtil().setHeight(25)),
-          _sendWidget(context,wallet),
-          IntervalPage(ScreenUtil().setHeight(25)),
-          _receiveWidget(context),
-          IntervalPage(ScreenUtil().setHeight(25)),
-          _amountWidget(context, assetFilterConList, selectAssetFilterIndex),
-          _balanceWidget(context, assetFilterConList, selectAssetFilterIndex),
-          IntervalPage(ScreenUtil().setHeight(25)),
-          SizedBox(height: ScreenUtil().setHeight(120)),
-          _submitWidget(context, wallet),
-        ],
+      child: Form(
+        key: _formKey,
+        child: ListView(
+          children: <Widget>[
+            IntervalPage(ScreenUtil().setHeight(25)),
+            _sendWidget(context,wallet),
+            IntervalPage(ScreenUtil().setHeight(25)),
+            _receiveWidget(context),
+            IntervalPage(ScreenUtil().setHeight(25)),
+            _amountWidget(context, assetFilterConList, selectAssetFilterIndex),
+            _balanceWidget(context, assetFilterConList, selectAssetFilterIndex),
+            IntervalPage(ScreenUtil().setHeight(25)),
+            SizedBox(height: ScreenUtil().setHeight(120)),
+            _submitWidget(context, wallet),
+          ],
+        ),
       ),
     );
   }
@@ -273,7 +276,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                       letterSpacing: 0.2,
                       color: Colors.grey[850],
                       fontWeight: FontWeight.w500,
-                      fontSize: ScreenUtil().setSp(30),
+                      fontSize: ScreenUtil().setSp(32),
                     ),
                     maxLines: 1,
                     keyboardType: TextInputType.numberWithOptions(decimal: true),

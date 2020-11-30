@@ -78,14 +78,17 @@ flutter:
   fonts:
     - family: SHS-M
       fonts:
-        - asset: fonts/SourceHanSansCN-Medium.ttf
+        - asset: fonts/scn-medium.ttf
           weight: 700
 
     - family: SHS-R
       fonts:
-        - asset: fonts/SourceHanSansCN-Regular.ttf
+        - asset: fonts/scn-regular.ttf
           weight: 700
 
+    - family: ICON
+      fonts:
+        - asset: fonts/iconfont.ttf
 
 
 

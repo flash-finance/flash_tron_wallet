@@ -181,12 +181,17 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                     Application.router.navigateTo(context, 'asset/addWallet', transition: TransitionType.cupertino);
                   },
                   child: Container(
-                    child: Image.asset(
+                    /*child: Image.asset(
                       'icons/plus.png',
                       width: ScreenUtil().setWidth(50),
                       height: ScreenUtil().setWidth(50),
                       color: Colors.grey[800],
                       fit: BoxFit.fill,
+                    ),*/
+                    child: Icon(
+                      IconData(0xe7b8, fontFamily: 'ICON'),
+                      size: ScreenUtil().setSp(55),
+                      color: Colors.grey[800],
                     ),
                   ),
                 ),
@@ -196,12 +201,17 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                     Application.router.navigateTo(context, 'asset/qrScan/1', transition: TransitionType.fadeIn);
                   },
                   child: Container(
-                    child: Image.asset(
+                    /*child: Image.asset(
                       'icons/scan.png',
                       width: ScreenUtil().setWidth(55),
                       height: ScreenUtil().setWidth(55),
                       color: Colors.grey[800],
                       fit: BoxFit.fill,
+                    ),*/
+                    child: Icon(
+                      IconData(0xe606, fontFamily: 'ICON'),
+                      size: ScreenUtil().setSp(60),
+                      color: Colors.grey[800],
                     ),
                   ),
                 ),

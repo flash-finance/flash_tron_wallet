@@ -11,6 +11,7 @@ import 'package:bip39/bip39.dart' as bip39;
 class TronWallet {
 
   WalletEntity createWallet(String name, String pwd) {
+
     String randomMnemonic = bip39.generateMnemonic();
     String hexSeed = bip39.mnemonicToSeedHex(randomMnemonic);
 

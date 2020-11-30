@@ -185,12 +185,10 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                     Application.router.navigateTo(context, 'asset/qrScan/2', transition: TransitionType.fadeIn);
                   },
                   child: Container(
-                    child: Image.asset(
-                      'icons/scan.png',
-                      width: ScreenUtil().setWidth(45),
-                      height: ScreenUtil().setWidth(45),
+                    child: Icon(
+                      IconData(0xe606, fontFamily: 'ICON'),
+                      size: ScreenUtil().setSp(52),
                       color: Colors.grey[850],
-                      fit: BoxFit.fill,
                     ),
                   ),
                 ),

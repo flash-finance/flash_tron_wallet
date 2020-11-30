@@ -372,13 +372,6 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
   Widget _selectTokenWidget(BuildContext context, int index, AssetEntity item) {
     int selectAssetFilterIndex = Provider.of<HomeProvider>(context, listen: true).selectAssetFilterIndex;
     bool flag = index == selectAssetFilterIndex;
-    String address = item.address;
-    if (item.type == 0) {
-      address = '';
-    }
-    if (item.type == 2) {
-      address = address.substring(0, 4) + '****' + address.substring(address.length - 4, address.length);
-    }
 
     return InkWell(
       onTap: () {
@@ -387,7 +380,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
       },
       child: Container(
         width: ScreenUtil().setWidth(600),
-        padding: EdgeInsets.only(top: ScreenUtil().setHeight(15), bottom: ScreenUtil().setHeight(15)),
+        padding: EdgeInsets.only(top: ScreenUtil().setHeight(16), bottom: ScreenUtil().setHeight(16)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[

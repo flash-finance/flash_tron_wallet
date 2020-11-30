@@ -485,7 +485,10 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
         context: context,
         builder: (context) =>
             CupertinoAlertDialog(
-              title: Text('转账$_assetAmount${item.name}，请输入密码', style: TextStyle(fontSize: ScreenUtil().setSp(28), color: Colors.grey[800]),),
+              title: Text(
+                '转账$_assetAmount${item.name}, 请输入密码',
+                style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.0, size: 28),
+              ),
               content: Card(
                 elevation: 0.0,
                 child: Column(
@@ -508,9 +511,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                         maxLength: 6,
                         maxLengthEnforced: true,
                         keyboardType: TextInputType.number,
-                        inputFormatters: [
-                          WhitelistingTextInputFormatter.digitsOnly
-                        ],
+                        inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
                         validator: (String value) {
                           if (value.isEmpty) {
                             return '密码不能为空';
@@ -530,7 +531,10 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
               ),
               actions: <Widget>[
                 FlatButton(
-                  child: Text('取消', style: TextStyle(fontSize: ScreenUtil().setSp(30), color:  MyColors.themeColor),),
+                  child: Text(
+                    '取消',
+                    style: Util.textStyle(context, 2,  MyColors.themeColor, spacing: 0.5, size: 30),
+                  ),
                   onPressed: () {
                     FocusScope.of(context).requestFocus(FocusNode());
                     if (!transferLoading) {
@@ -541,7 +545,10 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                   },
                 ),
                 FlatButton(
-                    child: Text('确定', style: TextStyle(fontSize: ScreenUtil().setSp(30), color:  MyColors.themeColor),),
+                    child: Text(
+                      '确定',
+                      style: Util.textStyle(context, 2,  MyColors.themeColor, spacing: 0.5, size: 30),
+                    ),
                     onPressed: () {
                       FocusScope.of(context).requestFocus(FocusNode());
                       if (_sendFormKey.currentState.validate()){

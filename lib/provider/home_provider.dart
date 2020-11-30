@@ -260,15 +260,6 @@ class HomeProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  bool _assetFilterShowHide = true;
-
-  bool get assetFilterShowHide => _assetFilterShowHide;
-
-  changeAssetFilterShowHide(bool flag) {
-    _assetFilterShowHide = flag;
-    notifyListeners();
-  }
-
   int _selectAssetFilterIndex = 0;
 
   int get selectAssetFilterIndex => _selectAssetFilterIndex;

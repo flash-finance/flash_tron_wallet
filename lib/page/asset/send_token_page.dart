@@ -67,14 +67,14 @@ class SendTokenSubPage extends StatefulWidget {
 class _SendTokenSubPageState extends State<SendTokenSubPage> {
   final _formKey = GlobalKey<FormState>();
 
-  TextEditingController _receiveAddressController;
+  TextEditingController _receiveAddressController = new TextEditingController();
 
-  String _receiveAddress;
+  String _receiveAddress = '';
 
-  final TextEditingController _assetAmountController = new TextEditingController();
+  TextEditingController _assetAmountController = new TextEditingController();
 
 
-  String _assetAmount;
+  String _assetAmount = '';
 
   final _sendFormKey = GlobalKey<FormState>();
 
@@ -91,11 +91,14 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
 
   @override
   Widget build(BuildContext context) {
-    _receiveAddress = Provider.of<IndexProvider>(context, listen: true).qrCodeValue;
-    _receiveAddressController =  TextEditingController.fromValue(TextEditingValue(text: _receiveAddress,
+    print('000');
+    _receiveAddress = Provider.of<IndexProvider>(context, listen: false).qrCodeValue;
+    _receiveAddressController.text = _receiveAddress;
+   /*_receiveAddressController =  TextEditingController.fromValue(TextEditingValue(text: _receiveAddress,
         selection: TextSelection.fromPosition(TextPosition(affinity: TextAffinity.downstream, offset: _receiveAddress.length))));
+    _assetAmountController =  TextEditingController.fromValue(TextEditingValue(text: _assetAmount,
+        selection: TextSelection.fromPosition(TextPosition(affinity: TextAffinity.downstream, offset: _receiveAddress.length))));*/
 
-    bool assetFilterShowHide = Provider.of<HomeProvider>(context, listen: true).assetFilterShowHide;
     List<AssetEntity> assetFilterConList = Provider.of<HomeProvider>(context, listen: true).assetList;
     int selectAssetFilterIndex = Provider.of<HomeProvider>(context, listen: true).selectAssetFilterIndex;
     WalletEntity wallet = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
@@ -380,6 +383,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
       onTap: () {
         Provider.of<HomeProvider>(context, listen: false).changeSelectAssetFilterIndex(index);
         Navigator.pop(context);
+        _assetAmountController.text = '';
       },
       child: Container(
         width: ScreenUtil().setWidth(600),
@@ -455,9 +459,9 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 if (_receiveAddress.isEmpty) {
-                  Util.showToast('接收地址不能为空');
+                  Util.showToast('收款地址不能为空');
                 } else if (!TronWallet().checkTronAddress(_receiveAddress.trim())) {
-                  Util.showToast('接收地址格式不正确');
+                  Util.showToast('收款地址格式不正确');
                 } else if (_receiveAddress.trim() == wallet.tronAddress) {
                   Util.showToast('接收地址和发送地址不能相同');
                 } else if (_assetAmount.isEmpty) {
@@ -487,7 +491,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
             CupertinoAlertDialog(
               title: Text(
                 '转账$_assetAmount${item.name}, 请输入密码',
-                style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.0, size: 28),
+                style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 28),
               ),
               content: Card(
                 elevation: 0.0,

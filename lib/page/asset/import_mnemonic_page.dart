@@ -1,8 +1,6 @@
 import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
-import 'package:flash_tron_wallet/model/dex_info_model.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
-import 'package:flash_tron_wallet/tron/service/tron_asset.dart';
 import 'package:flash_tron_wallet/tron/service/tron_wallet.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:flutter/cupertino.dart';
@@ -95,7 +93,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
               ),
             ),
             importMnemonicLoading ? Container(
-              padding: EdgeInsets.only(top: 250, left: 185),
+              padding: EdgeInsets.only(top: ScreenUtil().setHeight(300), left: ScreenUtil().setWidth(350)),
               child: CupertinoActivityIndicator(),
             ) : Container(),
           ],

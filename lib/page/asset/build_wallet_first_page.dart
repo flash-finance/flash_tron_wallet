@@ -1,9 +1,7 @@
 import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
-import 'package:flash_tron_wallet/model/dex_info_model.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
-import 'package:flash_tron_wallet/tron/service/tron_asset.dart';
 import 'package:flash_tron_wallet/tron/service/tron_wallet.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:fluro/fluro.dart';
@@ -91,7 +89,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
               ),
             ),
             buildWalletLoading ? Container(
-              padding: EdgeInsets.only(top: 200, left: 185),
+              padding: EdgeInsets.only(top: ScreenUtil().setHeight(300), left: ScreenUtil().setWidth(350)),
               child: CupertinoActivityIndicator(),
             ) : Container(),
           ],

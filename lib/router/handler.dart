@@ -40,7 +40,8 @@ Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
 
 Handler sendTokenHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-  return SendTokenPage();
+  String value = params['value'][0];
+  return SendTokenPage(value);
 });
 
 

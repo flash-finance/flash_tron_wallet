@@ -14,13 +14,4 @@ class IndexProvider with ChangeNotifier {
 
   bool get langType => _langType;
 
-  String _qrCodeValue = '';
-
-  String get qrCodeValue => _qrCodeValue;
-
-  changeQrCode(String value) {
-    _qrCodeValue = value;
-    notifyListeners();
-  }
-
 }

@@ -5,7 +5,6 @@ import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/model/dex_info_model.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
-import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/tron/service/tron_asset.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
@@ -14,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:scan/scan.dart';
 
@@ -191,6 +191,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                 SizedBox(width: ScreenUtil().setWidth(30)),
                 InkWell(
                   onTap: ()  {
+                    Provider.of<HomeProvider>(context, listen: false).changeSelectAssetFilterIndex(0);
                     Application.router.navigateTo(context, 'asset/qrScan/1', transition: TransitionType.fadeIn);
                   },
                   child: Container(
@@ -249,22 +250,22 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
       }
       totalAssetUsd = totalAssetCny / 6.75;
     }
-    return Container(
-      padding: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40)),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-        image: DecorationImage(
-          image: AssetImage('images/bg.png'),
-          fit: BoxFit.cover,
+    return InkWell(
+      onTap: () {
+        Application.router.navigateTo(context, 'asset/walletDetail/$selectIndex', transition: TransitionType.cupertino);
+      },
+      child: Container(
+        padding: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40)),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          image: DecorationImage(
+            image: AssetImage('images/bg.png'),
+            fit: BoxFit.cover,
+          ),
         ),
-      ),
-      child: Column(
-        children: <Widget>[
-          InkWell(
-            onTap: () {
-              Application.router.navigateTo(context, 'asset/walletDetail/$selectIndex', transition: TransitionType.cupertino);
-            },
-            child: Container(
+        child: Column(
+          children: <Widget>[
+            Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -298,114 +299,120 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                 ],
               ),
             ),
-          ),
-          SizedBox(height: ScreenUtil().setHeight(10)),
-          InkWell(
-            onTap: () {
-              Application.router.navigateTo(context, 'asset/walletDetail/$selectIndex', transition: TransitionType.cupertino);
-            },
-            child: Container(
-              alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(20)),
-              child: Text(
-                '${Util.formatNumberSub(totalAssetUsd, 2)}',
-                style: Util.textStyle(context, 2, Colors.white, spacing: 0.2, size: 42),
+            SizedBox(height: ScreenUtil().setHeight(10)),
+            InkWell(
+              onTap: () {
+                Application.router.navigateTo(context, 'asset/walletDetail/$selectIndex', transition: TransitionType.cupertino);
+              },
+              child: Container(
+                alignment: Alignment.centerLeft,
+                padding: EdgeInsets.only(top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(20)),
+                child: Text(
+                  '${Util.formatNumberSub(totalAssetUsd, 2)}',
+                  style: GoogleFonts.roboto(
+                    letterSpacing: 0.2,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                    fontSize: ScreenUtil().setSp(45),
+                  ),
+                ),
               ),
             ),
-          ),
-          SizedBox(height: ScreenUtil().setHeight(20)),
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                InkWell(
-                  onTap: () {
-                    Provider.of<IndexProvider>(context, listen: false).changeQrCode('');
-                    Application.router.navigateTo(context, 'asset/sendToken', transition: TransitionType.cupertino);
-                  },
-                  child: Container(
-                    padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(20)),
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(1) : ScreenUtil().setHeight(1.5)),
-                          child: Icon(
-                            Icons.transit_enterexit_sharp,
-                            size: ScreenUtil().setSp(34),
-                            color: Colors.white,
+            SizedBox(height: ScreenUtil().setHeight(10)),
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  InkWell(
+                    onTap: () {
+                      Provider.of<HomeProvider>(context, listen: false).changeSelectAssetFilterIndex(0);
+                      String value = '';
+                      Application.router.navigateTo(context, 'asset/sendToken/$value', transition: TransitionType.cupertino);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(20)),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(1) : ScreenUtil().setHeight(1.5)),
+                            child: Icon(
+                              Icons.transit_enterexit_sharp,
+                              size: ScreenUtil().setSp(34),
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
-                        SizedBox(width: ScreenUtil().setWidth(10)),
-                        Container(
-                          padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(3)),
-                          child: Text(
-                            '转账',
-                            style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 26),
+                          SizedBox(width: ScreenUtil().setWidth(10)),
+                          Container(
+                            padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(3)),
+                            child: Text(
+                              '转账',
+                              style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 26),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                InkWell(
-                  onTap: () {
-                    Application.router.navigateTo(context, 'asset/receiveToken', transition: TransitionType.cupertino);
-                  },
-                  child: Container(
-                    padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(20)),
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(2) : ScreenUtil().setHeight(2.3)),
-                          child: Icon(
-                            Icons.download_sharp,
-                            size: ScreenUtil().setSp(32),
-                            color: Colors.white,
+                  InkWell(
+                    onTap: () {
+                      Application.router.navigateTo(context, 'asset/receiveToken', transition: TransitionType.cupertino);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(20)),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(2) : ScreenUtil().setHeight(2.3)),
+                            child: Icon(
+                              Icons.download_sharp,
+                              size: ScreenUtil().setSp(32),
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
-                        SizedBox(width: ScreenUtil().setWidth(10)),
-                        Container(
-                          padding: EdgeInsets.only(
-                              bottom: ScreenUtil().setHeight(6)),
-                          child: Text(
-                            '收款',
-                            style: Util.textStyle(context, 1, Colors.white,
-                                spacing: 0.6, size: 26),
+                          SizedBox(width: ScreenUtil().setWidth(10)),
+                          Container(
+                            padding: EdgeInsets.only(
+                                bottom: ScreenUtil().setHeight(6)),
+                            child: Text(
+                              '收款',
+                              style: Util.textStyle(context, 1, Colors.white,
+                                  spacing: 0.6, size: 26),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                InkWell(
-                  child: Container(
-                    padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(20)),
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(3)),
-                          child: Icon(
-                            Icons.sync_rounded,
-                            size: ScreenUtil().setSp(32),
-                            color: Colors.white,
+                  InkWell(
+                    child: Container(
+                      padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(20)),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(3)),
+                            child: Icon(
+                              Icons.sync_rounded,
+                              size: ScreenUtil().setSp(32),
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
-                        SizedBox(width: ScreenUtil().setWidth(10)),
-                        Container(
-                          padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(6) : ScreenUtil().setHeight(4.5)),
-                          child: Text(
-                            '交易',
-                            style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 26),
+                          SizedBox(width: ScreenUtil().setWidth(10)),
+                          Container(
+                            padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(6) : ScreenUtil().setHeight(4.5)),
+                            child: Text(
+                              '交易',
+                              style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 26),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -438,59 +445,76 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
   Widget _assetDataItemWidget(BuildContext context, List<AssetEntity> assetList, int index) {
     AssetEntity item = assetList[index];
     bool flag = index != assetList.length - 1;
-    return Container(
-      padding: EdgeInsets.only(top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(20)),
-      decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: flag ? Colors.black45 : Colors.white, width: 0.3)),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Container(
-            child: Row(
-              children: <Widget>[
-                Container(
-                  child: Image.network(
-                    '${item.logoUrl}',
-                    width: ScreenUtil().setWidth(50),
-                    height: ScreenUtil().setWidth(50),
-                    fit: BoxFit.fill,
+    return InkWell(
+      onTap: () {
+        Provider.of<HomeProvider>(context, listen: false).changeSelectAssetFilterIndex(index);
+        String value = '';
+        Application.router.navigateTo(context, 'asset/sendToken/$value', transition: TransitionType.cupertino);
+      },
+      child: Container(
+        padding: EdgeInsets.only(top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(20)),
+        decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: flag ? Colors.black45 : Colors.white, width: 0.3)),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Container(
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    child: Image.network(
+                      '${item.logoUrl}',
+                      width: ScreenUtil().setWidth(50),
+                      height: ScreenUtil().setWidth(50),
+                      fit: BoxFit.fill,
+                    ),
                   ),
-                ),
-                SizedBox(width: ScreenUtil().setWidth(30)),
-                Container(
+                  SizedBox(width: ScreenUtil().setWidth(30)),
+                  Container(
+                      child: Text(
+                        '${item.name}',
+                        style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.0, size: 31),
+                      )),
+                ],
+              ),
+            ),
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  Container(
                     child: Text(
-                  '${item.name}',
-                  style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.0, size: 31),
-                )),
-              ],
-            ),
-          ),
-          Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: <Widget>[
-                Container(
-                  child: Text(
-                    '${Util.formatNumberSub(item.balance, 4)}',
-                    style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.1, size: 29),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                      '${Util.formatNumberSub(item.balance, 4)}',
+                      style: GoogleFonts.roboto(
+                        letterSpacing: 0.1,
+                        color: Colors.grey[800],
+                        fontWeight: FontWeight.w500,
+                        fontSize: ScreenUtil().setSp(30),
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                ),
-                SizedBox(height: ScreenUtil().setHeight(5)),
-                Container(
-                  child: Text(
-                    '≈  \$ ${Util.formatNumberSub(item.cny / 6.75, 2)}',
-                    style: Util.textStyle(context, 2, Colors.grey[500], spacing: 0.1, size: 24),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                  SizedBox(height: ScreenUtil().setHeight(8)),
+                  Container(
+                    child: Text(
+                      '≈  \$ ${Util.formatNumberSub(item.cny / 6.75, 2)}',
+                      style: GoogleFonts.roboto(
+                        letterSpacing: 0.1,
+                        color: Colors.grey[500],
+                        fontWeight: FontWeight.w400,
+                        fontSize: ScreenUtil().setSp(24),
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

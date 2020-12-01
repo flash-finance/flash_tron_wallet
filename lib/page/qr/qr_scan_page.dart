@@ -54,11 +54,12 @@ class _QrScanPageState extends State<QrScanPage> {
               scanAreaScale: 0.7,
               scanLineColor: MyColors.themeColor,
               onCapture: (data) {
-                Provider.of<IndexProvider>(context, listen: false).changeQrCode(data);
-                Navigator.pop(context);
                 if (widget.type == '1') {
-                  Application.router.navigateTo(context, 'asset/sendToken', transition: TransitionType.cupertino);
+                  Navigator.of(context)..pop();
+                } else {
+                  Navigator.of(context)..pop()..pop();
                 }
+                Application.router.navigateTo(context, 'asset/sendToken/$data', transition: TransitionType.cupertino);
               },
             ),
           ),

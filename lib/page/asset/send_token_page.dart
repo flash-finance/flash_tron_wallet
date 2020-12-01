@@ -4,7 +4,6 @@ import 'package:flash_tron_wallet/common/page.dart';
 import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
-import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/tron/service/tron_transaction.dart';
 import 'package:flash_tron_wallet/tron/service/tron_wallet.dart';
@@ -19,6 +18,10 @@ import 'package:provider/provider.dart';
 
 
 class SendTokenPage extends StatefulWidget {
+  final String value;
+
+  SendTokenPage(this.value);
+
   @override
   _SendTokenPageState createState() => _SendTokenPageState();
 }
@@ -52,7 +55,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
         onTap: (){
           FocusScope.of(context).requestFocus(FocusNode());
         },
-        child: SendTokenSubPage(),
+        child: SendTokenSubPage(widget.value),
       ),
     );
   }
@@ -60,6 +63,10 @@ class _SendTokenPageState extends State<SendTokenPage> {
 
 
 class SendTokenSubPage extends StatefulWidget {
+  final String value;
+
+  SendTokenSubPage(this.value);
+
   @override
   _SendTokenSubPageState createState() => _SendTokenSubPageState();
 }
@@ -67,38 +74,28 @@ class SendTokenSubPage extends StatefulWidget {
 class _SendTokenSubPageState extends State<SendTokenSubPage> {
   final _formKey = GlobalKey<FormState>();
 
-  TextEditingController _receiveAddressController = new TextEditingController();
-
+  TextEditingController _receiveAddressController;
+  TextEditingController _assetAmountController;
   String _receiveAddress = '';
-
-  TextEditingController _assetAmountController = new TextEditingController();
-
-
   String _assetAmount = '';
-
   final _sendFormKey = GlobalKey<FormState>();
-
   String _sendPwd;
-
   bool transferLoading;
-
 
   @override
   void initState() {
     super.initState();
     transferLoading = false;
+    _receiveAddress = widget.value;
+    _receiveAddressController =  TextEditingController.fromValue(TextEditingValue(text: _receiveAddress,
+        selection: TextSelection.fromPosition(TextPosition(affinity: TextAffinity.downstream, offset: _receiveAddress.length))));
+    _assetAmountController =  TextEditingController.fromValue(TextEditingValue(text: _assetAmount,
+        selection: TextSelection.fromPosition(TextPosition(affinity: TextAffinity.downstream, offset: _receiveAddress.length))));
+
   }
 
   @override
   Widget build(BuildContext context) {
-    print('000');
-    _receiveAddress = Provider.of<IndexProvider>(context, listen: false).qrCodeValue;
-    _receiveAddressController.text = _receiveAddress;
-   /*_receiveAddressController =  TextEditingController.fromValue(TextEditingValue(text: _receiveAddress,
-        selection: TextSelection.fromPosition(TextPosition(affinity: TextAffinity.downstream, offset: _receiveAddress.length))));
-    _assetAmountController =  TextEditingController.fromValue(TextEditingValue(text: _assetAmount,
-        selection: TextSelection.fromPosition(TextPosition(affinity: TextAffinity.downstream, offset: _receiveAddress.length))));*/
-
     List<AssetEntity> assetFilterConList = Provider.of<HomeProvider>(context, listen: true).assetList;
     int selectAssetFilterIndex = Provider.of<HomeProvider>(context, listen: true).selectAssetFilterIndex;
     WalletEntity wallet = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
@@ -231,6 +228,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                 Expanded(
                     child: InkWell(
                       onTap: () {
+                        FocusScope.of(context).requestFocus(FocusNode());
                         _showSelectTokenDialLog(context, assetFilterConList);
                       },
                       child: Row(
@@ -283,15 +281,15 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                     ),
                     maxLines: 1,
                     keyboardType: TextInputType.numberWithOptions(decimal: true),
-                    inputFormatters: [DoubleFormat()],
+                    inputFormatters: [DoubleFormat(decimalRange: assetFilterConList[index].precision)],
                     onSaved: (String value) => _assetAmount = value,
                   ),
                 ),
                 InkWell(
                   onTap: () {
-                    setState(() {
-                      _assetAmountController.text = !flag ? assetFilterConList[index].balance.toString() : '';
-                    });
+                    FocusScope.of(context).requestFocus(FocusNode());
+                    _assetAmount = !flag ? assetFilterConList[index].balance.toString() : '';
+                    _assetAmountController.text = !flag ? assetFilterConList[index].balance.toString() : '';
                   },
                   child: Container(
                     width: ScreenUtil().setWidth(80),
@@ -463,7 +461,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                 } else if (!TronWallet().checkTronAddress(_receiveAddress.trim())) {
                   Util.showToast('收款地址格式不正确');
                 } else if (_receiveAddress.trim() == wallet.tronAddress) {
-                  Util.showToast('接收地址和发送地址不能相同');
+                  Util.showToast('收款地址和转出地址不能相同');
                 } else if (_assetAmount.isEmpty) {
                   Util.showToast('转账数量不能为空');
                 } else if (double.parse(_assetAmount) <= 0.0) {
@@ -490,8 +488,8 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
         builder: (context) =>
             CupertinoAlertDialog(
               title: Text(
-                '转账$_assetAmount${item.name}, 请输入密码',
-                style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 28),
+                '转账$_assetAmount${item.name}，请输入密码',
+                style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
               ),
               content: Card(
                 elevation: 0.0,

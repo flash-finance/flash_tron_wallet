@@ -10,7 +10,7 @@ class Routes {
   static String mine = '/mine';
 
   static String addWallet = '/asset/addWallet';
-  static String sendToken = '/asset/sendToken';
+  static String sendToken = '/asset/sendToken/:value';
   static String receiveToken = '/asset/receiveToken';
 
   static String importKey = '/asset/importKey/:type';

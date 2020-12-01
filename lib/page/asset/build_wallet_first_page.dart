@@ -293,9 +293,12 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
     Provider.of<HomeProvider>(context, listen: false).changeBuildWalletLoading(true);
     WalletEntity entity = TronWallet().createWallet(_name, _setPwd);
     bool result =  await Provider.of<HomeProvider>(context, listen: false).addWallet(entity);
-    /*if (result) {
+    if (result) {
       await _getAsset(context);
-    }*/
+    }
+    await Future.delayed(Duration(milliseconds: 1500), () {
+    });
+
     return result;
   }
 
@@ -303,6 +306,8 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
     print('_getAsset 000');
     String tronAddress = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity.tronAddress;
     List<TokenRows> tokenList = Provider.of<HomeProvider>(context, listen: false).tokenList;
-    return await TronAsset().getAsset(context, tronAddress, tokenList);
+    //return await TronAsset().getAsset(context, tronAddress, tokenList);
+    Provider.of<HomeProvider>(context, listen: false).getAsset4Init();
+    return true;
   }
 }

@@ -331,8 +331,8 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
   }
 
   Future<bool> _getAsset() async {
-    String tronAddress = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity.tronAddress;
-    List<TokenRows> tokenList = Provider.of<HomeProvider>(context, listen: false).tokenList;
+    //String tronAddress = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity.tronAddress;
+    //List<TokenRows> tokenList = Provider.of<HomeProvider>(context, listen: false).tokenList;
     //return await TronAsset().getAsset(context, tronAddress, tokenList);
     Provider.of<HomeProvider>(context, listen: false).getAsset4ReloadAsync();
     return true;

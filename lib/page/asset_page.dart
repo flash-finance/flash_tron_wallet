@@ -41,6 +41,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
         break;
       case AppLifecycleState.resumed:
         Provider.of<HomeProvider>(context, listen: false).changeBackgroundFlag(false);
+        // 无法关闭 会重新唤醒?
         controller.pause();
         break;
       case AppLifecycleState.paused:
@@ -679,20 +680,33 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
     );
   }
 
-  Future _reloadAsset() async {
+  bool _reloadTokenBalanceFlag = true;
+
+  _reloadAsset() async {
     _timer = Timer.periodic(Duration(milliseconds: 3000), (timer) async {
       bool backgroundFlag = Provider.of<HomeProvider>(context, listen: false).backgroundFlag;
-      if (!backgroundFlag) {
-        await Provider.of<HomeProvider>(context, listen: false).getAsset4Reload();
+      if (!backgroundFlag && _reloadTokenBalanceFlag) {
+        await _reloadAssetSub();
       }
     });
   }
 
-  Future<bool> _getAsset() async {
+  _reloadAssetSub() async {
+    try {
+      _reloadTokenBalanceFlag = false;
+      await Provider.of<HomeProvider>(context, listen: false).getAsset4ReloadSync();
+    } catch (e) {
+    } finally {
+      _reloadTokenBalanceFlag = true;
+    }
+  }
+
+
+  _getAsset() async {
     WalletEntity wallet = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
     if (wallet != null && wallet.tronAddress != null) {
       List<TokenRows> tokenList = Provider.of<HomeProvider>(context, listen: false).tokenList;
-      return await TronAsset().getAsset(context, wallet.tronAddress, tokenList);
+      TronAsset().getAsset(context, wallet.tronAddress, tokenList);
     }
   }
 

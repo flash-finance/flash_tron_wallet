@@ -12,6 +12,7 @@ import 'package:flash_tron_wallet/tron/api/api.pbgrpc.dart';
 import 'package:flash_tron_wallet/tron/core/Tron.pb.dart';
 import 'package:flash_tron_wallet/tron/service/tron_asset.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:grpc/grpc.dart';
 import 'package:package_info/package_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,6 +25,7 @@ class HomeProvider with ChangeNotifier {
     await getDexInfo();
     await getAssetHide();
     await getAsset4Init();
+    getAsset4ReloadAsync();
   }
 
   bool _backgroundFlag = false;
@@ -374,7 +376,7 @@ class HomeProvider with ChangeNotifier {
       List<AssetEntity> list = [];
       for (int i = 0; i < tokenList.length; i++) {
         TokenRows item = tokenList[i];
-        AssetEntity entity = AssetEntity(type: 0, address: item.tokenAddress, name: item.tokenShort, precision: item.tokenPrecision, balance: 0, frozen: 0, order: 0, cny: 0, logoUrl: item.logoUrl);
+        AssetEntity entity = AssetEntity(type: item.tokenType, address: item.tokenAddress, name: item.tokenShort, precision: item.tokenPrecision, balance: 0, frozen: 0, order: 0, cny: 0, logoUrl: item.logoUrl);
         list.add(entity);
       }
       _assetList = list;
@@ -384,7 +386,100 @@ class HomeProvider with ChangeNotifier {
     }
   }
 
-  getAsset4Reload() async {
+  // 异步
+  getAsset4ReloadAsync() async {
+    if (_selectWalletEntity == null) {
+      if (_assetList != null && _assetList.length > 0) {
+        _assetList = [];
+      }
+      notifyListeners();
+      return;
+    }
+    try {
+      String userAddress = _selectWalletEntity.tronAddress;
+      for (int i = 0; i < tokenList.length; i++) {
+        if (tokenList[i].tokenType == 0) {
+          getTrxBalance4Async(userAddress, tokenList[i], trxPriceCny);
+        } else if (tokenList[i].tokenType == 2) {
+          getTrc20Balance4Async(userAddress, tokenList[i], trxPriceCny);
+        }
+      }
+    } catch (e) {
+      print(e);
+    }
+
+  }
+
+  getTrxBalance4Async(String userAddress, TokenRows item, double trxPriceCny) async {
+    final channel = ClientChannel(
+      tronGrpcIP.trim(),
+      port: 50051,
+      options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
+    );
+    final stub = WalletClient(channel);
+    try {
+      Uint8List originAddress = base58.decode(userAddress).sublist(0, 21);
+      Account response = await stub.getAccount(Account()..address = originAddress);
+      AssetEntity entity = TronAsset().getTrxBalance(response, userAddress, item, trxPriceCny);
+      //print('getTrxBalance4Async:${entity.toJson()}, length:${_assetList.length}');
+      for (int i = 0; i < _assetList.length; i++) {
+        if (_assetList[i].address == entity.address) {
+          _assetList[i].type = entity.type;
+          _assetList[i].address = entity.address;
+          _assetList[i].name = entity.name;
+          _assetList[i].precision = entity.precision;
+          _assetList[i].balance = entity.balance;
+          _assetList[i].frozen = entity.frozen;
+          _assetList[i].order = entity.order;
+          _assetList[i].cny = entity.cny;
+          _assetList[i].logoUrl = entity.logoUrl;
+          notifyListeners();
+          break;
+        }
+      }
+      return;
+    } catch (e) {
+      print(e);
+    } finally {
+      await channel.shutdown();
+    }
+  }
+
+  getTrc20Balance4Async(String userAddress, TokenRows item, double trxPriceCny) async {
+    final channel = ClientChannel(
+      tronGrpcIP.trim(),
+      port: 50051,
+      options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
+    );
+    try {
+      final stub = WalletClient(channel);
+      AssetEntity entity = await TronAsset().getTrc20Balance(stub, userAddress, item, trxPriceCny);
+      //print('getTrc20Balance4Async:${entity.toJson()}, length:${_assetList.length}');
+      for (int i = 0; i < _assetList.length; i++) {
+        if (_assetList[i].address == entity.address) {
+          _assetList[i].type = entity.type;
+          _assetList[i].address = entity.address;
+          _assetList[i].name = entity.name;
+          _assetList[i].precision = entity.precision;
+          _assetList[i].balance = entity.balance;
+          _assetList[i].frozen = entity.frozen;
+          _assetList[i].order = entity.order;
+          _assetList[i].cny = entity.cny;
+          _assetList[i].logoUrl = entity.logoUrl;
+          notifyListeners();
+          break;
+        }
+      }
+      return;
+    } catch (e) {
+      print(e);
+    } finally{
+      await channel.shutdown();
+    }
+  }
+
+  // 同步
+  getAsset4ReloadSync() async {
     if (_selectWalletEntity == null) {
       if (_assetList != null && _assetList.length > 0) {
         _assetList = [];

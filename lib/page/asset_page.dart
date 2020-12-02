@@ -29,7 +29,8 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    _reloadAsset();
+    //_reloadAsset();
+    _reloadAssetSub();
   }
 
   @override
@@ -770,9 +771,10 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
         ),
       ),
       child: InkWell(
-        onTap: () {
-          Provider.of<HomeProvider>(context, listen: false).changeSelectWallet(index);
+        onTap: () async{
           Navigator.pop(context);
+          await Provider.of<HomeProvider>(context, listen: false).changeSelectWallet(index);
+          Provider.of<HomeProvider>(context, listen: false).getAsset4ReloadAsync();
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

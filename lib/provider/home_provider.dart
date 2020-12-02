@@ -143,6 +143,7 @@ class HomeProvider with ChangeNotifier {
         _selectWalletIndex = index;
         _selectWalletEntity = _walletList[index];
         notifyListeners();
+        await saveSelectWalletIndex(index);
       }
     } catch (e) {
       print(e);

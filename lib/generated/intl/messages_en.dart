@@ -21,6 +21,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-
+    "bottomTab1" : MessageLookupByLibrary.simpleMessage("Assets"),
+    "bottomTab2" : MessageLookupByLibrary.simpleMessage("Swap"),
+    "bottomTab3" : MessageLookupByLibrary.simpleMessage("Mine")
   };
 }

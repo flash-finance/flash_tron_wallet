@@ -1,0 +1,25 @@
+{
+  "bottomTab1": "资产",
+  "bottomTab2": "交易",
+  "bottomTab3": "我的",
+
+  "asset-MyAssets": "我的资产",
+  "asset-Details": "详情",
+  "asset-Transfer": "转账",
+  "asset-Receive": "收款",
+  "asset-Swap": "交易",
+
+  "asset-AddWallet": "添加钱包",
+  "asset-ImportPrivateKey": "导入私钥",
+  "asset-ImportMnemonic": "导入助记词",
+  "asset-CreateWallet": "创建钱包",
+
+  "asset-WalletDetails": "钱包详情",
+  "asset-BackupMnemonic": "备份助记词",
+  "asset-BackupPrivateKey": "备份私钥",
+  "asset-ModifyPassword": "修改密码",
+  "asset-DeleteWallet": "删除钱包",
+
+  "asset-Assets": "资产",
+  "asset-WalletList": "钱包列表"
+}

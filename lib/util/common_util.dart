@@ -1,9 +1,11 @@
 import 'dart:math';
 
+import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 
 class Util {
 
@@ -22,13 +24,17 @@ class Util {
   static TextStyle textStyle(BuildContext context, int type, Color color, {double spacing, double size}) {
     double letterSpacing = spacing != null ? spacing : 0.0;
     double fontSize = size != null ? size : 23.0;
-    //bool flag = Provider.of<IndexProvider>(context, listen: false).langType;
-    //print('flag:$flag');
-    return TextStyle(
-      fontFamily: type == 1 ? 'SHS-R' : 'SHS-M',
+    bool langType = Provider.of<IndexProvider>(context, listen: false).langType;
+    return langType ? TextStyle(
+      fontFamily: type == 1 ? 'ZH-R' : 'ZH-M',
       letterSpacing: letterSpacing,
       color: color,
-      fontSize: ScreenUtil().setSp(fontSize),
+      fontSize: ScreenUtil().setSp(fontSize+2),
+    ) : TextStyle(
+      fontFamily: type == 1 ? 'EN-R' : 'EN-M',
+      letterSpacing: 0.0,
+      color: color,
+      fontSize: ScreenUtil().setSp(fontSize+2),
     );
   }
 

@@ -76,15 +76,23 @@ flutter:
     - images/
     -
   fonts:
-    - family: SHS-M
+    - family: ZH-M
       fonts:
-        - asset: fonts/scn-medium.ttf
-          weight: 700
+        - asset: fonts/PingFangSC-Medium.ttf
+          weight: 400
 
-    - family: SHS-R
+    - family: ZH-R
       fonts:
-        - asset: fonts/scn-regular.ttf
-          weight: 700
+        - asset: fonts/PingFangSC-Regular.ttf
+
+    - family: EN-M
+      fonts:
+        - asset: fonts/SF-Pro-Display-Medium.otf
+          weight: 400
+
+    - family: EN-R
+      fonts:
+        - asset: fonts/SF-Pro-Display-Regular.otf
 
     - family: ICON
       fonts:

@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
           accentColor: MyColors.themeColor,
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
-          fontFamily: 'SHS-M',
+          fontFamily: 'ZH-M',
         ),
         home: IndexPage(),
       ),

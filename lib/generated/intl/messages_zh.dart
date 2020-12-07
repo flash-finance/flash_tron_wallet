@@ -21,6 +21,22 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "assetAddWallet" : MessageLookupByLibrary.simpleMessage("添加钱包"),
+    "assetAssets" : MessageLookupByLibrary.simpleMessage("资产"),
+    "assetBackupMnemonic" : MessageLookupByLibrary.simpleMessage("备份助记词"),
+    "assetBackupPrivateKey" : MessageLookupByLibrary.simpleMessage("备份私钥"),
+    "assetCreateWallet" : MessageLookupByLibrary.simpleMessage("创建钱包"),
+    "assetDeleteWallet" : MessageLookupByLibrary.simpleMessage("删除钱包"),
+    "assetDetails" : MessageLookupByLibrary.simpleMessage("详情"),
+    "assetImportMnemonic" : MessageLookupByLibrary.simpleMessage("导入助记词"),
+    "assetImportPrivateKey" : MessageLookupByLibrary.simpleMessage("导入私钥"),
+    "assetModifyPassword" : MessageLookupByLibrary.simpleMessage("修改密码"),
+    "assetMyAssets" : MessageLookupByLibrary.simpleMessage("我的资产"),
+    "assetReceive" : MessageLookupByLibrary.simpleMessage("收款"),
+    "assetSwap" : MessageLookupByLibrary.simpleMessage("交易"),
+    "assetTransfer" : MessageLookupByLibrary.simpleMessage("转账"),
+    "assetWalletDetails" : MessageLookupByLibrary.simpleMessage("钱包详情"),
+    "assetWalletList" : MessageLookupByLibrary.simpleMessage("钱包列表"),
     "bottomTab1" : MessageLookupByLibrary.simpleMessage("资产"),
     "bottomTab2" : MessageLookupByLibrary.simpleMessage("交易"),
     "bottomTab3" : MessageLookupByLibrary.simpleMessage("我的")

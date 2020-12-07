@@ -63,37 +63,165 @@ class S {
     );
   }
 
-  // skipped getter for the 'asset-MyAssets' key
+  /// `My Assets`
+  String get assetMyAssets {
+    return Intl.message(
+      'My Assets',
+      name: 'assetMyAssets',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'asset-Details' key
+  /// `Details`
+  String get assetDetails {
+    return Intl.message(
+      'Details',
+      name: 'assetDetails',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'asset-Transfer' key
+  /// `Transfer`
+  String get assetTransfer {
+    return Intl.message(
+      'Transfer',
+      name: 'assetTransfer',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'asset-Receive' key
+  /// `Receive`
+  String get assetReceive {
+    return Intl.message(
+      'Receive',
+      name: 'assetReceive',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'asset-Swap' key
+  /// `Swap`
+  String get assetSwap {
+    return Intl.message(
+      'Swap',
+      name: 'assetSwap',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'asset-AddWallet' key
+  /// `Add Wallet`
+  String get assetAddWallet {
+    return Intl.message(
+      'Add Wallet',
+      name: 'assetAddWallet',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'asset-ImportPrivateKey' key
+  /// `Import Private Key`
+  String get assetImportPrivateKey {
+    return Intl.message(
+      'Import Private Key',
+      name: 'assetImportPrivateKey',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'asset-ImportMnemonic' key
+  /// `Import Mnemonic`
+  String get assetImportMnemonic {
+    return Intl.message(
+      'Import Mnemonic',
+      name: 'assetImportMnemonic',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'asset-CreateWallet' key
+  /// `Create Wallet`
+  String get assetCreateWallet {
+    return Intl.message(
+      'Create Wallet',
+      name: 'assetCreateWallet',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'asset-WalletDetails' key
+  /// `Wallet Details`
+  String get assetWalletDetails {
+    return Intl.message(
+      'Wallet Details',
+      name: 'assetWalletDetails',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'asset-BackupMnemonic' key
+  /// `Backup Mnemonic`
+  String get assetBackupMnemonic {
+    return Intl.message(
+      'Backup Mnemonic',
+      name: 'assetBackupMnemonic',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'asset-BackupPrivateKey' key
+  /// `Backup Private Key`
+  String get assetBackupPrivateKey {
+    return Intl.message(
+      'Backup Private Key',
+      name: 'assetBackupPrivateKey',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'asset-ModifyPassword' key
+  /// `Modify Password`
+  String get assetModifyPassword {
+    return Intl.message(
+      'Modify Password',
+      name: 'assetModifyPassword',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'asset-DeleteWallet' key
+  /// `Delete Wallet`
+  String get assetDeleteWallet {
+    return Intl.message(
+      'Delete Wallet',
+      name: 'assetDeleteWallet',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'asset-Assets' key
+  /// `Assets`
+  String get assetAssets {
+    return Intl.message(
+      'Assets',
+      name: 'assetAssets',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'asset-WalletList' key
+  /// `Wallet List`
+  String get assetWalletList {
+    return Intl.message(
+      'Wallet List',
+      name: 'assetWalletList',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

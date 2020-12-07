@@ -21,6 +21,22 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "assetAddWallet" : MessageLookupByLibrary.simpleMessage("Add Wallet"),
+    "assetAssets" : MessageLookupByLibrary.simpleMessage("Assets"),
+    "assetBackupMnemonic" : MessageLookupByLibrary.simpleMessage("Backup Mnemonic"),
+    "assetBackupPrivateKey" : MessageLookupByLibrary.simpleMessage("Backup Private Key"),
+    "assetCreateWallet" : MessageLookupByLibrary.simpleMessage("Create Wallet"),
+    "assetDeleteWallet" : MessageLookupByLibrary.simpleMessage("Delete Wallet"),
+    "assetDetails" : MessageLookupByLibrary.simpleMessage("Details"),
+    "assetImportMnemonic" : MessageLookupByLibrary.simpleMessage("Import Mnemonic"),
+    "assetImportPrivateKey" : MessageLookupByLibrary.simpleMessage("Import Private Key"),
+    "assetModifyPassword" : MessageLookupByLibrary.simpleMessage("Modify Password"),
+    "assetMyAssets" : MessageLookupByLibrary.simpleMessage("My Assets"),
+    "assetReceive" : MessageLookupByLibrary.simpleMessage("Receive"),
+    "assetSwap" : MessageLookupByLibrary.simpleMessage("Swap"),
+    "assetTransfer" : MessageLookupByLibrary.simpleMessage("Transfer"),
+    "assetWalletDetails" : MessageLookupByLibrary.simpleMessage("Wallet Details"),
+    "assetWalletList" : MessageLookupByLibrary.simpleMessage("Wallet List"),
     "bottomTab1" : MessageLookupByLibrary.simpleMessage("Assets"),
     "bottomTab2" : MessageLookupByLibrary.simpleMessage("Swap"),
     "bottomTab3" : MessageLookupByLibrary.simpleMessage("Mine")

@@ -3,23 +3,23 @@
   "bottomTab2": "Swap",
   "bottomTab3": "Mine",
 
-  "asset-MyAssets": "My Assets",
-  "asset-Details": "Details",
-  "asset-Transfer": "Transfer",
-  "asset-Receive": "Receive",
-  "asset-Swap": "Swap",
+  "assetMyAssets": "My Assets",
+  "assetDetails": "Details",
+  "assetTransfer": "Transfer",
+  "assetReceive": "Receive",
+  "assetSwap": "Swap",
 
-  "asset-AddWallet": "Add Wallet",
-  "asset-ImportPrivateKey": "Import Private Key",
-  "asset-ImportMnemonic": "Import Mnemonic",
-  "asset-CreateWallet": "Create Wallet",
+  "assetAddWallet": "Add Wallet",
+  "assetImportPrivateKey": "Import Private Key",
+  "assetImportMnemonic": "Import Mnemonic",
+  "assetCreateWallet": "Create Wallet",
 
-  "asset-WalletDetails": "Wallet Details",
-  "asset-BackupMnemonic": "Backup Mnemonic",
-  "asset-BackupPrivateKey": "Backup Private Key",
-  "asset-ModifyPassword": "Modify Password",
-  "asset-DeleteWallet": "Delete Wallet",
+  "assetWalletDetails": "Wallet Details",
+  "assetBackupMnemonic": "Backup Mnemonic",
+  "assetBackupPrivateKey": "Backup Private Key",
+  "assetModifyPassword": "Modify Password",
+  "assetDeleteWallet": "Delete Wallet",
 
-  "asset-Assets": "Assets",
-  "asset-WalletList": "Wallet List"
+  "assetAssets": "Assets",
+  "assetWalletList": "Wallet List"
 }

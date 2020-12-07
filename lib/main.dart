@@ -4,8 +4,10 @@ import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
+import 'generated/l10n.dart';
 import 'page/index_page.dart';
 import 'provider/index_provider.dart';
 import 'router/application.dart';
@@ -49,6 +51,17 @@ class MyApp extends StatelessWidget {
           fontFamily: 'ZH-M',
         ),
         home: IndexPage(),
+        localizationsDelegates: [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
+        localeListResolutionCallback: (locales, supportedLocales) {
+          print(locales);
+          return;
+        },
       ),
     );
   }

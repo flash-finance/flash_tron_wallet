@@ -6,6 +6,7 @@ import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/model/dex_info_model.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
+import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/tron/service/tron_asset.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
@@ -69,6 +70,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<IndexProvider>(context, listen: true).langType;
     WalletEntity wallet = Provider.of<HomeProvider>(context, listen: true).selectWalletEntity;
     if (wallet != null && wallet.tronAddress != null) {
       return Scaffold(

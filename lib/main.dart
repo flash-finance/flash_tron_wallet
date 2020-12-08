@@ -22,7 +22,7 @@ void main() {
 
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (_) => IndexProvider()),
+      ChangeNotifierProvider(create: (_) => IndexProvider()..init()),
       ChangeNotifierProvider(create: (_) => HomeProvider()..init()),
     ],
     child: MyApp(),

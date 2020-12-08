@@ -3,6 +3,15 @@
   "bottomTab2": "交易",
   "bottomTab3": "我的",
 
+  "commonCopySuccess": "复制成功",
+  "commonPleaseEnterYourPassword": "请输入密码",
+  "commonCancel": "取消",
+  "commonConfirm": "确认",
+  "commonExecutedError": "执行出错, 请再尝试",
+  "commonUpdateSuccess": "修改成功",
+  "commonDeleteWalletTip": "请确保私钥或助记词已备份，确定删除?",
+
+
   "assetMyAssets": "我的资产",
   "assetDetails": "详情",
   "assetTransfer": "转账",
@@ -17,8 +26,10 @@
   "assetWalletDetails": "钱包详情",
   "assetBackupMnemonic": "备份助记词",
   "assetBackupPrivateKey": "备份私钥",
-  "assetModifyPassword": "修改密码",
+  "assetUpdatePassword": "修改密码",
+  "assetUpdateWalletName": "修改钱包名称",
   "assetDeleteWallet": "删除钱包",
+  "assetNameLong": "名称过长",
 
   "assetAssets": "资产",
   "assetWalletList": "钱包列表"

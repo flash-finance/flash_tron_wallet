@@ -30,15 +30,24 @@ class MessageLookup extends MessageLookupByLibrary {
     "assetDetails" : MessageLookupByLibrary.simpleMessage("详情"),
     "assetImportMnemonic" : MessageLookupByLibrary.simpleMessage("导入助记词"),
     "assetImportPrivateKey" : MessageLookupByLibrary.simpleMessage("导入私钥"),
-    "assetModifyPassword" : MessageLookupByLibrary.simpleMessage("修改密码"),
     "assetMyAssets" : MessageLookupByLibrary.simpleMessage("我的资产"),
+    "assetNameLong" : MessageLookupByLibrary.simpleMessage("名称过长"),
     "assetReceive" : MessageLookupByLibrary.simpleMessage("收款"),
     "assetSwap" : MessageLookupByLibrary.simpleMessage("交易"),
     "assetTransfer" : MessageLookupByLibrary.simpleMessage("转账"),
+    "assetUpdatePassword" : MessageLookupByLibrary.simpleMessage("修改密码"),
+    "assetUpdateWalletName" : MessageLookupByLibrary.simpleMessage("修改钱包名称"),
     "assetWalletDetails" : MessageLookupByLibrary.simpleMessage("钱包详情"),
     "assetWalletList" : MessageLookupByLibrary.simpleMessage("钱包列表"),
     "bottomTab1" : MessageLookupByLibrary.simpleMessage("资产"),
     "bottomTab2" : MessageLookupByLibrary.simpleMessage("交易"),
-    "bottomTab3" : MessageLookupByLibrary.simpleMessage("我的")
+    "bottomTab3" : MessageLookupByLibrary.simpleMessage("我的"),
+    "commonCancel" : MessageLookupByLibrary.simpleMessage("取消"),
+    "commonConfirm" : MessageLookupByLibrary.simpleMessage("确认"),
+    "commonCopySuccess" : MessageLookupByLibrary.simpleMessage("复制成功"),
+    "commonDeleteWalletTip" : MessageLookupByLibrary.simpleMessage("请确保私钥或助记词已备份，确定删除?"),
+    "commonExecutedError" : MessageLookupByLibrary.simpleMessage("执行出错, 请再尝试"),
+    "commonPleaseEnterYourPassword" : MessageLookupByLibrary.simpleMessage("请输入密码"),
+    "commonUpdateSuccess" : MessageLookupByLibrary.simpleMessage("修改成功")
   };
 }

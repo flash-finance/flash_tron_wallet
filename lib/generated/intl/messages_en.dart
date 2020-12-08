@@ -30,15 +30,24 @@ class MessageLookup extends MessageLookupByLibrary {
     "assetDetails" : MessageLookupByLibrary.simpleMessage("Details"),
     "assetImportMnemonic" : MessageLookupByLibrary.simpleMessage("Import Mnemonic"),
     "assetImportPrivateKey" : MessageLookupByLibrary.simpleMessage("Import Private Key"),
-    "assetModifyPassword" : MessageLookupByLibrary.simpleMessage("Modify Password"),
     "assetMyAssets" : MessageLookupByLibrary.simpleMessage("My Assets"),
+    "assetNameLong" : MessageLookupByLibrary.simpleMessage("Name Too Long"),
     "assetReceive" : MessageLookupByLibrary.simpleMessage("Receive"),
     "assetSwap" : MessageLookupByLibrary.simpleMessage("Swap"),
     "assetTransfer" : MessageLookupByLibrary.simpleMessage("Transfer"),
+    "assetUpdatePassword" : MessageLookupByLibrary.simpleMessage("Update Password"),
+    "assetUpdateWalletName" : MessageLookupByLibrary.simpleMessage("Update Wallet Name"),
     "assetWalletDetails" : MessageLookupByLibrary.simpleMessage("Wallet Details"),
     "assetWalletList" : MessageLookupByLibrary.simpleMessage("Wallet List"),
     "bottomTab1" : MessageLookupByLibrary.simpleMessage("Assets"),
     "bottomTab2" : MessageLookupByLibrary.simpleMessage("Swap"),
-    "bottomTab3" : MessageLookupByLibrary.simpleMessage("Mine")
+    "bottomTab3" : MessageLookupByLibrary.simpleMessage("Mine"),
+    "commonCancel" : MessageLookupByLibrary.simpleMessage("Cancel"),
+    "commonConfirm" : MessageLookupByLibrary.simpleMessage("Confirm"),
+    "commonCopySuccess" : MessageLookupByLibrary.simpleMessage("Copy Success"),
+    "commonDeleteWalletTip" : MessageLookupByLibrary.simpleMessage("Please make sure that the private key or mnemonic is backed up. Are you sure to delete it?"),
+    "commonExecutedError" : MessageLookupByLibrary.simpleMessage("Executed error.Please try again"),
+    "commonPleaseEnterYourPassword" : MessageLookupByLibrary.simpleMessage("Please enter your password"),
+    "commonUpdateSuccess" : MessageLookupByLibrary.simpleMessage("Update Success")
   };
 }

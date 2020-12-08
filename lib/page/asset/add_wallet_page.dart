@@ -1,5 +1,6 @@
 import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/common/page.dart';
+import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:fluro/fluro.dart';
@@ -21,7 +22,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
         backgroundColor: Colors.white,
         brightness: Brightness.light,
         title: Text(
-          '添加钱包',
+          '${S.of(context).assetAddWallet}',
           style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2 , size: 32),
         ),
         centerTitle: true,
@@ -72,7 +73,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                       SizedBox(width: ScreenUtil().setWidth(10)),
                       Container(
                         child: Text(
-                          '导入私钥',
+                          '${S.of(context).assetImportPrivateKey}',
                           style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
@@ -113,7 +114,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                       SizedBox(width: ScreenUtil().setWidth(10)),
                       Container(
                         child: Text(
-                          '导入助记词',
+                          '${S.of(context).assetImportMnemonic}',
                           style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
                         ),
 
@@ -152,7 +153,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                       SizedBox(width: ScreenUtil().setWidth(10)),
                       Container(
                         child: Text(
-                          '创建钱包',
+                          '${S.of(context).assetCreateWallet}',
                           style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),

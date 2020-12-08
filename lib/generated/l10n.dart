@@ -63,6 +63,76 @@ class S {
     );
   }
 
+  /// `Copy Success`
+  String get commonCopySuccess {
+    return Intl.message(
+      'Copy Success',
+      name: 'commonCopySuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your password`
+  String get commonPleaseEnterYourPassword {
+    return Intl.message(
+      'Please enter your password',
+      name: 'commonPleaseEnterYourPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get commonCancel {
+    return Intl.message(
+      'Cancel',
+      name: 'commonCancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm`
+  String get commonConfirm {
+    return Intl.message(
+      'Confirm',
+      name: 'commonConfirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Executed error.Please try again`
+  String get commonExecutedError {
+    return Intl.message(
+      'Executed error.Please try again',
+      name: 'commonExecutedError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update Success`
+  String get commonUpdateSuccess {
+    return Intl.message(
+      'Update Success',
+      name: 'commonUpdateSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please make sure that the private key or mnemonic is backed up. Are you sure to delete it?`
+  String get commonDeleteWalletTip {
+    return Intl.message(
+      'Please make sure that the private key or mnemonic is backed up. Are you sure to delete it?',
+      name: 'commonDeleteWalletTip',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `My Assets`
   String get assetMyAssets {
     return Intl.message(
@@ -183,11 +253,21 @@ class S {
     );
   }
 
-  /// `Modify Password`
-  String get assetModifyPassword {
+  /// `Update Password`
+  String get assetUpdatePassword {
     return Intl.message(
-      'Modify Password',
-      name: 'assetModifyPassword',
+      'Update Password',
+      name: 'assetUpdatePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update Wallet Name`
+  String get assetUpdateWalletName {
+    return Intl.message(
+      'Update Wallet Name',
+      name: 'assetUpdateWalletName',
       desc: '',
       args: [],
     );
@@ -198,6 +278,16 @@ class S {
     return Intl.message(
       'Delete Wallet',
       name: 'assetDeleteWallet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name Too Long`
+  String get assetNameLong {
+    return Intl.message(
+      'Name Too Long',
+      name: 'assetNameLong',
       desc: '',
       args: [],
     );

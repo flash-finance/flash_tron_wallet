@@ -1,6 +1,7 @@
 import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/common/page.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
+import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
@@ -35,7 +36,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         backgroundColor: Colors.white,
         brightness: Brightness.light,
         title: Text(
-          '钱包详情',
+          '${S.of(context).assetWalletDetails}',
           style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 32),
         ),
         centerTitle: true,
@@ -119,7 +120,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                 InkWell(
                   onTap: () {
                     Clipboard.setData(ClipboardData(text: wallet.tronAddress));
-                    Util.showToast('复制成功');
+                    Util.showToast('${S.of(context).commonCopySuccess}');
                   },
                   child: Container(
                     child: Row(
@@ -168,7 +169,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
           children: <Widget>[
             Container(
               child: Text(
-                '备份助记词',
+                '${S.of(context).assetBackupMnemonic}',
                 style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
               ),
             ),
@@ -201,7 +202,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
           children: <Widget>[
             Container(
               child: Text(
-                '备份私钥',
+                '${S.of(context).assetBackupPrivateKey}',
                 style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
               ),
             ),
@@ -234,7 +235,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
           children: <Widget>[
             Container(
               child: Text(
-                '修改密码',
+                '${S.of(context).assetUpdatePassword}',
                 style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
               ),
             ),
@@ -264,7 +265,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
           children: <Widget>[
             Container(
               child: Text(
-                '删除钱包',
+                '${S.of(context).assetDeleteWallet}',
                 style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
               ),
             ),
@@ -286,7 +287,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         context: context,
         builder: (context) => CupertinoAlertDialog(
           title: Text(
-            '请输入密码',
+            '${S.of(context).commonPleaseEnterYourPassword}',
             style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 30),
           ),
           content: Card(
@@ -328,14 +329,14 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
           actions: <Widget>[
             FlatButton(
               child: Text(
-                '取消',
+                '${S.of(context).commonCancel}',
                 style: Util.textStyle(context, 2,  MyColors.themeColor, spacing: 0.5, size: 30),
               ),
               onPressed: () => Navigator.pop(context),
             ),
             FlatButton(
                 child: Text(
-                  '确定',
+                  '${S.of(context).commonConfirm}',
                   style: Util.textStyle(context, 2,  MyColors.themeColor, spacing: 0.5, size: 30),
                 ),
                 onPressed: () {
@@ -350,7 +351,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                           Application.router.navigateTo(context, 'asset/backupKey', transition: TransitionType.cupertino);
                         }
                       } else {
-                        Util.showToast('执行出错，请再尝试');
+                        Util.showToast('${S.of(context).commonExecutedError}');
                       }
                     });
                   }
@@ -366,7 +367,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         context: context,
         builder: (context) => CupertinoAlertDialog(
           title: Text(
-            '修改钱包名字',
+            '${S.of(context).assetUpdateWalletName}',
             style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 30),
           ),
           content: Card(
@@ -389,7 +390,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                     maxLengthEnforced: true,
                     validator: (String value) {
                       if (value.length > 10) {
-                        return '名称过长';
+                        return '${S.of(context).assetNameLong}';
                       }  else {
                         return null;
                       }
@@ -402,14 +403,14 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
           actions: <Widget>[
             FlatButton(
               child: Text(
-                '取消',
+                '${S.of(context).commonCancel}',
                 style: Util.textStyle(context, 2,  MyColors.themeColor, spacing: 0.5, size: 30),
               ),
               onPressed: () => Navigator.pop(context),
             ),
             FlatButton(
                 child: Text(
-                  '确定',
+                  '${S.of(context).commonConfirm}',
                   style: Util.textStyle(context, 2,  MyColors.themeColor, spacing: 0.5, size: 30),
                 ),
                 onPressed: () {
@@ -417,10 +418,10 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                     _formKey.currentState.save();
                     _updateName(context, index).then((val) {
                       if (val == true) {
-                        Util.showToast('修改成功');
+                        Util.showToast('${S.of(context).commonUpdateSuccess}');
                         Navigator.pop(context);
                       } else {
-                        Util.showToast('执行出错，请再尝试');
+                        Util.showToast('${S.of(context).commonExecutedError}');
                       }
                     });
                   }
@@ -436,20 +437,20 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         context: context,
         builder: (context) => CupertinoAlertDialog(
           title: Text(
-            '请确保私钥或助记词已备份，确定删除?',
+            '${S.of(context).commonDeleteWalletTip}',
             style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 28),
           ),
           actions: <Widget>[
             FlatButton(
               child: Text(
-                '取消',
+                '${S.of(context).commonCancel}',
                 style: Util.textStyle(context, 2,  Colors.blue[700], spacing: 0.5, size: 30),
               ),
               onPressed: () => Navigator.pop(context),
             ),
             FlatButton(
                 child: Text(
-                  '确定',
+                  '${S.of(context).commonConfirm}',
                   style: Util.textStyle(context, 2, Colors.blue[700], spacing: 0.5, size: 30),
                 ),
                 onPressed: () {
@@ -457,7 +458,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                     if (val == true) {
                       Navigator.of(context)..pop()..pop();
                     } else {
-                      Util.showToast('执行出错，请再尝试');
+                      Util.showToast('${S.of(context).commonExecutedError}');
                     }
                   });
                 }

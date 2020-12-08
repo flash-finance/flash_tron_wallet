@@ -3,6 +3,15 @@
   "bottomTab2": "Swap",
   "bottomTab3": "Mine",
 
+  "commonCopySuccess": "Copy Success",
+  "commonPleaseEnterYourPassword": "Please enter your password",
+  "commonCancel": "Cancel",
+  "commonConfirm": "Confirm",
+  "commonExecutedError": "Executed error.Please try again",
+  "commonUpdateSuccess": "Update Success",
+  "commonDeleteWalletTip": "Please make sure that the private key or mnemonic is backed up. Are you sure to delete it?",
+
+
   "assetMyAssets": "My Assets",
   "assetDetails": "Details",
   "assetTransfer": "Transfer",
@@ -17,8 +26,10 @@
   "assetWalletDetails": "Wallet Details",
   "assetBackupMnemonic": "Backup Mnemonic",
   "assetBackupPrivateKey": "Backup Private Key",
-  "assetModifyPassword": "Modify Password",
+  "assetUpdatePassword": "Update Password",
+  "assetUpdateWalletName": "Update Wallet Name",
   "assetDeleteWallet": "Delete Wallet",
+  "assetNameLong": "Name Too Long",
 
   "assetAssets": "Assets",
   "assetWalletList": "Wallet List"

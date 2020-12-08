@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
+import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/model/dex_info_model.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
@@ -273,7 +274,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      '我的资产 (\$)',
+                      '${S.of(context).assetMyAssets} (\$)',
                       style: Util.textStyle(context, 1, Colors.white, spacing: 0.5, size: 23),
                     ),
                   ),
@@ -282,7 +283,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                       children: <Widget>[
                         Container(
                           child: Text(
-                            '详情',
+                            '${S.of(context).assetDetails}',
                             style: Util.textStyle(context, 1, Colors.white, spacing: 0.5, size: 23),
                           ),
                         ),
@@ -347,7 +348,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                           Container(
                             padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(3)),
                             child: Text(
-                              '转账',
+                              '${S.of(context).assetTransfer}',
                               style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 26),
                             ),
                           ),
@@ -376,7 +377,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                             padding: EdgeInsets.only(
                                 bottom: ScreenUtil().setHeight(6)),
                             child: Text(
-                              '收款',
+                              '${S.of(context).assetTransfer}',
                               style: Util.textStyle(context, 1, Colors.white,
                                   spacing: 0.6, size: 26),
                             ),
@@ -402,7 +403,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                           Container(
                             padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(6) : ScreenUtil().setHeight(4.5)),
                             child: Text(
-                              '交易',
+                              '${S.of(context).assetSwap}',
                               style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 26),
                             ),
                           ),
@@ -424,7 +425,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
         margin: EdgeInsets.only(left: ScreenUtil().setWidth(10), right: ScreenUtil().setWidth(10)),
         alignment: Alignment.centerLeft,
         child: Text(
-          '资产',
+          '${S.of(context).assetAssets}',
           style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.6, size: 30),
         ));
   }
@@ -577,7 +578,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                       SizedBox(width: ScreenUtil().setWidth(10)),
                       Container(
                         child: Text(
-                          '导入私钥',
+                          '${S.of(context).assetImportPrivateKey}',
                           style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
@@ -617,7 +618,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                       SizedBox(width: ScreenUtil().setWidth(10)),
                       Container(
                         child: Text(
-                          '导入助记词',
+                          '${S.of(context).assetImportMnemonic}',
                           style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
@@ -654,7 +655,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                       SizedBox(width: ScreenUtil().setWidth(10)),
                       Container(
                         child: Text(
-                          '创建钱包',
+                          '${S.of(context).assetCreateWallet}',
                           style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
@@ -733,7 +734,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                     border: Border(bottom: BorderSide(color: Colors.grey[400], width: 0.3)),
                   ),
                   child: Text(
-                    '钱包列表',
+                    '${S.of(context).assetWalletList}',
                     style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.4, size: 32),
                   ),
                 ),
@@ -792,7 +793,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                 InkWell(
                   onTap: () {
                     Clipboard.setData(ClipboardData(text: list[index].tronAddress));
-                    Util.showToast('复制成功');
+                    Util.showToast('${S.of(context).commonCopySuccess}');
                   },
                   child: Container(
                     child: Row(

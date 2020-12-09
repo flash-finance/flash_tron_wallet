@@ -81,8 +81,10 @@ class _MinePageState extends State<MinePage> {
               ),
             ),
           ),
+          SizedBox(width: ScreenUtil().setWidth(10)),
           Container(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(

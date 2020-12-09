@@ -334,7 +334,6 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                       child: Row(
                         children: <Widget>[
                           Container(
-                            padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(0) : ScreenUtil().setHeight(0)),
                             child: Icon(
                               Icons.transit_enterexit_sharp,
                               size: ScreenUtil().setSp(35),
@@ -361,7 +360,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                       child: Row(
                         children: <Widget>[
                           Container(
-                            padding: EdgeInsets.only(top: flag ? ScreenUtil().setHeight(2.5) : ScreenUtil().setHeight(2.5)),
+                            padding: EdgeInsets.only(top: ScreenUtil().setHeight(2.5)),
                             child: Icon(
                               Icons.download_sharp,
                               size: ScreenUtil().setSp(33),
@@ -385,7 +384,6 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                       child: Row(
                         children: <Widget>[
                           Container(
-                            padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(0)),
                             child: Icon(
                               Icons.sync_rounded,
                               size: ScreenUtil().setSp(33),

@@ -312,6 +312,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Manage Wallets`
+  String get mineManageWallet {
+    return Intl.message(
+      'Manage Wallets',
+      name: 'mineManageWallet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CurrentVersion`
+  String get mineCurrentVersion {
+    return Intl.message(
+      'CurrentVersion',
+      name: 'mineCurrentVersion',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

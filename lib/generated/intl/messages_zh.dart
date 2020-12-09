@@ -48,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonDeleteWalletTip" : MessageLookupByLibrary.simpleMessage("请确保私钥或助记词已备份，确定删除?"),
     "commonExecutedError" : MessageLookupByLibrary.simpleMessage("执行出错, 请再尝试"),
     "commonPleaseEnterYourPassword" : MessageLookupByLibrary.simpleMessage("请输入密码"),
-    "commonUpdateSuccess" : MessageLookupByLibrary.simpleMessage("修改成功")
+    "commonUpdateSuccess" : MessageLookupByLibrary.simpleMessage("修改成功"),
+    "mineCurrentVersion" : MessageLookupByLibrary.simpleMessage("当前版本"),
+    "mineManageWallet" : MessageLookupByLibrary.simpleMessage("钱包管理")
   };
 }

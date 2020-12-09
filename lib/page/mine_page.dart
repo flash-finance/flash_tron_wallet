@@ -27,8 +27,11 @@ class MinePage extends StatefulWidget {
 }
 
 class _MinePageState extends State<MinePage> {
+  bool _langType = true;
+
   @override
   Widget build(BuildContext context) {
+    _langType = Provider.of<IndexProvider>(context, listen: true).langType;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
@@ -160,9 +163,8 @@ class _MinePageState extends State<MinePage> {
                 SizedBox(width: ScreenUtil().setWidth(50)),
                 Container(
                   child: Text(
-                    '钱包管理',
-                    style: Util.textStyle(
-                        context, 2, Colors.grey[850], spacing: 0.0, size: 30),
+                    '${S.of(context).mineManageWallet}',
+                    style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
                   ),
                 ),
               ],
@@ -184,7 +186,7 @@ class _MinePageState extends State<MinePage> {
     return InkWell(
       onTap: () {
         Provider.of<IndexProvider>(context, listen: false).changeLangType();
-        Util.showToast("切换成功");
+        Util.showToast("Success");
       },
       child: Container(
         margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40)),
@@ -202,15 +204,25 @@ class _MinePageState extends State<MinePage> {
                   child: Icon(
                     IconData(0xe676, fontFamily: 'ICON'),
                     size: ScreenUtil().setSp(42),
-                    color: Color(0xff9266f9).withOpacity(0.9),
+                    //color: Color(0xff9266f9).withOpacity(0.9),
+                    color: MyColors.themeColor.withOpacity(0.9),
                   ),
                 ),
                 SizedBox(width: ScreenUtil().setWidth(50)),
                 Container(
-                  child: Text(
-                    'English/中文',
-                    style: Util.textStyle(
-                        context, 2, Colors.grey[850], spacing: 0.0, size: 30),
+                  child: RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: 'English/',
+                          style: Util.textStyle4En(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
+                        ),
+                        TextSpan(
+                          text: '中文',
+                          style: Util.textStyle4Zh(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -368,7 +380,7 @@ class _MinePageState extends State<MinePage> {
                 SizedBox(width: ScreenUtil().setWidth(50)),
                 Container(
                   child: Text(
-                    '当前版本',
+                    '${S.of(context).mineCurrentVersion}',
                     style: Util.textStyle(
                         context, 2, Colors.grey[850], spacing: 0.0, size: 30),
                   ),

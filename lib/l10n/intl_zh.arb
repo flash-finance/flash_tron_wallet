@@ -32,5 +32,9 @@
   "assetNameLong": "名称过长",
 
   "assetAssets": "资产",
-  "assetWalletList": "钱包列表"
+  "assetWalletList": "钱包列表",
+
+  "mineManageWallet" : "钱包管理",
+  "mineCurrentVersion" : "当前版本"
+
 }

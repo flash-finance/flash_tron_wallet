@@ -48,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonDeleteWalletTip" : MessageLookupByLibrary.simpleMessage("Please make sure that the private key or mnemonic is backed up. Are you sure to delete it?"),
     "commonExecutedError" : MessageLookupByLibrary.simpleMessage("Executed error.Please try again"),
     "commonPleaseEnterYourPassword" : MessageLookupByLibrary.simpleMessage("Please enter your password"),
-    "commonUpdateSuccess" : MessageLookupByLibrary.simpleMessage("Update Success")
+    "commonUpdateSuccess" : MessageLookupByLibrary.simpleMessage("Update Success"),
+    "mineCurrentVersion" : MessageLookupByLibrary.simpleMessage("CurrentVersion"),
+    "mineManageWallet" : MessageLookupByLibrary.simpleMessage("Manage Wallets")
   };
 }

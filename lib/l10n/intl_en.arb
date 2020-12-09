@@ -32,5 +32,8 @@
   "assetNameLong": "Name Too Long",
 
   "assetAssets": "Assets",
-  "assetWalletList": "Wallet List"
+  "assetWalletList": "Wallet List",
+
+  "mineManageWallet" : "Manage Wallets",
+  "mineCurrentVersion" : "CurrentVersion"
 }

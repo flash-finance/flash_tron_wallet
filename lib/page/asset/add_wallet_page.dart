@@ -23,7 +23,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
         brightness: Brightness.light,
         title: Text(
           '${S.of(context).assetAddWallet}',
-          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2 , size: 32),
+          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2 , size: 34),
         ),
         centerTitle: true,
         elevation: 0,

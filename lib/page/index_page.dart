@@ -43,6 +43,7 @@ class _IndexPageState extends State<IndexPage> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: provider.currentIndex,
+        backgroundColor: Colors.white,
         items: bottomTabs,
         selectedFontSize: 12.5,
         unselectedFontSize: 12.5,

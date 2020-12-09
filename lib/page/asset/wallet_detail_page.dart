@@ -37,7 +37,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         brightness: Brightness.light,
         title: Text(
           '${S.of(context).assetWalletDetails}',
-          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 32),
+          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 34),
         ),
         centerTitle: true,
         elevation: 0,
@@ -81,7 +81,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
               'images/trx.png',
               width: ScreenUtil().setWidth(80),
               height: ScreenUtil().setWidth(80),
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
             ),
           ),
           SizedBox(width: ScreenUtil().setWidth(30)),
@@ -99,7 +99,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                         Container(
                           child: Text(
                             '${wallet.name}',
-                            style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.1, size: 28),
+                            style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.0, size: 28),
                           ),
                         ),
                         SizedBox(width: ScreenUtil().setWidth(30)),
@@ -128,7 +128,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                         Container(
                           child: Text(
                             '$tronAddress',
-                            style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.1, size: 28),
+                            style: Util.textStyle4En(context, 2, Colors.grey[800], spacing: 0.0, size: 28),
                           ),
                         ),
                         SizedBox(width: ScreenUtil().setWidth(30)),
@@ -137,7 +137,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                             'icons/copy.png',
                             width: ScreenUtil().setWidth(30),
                             height: ScreenUtil().setWidth(30),
-                            color: Colors.grey[700],
+                            color: Colors.grey[800],
                             fit: BoxFit.fill,
                           ),
                         ),

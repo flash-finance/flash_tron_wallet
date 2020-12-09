@@ -61,7 +61,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
         image: DecorationImage(
-          image: AssetImage('images/bg.png'),
+          image: AssetImage('images/bg02.png'),
           fit: BoxFit.cover,
         ),
       ),
@@ -99,7 +99,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
         image: DecorationImage(
-          image: AssetImage('images/bg.png'),
+          image: AssetImage('images/bg02.png'),
           fit: BoxFit.cover,
         ),
       ),

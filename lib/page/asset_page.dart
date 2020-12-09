@@ -96,7 +96,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
                 image: DecorationImage(
-                  image: AssetImage('images/bg.png'),
+                  image: AssetImage('images/bg03.png'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -189,7 +189,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                     child: Icon(
                       IconData(0xe7b8, fontFamily: 'ICON'),
                       size: ScreenUtil().setSp(55),
-                      color: Colors.grey[800],
+                      color: Colors.grey[850],
                     ),
                   ),
                 ),
@@ -203,7 +203,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                     child: Icon(
                       IconData(0xe606, fontFamily: 'ICON'),
                       size: ScreenUtil().setSp(60),
-                      color: Colors.grey[800],
+                      color: Colors.grey[850],
                     ),
                   ),
                 ),
@@ -264,7 +264,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
           image: DecorationImage(
-            image: AssetImage('images/bg.png'),
+            image: AssetImage('images/bg03.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -277,7 +277,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   Container(
                     child: Text(
                       '${S.of(context).assetMyAssets} （\$）',
-                      style: Util.textStyle(context, 1, Colors.white, spacing: 0.5, size: 24),
+                      style: Util.textStyle(context, 1, Colors.white, spacing: 0.5, size: 25),
                     ),
                   ),
                   Container(
@@ -286,7 +286,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                         Container(
                           child: Text(
                             '${S.of(context).assetDetails}',
-                            style: Util.textStyle(context, 1, Colors.white, spacing: 0.5, size: 24),
+                            style: Util.textStyle(context, 1, Colors.white, spacing: 0.5, size: 25),
                           ),
                         ),
                         SizedBox(width: ScreenUtil().setWidth(10)),
@@ -294,8 +294,8 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                           padding: EdgeInsets.only(top:_langType ? ScreenUtil().setHeight(0) : ScreenUtil().setHeight(1.5), bottom: _langType ? ScreenUtil().setHeight(1) : ScreenUtil().setHeight(0)),
                           child: Icon(
                             Icons.arrow_forward_ios,
-                            size: ScreenUtil().setSp(22),
-                            color: Colors.grey[200],
+                            size: ScreenUtil().setSp(23),
+                            color: Colors.white,
                           ),
                         ),
                       ],
@@ -334,19 +334,18 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                       child: Row(
                         children: <Widget>[
                           Container(
-                            padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(2) : ScreenUtil().setHeight(1.5)),
+                            padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(0) : ScreenUtil().setHeight(0)),
                             child: Icon(
                               Icons.transit_enterexit_sharp,
-                              size: ScreenUtil().setSp(34),
+                              size: ScreenUtil().setSp(35),
                               color: Colors.white,
                             ),
                           ),
                           SizedBox(width: ScreenUtil().setWidth(10)),
                           Container(
-                            padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(0)),
                             child: Text(
                               '${S.of(context).assetTransfer}',
-                              style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 24),
+                              style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 25),
                             ),
                           ),
                         ],
@@ -362,19 +361,18 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                       child: Row(
                         children: <Widget>[
                           Container(
-                            padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(2) : ScreenUtil().setHeight(2.3)),
+                            padding: EdgeInsets.only(top: flag ? ScreenUtil().setHeight(2.5) : ScreenUtil().setHeight(2.5)),
                             child: Icon(
                               Icons.download_sharp,
-                              size: ScreenUtil().setSp(32),
+                              size: ScreenUtil().setSp(33),
                               color: Colors.white,
                             ),
                           ),
                           SizedBox(width: ScreenUtil().setWidth(10)),
                           Container(
-                            padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(3)),
                             child: Text(
                               '${S.of(context).assetReceive}',
-                              style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 24),
+                              style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 25),
                             ),
                           ),
                         ],
@@ -387,19 +385,18 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                       child: Row(
                         children: <Widget>[
                           Container(
-                            padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(3)),
+                            padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(0)),
                             child: Icon(
                               Icons.sync_rounded,
-                              size: ScreenUtil().setSp(32),
+                              size: ScreenUtil().setSp(33),
                               color: Colors.white,
                             ),
                           ),
                           SizedBox(width: ScreenUtil().setWidth(10)),
                           Container(
-                            padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(0) : ScreenUtil().setHeight(4.5)),
                             child: Text(
                               '${S.of(context).assetSwap}',
-                              style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 24),
+                              style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 25),
                             ),
                           ),
                         ],
@@ -421,7 +418,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
         alignment: Alignment.centerLeft,
         child: Text(
           '${S.of(context).assetAssets}',
-          style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.6, size: 30),
+          style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.5, size: 32),
         ));
   }
 
@@ -472,7 +469,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   Container(
                       child: Text(
                         '${item.name}',
-                        style: Util.textStyle4En(context, 2, Colors.grey[800], spacing: 0.0, size: 31),
+                        style: Util.textStyle4En(context, 2, Colors.grey[850], spacing: 0.0, size: 32),
                       )),
                 ],
               ),
@@ -484,7 +481,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   Container(
                     child: Text(
                       '${Util.formatNumberSub(item.balance, 4)}',
-                      style: Util.textStyle4Num(context, Colors.grey[800], spacing: 0.1, size: 30, fontWeight: FontWeight.w500),
+                      style: Util.textStyle4Num(context, Colors.grey[850], spacing: 0.1, size: 30, fontWeight: FontWeight.w500),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -493,7 +490,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   Container(
                     child: Text(
                       '≈  \$ ${Util.formatNumberSub(item.cny / 6.75, 2)}',
-                      style: Util.textStyle4Num(context, Colors.grey[500], spacing: 0.0, size: 24, fontWeight: FontWeight.w400),
+                      style: Util.textStyle4Num(context, Colors.grey[600], spacing: 0.0, size: 23, fontWeight: FontWeight.w500),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -750,9 +747,9 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
       padding: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40), bottom: ScreenUtil().setHeight(30)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
-        //color: Color(0xFFB22222).withOpacity(0.9),
+        //color: MyColors.themeColor,
         image: DecorationImage(
-          image: AssetImage('images/bg.png'),
+          image: AssetImage('images/bg02.png'),
           fit: BoxFit.cover,
         ),
       ),

@@ -28,20 +28,18 @@ class _MinePageState extends State<MinePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        brightness: Brightness.light,
-        title: Text(
-          '我的',
-          style: Util.textStyle(
-              context, 2, Colors.grey[900], spacing: 1.0, size: 32),
+      appBar: PreferredSize(
+        child: AppBar(
+          backgroundColor: Colors.white,
+          brightness: Brightness.light,
+          elevation: 0,
         ),
-        centerTitle: true,
-        elevation: 0,
+        preferredSize: Size.fromHeight(ScreenUtil().setHeight(0)),
       ),
       body: Container(
         child: ListView(
           children: <Widget>[
+            _personWidget(context),
             IntervalPage(ScreenUtil().setHeight(25)),
             _walletManageWidget(context),
             _langWidget(context),
@@ -53,29 +51,99 @@ class _MinePageState extends State<MinePage> {
     );
   }
 
+  Widget _personWidget(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(50), right: ScreenUtil().setWidth(40), bottom: ScreenUtil().setHeight(30)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Container(
+            child: CircleAvatar(
+              backgroundColor: Colors.white,
+              maxRadius: ScreenUtil().setWidth(50),
+              child: Image.asset(
+                'images/flash.png',
+                width: ScreenUtil().setWidth(100),
+                height: ScreenUtil().setWidth(100),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  child: Text(
+                    '张三丰',
+                    style: Util.textStyle(context, 2, Colors.grey[900], spacing: 1.5, size: 34),
+                  ),
+                ),
+                SizedBox(height: ScreenUtil().setHeight(10)),
+                Container(
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        child: Text(
+                          '厦门云蚂数链科技有限公司',
+                          style: Util.textStyle(context, 1, Colors.grey[900], spacing: 0.0, size: 28),
+                        ),
+                      ),
+                      SizedBox(width: ScreenUtil().setWidth(5)),
+                      Container(
+                        padding: EdgeInsets.only(left: ScreenUtil().setWidth(15), top: ScreenUtil().setHeight(4), bottom: ScreenUtil().setHeight(4), right: ScreenUtil().setWidth(15)),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                          color: Color(0xfff97540).withOpacity(0.15),
+                        ),
+                        child: Text(
+                          '已认证',
+                          style: Util.textStyle(context, 2, Color(0xfff97540), spacing: 0.0, size: 20),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _walletManageWidget(BuildContext context) {
     return InkWell(
       onTap: () {
         Application.router.navigateTo(context, 'mine/walletManage', transition: TransitionType.cupertino);
       },
       child: Container(
-        margin: EdgeInsets.only(left: ScreenUtil().setWidth(40),
-            top: ScreenUtil().setHeight(30),
-            right: ScreenUtil().setWidth(40)),
+        margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40)),
         padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
         decoration: BoxDecoration(
-          border: Border(
-              bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
+          border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Container(
-              child: Text(
-                '钱包管理',
-                style: Util.textStyle(
-                    context, 2, Colors.grey[850], spacing: 0.0, size: 30),
-              ),
+            Row(
+              children: <Widget>[
+                Container(
+                  child: Icon(
+                    IconData(0xe6e0, fontFamily: 'ICON'),
+                    size: ScreenUtil().setSp(42),
+                    color: Color(0xff59dac5),
+                  ),
+                ),
+                SizedBox(width: ScreenUtil().setWidth(50)),
+                Container(
+                  child: Text(
+                    '钱包管理',
+                    style: Util.textStyle(
+                        context, 2, Colors.grey[850], spacing: 0.0, size: 30),
+                  ),
+                ),
+              ],
             ),
             Container(
               child: Icon(
@@ -106,12 +174,24 @@ class _MinePageState extends State<MinePage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Container(
-              child: Text(
-                'English/中文',
-                style: Util.textStyle(
-                    context, 2, Colors.grey[850], spacing: 0.0, size: 30),
-              ),
+            Row(
+              children: <Widget>[
+                Container(
+                  child: Icon(
+                    IconData(0xe676, fontFamily: 'ICON'),
+                    size: ScreenUtil().setSp(42),
+                    color: MyColors.themeColor,
+                  ),
+                ),
+                SizedBox(width: ScreenUtil().setWidth(50)),
+                Container(
+                  child: Text(
+                    'English/中文',
+                    style: Util.textStyle(
+                        context, 2, Colors.grey[850], spacing: 0.0, size: 30),
+                  ),
+                ),
+              ],
             ),
             Container(
               child: Icon(
@@ -254,12 +334,24 @@ class _MinePageState extends State<MinePage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Container(
-              child: Text(
-                '当前版本',
-                style: Util.textStyle(
-                    context, 2, Colors.grey[850], spacing: 0.0, size: 30),
-              ),
+            Row(
+              children: <Widget>[
+                Container(
+                  child: Icon(
+                    IconData(0xe6db, fontFamily: 'ICON'),
+                    size: ScreenUtil().setSp(42),
+                    color: Color(0xfff84068),
+                  ),
+                ),
+                SizedBox(width: ScreenUtil().setWidth(50)),
+                Container(
+                  child: Text(
+                    '当前版本',
+                    style: Util.textStyle(
+                        context, 2, Colors.grey[850], spacing: 0.0, size: 30),
+                  ),
+                ),
+              ],
             ),
             Container(
               child: Row(

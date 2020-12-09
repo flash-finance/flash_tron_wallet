@@ -490,7 +490,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   Container(
                     child: Text(
                       '≈  \$ ${Util.formatNumberSub(item.cny / 6.75, 2)}',
-                      style: Util.textStyle4Num(context, Colors.grey[600], spacing: 0.0, size: 23, fontWeight: FontWeight.w500),
+                      style: Util.textStyle4Num(context, Colors.grey[500], spacing: 0.0, size: 23, fontWeight: FontWeight.w400),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -680,6 +680,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
       _reloadTokenBalanceFlag = false;
       await Provider.of<HomeProvider>(context, listen: false).getAsset4ReloadSync();
     } catch (e) {
+      print('_reloadAssetSub error: ${e.toString()}');
     } finally {
       _reloadTokenBalanceFlag = true;
     }

@@ -77,7 +77,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         children: <Widget>[
           Container(
             child: Opacity(
-              opacity: 1.0,
+              opacity: 0.9,
               child: Image.asset(
                 'images/flash.png',
                 width: ScreenUtil().setWidth(100),

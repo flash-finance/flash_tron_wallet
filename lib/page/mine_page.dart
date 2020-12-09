@@ -75,7 +75,7 @@ class _MinePageState extends State<MinePage> {
         children: <Widget>[
           Container(
             child: Opacity(
-              opacity: flag ? 1.0 : 0.0,
+              opacity: flag ? 0.9 : 0.0,
               child: Image.asset(
                 'images/flash.png',
                 width: ScreenUtil().setWidth(110),

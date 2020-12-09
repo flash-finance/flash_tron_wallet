@@ -95,10 +95,11 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
               height: ScreenUtil().setHeight(500),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
-                image: DecorationImage(
+                color: MyColors.themeColor,
+                /*image: DecorationImage(
                   image: AssetImage('images/bg03.png'),
                   fit: BoxFit.cover,
-                ),
+                ),*/
               ),
               child: Scaffold(
                 backgroundColor: Colors.transparent,
@@ -509,27 +510,29 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
-              child: Column(
-            children: <Widget>[
-              Container(
-                child: Container(
-                  child: Image.asset(
-                    'images/flash-logo.png',
-                    width: ScreenUtil().setWidth(120),
-                    height: ScreenUtil().setWidth(120),
-                    fit: BoxFit.cover,
+            child: Column(
+              children: <Widget>[
+                Container(
+                  child: Opacity(
+                    opacity: 0.9,
+                    child: Image.asset(
+                      'images/flash-logo.png',
+                      width: ScreenUtil().setWidth(150),
+                      height: ScreenUtil().setWidth(150),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: ScreenUtil().setHeight(20)),
-              Container(
-                child: Text(
-                  'Flash  Wallet',
-                  style: Util.textStyle(context, 1, Colors.white, spacing: 0.2, size: 36),
+                SizedBox(height: ScreenUtil().setHeight(20)),
+                Container(
+                  child: Text(
+                    'Flash  Wallet',
+                    style: Util.textStyle4En(context, 1, Colors.white, spacing: 0.0, size: 40),
+                  ),
                 ),
-              ),
-            ],
-          )),
+              ],
+            ),
+          ),
         ],
       ),
     );

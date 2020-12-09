@@ -59,6 +59,7 @@ class _MinePageState extends State<MinePage> {
 
   Widget _topWidget(BuildContext context) {
     WalletEntity wallet = Provider.of<HomeProvider>(context,listen: true).selectWalletEntity;
+    bool flag = wallet != null;
     String name = '';
     if (wallet != null && wallet.name != null) {
       name = wallet.name;
@@ -73,11 +74,14 @@ class _MinePageState extends State<MinePage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
-            child: Image.asset(
-              'images/flash.png',
-              width: ScreenUtil().setWidth(110),
-              height: ScreenUtil().setWidth(110),
-              fit: BoxFit.cover,
+            child: Opacity(
+              opacity: flag ? 1.0 : 0.0,
+              child: Image.asset(
+                'images/flash.png',
+                width: ScreenUtil().setWidth(110),
+                height: ScreenUtil().setWidth(110),
+                fit: BoxFit.cover,
+              )
             ),
           ),
           SizedBox(width: ScreenUtil().setWidth(10)),
@@ -117,7 +121,7 @@ class _MinePageState extends State<MinePage> {
                             'icons/copy.png',
                             width: ScreenUtil().setWidth(30),
                             height: ScreenUtil().setWidth(30),
-                            color: Colors.grey[800],
+                            color: flag ? Colors.grey[800] : Colors.white,
                             fit: BoxFit.fill,
                           ),
                         ),

@@ -76,11 +76,14 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
       child: Row(
         children: <Widget>[
           Container(
-            child: Image.asset(
-              'images/flash.png',
-              width: ScreenUtil().setWidth(100),
-              height: ScreenUtil().setWidth(100),
-              fit: BoxFit.cover,
+            child: Opacity(
+              opacity: 1.0,
+              child: Image.asset(
+                'images/flash.png',
+                width: ScreenUtil().setWidth(100),
+                height: ScreenUtil().setWidth(100),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           SizedBox(width: ScreenUtil().setWidth(30)),

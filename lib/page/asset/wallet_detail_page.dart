@@ -27,8 +27,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
   
   @override
   Widget build(BuildContext context) {
-    List<WalletEntity> walletList = Provider.of<HomeProvider>(context,listen: false).walletList;
-    WalletEntity wallet = walletList[int.parse(widget.selectIndex)];
+    WalletEntity wallet = Provider.of<HomeProvider>(context,listen: false).selectWalletEntity;
     bool flag = wallet.mnemonic != null;
     return Scaffold(
       backgroundColor: Colors.white,
@@ -78,9 +77,9 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         children: <Widget>[
           Container(
             child: Image.asset(
-              'images/trx.png',
-              width: ScreenUtil().setWidth(80),
-              height: ScreenUtil().setWidth(80),
+              'images/flash.png',
+              width: ScreenUtil().setWidth(100),
+              height: ScreenUtil().setWidth(100),
               fit: BoxFit.cover,
             ),
           ),
@@ -100,6 +99,8 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                           child: Text(
                             '${wallet.name}',
                             style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.0, size: 28),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         SizedBox(width: ScreenUtil().setWidth(30)),
@@ -129,6 +130,8 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                           child: Text(
                             '$tronAddress',
                             style: Util.textStyle4En(context, 2, Colors.grey[800], spacing: 0.0, size: 28),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         SizedBox(width: ScreenUtil().setWidth(30)),

@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/common/page.dart';
+import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
+import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/model/dex_info_model.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/provider/index_provider.dart';
@@ -10,6 +12,7 @@ import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -39,7 +42,7 @@ class _MinePageState extends State<MinePage> {
       body: Container(
         child: ListView(
           children: <Widget>[
-            _personWidget(context),
+            _topWidget(context),
             IntervalPage(ScreenUtil().setHeight(25)),
             _walletManageWidget(context),
             _langWidget(context),
@@ -51,7 +54,16 @@ class _MinePageState extends State<MinePage> {
     );
   }
 
-  Widget _personWidget(BuildContext context) {
+  Widget _topWidget(BuildContext context) {
+    WalletEntity wallet = Provider.of<HomeProvider>(context,listen: true).selectWalletEntity;
+    String name = '';
+    if (wallet != null && wallet.name != null) {
+      name = wallet.name;
+    }
+    String address = '';
+    if (wallet != null && wallet.tronAddress != null) {
+      address = wallet.tronAddress.substring(0, 12) + '...' + wallet.tronAddress.substring(wallet.tronAddress.length-12, wallet.tronAddress.length);
+    }
     return Container(
       margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(50), right: ScreenUtil().setWidth(40), bottom: ScreenUtil().setHeight(30)),
       child: Row(
@@ -63,8 +75,8 @@ class _MinePageState extends State<MinePage> {
               maxRadius: ScreenUtil().setWidth(50),
               child: Image.asset(
                 'images/flash.png',
-                width: ScreenUtil().setWidth(100),
-                height: ScreenUtil().setWidth(100),
+                width: ScreenUtil().setWidth(120),
+                height: ScreenUtil().setWidth(120),
                 fit: BoxFit.cover,
               ),
             ),
@@ -75,33 +87,41 @@ class _MinePageState extends State<MinePage> {
               children: <Widget>[
                 Container(
                   child: Text(
-                    '张三丰',
-                    style: Util.textStyle(context, 2, Colors.grey[900], spacing: 1.5, size: 34),
+                    '$name',
+                    style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.0, size: 30),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 SizedBox(height: ScreenUtil().setHeight(10)),
-                Container(
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        child: Text(
-                          '厦门云蚂数链科技有限公司',
-                          style: Util.textStyle(context, 1, Colors.grey[900], spacing: 0.0, size: 28),
+                InkWell(
+                  onTap: () {
+                    Clipboard.setData(ClipboardData(text: wallet.tronAddress));
+                    Util.showToast('${S.of(context).commonCopySuccess}');
+                  },
+                  child: Container(
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          child: Text(
+                            '$address',
+                            style: Util.textStyle4En(context, 2, Colors.grey[800], spacing: 0.0, size: 28),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
-                      ),
-                      SizedBox(width: ScreenUtil().setWidth(5)),
-                      Container(
-                        padding: EdgeInsets.only(left: ScreenUtil().setWidth(15), top: ScreenUtil().setHeight(4), bottom: ScreenUtil().setHeight(4), right: ScreenUtil().setWidth(15)),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          color: Color(0xfff97540).withOpacity(0.15),
+                        SizedBox(width: ScreenUtil().setWidth(30)),
+                        Container(
+                          child: Image.asset(
+                            'icons/copy.png',
+                            width: ScreenUtil().setWidth(30),
+                            height: ScreenUtil().setWidth(30),
+                            color: Colors.grey[800],
+                            fit: BoxFit.fill,
+                          ),
                         ),
-                        child: Text(
-                          '已认证',
-                          style: Util.textStyle(context, 2, Color(0xfff97540), spacing: 0.0, size: 20),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -180,7 +200,7 @@ class _MinePageState extends State<MinePage> {
                   child: Icon(
                     IconData(0xe676, fontFamily: 'ICON'),
                     size: ScreenUtil().setSp(42),
-                    color: MyColors.themeColor,
+                    color: Color(0xff9266f9).withOpacity(0.9),
                   ),
                 ),
                 SizedBox(width: ScreenUtil().setWidth(50)),

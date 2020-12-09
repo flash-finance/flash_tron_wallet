@@ -15,7 +15,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:scan/scan.dart';
 
@@ -27,6 +26,7 @@ class AssetPage extends StatefulWidget {
 class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
   Timer _timer;
   ScanController controller = ScanController();
+  bool _langType = true;
 
   @override
   void initState() {
@@ -70,7 +70,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<IndexProvider>(context, listen: true).langType;
+    _langType = Provider.of<IndexProvider>(context, listen: true).langType;
     WalletEntity wallet = Provider.of<HomeProvider>(context, listen: true).selectWalletEntity;
     if (wallet != null && wallet.tronAddress != null) {
       return Scaffold(
@@ -276,8 +276,8 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      '${S.of(context).assetMyAssets} (\$)',
-                      style: Util.textStyle(context, 1, Colors.white, spacing: 0.5, size: 23),
+                      '${S.of(context).assetMyAssets} （\$）',
+                      style: Util.textStyle(context, 1, Colors.white, spacing: 0.5, size: 24),
                     ),
                   ),
                   Container(
@@ -286,16 +286,16 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                         Container(
                           child: Text(
                             '${S.of(context).assetDetails}',
-                            style: Util.textStyle(context, 1, Colors.white, spacing: 0.5, size: 23),
+                            style: Util.textStyle(context, 1, Colors.white, spacing: 0.5, size: 24),
                           ),
                         ),
                         SizedBox(width: ScreenUtil().setWidth(10)),
                         Container(
-                          padding: EdgeInsets.only(top: ScreenUtil().setHeight(2)),
+                          padding: EdgeInsets.only(top:_langType ? ScreenUtil().setHeight(0) : ScreenUtil().setHeight(1.5), bottom: _langType ? ScreenUtil().setHeight(1) : ScreenUtil().setHeight(0)),
                           child: Icon(
                             Icons.arrow_forward_ios,
                             size: ScreenUtil().setSp(22),
-                            color: Colors.grey[300],
+                            color: Colors.grey[200],
                           ),
                         ),
                       ],
@@ -314,12 +314,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                 padding: EdgeInsets.only(top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(20)),
                 child: Text(
                   '${Util.formatNumberSub(totalAssetUsd, 2)}',
-                  style: GoogleFonts.roboto(
-                    letterSpacing: 0.2,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
-                    fontSize: ScreenUtil().setSp(45),
-                  ),
+                  style: Util.textStyle4Num(context, Colors.white, spacing: 0.2, size: 45, fontWeight: FontWeight.w500),
                 ),
               ),
             ),
@@ -339,7 +334,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                       child: Row(
                         children: <Widget>[
                           Container(
-                            padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(1) : ScreenUtil().setHeight(1.5)),
+                            padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(2) : ScreenUtil().setHeight(1.5)),
                             child: Icon(
                               Icons.transit_enterexit_sharp,
                               size: ScreenUtil().setSp(34),
@@ -348,10 +343,10 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                           ),
                           SizedBox(width: ScreenUtil().setWidth(10)),
                           Container(
-                            padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(3)),
+                            padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(0)),
                             child: Text(
                               '${S.of(context).assetTransfer}',
-                              style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 26),
+                              style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 24),
                             ),
                           ),
                         ],
@@ -376,12 +371,10 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                           ),
                           SizedBox(width: ScreenUtil().setWidth(10)),
                           Container(
-                            padding: EdgeInsets.only(
-                                bottom: ScreenUtil().setHeight(6)),
+                            padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(3)),
                             child: Text(
-                              '${S.of(context).assetTransfer}',
-                              style: Util.textStyle(context, 1, Colors.white,
-                                  spacing: 0.6, size: 26),
+                              '${S.of(context).assetReceive}',
+                              style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 24),
                             ),
                           ),
                         ],
@@ -403,10 +396,10 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                           ),
                           SizedBox(width: ScreenUtil().setWidth(10)),
                           Container(
-                            padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(6) : ScreenUtil().setHeight(4.5)),
+                            padding: EdgeInsets.only(bottom: flag ? ScreenUtil().setHeight(0) : ScreenUtil().setHeight(4.5)),
                             child: Text(
                               '${S.of(context).assetSwap}',
-                              style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 26),
+                              style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 24),
                             ),
                           ),
                         ],
@@ -479,7 +472,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   Container(
                       child: Text(
                         '${item.name}',
-                        style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.0, size: 31),
+                        style: Util.textStyle4En(context, 2, Colors.grey[800], spacing: 0.0, size: 31),
                       )),
                 ],
               ),
@@ -491,12 +484,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   Container(
                     child: Text(
                       '${Util.formatNumberSub(item.balance, 4)}',
-                      style: GoogleFonts.roboto(
-                        letterSpacing: 0.1,
-                        color: Colors.grey[800],
-                        fontWeight: FontWeight.w500,
-                        fontSize: ScreenUtil().setSp(30),
-                      ),
+                      style: Util.textStyle4Num(context, Colors.grey[800], spacing: 0.1, size: 30, fontWeight: FontWeight.w500),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -505,12 +493,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   Container(
                     child: Text(
                       '≈  \$ ${Util.formatNumberSub(item.cny / 6.75, 2)}',
-                      style: GoogleFonts.roboto(
-                        letterSpacing: 0.1,
-                        color: Colors.grey[500],
-                        fontWeight: FontWeight.w400,
-                        fontSize: ScreenUtil().setSp(24),
-                      ),
+                      style: Util.textStyle4Num(context, Colors.grey[500], spacing: 0.0, size: 24, fontWeight: FontWeight.w400),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),

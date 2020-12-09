@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class Util {
@@ -34,7 +35,28 @@ class Util {
       fontFamily: type == 1 ? 'EN-R' : 'EN-M',
       letterSpacing: 0.0,
       color: color,
-      fontSize: ScreenUtil().setSp(fontSize+2),
+      fontSize: ScreenUtil().setSp(fontSize+1),
+    );
+  }
+
+  static TextStyle textStyle4En(BuildContext context, int type, Color color, {double spacing, double size}) {
+    double fontSize = size != null ? size : 23.0;
+    return TextStyle(
+      fontFamily: type == 1 ? 'EN-R' : 'EN-M',
+      letterSpacing: 0.0,
+      color: color,
+      fontSize: ScreenUtil().setSp(fontSize),
+    );
+  }
+
+  static TextStyle textStyle4Num(BuildContext context, Color color, {double spacing, double size, FontWeight fontWeight}) {
+    double letterSpacing = spacing != null ? spacing : 0.0;
+    double fontSize = size != null ? size : 23.0;
+    return GoogleFonts.roboto(
+      letterSpacing: letterSpacing,
+      color: color,
+      fontWeight: fontWeight,
+      fontSize: ScreenUtil().setSp(fontSize),
     );
   }
 

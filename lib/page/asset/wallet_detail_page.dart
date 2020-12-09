@@ -310,6 +310,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                       filled: true,
                       fillColor: Colors.white,
                     ),
+                    style: Util.textStyle4Num(context, Colors.grey[800], spacing: 0.2, size: 32),
                     obscureText: true,
                     maxLength: 6,
                     maxLengthEnforced: true,
@@ -317,9 +318,9 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                     inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
                     validator: (String value) {
                       if (value.length < 6) {
-                        return '密码为6位';
+                        return '${S.of(context).commonPwd6Digit}';
                       } else if (value.substring(0, 6) != pwd) {
-                        return '密码不正确';
+                        return '${S.of(context).commonPwdIncorrect}';
                       } else {
                         return null;
                       }

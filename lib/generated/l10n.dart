@@ -233,6 +233,36 @@ class S {
     );
   }
 
+  /// `Done`
+  String get commonDone {
+    return Intl.message(
+      'Done',
+      name: 'commonDone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `the password 6 numbers`
+  String get commonPwd6Digit {
+    return Intl.message(
+      'the password 6 numbers',
+      name: 'commonPwd6Digit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `the password incorrect`
+  String get commonPwdIncorrect {
+    return Intl.message(
+      'the password incorrect',
+      name: 'commonPwdIncorrect',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `My Assets`
   String get assetMyAssets {
     return Intl.message(
@@ -448,6 +478,26 @@ class S {
     return Intl.message(
       '2. please keep the mnemonic properly, if someone obtains it, they can directly obtain your assets',
       name: 'addWalletTip4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `please back up the mnemonic to a safe place, once the mnemonic is lost, it cannot be retrieved`
+  String get backupWalletTip1 {
+    return Intl.message(
+      'please back up the mnemonic to a safe place, once the mnemonic is lost, it cannot be retrieved',
+      name: 'backupWalletTip1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `please back up the private key to a safe place, once the private key is lost, it cannot be retrieved`
+  String get backupWalletTip2 {
+    return Intl.message(
+      'please back up the private key to a safe place, once the private key is lost, it cannot be retrieved',
+      name: 'backupWalletTip2',
       desc: '',
       args: [],
     );

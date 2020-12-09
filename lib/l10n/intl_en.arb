@@ -20,6 +20,9 @@
   "commonCreateFail": "create failed, please try again",
   "commonBackupMnemonic": "please backup your mnemonic",
   "commonSavedSafely": "Saved Safely",
+  "commonDone": "Done",
+  "commonPwd6Digit": "the password 6 numbers",
+  "commonPwdIncorrect": "the password incorrect",
 
   "assetMyAssets": "My Assets",
   "assetDetails": "Details",
@@ -46,6 +49,9 @@
   "addWalletTip2": "2. the platform does not store passwords and cannot be retrieved, please keep them properly",
   "addWalletTip3": "1. the mnemonic is the private key, which is used to restore the wallet. Please back it up to a safe place",
   "addWalletTip4": "2. please keep the mnemonic properly, if someone obtains it, they can directly obtain your assets",
+
+  "backupWalletTip1": "please back up the mnemonic to a safe place, once the mnemonic is lost, it cannot be retrieved",
+  "backupWalletTip2": "please back up the private key to a safe place, once the private key is lost, it cannot be retrieved",
 
   "assetWalletName": "Wallet Name",
   "assetPrivateKey": "Private Key",

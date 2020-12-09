@@ -19,6 +19,9 @@
   "commonCreateFail": "创建出错，请再尝试'",
   "commonBackupMnemonic": "请备份您的助记词",
   "commonSavedSafely": "已安全保存",
+  "commonDone": "完成",
+  "commonPwd6Digit": "密码为6位",
+  "commonPwdIncorrect": "密码不正确",
 
   "assetMyAssets": "我的资产",
   "assetDetails": "详情",
@@ -47,6 +50,8 @@
   "addWalletTip3": "1. 助记词即私钥，用于恢复钱包，请备份到安全的地方",
   "addWalletTip4": "2. 请妥善保存助记词，如有人获得助记词，可直接获取您的资产",
 
+  "backupWalletTip1": "请将助记词备份到安全的地方, 助记词一旦丢失，无法找回",
+  "backupWalletTip2": "请将私钥备份到安全的地方, 私钥一旦丢失，无法找回",
 
   "assetWalletName": "钱包名称",
   "assetPrivateKey": "私钥",

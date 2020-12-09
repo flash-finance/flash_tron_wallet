@@ -1,5 +1,6 @@
 import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
+import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
         backgroundColor: Colors.white,
         brightness: Brightness.light,
         title: Text(
-          '备份私钥',
+          '${S.of(context).assetBackupPrivateKey}',
           style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 34),
         ),
         centerTitle: true,
@@ -70,10 +71,10 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
       child: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.fromLTRB(0, 15, 10, 15),
+            padding: EdgeInsets.fromLTRB(30, 15, 30, 15),
             alignment: Alignment.center,
             child: Text(
-              '请将私钥备份到安全的地方, 私钥一旦丢失，无法找回',
+              '${S.of(context).backupWalletTip2}',
               style: Util.textStyle(context, 1, Colors.white, spacing: 0.1, size: 22.5),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
@@ -97,15 +98,14 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
             padding: EdgeInsets.fromLTRB(5, 15, 0, 10),
             child: Text(
               '$key',
-              style: TextStyle(color: Colors.grey[850], fontSize: ScreenUtil().setSp(28),
-              ),
+              style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 28),
               maxLines: 3, overflow: TextOverflow.ellipsis,
             ),
           ),
           InkWell(
             onTap: () {
               Clipboard.setData(ClipboardData(text: key));
-              Util.showToast('复制成功');
+              Util.showToast('${S.of(context).commonCopySuccess}');
             },
             child: Container(
               width: ScreenUtil().setWidth(80),
@@ -133,7 +133,7 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
             child: Container(
               padding: EdgeInsets.all(12),
               child: Text(
-                  '完成',
+                  '${S.of(context).commonDone}',
                 style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 31),
               ),
             ),

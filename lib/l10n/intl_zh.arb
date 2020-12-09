@@ -10,7 +10,15 @@
   "commonExecutedError": "执行出错, 请再尝试",
   "commonUpdateSuccess": "修改成功",
   "commonDeleteWalletTip": "请确保私钥或助记词已备份，确定删除?",
-
+  "commonCanNotBeEmpty": "不能为空",
+  "commonSubmit": "提交",
+  "commonIncorrectFormat": "格式不正确",
+  "commonNeed6Digit": "需要6位数字",
+  "commonImportSuccess": "导入成功",
+  "commonImportFail": "导入失败，请再尝试",
+  "commonCreateFail": "创建出错，请再尝试'",
+  "commonBackupMnemonic": "请备份您的助记词",
+  "commonSavedSafely": "已安全保存",
 
   "assetMyAssets": "我的资产",
   "assetDetails": "详情",
@@ -33,6 +41,18 @@
 
   "assetAssets": "资产",
   "assetWalletList": "钱包列表",
+
+  "addWalletTip1": "1. 需要设置6位数字的密码，用于钱包管理和交易授权",
+  "addWalletTip2": "2. 平台不存储密码，也无法找回，请务必妥善保管",
+  "addWalletTip3": "1. 助记词即私钥，用于恢复钱包，请备份到安全的地方",
+  "addWalletTip4": "2. 请妥善保存助记词，如有人获得助记词，可直接获取您的资产",
+
+
+  "assetWalletName": "钱包名称",
+  "assetPrivateKey": "私钥",
+  "assetMnemonic": "助记词",
+  "assetSetPassword": "设置密码",
+  "assetConfirmPassword": "确认密码",
 
   "mineManageWallet" : "钱包管理",
   "mineCurrentVersion" : "当前版本"

@@ -1,5 +1,6 @@
 import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
+import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +26,8 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
         backgroundColor: Colors.white,
         brightness: Brightness.light,
         title: Text(
-          '创建钱包',
-          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 32),
+          '${S.of(context).assetCreateWallet}',
+          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 34),
         ),
         centerTitle: true,
         elevation: 0,
@@ -81,7 +82,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             padding: EdgeInsets.fromLTRB(30, 15, 10, 0),
             alignment: Alignment.centerLeft,
             child: Text(
-              '1. 助记词即私钥，用于恢复钱包，请备份到安全的地方',
+              '${S.of(context).addWalletTip3}',
               style: Util.textStyle(context, 1, Colors.white, spacing: 0.1, size: 22.5),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
@@ -91,7 +92,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             padding: EdgeInsets.fromLTRB(30, 5, 10, 15),
             alignment: Alignment.centerLeft,
             child: Text(
-              '2. 请勿截图，如有人获取助记词，可直接获取您的资产',
+              '${S.of(context).addWalletTip4}',
               style: Util.textStyle(context, 1, Colors.white, spacing: 0.1, size: 22.5),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
@@ -111,14 +112,14 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
         children: <Widget>[
           Container(
             child: Text(
-              '请备份您的助记词',
-              style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.4, size: 26),
+              '${S.of(context).commonBackupMnemonic}',
+              style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.4, size: 26),
             ),
           ),
           InkWell(
             onTap: () {
               Clipboard.setData(ClipboardData(text: mnemonic));
-              Util.showToast('复制成功');
+              Util.showToast('${S.of(context).commonCopySuccess}');
             },
             child: Container(
               padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
@@ -126,7 +127,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
                 'icons/copy.png',
                 width: ScreenUtil().setWidth(35),
                 height: ScreenUtil().setWidth(35),
-                color: Colors.grey[850],
+                color: Colors.grey[800],
                 fit: BoxFit.fill,
               ),
             ),
@@ -169,7 +170,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
             child: Text(
               '$index',
-              style: TextStyle(color: Colors.grey[500], fontSize: ScreenUtil().setSp(20)),
+              style: Util.textStyle4Num(context, Colors.grey[500], size: 20),
             ),
           ),
           Container(
@@ -177,7 +178,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             padding: EdgeInsets.only(bottom: 13),
             child: Text(
               '$value',
-              style: TextStyle(color: Colors.grey[850], fontSize: ScreenUtil().setSp(27)),
+              style: Util.textStyle4En(context, 2, Colors.grey[800], size: 27),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -196,7 +197,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             child: Container(
               padding: EdgeInsets.all(12),
               child: Text(
-                  '已安全保存',
+                '${S.of(context).commonSavedSafely}',
                 style: Util.textStyle(context, 1, Colors.white, spacing: 0.2, size: 30),
               ),
             ),

@@ -1,5 +1,6 @@
 import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
+import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/tron/service/tron_wallet.dart';
@@ -42,8 +43,8 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
         backgroundColor: Colors.white,
         brightness: Brightness.light,
         title: Text(
-          '创建钱包',
-          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 32),
+          '${S.of(context).assetCreateWallet}',
+          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 34),
         ),
         centerTitle: true,
         elevation: 0,
@@ -107,13 +108,13 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
         maxLength: 10,
         inputFormatters: [],
         decoration: InputDecoration(
-          labelText: '钱包名称',
-          labelStyle: Util.textStyle(context, 1, Colors.grey[700], spacing: 0.1, size: 26),
+          labelText: '${S.of(context).assetWalletName}',
+          labelStyle: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.1, size: 26),
         ),
         style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 30),
         validator: (String value) {
           if (value.isEmpty) {
-            return '钱包名称不能为空';
+            return '${S.of(context).commonCanNotBeEmpty}';
           } else {
             return null;
           }
@@ -137,8 +138,8 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
-            labelText: '设置密码',
-            labelStyle: Util.textStyle(context, 1, Colors.grey[700], spacing: 0.1, size: 26),
+            labelText: '${S.of(context).assetSetPassword}',
+            labelStyle: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.1, size: 26),
             suffixIcon: IconButton(
               icon: Icon(_setPwdClickEye ? Icons.visibility_off : Icons.remove_red_eye,
                 color: _setPwdEyeColor, size: ScreenUtil().setSp(38),),
@@ -150,17 +151,12 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
               },
             )
         ),
-        style: TextStyle(
-          color: Colors.grey[850],
-          fontSize: ScreenUtil().setSp(30),
-          letterSpacing: 0.2,
-          fontWeight: FontWeight.w500,
-        ),
+        style: Util.textStyle4Num(context, Colors.grey[800], spacing: 0.2, size: 32),
         validator: (String value) {
           if (value.isEmpty) {
-            return '设置密码不能为空';
+            return '${S.of(context).commonCanNotBeEmpty}';
           } else if (value.trim().length < 6) {
-            return '需要6位';
+            return '${S.of(context).commonNeed6Digit}';
           } else {
             return null;
           }
@@ -184,8 +180,8 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
-            labelText: '确认密码',
-            labelStyle: Util.textStyle(context, 1, Colors.grey[700], spacing: 0.1, size: 26),
+            labelText: '${S.of(context).assetConfirmPassword}',
+            labelStyle: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.1, size: 26),
             suffixIcon: IconButton(
               icon: Icon(_confirmPwdClickEye ? Icons.visibility_off : Icons.remove_red_eye,
                 color: _confirmPwdEyeColor, size: ScreenUtil().setSp(38),),
@@ -197,15 +193,10 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
               },
             )
         ),
-        style: TextStyle(
-          color: Colors.grey[850],
-          fontSize: ScreenUtil().setSp(30),
-          letterSpacing: 0.2,
-          fontWeight: FontWeight.w500,
-        ),
+        style: Util.textStyle4Num(context, Colors.grey[800], spacing: 0.2, size: 32),
         validator: (String value) {
           if (value.isEmpty) {
-            return '确认密码不能为空';
+            return '${S.of(context).commonCanNotBeEmpty}';
           } else {
             return null;
           }
@@ -223,7 +214,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
             child: Container(
               padding: EdgeInsets.all(12),
               child: Text(
-                '提交',
+                '${S.of(context).commonSubmit}',
                 style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 31),
               ),
             ),
@@ -233,14 +224,14 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 if (_setPwd != _confirmPwd) {
-                  Util.showToast('两次输入密码不一致');
+                  Util.showToast('${S.of(context).commonConfirmPwdError}');
                 } else {
                   _submit(context).then((val) {
                     Provider.of<HomeProvider>(context, listen: false).changeBuildWalletLoading(false);
                     if (val == true) {
                       Application.router.navigateTo(context, 'asset/buildSecondWallet/${widget.type}', transition: TransitionType.cupertino);
                     } else {
-                      Util.showToast('创建出错，请再尝试');
+                      Util.showToast('${S.of(context).commonCreateFail}');
                     }
                   });
                 }
@@ -263,20 +254,20 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
       child: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.fromLTRB(30, 15, 10, 0),
+            padding: EdgeInsets.fromLTRB(30, 15, 30, 0),
             alignment: Alignment.centerLeft,
             child: Text(
-              '1. 需要设置6位数字的密码，用于钱包管理和交易授权',
+              '${S.of(context).addWalletTip1}',
               style: Util.textStyle(context, 1, Colors.white, spacing: 0.1, size: 22.5),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(30, 5, 10, 15),
+            padding: EdgeInsets.fromLTRB(30, 5, 30, 15),
             alignment: Alignment.centerLeft,
             child: Text(
-              '2. 平台不存储密码，也无法找回，请务必妥善保管',
+              '${S.of(context).addWalletTip2}',
               style: Util.textStyle(context, 1, Colors.white, spacing: 0.1, size: 22.5),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,

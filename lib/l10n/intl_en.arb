@@ -4,13 +4,22 @@
   "bottomTab3": "Mine",
 
   "commonCopySuccess": "Copy Success",
-  "commonPleaseEnterYourPassword": "Please enter your password",
+  "commonPleaseEnterYourPassword": "please enter your password",
   "commonCancel": "Cancel",
   "commonConfirm": "Confirm",
-  "commonExecutedError": "Executed error.Please try again",
+  "commonExecutedError": "executed error, please try again",
   "commonUpdateSuccess": "Update Success",
-  "commonDeleteWalletTip": "Please make sure that the private key or mnemonic is backed up. Are you sure to delete it?",
-
+  "commonDeleteWalletTip": "please make sure that the private key or mnemonic is backed up, are you sure to delete it?",
+  "commonCanNotBeEmpty": "can not be empty",
+  "commonSubmit": "Submit",
+  "commonIncorrectFormat": "incorrect format",
+  "commonNeed6Digit": "need 6 digit",
+  "commonConfirmPwdError": "the two entered passwords are inconsistent",
+  "commonImportSuccess": "imported successfully",
+  "commonImportFail": "import failed, please try again",
+  "commonCreateFail": "create failed, please try again",
+  "commonBackupMnemonic": "please backup your mnemonic",
+  "commonSavedSafely": "Saved Safely",
 
   "assetMyAssets": "My Assets",
   "assetDetails": "Details",
@@ -33,6 +42,16 @@
 
   "assetAssets": "Assets",
   "assetWalletList": "Wallet List",
+  "addWalletTip1": "1. need to set a 6-digit password for wallet management and transaction authorization",
+  "addWalletTip2": "2. the platform does not store passwords and cannot be retrieved, please keep them properly",
+  "addWalletTip3": "1. the mnemonic is the private key, which is used to restore the wallet. Please back it up to a safe place",
+  "addWalletTip4": "2. please keep the mnemonic properly, if someone obtains it, they can directly obtain your assets",
+
+  "assetWalletName": "Wallet Name",
+  "assetPrivateKey": "Private Key",
+  "assetMnemonic": "Mnemonic",
+  "assetSetPassword": "Set Password",
+  "assetConfirmPassword": "Confirm Password",
 
   "mineManageWallet" : "Manage Wallets",
   "mineCurrentVersion" : "CurrentVersion"

@@ -1,5 +1,6 @@
 import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
+import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/tron/service/tron_wallet.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
@@ -45,8 +46,8 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
         backgroundColor: Colors.white,
         brightness: Brightness.light,
         title: Text(
-          '导入助记词',
-          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 32),
+          '${S.of(context).assetImportMnemonic}',
+          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 34),
         ),
         centerTitle: true,
         elevation: 0,
@@ -111,13 +112,13 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
         maxLength: 10,
         inputFormatters: [],
         decoration: InputDecoration(
-          labelText: '钱包名称',
-          labelStyle: Util.textStyle(context, 1, Colors.grey[700], spacing: 0.1, size: 26),
+          labelText: '${S.of(context).assetWalletName}',
+          labelStyle: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.1, size: 26),
         ),
         style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 30),
         validator: (String value) {
           if (value.isEmpty) {
-            return '钱包名称不能为空';
+            return '${S.of(context).commonCanNotBeEmpty}';
           } else {
             return null;
           }
@@ -134,13 +135,13 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
         maxLines: 2,
         maxLength: 150,
         decoration: InputDecoration(
-          labelText: '助记词',
-          labelStyle: Util.textStyle(context, 1, Colors.grey[700], spacing: 0.1, size: 26),
+          labelText: '${S.of(context).assetMnemonic}',
+          labelStyle: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.1, size: 26),
         ),
         style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 28),
         validator: (String value) {
           if (value.isEmpty) {
-            return '助记词不能为空';
+            return '${S.of(context).commonCanNotBeEmpty}';
           } else {
             return null;
           }
@@ -164,8 +165,8 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
-            labelText: '设置密码',
-            labelStyle: Util.textStyle(context, 1, Colors.grey[700], spacing: 0.1, size: 26),
+            labelText: '${S.of(context).assetSetPassword}',
+            labelStyle: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.1, size: 26),
             suffixIcon: IconButton(
               icon: Icon(_setPwdClickEye ? Icons.visibility_off : Icons.remove_red_eye,
                 color: _setPwdEyeColor, size: ScreenUtil().setSp(38),),
@@ -177,17 +178,13 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
               },
             )
         ),
-        style: TextStyle(
-          color: Colors.grey[850],
-          fontSize: ScreenUtil().setSp(30),
-          letterSpacing: 0.2,
-          fontWeight: FontWeight.w500,
-        ),
+
+        style: Util.textStyle4Num(context, Colors.grey[800], spacing: 0.2, size: 32),
         validator: (String value) {
           if (value.isEmpty) {
-            return '设置密码不能为空';
+            return '${S.of(context).commonCanNotBeEmpty}';
           } else if (value.trim().length < 6) {
-            return '需要6位';
+            return '${S.of(context).commonNeed6Digit}';
           } else {
             return null;
           }
@@ -211,8 +208,8 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
-            labelText: '确认密码',
-            labelStyle: Util.textStyle(context, 1, Colors.grey[700], spacing: 0.1, size: 26),
+            labelText: '${S.of(context).assetConfirmPassword}',
+            labelStyle: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.1, size: 26),
             suffixIcon: IconButton(
               icon: Icon(_confirmPwdClickEye ? Icons.visibility_off : Icons.remove_red_eye,
                 color: _confirmPwdEyeColor, size: ScreenUtil().setSp(38),),
@@ -224,15 +221,10 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
               },
             )
         ),
-        style: TextStyle(
-          color: Colors.grey[850],
-          fontSize: ScreenUtil().setSp(30),
-          letterSpacing: 0.2,
-          fontWeight: FontWeight.w500,
-        ),
+        style: Util.textStyle4Num(context, Colors.grey[800], spacing: 0.2, size: 32),
         validator: (String value) {
           if (value.isEmpty) {
-            return '确认密码不能为空';
+            return '${S.of(context).commonCanNotBeEmpty}';
           } else {
             return null;
           }
@@ -250,7 +242,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
             child: Container(
               padding: EdgeInsets.all(12),
               child: Text(
-                '提交',
+                '${S.of(context).commonSubmit}',
                 style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 31),
               ),
             ),
@@ -260,21 +252,21 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 if (_setPwd != _confirmPwd) {
-                  Util.showToast('两次输入密码不一致');
+                  Util.showToast('${S.of(context).commonConfirmPwdError}');
                 } else if (!validateMnemonic()) {
-                  Util.showToast('助记词格式不正确');
+                  Util.showToast('${S.of(context).commonIncorrectFormat}');
                 } else {
                   _submit().then((val) {
                     Provider.of<HomeProvider>(context, listen: false).changeImportMnemonicLoading(false);
                     if(val == true) {
-                      Util.showToast('导入成功');
+                      Util.showToast('${S.of(context).commonImportSuccess}');
                       if (widget.type == '1') {
                         Navigator.of(context)..pop();
                       } else if (widget.type == '2') {
                         Navigator.of(context)..pop()..pop();
                       }
                     } else {
-                      Util.showToast('导入失败，请再尝试');
+                      Util.showToast('${S.of(context).commonImportFail}');
                     }
                   });
                 }
@@ -297,20 +289,20 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
       child: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.fromLTRB(30, 15, 10, 0),
+            padding: EdgeInsets.fromLTRB(30, 15, 30, 0),
             alignment: Alignment.centerLeft,
             child: Text(
-              '1. 需要设置6位数字的密码，用于钱包管理和交易授权',
+              '${S.of(context).addWalletTip1}',
               style: Util.textStyle(context, 1, Colors.white, spacing: 0.1, size: 22.5),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(30, 5, 10, 15),
+            padding: EdgeInsets.fromLTRB(30, 5, 30, 15),
             alignment: Alignment.centerLeft,
             child: Text(
-              '2. 平台不存储密码，也无法找回，请务必妥善保管',
+              '${S.of(context).addWalletTip2}',
               style: Util.textStyle(context, 1, Colors.white, spacing: 0.1, size: 22.5),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,

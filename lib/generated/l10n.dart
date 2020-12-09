@@ -73,10 +73,10 @@ class S {
     );
   }
 
-  /// `Please enter your password`
+  /// `please enter your password`
   String get commonPleaseEnterYourPassword {
     return Intl.message(
-      'Please enter your password',
+      'please enter your password',
       name: 'commonPleaseEnterYourPassword',
       desc: '',
       args: [],
@@ -103,10 +103,10 @@ class S {
     );
   }
 
-  /// `Executed error.Please try again`
+  /// `executed error, please try again`
   String get commonExecutedError {
     return Intl.message(
-      'Executed error.Please try again',
+      'executed error, please try again',
       name: 'commonExecutedError',
       desc: '',
       args: [],
@@ -123,11 +123,111 @@ class S {
     );
   }
 
-  /// `Please make sure that the private key or mnemonic is backed up. Are you sure to delete it?`
+  /// `please make sure that the private key or mnemonic is backed up, are you sure to delete it?`
   String get commonDeleteWalletTip {
     return Intl.message(
-      'Please make sure that the private key or mnemonic is backed up. Are you sure to delete it?',
+      'please make sure that the private key or mnemonic is backed up, are you sure to delete it?',
       name: 'commonDeleteWalletTip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `can not be empty`
+  String get commonCanNotBeEmpty {
+    return Intl.message(
+      'can not be empty',
+      name: 'commonCanNotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit`
+  String get commonSubmit {
+    return Intl.message(
+      'Submit',
+      name: 'commonSubmit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `incorrect format`
+  String get commonIncorrectFormat {
+    return Intl.message(
+      'incorrect format',
+      name: 'commonIncorrectFormat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `need 6 digit`
+  String get commonNeed6Digit {
+    return Intl.message(
+      'need 6 digit',
+      name: 'commonNeed6Digit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `the two entered passwords are inconsistent`
+  String get commonConfirmPwdError {
+    return Intl.message(
+      'the two entered passwords are inconsistent',
+      name: 'commonConfirmPwdError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `imported successfully`
+  String get commonImportSuccess {
+    return Intl.message(
+      'imported successfully',
+      name: 'commonImportSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `import failed, please try again`
+  String get commonImportFail {
+    return Intl.message(
+      'import failed, please try again',
+      name: 'commonImportFail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `create failed, please try again`
+  String get commonCreateFail {
+    return Intl.message(
+      'create failed, please try again',
+      name: 'commonCreateFail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `please backup your mnemonic`
+  String get commonBackupMnemonic {
+    return Intl.message(
+      'please backup your mnemonic',
+      name: 'commonBackupMnemonic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Saved Safely`
+  String get commonSavedSafely {
+    return Intl.message(
+      'Saved Safely',
+      name: 'commonSavedSafely',
       desc: '',
       args: [],
     );
@@ -308,6 +408,96 @@ class S {
     return Intl.message(
       'Wallet List',
       name: 'assetWalletList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1. need to set a 6-digit password for wallet management and transaction authorization`
+  String get addWalletTip1 {
+    return Intl.message(
+      '1. need to set a 6-digit password for wallet management and transaction authorization',
+      name: 'addWalletTip1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `2. the platform does not store passwords and cannot be retrieved, please keep them properly`
+  String get addWalletTip2 {
+    return Intl.message(
+      '2. the platform does not store passwords and cannot be retrieved, please keep them properly',
+      name: 'addWalletTip2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1. the mnemonic is the private key, which is used to restore the wallet. Please back it up to a safe place`
+  String get addWalletTip3 {
+    return Intl.message(
+      '1. the mnemonic is the private key, which is used to restore the wallet. Please back it up to a safe place',
+      name: 'addWalletTip3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `2. please keep the mnemonic properly, if someone obtains it, they can directly obtain your assets`
+  String get addWalletTip4 {
+    return Intl.message(
+      '2. please keep the mnemonic properly, if someone obtains it, they can directly obtain your assets',
+      name: 'addWalletTip4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wallet Name`
+  String get assetWalletName {
+    return Intl.message(
+      'Wallet Name',
+      name: 'assetWalletName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Private Key`
+  String get assetPrivateKey {
+    return Intl.message(
+      'Private Key',
+      name: 'assetPrivateKey',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mnemonic`
+  String get assetMnemonic {
+    return Intl.message(
+      'Mnemonic',
+      name: 'assetMnemonic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set Password`
+  String get assetSetPassword {
+    return Intl.message(
+      'Set Password',
+      name: 'assetSetPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Password`
+  String get assetConfirmPassword {
+    return Intl.message(
+      'Confirm Password',
+      name: 'assetConfirmPassword',
       desc: '',
       args: [],
     );

@@ -213,6 +213,16 @@ class S {
     );
   }
 
+  /// `execute failed, please try again`
+  String get commonExecuteFail {
+    return Intl.message(
+      'execute failed, please try again',
+      name: 'commonExecuteFail',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `please backup your mnemonic`
   String get commonBackupMnemonic {
     return Intl.message(
@@ -258,6 +268,36 @@ class S {
     return Intl.message(
       'the password incorrect',
       name: 'commonPwdIncorrect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `enter old password`
+  String get commonEnterOldPwd {
+    return Intl.message(
+      'enter old password',
+      name: 'commonEnterOldPwd',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `set new password`
+  String get commonSetNewPwd {
+    return Intl.message(
+      'set new password',
+      name: 'commonSetNewPwd',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `confirm new password`
+  String get commonConfirmNewPwd {
+    return Intl.message(
+      'confirm new password',
+      name: 'commonConfirmNewPwd',
       desc: '',
       args: [],
     );

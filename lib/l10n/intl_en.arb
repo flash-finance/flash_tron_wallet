@@ -18,11 +18,15 @@
   "commonImportSuccess": "imported successfully",
   "commonImportFail": "import failed, please try again",
   "commonCreateFail": "create failed, please try again",
+  "commonExecuteFail": "execute failed, please try again",
   "commonBackupMnemonic": "please backup your mnemonic",
   "commonSavedSafely": "Saved Safely",
   "commonDone": "Done",
   "commonPwd6Digit": "the password 6 numbers",
   "commonPwdIncorrect": "the password incorrect",
+  "commonEnterOldPwd": "enter old password",
+  "commonSetNewPwd": "set new password",
+  "commonConfirmNewPwd": "confirm new password",
 
   "assetMyAssets": "My Assets",
   "assetDetails": "Details",
@@ -45,6 +49,7 @@
 
   "assetAssets": "Assets",
   "assetWalletList": "Wallet List",
+
   "addWalletTip1": "1. need to set a 6-digit password for wallet management and transaction authorization",
   "addWalletTip2": "2. the platform does not store passwords and cannot be retrieved, please keep them properly",
   "addWalletTip3": "1. the mnemonic is the private key, which is used to restore the wallet. Please back it up to a safe place",

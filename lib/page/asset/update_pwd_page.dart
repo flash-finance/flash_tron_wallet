@@ -1,5 +1,6 @@
 import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
+import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/util/common_util.dart';
 import 'package:flutter/material.dart';
@@ -35,8 +36,8 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
         backgroundColor: Colors.white,
       brightness: Brightness.light,
       title: Text(
-        '修改密码',
-        style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 32),
+        '${S.of(context).assetUpdatePassword}',
+        style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 34),
       ),
       centerTitle: true,
       elevation: 0,
@@ -92,8 +93,8 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
         keyboardType: TextInputType.numberWithOptions(decimal: true),
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
         decoration: InputDecoration(
-            labelText: '输入旧密码',
-            labelStyle: Util.textStyle(context, 1, Colors.grey[700], spacing: 0.1, size: 26),
+            labelText: '${S.of(context).commonEnterOldPwd}',
+            labelStyle: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.1, size: 26),
             suffixIcon: IconButton(
               icon: Icon(_oldPwdClickEye ? Icons.visibility_off : Icons.remove_red_eye,
                 color: _oldPwdEyeColor, size: ScreenUtil().setSp(38),),
@@ -105,19 +106,14 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
               },
             )
         ),
-        style: TextStyle(
-          color: Colors.grey[850],
-          fontSize: ScreenUtil().setSp(30),
-          letterSpacing: 0.2,
-          fontWeight: FontWeight.w500,
-        ),
+        style: Util.textStyle4Num(context, Colors.grey[800], spacing: 0.2, size: 32),
         validator: (String value) {
           if (value.isEmpty) {
-            return '旧密码不能为空';
+            return '${S.of(context).commonCanNotBeEmpty}';
           } else if (value.trim().length != 6) {
-            return '需要6位';
+            return '${S.of(context).commonNeed6Digit}';
           } else if (value.trim() != pwd) {
-            return '旧密码不正确';
+            return '${S.of(context).commonPwdIncorrect}';
           } else {
             return null;
           }
@@ -135,8 +131,8 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
         keyboardType: TextInputType.numberWithOptions(decimal: true),
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
         decoration: InputDecoration(
-            labelText: '设置新密码',
-            labelStyle: Util.textStyle(context, 1, Colors.grey[700], spacing: 0.1, size: 26),
+            labelText: '${S.of(context).commonSetNewPwd}',
+            labelStyle: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.1, size: 26),
             suffixIcon: IconButton(
               icon: Icon(_setPwdClickEye ? Icons.visibility_off : Icons.remove_red_eye,
                 color: _setPwdEyeColor, size: ScreenUtil().setSp(38),),
@@ -148,17 +144,12 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
               },
             )
         ),
-        style: TextStyle(
-          color: Colors.grey[850],
-          fontSize: ScreenUtil().setSp(30),
-          letterSpacing: 0.2,
-          fontWeight: FontWeight.w500,
-        ),
+        style: Util.textStyle4Num(context, Colors.grey[800], spacing: 0.2, size: 32),
         validator: (String value) {
           if (value.isEmpty) {
-            return '设置新密码不能为空';
+            return '${S.of(context).commonCanNotBeEmpty}';
           } else if (value.trim().length != 6) {
-            return '需要6位';
+            return '${S.of(context).commonNeed6Digit}';
           } else {
             return null;
           }
@@ -176,8 +167,8 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
-            labelText: '确认新密码',
-            labelStyle: Util.textStyle(context, 1, Colors.grey[700], spacing: 0.1, size: 26),
+            labelText: '${S.of(context).commonConfirmNewPwd}',
+            labelStyle: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.1, size: 26),
             suffixIcon: IconButton(
               icon: Icon(_confirmPwdClickEye ? Icons.visibility_off :Icons.remove_red_eye,
                 color: _confirmPwdEyeColor, size: ScreenUtil().setSp(38),),
@@ -189,15 +180,10 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
               },
             )
         ),
-        style: TextStyle(
-          color: Colors.grey[850],
-          fontSize: ScreenUtil().setSp(30),
-          letterSpacing: 0.2,
-          fontWeight: FontWeight.w500,
-        ),
+        style: Util.textStyle4Num(context, Colors.grey[800], spacing: 0.2, size: 32),
         validator: (String value) {
           if (value.isEmpty) {
-            return '确认新密码不能为空';
+            return '${S.of(context).commonCanNotBeEmpty}';
           } else {
             return null;
           }
@@ -215,7 +201,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
             child: Container(
               padding: EdgeInsets.all(12),
               child: Text(
-                '提交',
+                '${S.of(context).commonSubmit}',
                 style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 31),
               ),
             ),
@@ -224,14 +210,14 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 if (_setPwd != _confirmPwd) {
-                  Util.showToast('两次输入新密码不一致');
+                  Util.showToast('${S.of(context).commonConfirmPwdError}');
                 } else {
                   _submit(context).then((val) {
                     if (val == true) {
-                      Util.showToast('修改成功');
+                      Util.showToast('${S.of(context).commonUpdateSuccess}');
                       Navigator.pop(context);
                     } else {
-                      Util.showToast('执行出错，请再尝试');
+                      Util.showToast('${S.of(context).commonExecuteFail}');
                     }
                   });
                 }
@@ -258,7 +244,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
             padding: EdgeInsets.fromLTRB(30, 15, 10, 0),
             alignment: Alignment.centerLeft,
             child: Text(
-              '1. 需要设置6位数字的密码，用于钱包管理和交易授权',
+              '${S.of(context).addWalletTip1}',
               style: Util.textStyle(context, 1, Colors.white, spacing: 0.1, size: 22.5),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
@@ -268,7 +254,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
             padding: EdgeInsets.fromLTRB(30, 5, 10, 15),
             alignment: Alignment.centerLeft,
             child: Text(
-              '2. 平台不存储密码，也无法找回，请务必妥善保管',
+              '${S.of(context).addWalletTip2}',
               style: Util.textStyle(context, 1, Colors.white, spacing: 0.1, size: 22.5),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,

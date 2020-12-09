@@ -14,14 +14,19 @@
   "commonSubmit": "提交",
   "commonIncorrectFormat": "格式不正确",
   "commonNeed6Digit": "需要6位数字",
+  "commonConfirmPwdError": "两次输入密码不一致",
   "commonImportSuccess": "导入成功",
   "commonImportFail": "导入失败，请再尝试",
   "commonCreateFail": "创建出错，请再尝试'",
+  "commonExecuteFail": "执行出错，请再尝试",
   "commonBackupMnemonic": "请备份您的助记词",
   "commonSavedSafely": "已安全保存",
   "commonDone": "完成",
   "commonPwd6Digit": "密码为6位",
   "commonPwdIncorrect": "密码不正确",
+  "commonEnterOldPwd": "输入旧密码",
+  "commonSetNewPwd": "设置新密码",
+  "commonConfirmNewPwd": "确认新密码",
 
   "assetMyAssets": "我的资产",
   "assetDetails": "详情",
@@ -61,5 +66,4 @@
 
   "mineManageWallet" : "钱包管理",
   "mineCurrentVersion" : "当前版本"
-
 }

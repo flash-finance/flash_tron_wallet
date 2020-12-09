@@ -23,7 +23,7 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
         brightness: Brightness.light,
         title: Text(
           '备份私钥',
-          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 32),
+          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 34),
         ),
         centerTitle: true,
         elevation: 0,

@@ -288,7 +288,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         builder: (context) => CupertinoAlertDialog(
           title: Text(
             '${S.of(context).commonPleaseEnterYourPassword}',
-            style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 30),
+            style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 32),
           ),
           content: Card(
             elevation: 0.0,
@@ -368,7 +368,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         builder: (context) => CupertinoAlertDialog(
           title: Text(
             '${S.of(context).assetUpdateWalletName}',
-            style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 30),
+            style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 32),
           ),
           content: Card(
             elevation: 0.0,

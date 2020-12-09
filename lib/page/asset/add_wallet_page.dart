@@ -17,7 +17,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColors.lightBg,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         brightness: Brightness.light,

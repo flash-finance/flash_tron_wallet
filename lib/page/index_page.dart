@@ -17,15 +17,15 @@ class _IndexPageState extends State<IndexPage> {
   final List<BottomNavigationBarItem> bottomTabs = [
     BottomNavigationBarItem(
       icon: Icon(Icons.donut_small),
-      label: '资产',
+      title: Text('资产'),
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.explore),
-      label: '交易',
+      title: Text('交易'),
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.account_circle),
-      label: '我的',
+      title: Text('我的'),
     ),
   ];
 
@@ -44,6 +44,8 @@ class _IndexPageState extends State<IndexPage> {
         type: BottomNavigationBarType.fixed,
         currentIndex: provider.currentIndex,
         items: bottomTabs,
+        selectedFontSize: 12.5,
+        unselectedFontSize: 12.5,
         onTap: (int index) {
           provider.changeCurrentIndex(index);
         },

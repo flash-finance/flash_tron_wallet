@@ -68,20 +68,16 @@ class _MinePageState extends State<MinePage> {
       address = wallet.tronAddress.substring(0, 12) + '...' + wallet.tronAddress.substring(wallet.tronAddress.length-12, wallet.tronAddress.length);
     }
     return Container(
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(50), right: ScreenUtil().setWidth(40), bottom: ScreenUtil().setHeight(30)),
+      margin: EdgeInsets.only(left: ScreenUtil().setWidth(20), top: ScreenUtil().setHeight(50), right: ScreenUtil().setWidth(40), bottom: ScreenUtil().setHeight(30)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
-            child: CircleAvatar(
-              backgroundColor: Colors.white,
-              maxRadius: ScreenUtil().setWidth(50),
-              child: Image.asset(
-                'images/flash.png',
-                width: ScreenUtil().setWidth(120),
-                height: ScreenUtil().setWidth(120),
-                fit: BoxFit.cover,
-              ),
+            child: Image.asset(
+              'images/flash.png',
+              width: ScreenUtil().setWidth(110),
+              height: ScreenUtil().setWidth(110),
+              fit: BoxFit.cover,
             ),
           ),
           SizedBox(width: ScreenUtil().setWidth(10)),
@@ -374,7 +370,7 @@ class _MinePageState extends State<MinePage> {
                   child: Icon(
                     IconData(0xe6db, fontFamily: 'ICON'),
                     size: ScreenUtil().setSp(42),
-                    color: Color(0xfff84068),
+                    color: Color(0xfff84068).withOpacity(0.9),
                   ),
                 ),
                 SizedBox(width: ScreenUtil().setWidth(50)),
@@ -429,7 +425,7 @@ class _MinePageState extends State<MinePage> {
           flag ? Container(
             padding: EdgeInsets.only(left: ScreenUtil().setWidth(5), right: ScreenUtil().setWidth(10)),
             alignment: Alignment.centerRight,
-            child: Icon(Icons.brightness_1, size: ScreenUtil().setSp(15), color: MyColors.themeColor),
+            child: Icon(Icons.brightness_1, size: ScreenUtil().setSp(15), color: Color(0xfff84068).withOpacity(0.9)),
           ) :Container(),
         ],
       ),

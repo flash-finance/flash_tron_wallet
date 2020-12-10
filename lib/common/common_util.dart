@@ -10,6 +10,9 @@ import 'package:provider/provider.dart';
 
 class Util {
 
+  //static const Color themeColor = Color(0xFF4D80E6);
+  static const Color themeColor = Color(0xFF2676f8);
+
   static showToast(String msg) {
     Fluttertoast.showToast(
       msg: msg,

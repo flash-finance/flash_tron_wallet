@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
+import 'common/common_util.dart';
 import 'generated/l10n.dart';
 import 'page/index_page.dart';
 import 'provider/index_provider.dart';
@@ -44,8 +44,8 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: Application.router.generator,
         theme: ThemeData(
           brightness: Brightness.light,
-          primaryColor: MyColors.themeColor,
-          accentColor: MyColors.themeColor,
+          primaryColor: Util.themeColor,
+          accentColor: Util.themeColor,
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
           fontFamily: 'ZH-M',

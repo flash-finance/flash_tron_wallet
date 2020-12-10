@@ -1,5 +1,4 @@
 import 'package:fixnum/fixnum.dart';
-import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/common/page.dart';
 import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
@@ -297,7 +296,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                      color: MyColors.themeColor,
+                      color: Util.themeColor,
                     ),
                     child: Text(
                       '最大',
@@ -451,7 +450,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                 style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 31),
               ),
             ),
-            color:  MyColors.themeColor,
+            color:  Util.themeColor,
             onPressed:() {
               FocusScope.of(context).requestFocus(FocusNode());
               if (_formKey.currentState.validate()) {
@@ -474,7 +473,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                 }
               }
             },
-            shape: StadiumBorder(side: BorderSide(color:  MyColors.themeColor)),
+            shape: StadiumBorder(side: BorderSide(color:  Util.themeColor)),
           ),
         ),
       ),
@@ -535,7 +534,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                 FlatButton(
                   child: Text(
                     '取消',
-                    style: Util.textStyle(context, 2,  MyColors.themeColor, spacing: 0.5, size: 30),
+                    style: Util.textStyle(context, 2,  Util.themeColor, spacing: 0.5, size: 30),
                   ),
                   onPressed: () {
                     FocusScope.of(context).requestFocus(FocusNode());
@@ -549,7 +548,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                 FlatButton(
                     child: Text(
                       '确定',
-                      style: Util.textStyle(context, 2,  MyColors.themeColor, spacing: 0.5, size: 30),
+                      style: Util.textStyle(context, 2,  Util.themeColor, spacing: 0.5, size: 30),
                     ),
                     onPressed: () {
                       FocusScope.of(context).requestFocus(FocusNode());

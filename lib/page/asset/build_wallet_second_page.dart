@@ -1,4 +1,3 @@
-import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
@@ -74,7 +73,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
       margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color:  MyColors.themeColor,
+        color:  Util.themeColor,
       ),
       child: Column(
         children: <Widget>[
@@ -201,7 +200,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
                 style: Util.textStyle(context, 1, Colors.white, spacing: 0.2, size: 30),
               ),
             ),
-            color:  MyColors.themeColor,
+            color:  Util.themeColor,
             onPressed: () {
               if (widget.type == '1') {
                 Navigator.of(context)..pop()..pop();
@@ -209,7 +208,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
                 Navigator.of(context)..pop()..pop()..pop();
               }
             },
-            shape: StadiumBorder(side: BorderSide(color:  MyColors.themeColor)),
+            shape: StadiumBorder(side: BorderSide(color:  Util.themeColor)),
           ),
         ),
       ),

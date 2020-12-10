@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/common/page.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
@@ -205,7 +204,7 @@ class _MinePageState extends State<MinePage> {
                     IconData(0xe676, fontFamily: 'ICON'),
                     size: ScreenUtil().setSp(42),
                     //color: Color(0xff9266f9).withOpacity(0.9),
-                    color: MyColors.themeColor.withOpacity(0.9),
+                    color: Util.themeColor.withOpacity(0.9),
                   ),
                 ),
                 SizedBox(width: ScreenUtil().setWidth(50)),

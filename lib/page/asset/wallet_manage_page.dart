@@ -1,4 +1,3 @@
-import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
@@ -133,7 +132,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
                         ),
                         child: Text(
                           '当前',
-                          style: Util.textStyle(context, 2, MyColors.themeColor, spacing: 0.2, size: 20),
+                          style: Util.textStyle(context, 2, Util.themeColor, spacing: 0.2, size: 20),
                         ),
                       ) : Container(),
                     ],

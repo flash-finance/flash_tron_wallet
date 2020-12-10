@@ -1,4 +1,3 @@
-import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
@@ -146,7 +145,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
               onPressed: () {
                 setState(() {
                   _setPwdClickEye = !_setPwdClickEye;
-                  _setPwdEyeColor = _setPwdClickEye ? Colors.grey :  MyColors.themeColor;
+                  _setPwdEyeColor = _setPwdClickEye ? Colors.grey :  Util.themeColor;
                 });
               },
             )
@@ -188,7 +187,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
               onPressed: () {
                 setState(() {
                   _confirmPwdClickEye = !_confirmPwdClickEye;
-                  _confirmPwdEyeColor = _confirmPwdClickEye ? Colors.grey :  MyColors.themeColor;
+                  _confirmPwdEyeColor = _confirmPwdClickEye ? Colors.grey :  Util.themeColor;
                 });
               },
             )
@@ -218,7 +217,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
                 style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 31),
               ),
             ),
-            color:  MyColors.themeColor,
+            color:  Util.themeColor,
             onPressed: !buildWalletLoading ? () {
               FocusScope.of(context).requestFocus(FocusNode());
               if (_formKey.currentState.validate()) {
@@ -237,7 +236,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
                 }
               }
             } : () {},
-            shape: StadiumBorder(side: BorderSide(color:  MyColors.themeColor)),
+            shape: StadiumBorder(side: BorderSide(color:  Util.themeColor)),
           ),
         ),
       ),
@@ -249,7 +248,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
       margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color:  MyColors.themeColor,
+        color:  Util.themeColor,
       ),
       child: Column(
         children: <Widget>[

@@ -1,4 +1,3 @@
-import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:flash_tron_wallet/router/application.dart';
 import 'package:fluro/fluro.dart';
@@ -50,7 +49,7 @@ class _QrScanPageState extends State<QrScanPage> {
             child: ScanView(
               controller: controller,
               scanAreaScale: 0.7,
-              scanLineColor: MyColors.themeColor,
+              scanLineColor: Util.themeColor,
               onCapture: (data) {
                 if (widget.type == '1') {
                   Navigator.of(context)..pop();

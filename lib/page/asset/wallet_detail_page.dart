@@ -1,4 +1,3 @@
-import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/common/page.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
@@ -337,14 +336,14 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
             FlatButton(
               child: Text(
                 '${S.of(context).commonCancel}',
-                style: Util.textStyle(context, 2,  MyColors.themeColor, spacing: 0.5, size: 30),
+                style: Util.textStyle(context, 2,  Util.themeColor, spacing: 0.5, size: 30),
               ),
               onPressed: () => Navigator.pop(context),
             ),
             FlatButton(
                 child: Text(
                   '${S.of(context).commonConfirm}',
-                  style: Util.textStyle(context, 2,  MyColors.themeColor, spacing: 0.5, size: 30),
+                  style: Util.textStyle(context, 2,  Util.themeColor, spacing: 0.5, size: 30),
                 ),
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
@@ -411,14 +410,14 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
             FlatButton(
               child: Text(
                 '${S.of(context).commonCancel}',
-                style: Util.textStyle(context, 2,  MyColors.themeColor, spacing: 0.5, size: 30),
+                style: Util.textStyle(context, 2,  Util.themeColor, spacing: 0.5, size: 30),
               ),
               onPressed: () => Navigator.pop(context),
             ),
             FlatButton(
                 child: Text(
                   '${S.of(context).commonConfirm}',
-                  style: Util.textStyle(context, 2,  MyColors.themeColor, spacing: 0.5, size: 30),
+                  style: Util.textStyle(context, 2,  Util.themeColor, spacing: 0.5, size: 30),
                 ),
                 onPressed: () {
                   if (_formKey.currentState.validate()) {

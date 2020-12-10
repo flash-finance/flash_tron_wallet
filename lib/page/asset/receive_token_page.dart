@@ -1,4 +1,3 @@
-import 'package:flash_tron_wallet/common/color.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/common/common_util.dart';
@@ -125,12 +124,12 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
                   style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 31),
               ),
             ),
-            color:  MyColors.themeColor,
+            color:  Util.themeColor,
             onPressed: () {
               Clipboard.setData(ClipboardData(text: address));
               Util.showToast('复制成功');
             },
-            shape: StadiumBorder(side: BorderSide(color:  MyColors.themeColor)),
+            shape: StadiumBorder(side: BorderSide(color:  Util.themeColor)),
           ),
         ),
       ),

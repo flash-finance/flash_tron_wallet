@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:flash_tron_wallet/common/color.dart';
+
 import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
@@ -95,7 +95,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
               height: ScreenUtil().setHeight(500),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
-                color: MyColors.themeColor,
+                color: Util.themeColor,
                 /*image: DecorationImage(
                   image: AssetImage('images/bg03.png'),
                   fit: BoxFit.cover,
@@ -152,7 +152,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
             child: Container(
               child: Chip(
                 padding: EdgeInsets.only(left: ScreenUtil().setWidth(8), right: ScreenUtil().setWidth(0)),
-                backgroundColor: MyColors.themeColor,
+                backgroundColor: Util.themeColor,
                 label: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -171,7 +171,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                       child: Icon(
                         Icons.arrow_forward_ios,
                         size: ScreenUtil().setSp(22),
-                        color: MyColors.themeColor,
+                        color: Util.themeColor,
                       ),
                     ),
                   ],
@@ -749,7 +749,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
       padding: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40), bottom: ScreenUtil().setHeight(30)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
-        //color: MyColors.themeColor,
+        //color: Util.themeColor,
         image: DecorationImage(
           image: AssetImage('images/bg02.png'),
           fit: BoxFit.cover,

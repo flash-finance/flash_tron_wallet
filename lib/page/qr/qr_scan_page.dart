@@ -1,9 +1,11 @@
 import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
+import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:scan/scan.dart';
 
 class QrScanPage extends StatefulWidget {
@@ -17,6 +19,7 @@ class QrScanPage extends StatefulWidget {
 
 class _QrScanPageState extends State<QrScanPage> {
   ScanController controller = ScanController();
+  bool _langType = true;
 
   @override
   void initState() {
@@ -31,6 +34,7 @@ class _QrScanPageState extends State<QrScanPage> {
 
   @override
   Widget build(BuildContext context) {
+    _langType = Provider.of<IndexProvider>(context, listen: false).langType;
     return Scaffold(
       appBar: PreferredSize(
         child: Container(
@@ -79,7 +83,7 @@ class _QrScanPageState extends State<QrScanPage> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(20)),
+                  padding: EdgeInsets.only(left: _langType ? ScreenUtil().setWidth(20) : ScreenUtil().setWidth(130)),
                   child: Text(
                     '${S.of(context).commonScan}',
                     style: Util.textStyle(context, 2, Colors.white, spacing: 0.2, size: 32),

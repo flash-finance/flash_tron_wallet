@@ -1,6 +1,7 @@
 import 'package:fixnum/fixnum.dart';
 import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
+import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/page/common/common_page.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
@@ -34,8 +35,8 @@ class _SendTokenPageState extends State<SendTokenPage> {
         backgroundColor: Colors.white,
         brightness: Brightness.light,
         title: Text(
-          '转账',
-          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 32),
+          '${S.of(context).assetTransfer}',
+          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 34),
         ),
         centerTitle: true,
         elevation: 0,
@@ -127,7 +128,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
         children: <Widget>[
           Container(
             child: Text(
-              '转出地址',
+              '${S.of(context).assetTransferAddress}',
               style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
             ),
           ),
@@ -135,7 +136,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
           Container(
             child: Text(
               '${wallet.tronAddress}',
-              style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.0, size: 27),
+              style: Util.textStyle4En(context, 2, Colors.grey[800], spacing: 0.0, size: 27),
             ),
           ),
         ],
@@ -151,7 +152,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
         children: <Widget>[
           Container(
             child: Text(
-              '收款地址',
+              '${S.of(context).assetReceivingAddress}',
               style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
             ),
           ),
@@ -168,15 +169,11 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                     cursorColor: Colors.grey[850],
                     decoration: InputDecoration(
                       isDense: true,
-                      hintText: '输入或粘贴钱包地址',
-                      hintStyle: Util.textStyle(context, 2, Colors.grey[400], spacing: 0.2, size: 27),
+                      hintText: '${S.of(context).assetTransferTip1}',
+                      hintStyle: Util.textStyle(context, 1, Colors.grey[400], spacing: 0.2, size: 25),
                       border: InputBorder.none,
                     ),
-                    style: TextStyle(
-                      color: Colors.grey[850],
-                      fontSize: ScreenUtil().setSp(28),
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style: Util.textStyle4En(context, 2, Colors.grey[850], spacing: 0.0, size: 28),
                     maxLines: 1,
                     inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]|[0-9]"))],
                     onSaved: (String value) => _receiveAddress = value,
@@ -220,7 +217,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                 Container(
                   width:ScreenUtil().setWidth(200),
                   child: Text(
-                    '转账数量',
+                    '${S.of(context).assetTransferAmount}',
                     style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
                   ),
                 ),
@@ -234,13 +231,13 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
                           Container(
+                            padding: EdgeInsets.only(top: ScreenUtil().setHeight(1.5)),
                             child: Text(
                               !flag ? '${assetFilterConList[index].name} ' : '',
-                              style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
+                              style: Util.textStyle4En(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(top: ScreenUtil().setHeight(3)),
                             child: Icon(
                               Icons.arrow_forward_ios,
                               size: ScreenUtil().setSp(25),
@@ -268,8 +265,8 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                     cursorColor: Colors.grey[850],
                     decoration: InputDecoration(
                       isDense: true,
-                      hintText: '输入数量',
-                      hintStyle: Util.textStyle(context, 2, Colors.grey[400], spacing: 0.2, size: 27),
+                      hintText: '${S.of(context).assetTransferTip2}',
+                      hintStyle: Util.textStyle(context, 1, Colors.grey[400], spacing: 0.2, size: 25),
                       border: InputBorder.none,
                     ),
                     style: GoogleFonts.roboto(
@@ -299,7 +296,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                       color: Util.themeColor,
                     ),
                     child: Text(
-                      '最大',
+                      '${S.of(context).commonMax}',
                       style: Util.textStyle(context, 2, Colors.white, spacing: 0.2, size: 20),
                     ),
                   ),
@@ -320,7 +317,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
         children: <Widget>[
           Container(
             child: Text(
-              '余额',
+              '${S.of(context).assetBalance}',
               style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
             ),
           ),
@@ -446,7 +443,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
             child: Container(
               padding: EdgeInsets.all(12),
               child: Text(
-                  '发送',
+                  '${S.of(context).commonSend}',
                 style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 31),
               ),
             ),
@@ -456,18 +453,18 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 if (_receiveAddress.isEmpty) {
-                  Util.showToast('收款地址不能为空');
+                  Util.showToast('${S.of(context).assetTransferError1}');
                 } else if (!TronWallet().checkTronAddress(_receiveAddress.trim())) {
-                  Util.showToast('收款地址格式不正确');
+                  Util.showToast('${S.of(context).assetTransferError2}');
                 } else if (_receiveAddress.trim() == wallet.tronAddress) {
-                  Util.showToast('收款地址和转出地址不能相同');
+                  Util.showToast('${S.of(context).assetTransferError3}');
                 } else if (_assetAmount.isEmpty) {
-                  Util.showToast('转账数量不能为空');
+                  Util.showToast('${S.of(context).assetTransferError4}');
                 } else if (double.parse(_assetAmount) <= 0.0) {
-                  Util.showToast('转账数量需大于0');
+                  Util.showToast('${S.of(context).assetTransferError5}');
                 } else
                 if (double.parse(_assetAmount) > assetList[index].balance) {
-                  Util.showToast('转账数量不足');
+                  Util.showToast('${S.of(context).assetTransferError6}');
                 } else {
                   _showPwdDialog(context, wallet.tronAddress, wallet.pwd, assetList[index]);
                 }

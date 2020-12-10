@@ -303,6 +303,26 @@ class S {
     );
   }
 
+  /// `MAX`
+  String get commonMax {
+    return Intl.message(
+      'MAX',
+      name: 'commonMax',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send`
+  String get commonSend {
+    return Intl.message(
+      'Send',
+      name: 'commonSend',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `My Assets`
   String get assetMyAssets {
     return Intl.message(
@@ -608,6 +628,126 @@ class S {
     return Intl.message(
       'Copy Address',
       name: 'assetCopyAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer Address`
+  String get assetTransferAddress {
+    return Intl.message(
+      'Transfer Address',
+      name: 'assetTransferAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Receiving Address`
+  String get assetReceivingAddress {
+    return Intl.message(
+      'Receiving Address',
+      name: 'assetReceivingAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer Amount`
+  String get assetTransferAmount {
+    return Intl.message(
+      'Transfer Amount',
+      name: 'assetTransferAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Balance`
+  String get assetBalance {
+    return Intl.message(
+      'Balance',
+      name: 'assetBalance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `enter or paste wallet address`
+  String get assetTransferTip1 {
+    return Intl.message(
+      'enter or paste wallet address',
+      name: 'assetTransferTip1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `input amount`
+  String get assetTransferTip2 {
+    return Intl.message(
+      'input amount',
+      name: 'assetTransferTip2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `receiving address cannot be empty`
+  String get assetTransferError1 {
+    return Intl.message(
+      'receiving address cannot be empty',
+      name: 'assetTransferError1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `receiving address format incorrect`
+  String get assetTransferError2 {
+    return Intl.message(
+      'receiving address format incorrect',
+      name: 'assetTransferError2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `receiving address and transfer address cannot be the same`
+  String get assetTransferError3 {
+    return Intl.message(
+      'receiving address and transfer address cannot be the same',
+      name: 'assetTransferError3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `transfer amount cannot be empty`
+  String get assetTransferError4 {
+    return Intl.message(
+      'transfer amount cannot be empty',
+      name: 'assetTransferError4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `transfer amount must be greater than 0`
+  String get assetTransferError5 {
+    return Intl.message(
+      'transfer amount must be greater than 0',
+      name: 'assetTransferError5',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `insufficient transfer amount`
+  String get assetTransferError6 {
+    return Intl.message(
+      'insufficient transfer amount',
+      name: 'assetTransferError6',
       desc: '',
       args: [],
     );

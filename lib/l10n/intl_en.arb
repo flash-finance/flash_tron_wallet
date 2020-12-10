@@ -27,6 +27,8 @@
   "commonEnterOldPwd": "enter old password",
   "commonSetNewPwd": "set new password",
   "commonConfirmNewPwd": "confirm new password",
+  "commonMax": "MAX",
+  "commonSend": "Send",
 
   "assetMyAssets": "My Assets",
   "assetDetails": "Details",
@@ -66,6 +68,19 @@
 
   "assetReceivingQrCode": "Receiving QR Code",
   "assetCopyAddress": "Copy Address",
+  "assetTransferAddress": "Transfer Address",
+  "assetReceivingAddress": "Receiving Address",
+  "assetTransferAmount": "Transfer Amount",
+  "assetBalance": "Balance",
+  "assetTransferTip1": "enter or paste wallet address",
+  "assetTransferTip2": "input amount",
+
+  "assetTransferError1": "receiving address cannot be empty",
+  "assetTransferError2": "receiving address format incorrect",
+  "assetTransferError3": "receiving address and transfer address cannot be the same",
+  "assetTransferError4": "transfer amount cannot be empty",
+  "assetTransferError5": "transfer amount must be greater than 0",
+  "assetTransferError6": "insufficient transfer amount",
 
   "mineManageWallet" : "Manage Wallets",
   "mineCurrentVersion" : "CurrentVersion"

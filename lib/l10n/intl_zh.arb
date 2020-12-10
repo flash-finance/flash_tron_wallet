@@ -27,6 +27,8 @@
   "commonEnterOldPwd": "输入旧密码",
   "commonSetNewPwd": "设置新密码",
   "commonConfirmNewPwd": "确认新密码",
+  "commonMax": "最大",
+  "commonSend": "发送",
 
   "assetMyAssets": "我的资产",
   "assetDetails": "详情",
@@ -66,6 +68,19 @@
 
   "assetReceivingQrCode": "收款二维码",
   "assetCopyAddress": "复制地址",
+  "assetTransferAddress": "转出地址",
+  "assetReceivingAddress": "收款地址",
+  "assetTransferAmount": "转账数量",
+  "assetBalance": "余额",
+  "assetTransferTip1": "输入或粘贴钱包地址",
+  "assetTransferTip2": "输入数量",
+
+  "assetTransferError1": "收款地址不能为空",
+  "assetTransferError2": "收款地址格式不正确",
+  "assetTransferError3": "收款地址和转出地址不能相同",
+  "assetTransferError4": "转账数量不能为空",
+  "assetTransferError5": "转账数量需大于0",
+  "assetTransferError6": "转账数量不足",
 
   "mineManageWallet" : "钱包管理",
   "mineCurrentVersion" : "当前版本"

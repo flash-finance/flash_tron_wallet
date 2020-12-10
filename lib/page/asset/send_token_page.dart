@@ -4,6 +4,7 @@ import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/page/common/common_page.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
+import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/tron/service/tron_transaction.dart';
 import 'package:flash_tron_wallet/tron/service/tron_wallet.dart';
@@ -27,6 +28,7 @@ class SendTokenPage extends StatefulWidget {
 }
 
 class _SendTokenPageState extends State<SendTokenPage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,6 +75,7 @@ class SendTokenSubPage extends StatefulWidget {
 
 class _SendTokenSubPageState extends State<SendTokenSubPage> {
   final _formKey = GlobalKey<FormState>();
+  bool _langType = true;
 
   TextEditingController _receiveAddressController;
   TextEditingController _assetAmountController;
@@ -96,6 +99,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
 
   @override
   Widget build(BuildContext context) {
+    _langType = Provider.of<IndexProvider>(context, listen: false).langType;
     List<AssetEntity> assetFilterConList = Provider.of<HomeProvider>(context, listen: true).assetList;
     int selectAssetFilterIndex = Provider.of<HomeProvider>(context, listen: true).selectAssetFilterIndex;
     WalletEntity wallet = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
@@ -284,7 +288,8 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                   },
                   child: Container(
                     width: ScreenUtil().setWidth(80),
-                    padding: EdgeInsets.only(top: ScreenUtil().setHeight(5), bottom: ScreenUtil().setHeight(5)),
+                    padding: _langType ? EdgeInsets.only(top: ScreenUtil().setHeight(5), bottom: ScreenUtil().setHeight(5))
+                    : EdgeInsets.only(top: ScreenUtil().setHeight(7.5), bottom: ScreenUtil().setHeight(7.5)),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(5.0)),

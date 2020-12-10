@@ -397,11 +397,11 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: ScreenUtil().setWidth(20)),
+                    padding: EdgeInsets.only(left: ScreenUtil().setWidth(30)),
                     alignment: Alignment.centerLeft,
                     child: Text(
                       '${item.name}',
-                      style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 28),
+                      style: Util.textStyle4En(context, 2, Colors.grey[850], spacing: 0.0, size: 29),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -416,7 +416,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
               child: !flag ? Container() : Icon(
                 Icons.check,
                 color: Colors.grey[850],
-                size: ScreenUtil().setSp(40),
+                size: ScreenUtil().setSp(42),
               ),
             ),
           ],

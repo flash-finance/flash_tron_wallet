@@ -211,7 +211,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
               },
             )
         ),
-        style: Util.textStyle4Num(context, Colors.grey[800], spacing: 0.2, size: 32),
+        style: Util.textStyle4Num(context, Colors.grey[800], spacing: 0.2, size: 32, fontWeight: FontWeight.w500),
         validator: (String value) {
           if (value.isEmpty) {
             return '${S.of(context).commonCanNotBeEmpty}';
@@ -253,7 +253,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
               },
             )
         ),
-        style: Util.textStyle4Num(context, Colors.grey[800], spacing: 0.2, size: 32),
+        style: Util.textStyle4Num(context, Colors.grey[800], spacing: 0.2, size: 32, fontWeight: FontWeight.w500),
         validator: (String value) {
           if (value.isEmpty) {
             return '${S.of(context).commonCanNotBeEmpty}';

@@ -33,7 +33,7 @@ class Util {
       fontFamily: type == 1 ? 'ZH-R' : 'ZH-M',
       letterSpacing: letterSpacing,
       color: color,
-      fontSize: ScreenUtil().setSp(fontSize+2),
+      fontSize: ScreenUtil().setSp(fontSize+4),
     ) : TextStyle(
       fontFamily: type == 1 ? 'EN-R' : 'EN-M',
       letterSpacing: 0.0,
@@ -59,7 +59,7 @@ class Util {
       fontFamily: type == 1 ? 'ZH-R' : 'ZH-M',
       letterSpacing: letterSpacing,
       color: color,
-      fontSize: ScreenUtil().setSp(fontSize+2),
+      fontSize: ScreenUtil().setSp(fontSize+4),
     );
   }
 

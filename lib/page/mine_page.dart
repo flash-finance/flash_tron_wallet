@@ -156,7 +156,7 @@ class _MinePageState extends State<MinePage> {
                   child: Icon(
                     IconData(0xe6e0, fontFamily: 'ICON'),
                     size: ScreenUtil().setSp(42),
-                    color: Color(0xff59dac5),
+                    color: Colors.grey[800],
                   ),
                 ),
                 SizedBox(width: ScreenUtil().setWidth(50)),
@@ -203,26 +203,26 @@ class _MinePageState extends State<MinePage> {
                   child: Icon(
                     IconData(0xe676, fontFamily: 'ICON'),
                     size: ScreenUtil().setSp(42),
-                    //color: Color(0xff9266f9).withOpacity(0.9),
-                    color: Util.themeColor.withOpacity(0.9),
+                    color: Colors.grey[800],
                   ),
                 ),
                 SizedBox(width: ScreenUtil().setWidth(50)),
-                Container(
-                  child: RichText(
-                    text: TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: 'English/',
-                          style: Util.textStyle4En(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
-                        ),
-                        TextSpan(
-                          text: '中文',
-                          style: Util.textStyle4Zh(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
-                        ),
-                      ],
+                Row(
+                  children: <Widget>[
+                    Container(
+                      child: Text(
+                        'English/',
+                        style: Util.textStyle4En(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
+                      ),
                     ),
-                  ),
+                    Container(
+                      padding: EdgeInsets.only(top: ScreenUtil().setHeight(1)),
+                      child: Text(
+                        '中文',
+                        style: Util.textStyle4Zh(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -373,7 +373,7 @@ class _MinePageState extends State<MinePage> {
                   child: Icon(
                     IconData(0xe6db, fontFamily: 'ICON'),
                     size: ScreenUtil().setSp(42),
-                    color: Color(0xfff84068).withOpacity(0.9),
+                    color: Colors.grey[800],
                   ),
                 ),
                 SizedBox(width: ScreenUtil().setWidth(50)),
@@ -428,7 +428,7 @@ class _MinePageState extends State<MinePage> {
           flag ? Container(
             padding: EdgeInsets.only(left: ScreenUtil().setWidth(5), right: ScreenUtil().setWidth(10)),
             alignment: Alignment.centerRight,
-            child: Icon(Icons.brightness_1, size: ScreenUtil().setSp(15), color: Color(0xfff84068).withOpacity(0.9)),
+            child: Icon(Icons.brightness_1, size: ScreenUtil().setSp(15), color: Util.themeColor),
           ) :Container(),
         ],
       ),

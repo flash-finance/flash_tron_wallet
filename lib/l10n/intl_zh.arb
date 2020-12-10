@@ -30,6 +30,9 @@
   "commonMax": "最大",
   "commonSend": "发送",
 
+  "commonScan": "扫一扫",
+  "commonPhotoAlbum": "相册",
+
   "assetMyAssets": "我的资产",
   "assetDetails": "详情",
   "assetTransfer": "转账",

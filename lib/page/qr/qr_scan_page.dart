@@ -1,4 +1,5 @@
 import 'package:flash_tron_wallet/common/common_util.dart';
+import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/router/application.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
@@ -80,13 +81,13 @@ class _QrScanPageState extends State<QrScanPage> {
                 Container(
                   padding: EdgeInsets.only(left: ScreenUtil().setWidth(20)),
                   child: Text(
-                    '扫一扫',
+                    '${S.of(context).commonScan}',
                     style: Util.textStyle(context, 2, Colors.white, spacing: 0.2, size: 32),
                   ),
                 ),
                 Container(
                   child: Text(
-                    '相册',
+                    '${S.of(context).commonPhotoAlbum}',
                     style: Util.textStyle(context, 2, Colors.white.withOpacity(0), spacing: 0.2, size: 32),
                   ),
                 ),

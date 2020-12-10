@@ -30,6 +30,9 @@
   "commonMax": "MAX",
   "commonSend": "Send",
 
+  "commonScan": "Scan",
+  "commonPhotoAlbum": "Photo Album",
+
   "assetMyAssets": "My Assets",
   "assetDetails": "Details",
   "assetTransfer": "Transfer",

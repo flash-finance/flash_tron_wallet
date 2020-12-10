@@ -323,6 +323,26 @@ class S {
     );
   }
 
+  /// `Scan`
+  String get commonScan {
+    return Intl.message(
+      'Scan',
+      name: 'commonScan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Photo Album`
+  String get commonPhotoAlbum {
+    return Intl.message(
+      'Photo Album',
+      name: 'commonPhotoAlbum',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `My Assets`
   String get assetMyAssets {
     return Intl.message(

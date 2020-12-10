@@ -104,6 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonSubmit" : MessageLookupByLibrary.simpleMessage("提交"),
     "commonUpdateSuccess" : MessageLookupByLibrary.simpleMessage("修改成功"),
     "mineCurrentVersion" : MessageLookupByLibrary.simpleMessage("当前版本"),
+    "mineLangTip1" : MessageLookupByLibrary.simpleMessage("是否切换语言"),
     "mineManageWallet" : MessageLookupByLibrary.simpleMessage("钱包管理"),
     "mineNoWallet" : MessageLookupByLibrary.simpleMessage("暂无钱包")
   };

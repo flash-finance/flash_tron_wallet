@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/model/dex_info_model.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
@@ -12,7 +11,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -46,7 +44,6 @@ class _MinePageState extends State<MinePage> {
       body: Container(
         child: ListView(
           children: <Widget>[
-            //_topWidget(context),
             IntervalPage(ScreenUtil().setHeight(25)),
             _walletManageWidget(context),
             _langWidget(context),
@@ -54,86 +51,6 @@ class _MinePageState extends State<MinePage> {
             IntervalPage(ScreenUtil().setHeight(25)),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _topWidget(BuildContext context) {
-    WalletEntity wallet = Provider.of<HomeProvider>(context,listen: true).selectWalletEntity;
-    bool flag = wallet != null;
-    String name = '';
-    if (wallet != null && wallet.name != null) {
-      name = wallet.name;
-    }
-    String address = '';
-    if (wallet != null && wallet.tronAddress != null) {
-      address = wallet.tronAddress.substring(0, 12) + '...' + wallet.tronAddress.substring(wallet.tronAddress.length-12, wallet.tronAddress.length);
-    }
-    return Container(
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(20), top: ScreenUtil().setHeight(50), right: ScreenUtil().setWidth(40), bottom: ScreenUtil().setHeight(30)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Container(
-            child: Opacity(
-              opacity: flag ? 0.9 : 0.0,
-              child: Image.asset(
-                'images/flash.png',
-                width: ScreenUtil().setWidth(110),
-                height: ScreenUtil().setWidth(110),
-                fit: BoxFit.cover,
-              )
-            ),
-          ),
-          SizedBox(width: ScreenUtil().setWidth(10)),
-          Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  child: Text(
-                    '$name',
-                    style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.0, size: 30),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                SizedBox(height: ScreenUtil().setHeight(10)),
-                InkWell(
-                  onTap: () {
-                    Clipboard.setData(ClipboardData(text: wallet.tronAddress));
-                    Util.showToast('${S.of(context).commonCopySuccess}');
-                  },
-                  child: Container(
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                          child: Text(
-                            '$address',
-                            style: Util.textStyle4En(context, 2, Colors.grey[800], spacing: 0.0, size: 28),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        SizedBox(width: ScreenUtil().setWidth(30)),
-                        Container(
-                          child: Image.asset(
-                            'icons/copy.png',
-                            width: ScreenUtil().setWidth(30),
-                            height: ScreenUtil().setWidth(30),
-                            color: flag ? Colors.grey[800] : Colors.white,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }
@@ -186,8 +103,7 @@ class _MinePageState extends State<MinePage> {
   Widget _langWidget(BuildContext context) {
     return InkWell(
       onTap: () {
-        Provider.of<IndexProvider>(context, listen: false).changeLangType();
-        Util.showToast("Success");
+        _showSwitchLangDialLog(context);
       },
       child: Container(
         margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40)),
@@ -431,6 +347,36 @@ class _MinePageState extends State<MinePage> {
         ],
       ),
     );
+  }
+
+  _showSwitchLangDialLog(BuildContext context) {
+    showCupertinoDialog(
+        context: context,
+        builder: (context) => CupertinoAlertDialog(
+          title: Text(
+            '${S.of(context).mineLangTip1}',
+            style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 30),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text(
+                '${S.of(context).commonCancel}',
+                style: Util.textStyle(context, 2,  Colors.blue[700], spacing: 0.5, size: 30),
+              ),
+              onPressed: () => Navigator.pop(context),
+            ),
+            FlatButton(
+                child: Text(
+                  '${S.of(context).commonConfirm}',
+                  style: Util.textStyle(context, 2, Colors.blue[700], spacing: 0.5, size: 30),
+                ),
+                onPressed: () {
+                  Provider.of<IndexProvider>(context, listen: false).changeLangType();
+                  Navigator.pop(context);
+                }
+            ),
+          ],
+        ));
   }
 
 }

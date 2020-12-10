@@ -97,5 +97,6 @@
 
   "mineManageWallet" : "Manage Wallets",
   "mineCurrentVersion" : "Current Version",
-  "mineNoWallet": "No Wallet"
+  "mineNoWallet": "No Wallet",
+  "mineLangTip1": "whether to switch language"
 }

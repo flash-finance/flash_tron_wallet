@@ -97,5 +97,6 @@
 
   "mineManageWallet" : "钱包管理",
   "mineCurrentVersion" : "当前版本",
-  "mineNoWallet": "暂无钱包"
+  "mineNoWallet": "暂无钱包",
+  "mineLangTip1": "是否切换语言"
 }

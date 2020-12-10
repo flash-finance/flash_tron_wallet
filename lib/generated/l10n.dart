@@ -882,6 +882,16 @@ class S {
       args: [],
     );
   }
+
+  /// `whether to switch language`
+  String get mineLangTip1 {
+    return Intl.message(
+      'whether to switch language',
+      name: 'mineLangTip1',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

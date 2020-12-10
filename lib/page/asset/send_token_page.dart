@@ -512,12 +512,12 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                         inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
                         validator: (String value) {
                           if (value.isEmpty) {
-                            return '密码不能为空';
+                            return '${S.of(context).commonError1}';
                           }
                           else if (value.length < 6) {
-                            return '密码为6位';
+                            return '${S.of(context).commonError2}';
                           } else if (value.substring(0, 6) != userPwd) {
-                            return '密码错误';
+                            return '${S.of(context).commonError3}';
                           } else {
                             return null;
                           }
@@ -530,7 +530,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
               actions: <Widget>[
                 FlatButton(
                   child: Text(
-                    '取消',
+                    '${S.of(context).commonCancel}',
                     style: Util.textStyle(context, 2,  Util.themeColor, spacing: 0.5, size: 30),
                   ),
                   onPressed: () {
@@ -538,13 +538,13 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                     if (!transferLoading) {
                       Navigator.of(context)..pop();
                     } else {
-                      Util.showToast('转账处理中...');
+                      Util.showToast('${S.of(context).assetTransferTip3}');
                     }
                   },
                 ),
                 FlatButton(
                     child: Text(
-                      '确定',
+                      '${S.of(context).commonConfirm}',
                       style: Util.textStyle(context, 2,  Util.themeColor, spacing: 0.5, size: 30),
                     ),
                     onPressed: () {
@@ -552,22 +552,22 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                       if (_sendFormKey.currentState.validate()){
                         _sendFormKey.currentState.save();
                         if (_sendPwd.trim() != userPwd) {
-                          Util.showToast('密码错误');
+                          Util.showToast('${S.of(context).commonError3}');
                         } else {
                           if (transferLoading) {
-                            Util.showToast('转账处理中，请勿重复操作');
+                            Util.showToast('${S.of(context).assetTransferTip4}');
                           } else {
-                            Util.showToast('转账处理中...');
+                            Util.showToast('${S.of(context).assetTransferTip3}');
                             _transHandle(context, item, ownerAddress).then((result) {
                               if (result == 0) {
                                 setState(() {
                                   transferLoading = false;
                                 });
                                 Navigator.of(context)..pop()..pop();
-                                Util.showToast('转账成功');
+                                Util.showToast('${S.of(context).assetTransferSuccess}');
                               } else if (result == 1) {
                                 Navigator.of(context)..pop()..pop();
-                                Util.showToast('转账失败，请稍后再试');
+                                Util.showToast('${S.of(context).assetTransferTip5}');
                               } else if (result == -1) {
                                 //Util.showToast('转账处理中，请勿重复操作');
                               }

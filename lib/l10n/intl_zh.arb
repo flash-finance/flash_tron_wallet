@@ -74,6 +74,9 @@
   "assetBalance": "余额",
   "assetTransferTip1": "输入或粘贴钱包地址",
   "assetTransferTip2": "输入数量",
+  "assetTransferTip3": "转账处理中...",
+  "assetTransferTip4": "转账处理中，请勿重复操作",
+  "assetTransferTip5": "转账失败，请稍后再试",
 
   "assetTransferError1": "收款地址不能为空",
   "assetTransferError2": "收款地址格式不正确",
@@ -81,6 +84,12 @@
   "assetTransferError4": "转账数量不能为空",
   "assetTransferError5": "转账数量需大于0",
   "assetTransferError6": "转账数量不足",
+
+  "assetTransferSuccess": "转账成功",
+
+  "commonError1": "密码不能为空",
+  "commonError2": "密码为6位",
+  "commonError3": "密码错误",
 
   "mineManageWallet" : "钱包管理",
   "mineCurrentVersion" : "当前版本"

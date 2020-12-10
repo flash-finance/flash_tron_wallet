@@ -693,6 +693,36 @@ class S {
     );
   }
 
+  /// `transfer processing...`
+  String get assetTransferTip3 {
+    return Intl.message(
+      'transfer processing...',
+      name: 'assetTransferTip3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `during the transfer process, please do not repeat the operation`
+  String get assetTransferTip4 {
+    return Intl.message(
+      'during the transfer process, please do not repeat the operation',
+      name: 'assetTransferTip4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `transfer failed, please try again later`
+  String get assetTransferTip5 {
+    return Intl.message(
+      'transfer failed, please try again later',
+      name: 'assetTransferTip5',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `receiving address cannot be empty`
   String get assetTransferError1 {
     return Intl.message(
@@ -748,6 +778,46 @@ class S {
     return Intl.message(
       'insufficient transfer amount',
       name: 'assetTransferError6',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer Success`
+  String get assetTransferSuccess {
+    return Intl.message(
+      'Transfer Success',
+      name: 'assetTransferSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `password can not be empty`
+  String get commonError1 {
+    return Intl.message(
+      'password can not be empty',
+      name: 'commonError1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `password is 6 digits`
+  String get commonError2 {
+    return Intl.message(
+      'password is 6 digits',
+      name: 'commonError2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `password error`
+  String get commonError3 {
+    return Intl.message(
+      'password error',
+      name: 'commonError3',
       desc: '',
       args: [],
     );

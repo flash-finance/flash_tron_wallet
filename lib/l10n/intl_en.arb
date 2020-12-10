@@ -74,6 +74,9 @@
   "assetBalance": "Balance",
   "assetTransferTip1": "enter or paste wallet address",
   "assetTransferTip2": "input amount",
+  "assetTransferTip3": "transfer processing...",
+  "assetTransferTip4": "during the transfer process, please do not repeat the operation",
+  "assetTransferTip5": "transfer failed, please try again later",
 
   "assetTransferError1": "receiving address cannot be empty",
   "assetTransferError2": "receiving address format incorrect",
@@ -81,6 +84,12 @@
   "assetTransferError4": "transfer amount cannot be empty",
   "assetTransferError5": "transfer amount must be greater than 0",
   "assetTransferError6": "insufficient transfer amount",
+
+  "assetTransferSuccess": "Transfer Success",
+
+  "commonError1": "password can not be empty",
+  "commonError2": "password is 6 digits",
+  "commonError3": "password error",
 
   "mineManageWallet" : "Manage Wallets",
   "mineCurrentVersion" : "CurrentVersion"

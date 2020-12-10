@@ -64,6 +64,9 @@
   "assetSetPassword": "Set Password",
   "assetConfirmPassword": "Confirm Password",
 
+  "assetReceivingQrCode": "Receiving QR Code",
+  "assetCopyAddress": "Copy Address",
+
   "mineManageWallet" : "Manage Wallets",
   "mineCurrentVersion" : "CurrentVersion"
 }

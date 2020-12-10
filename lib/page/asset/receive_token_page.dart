@@ -1,4 +1,5 @@
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
+import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +23,8 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
         backgroundColor: Colors.white,
         brightness: Brightness.light,
         title: Text(
-          '收款二维码',
-          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 32),
+          '${S.of(context).assetReceivingQrCode}',
+          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2 , size: 34),
         ),
         centerTitle: true,
         elevation: 0,
@@ -101,7 +102,7 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
             alignment: Alignment.center,
             child: Text(
               '$address',
-              style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 27),
+              style: Util.textStyle4En(context, 2, Colors.grey[850], spacing: 0.0, size: 27),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -120,14 +121,14 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
             child: Container(
               padding: EdgeInsets.all(12),
               child: Text(
-                  '复制地址',
+                '${S.of(context).assetCopyAddress}',
                   style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 31),
               ),
             ),
             color:  Util.themeColor,
             onPressed: () {
               Clipboard.setData(ClipboardData(text: address));
-              Util.showToast('复制成功');
+              Util.showToast('${S.of(context).commonCopySuccess}');
             },
             shape: StadiumBorder(side: BorderSide(color:  Util.themeColor)),
           ),

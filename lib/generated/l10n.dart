@@ -593,6 +593,26 @@ class S {
     );
   }
 
+  /// `Receiving QR Code`
+  String get assetReceivingQrCode {
+    return Intl.message(
+      'Receiving QR Code',
+      name: 'assetReceivingQrCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Copy Address`
+  String get assetCopyAddress {
+    return Intl.message(
+      'Copy Address',
+      name: 'assetCopyAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Manage Wallets`
   String get mineManageWallet {
     return Intl.message(

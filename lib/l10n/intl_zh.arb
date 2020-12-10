@@ -64,6 +64,9 @@
   "assetSetPassword": "设置密码",
   "assetConfirmPassword": "确认密码",
 
+  "assetReceivingQrCode": "收款二维码",
+  "assetCopyAddress": "复制地址",
+
   "mineManageWallet" : "钱包管理",
   "mineCurrentVersion" : "当前版本"
 }

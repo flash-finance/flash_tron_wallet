@@ -268,7 +268,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
           image: DecorationImage(
-            image: AssetImage('images/bg03.png'),
+            image: AssetImage('images/bg01.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -788,7 +788,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                         Container(
                           child: Text(
                             '$tronAddress',
-                            style: Util.textStyle(context, 1, Colors.grey[350], spacing: 0.5, size: 24),
+                            style: Util.textStyle4En(context, 1, Colors.white, spacing: 0.5, size: 26),
                           ),
                         ),
                         SizedBox(width: ScreenUtil().setWidth(50)),
@@ -797,7 +797,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                             'icons/copy.png',
                             width: ScreenUtil().setWidth(28),
                             height: ScreenUtil().setWidth(28),
-                            color: Colors.grey[350],
+                            color: Colors.white,
                             fit: BoxFit.fill,
                           ),
                         ),

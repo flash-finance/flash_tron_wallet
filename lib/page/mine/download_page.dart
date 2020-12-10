@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flash_tron_wallet/util/common_util.dart';
+import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';

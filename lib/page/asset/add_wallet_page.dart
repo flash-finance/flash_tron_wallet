@@ -1,7 +1,7 @@
 import 'package:flash_tron_wallet/common/page.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/router/application.dart';
-import 'package:flash_tron_wallet/util/common_util.dart';
+import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';

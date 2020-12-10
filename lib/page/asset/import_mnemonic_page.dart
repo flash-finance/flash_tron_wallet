@@ -3,7 +3,7 @@ import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/tron/service/tron_wallet.dart';
-import 'package:flash_tron_wallet/util/common_util.dart';
+import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

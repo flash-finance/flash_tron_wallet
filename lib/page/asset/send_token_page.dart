@@ -269,12 +269,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                       hintStyle: Util.textStyle(context, 1, Colors.grey[400], spacing: 0.2, size: 25),
                       border: InputBorder.none,
                     ),
-                    style: GoogleFonts.roboto(
-                      letterSpacing: 0.2,
-                      color: Colors.grey[850],
-                      fontWeight: FontWeight.w500,
-                      fontSize: ScreenUtil().setSp(32),
-                    ),
+                    style: Util.textStyle4Num(context, Colors.grey[850], spacing: 0.2, size: 32, fontWeight: FontWeight.w500),
                     maxLines: 1,
                     keyboardType: TextInputType.numberWithOptions(decimal: true),
                     inputFormatters: [DoubleFormat(decimalRange: assetFilterConList[index].precision)],
@@ -483,9 +478,22 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
         context: context,
         builder: (context) =>
             CupertinoAlertDialog(
-              title: Text(
-                '转账$_assetAmount${item.name}，请输入密码',
-                style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    child: Text(
+                      '${S.of(context).assetTransfer} ',
+                      style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
+                    ),
+                  ),
+                  Container(
+                    child: Text(
+                      '$_assetAmount${item.name} ',
+                      style: Util.textStyle4Num(context, Colors.grey[850], spacing: 0.0, size: 30),
+                    ),
+                  ),
+                ],
               ),
               content: Card(
                 elevation: 0.0,
@@ -505,6 +513,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                           filled: true,
                           fillColor: Colors.white,
                         ),
+                        style: Util.textStyle4Num(context, Colors.grey[800], spacing: 0.2, size: 32),
                         obscureText: true,
                         maxLength: 6,
                         maxLengthEnforced: true,

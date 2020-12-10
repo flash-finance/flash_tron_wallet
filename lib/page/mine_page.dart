@@ -33,18 +33,20 @@ class _MinePageState extends State<MinePage> {
     _langType = Provider.of<IndexProvider>(context, listen: true).langType;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: PreferredSize(
-        child: AppBar(
-          backgroundColor: Colors.white,
-          brightness: Brightness.light,
-          elevation: 0,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        brightness: Brightness.light,
+        title: Text(
+          '${S.of(context).bottomTab3}',
+          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2 , size: 34),
         ),
-        preferredSize: Size.fromHeight(ScreenUtil().setHeight(0)),
+        centerTitle: true,
+        elevation: 0,
       ),
       body: Container(
         child: ListView(
           children: <Widget>[
-            _topWidget(context),
+            //_topWidget(context),
             IntervalPage(ScreenUtil().setHeight(25)),
             _walletManageWidget(context),
             _langWidget(context),
@@ -414,15 +416,11 @@ class _MinePageState extends State<MinePage> {
       child: Row(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(right: ScreenUtil().setWidth(5), bottom: Platform.isAndroid ? ScreenUtil().setHeight(3) : ScreenUtil().setHeight(0)),
+            padding: EdgeInsets.only(right: ScreenUtil().setWidth(5)),
             alignment: Alignment.centerRight,
             child: Text(
               '$currentVersion',
-              style: GoogleFonts.roboto(
-                letterSpacing: 0.0,
-                color: Colors.grey[700],
-                fontSize: ScreenUtil().setSp(30),
-              ),
+              style: Util.textStyle4En(context, 2, Colors.grey[700], size: 27),
             ),
           ),
           flag ? Container(

@@ -1,6 +1,6 @@
-import 'package:flash_tron_wallet/common/page.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
+import 'package:flash_tron_wallet/page/common/common_page.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/common/common_util.dart';
@@ -53,7 +53,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
       body: Container(
         child: ListView(
           children: <Widget>[
-           IntervalPage(ScreenUtil().setHeight(25)),
+            IntervalPage(ScreenUtil().setHeight(25)),
             _topWidget(context, wallet),
             IntervalPage(ScreenUtil().setHeight(25)),
             flag ? _backupMnemonicWidget(context, wallet.pwd) : Container(),

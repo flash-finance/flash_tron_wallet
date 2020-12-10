@@ -1,5 +1,5 @@
-import 'package:flash_tron_wallet/common/page.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
+import 'package:flash_tron_wallet/page/common/common_page.dart';
 import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:fluro/fluro.dart';

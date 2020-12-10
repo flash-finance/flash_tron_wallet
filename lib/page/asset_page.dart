@@ -788,7 +788,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                         Container(
                           child: Text(
                             '$tronAddress',
-                            style: Util.textStyle4En(context, 1, Colors.white, spacing: 0.5, size: 26),
+                            style: Util.textStyle4En(context, 1, Colors.white, spacing: 0.0, size: 26),
                           ),
                         ),
                         SizedBox(width: ScreenUtil().setWidth(50)),

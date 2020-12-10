@@ -32,6 +32,7 @@
 
   "commonScan": "扫一扫",
   "commonPhotoAlbum": "相册",
+  "commonCurrent": "当前",
 
   "assetMyAssets": "我的资产",
   "assetDetails": "详情",
@@ -95,5 +96,6 @@
   "commonError3": "密码错误",
 
   "mineManageWallet" : "钱包管理",
-  "mineCurrentVersion" : "当前版本"
+  "mineCurrentVersion" : "当前版本",
+  "mineNoWallet": "暂无钱包"
 }

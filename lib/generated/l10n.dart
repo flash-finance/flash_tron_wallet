@@ -343,6 +343,16 @@ class S {
     );
   }
 
+  /// `current`
+  String get commonCurrent {
+    return Intl.message(
+      'current',
+      name: 'commonCurrent',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `My Assets`
   String get assetMyAssets {
     return Intl.message(
@@ -853,11 +863,21 @@ class S {
     );
   }
 
-  /// `CurrentVersion`
+  /// `Current Version`
   String get mineCurrentVersion {
     return Intl.message(
-      'CurrentVersion',
+      'Current Version',
       name: 'mineCurrentVersion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Wallet`
+  String get mineNoWallet {
+    return Intl.message(
+      'No Wallet',
+      name: 'mineNoWallet',
       desc: '',
       args: [],
     );

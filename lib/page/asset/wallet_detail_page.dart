@@ -293,7 +293,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         builder: (context) => CupertinoAlertDialog(
           title: Text(
             '${S.of(context).commonPleaseEnterYourPassword}',
-            style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 32),
+            style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 30),
           ),
           content: Card(
             elevation: 0.0,
@@ -312,7 +312,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                       filled: true,
                       fillColor: Colors.white,
                     ),
-                    style: Util.textStyle4Num(context, Colors.grey[800], spacing: 0.2, size: 32),
+                    style: Util.textStyle4Num(context, Colors.grey[800], spacing: 0.2, size: 32, fontWeight: FontWeight.w500),
                     obscureText: true,
                     maxLength: 6,
                     maxLengthEnforced: true,
@@ -374,7 +374,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         builder: (context) => CupertinoAlertDialog(
           title: Text(
             '${S.of(context).assetUpdateWalletName}',
-            style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 32),
+            style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
           ),
           content: Card(
             elevation: 0.0,
@@ -391,6 +391,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                       filled: true,
                       fillColor: Colors.white,
                     ),
+                    style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 30),
                     //obscureText: true,
                     maxLength: 10,
                     maxLengthEnforced: true,

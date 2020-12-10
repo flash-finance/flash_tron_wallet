@@ -79,6 +79,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonConfirmPwdError" : MessageLookupByLibrary.simpleMessage("the two entered passwords are inconsistent"),
     "commonCopySuccess" : MessageLookupByLibrary.simpleMessage("Copy Success"),
     "commonCreateFail" : MessageLookupByLibrary.simpleMessage("create failed, please try again"),
+    "commonCurrent" : MessageLookupByLibrary.simpleMessage("current"),
     "commonDeleteWalletTip" : MessageLookupByLibrary.simpleMessage("please make sure that the private key or mnemonic is backed up, are you sure to delete it?"),
     "commonDone" : MessageLookupByLibrary.simpleMessage("Done"),
     "commonEnterOldPwd" : MessageLookupByLibrary.simpleMessage("enter old password"),
@@ -102,7 +103,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonSetNewPwd" : MessageLookupByLibrary.simpleMessage("set new password"),
     "commonSubmit" : MessageLookupByLibrary.simpleMessage("Submit"),
     "commonUpdateSuccess" : MessageLookupByLibrary.simpleMessage("Update Success"),
-    "mineCurrentVersion" : MessageLookupByLibrary.simpleMessage("CurrentVersion"),
-    "mineManageWallet" : MessageLookupByLibrary.simpleMessage("Manage Wallets")
+    "mineCurrentVersion" : MessageLookupByLibrary.simpleMessage("Current Version"),
+    "mineManageWallet" : MessageLookupByLibrary.simpleMessage("Manage Wallets"),
+    "mineNoWallet" : MessageLookupByLibrary.simpleMessage("No Wallet")
   };
 }

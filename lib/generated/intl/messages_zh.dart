@@ -79,6 +79,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonConfirmPwdError" : MessageLookupByLibrary.simpleMessage("两次输入密码不一致"),
     "commonCopySuccess" : MessageLookupByLibrary.simpleMessage("复制成功"),
     "commonCreateFail" : MessageLookupByLibrary.simpleMessage("创建出错，请再尝试\'"),
+    "commonCurrent" : MessageLookupByLibrary.simpleMessage("当前"),
     "commonDeleteWalletTip" : MessageLookupByLibrary.simpleMessage("请确保私钥或助记词已备份，确定删除?"),
     "commonDone" : MessageLookupByLibrary.simpleMessage("完成"),
     "commonEnterOldPwd" : MessageLookupByLibrary.simpleMessage("输入旧密码"),
@@ -103,6 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonSubmit" : MessageLookupByLibrary.simpleMessage("提交"),
     "commonUpdateSuccess" : MessageLookupByLibrary.simpleMessage("修改成功"),
     "mineCurrentVersion" : MessageLookupByLibrary.simpleMessage("当前版本"),
-    "mineManageWallet" : MessageLookupByLibrary.simpleMessage("钱包管理")
+    "mineManageWallet" : MessageLookupByLibrary.simpleMessage("钱包管理"),
+    "mineNoWallet" : MessageLookupByLibrary.simpleMessage("暂无钱包")
   };
 }

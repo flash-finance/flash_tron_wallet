@@ -1,5 +1,7 @@
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
+import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
+import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:fluro/fluro.dart';
@@ -14,16 +16,19 @@ class WalletManagePage extends StatefulWidget {
 }
 
 class _WalletManagePageState extends State<WalletManagePage> {
+  bool _langType = true;
+
   @override
   Widget build(BuildContext context) {
+    _langType = Provider.of<IndexProvider>(context, listen: false).langType;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         brightness: Brightness.light,
         title: Text(
-          '钱包管理',
-          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 32),
+          '${S.of(context).mineManageWallet}',
+          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 34),
         ),
         centerTitle: true,
         elevation: 0,
@@ -34,7 +39,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
           child: Icon(
             Icons.arrow_back,
             size: ScreenUtil().setSp(45),
-            color: Colors.grey[800],
+            color: Colors.grey[900],
           ),
         ),
       ),
@@ -67,8 +72,8 @@ class _WalletManagePageState extends State<WalletManagePage> {
       child: Container(
         alignment: Alignment.center,
         child: Text(
-          '暂无钱包',
-          style: Util.textStyle(context, 1, Colors.white, spacing: 0.5, size: 28),
+          '${S.of(context).mineNoWallet}',
+          style: Util.textStyle(context, 2, Colors.white, spacing: 0.5, size: 28),
         ),
       ),
     );
@@ -118,20 +123,21 @@ class _WalletManagePageState extends State<WalletManagePage> {
                       Container(
                         child: Text(
                           '$name',
-                          style: Util.textStyle(context, 1, Colors.white, spacing: 0.5, size: 30),
+                          style: Util.textStyle(context, 2, Colors.white, spacing: 0.5, size: 30),
                         ),
                       ),
                       SizedBox(width: ScreenUtil().setWidth(50)),
                       flag ? Container(
                         width: ScreenUtil().setWidth(80),
-                        padding: EdgeInsets.only(top: ScreenUtil().setHeight(5), bottom: ScreenUtil().setHeight(5)),
+                        padding: _langType ? EdgeInsets.only(top: ScreenUtil().setHeight(2), bottom: ScreenUtil().setHeight(2))
+                        : EdgeInsets.only(top: ScreenUtil().setHeight(5), bottom: ScreenUtil().setHeight(5)),
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(5.0)),
                           color: Colors.white,
                         ),
                         child: Text(
-                          '当前',
+                          '${S.of(context).commonCurrent}',
                           style: Util.textStyle(context, 2, Util.themeColor, spacing: 0.2, size: 20),
                         ),
                       ) : Container(),
@@ -142,7 +148,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
                   child: Icon(
                     Icons.arrow_forward_ios,
                     size: ScreenUtil().setSp(28),
-                    color: Colors.grey[350],
+                    color: Colors.white,
                   ),
                 ),
               ],
@@ -152,7 +158,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
             InkWell(
               onTap: () {
                 Clipboard.setData(ClipboardData(text: list[index].tronAddress));
-                Util.showToast('复制成功');
+                Util.showToast('${S.of(context).commonCopySuccess}');
               },
               child: Container(
                 child: Row(
@@ -160,7 +166,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
                     Container(
                       child: Text(
                         '$tronAddress',
-                        style: Util.textStyle(context, 1, Colors.grey[350], spacing: 0.5, size: 24),
+                        style: Util.textStyle4En(context, 1, Colors.white, spacing: 0.5, size: 26),
                       ),
                     ),
                     SizedBox(width: ScreenUtil().setWidth(50)),
@@ -169,7 +175,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
                         'icons/copy.png',
                         width: ScreenUtil().setWidth(28),
                         height: ScreenUtil().setWidth(28),
-                        color: Colors.grey[350],
+                        color: Colors.white,
                         fit: BoxFit.fill,
                       ),
                     ),

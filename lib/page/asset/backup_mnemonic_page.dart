@@ -98,7 +98,7 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
             padding: EdgeInsets.fromLTRB(5, 15, 0, 10),
             child: Text(
               '$mnemonic',
-              style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
+              style: Util.textStyle4En(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
               maxLines: 3, overflow: TextOverflow.ellipsis,
             ),
           ),

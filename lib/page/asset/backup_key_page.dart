@@ -98,7 +98,7 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
             padding: EdgeInsets.fromLTRB(5, 15, 0, 10),
             child: Text(
               '$key',
-              style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 28),
+              style: Util.textStyle4En(context, 2, Colors.grey[850], spacing: 0.0, size: 28),
               maxLines: 3, overflow: TextOverflow.ellipsis,
             ),
           ),

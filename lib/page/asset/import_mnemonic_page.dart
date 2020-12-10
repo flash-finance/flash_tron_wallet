@@ -138,7 +138,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
           labelText: '${S.of(context).assetMnemonic}',
           labelStyle: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.1, size: 26),
         ),
-        style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 28),
+        style: Util.textStyle4En(context, 2, Colors.grey[850], spacing: 0.0, size: 28),
         validator: (String value) {
           if (value.isEmpty) {
             return '${S.of(context).commonCanNotBeEmpty}';

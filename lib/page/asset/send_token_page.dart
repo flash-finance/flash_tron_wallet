@@ -513,7 +513,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                           filled: true,
                           fillColor: Colors.white,
                         ),
-                        style: Util.textStyle4Num(context, Colors.grey[800], spacing: 0.2, size: 32),
+                        style: Util.textStyle4Num(context, Colors.grey[800], spacing: 0.2, size: 32, fontWeight: FontWeight.w500),
                         obscureText: true,
                         maxLength: 6,
                         maxLengthEnforced: true,

@@ -371,8 +371,8 @@ class _MinePageState extends State<MinePage> {
                   style: Util.textStyle(context, 2, Colors.blue[700], spacing: 0.5, size: 30),
                 ),
                 onPressed: () {
-                  Provider.of<IndexProvider>(context, listen: false).changeLangType();
                   Navigator.pop(context);
+                  Provider.of<IndexProvider>(context, listen: false).changeLangType();
                 }
             ),
           ],

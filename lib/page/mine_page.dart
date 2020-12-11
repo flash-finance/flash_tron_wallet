@@ -206,14 +206,14 @@ class _MinePageState extends State<MinePage> {
                         FlatButton(
                           child: Text(
                             '以后再说',
-                            style: Util.textStyle(context, 2,  Colors.blue[700], spacing: 0.1, size: 30),
+                            style: Util.textStyle(context, 2,  Util.themeColor, spacing: 0.1, size: 30),
                           ),
                           onPressed: () => Navigator.pop(context),
                         ),
                         FlatButton(
                             child: Text(
                               '立即体验',
-                              style: Util.textStyle(context, 2,  Colors.blue[700], spacing: 0.1, size: 30),
+                              style: Util.textStyle(context, 2,  Util.themeColor, spacing: 0.1, size: 30),
                             ),
                             onPressed: () {
                               Navigator.pop(context);
@@ -257,14 +257,14 @@ class _MinePageState extends State<MinePage> {
                         FlatButton(
                           child: Text(
                             '以后再说',
-                            style: Util.textStyle(context, 2, Colors.blue[700], spacing: 0.0, size: 30),
+                            style: Util.textStyle(context, 2, Util.themeColor, spacing: 0.0, size: 30),
                           ),
                           onPressed: () => Navigator.pop(context),
                         ),
                         FlatButton(
                             child: Text(
                               '立即体验',
-                              style: Util.textStyle(context, 2,  Colors.blue[700], spacing: 0.0, size: 30),
+                              style: Util.textStyle(context, 2,  Util.themeColor, spacing: 0.0, size: 30),
                             ),
                             onPressed: () async {
                               if (await canLaunch(dexInfo.iosDownloadUrl)) {
@@ -361,14 +361,14 @@ class _MinePageState extends State<MinePage> {
             FlatButton(
               child: Text(
                 '${S.of(context).commonCancel}',
-                style: Util.textStyle(context, 2,  Colors.blue[700], spacing: 0.5, size: 30),
+                style: Util.textStyle(context, 2, Util.themeColor, spacing: 0.5, size: 30),
               ),
               onPressed: () => Navigator.pop(context),
             ),
             FlatButton(
                 child: Text(
                   '${S.of(context).commonConfirm}',
-                  style: Util.textStyle(context, 2, Colors.blue[700], spacing: 0.5, size: 30),
+                  style: Util.textStyle(context, 2, Util.themeColor, spacing: 0.5, size: 30),
                 ),
                 onPressed: () {
                   Navigator.pop(context);

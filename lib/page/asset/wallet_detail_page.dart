@@ -107,12 +107,10 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                         ),
                         SizedBox(width: ScreenUtil().setWidth(30)),
                         Container(
-                          child: Image.asset(
-                            'icons/pen.png',
-                            width: ScreenUtil().setWidth(30),
-                            height: ScreenUtil().setWidth(30),
+                          child: Icon(
+                            IconData(0xe635, fontFamily: 'ICON'),
+                            size: ScreenUtil().setSp(35),
                             color: Colors.grey[800],
-                            fit: BoxFit.fill,
                           ),
                         ),
                       ],
@@ -138,12 +136,10 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                         ),
                         SizedBox(width: ScreenUtil().setWidth(30)),
                         Container(
-                          child: Image.asset(
-                            'icons/copy.png',
-                            width: ScreenUtil().setWidth(30),
-                            height: ScreenUtil().setWidth(30),
+                          child: Icon(
+                            IconData(0xe618, fontFamily: 'ICON'),
+                            size: ScreenUtil().setSp(30),
                             color: Colors.grey[800],
-                            fit: BoxFit.fill,
                           ),
                         ),
                       ],

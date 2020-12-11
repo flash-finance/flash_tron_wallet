@@ -106,6 +106,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "mineCurrentVersion" : MessageLookupByLibrary.simpleMessage("Current Version"),
     "mineLangTip1" : MessageLookupByLibrary.simpleMessage("whether to switch language"),
     "mineManageWallet" : MessageLookupByLibrary.simpleMessage("Manage Wallets"),
-    "mineNoWallet" : MessageLookupByLibrary.simpleMessage("No Wallet")
+    "mineNoWallet" : MessageLookupByLibrary.simpleMessage("No Wallet"),
+    "swapBalance" : MessageLookupByLibrary.simpleMessage("Balance"),
+    "swapPool" : MessageLookupByLibrary.simpleMessage("Pool"),
+    "swapPooledTokens" : MessageLookupByLibrary.simpleMessage("Pooled Tokens"),
+    "swapReceive" : MessageLookupByLibrary.simpleMessage("Receive"),
+    "swapSend" : MessageLookupByLibrary.simpleMessage("Send"),
+    "swapSwap" : MessageLookupByLibrary.simpleMessage("Swap"),
+    "swapTips01" : MessageLookupByLibrary.simpleMessage("trading:  directly to the platform of JustSwap"),
+    "swapToken" : MessageLookupByLibrary.simpleMessage("Token"),
+    "swapTokenBalance" : MessageLookupByLibrary.simpleMessage("Balance"),
+    "swapTokenName" : MessageLookupByLibrary.simpleMessage("Token Name"),
+    "swapTokenNotEnough" : MessageLookupByLibrary.simpleMessage("Token Not Enough"),
+    "swapTokenPrice" : MessageLookupByLibrary.simpleMessage("Price (USD)"),
+    "swapTotalLiquidity" : MessageLookupByLibrary.simpleMessage("Total Liquidity")
   };
 }

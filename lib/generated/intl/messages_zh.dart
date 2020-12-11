@@ -106,6 +106,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "mineCurrentVersion" : MessageLookupByLibrary.simpleMessage("当前版本"),
     "mineLangTip1" : MessageLookupByLibrary.simpleMessage("是否切换语言"),
     "mineManageWallet" : MessageLookupByLibrary.simpleMessage("钱包管理"),
-    "mineNoWallet" : MessageLookupByLibrary.simpleMessage("暂无钱包")
+    "mineNoWallet" : MessageLookupByLibrary.simpleMessage("暂无钱包"),
+    "swapBalance" : MessageLookupByLibrary.simpleMessage("余额"),
+    "swapPool" : MessageLookupByLibrary.simpleMessage("资金池"),
+    "swapPooledTokens" : MessageLookupByLibrary.simpleMessage("资金池"),
+    "swapReceive" : MessageLookupByLibrary.simpleMessage("接收"),
+    "swapSend" : MessageLookupByLibrary.simpleMessage("发送"),
+    "swapSwap" : MessageLookupByLibrary.simpleMessage("兑换"),
+    "swapTips01" : MessageLookupByLibrary.simpleMessage("交易:  聚合JustSwap平台"),
+    "swapToken" : MessageLookupByLibrary.simpleMessage("Token"),
+    "swapTokenBalance" : MessageLookupByLibrary.simpleMessage("余额"),
+    "swapTokenName" : MessageLookupByLibrary.simpleMessage("Token 名称"),
+    "swapTokenNotEnough" : MessageLookupByLibrary.simpleMessage("余额不足"),
+    "swapTokenPrice" : MessageLookupByLibrary.simpleMessage("价格 (USD)"),
+    "swapTotalLiquidity" : MessageLookupByLibrary.simpleMessage("总流动性")
   };
 }

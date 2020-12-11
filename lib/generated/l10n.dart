@@ -853,6 +853,136 @@ class S {
     );
   }
 
+  /// `trading:  directly to the platform of JustSwap`
+  String get swapTips01 {
+    return Intl.message(
+      'trading:  directly to the platform of JustSwap',
+      name: 'swapTips01',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send`
+  String get swapSend {
+    return Intl.message(
+      'Send',
+      name: 'swapSend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Receive`
+  String get swapReceive {
+    return Intl.message(
+      'Receive',
+      name: 'swapReceive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Balance`
+  String get swapBalance {
+    return Intl.message(
+      'Balance',
+      name: 'swapBalance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pooled Tokens`
+  String get swapPooledTokens {
+    return Intl.message(
+      'Pooled Tokens',
+      name: 'swapPooledTokens',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swap`
+  String get swapSwap {
+    return Intl.message(
+      'Swap',
+      name: 'swapSwap',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Token Name`
+  String get swapTokenName {
+    return Intl.message(
+      'Token Name',
+      name: 'swapTokenName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price (USD)`
+  String get swapTokenPrice {
+    return Intl.message(
+      'Price (USD)',
+      name: 'swapTokenPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Balance`
+  String get swapTokenBalance {
+    return Intl.message(
+      'Balance',
+      name: 'swapTokenBalance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pool`
+  String get swapPool {
+    return Intl.message(
+      'Pool',
+      name: 'swapPool',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Liquidity`
+  String get swapTotalLiquidity {
+    return Intl.message(
+      'Total Liquidity',
+      name: 'swapTotalLiquidity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Token`
+  String get swapToken {
+    return Intl.message(
+      'Token',
+      name: 'swapToken',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Token Not Enough`
+  String get swapTokenNotEnough {
+    return Intl.message(
+      'Token Not Enough',
+      name: 'swapTokenNotEnough',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Manage Wallets`
   String get mineManageWallet {
     return Intl.message(

@@ -352,7 +352,7 @@ class _MinePageState extends State<MinePage> {
   _showSwitchLangDialLog(BuildContext context) {
     showCupertinoDialog(
         context: context,
-        builder: (context) => CupertinoAlertDialog(
+        builder: (_) => CupertinoAlertDialog(
           title: Text(
             '${S.of(context).mineLangTip1}',
             style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 30),

@@ -140,8 +140,11 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
             labelText: '${S.of(context).assetSetPassword}',
             labelStyle: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.1, size: 26),
             suffixIcon: IconButton(
-              icon: Icon(_setPwdClickEye ? Icons.visibility_off : Icons.remove_red_eye,
-                color: _setPwdEyeColor, size: ScreenUtil().setSp(38),),
+              icon: Icon(
+                Icons.remove_red_eye,
+                color: _setPwdEyeColor,
+                size: ScreenUtil().setSp(38),
+              ),
               onPressed: () {
                 setState(() {
                   _setPwdClickEye = !_setPwdClickEye;
@@ -182,8 +185,11 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
             labelText: '${S.of(context).assetConfirmPassword}',
             labelStyle: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.1, size: 26),
             suffixIcon: IconButton(
-              icon: Icon(_confirmPwdClickEye ? Icons.visibility_off : Icons.remove_red_eye,
-                color: _confirmPwdEyeColor, size: ScreenUtil().setSp(38),),
+              icon: Icon(
+                Icons.remove_red_eye,
+                color: _confirmPwdEyeColor,
+                size: ScreenUtil().setSp(38),
+              ),
               onPressed: () {
                 setState(() {
                   _confirmPwdClickEye = !_confirmPwdClickEye;

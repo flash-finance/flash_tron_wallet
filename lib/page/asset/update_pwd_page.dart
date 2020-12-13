@@ -95,8 +95,11 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
             labelText: '${S.of(context).commonEnterOldPwd}',
             labelStyle: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.1, size: 26),
             suffixIcon: IconButton(
-              icon: Icon(_oldPwdClickEye ? Icons.visibility_off : Icons.remove_red_eye,
-                color: _oldPwdEyeColor, size: ScreenUtil().setSp(38),),
+              icon: Icon(
+                Icons.remove_red_eye,
+                color: _oldPwdEyeColor,
+                size: ScreenUtil().setSp(38),
+              ),
               onPressed: () {
                 setState(() {
                   _oldPwdClickEye = !_oldPwdClickEye;
@@ -133,8 +136,11 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
             labelText: '${S.of(context).commonSetNewPwd}',
             labelStyle: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.1, size: 26),
             suffixIcon: IconButton(
-              icon: Icon(_setPwdClickEye ? Icons.visibility_off : Icons.remove_red_eye,
-                color: _setPwdEyeColor, size: ScreenUtil().setSp(38),),
+              icon: Icon(
+                Icons.remove_red_eye,
+                color: _setPwdEyeColor,
+                size: ScreenUtil().setSp(38),)
+              ,
               onPressed: () {
                 setState(() {
                   _setPwdClickEye = !_setPwdClickEye;
@@ -169,8 +175,11 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
             labelText: '${S.of(context).commonConfirmNewPwd}',
             labelStyle: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.1, size: 26),
             suffixIcon: IconButton(
-              icon: Icon(_confirmPwdClickEye ? Icons.visibility_off :Icons.remove_red_eye,
-                color: _confirmPwdEyeColor, size: ScreenUtil().setSp(38),),
+              icon: Icon(
+                Icons.remove_red_eye,
+                color: _confirmPwdEyeColor,
+                size: ScreenUtil().setSp(38),
+              ),
               onPressed: () {
                 setState(() {
                   _confirmPwdClickEye = !_confirmPwdClickEye;

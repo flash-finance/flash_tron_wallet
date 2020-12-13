@@ -104,22 +104,27 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
     int selectAssetFilterIndex = Provider.of<HomeProvider>(context, listen: true).selectAssetFilterIndex;
     WalletEntity wallet = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
     return Container(
-      child: Form(
-        key: _formKey,
-        child: ListView(
-          children: <Widget>[
-            IntervalPage(ScreenUtil().setHeight(25)),
-            _sendWidget(context,wallet),
-            IntervalPage(ScreenUtil().setHeight(25)),
-            _receiveWidget(context),
-            IntervalPage(ScreenUtil().setHeight(25)),
-            _amountWidget(context, assetFilterConList, selectAssetFilterIndex),
-            _balanceWidget(context, assetFilterConList, selectAssetFilterIndex),
-            IntervalPage(ScreenUtil().setHeight(25)),
-            SizedBox(height: ScreenUtil().setHeight(120)),
-            _submitWidget(context, wallet),
-          ],
-        ),
+      child: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            children: <Widget>[
+              IntervalPage(ScreenUtil().setHeight(25)),
+              _sendWidget(context,wallet),
+              IntervalPage(ScreenUtil().setHeight(25)),
+              _receiveWidget(context),
+              IntervalPage(ScreenUtil().setHeight(25)),
+              _amountWidget(context, assetFilterConList, selectAssetFilterIndex),
+              _balanceWidget(context, assetFilterConList, selectAssetFilterIndex),
+              IntervalPage(ScreenUtil().setHeight(25)),
+              SizedBox(height: ScreenUtil().setHeight(120)),
+              _submitWidget(context, wallet),
+            ],
+          ),
+        )
       ),
     );
   }
@@ -169,7 +174,6 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                   width: ScreenUtil().setWidth(600),
                   child: TextFormField(
                     controller: _receiveAddressController,
-                    enableInteractiveSelection: false,
                     cursorColor: Colors.grey[850],
                     decoration: InputDecoration(
                       isDense: true,
@@ -265,7 +269,6 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                   width: ScreenUtil().setWidth(500),
                   child: TextFormField(
                     controller: _assetAmountController,
-                    enableInteractiveSelection: false,
                     cursorColor: Colors.grey[850],
                     decoration: InputDecoration(
                       isDense: true,

@@ -95,12 +95,14 @@
   "commonError2": "password is 6 digits",
   "commonError3": "password error",
 
+  "swapMarket": "Market",
+  "swapSwap": "Swap",
+
   "swapTips01": "trading:  directly to the platform of JustSwap",
   "swapSend": "Send",
   "swapReceive": "Receive",
   "swapBalance": "Balance",
   "swapPooledTokens": "Pooled Tokens",
-  "swapSwap": "Swap",
   "swapTokenName": "Token Name",
   "swapTokenPrice": "Price (USD)",
   "swapTokenBalance": "Balance",

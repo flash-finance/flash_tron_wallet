@@ -1,10 +1,10 @@
 import 'package:flash_tron_wallet/common/common_util.dart';
+import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/page/trade/market_page.dart';
 import 'package:flash_tron_wallet/page/trade/swap_page.dart';
+import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flutter/material.dart';
-
-import 'common/common_page.dart';
-
+import 'package:provider/provider.dart';
 
 class TradePage extends StatefulWidget {
   @override
@@ -12,18 +12,13 @@ class TradePage extends StatefulWidget {
 }
 
 class _TradePageState extends State<TradePage> with SingleTickerProviderStateMixin {
+  bool _langType = true;
   TabController tabController;
-
-  final List<Tab> titleTabs = <Tab>[
-    Tab(text: '行情'),
-    Tab(text: '兑换'),
-  ];
-
 
   @override
   void initState() {
     super.initState();
-    tabController = TabController(vsync: this, length: titleTabs.length)
+    tabController = TabController(vsync: this, length: 2)
       ..addListener(() {
         switch (tabController.index) {
           case 0:
@@ -37,6 +32,7 @@ class _TradePageState extends State<TradePage> with SingleTickerProviderStateMix
   }
   @override
   Widget build(BuildContext context) {
+    _langType = Provider.of<IndexProvider>(context, listen: true).langType;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
@@ -58,20 +54,24 @@ class _TradePageState extends State<TradePage> with SingleTickerProviderStateMix
         child: Column(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.only(top: Util.height(20), bottom: Util.height(10)),
+              padding: EdgeInsets.only(top: Util.height(10), left: Util.width(150), right: Util.width(150), bottom: Util.height(10)),
               decoration: BoxDecoration(
                 color: Colors.white,
               ),
               child: TabBar(
-                indicatorPadding: EdgeInsets.only(bottom: Util.width(20)),
                 controller: tabController,
+                isScrollable: false,
+                indicatorPadding: EdgeInsets.only(bottom: Util.width(15)),
                 indicatorColor: Colors.grey[900],
                 indicatorSize: TabBarIndicatorSize.label,
-                labelStyle: Util.textStyle(context, 2, spacing: 0.2, size: 31),
+                labelStyle: Util.textStyle(context, 2, spacing: 0.2, size: 32),
                 labelColor: Colors.grey[900],
                 unselectedLabelColor: Colors.grey[500],
                 indicatorWeight: 2.0,
-                tabs: titleTabs,
+                tabs: <Tab>[
+                  Tab(text: '${S.of(context).swapMarket}'),
+                  Tab(text: '${S.of(context).swapSwap}'),
+                ],
               ),
             ),
             Expanded(

@@ -108,6 +108,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "mineManageWallet" : MessageLookupByLibrary.simpleMessage("Manage Wallets"),
     "mineNoWallet" : MessageLookupByLibrary.simpleMessage("No Wallet"),
     "swapBalance" : MessageLookupByLibrary.simpleMessage("Balance"),
+    "swapMarket" : MessageLookupByLibrary.simpleMessage("Market"),
     "swapPool" : MessageLookupByLibrary.simpleMessage("Pool"),
     "swapPooledTokens" : MessageLookupByLibrary.simpleMessage("Pooled Tokens"),
     "swapReceive" : MessageLookupByLibrary.simpleMessage("Receive"),

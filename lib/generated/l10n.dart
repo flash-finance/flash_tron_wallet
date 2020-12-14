@@ -853,6 +853,26 @@ class S {
     );
   }
 
+  /// `Market`
+  String get swapMarket {
+    return Intl.message(
+      'Market',
+      name: 'swapMarket',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swap`
+  String get swapSwap {
+    return Intl.message(
+      'Swap',
+      name: 'swapSwap',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `trading:  directly to the platform of JustSwap`
   String get swapTips01 {
     return Intl.message(
@@ -898,16 +918,6 @@ class S {
     return Intl.message(
       'Pooled Tokens',
       name: 'swapPooledTokens',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Swap`
-  String get swapSwap {
-    return Intl.message(
-      'Swap',
-      name: 'swapSwap',
       desc: '',
       args: [],
     );

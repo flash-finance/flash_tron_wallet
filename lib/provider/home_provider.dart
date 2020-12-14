@@ -4,10 +4,10 @@ import 'dart:typed_data';
 
 import 'package:bs58check/bs58check.dart';
 import 'package:flash_tron_wallet/common/common_config.dart';
+import 'package:flash_tron_wallet/common/common_service.dart';
 import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/model/dex_info_model.dart';
-import 'package:flash_tron_wallet/service/method_service.dart';
 import 'package:flash_tron_wallet/tron/api/api.pbgrpc.dart';
 import 'package:flash_tron_wallet/tron/core/Tron.pb.dart';
 import 'package:flash_tron_wallet/tron/service/tron_asset.dart';

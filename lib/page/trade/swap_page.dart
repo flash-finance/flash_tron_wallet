@@ -133,7 +133,7 @@ class _SwapPageState extends State<SwapPage> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
           gradient: LinearGradient(
-            colors: [Colors.blue[700], Colors.blue[500]],
+            colors: [Util.themeColor, Util.themeColor],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           )),
@@ -689,7 +689,7 @@ class _SwapPageState extends State<SwapPage> {
             child: Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: Colors.blue[500],
+                color: Util.themeColor,
                 borderRadius: BorderRadius.circular(6),
               ),
               padding: EdgeInsets.only(left: Util.width(18), top: Util.height(12), bottom: Util.height(12), right: Util.width(18)),
@@ -1385,14 +1385,14 @@ class _SwapPageState extends State<SwapPage> {
         color: Colors.white,
         child: Chip(
           padding: _swapFlag ? EdgeInsets.only(left: Util.width(80), top: Util.height(20), right: Util.width(80), bottom: Util.height(20)) : EdgeInsets.only(left: Util.width(60), top: Util.height(20), right: Util.width(60), bottom: Util.height(20)),
-          backgroundColor:  Colors.blue[500],
+          backgroundColor: Util.themeColor,
           label: !_loadFlag ? Container(
             child: Text(
               _swapFlag ? '${S.of(context).swapSwap}' : '${S.of(context).swapTokenNotEnough}',
               style: Util.textStyle(context, 2, color: Colors.white, spacing: 0.5, size: 28),
             ),
           ) : Container(
-            color: Colors.blue[500],
+            color: Util.themeColor,
             child: CupertinoActivityIndicator(),
           ),
         ),

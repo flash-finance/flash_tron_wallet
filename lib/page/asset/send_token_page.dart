@@ -6,6 +6,7 @@ import 'package:flash_tron_wallet/page/common/common_page.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
+import 'package:flash_tron_wallet/router/router.dart';
 import 'package:flash_tron_wallet/tron/service/tron_transaction.dart';
 import 'package:flash_tron_wallet/tron/service/tron_wallet.dart';
 import 'package:flash_tron_wallet/common/common_util.dart';
@@ -189,7 +190,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                 ),
                 InkWell(
                   onTap: () {
-                    Application.router.navigateTo(context, 'asset/qrScan/2', transition: TransitionType.fadeIn);
+                    Application.router.navigateTo(context, Routes.assetQrScan + '/2', transition: TransitionType.fadeIn);
                   },
                   child: Container(
                     child: Icon(

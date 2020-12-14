@@ -39,7 +39,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
         brightness: Brightness.light,
         title: Text(
           '${S.of(context).assetTransfer}',
-          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 34),
+          style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.2, size: 34),
         ),
         centerTitle: true,
         elevation: 0,
@@ -139,14 +139,14 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
           Container(
             child: Text(
               '${S.of(context).assetTransferAddress}',
-              style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
+              style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2, size: 26),
             ),
           ),
           SizedBox(height: Util.height(15)),
           Container(
             child: Text(
               '${wallet.tronAddress}',
-              style: Util.textStyle4En(context, 2, Colors.grey[800], spacing: 0.0, size: 27),
+              style: Util.textStyle4En(context, 2, color: Colors.grey[800], spacing: 0.0, size: 27),
             ),
           ),
         ],
@@ -163,7 +163,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
           Container(
             child: Text(
               '${S.of(context).assetReceivingAddress}',
-              style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
+              style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2, size: 26),
             ),
           ),
           SizedBox(height: Util.height(5)),
@@ -179,10 +179,10 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                     decoration: InputDecoration(
                       isDense: true,
                       hintText: '${S.of(context).assetTransferTip1}',
-                      hintStyle: Util.textStyle(context, 1, Colors.grey[400], spacing: 0.2, size: 25),
+                      hintStyle: Util.textStyle(context, 1, color:Colors.grey[400], spacing: 0.2, size: 25),
                       border: InputBorder.none,
                     ),
-                    style: Util.textStyle4En(context, 2, Colors.grey[850], spacing: 0.0, size: 28),
+                    style: Util.textStyle4En(context, 2, color: Colors.grey[850], spacing: 0.0, size: 28),
                     maxLines: 1,
                     inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]|[0-9]"))],
                     onSaved: (String value) => _receiveAddress = value,
@@ -227,7 +227,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                   width:Util.width(200),
                   child: Text(
                     '${S.of(context).assetTransferAmount}',
-                    style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
+                    style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2, size: 26),
                   ),
                 ),
                 Expanded(
@@ -243,7 +243,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                             padding: EdgeInsets.only(top: Util.height(1.5)),
                             child: Text(
                               !flag ? '${assetFilterConList[index].name} ' : '',
-                              style: Util.textStyle4En(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
+                              style: Util.textStyle4En(context, 2, color: Colors.grey[850], spacing: 0.2, size: 26),
                             ),
                           ),
                           Container(
@@ -274,10 +274,10 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                     decoration: InputDecoration(
                       isDense: true,
                       hintText: '${S.of(context).assetTransferTip2}',
-                      hintStyle: Util.textStyle(context, 1, Colors.grey[400], spacing: 0.2, size: 25),
+                      hintStyle: Util.textStyle(context, 1, color:Colors.grey[400], spacing: 0.2, size: 25),
                       border: InputBorder.none,
                     ),
-                    style: Util.textStyle4Num(context, Colors.grey[850], spacing: 0.2, size: 32, fontWeight: FontWeight.w500),
+                    style: Util.textStyle4Num(context, color: Colors.grey[850], spacing: 0.2, size: 32, fontWeight: FontWeight.w500),
                     maxLines: 1,
                     keyboardType: TextInputType.numberWithOptions(decimal: true),
                     inputFormatters: [DoubleFormat(decimalRange: assetFilterConList[index].precision)],
@@ -301,7 +301,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                     ),
                     child: Text(
                       '${S.of(context).commonMax}',
-                      style: Util.textStyle(context, 2, Colors.white, spacing: 0.2, size: 20),
+                      style: Util.textStyle(context, 2, color: Colors.white, spacing: 0.2, size: 20),
                     ),
                   ),
                 ),
@@ -322,7 +322,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
           Container(
             child: Text(
               '${S.of(context).assetBalance}',
-              style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
+              style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2, size: 26),
             ),
           ),
           Container(
@@ -410,7 +410,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       '${item.name}',
-                      style: Util.textStyle4En(context, 2, Colors.grey[850], spacing: 0.0, size: 29),
+                      style: Util.textStyle4En(context, 2, color: Colors.grey[850], spacing: 0.0, size: 29),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -448,7 +448,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
               padding: EdgeInsets.all(12),
               child: Text(
                   '${S.of(context).commonSend}',
-                style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 31),
+                style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.6, size: 31),
               ),
             ),
             color:  Util.themeColor,
@@ -493,13 +493,13 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                   Container(
                     child: Text(
                       '${S.of(context).assetTransfer} ',
-                      style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
+                      style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
                     ),
                   ),
                   Container(
                     child: Text(
                       '$_assetAmount ${item.name} ',
-                      style: Util.textStyle4Num(context, Colors.grey[850], spacing: 0.0, size: 30),
+                      style: Util.textStyle4Num(context, color: Colors.grey[850], spacing: 0.0, size: 30),
                     ),
                   ),
                 ],
@@ -522,7 +522,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                           filled: true,
                           fillColor: Colors.white,
                         ),
-                        style: Util.textStyle4Num(context, Colors.grey[800], spacing: 0.2, size: 32, fontWeight: FontWeight.w500),
+                        style: Util.textStyle4Num(context, color: Colors.grey[800], spacing: 0.2, size: 32, fontWeight: FontWeight.w500),
                         obscureText: true,
                         maxLength: 6,
                         maxLengthEnforced: true,
@@ -549,7 +549,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                 FlatButton(
                   child: Text(
                     '${S.of(context).commonCancel}',
-                    style: Util.textStyle(context, 2,  Util.themeColor, spacing: 0.5, size: 30),
+                    style: Util.textStyle(context, 2, color:  Util.themeColor, spacing: 0.5, size: 30),
                   ),
                   onPressed: () {
                     FocusScope.of(context).requestFocus(FocusNode());
@@ -563,7 +563,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                 FlatButton(
                     child: Text(
                       '${S.of(context).commonConfirm}',
-                      style: Util.textStyle(context, 2,  Util.themeColor, spacing: 0.5, size: 30),
+                      style: Util.textStyle(context, 2, color:  Util.themeColor, spacing: 0.5, size: 30),
                     ),
                     onPressed: () {
                       FocusScope.of(context).requestFocus(FocusNode());

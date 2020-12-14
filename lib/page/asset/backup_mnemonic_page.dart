@@ -23,7 +23,7 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
         brightness: Brightness.light,
         title: Text(
           '${S.of(context).assetBackupMnemonic}',
-          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 34),
+          style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.2, size: 34),
         ),
         centerTitle: true,
         elevation: 0,
@@ -74,7 +74,7 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
             alignment: Alignment.center,
             child: Text(
               '${S.of(context).backupWalletTip1}',
-              style: Util.textStyle(context, 1, Colors.white, spacing: 0.1, size: 22.5),
+              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.1, size: 22.5),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
@@ -97,7 +97,7 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
             padding: EdgeInsets.fromLTRB(5, 15, 0, 10),
             child: Text(
               '$mnemonic',
-              style: Util.textStyle4En(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
+              style: Util.textStyle4En(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
               maxLines: 3, overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -133,7 +133,7 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
               padding: EdgeInsets.all(12),
               child: Text(
                   '${S.of(context).commonDone}',
-                style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 31),
+                style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.6, size: 31),
               ),
             ),
             color:  Util.themeColor,

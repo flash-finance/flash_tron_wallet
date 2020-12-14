@@ -26,7 +26,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
         brightness: Brightness.light,
         title: Text(
           '${S.of(context).assetCreateWallet}',
-          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 34),
+          style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.2, size: 34),
         ),
         centerTitle: true,
         elevation: 0,
@@ -82,7 +82,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             alignment: Alignment.centerLeft,
             child: Text(
               '${S.of(context).addWalletTip3}',
-              style: Util.textStyle(context, 1, Colors.white, spacing: 0.1, size: 22.5),
+              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.1, size: 22.5),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
@@ -92,7 +92,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             alignment: Alignment.centerLeft,
             child: Text(
               '${S.of(context).addWalletTip4}',
-              style: Util.textStyle(context, 1, Colors.white, spacing: 0.1, size: 22.5),
+              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.1, size: 22.5),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
@@ -112,7 +112,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
           Container(
             child: Text(
               '${S.of(context).commonBackupMnemonic}',
-              style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.4, size: 26),
+              style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.4, size: 26),
             ),
           ),
           InkWell(
@@ -169,7 +169,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
             child: Text(
               '$index',
-              style: Util.textStyle4Num(context, Colors.grey[500], size: 20),
+              style: Util.textStyle4Num(context, color: Colors.grey[500], size: 20),
             ),
           ),
           Container(
@@ -177,7 +177,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             padding: EdgeInsets.only(bottom: 13),
             child: Text(
               '$value',
-              style: Util.textStyle4En(context, 2, Colors.grey[800], size: 27),
+              style: Util.textStyle4En(context, 2, color: Colors.grey[800], size: 27),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -197,7 +197,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
               padding: EdgeInsets.all(12),
               child: Text(
                 '${S.of(context).commonSavedSafely}',
-                style: Util.textStyle(context, 1, Colors.white, spacing: 0.2, size: 30),
+                style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.2, size: 30),
               ),
             ),
             color:  Util.themeColor,

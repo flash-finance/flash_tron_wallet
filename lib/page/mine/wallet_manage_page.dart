@@ -29,7 +29,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
         brightness: Brightness.light,
         title: Text(
           '${S.of(context).mineManageWallet}',
-          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 34),
+          style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.2, size: 34),
         ),
         centerTitle: true,
         elevation: 0,
@@ -74,7 +74,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
         alignment: Alignment.center,
         child: Text(
           '${S.of(context).mineNoWallet}',
-          style: Util.textStyle(context, 2, Colors.white, spacing: 0.5, size: 28),
+          style: Util.textStyle(context, 2, color: Colors.white, spacing: 0.5, size: 28),
         ),
       ),
     );
@@ -124,7 +124,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
                       Container(
                         child: Text(
                           '$name',
-                          style: Util.textStyle(context, 2, Colors.white, spacing: 0.5, size: 30),
+                          style: Util.textStyle(context, 2, color: Colors.white, spacing: 0.5, size: 30),
                         ),
                       ),
                       SizedBox(width: Util.width(50)),
@@ -139,7 +139,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
                         ),
                         child: Text(
                           '${S.of(context).commonCurrent}',
-                          style: Util.textStyle(context, 2, Util.themeColor, spacing: 0.2, size: 20),
+                          style: Util.textStyle(context, 2, color: Util.themeColor, spacing: 0.2, size: 20),
                         ),
                       ) : Container(),
                     ],
@@ -167,7 +167,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
                     Container(
                       child: Text(
                         '$tronAddress',
-                        style: Util.textStyle4En(context, 1, Colors.white, spacing: 0.5, size: 26),
+                        style: Util.textStyle4En(context, 1, color: Colors.white, spacing: 0.5, size: 26),
                       ),
                     ),
                     SizedBox(width: Util.width(50)),

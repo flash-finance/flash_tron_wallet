@@ -37,7 +37,7 @@ class _MinePageState extends State<MinePage> {
         brightness: Brightness.light,
         title: Text(
           '${S.of(context).bottomTab3}',
-          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2 , size: 34),
+          style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.2 , size: 34),
         ),
         centerTitle: true,
         elevation: 0,
@@ -83,7 +83,7 @@ class _MinePageState extends State<MinePage> {
                 Container(
                   child: Text(
                     '${S.of(context).mineManageWallet}',
-                    style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
+                    style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
                   ),
                 ),
               ],
@@ -131,14 +131,14 @@ class _MinePageState extends State<MinePage> {
                     Container(
                       child: Text(
                         'English/',
-                        style: Util.textStyle4En(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
+                        style: Util.textStyle4En(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
                       ),
                     ),
                     Container(
                       padding: EdgeInsets.only(top: Util.height(1)),
                       child: Text(
                         '中文',
-                        style: Util.textStyle4Zh(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
+                        style: Util.textStyle4Zh(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
                       ),
                     ),
                   ],
@@ -186,7 +186,7 @@ class _MinePageState extends State<MinePage> {
                     CupertinoAlertDialog(
                       title: Text(
                         '新版本 V${dexInfo.androidVersionNum}',
-                        style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.0, size: 30),
+                        style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
                       ),
                       content: Container(
                         padding: EdgeInsets.only(top: Util.height(10)),
@@ -207,14 +207,14 @@ class _MinePageState extends State<MinePage> {
                         FlatButton(
                           child: Text(
                             '以后再说',
-                            style: Util.textStyle(context, 2,  Util.themeColor, spacing: 0.1, size: 30),
+                            style: Util.textStyle(context, 2, color:  Util.themeColor, spacing: 0.1, size: 30),
                           ),
                           onPressed: () => Navigator.pop(context),
                         ),
                         FlatButton(
                             child: Text(
                               '立即体验',
-                              style: Util.textStyle(context, 2,  Util.themeColor, spacing: 0.1, size: 30),
+                              style: Util.textStyle(context, 2, color:  Util.themeColor, spacing: 0.1, size: 30),
                             ),
                             onPressed: () {
                               Navigator.pop(context);
@@ -237,7 +237,7 @@ class _MinePageState extends State<MinePage> {
                 CupertinoAlertDialog(
                       title: Text(
                         '新版本 V${dexInfo.iosVersionNum}',
-                        style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.0, size: 30),
+                        style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
                       ),
                       content: Container(
                         padding: EdgeInsets.only(top: Util.height(10)),
@@ -258,14 +258,14 @@ class _MinePageState extends State<MinePage> {
                         FlatButton(
                           child: Text(
                             '以后再说',
-                            style: Util.textStyle(context, 2, Util.themeColor, spacing: 0.0, size: 30),
+                            style: Util.textStyle(context, 2, color: Util.themeColor, spacing: 0.0, size: 30),
                           ),
                           onPressed: () => Navigator.pop(context),
                         ),
                         FlatButton(
                             child: Text(
                               '立即体验',
-                              style: Util.textStyle(context, 2,  Util.themeColor, spacing: 0.0, size: 30),
+                              style: Util.textStyle(context, 2, color:  Util.themeColor, spacing: 0.0, size: 30),
                             ),
                             onPressed: () async {
                               if (await canLaunch(dexInfo.iosDownloadUrl)) {
@@ -299,8 +299,7 @@ class _MinePageState extends State<MinePage> {
                 Container(
                   child: Text(
                     '${S.of(context).mineCurrentVersion}',
-                    style: Util.textStyle(
-                        context, 2, Colors.grey[850], spacing: 0.0, size: 30),
+                    style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
                   ),
                 ),
               ],
@@ -337,7 +336,7 @@ class _MinePageState extends State<MinePage> {
             alignment: Alignment.centerRight,
             child: Text(
               '$currentVersion',
-              style: Util.textStyle4En(context, 2, Colors.grey[700], size: 27),
+              style: Util.textStyle4En(context, 2, color: Colors.grey[700], size: 27),
             ),
           ),
           flag ? Container(
@@ -356,20 +355,20 @@ class _MinePageState extends State<MinePage> {
         builder: (_) => CupertinoAlertDialog(
           title: Text(
             '${S.of(context).mineLangTip1}',
-            style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 30),
+            style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2, size: 30),
           ),
           actions: <Widget>[
             FlatButton(
               child: Text(
                 '${S.of(context).commonCancel}',
-                style: Util.textStyle(context, 2, Util.themeColor, spacing: 0.5, size: 30),
+                style: Util.textStyle(context, 2, color: Util.themeColor, spacing: 0.5, size: 30),
               ),
               onPressed: () => Navigator.pop(context),
             ),
             FlatButton(
                 child: Text(
                   '${S.of(context).commonConfirm}',
-                  style: Util.textStyle(context, 2, Util.themeColor, spacing: 0.5, size: 30),
+                  style: Util.textStyle(context, 2, color: Util.themeColor, spacing: 0.5, size: 30),
                 ),
                 onPressed: () {
                   Navigator.pop(context);

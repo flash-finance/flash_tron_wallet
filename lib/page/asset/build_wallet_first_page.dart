@@ -44,7 +44,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
         brightness: Brightness.light,
         title: Text(
           '${S.of(context).assetCreateWallet}',
-          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2, size: 34),
+          style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.2, size: 34),
         ),
         centerTitle: true,
         elevation: 0,
@@ -109,9 +109,9 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
         inputFormatters: [],
         decoration: InputDecoration(
           labelText: '${S.of(context).assetWalletName}',
-          labelStyle: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.1, size: 26),
+          labelStyle: Util.textStyle(context, 2, color: Colors.grey[700], spacing: 0.1, size: 26),
         ),
-        style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 30),
+        style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2, size: 30),
         validator: (String value) {
           if (value.isEmpty) {
             return '${S.of(context).commonCanNotBeEmpty}';
@@ -139,7 +139,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
             labelText: '${S.of(context).assetSetPassword}',
-            labelStyle: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.1, size: 26),
+            labelStyle: Util.textStyle(context, 2, color: Colors.grey[700], spacing: 0.1, size: 26),
             suffixIcon: IconButton(
               icon: Icon(
                 Icons.remove_red_eye,
@@ -154,7 +154,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
               },
             )
         ),
-        style: Util.textStyle4Num(context, Colors.grey[800], spacing: 0.2, size: 32, fontWeight: FontWeight.w500),
+        style: Util.textStyle4Num(context, color: Colors.grey[800], spacing: 0.2, size: 32, fontWeight: FontWeight.w500),
         validator: (String value) {
           if (value.isEmpty) {
             return '${S.of(context).commonCanNotBeEmpty}';
@@ -184,7 +184,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
             labelText: '${S.of(context).assetConfirmPassword}',
-            labelStyle: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.1, size: 26),
+            labelStyle: Util.textStyle(context, 2, color: Colors.grey[700], spacing: 0.1, size: 26),
             suffixIcon: IconButton(
               icon: Icon(
                 Icons.remove_red_eye,
@@ -199,7 +199,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
               },
             )
         ),
-        style: Util.textStyle4Num(context, Colors.grey[800], spacing: 0.2, size: 32, fontWeight: FontWeight.w500),
+        style: Util.textStyle4Num(context, color: Colors.grey[800], spacing: 0.2, size: 32, fontWeight: FontWeight.w500),
         validator: (String value) {
           if (value.isEmpty) {
             return '${S.of(context).commonCanNotBeEmpty}';
@@ -221,7 +221,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
               padding: EdgeInsets.all(12),
               child: Text(
                 '${S.of(context).commonSubmit}',
-                style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 31),
+                style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.6, size: 31),
               ),
             ),
             color:  Util.themeColor,
@@ -264,7 +264,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
             alignment: Alignment.centerLeft,
             child: Text(
               '${S.of(context).addWalletTip1}',
-              style: Util.textStyle(context, 1, Colors.white, spacing: 0.1, size: 22.5),
+              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.1, size: 22.5),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
@@ -274,7 +274,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
             alignment: Alignment.centerLeft,
             child: Text(
               '${S.of(context).addWalletTip2}',
-              style: Util.textStyle(context, 1, Colors.white, spacing: 0.1, size: 22.5),
+              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.1, size: 22.5),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),

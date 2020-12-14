@@ -163,7 +163,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                     Container(
                       child: Text(
                         '${item.name}',
-                        style: Util.textStyle(context, 1, Colors.white, spacing: 0.2, size: 23),
+                        style: Util.textStyle(context, 1, color: Colors.white, spacing: 0.2, size: 23),
                       ),
                     ),
                     SizedBox(width: Util.width(5)),
@@ -282,7 +282,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   Container(
                     child: Text(
                       '${S.of(context).assetMyAssets} （\$）',
-                      style: Util.textStyle(context, 1, Colors.white, spacing: 0.5, size: 25),
+                      style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.5, size: 25),
                     ),
                   ),
                   Container(
@@ -291,7 +291,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                         Container(
                           child: Text(
                             '${S.of(context).assetDetails}',
-                            style: Util.textStyle(context, 1, Colors.white, spacing: 0.5, size: 25),
+                            style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.5, size: 25),
                           ),
                         ),
                         SizedBox(width: Util.width(10)),
@@ -319,7 +319,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                 padding: EdgeInsets.only(top: Util.height(20), bottom: Util.height(20)),
                 child: Text(
                   '${Util.formatNum(totalAssetUsd, 2)}',
-                  style: Util.textStyle4Num(context, Colors.white, spacing: 0.2, size: 45, fontWeight: FontWeight.w500),
+                  style: Util.textStyle4Num(context, color: Colors.white, spacing: 0.2, size: 45, fontWeight: FontWeight.w500),
                 ),
               ),
             ),
@@ -349,7 +349,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                           Container(
                             child: Text(
                               '${S.of(context).assetTransfer}',
-                              style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 25),
+                              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.6, size: 25),
                             ),
                           ),
                         ],
@@ -376,7 +376,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                           Container(
                             child: Text(
                               '${S.of(context).assetReceive}',
-                              style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 25),
+                              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.6, size: 25),
                             ),
                           ),
                         ],
@@ -399,7 +399,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                           Container(
                             child: Text(
                               '${S.of(context).assetSwap}',
-                              style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 25),
+                              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.6, size: 25),
                             ),
                           ),
                         ],
@@ -421,7 +421,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
         alignment: Alignment.centerLeft,
         child: Text(
           '${S.of(context).assetAssets}',
-          style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.5, size: 32),
+          style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.5, size: 32),
         ));
   }
 
@@ -472,7 +472,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   Container(
                       child: Text(
                         '${item.name}',
-                        style: Util.textStyle4En(context, 2, Colors.grey[850], spacing: 0.0, size: 32),
+                        style: Util.textStyle4En(context, 2, color: Colors.grey[850], spacing: 0.0, size: 32),
                       )),
                 ],
               ),
@@ -484,7 +484,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   Container(
                     child: Text(
                       '${Util.formatNum(item.balance, 4)}',
-                      style: Util.textStyle4Num(context, Colors.grey[850], spacing: 0.1, size: 30, fontWeight: FontWeight.w500),
+                      style: Util.textStyle4Num(context, color: Colors.grey[850], spacing: 0.1, size: 30, fontWeight: FontWeight.w500),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -493,7 +493,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   Container(
                     child: Text(
                       '≈  \$ ${Util.formatNum(item.cny / 6.75, 2)}',
-                      style: Util.textStyle4Num(context, Colors.grey[500], spacing: 0.0, size: 23, fontWeight: FontWeight.w400),
+                      style: Util.textStyle4Num(context, color: Colors.grey[500], spacing: 0.0, size: 23, fontWeight: FontWeight.w400),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -531,7 +531,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                 Container(
                   child: Text(
                     'Flash  Wallet',
-                    style: Util.textStyle4En(context, 1, Colors.white, spacing: 0.0, size: 40),
+                    style: Util.textStyle4En(context, 1, color: Colors.white, spacing: 0.0, size: 40),
                   ),
                 ),
               ],
@@ -566,7 +566,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                       Container(
                         child: Text(
                           '${S.of(context).assetImportPrivateKey}',
-                          style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
+                          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],
@@ -606,7 +606,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                       Container(
                         child: Text(
                           '${S.of(context).assetImportMnemonic}',
-                          style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
+                          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],
@@ -643,7 +643,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                       Container(
                         child: Text(
                           '${S.of(context).assetCreateWallet}',
-                          style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
+                          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],
@@ -723,7 +723,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   ),
                   child: Text(
                     '${S.of(context).assetWalletList}',
-                    style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.4, size: 32),
+                    style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.4, size: 32),
                   ),
                 ),
                 Expanded(
@@ -774,7 +774,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                 Container(
                   child: Text(
                     '$name',
-                    style: Util.textStyle(context, 1, Colors.white, spacing: 0.5, size: 30),
+                    style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.5, size: 30),
                   ),
                 ),
                 SizedBox(height: Util.height(15)),
@@ -789,7 +789,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                         Container(
                           child: Text(
                             '$tronAddress',
-                            style: Util.textStyle4En(context, 1, Colors.white, spacing: 0.0, size: 26),
+                            style: Util.textStyle4En(context, 1, color: Colors.white, spacing: 0.0, size: 26),
                           ),
                         ),
                         SizedBox(width: Util.width(50)),

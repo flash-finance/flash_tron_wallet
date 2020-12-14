@@ -86,13 +86,13 @@ class _QrScanPageState extends State<QrScanPage> {
                   padding: EdgeInsets.only(left: _langType ? Util.width(20) : Util.width(130)),
                   child: Text(
                     '${S.of(context).commonScan}',
-                    style: Util.textStyle(context, 2, Colors.white, spacing: 0.2, size: 32),
+                    style: Util.textStyle(context, 2, color: Colors.white, spacing: 0.2, size: 32),
                   ),
                 ),
                 Container(
                   child: Text(
                     '${S.of(context).commonPhotoAlbum}',
-                    style: Util.textStyle(context, 2, Colors.white.withOpacity(0), spacing: 0.2, size: 32),
+                    style: Util.textStyle(context, 2, color: Colors.white.withOpacity(0), spacing: 0.2, size: 32),
                   ),
                 ),
               ],

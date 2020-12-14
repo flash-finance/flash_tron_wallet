@@ -24,7 +24,7 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
         brightness: Brightness.light,
         title: Text(
           '${S.of(context).assetReceivingQrCode}',
-          style: Util.textStyle(context, 2, Colors.grey[900], spacing: 0.2 , size: 34),
+          style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.2 , size: 34),
         ),
         centerTitle: true,
         elevation: 0,
@@ -84,7 +84,7 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
             alignment: Alignment.center,
             child: Text(
               '$name',
-              style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.2, size: 30),
+              style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.2, size: 30),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -102,7 +102,7 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
             alignment: Alignment.center,
             child: Text(
               '$address',
-              style: Util.textStyle4En(context, 2, Colors.grey[850], spacing: 0.0, size: 27),
+              style: Util.textStyle4En(context, 2, color: Colors.grey[850], spacing: 0.0, size: 27),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -122,7 +122,7 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
               padding: EdgeInsets.all(12),
               child: Text(
                 '${S.of(context).assetCopyAddress}',
-                  style: Util.textStyle(context, 1, Colors.white, spacing: 0.6, size: 31),
+                  style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.6, size: 31),
               ),
             ),
             color:  Util.themeColor,

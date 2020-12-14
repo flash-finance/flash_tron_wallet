@@ -33,7 +33,7 @@ class Util {
     );
   }
 
-  static TextStyle textStyle(BuildContext context, int type, Color color, {double spacing, double size}) {
+  static TextStyle textStyle(BuildContext context, int type, {Color color, double spacing, double size}) {
     double letterSpacing = spacing != null ? spacing : 0.0;
     double fontSize = size != null ? size : 23.0;
     bool langType = Provider.of<IndexProvider>(context, listen: false).langType;
@@ -50,7 +50,7 @@ class Util {
     );
   }
 
-  static TextStyle textStyle4En(BuildContext context, int type, Color color, {double spacing, double size}) {
+  static TextStyle textStyle4En(BuildContext context, int type, {Color color, double spacing, double size}) {
     double fontSize = size != null ? size : 23.0;
     return TextStyle(
       fontFamily: type == 1 ? 'EN-R' : 'EN-M',
@@ -60,7 +60,7 @@ class Util {
     );
   }
 
-  static TextStyle textStyle4Zh(BuildContext context, int type, Color color, {double spacing, double size}) {
+  static TextStyle textStyle4Zh(BuildContext context, int type, {Color color, double spacing, double size}) {
     double letterSpacing = spacing != null ? spacing : 0.0;
     double fontSize = size != null ? size : 23.0;
     return TextStyle(
@@ -71,7 +71,7 @@ class Util {
     );
   }
 
-  static TextStyle textStyle4Num(BuildContext context, Color color, {double spacing, double size, FontWeight fontWeight}) {
+  static TextStyle textStyle4Num(BuildContext context, {Color color, double spacing, double size, FontWeight fontWeight}) {
     double letterSpacing = spacing != null ? spacing : 0.0;
     double fontSize = size != null ? size : 23.0;
     return GoogleFonts.roboto(

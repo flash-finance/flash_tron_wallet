@@ -497,7 +497,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                   ),
                   Container(
                     child: Text(
-                      '$_assetAmount${item.name} ',
+                      '$_assetAmount ${item.name} ',
                       style: Util.textStyle4Num(context, Colors.grey[850], spacing: 0.0, size: 30),
                     ),
                   ),

@@ -44,11 +44,11 @@ class _MinePageState extends State<MinePage> {
       body: Container(
         child: ListView(
           children: <Widget>[
-            IntervalPage(ScreenUtil().setHeight(25)),
+            IntervalPage(Util.height(25)),
             _walletManageWidget(context),
             _langWidget(context),
             _versionWidget(context),
-            IntervalPage(ScreenUtil().setHeight(25)),
+            IntervalPage(Util.height(25)),
           ],
         ),
       ),
@@ -61,8 +61,8 @@ class _MinePageState extends State<MinePage> {
         Application.router.navigateTo(context, 'mine/walletManage', transition: TransitionType.cupertino);
       },
       child: Container(
-        margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40)),
-        padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
+        margin: EdgeInsets.only(left: Util.width(40), top: Util.height(30), right: Util.width(40)),
+        padding: EdgeInsets.only(bottom: Util.height(30)),
         decoration: BoxDecoration(
           border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
         ),
@@ -78,7 +78,7 @@ class _MinePageState extends State<MinePage> {
                     color: Colors.grey[800],
                   ),
                 ),
-                SizedBox(width: ScreenUtil().setWidth(50)),
+                SizedBox(width: Util.width(50)),
                 Container(
                   child: Text(
                     '${S.of(context).mineManageWallet}',
@@ -106,8 +106,8 @@ class _MinePageState extends State<MinePage> {
         _showSwitchLangDialLog(context);
       },
       child: Container(
-        margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40)),
-        padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
+        margin: EdgeInsets.only(left: Util.width(40), top: Util.height(30), right: Util.width(40)),
+        padding: EdgeInsets.only(bottom: Util.height(30)),
         decoration: BoxDecoration(
           border: Border(
               bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
@@ -124,7 +124,7 @@ class _MinePageState extends State<MinePage> {
                     color: Colors.grey[800],
                   ),
                 ),
-                SizedBox(width: ScreenUtil().setWidth(50)),
+                SizedBox(width: Util.width(50)),
                 Row(
                   children: <Widget>[
                     Container(
@@ -134,7 +134,7 @@ class _MinePageState extends State<MinePage> {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.only(top: ScreenUtil().setHeight(1)),
+                      padding: EdgeInsets.only(top: Util.height(1)),
                       child: Text(
                         '中文',
                         style: Util.textStyle4Zh(context, 2, Colors.grey[850], spacing: 0.0, size: 30),
@@ -188,7 +188,7 @@ class _MinePageState extends State<MinePage> {
                         style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.0, size: 30),
                       ),
                       content: Container(
-                        padding: EdgeInsets.only(top: ScreenUtil().setHeight(10)),
+                        padding: EdgeInsets.only(top: Util.height(10)),
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '${dexInfo.androidUpdateInfo.replaceAll('\\n', '\n')}',
@@ -239,7 +239,7 @@ class _MinePageState extends State<MinePage> {
                         style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.0, size: 30),
                       ),
                       content: Container(
-                        padding: EdgeInsets.only(top: ScreenUtil().setHeight(10)),
+                        padding: EdgeInsets.only(top: Util.height(10)),
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '${dexInfo.iosUpdateInfo.replaceAll('\\n', '\n')}',
@@ -280,8 +280,8 @@ class _MinePageState extends State<MinePage> {
         }
       },
       child: Container(
-        margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40)),
-        padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
+        margin: EdgeInsets.only(left: Util.width(40), top: Util.height(30), right: Util.width(40)),
+        padding: EdgeInsets.only(bottom: Util.height(30)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -294,7 +294,7 @@ class _MinePageState extends State<MinePage> {
                     color: Colors.grey[800],
                   ),
                 ),
-                SizedBox(width: ScreenUtil().setWidth(50)),
+                SizedBox(width: Util.width(50)),
                 Container(
                   child: Text(
                     '${S.of(context).mineCurrentVersion}',
@@ -332,7 +332,7 @@ class _MinePageState extends State<MinePage> {
       child: Row(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(right: ScreenUtil().setWidth(5)),
+            padding: EdgeInsets.only(right: Util.width(5)),
             alignment: Alignment.centerRight,
             child: Text(
               '$currentVersion',
@@ -340,7 +340,7 @@ class _MinePageState extends State<MinePage> {
             ),
           ),
           flag ? Container(
-            padding: EdgeInsets.only(left: ScreenUtil().setWidth(5), right: ScreenUtil().setWidth(10)),
+            padding: EdgeInsets.only(left: Util.width(5), right: Util.width(10)),
             alignment: Alignment.centerRight,
             child: Icon(Icons.brightness_1, size: ScreenUtil().setSp(15), color: Util.themeColor),
           ) :Container(),

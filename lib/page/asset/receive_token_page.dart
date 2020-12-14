@@ -40,16 +40,16 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
         ),
       ),
       body: Container(
-        margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
+        margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
         child: ListView(
           children: <Widget>[
-            SizedBox(height: ScreenUtil().setHeight(30)),
+            SizedBox(height: Util.height(30)),
             _qrCodeWidget(context, wallet.tronAddress.trim()),
-            SizedBox(height: ScreenUtil().setHeight(20)),
+            SizedBox(height: Util.height(20)),
             _nameWidget(context, wallet.name),
-            SizedBox(height: ScreenUtil().setHeight(10)),
+            SizedBox(height: Util.height(10)),
             _addressWidget(context, wallet.tronAddress),
-            SizedBox(height: ScreenUtil().setHeight(80)),
+            SizedBox(height: Util.height(80)),
             _copyButtonWidget(context, wallet.tronAddress),
           ],
         ),
@@ -60,16 +60,16 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
 
   Widget _qrCodeWidget(BuildContext context, String address) {
     return Container(
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(50), right: ScreenUtil().setWidth(50)),
+      margin: EdgeInsets.only(left: Util.width(50), right: Util.width(50)),
       child: Card(
         elevation: 3,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
         child: Container(
-          padding: EdgeInsets.only(top: ScreenUtil().setWidth(75), bottom: ScreenUtil().setWidth(75)),
+          padding: EdgeInsets.only(top: Util.width(75), bottom: Util.width(75)),
           alignment: Alignment.center,
           child: QrImage(
             data: address,
-            size: ScreenUtil().setWidth(400),
+            size: Util.width(400),
           ),
         ),
       ),
@@ -116,7 +116,7 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
     return Container(
       child: Align(
         child: SizedBox(
-          width: ScreenUtil().setWidth(320),
+          width: Util.width(320),
           child: RaisedButton(
             child: Container(
               padding: EdgeInsets.all(12),

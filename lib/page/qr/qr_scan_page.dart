@@ -41,7 +41,7 @@ class _QrScanPageState extends State<QrScanPage> {
           width: double.infinity,
           child: _qrCodeWidget(context),
         ),
-        preferredSize: Size(double.infinity, ScreenUtil().setHeight(1334)),
+        preferredSize: Size(double.infinity, Util.height(1334)),
       ),
     );
   }
@@ -66,7 +66,7 @@ class _QrScanPageState extends State<QrScanPage> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), top: ScreenUtil().setHeight(65), right: ScreenUtil().setWidth(30)),
+            margin: EdgeInsets.only(left: Util.width(30), top: Util.height(65), right: Util.width(30)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -83,7 +83,7 @@ class _QrScanPageState extends State<QrScanPage> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(left: _langType ? ScreenUtil().setWidth(20) : ScreenUtil().setWidth(130)),
+                  padding: EdgeInsets.only(left: _langType ? Util.width(20) : Util.width(130)),
                   child: Text(
                     '${S.of(context).commonScan}',
                     style: Util.textStyle(context, 2, Colors.white, spacing: 0.2, size: 32),

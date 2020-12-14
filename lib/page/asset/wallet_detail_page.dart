@@ -53,14 +53,14 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
       body: Container(
         child: ListView(
           children: <Widget>[
-            IntervalPage(ScreenUtil().setHeight(25)),
+            IntervalPage(Util.height(25)),
             _topWidget(context, wallet),
-            IntervalPage(ScreenUtil().setHeight(25)),
+            IntervalPage(Util.height(25)),
             flag ? _backupMnemonicWidget(context, wallet.pwd) : Container(),
             _backupKeyWidget(context, wallet.pwd),
             _updatePwdWidget(context),
             _delWalletWidget(context),
-            IntervalPage(ScreenUtil().setHeight(25)),
+            IntervalPage(Util.height(25)),
           ],
         ),
       ),
@@ -71,7 +71,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
     String temp = wallet.tronAddress;
     String tronAddress = temp.substring(0, 8) + '...' + temp.substring(temp.length-8, temp.length);
     return Container(
-      padding: EdgeInsets.only(left: ScreenUtil().setWidth(30), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(30), bottom: ScreenUtil().setHeight(30)),
+      padding: EdgeInsets.only(left: Util.width(30), top: Util.height(30), right: Util.width(30), bottom: Util.height(30)),
       child: Row(
         children: <Widget>[
           Container(
@@ -79,13 +79,13 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
               opacity: 0.9,
               child: Image.asset(
                 'images/flash.png',
-                width: ScreenUtil().setWidth(100),
-                height: ScreenUtil().setWidth(100),
+                width: Util.width(100),
+                height: Util.width(100),
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          SizedBox(width: ScreenUtil().setWidth(30)),
+          SizedBox(width: Util.width(30)),
           Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,7 +105,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        SizedBox(width: ScreenUtil().setWidth(30)),
+                        SizedBox(width: Util.width(30)),
                         Container(
                           child: Icon(
                             IconData(0xe635, fontFamily: 'ICON'),
@@ -117,7 +117,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: ScreenUtil().setHeight(15)),
+                SizedBox(height: Util.height(15)),
                 InkWell(
                   onTap: () {
                     Clipboard.setData(ClipboardData(text: wallet.tronAddress));
@@ -134,7 +134,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        SizedBox(width: ScreenUtil().setWidth(30)),
+                        SizedBox(width: Util.width(30)),
                         Container(
                           child: Icon(
                             IconData(0xe618, fontFamily: 'ICON'),
@@ -160,8 +160,8 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         return _showInputPwdDialLog(context, 1, pwd);
       },
       child: Container(
-        margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40)),
-        padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
+        margin: EdgeInsets.only(left: Util.width(40), top: Util.height(30), right: Util.width(40)),
+        padding: EdgeInsets.only(bottom: Util.height(30)),
         decoration: BoxDecoration(
           border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
         ),
@@ -193,8 +193,8 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         return _showInputPwdDialLog(context, 2, pwd);
       },
       child: Container(
-        margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40)),
-        padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
+        margin: EdgeInsets.only(left: Util.width(40), top: Util.height(30), right: Util.width(40)),
+        padding: EdgeInsets.only(bottom: Util.height(30)),
         decoration: BoxDecoration(
           border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
         ),
@@ -226,8 +226,8 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         Application.router.navigateTo(context, 'asset/updatePwd', transition: TransitionType.cupertino);
       },
       child: Container(
-        margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40)),
-        padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
+        margin: EdgeInsets.only(left: Util.width(40), top: Util.height(30), right: Util.width(40)),
+        padding: EdgeInsets.only(bottom: Util.height(30)),
         decoration: BoxDecoration(
           border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
         ),
@@ -259,8 +259,8 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         return _showDelWalletDialLog(context);
       },
       child: Container(
-        margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40)),
-        padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
+        margin: EdgeInsets.only(left: Util.width(40), top: Util.height(30), right: Util.width(40)),
+        padding: EdgeInsets.only(bottom: Util.height(30)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[

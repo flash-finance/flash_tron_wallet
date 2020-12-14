@@ -41,15 +41,15 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
       body: Container(
         child: ListView(
           children: <Widget>[
-            SizedBox(height: ScreenUtil().setHeight(20)),
+            SizedBox(height: Util.height(20)),
             _descWidget(),
-            SizedBox(height: ScreenUtil().setHeight(20)),
+            SizedBox(height: Util.height(20)),
             Container(
-              margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
+              margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
               child: Column(
                 children: <Widget>[
                   _dataWidget(context, wallet.mnemonic),
-                  SizedBox(height: ScreenUtil().setHeight(150)),
+                  SizedBox(height: Util.height(150)),
                   _submitButton(context),
                 ],
               ),
@@ -62,7 +62,7 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
 
   Widget _descWidget() {
     return Container(
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
+      margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color:  Util.themeColor,
@@ -86,14 +86,14 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
 
   Widget _dataWidget(BuildContext context, String mnemonic) {
     return Container(
-      width: ScreenUtil().setWidth(700),
+      width: Util.width(700),
       decoration: BoxDecoration(
         border: Border(bottom: BorderSide(width: 0.6, color: Colors.black12)),
       ),
       child: Row(
         children: <Widget>[
           Container(
-            width: ScreenUtil().setWidth(600),
+            width: Util.width(600),
             padding: EdgeInsets.fromLTRB(5, 15, 0, 10),
             child: Text(
               '$mnemonic',
@@ -107,12 +107,12 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
               Util.showToast('${S.of(context).commonCopySuccess}');
             },
             child: Container(
-              width: ScreenUtil().setWidth(80),
+              width: Util.width(80),
               alignment: Alignment.centerRight,
               child: Image.asset(
                 'icons/copy.png',
-                width: ScreenUtil().setWidth(40),
-                height: ScreenUtil().setWidth(40),
+                width: Util.width(40),
+                height: Util.width(40),
                 color: Colors.grey[800],
                 fit: BoxFit.fill,
               ),
@@ -127,7 +127,7 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
     return Container(
       child: Align(
         child: SizedBox(
-          width: ScreenUtil().setWidth(320),
+          width: Util.width(320),
           child: RaisedButton(
             child: Container(
               padding: EdgeInsets.all(12),

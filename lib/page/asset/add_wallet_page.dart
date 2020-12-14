@@ -40,9 +40,9 @@ class _AddWalletPageState extends State<AddWalletPage> {
       body: Container(
         child: ListView(
           children: <Widget>[
-            IntervalPage(ScreenUtil().setHeight(25)),
+            IntervalPage(Util.height(25)),
             _bodyWidget(context),
-            IntervalPage(ScreenUtil().setHeight(25)),
+            IntervalPage(Util.height(25)),
           ],
         ),
       ),
@@ -51,16 +51,16 @@ class _AddWalletPageState extends State<AddWalletPage> {
 
   Widget _bodyWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
+      margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
       child: Column(
         children: <Widget>[
-          SizedBox(height: ScreenUtil().setHeight(30)),
+          SizedBox(height: Util.height(30)),
           InkWell(
             onTap: () {
               Application.router.navigateTo(context, 'asset/importKey/2', transition: TransitionType.cupertino);
             },
             child: Container(
-              padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
+              padding: EdgeInsets.only(bottom: Util.height(30)),
               decoration: BoxDecoration(
                 border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
               ),
@@ -69,7 +69,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      SizedBox(width: ScreenUtil().setWidth(10)),
+                      SizedBox(width: Util.width(10)),
                       Container(
                         child: Text(
                           '${S.of(context).assetImportPrivateKey}',
@@ -87,7 +87,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                           color: Colors.grey[700],
                         ),
                       ),
-                      SizedBox(width: ScreenUtil().setWidth(10)),
+                      SizedBox(width: Util.width(10)),
                     ],
                   ),
 
@@ -95,13 +95,13 @@ class _AddWalletPageState extends State<AddWalletPage> {
               ),
             ),
           ),
-          SizedBox(height: ScreenUtil().setHeight(30)),
+          SizedBox(height: Util.height(30)),
           InkWell(
             onTap: () {
               Application.router.navigateTo(context, 'asset/importMnemonic/2', transition: TransitionType.cupertino);
             },
             child: Container(
-              padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
+              padding: EdgeInsets.only(bottom: Util.height(30)),
               decoration: BoxDecoration(
                 border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
               ),
@@ -110,7 +110,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      SizedBox(width: ScreenUtil().setWidth(10)),
+                      SizedBox(width: Util.width(10)),
                       Container(
                         child: Text(
                           '${S.of(context).assetImportMnemonic}',
@@ -129,7 +129,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                           color: Colors.grey[700],
                         ),
                       ),
-                      SizedBox(width: ScreenUtil().setWidth(10)),
+                      SizedBox(width: Util.width(10)),
                     ],
                   ),
 
@@ -137,19 +137,19 @@ class _AddWalletPageState extends State<AddWalletPage> {
               ),
             ),
           ),
-          SizedBox(height: ScreenUtil().setHeight(30)),
+          SizedBox(height: Util.height(30)),
           InkWell(
             onTap: () {
               Application.router.navigateTo(context, 'asset/buildFirstWallet/2', transition: TransitionType.cupertino);
             },
             child: Container(
-              padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
+              padding: EdgeInsets.only(bottom: Util.height(30)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      SizedBox(width: ScreenUtil().setWidth(10)),
+                      SizedBox(width: Util.width(10)),
                       Container(
                         child: Text(
                           '${S.of(context).assetCreateWallet}',
@@ -167,7 +167,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                           color: Colors.grey[700],
                         ),
                       ),
-                      SizedBox(width: ScreenUtil().setWidth(10)),
+                      SizedBox(width: Util.width(10)),
                     ],
                   ),
                 ],

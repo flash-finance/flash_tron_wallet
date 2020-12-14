@@ -112,15 +112,15 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
           key: _formKey,
           child: ListView(
             children: <Widget>[
-              IntervalPage(ScreenUtil().setHeight(25)),
+              IntervalPage(Util.height(25)),
               _sendWidget(context,wallet),
-              IntervalPage(ScreenUtil().setHeight(25)),
+              IntervalPage(Util.height(25)),
               _receiveWidget(context),
-              IntervalPage(ScreenUtil().setHeight(25)),
+              IntervalPage(Util.height(25)),
               _amountWidget(context, assetFilterConList, selectAssetFilterIndex),
               _balanceWidget(context, assetFilterConList, selectAssetFilterIndex),
-              IntervalPage(ScreenUtil().setHeight(25)),
-              SizedBox(height: ScreenUtil().setHeight(120)),
+              IntervalPage(Util.height(25)),
+              SizedBox(height: Util.height(120)),
               _submitWidget(context, wallet),
             ],
           ),
@@ -131,7 +131,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
 
   Widget _sendWidget(BuildContext context, WalletEntity wallet) {
     return Container(
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(25), right: ScreenUtil().setWidth(40), bottom: ScreenUtil().setHeight(25)),
+      margin: EdgeInsets.only(left: Util.width(40), top: Util.height(25), right: Util.width(40), bottom: Util.height(25)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -141,7 +141,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
               style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
             ),
           ),
-          SizedBox(height: ScreenUtil().setHeight(15)),
+          SizedBox(height: Util.height(15)),
           Container(
             child: Text(
               '${wallet.tronAddress}',
@@ -155,7 +155,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
 
   Widget _receiveWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(25), right: ScreenUtil().setWidth(40), bottom: ScreenUtil().setHeight(15)),
+      margin: EdgeInsets.only(left: Util.width(40), top: Util.height(25), right: Util.width(40), bottom: Util.height(15)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -165,13 +165,13 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
               style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
             ),
           ),
-          SizedBox(height: ScreenUtil().setHeight(5)),
+          SizedBox(height: Util.height(5)),
           Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  width: ScreenUtil().setWidth(600),
+                  width: Util.width(600),
                   child: TextFormField(
                     controller: _receiveAddressController,
                     cursorColor: Colors.grey[850],
@@ -210,7 +210,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
   Widget _amountWidget(BuildContext context, List<AssetEntity> assetFilterConList, int index) {
     bool flag = assetFilterConList.length == 0 ? true : false;
     return Container(
-      padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(10)),
+      padding: EdgeInsets.only(bottom: Util.height(10)),
       decoration: BoxDecoration(
         border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
       ),
@@ -218,12 +218,12 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(25), right: ScreenUtil().setWidth(35)),
+            margin: EdgeInsets.only(left: Util.width(40), top: Util.height(25), right: Util.width(35)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  width:ScreenUtil().setWidth(200),
+                  width:Util.width(200),
                   child: Text(
                     '${S.of(context).assetTransferAmount}',
                     style: Util.textStyle(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
@@ -239,7 +239,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
                           Container(
-                            padding: EdgeInsets.only(top: ScreenUtil().setHeight(1.5)),
+                            padding: EdgeInsets.only(top: Util.height(1.5)),
                             child: Text(
                               !flag ? '${assetFilterConList[index].name} ' : '',
                               style: Util.textStyle4En(context, 2, Colors.grey[850], spacing: 0.2, size: 26),
@@ -259,14 +259,14 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
               ],
             ),
           ),
-          SizedBox(height: ScreenUtil().setHeight(10)),
+          SizedBox(height: Util.height(10)),
           Container(
-            margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), right: ScreenUtil().setWidth(40)),
+            margin: EdgeInsets.only(left: Util.width(40), right: Util.width(40)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  width: ScreenUtil().setWidth(500),
+                  width: Util.width(500),
                   child: TextFormField(
                     controller: _assetAmountController,
                     cursorColor: Colors.grey[850],
@@ -290,9 +290,9 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                     _assetAmountController.text = !flag ? assetFilterConList[index].balance.toString() : '';
                   },
                   child: Container(
-                    width: ScreenUtil().setWidth(80),
-                    padding: _langType ? EdgeInsets.only(top: ScreenUtil().setHeight(5), bottom: ScreenUtil().setHeight(5))
-                    : EdgeInsets.only(top: ScreenUtil().setHeight(7.5), bottom: ScreenUtil().setHeight(7.5)),
+                    width: Util.width(80),
+                    padding: _langType ? EdgeInsets.only(top: Util.height(5), bottom: Util.height(5))
+                    : EdgeInsets.only(top: Util.height(7.5), bottom: Util.height(7.5)),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(5.0)),
@@ -314,7 +314,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
 
   Widget _balanceWidget(BuildContext context, List<AssetEntity> assetFilterConList, int index) {
     return Container(
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(25), right: ScreenUtil().setWidth(40), bottom: ScreenUtil().setHeight(25)),
+      margin: EdgeInsets.only(left: Util.width(40), top: Util.height(25), right: Util.width(40), bottom: Util.height(25)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -348,9 +348,9 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))
         ),
         content: Container(
-          width: ScreenUtil().setWidth(600),
-          height: ScreenUtil().setHeight(500),
-          padding: EdgeInsets.only(top: ScreenUtil().setHeight(0)),
+          width: Util.width(600),
+          height: Util.height(500),
+          padding: EdgeInsets.only(top: Util.height(0)),
           child: Column(
             children: <Widget>[
               Expanded(
@@ -383,29 +383,29 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
         _assetAmountController.text = '';
       },
       child: Container(
-        width: ScreenUtil().setWidth(600),
-        padding: EdgeInsets.only(top: ScreenUtil().setHeight(16), bottom: ScreenUtil().setHeight(16)),
+        width: Util.width(600),
+        padding: EdgeInsets.only(top: Util.height(16), bottom: Util.height(16)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
-              width: ScreenUtil().setWidth(300),
+              width: Util.width(300),
               alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(left: ScreenUtil().setWidth(10)),
+              padding: EdgeInsets.only(left: Util.width(10)),
               child: Row(
                 children: <Widget>[
                   Container(
                     child: ClipOval(
                       child: Image.network(
                         '${item.logoUrl}',
-                        width: ScreenUtil().setWidth(40),
-                        height: ScreenUtil().setWidth(40),
+                        width: Util.width(40),
+                        height: Util.width(40),
                         fit: BoxFit.cover,
                       ),
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: ScreenUtil().setWidth(30)),
+                    padding: EdgeInsets.only(left: Util.width(30)),
                     alignment: Alignment.centerLeft,
                     child: Text(
                       '${item.name}',
@@ -418,8 +418,8 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
               ),
             ),
             Container(
-              width: ScreenUtil().setWidth(60),
-              padding: EdgeInsets.only(right: ScreenUtil().setWidth(10)),
+              width: Util.width(60),
+              padding: EdgeInsets.only(right: Util.width(10)),
               alignment: Alignment.centerRight,
               child: !flag ? Container() : Icon(
                 Icons.check,
@@ -441,7 +441,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
     return Container(
       child: Align(
         child: SizedBox(
-          width: ScreenUtil().setWidth(320),
+          width: Util.width(320),
           child: RaisedButton(
             child: Container(
               padding: EdgeInsets.all(12),

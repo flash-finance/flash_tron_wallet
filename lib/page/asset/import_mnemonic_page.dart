@@ -71,20 +71,20 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
               key: _formKey,
               child: ListView(
                 children: <Widget>[
-                  SizedBox(height: ScreenUtil().setHeight(20)),
+                  SizedBox(height: Util.height(20)),
                   _descWidget(),
-                  SizedBox(height: ScreenUtil().setHeight(20)),
+                  SizedBox(height: Util.height(20)),
                   Container(
-                    margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
+                    margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
                     child: Column(
                       children: <Widget>[
                         _nameWidget(),
                         _mnemonicWidget(),
-                        SizedBox(height: ScreenUtil().setHeight(0)),
+                        SizedBox(height: Util.height(0)),
                         _setPwdWidget(),
-                        SizedBox(height: ScreenUtil().setHeight(0)),
+                        SizedBox(height: Util.height(0)),
                         _confirmPwdWidget(),
-                        SizedBox(height: ScreenUtil().setHeight(50)),
+                        SizedBox(height: Util.height(50)),
                         _submitWidget(context),
                       ],
                     ),
@@ -93,7 +93,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
               ),
             ),
             importMnemonicLoading ? Container(
-              padding: EdgeInsets.only(top: ScreenUtil().setHeight(300), left: ScreenUtil().setWidth(350)),
+              padding: EdgeInsets.only(top: Util.height(300), left: Util.width(350)),
               child: CupertinoActivityIndicator(),
             ) : Container(),
           ],
@@ -242,7 +242,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
     return Container(
       child: Align(
         child: SizedBox(
-          width: ScreenUtil().setWidth(320),
+          width: Util.width(320),
           child: RaisedButton(
             child: Container(
               padding: EdgeInsets.all(12),
@@ -286,7 +286,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
 
   Widget _descWidget() {
     return Container(
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
+      margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color:  Util.themeColor,

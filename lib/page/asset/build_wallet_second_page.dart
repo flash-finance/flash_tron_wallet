@@ -42,21 +42,21 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
         ),
       ),
       body: wallet != null && wallet.mnemonic != null ? Container(
-        width: ScreenUtil().setWidth(750),
+        width: Util.width(750),
         child: ListView(
           children: <Widget>[
-            SizedBox(height: ScreenUtil().setHeight(20)),
+            SizedBox(height: Util.height(20)),
             _descWidget(),
-            SizedBox(height: ScreenUtil().setHeight(10)),
+            SizedBox(height: Util.height(10)),
             Container(
-             margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
+             margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
              child: Column(
                children: <Widget>[
-                 SizedBox(height: ScreenUtil().setHeight(10)),
+                 SizedBox(height: Util.height(10)),
                  _tipsWidget(wallet.mnemonic),
-                 SizedBox(height: ScreenUtil().setHeight(10)),
+                 SizedBox(height: Util.height(10)),
                  _dataWidget(wallet.mnemonic),
-                 SizedBox(height: ScreenUtil().setHeight(80)),
+                 SizedBox(height: Util.height(80)),
                  _submitWidget(context),
                ],
              ),
@@ -70,7 +70,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
 
   Widget _descWidget() {
     return Container(
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
+      margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color:  Util.themeColor,
@@ -104,7 +104,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
   
   Widget _tipsWidget(String mnemonic) {
     return Container(
-      width: ScreenUtil().setWidth(750),
+      width: Util.width(750),
       margin: EdgeInsets.only(top: 10, bottom: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -124,8 +124,8 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
               padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
               child: Image.asset(
                 'icons/copy.png',
-                width: ScreenUtil().setWidth(35),
-                height: ScreenUtil().setWidth(35),
+                width: Util.width(35),
+                height: Util.width(35),
                 color: Colors.grey[800],
                 fit: BoxFit.fill,
               ),
@@ -156,7 +156,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
 
   Widget _itemWidget(int index, String value) {
     return Container(
-      width: ScreenUtil().setWidth(200),
+      width: Util.width(200),
       margin: EdgeInsets.fromLTRB(0, 3, 3, 3),
       decoration: BoxDecoration(
         color: Color(0x80EEEEEE),
@@ -191,7 +191,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
     return Container(
       child: Align(
         child: SizedBox(
-          width: ScreenUtil().setWidth(320),
+          width: Util.width(320),
           child: RaisedButton(
             child: Container(
               padding: EdgeInsets.all(12),

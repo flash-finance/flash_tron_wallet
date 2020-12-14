@@ -101,13 +101,13 @@ class _SwapPageState extends State<SwapPage> {
 
   Widget _mainWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: ScreenUtil().setHeight(30)),
-      width: ScreenUtil().setWidth(750),
+      margin: EdgeInsets.only(top: Util.height(30)),
+      width: Util.width(750),
       color: Colors.white,
       child: Column(
         children: <Widget>[
           _topWidget(context),
-          SizedBox(height: ScreenUtil().setHeight(30)),
+          SizedBox(height: Util.height(30)),
           Expanded(
             child: _bodyWidget(context),
           ),
@@ -118,7 +118,7 @@ class _SwapPageState extends State<SwapPage> {
 
   Widget _bodyWidget(BuildContext context) {
     return Container(
-      width: ScreenUtil().setWidth(750),
+      width: Util.width(750),
       child: ListView(
         children: <Widget>[
           _bizWidget(context),
@@ -129,7 +129,7 @@ class _SwapPageState extends State<SwapPage> {
 
   Widget _topWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(25), right: ScreenUtil().setWidth(25)),
+      margin: EdgeInsets.only(left: Util.width(25), right: Util.width(25)),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
           gradient: LinearGradient(
@@ -141,7 +141,7 @@ class _SwapPageState extends State<SwapPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
-              padding: EdgeInsets.only(top: ScreenUtil().setHeight(30), bottom: ScreenUtil().setHeight(30)),
+              padding: EdgeInsets.only(top: Util.height(30), bottom: Util.height(30)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -152,7 +152,7 @@ class _SwapPageState extends State<SwapPage> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: ScreenUtil().setHeight(5)),
+                    margin: EdgeInsets.only(top: Util.height(5)),
                     child: Text(
                       '${S.of(context).swapTips01}',
                       style: Util.textStyle(context, 2,  Colors.white, spacing: 0.0, size: 22),
@@ -171,19 +171,19 @@ class _SwapPageState extends State<SwapPage> {
   Widget _bizWidget(BuildContext context) {
     return Card(
       elevation: 3,
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(25), right: ScreenUtil().setWidth(25)),
+      margin: EdgeInsets.only(left: Util.width(25), right: Util.width(25)),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
       child: Container(
-        padding: EdgeInsets.only(left: ScreenUtil().setWidth(0), top: ScreenUtil().setHeight(20), right: ScreenUtil().setWidth(0), bottom: ScreenUtil().setHeight(20)),
+        padding: EdgeInsets.only(left: Util.width(0), top: Util.height(20), right: Util.width(0), bottom: Util.height(20)),
         child: Column(
           children: <Widget>[
-            SizedBox(height: ScreenUtil().setHeight(60)),
+            SizedBox(height: Util.height(60)),
             _dataWidget(context),
-            SizedBox(height: ScreenUtil().setHeight(10)),
+            SizedBox(height: Util.height(10)),
             _poolWidget(context),
-            SizedBox(height: ScreenUtil().setHeight(60)),
+            SizedBox(height: Util.height(60)),
             _swapWidget(context),
-            SizedBox(height: ScreenUtil().setHeight(60)),
+            SizedBox(height: Util.height(60)),
           ],
         ),
       ),
@@ -195,9 +195,9 @@ class _SwapPageState extends State<SwapPage> {
         child: Column(
           children: <Widget>[
             _dataLeftWidget(context),
-            SizedBox(height: ScreenUtil().setHeight(0)),
+            SizedBox(height: Util.height(0)),
             _dataMidWidget(context),
-            SizedBox(height: ScreenUtil().setHeight(0)),
+            SizedBox(height: Util.height(0)),
             _dataRightWidget(context),
           ],
         )
@@ -206,7 +206,7 @@ class _SwapPageState extends State<SwapPage> {
 
   Widget _dataLeftWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
+      margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
       child: Column(
         children: <Widget>[
           Container(
@@ -214,14 +214,14 @@ class _SwapPageState extends State<SwapPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(2)),
+                  padding: EdgeInsets.only(left: Util.width(2)),
                   child: Text(
                     '${S.of(context).swapSend}',
                     style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.0, size: 28),
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(right: ScreenUtil().setWidth(2)),
+                  padding: EdgeInsets.only(right: Util.width(2)),
                   child: RichText(
                     text: TextSpan(
                       children: <TextSpan>[
@@ -244,7 +244,7 @@ class _SwapPageState extends State<SwapPage> {
               ],
             ),
           ),
-          SizedBox(height: ScreenUtil().setHeight(10)),
+          SizedBox(height: Util.height(10)),
           Container(
             decoration: BoxDecoration(
               color: Colors.grey[100],
@@ -258,34 +258,34 @@ class _SwapPageState extends State<SwapPage> {
                     _showSwapTokenDialLog(context, 1);
                   },
                   child: Container(
-                    padding: EdgeInsets.only(top: ScreenUtil().setHeight(5), bottom: ScreenUtil().setHeight(5)),
+                    padding: EdgeInsets.only(top: Util.height(5), bottom: Util.height(5)),
                     child: Container(
                       child: Row(
                         children: <Widget>[
-                          SizedBox(width: ScreenUtil().setWidth(15)),
+                          SizedBox(width: Util.width(15)),
                           Container(
                             child: ClipOval(
                               child: _flag1 ? Image.network(
                                 '${_swapRows[_leftSelectIndex].swapPicUrl}',
-                                width: ScreenUtil().setWidth(40),
-                                height: ScreenUtil().setWidth(40),
+                                width: Util.width(40),
+                                height: Util.width(40),
                                 fit: BoxFit.cover,
                               ) : Container(
-                                width: ScreenUtil().setWidth(40),
-                                height: ScreenUtil().setWidth(40),
+                                width: Util.width(40),
+                                height: Util.width(40),
                               ),
                             ),
                           ),
-                          SizedBox(width: ScreenUtil().setWidth(10)),
+                          SizedBox(width: Util.width(10)),
                           Container(
-                            width: ScreenUtil().setWidth(80),
+                            width: Util.width(80),
                             alignment: Alignment.center,
                             child: Text(
                               _flag1 ? '${_swapRows[_leftSelectIndex].swapTokenName}' : '',
                               style: Util.textStyle4En(context, 2, Colors.grey[800], spacing: 0.0, size: 28),
                             ),
                           ),
-                          SizedBox(width: ScreenUtil().setWidth(5)),
+                          SizedBox(width: Util.width(5)),
                           Container(
                             child: Icon(Icons.arrow_drop_down, size: ScreenUtil().setSp(35), color: Colors.grey[700]),
                           ),
@@ -295,8 +295,8 @@ class _SwapPageState extends State<SwapPage> {
                   ),
                 ),
                 Container(
-                    width: ScreenUtil().setWidth(360),
-                    padding: EdgeInsets.only(left: ScreenUtil().setWidth(20), top: ScreenUtil().setHeight(3), bottom: ScreenUtil().setHeight(3)),
+                    width: Util.width(360),
+                    padding: EdgeInsets.only(left: Util.width(20), top: Util.height(3), bottom: Util.height(3)),
                     color: Colors.white,
                     alignment: Alignment.centerLeft,
                     child: TextFormField(
@@ -372,7 +372,7 @@ class _SwapPageState extends State<SwapPage> {
                       }
                     },
                     child: Container(
-                      padding: EdgeInsets.only(top: ScreenUtil().setHeight(3), bottom: ScreenUtil().setHeight(3)),
+                      padding: EdgeInsets.only(top: Util.height(3), bottom: Util.height(3)),
                       alignment: Alignment.center,
                       child: Text(
                         'MAX',
@@ -384,13 +384,13 @@ class _SwapPageState extends State<SwapPage> {
               ],
             ),
           ),
-          SizedBox(height: ScreenUtil().setHeight(10)),
+          SizedBox(height: Util.height(10)),
           _flag1 && _flag2 ? Container(
             child: Row(
               children: <Widget>[
                 Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(5)),
+                  padding: EdgeInsets.only(left: Util.width(5)),
                   child: Text(
                     '1  ${_swapRows[_leftSelectIndex].swapTokenName} ≈ ${Util.formatNum(double.parse(_leftPrice), 4)}  ${_swapRows[_rightSelectIndex].swapTokenName}',
                     style: Util.textStyle4En(context, 2, Colors.grey[700], spacing: 0.0, size: 23),
@@ -398,7 +398,7 @@ class _SwapPageState extends State<SwapPage> {
                 ),
                 Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(right: ScreenUtil().setWidth(5)),
+                  padding: EdgeInsets.only(right: Util.width(5)),
                   child: Text(
                     ' ≈ ${Util.formatNum(_swapRows[_leftSelectIndex].swapTokenPrice2, 4)}  USD',
                     style: Util.textStyle4En(context, 2, Colors.grey[700], spacing: 0.0, size: 23),
@@ -415,7 +415,7 @@ class _SwapPageState extends State<SwapPage> {
   Widget _dataMidWidget(BuildContext context) {
     return Container(
       color: Colors.white,
-      margin: EdgeInsets.only(top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(0)),
+      margin: EdgeInsets.only(top: Util.height(20), bottom: Util.height(0)),
       child: InkWell(
           onTap: () {
             FocusScope.of(context).requestFocus(FocusNode());
@@ -465,7 +465,7 @@ class _SwapPageState extends State<SwapPage> {
 
   Widget _dataRightWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
+      margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
       child: Column(
         children: <Widget>[
           Container(
@@ -473,14 +473,14 @@ class _SwapPageState extends State<SwapPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(2)),
+                  padding: EdgeInsets.only(left: Util.width(2)),
                   child: Text(
                     '${S.of(context).swapReceive}',
                     style: Util.textStyle(context, 2, Colors.grey[800], spacing: 0.0, size: 28),
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(right: ScreenUtil().setWidth(2)),
+                  padding: EdgeInsets.only(right: Util.width(2)),
                   child: RichText(
                     text: TextSpan(
                       children: <TextSpan>[
@@ -503,7 +503,7 @@ class _SwapPageState extends State<SwapPage> {
               ],
             ),
           ),
-          SizedBox(height: ScreenUtil().setHeight(10)),
+          SizedBox(height: Util.height(10)),
           Container(
             decoration: BoxDecoration(
               color: Colors.grey[100],
@@ -517,34 +517,34 @@ class _SwapPageState extends State<SwapPage> {
                     _showSwapTokenDialLog(context, 2);
                   },
                   child: Container(
-                    padding: EdgeInsets.only(top: ScreenUtil().setHeight(5), bottom: ScreenUtil().setHeight(5)),
+                    padding: EdgeInsets.only(top: Util.height(5), bottom: Util.height(5)),
                     child: Container(
                       child: Row(
                         children: <Widget>[
-                          SizedBox(width: ScreenUtil().setWidth(15)),
+                          SizedBox(width: Util.width(15)),
                           Container(
                             child: ClipOval(
                               child: _flag2 ? Image.network(
                                 '${_swapRows[_rightSelectIndex].swapPicUrl}',
-                                width: ScreenUtil().setWidth(40),
-                                height: ScreenUtil().setWidth(40),
+                                width: Util.width(40),
+                                height: Util.width(40),
                                 fit: BoxFit.cover,
                               ) : Container(
-                                width: ScreenUtil().setWidth(40),
-                                height: ScreenUtil().setWidth(40),
+                                width: Util.width(40),
+                                height: Util.width(40),
                               ),
                             ),
                           ),
-                          SizedBox(width: ScreenUtil().setWidth(10)),
+                          SizedBox(width: Util.width(10)),
                           Container(
-                            width: ScreenUtil().setWidth(80),
+                            width: Util.width(80),
                             alignment: Alignment.center,
                             child: Text(
                               _flag2 ? '${_swapRows[_rightSelectIndex].swapTokenName}' : '',
                               style: Util.textStyle4En(context, 2, Colors.grey[800], spacing: 0.0, size: 28),
                             ),
                           ),
-                          SizedBox(width: ScreenUtil().setWidth(5)),
+                          SizedBox(width: Util.width(5)),
                           Container(
                             child: Icon(Icons.arrow_drop_down, size: ScreenUtil().setSp(35), color: Colors.grey[700]),
                           ),
@@ -554,8 +554,8 @@ class _SwapPageState extends State<SwapPage> {
                   ),
                 ),
                 Container(
-                    width: ScreenUtil().setWidth(360),
-                    padding: EdgeInsets.only(left: ScreenUtil().setWidth(20), top: ScreenUtil().setHeight(3), bottom: ScreenUtil().setHeight(3)),
+                    width: Util.width(360),
+                    padding: EdgeInsets.only(left: Util.width(20), top: Util.height(3), bottom: Util.height(3)),
                     color: Colors.white,
                     alignment: Alignment.centerLeft,
                     child: TextFormField(
@@ -632,7 +632,7 @@ class _SwapPageState extends State<SwapPage> {
                       }
                     },
                     child: Container(
-                      padding: EdgeInsets.only(top: ScreenUtil().setHeight(3), bottom: ScreenUtil().setHeight(3)),
+                      padding: EdgeInsets.only(top: Util.height(3), bottom: Util.height(3)),
                       alignment: Alignment.center,
                       child: Text(
                         'MAX',
@@ -644,13 +644,13 @@ class _SwapPageState extends State<SwapPage> {
               ],
             ),
           ),
-          SizedBox(height: ScreenUtil().setHeight(10)),
+          SizedBox(height: Util.height(10)),
           _flag1 && _flag2 ? Container(
             child: Row(
               children: <Widget>[
                 Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(5)),
+                  padding: EdgeInsets.only(left: Util.width(5)),
                   child: Text(
                     '1  ${_swapRows[_rightSelectIndex].swapTokenName} ≈ ${Util.formatNum(double.parse(_rightPrice), 4)}  ${_swapRows[_leftSelectIndex].swapTokenName}',
                     style: Util.textStyle4En(context, 2, Colors.grey[700], spacing: 0.0, size: 23),
@@ -658,7 +658,7 @@ class _SwapPageState extends State<SwapPage> {
                 ),
                 Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(right: ScreenUtil().setWidth(5)),
+                  padding: EdgeInsets.only(right: Util.width(5)),
                   child: Text(
                     ' ≈ ${Util.formatNum(_swapRows[_rightSelectIndex].swapTokenPrice2, 4)}  USD',
                     style: Util.textStyle4En(context, 2, Colors.grey[700], spacing: 0.0, size: 23),
@@ -674,7 +674,7 @@ class _SwapPageState extends State<SwapPage> {
 
   Widget _poolWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
+      margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
@@ -692,7 +692,7 @@ class _SwapPageState extends State<SwapPage> {
                 color: Colors.blue[500],
                 borderRadius: BorderRadius.circular(6),
               ),
-              padding: EdgeInsets.only(left: ScreenUtil().setWidth(18), top: ScreenUtil().setHeight(12), bottom: ScreenUtil().setHeight(12), right: ScreenUtil().setWidth(18)),
+              padding: EdgeInsets.only(left: Util.width(18), top: Util.height(12), bottom: Util.height(12), right: Util.width(18)),
               child: Text(
                 '${S.of(context).swapPooledTokens}',
                 style: Util.textStyle(context, 2, Colors.white, spacing: 0.0, size: 23),
@@ -712,9 +712,9 @@ class _SwapPageState extends State<SwapPage> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))
         ),
         content: Container(
-          width: ScreenUtil().setWidth(600),
-          height: ScreenUtil().setHeight(650),
-          padding: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
+          width: Util.width(600),
+          height: Util.height(650),
+          padding: EdgeInsets.only(top: Util.height(20)),
           child: Column(
             children: <Widget>[
               _selectSwapTitleWidget(context),
@@ -739,15 +739,15 @@ class _SwapPageState extends State<SwapPage> {
 
   Widget _selectSwapTitleWidget(BuildContext context) {
     return Container(
-      width: ScreenUtil().setWidth(600),
-      padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(20)),
+      width: Util.width(600),
+      padding: EdgeInsets.only(bottom: Util.height(20)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
-              width: ScreenUtil().setWidth(300),
+              width: Util.width(300),
               alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(left: ScreenUtil().setWidth(10)),
+              padding: EdgeInsets.only(left: Util.width(10)),
               child: Text(
                 '${S.of(context).swapTokenName}',
                 style: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.0, size: 26),
@@ -756,7 +756,7 @@ class _SwapPageState extends State<SwapPage> {
               )),
           Container(
               alignment: Alignment.centerRight,
-              padding: EdgeInsets.only(right: ScreenUtil().setWidth(8)),
+              padding: EdgeInsets.only(right: Util.width(8)),
               child: Text(
                 '${S.of(context).swapTokenPrice}',
                 style: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.0, size: 26),
@@ -801,8 +801,8 @@ class _SwapPageState extends State<SwapPage> {
 
       },
       child: Container(
-        width: ScreenUtil().setWidth(600),
-        padding: EdgeInsets.only(top: ScreenUtil().setHeight(18), bottom: ScreenUtil().setHeight(18)),
+        width: Util.width(600),
+        padding: EdgeInsets.only(top: Util.height(18), bottom: Util.height(18)),
         decoration: BoxDecoration(
           shape: BoxShape.rectangle,
           color: flag ? Colors.grey[100] : null,
@@ -811,23 +811,23 @@ class _SwapPageState extends State<SwapPage> {
         child: Row(
           children: <Widget>[
             Container(
-              width: ScreenUtil().setWidth(300),
+              width: Util.width(300),
               alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(left: ScreenUtil().setWidth(20)),
+              padding: EdgeInsets.only(left: Util.width(20)),
               child: Row(
                 children: <Widget>[
                   Container(
                     child: ClipOval(
                       child: Image.network(
                         '${item.swapPicUrl}',
-                        width: ScreenUtil().setWidth(35),
-                        height: ScreenUtil().setWidth(35),
+                        width: Util.width(35),
+                        height: Util.width(35),
                         fit: BoxFit.cover,
                       ),
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: ScreenUtil().setWidth(20)),
+                    padding: EdgeInsets.only(left: Util.width(20)),
                     alignment: Alignment.centerLeft,
                     child: type == 1 ? Text(
                       '${item.swapTokenName}',
@@ -847,7 +847,7 @@ class _SwapPageState extends State<SwapPage> {
             Expanded(
               child: Container(
                 alignment: Alignment.centerRight,
-                padding: EdgeInsets.only(right: ScreenUtil().setWidth(20)),
+                padding: EdgeInsets.only(right: Util.width(20)),
                 child: type == 1 ? Text(
                   '${Util.formatNum(item.swapTokenPrice2, 6)}',
                   style: TextStyle(
@@ -883,13 +883,13 @@ class _SwapPageState extends State<SwapPage> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0)),
         ),
         content: Container(
-          width: ScreenUtil().setWidth(600),
-          height: ScreenUtil().setHeight(380),
-          padding: EdgeInsets.only(top: ScreenUtil().setHeight(10)),
+          width: Util.width(600),
+          height: Util.height(380),
+          padding: EdgeInsets.only(top: Util.height(10)),
           child: ListView(
             children:<Widget> [
               Container(
-                padding: EdgeInsets.only(top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(10)),
+                padding: EdgeInsets.only(top: Util.height(10), bottom: Util.height(10)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -904,7 +904,7 @@ class _SwapPageState extends State<SwapPage> {
               ),
               SizedBox(height: 0),
               Container(
-                padding: EdgeInsets.only(left: ScreenUtil().setWidth(20), top: ScreenUtil().setHeight(20), bottom:  ScreenUtil().setHeight(20), right: ScreenUtil().setWidth(20)),
+                padding: EdgeInsets.only(left: Util.width(20), top: Util.height(20), bottom:  Util.height(20), right: Util.width(20)),
                 child: Column(
                   children: <Widget>[
                     Container(
@@ -914,7 +914,7 @@ class _SwapPageState extends State<SwapPage> {
                         style: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.2, size: 26),
                       ),
                     ),
-                    SizedBox(height: ScreenUtil().setHeight(15)),
+                    SizedBox(height: Util.height(15)),
                     Container(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -923,14 +923,14 @@ class _SwapPageState extends State<SwapPage> {
                             child: ClipOval(
                               child: Image.asset(
                                 'images/usd.png',
-                                width: ScreenUtil().setWidth(38),
-                                height: ScreenUtil().setWidth(38),
+                                width: Util.width(38),
+                                height: Util.width(38),
                                 fit: BoxFit.cover,
                               ),
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
+                            padding: EdgeInsets.only(left: Util.width(15)),
                             child: Text(
                               _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0)}'
                                   : '${_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0)}',
@@ -952,7 +952,7 @@ class _SwapPageState extends State<SwapPage> {
                         ],
                       ),
                     ),
-                    SizedBox(height: ScreenUtil().setHeight(40)),
+                    SizedBox(height: Util.height(40)),
                     Container(
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -960,7 +960,7 @@ class _SwapPageState extends State<SwapPage> {
                         style: Util.textStyle4En(context, 2, Colors.grey[700], spacing: 0.2, size: 26),
                       ),
                     ),
-                    SizedBox(height: ScreenUtil().setHeight(15)),
+                    SizedBox(height: Util.height(15)),
                     Container(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -969,14 +969,14 @@ class _SwapPageState extends State<SwapPage> {
                             child: ClipOval(
                               child: Image.network(
                                 '${_swapRows[_leftSelectIndex].swapPicUrl}',
-                                width: ScreenUtil().setWidth(35),
-                                height: ScreenUtil().setWidth(35),
+                                width: Util.width(35),
+                                height: Util.width(35),
                                 fit: BoxFit.cover,
                               ),
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
+                            padding: EdgeInsets.only(left: Util.width(15)),
                             child: Text(
                               _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0)}'
                                   : '${_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
@@ -999,7 +999,7 @@ class _SwapPageState extends State<SwapPage> {
                         ],
                       ),
                     ),
-                    SizedBox(height: ScreenUtil().setHeight(15)),
+                    SizedBox(height: Util.height(15)),
                     Container(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -1008,14 +1008,14 @@ class _SwapPageState extends State<SwapPage> {
                             child: ClipOval(
                               child: Image.network(
                                 '${_swapRows[_rightSelectIndex].swapPicUrl}',
-                                width: ScreenUtil().setWidth(35),
-                                height: ScreenUtil().setWidth(35),
+                                width: Util.width(35),
+                                height: Util.width(35),
                                 fit: BoxFit.cover,
                               ),
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
+                            padding: EdgeInsets.only(left: Util.width(15)),
                             child: Text(
                               _swapRows[_leftSelectIndex].swapTokenType == 2 ? '${_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0)}'
                                   : '${_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
@@ -1055,16 +1055,16 @@ class _SwapPageState extends State<SwapPage> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))
         ),
         content: Container(
-          width: ScreenUtil().setWidth(600),
-          height: ScreenUtil().setHeight(700),
-          padding: EdgeInsets.only(top: ScreenUtil().setHeight(10)),
+          width: Util.width(600),
+          height: Util.height(700),
+          padding: EdgeInsets.only(top: Util.height(10)),
           child: ListView(
             children:<Widget> [
               Container(
                 child: Column(
                   children: <Widget>[
                     Container(
-                      padding: EdgeInsets.only(top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(0)),
+                      padding: EdgeInsets.only(top: Util.height(10), bottom: Util.height(0)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -1079,7 +1079,7 @@ class _SwapPageState extends State<SwapPage> {
                     ),
                     SizedBox(height: 0),
                     Container(
-                      padding: EdgeInsets.only(left: ScreenUtil().setWidth(20), top: ScreenUtil().setHeight(20), bottom:  ScreenUtil().setHeight(20), right: ScreenUtil().setWidth(20)),
+                      padding: EdgeInsets.only(left: Util.width(20), top: Util.height(20), bottom:  Util.height(20), right: Util.width(20)),
                       child: Column(
                         children: <Widget>[
                           Container(
@@ -1089,7 +1089,7 @@ class _SwapPageState extends State<SwapPage> {
                               style: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.2, size: 26),
                             ),
                           ),
-                          SizedBox(height: ScreenUtil().setHeight(15)),
+                          SizedBox(height: Util.height(15)),
                           Container(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -1098,14 +1098,14 @@ class _SwapPageState extends State<SwapPage> {
                                   child: ClipOval(
                                     child: Image.asset(
                                       'images/usd.png',
-                                      width: ScreenUtil().setWidth(38),
-                                      height: ScreenUtil().setWidth(38),
+                                      width: Util.width(38),
+                                      height: Util.width(38),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
+                                  padding: EdgeInsets.only(left: Util.width(15)),
                                   child: Text(
                                     '${_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0)}',
                                     style: TextStyle(
@@ -1126,7 +1126,7 @@ class _SwapPageState extends State<SwapPage> {
                               ],
                             ),
                           ),
-                          SizedBox(height: ScreenUtil().setHeight(20)),
+                          SizedBox(height: Util.height(20)),
                           Container(
                             alignment: Alignment.centerLeft,
                             child: Text(
@@ -1134,7 +1134,7 @@ class _SwapPageState extends State<SwapPage> {
                               style: Util.textStyle4En(context, 2, Colors.grey[700], spacing: 0.0, size: 26),
                             ),
                           ),
-                          SizedBox(height: ScreenUtil().setHeight(15)),
+                          SizedBox(height: Util.height(15)),
                           Container(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -1143,14 +1143,14 @@ class _SwapPageState extends State<SwapPage> {
                                   child: ClipOval(
                                     child: Image.network(
                                       '${_swapRows[_leftSelectIndex].swapPicUrl}',
-                                      width: ScreenUtil().setWidth(35),
-                                      height: ScreenUtil().setWidth(35),
+                                      width: Util.width(35),
+                                      height: Util.width(35),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
+                                  padding: EdgeInsets.only(left: Util.width(15)),
                                   child: Text(
                                     '${_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
                                     style: TextStyle(
@@ -1171,7 +1171,7 @@ class _SwapPageState extends State<SwapPage> {
                               ],
                             ),
                           ),
-                          SizedBox(height: ScreenUtil().setHeight(15)),
+                          SizedBox(height: Util.height(15)),
                           Container(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -1180,14 +1180,14 @@ class _SwapPageState extends State<SwapPage> {
                                   child: ClipOval(
                                     child: Image.network(
                                       '${_swapRows[_leftSelectIndex].basePicUrl}',
-                                      width: ScreenUtil().setWidth(35),
-                                      height: ScreenUtil().setWidth(35),
+                                      width: Util.width(35),
+                                      height: Util.width(35),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
+                                  padding: EdgeInsets.only(left: Util.width(15)),
                                   child: Text(
                                     '${_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
                                     style: TextStyle(
@@ -1214,12 +1214,12 @@ class _SwapPageState extends State<SwapPage> {
                   ],
                 ),
               ),
-              SizedBox(height: ScreenUtil().setHeight(20)),
+              SizedBox(height: Util.height(20)),
               Container(
                 child: Column(
                   children: <Widget>[
                     Container(
-                      padding: EdgeInsets.only(top: ScreenUtil().setHeight(10), bottom: ScreenUtil().setHeight(0)),
+                      padding: EdgeInsets.only(top: Util.height(10), bottom: Util.height(0)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -1234,7 +1234,7 @@ class _SwapPageState extends State<SwapPage> {
                     ),
                     SizedBox(height: 0),
                     Container(
-                      padding: EdgeInsets.only(left: ScreenUtil().setWidth(20), top: ScreenUtil().setHeight(20), bottom:  ScreenUtil().setHeight(20), right: ScreenUtil().setWidth(20)),
+                      padding: EdgeInsets.only(left: Util.width(20), top: Util.height(20), bottom:  Util.height(20), right: Util.width(20)),
                       child: Column(
                         children: <Widget>[
                           Container(
@@ -1244,7 +1244,7 @@ class _SwapPageState extends State<SwapPage> {
                               style: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.0, size: 26),
                             ),
                           ),
-                          SizedBox(height: ScreenUtil().setHeight(15)),
+                          SizedBox(height: Util.height(15)),
                           Container(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -1253,14 +1253,14 @@ class _SwapPageState extends State<SwapPage> {
                                   child: ClipOval(
                                     child: Image.asset(
                                       'images/usd.png',
-                                      width: ScreenUtil().setWidth(38),
-                                      height: ScreenUtil().setWidth(38),
+                                      width: Util.width(38),
+                                      height: Util.width(38),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
+                                  padding: EdgeInsets.only(left: Util.width(15)),
                                   child: Text(
                                     '${_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0)}',
                                     style: TextStyle(
@@ -1281,7 +1281,7 @@ class _SwapPageState extends State<SwapPage> {
                               ],
                             ),
                           ),
-                          SizedBox(height: ScreenUtil().setHeight(20)),
+                          SizedBox(height: Util.height(20)),
                           Container(
                             alignment: Alignment.centerLeft,
                             child: Text(
@@ -1289,7 +1289,7 @@ class _SwapPageState extends State<SwapPage> {
                               style: Util.textStyle(context, 2, Colors.grey[700], spacing: 0.0, size: 26),
                             ),
                           ),
-                          SizedBox(height: ScreenUtil().setHeight(15)),
+                          SizedBox(height: Util.height(15)),
                           Container(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -1298,14 +1298,14 @@ class _SwapPageState extends State<SwapPage> {
                                   child: ClipOval(
                                     child: Image.network(
                                       '${_swapRows[_rightSelectIndex].basePicUrl}',
-                                      width: ScreenUtil().setWidth(35),
-                                      height: ScreenUtil().setWidth(35),
+                                      width: Util.width(35),
+                                      height: Util.width(35),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
+                                  padding: EdgeInsets.only(left: Util.width(15)),
                                   child: Text(
                                     '${_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
                                     style: TextStyle(
@@ -1327,7 +1327,7 @@ class _SwapPageState extends State<SwapPage> {
                               ],
                             ),
                           ),
-                          SizedBox(height: ScreenUtil().setHeight(15)),
+                          SizedBox(height: Util.height(15)),
                           Container(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -1336,14 +1336,14 @@ class _SwapPageState extends State<SwapPage> {
                                   child: ClipOval(
                                     child: Image.network(
                                       '${_swapRows[_rightSelectIndex].swapPicUrl}',
-                                      width: ScreenUtil().setWidth(35),
-                                      height: ScreenUtil().setWidth(35),
+                                      width: Util.width(35),
+                                      height: Util.width(35),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: ScreenUtil().setWidth(15)),
+                                  padding: EdgeInsets.only(left: Util.width(15)),
                                   child: Text(
                                     '${_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
                                     style: TextStyle(
@@ -1384,7 +1384,7 @@ class _SwapPageState extends State<SwapPage> {
       child: Container(
         color: Colors.white,
         child: Chip(
-          padding: _swapFlag ? EdgeInsets.only(left: ScreenUtil().setWidth(80), top: ScreenUtil().setHeight(20), right: ScreenUtil().setWidth(80), bottom: ScreenUtil().setHeight(20)) : EdgeInsets.only(left: ScreenUtil().setWidth(60), top: ScreenUtil().setHeight(20), right: ScreenUtil().setWidth(60), bottom: ScreenUtil().setHeight(20)),
+          padding: _swapFlag ? EdgeInsets.only(left: Util.width(80), top: Util.height(20), right: Util.width(80), bottom: Util.height(20)) : EdgeInsets.only(left: Util.width(60), top: Util.height(20), right: Util.width(60), bottom: Util.height(20)),
           backgroundColor:  Colors.blue[500],
           label: !_loadFlag ? Container(
             child: Text(
@@ -1406,7 +1406,7 @@ class _SwapPageState extends State<SwapPage> {
       elevation: 0,
       titleSpacing: 0.0,
       title: Container(
-        child: Image.asset('images/logo150.png', fit: BoxFit.contain, width: ScreenUtil().setWidth(110), height: ScreenUtil().setWidth(110)),
+        child: Image.asset('images/logo150.png', fit: BoxFit.contain, width: Util.width(110), height: Util.width(110)),
       ),
       centerTitle: true,
     );

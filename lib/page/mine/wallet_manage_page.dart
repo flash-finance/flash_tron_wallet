@@ -60,8 +60,8 @@ class _WalletManagePageState extends State<WalletManagePage> {
 
   Widget _notWalletWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), top: ScreenUtil().setHeight(10), right: ScreenUtil().setWidth(30), bottom: ScreenUtil().setHeight(20)),
-      padding: EdgeInsets.only(top: ScreenUtil().setHeight(50), bottom: ScreenUtil().setHeight(50)),
+      margin: EdgeInsets.only(left: Util.width(30), top: Util.height(10), right: Util.width(30), bottom: Util.height(20)),
+      padding: EdgeInsets.only(top: Util.height(50), bottom: Util.height(50)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
         image: DecorationImage(
@@ -98,8 +98,8 @@ class _WalletManagePageState extends State<WalletManagePage> {
     String name = list[index].name;
     String tronAddress = list[index].tronAddress.substring(0, 10) + '...' + list[index].tronAddress.substring(list[index].tronAddress.length - 10, list[index].tronAddress.length);
     return Container(
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(30), top: index == 0 ? ScreenUtil().setHeight(10) : ScreenUtil().setHeight(0), right: ScreenUtil().setWidth(30), bottom: ScreenUtil().setHeight(20)),
-      padding: EdgeInsets.only(left: ScreenUtil().setWidth(40), top: ScreenUtil().setHeight(30), right: ScreenUtil().setWidth(40), bottom: ScreenUtil().setHeight(30)),
+      margin: EdgeInsets.only(left: Util.width(30), top: index == 0 ? Util.height(10) : Util.height(0), right: Util.width(30), bottom: Util.height(20)),
+      padding: EdgeInsets.only(left: Util.width(40), top: Util.height(30), right: Util.width(40), bottom: Util.height(30)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
         image: DecorationImage(
@@ -126,11 +126,11 @@ class _WalletManagePageState extends State<WalletManagePage> {
                           style: Util.textStyle(context, 2, Colors.white, spacing: 0.5, size: 30),
                         ),
                       ),
-                      SizedBox(width: ScreenUtil().setWidth(50)),
+                      SizedBox(width: Util.width(50)),
                       flag ? Container(
-                        width: ScreenUtil().setWidth(80),
-                        padding: _langType ? EdgeInsets.only(top: ScreenUtil().setHeight(2), bottom: ScreenUtil().setHeight(2))
-                        : EdgeInsets.only(top: ScreenUtil().setHeight(5), bottom: ScreenUtil().setHeight(5)),
+                        width: Util.width(80),
+                        padding: _langType ? EdgeInsets.only(top: Util.height(2), bottom: Util.height(2))
+                        : EdgeInsets.only(top: Util.height(5), bottom: Util.height(5)),
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(5.0)),
@@ -154,7 +154,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
               ],
             ),
 
-            SizedBox(height: ScreenUtil().setHeight(10)),
+            SizedBox(height: Util.height(10)),
             InkWell(
               onTap: () {
                 Clipboard.setData(ClipboardData(text: list[index].tronAddress));
@@ -169,12 +169,12 @@ class _WalletManagePageState extends State<WalletManagePage> {
                         style: Util.textStyle4En(context, 1, Colors.white, spacing: 0.5, size: 26),
                       ),
                     ),
-                    SizedBox(width: ScreenUtil().setWidth(50)),
+                    SizedBox(width: Util.width(50)),
                     Container(
                       child: Image.asset(
                         'icons/copy.png',
-                        width: ScreenUtil().setWidth(28),
-                        height: ScreenUtil().setWidth(28),
+                        width: Util.width(28),
+                        height: Util.width(28),
                         color: Colors.white,
                         fit: BoxFit.fill,
                       ),

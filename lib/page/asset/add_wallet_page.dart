@@ -2,6 +2,7 @@ import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/page/common/common_page.dart';
 import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/common/common_util.dart';
+import 'package:flash_tron_wallet/router/router.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
@@ -57,7 +58,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
           SizedBox(height: Util.height(30)),
           InkWell(
             onTap: () {
-              Application.router.navigateTo(context, 'asset/importKey/2', transition: TransitionType.cupertino);
+              Application.router.navigateTo(context, Routes.assetImportKey + '/2', transition: TransitionType.cupertino);
             },
             child: Container(
               padding: EdgeInsets.only(bottom: Util.height(30)),
@@ -98,7 +99,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
           SizedBox(height: Util.height(30)),
           InkWell(
             onTap: () {
-              Application.router.navigateTo(context, 'asset/importMnemonic/2', transition: TransitionType.cupertino);
+              Application.router.navigateTo(context, Routes.assetImportMnemonic + '/2', transition: TransitionType.cupertino);
             },
             child: Container(
               padding: EdgeInsets.only(bottom: Util.height(30)),
@@ -140,7 +141,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
           SizedBox(height: Util.height(30)),
           InkWell(
             onTap: () {
-              Application.router.navigateTo(context, 'asset/buildFirstWallet/2', transition: TransitionType.cupertino);
+              Application.router.navigateTo(context, Routes.assetBuildFirstWallet + '/2', transition: TransitionType.cupertino);
             },
             child: Container(
               padding: EdgeInsets.only(bottom: Util.height(30)),

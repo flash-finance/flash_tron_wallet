@@ -4,6 +4,7 @@ import 'package:flash_tron_wallet/page/common/common_page.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/common/common_util.dart';
+import 'package:flash_tron_wallet/router/router.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -223,7 +224,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
   Widget _updatePwdWidget(BuildContext context) {
     return InkWell(
       onTap: () {
-        Application.router.navigateTo(context, 'asset/updatePwd', transition: TransitionType.cupertino);
+        Application.router.navigateTo(context, Routes.assetUpdatePwd, transition: TransitionType.cupertino);
       },
       child: Container(
         margin: EdgeInsets.only(left: Util.width(40), top: Util.height(30), right: Util.width(40)),
@@ -348,9 +349,9 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                       if (val == true) {
                         Navigator.pop(context);
                         if (type == 1) {
-                          Application.router.navigateTo(context, 'asset/backupMnemonic', transition: TransitionType.cupertino);
+                          Application.router.navigateTo(context, Routes.assetBackupMnemonic, transition: TransitionType.cupertino);
                         } else if (type == 2) {
-                          Application.router.navigateTo(context, 'asset/backupKey', transition: TransitionType.cupertino);
+                          Application.router.navigateTo(context, Routes.assetBackupKey, transition: TransitionType.cupertino);
                         }
                       } else {
                         Util.showToast('${S.of(context).commonExecutedError}');

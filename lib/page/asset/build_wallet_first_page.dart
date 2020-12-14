@@ -2,6 +2,7 @@ import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
+import 'package:flash_tron_wallet/router/router.dart';
 import 'package:flash_tron_wallet/tron/service/tron_wallet.dart';
 import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:fluro/fluro.dart';
@@ -234,7 +235,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
                   _submit(context).then((val) {
                     Provider.of<HomeProvider>(context, listen: false).changeBuildWalletLoading(false);
                     if (val == true) {
-                      Application.router.navigateTo(context, 'asset/buildSecondWallet/${widget.type}', transition: TransitionType.cupertino);
+                      Application.router.navigateTo(context, Routes.assetBuildSecondWallet + '/${widget.type}', transition: TransitionType.cupertino);
                     } else {
                       Util.showToast('${S.of(context).commonCreateFail}');
                     }

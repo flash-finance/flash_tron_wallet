@@ -9,29 +9,11 @@ import 'package:flash_tron_wallet/page/asset/receive_token_page.dart';
 import 'package:flash_tron_wallet/page/asset/send_token_page.dart';
 import 'package:flash_tron_wallet/page/asset/update_pwd_page.dart';
 import 'package:flash_tron_wallet/page/asset/wallet_detail_page.dart';
-import 'package:flash_tron_wallet/page/asset_page.dart';
 import 'package:flash_tron_wallet/page/mine/wallet_manage_page.dart';
 import 'package:flash_tron_wallet/page/qr/qr_scan_page.dart';
-import 'package:flash_tron_wallet/page/swap_page.dart';
-import 'package:flash_tron_wallet/page/mine_page.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 
-Handler assetHandler =
-Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-  return AssetPage();
-});
-
-Handler swapHandler =
-Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-  return SwapPage();
-});
-
-
-Handler mineHandler =
-Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-  return MinePage();
-});
 
 Handler addWalletHandler =
 Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {

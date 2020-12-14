@@ -8,6 +8,7 @@ import 'package:flash_tron_wallet/model/dex_info_model.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
+import 'package:flash_tron_wallet/router/router.dart';
 import 'package:flash_tron_wallet/tron/service/tron_asset.dart';
 import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:fluro/fluro.dart';
@@ -187,7 +188,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
               children: <Widget>[
                 InkWell(
                   onTap: () {
-                    Application.router.navigateTo(context, 'asset/addWallet', transition: TransitionType.cupertino);
+                    Application.router.navigateTo(context,  Routes.assetAddWallet, transition: TransitionType.cupertino);
                   },
                   child: Container(
                     child: Icon(
@@ -201,7 +202,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                 InkWell(
                   onTap: ()  {
                     Provider.of<HomeProvider>(context, listen: false).changeSelectAssetFilterIndex(0);
-                    Application.router.navigateTo(context, 'asset/qrScan/1', transition: TransitionType.fadeIn);
+                    Application.router.navigateTo(context, Routes.assetQrScan + '/1', transition: TransitionType.fadeIn);
                   },
                   child: Container(
                     child: Icon(
@@ -261,7 +262,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
     }
     return InkWell(
       onTap: () {
-        Application.router.navigateTo(context, 'asset/walletDetail/$selectIndex', transition: TransitionType.cupertino);
+        Application.router.navigateTo(context, Routes.assetWalletDetail + '/$selectIndex', transition: TransitionType.cupertino);
       },
       child: Container(
         padding: EdgeInsets.only(left: Util.width(40), top: Util.height(30), right: Util.width(40)),
@@ -311,7 +312,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
             SizedBox(height: Util.height(10)),
             InkWell(
               onTap: () {
-                Application.router.navigateTo(context, 'asset/walletDetail/$selectIndex', transition: TransitionType.cupertino);
+                Application.router.navigateTo(context, Routes.assetWalletDetail + '/$selectIndex', transition: TransitionType.cupertino);
               },
               child: Container(
                 alignment: Alignment.centerLeft,
@@ -331,7 +332,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                     onTap: () {
                       Provider.of<HomeProvider>(context, listen: false).changeSelectAssetFilterIndex(0);
                       String value = '';
-                      Application.router.navigateTo(context, 'asset/sendToken/$value', transition: TransitionType.cupertino);
+                      Application.router.navigateTo(context, Routes.assetSendToken + '/$value', transition: TransitionType.cupertino);
                     },
                     child: Container(
                       padding: EdgeInsets.only(bottom: Util.height(20)),
@@ -357,7 +358,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   ),
                   InkWell(
                     onTap: () {
-                      Application.router.navigateTo(context, 'asset/receiveToken', transition: TransitionType.cupertino);
+                      Application.router.navigateTo(context, Routes.assetReceiveToken, transition: TransitionType.cupertino);
                     },
                     child: Container(
                       padding: EdgeInsets.only(bottom: Util.height(20)),
@@ -549,7 +550,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
           SizedBox(height: Util.height(30)),
           InkWell(
             onTap: () {
-              Application.router.navigateTo(context, 'asset/importKey/1', transition: TransitionType.cupertino);
+              Application.router.navigateTo(context, Routes.assetImportKey + '/1', transition: TransitionType.cupertino);
             },
             child: Container(
               padding: EdgeInsets.only(bottom: Util.height(30)),
@@ -589,7 +590,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
           SizedBox(height: Util.height(30)),
           InkWell(
             onTap: () {
-              Application.router.navigateTo(context, 'asset/importMnemonic/1', transition: TransitionType.cupertino);
+              Application.router.navigateTo(context, Routes.assetImportMnemonic + '/1', transition: TransitionType.cupertino);
             },
             child: Container(
               padding: EdgeInsets.only(bottom: Util.height(30)),
@@ -629,7 +630,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
           SizedBox(height: Util.height(30)),
           InkWell(
             onTap: () {
-              Application.router.navigateTo(context, 'asset/buildFirstWallet/1', transition: TransitionType.cupertino);
+              Application.router.navigateTo(context, Routes.assetBuildFirstWallet + '/1', transition: TransitionType.cupertino);
             },
             child: Container(
               padding: EdgeInsets.only(bottom: Util.height(30)),

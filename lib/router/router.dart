@@ -5,26 +5,39 @@ import 'handler.dart';
 
 class Routes {
   static String root = '/';
-  static String asset = '/asset';
-  static String swap = '/swap';
-  static String mine = '/mine';
 
-  static String addWallet = '/asset/addWallet';
-  static String sendToken = '/asset/sendToken/:value';
-  static String receiveToken = '/asset/receiveToken';
+  static String assetAddWallet = '/asset/addWallet';
+  static String assetSendToken = '/asset/sendToken';
+  static String assetSendTokenValue = assetSendToken + '/:value';
 
-  static String importKey = '/asset/importKey/:type';
-  static String importMnemonic = '/asset/importMnemonic/:type';
-  static String buildFirstWallet = '/asset/buildFirstWallet/:type';
-  static String buildSecondWallet = '/asset/buildSecondWallet/:type';
-  static String walletDetail = 'asset/walletDetail/:selectIndex';
-  static String backupKey = '/asset/backupKey';
-  static String backupMnemonic = '/asset/backupMnemonic';
-  static String updatePwd = '/asset/updatePwd';
+  static String assetReceiveToken = '/asset/receiveToken';
 
-  static String walletManage = '/mine/walletManage';
+  static String assetImportKey = '/asset/importKey';
+  static String assetImportKeyType =  assetImportKey + '/:type';
 
-  static String qrScan = '/asset/qrScan/:type';
+  static String assetImportMnemonic = '/asset/importMnemonic';
+  static String assetImportMnemonicType = assetImportMnemonic + '/:type';
+
+  static String assetBuildFirstWallet = '/asset/buildFirstWallet';
+  static String assetBuildFirstWalletType = assetBuildFirstWallet + '/:type';
+
+  static String assetBuildSecondWallet = '/asset/buildSecondWallet';
+  static String assetBuildSecondWalletType = assetBuildSecondWallet + '/:type';
+
+  static String assetWalletDetail = 'asset/walletDetail';
+  static String assetWalletDetailIndex = assetWalletDetail + '/:selectIndex';
+
+
+  static String assetBackupKey = '/asset/backupKey';
+  static String assetBackupMnemonic = '/asset/backupMnemonic';
+  static String assetUpdatePwd = '/asset/updatePwd';
+
+  static String assetQrScan = '/asset/qrScan';
+  static String assetQrScanType = assetQrScan + '/:type';
+
+
+  static String mineWalletManage = '/mine/walletManage';
+
 
   static void configureRouter(FluroRouter router) {
     router.notFoundHandler = Handler(handlerFunc: (BuildContext context, Map<String, List<String>> params) {
@@ -32,26 +45,22 @@ class Routes {
       return null;
     });
 
-    router.define(asset, handler: assetHandler);
-    router.define(swap, handler: swapHandler);
-    router.define(mine, handler: mineHandler);
 
-    router.define(addWallet, handler: addWalletHandler);
-    router.define(sendToken, handler: sendTokenHandler);
-    router.define(receiveToken, handler: receiveTokenHandler);
+    router.define(assetAddWallet, handler: addWalletHandler);
+    router.define(assetSendTokenValue, handler: sendTokenHandler);
+    router.define(assetReceiveToken, handler: receiveTokenHandler);
 
-    router.define(importKey, handler: importKeyHandler);
-    router.define(importMnemonic, handler: importMnemonicHandler);
-    router.define(buildFirstWallet, handler: buildWalletFirstHandler);
-    router.define(buildSecondWallet, handler: buildWalletSecondHandler);
-    router.define(walletDetail, handler: walletDetailHandler);
-    router.define(backupKey, handler: backupKeyHandler);
-    router.define(backupMnemonic, handler: backupMnemonicHandler);
+    router.define(assetImportKeyType, handler: importKeyHandler);
+    router.define(assetImportMnemonicType, handler: importMnemonicHandler);
+    router.define(assetBuildFirstWalletType, handler: buildWalletFirstHandler);
+    router.define(assetBuildSecondWalletType, handler: buildWalletSecondHandler);
+    router.define(assetWalletDetailIndex, handler: walletDetailHandler);
+    router.define(assetBackupKey, handler: backupKeyHandler);
+    router.define(assetBackupMnemonic, handler: backupMnemonicHandler);
+    router.define(assetQrScanType, handler: qrScanHandler);
 
-    router.define(updatePwd, handler: updatePwdHandler);
-
-    router.define(walletManage, handler: walletManageHandler);
+    router.define(assetUpdatePwd, handler: updatePwdHandler);
+    router.define(mineWalletManage, handler: walletManageHandler);
     
-    router.define(qrScan, handler: qrScanHandler);
   }
 }

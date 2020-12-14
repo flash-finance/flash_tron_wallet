@@ -255,7 +255,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
 
     if (assetList != null && assetList.length > 0) {
       for (AssetEntity item in assetList) {
-        totalAssetCny += double.parse(Util.formatNumberSub(item.cny, 2));
+        totalAssetCny += double.parse(Util.formatNum(item.cny, 2));
       }
       totalAssetUsd = totalAssetCny / 6.75;
     }
@@ -317,7 +317,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                 alignment: Alignment.centerLeft,
                 padding: EdgeInsets.only(top: ScreenUtil().setHeight(20), bottom: ScreenUtil().setHeight(20)),
                 child: Text(
-                  '${Util.formatNumberSub(totalAssetUsd, 2)}',
+                  '${Util.formatNum(totalAssetUsd, 2)}',
                   style: Util.textStyle4Num(context, Colors.white, spacing: 0.2, size: 45, fontWeight: FontWeight.w500),
                 ),
               ),
@@ -482,7 +482,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      '${Util.formatNumberSub(item.balance, 4)}',
+                      '${Util.formatNum(item.balance, 4)}',
                       style: Util.textStyle4Num(context, Colors.grey[850], spacing: 0.1, size: 30, fontWeight: FontWeight.w500),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -491,7 +491,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   SizedBox(height: ScreenUtil().setHeight(8)),
                   Container(
                     child: Text(
-                      '≈  \$ ${Util.formatNumberSub(item.cny / 6.75, 2)}',
+                      '≈  \$ ${Util.formatNum(item.cny / 6.75, 2)}',
                       style: Util.textStyle4Num(context, Colors.grey[500], spacing: 0.0, size: 23, fontWeight: FontWeight.w400),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,

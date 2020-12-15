@@ -484,7 +484,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   Container(
                     child: Text(
                       '${Util.formatNum(item.balance, 4)}',
-                      style: Util.textStyle4Num(context, color: Colors.grey[850], spacing: 0.1, size: 30, fontWeight: FontWeight.w500),
+                      style: Util.textStyle4Num(context, color: Colors.grey[800], spacing: 0.1, size: 30, fontWeight: FontWeight.w500),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -493,7 +493,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   Container(
                     child: Text(
                       '≈  \$ ${Util.formatNum(item.cny / 6.75, 2)}',
-                      style: Util.textStyle4Num(context, color: Colors.grey[500], spacing: 0.0, size: 23, fontWeight: FontWeight.w400),
+                      style: Util.textStyle4Num(context, color: Colors.grey[600], spacing: 0.0, size: 23, fontWeight: FontWeight.w400),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),

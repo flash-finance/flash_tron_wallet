@@ -2,9 +2,7 @@ import 'package:flash_tron_wallet/common/common_config.dart';
 import 'package:flash_tron_wallet/common/common_service.dart';
 import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:flash_tron_wallet/model/swap_model.dart';
-import 'package:flash_tron_wallet/page/common/common_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MarketPage extends StatefulWidget {
   final TabController tabController;
@@ -70,22 +68,26 @@ class _MarketPageState extends State<MarketPage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
+            width: Util.width(200),
             child: Text(
               '名称',
-              style: Util.textStyle(context, 2, color: Colors.grey[600], spacing: 0.2 , size: 22),
+              style: Util.textStyle(context, 2, color: Colors.grey[500], spacing: 0.2 , size: 22),
             ),
           ),
           Container(
+            width: Util.width(250),
+            alignment: Alignment.centerLeft,
             child: Text(
               '价格',
-              style: Util.textStyle(context, 2, color: Colors.grey[600], spacing: 0.2, size: 22),
+              style: Util.textStyle(context, 2, color: Colors.grey[500], spacing: 0.2, size: 22),
             ),
           ),
           Container(
             alignment: Alignment.centerRight,
+            padding: EdgeInsets.only(right: Util.width(3)),
             child: Text(
               '涨跌幅',
-              style: Util.textStyle(context, 2, color: Colors.grey[600], spacing: 0.2, size: 22),
+              style: Util.textStyle(context, 2, color: Colors.grey[500], spacing: 0.2, size: 22),
             ),
           ),
         ],
@@ -101,6 +103,8 @@ class _MarketPageState extends State<MarketPage> {
           total += _swapRows[i].totalLiquidity;
         }
     }
+    double change = item.swapTokenChange2 * 100;
+
     return InkWell(
       onTap: () {},
       child: Container(
@@ -112,6 +116,7 @@ class _MarketPageState extends State<MarketPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
+              width: Util.width(200),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -139,7 +144,7 @@ class _MarketPageState extends State<MarketPage> {
                   Container(
                     child: Text(
                       flag ? '\$ ${total.toStringAsFixed(0)}' : '\$ ${item.totalLiquidity.toStringAsFixed(0)}',
-                      style: Util.textStyle4Num(context, color: Colors.grey[600], spacing: 0.0, size: 22, fontWeight: FontWeight.w500),
+                      style: Util.textStyle4Num(context, color: Colors.grey[600], spacing: 0.0, size: 22, fontWeight: FontWeight.w400),
                     ),
                   ),
                 ],
@@ -147,15 +152,24 @@ class _MarketPageState extends State<MarketPage> {
             ),
 
             Container(
+              width: Util.width(250),
+              alignment: Alignment.centerLeft,
               child: Text(
                 '\$ ${item.swapTokenPrice2}',
-                style: Util.textStyle4Num(context, color: Colors.grey[850], spacing: 0.0, size: 28, fontWeight: FontWeight.w500),
+                style: Util.textStyle4Num(context, color: Colors.grey[800], spacing: 0.0, size: 28, fontWeight: FontWeight.w500),
               ),
             ),
             Container(
+              width: Util.width(140),
+              padding: EdgeInsets.only(top: Util.height(14), bottom: Util.height(14), left: Util.width(13), right: Util.width(13)),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                color: change >= 0 ? Color(0xFF03AD8F) : Color(0xFFD04B64),
+              ),
               child: Text(
-                '18.65%',
-                style: Util.textStyle4Num(context, color: Colors.grey[850], spacing: 0.0, size: 28, fontWeight: FontWeight.w500),
+                change >= 0 ? '+${change.toStringAsFixed(2)}%' : '${change.toStringAsFixed(2)}%',
+                style: Util.textStyle4Num(context, color: Colors.white, spacing: 0.0, size: 25, fontWeight: FontWeight.w500),
               ),
             ),
           ],

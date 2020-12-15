@@ -152,7 +152,7 @@ class _MarketPageState extends State<MarketPage> {
                       text: TextSpan(
                         children: <TextSpan>[
                           TextSpan(
-                            text: 'TL:',
+                            text: 'TL: ',
                             style: Util.textStyle4En(context, 1, color: Colors.grey[500], spacing: 0.0, size: 18),
                           ),
                           TextSpan(

@@ -465,7 +465,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                       '${item.logoUrl}',
                       width: Util.width(50),
                       height: Util.width(50),
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     ),
                   ),
                   SizedBox(width: Util.width(30)),

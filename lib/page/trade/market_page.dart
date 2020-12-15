@@ -134,7 +134,7 @@ class _MarketPageState extends State<MarketPage> {
                             '${item.swapPicUrl}',
                             width: Util.width(35),
                             height: Util.width(35),
-                            fit: BoxFit.fill,
+                            fit: BoxFit.cover,
                           ),
                         ),
                         SizedBox(width: Util.width(10)),
@@ -171,7 +171,7 @@ class _MarketPageState extends State<MarketPage> {
               alignment: Alignment.centerLeft,
               child: Text(
                 '${item.swapTokenPrice2}',
-                style: Util.textStyle4Num(context, color: Colors.grey[800], spacing: 0.0, size: 28, fontWeight: FontWeight.w500),
+                style: Util.textStyle4Num(context, color: Colors.grey[800], spacing: 0.0, size: 30, fontWeight: FontWeight.w500),
               ),
             ),
             Container(

@@ -141,7 +141,7 @@ class _MarketPageState extends State<MarketPage> {
                         Container(
                             child: Text(
                               '${item.swapTokenName}',
-                              style: Util.textStyle4En(context, 2, color: Colors.grey[900], spacing: 0.0, size: 26),
+                              style: Util.textStyle4En(context, 2, color: Colors.grey[900], spacing: 0.0, size: 28),
                             )),
                       ],
                     ),
@@ -153,11 +153,11 @@ class _MarketPageState extends State<MarketPage> {
                         children: <TextSpan>[
                           TextSpan(
                             text: 'TL:',
-                            style: Util.textStyle4En(context, 1, color: Colors.grey[500], spacing: 0.0, size: 20),
+                            style: Util.textStyle4En(context, 1, color: Colors.grey[500], spacing: 0.0, size: 18),
                           ),
                           TextSpan(
                             text: flag ? '\$${total.toStringAsFixed(0)}' : '\$${item.totalLiquidity.toStringAsFixed(0)}',
-                            style: Util.textStyle4Num(context, color: Colors.grey[500], spacing: 0.0, size: 22, fontWeight: FontWeight.w400),
+                            style: Util.textStyle4Num(context, color: Colors.grey[500], spacing: 0.0, size: 20, fontWeight: FontWeight.w400),
                           ),
                         ],
                       ),
@@ -180,7 +180,8 @@ class _MarketPageState extends State<MarketPage> {
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                color: change >= 0 ? Color(0xFF03AD90) : Color(0xFFD14B64),
+                //color: change >= 0 ? Color(0xFF03AD90) : Color(0xFFD14B64),
+                color: change >= 0 ? Color(0xFF00AD90) : Color(0xFFD1345E),
               ),
               child: Text(
                 change >= 0 ? '+${change.toStringAsFixed(2)}%' : '${change.toStringAsFixed(2)}%',

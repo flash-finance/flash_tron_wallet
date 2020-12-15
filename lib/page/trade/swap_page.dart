@@ -94,7 +94,14 @@ class _SwapPageState extends State<SwapPage> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: _appBarWidget(context),
+      appBar: PreferredSize(
+        child: AppBar(
+          backgroundColor: Colors.white,
+          brightness: Brightness.light,
+          elevation: 0,
+        ),
+        preferredSize: Size.fromHeight(Util.height(0)),
+      ),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -153,14 +160,14 @@ class _SwapPageState extends State<SwapPage> {
                   Container(
                     child: Text(
                       'Flash  Swap',
-                      style: Util.textStyle4En(context, 2, color: Colors.white, spacing: 0.0, size: 40),
+                      style: Util.textStyle4En(context, 1, color: Colors.white, spacing: 0.0, size: 40),
                     ),
                   ),
                   Container(
                     margin: EdgeInsets.only(top: Util.height(5)),
                     child: Text(
                       '${S.of(context).swapTips01}',
-                      style: Util.textStyle(context, 2, color:  Colors.white, spacing: 0.0, size: 22),
+                      style: Util.textStyle(context, 1, color:  Colors.white, spacing: 0.0, size: 22),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                     ),
@@ -697,10 +704,10 @@ class _SwapPageState extends State<SwapPage> {
                 color: Util.themeColor,
                 borderRadius: BorderRadius.circular(6),
               ),
-              padding: EdgeInsets.only(left: Util.width(18), top: Util.height(12), bottom: Util.height(12), right: Util.width(18)),
+              padding: EdgeInsets.only(left: Util.width(18), top: Util.height(8), bottom: Util.height(8), right: Util.width(18)),
               child: Text(
                 '${S.of(context).swapPooledTokens}',
-                style: Util.textStyle(context, 2, color: Colors.white, spacing: 0.0, size: 23),
+                style: Util.textStyle(context, 1, color: Colors.white, spacing: 0.0, size: 23),
               ),
             ),
           ),
@@ -1387,18 +1394,23 @@ class _SwapPageState extends State<SwapPage> {
       onTap: () {
       },
       child: Container(
-        color: Colors.white,
-        child: Chip(
-          padding: _swapFlag ? EdgeInsets.only(left: Util.width(80), top: Util.height(20), right: Util.width(80), bottom: Util.height(20)) : EdgeInsets.only(left: Util.width(60), top: Util.height(20), right: Util.width(60), bottom: Util.height(20)),
-          backgroundColor: Util.themeColor,
-          label: !_loadFlag ? Container(
-            child: Text(
-              _swapFlag ? '${S.of(context).swapSwap}' : '${S.of(context).swapTokenNotEnough}',
-              style: Util.textStyle(context, 2, color: Colors.white, spacing: 0.5, size: 28),
+        child: Align(
+          child: SizedBox(
+            width: Util.width(320),
+            child: RaisedButton(
+              child: Container(
+                padding: EdgeInsets.all(12),
+                child: Text(
+                  _swapFlag ? '${S.of(context).swapSwap}' : '${S.of(context).swapTokenNotEnough}',
+                  style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.6, size: 31),
+                ),
+              ),
+              color:  Util.themeColor,
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              shape: StadiumBorder(side: BorderSide(color:  Util.themeColor)),
             ),
-          ) : Container(
-            color: Util.themeColor,
-            child: CupertinoActivityIndicator(),
           ),
         ),
       ),
@@ -1411,7 +1423,7 @@ class _SwapPageState extends State<SwapPage> {
       elevation: 0,
       titleSpacing: 0.0,
       title: Container(
-        child: Image.asset('images/flash.png', fit: BoxFit.contain, width: Util.width(110), height: Util.width(110)),
+        //child: Image.asset('images/flash.png', fit: BoxFit.contain, width: Util.width(110), height: Util.width(110)),
       ),
       centerTitle: true,
     );

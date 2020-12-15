@@ -29,7 +29,7 @@ class Util {
       timeInSecForIosWeb: 1,
       textColor: Colors.white,
       fontSize: ScreenUtil().setSp(25),
-      backgroundColor: Colors.grey[850],
+      backgroundColor: Colors.grey[900],
     );
   }
 

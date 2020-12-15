@@ -23,7 +23,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
         brightness: Brightness.light,
         title: Text(
           '${S.of(context).assetAddWallet}',
-          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2 , size: 34),
+          style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.2 , size: 34),
         ),
         centerTitle: true,
         elevation: 0,
@@ -34,7 +34,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
           child: Icon(
             Icons.arrow_back,
             size: ScreenUtil().setSp(45),
-            color: Colors.grey[850],
+            color: Colors.grey[900],
           ),
         ),
       ),
@@ -74,7 +74,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                       Container(
                         child: Text(
                           '${S.of(context).assetImportPrivateKey}',
-                          style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
+                          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],
@@ -115,7 +115,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                       Container(
                         child: Text(
                           '${S.of(context).assetImportMnemonic}',
-                          style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
+                          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
                         ),
 
                       ),
@@ -154,7 +154,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                       Container(
                         child: Text(
                           '${S.of(context).assetCreateWallet}',
-                          style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
+                          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],

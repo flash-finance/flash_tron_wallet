@@ -23,7 +23,7 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
         brightness: Brightness.light,
         title: Text(
           '${S.of(context).assetBackupPrivateKey}',
-          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2, size: 34),
+          style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.2, size: 34),
         ),
         centerTitle: true,
         elevation: 0,
@@ -34,7 +34,7 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
           child: Icon(
             Icons.arrow_back,
             size: ScreenUtil().setSp(45),
-            color: Colors.grey[850],
+            color: Colors.grey[900],
           ),
         ),
       ),
@@ -97,7 +97,7 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
             padding: EdgeInsets.fromLTRB(5, 15, 0, 10),
             child: Text(
               '$key',
-              style: Util.textStyle4En(context, 2, color: Colors.grey[850], spacing: 0.0, size: 28),
+              style: Util.textStyle4En(context, 2, color: Colors.grey[900], spacing: 0.0, size: 28),
               maxLines: 3, overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -113,7 +113,7 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
                 'icons/copy.png',
                 width: Util.width(40),
                 height: Util.width(40),
-                color: Colors.grey[800],
+                color: Colors.grey[850],
                 fit: BoxFit.fill,
               ),
             ),

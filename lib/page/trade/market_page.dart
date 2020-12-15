@@ -82,19 +82,9 @@ class _MarketPageState extends State<MarketPage> {
           Container(
             width: Util.width(250),
             alignment: Alignment.centerLeft,
-            child: RichText(
-              text: TextSpan(
-                children: <TextSpan>[
-                  TextSpan(
-                    text: '${S.of(context).swapMarketPrice} ',
-                    style: Util.textStyle(context, 2, color: Colors.grey[500], spacing: 0.2, size: 22),
-                  ),
-                  TextSpan(
-                    text: '(\$)',
-                    style: Util.textStyle4En(context, 2, color: Colors.grey[500], spacing: 0.2, size: 24),
-                  ),
-                ],
-              ),
+            child: Text(
+              '${S.of(context).swapMarketPrice}（\$）',
+              style: Util.textStyle(context, 2, color: Colors.grey[500], spacing: 0.2, size: 22),
             ),
           ),
           Container(

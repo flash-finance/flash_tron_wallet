@@ -197,7 +197,7 @@ class _MinePageState extends State<MinePage> {
                           style: TextStyle(
                               fontFamily: 'SHS-R',
                               letterSpacing: 0.1,
-                              color: Colors.grey[900],
+                              color: Colors.grey[850],
                               fontSize: ScreenUtil().setSp(25),
                               height: ScreenUtil().setSp(3.2),
                             ),
@@ -248,7 +248,7 @@ class _MinePageState extends State<MinePage> {
                           style: TextStyle(
                             fontFamily: 'SHS-R',
                             letterSpacing: 0.1,
-                            color: Colors.grey[900],
+                            color: Colors.grey[850],
                             fontSize: ScreenUtil().setSp(25),
                             height: ScreenUtil().setSp(3.2),
                           ),

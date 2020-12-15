@@ -47,7 +47,7 @@ class _DownloadPageState extends State<DownloadPage> {
                   style: TextStyle(
                     fontFamily: 'SHS-M',
                     letterSpacing: 0.0,
-                    color: Colors.grey[900],
+                    color: Colors.grey[850],
                     fontSize: ScreenUtil().setSp(28),
                     height: ScreenUtil().setSp(3.2),
                   ),
@@ -57,7 +57,7 @@ class _DownloadPageState extends State<DownloadPage> {
                   style: TextStyle(
                     fontFamily: 'SHS-M',
                     letterSpacing: 0.0,
-                    color: Colors.grey[900],
+                    color: Colors.grey[850],
                     fontSize: ScreenUtil().setSp(32),
                     height: ScreenUtil().setSp(3.2),
                   ),
@@ -69,7 +69,7 @@ class _DownloadPageState extends State<DownloadPage> {
             style: TextStyle(
               fontFamily: 'SHS-M',
               letterSpacing: 0.0,
-              color: Colors.grey[900],
+              color: Colors.grey[850],
               fontSize: ScreenUtil().setSp(28),
               height: ScreenUtil().setSp(3.2),
             ),

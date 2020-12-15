@@ -39,7 +39,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
         brightness: Brightness.light,
         title: Text(
           '${S.of(context).assetTransfer}',
-          style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.2, size: 34),
+          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2, size: 34),
         ),
         centerTitle: true,
         elevation: 0,
@@ -50,7 +50,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
           child: Icon(
             Icons.arrow_back,
             size: ScreenUtil().setSp(45),
-            color: Colors.grey[900],
+            color: Colors.grey[850],
           ),
         ),
       ),
@@ -330,7 +330,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
               '${assetFilterConList[index].balance}  ${assetFilterConList[index].name}',
               style: GoogleFonts.roboto(
                 letterSpacing: 0.0,
-                color: Colors.grey[850],
+                color: Colors.grey[800],
                 fontWeight: FontWeight.w500,
                 fontSize: ScreenUtil().setSp(28),
               ),

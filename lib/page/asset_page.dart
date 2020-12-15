@@ -705,7 +705,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
         context: context,
         isScrollControlled: true,
         enableDrag: false,
-        barrierColor: Colors.grey[900].withOpacity(0.98),
+        barrierColor: Colors.grey[850].withOpacity(0.98),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15.0))),
         builder: (BuildContext context) {
           return Container(
@@ -723,7 +723,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   ),
                   child: Text(
                     '${S.of(context).assetWalletList}',
-                    style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.4, size: 32),
+                    style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.4, size: 32),
                   ),
                 ),
                 Expanded(

@@ -172,7 +172,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
             Container(
               child: Text(
                 '${S.of(context).assetBackupMnemonic}',
-                style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
+                style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
               ),
             ),
             Container(
@@ -205,7 +205,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
             Container(
               child: Text(
                 '${S.of(context).assetBackupPrivateKey}',
-                style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
+                style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
               ),
             ),
             Container(
@@ -238,7 +238,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
             Container(
               child: Text(
                 '${S.of(context).assetUpdatePassword}',
-                style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
+                style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
               ),
             ),
             Container(

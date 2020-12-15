@@ -74,7 +74,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                       Container(
                         child: Text(
                           '${S.of(context).assetImportPrivateKey}',
-                          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
+                          style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],
@@ -115,7 +115,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                       Container(
                         child: Text(
                           '${S.of(context).assetImportMnemonic}',
-                          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
+                          style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
                         ),
 
                       ),
@@ -154,7 +154,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                       Container(
                         child: Text(
                           '${S.of(context).assetCreateWallet}',
-                          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
+                          style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],

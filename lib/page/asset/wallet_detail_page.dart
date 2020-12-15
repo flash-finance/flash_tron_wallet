@@ -72,7 +72,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
     String temp = wallet.tronAddress;
     String tronAddress = temp.substring(0, 8) + '...' + temp.substring(temp.length-8, temp.length);
     return Container(
-      padding: EdgeInsets.only(left: Util.width(30), top: Util.height(30), right: Util.width(30), bottom: Util.height(30)),
+      padding: EdgeInsets.only(left: Util.width(10), top: Util.height(10), right: Util.width(30), bottom: Util.height(10)),
       child: Row(
         children: <Widget>[
           Container(
@@ -80,13 +80,13 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
               opacity: 0.9,
               child: Image.asset(
                 'images/flash.png',
-                width: Util.width(100),
-                height: Util.width(100),
+                width: Util.width(130),
+                height: Util.width(130),
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          SizedBox(width: Util.width(30)),
+          SizedBox(width: Util.width(10)),
           Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -118,7 +118,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: Util.height(15)),
+                SizedBox(height: Util.height(10)),
                 InkWell(
                   onTap: () {
                     Clipboard.setData(ClipboardData(text: wallet.tronAddress));

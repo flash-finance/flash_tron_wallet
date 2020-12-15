@@ -97,6 +97,9 @@
 
   "swapMarket": "行情",
   "swapSwap": "兑换",
+  "swapName": "名称",
+  "swapMarketPrice": "价格",
+  "swapChange": "涨跌幅",
 
   "swapTips01": "交易:  聚合JustSwap平台",
   "swapSend": "发送",

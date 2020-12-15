@@ -97,6 +97,9 @@
 
   "swapMarket": "Market",
   "swapSwap": "Swap",
+  "swapName": "Name",
+  "swapMarketPrice": "Price",
+  "swapChange": "Change",
 
   "swapTips01": "trading:  directly to the platform of JustSwap",
   "swapSend": "Send",

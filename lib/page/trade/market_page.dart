@@ -1,8 +1,11 @@
 import 'package:flash_tron_wallet/common/common_config.dart';
 import 'package:flash_tron_wallet/common/common_service.dart';
 import 'package:flash_tron_wallet/common/common_util.dart';
+import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/model/swap_model.dart';
+import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MarketPage extends StatefulWidget {
   final TabController tabController;
@@ -14,6 +17,7 @@ class MarketPage extends StatefulWidget {
 }
 
 class _MarketPageState extends State<MarketPage> {
+  bool _langType = true;
 
   @override
   void initState() {
@@ -23,6 +27,7 @@ class _MarketPageState extends State<MarketPage> {
 
   @override
   Widget build(BuildContext context) {
+    _langType = Provider.of<IndexProvider>(context, listen: true).langType;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
@@ -70,23 +75,34 @@ class _MarketPageState extends State<MarketPage> {
           Container(
             width: Util.width(200),
             child: Text(
-              '名称',
+              '${S.of(context).swapName}',
               style: Util.textStyle(context, 2, color: Colors.grey[500], spacing: 0.2 , size: 22),
             ),
           ),
           Container(
             width: Util.width(250),
             alignment: Alignment.centerLeft,
-            child: Text(
-              '价格',
-              style: Util.textStyle(context, 2, color: Colors.grey[500], spacing: 0.2, size: 22),
+            child: RichText(
+              text: TextSpan(
+                children: <TextSpan>[
+                  TextSpan(
+                    text: '${S.of(context).swapMarketPrice} ',
+                    style: Util.textStyle(context, 2, color: Colors.grey[500], spacing: 0.2, size: 22),
+                  ),
+                  TextSpan(
+                    text: '(\$)',
+                    style: Util.textStyle4En(context, 2, color: Colors.grey[500], spacing: 0.2, size: 24),
+                  ),
+                ],
+              ),
             ),
           ),
           Container(
+            width: Util.width(140),
             alignment: Alignment.centerRight,
             padding: EdgeInsets.only(right: Util.width(3)),
             child: Text(
-              '涨跌幅',
+              '${S.of(context).swapChange}',
               style: Util.textStyle(context, 2, color: Colors.grey[500], spacing: 0.2, size: 22),
             ),
           ),
@@ -142,20 +158,29 @@ class _MarketPageState extends State<MarketPage> {
                   ),
                   SizedBox(height: Util.height(8)),
                   Container(
-                    child: Text(
-                      flag ? '\$ ${total.toStringAsFixed(0)}' : '\$ ${item.totalLiquidity.toStringAsFixed(0)}',
-                      style: Util.textStyle4Num(context, color: Colors.grey[600], spacing: 0.0, size: 22, fontWeight: FontWeight.w400),
+                    child: RichText(
+                      text: TextSpan(
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: 'TL:',
+                            style: Util.textStyle4En(context, 1, color: Colors.grey[500], spacing: 0.0, size: 20),
+                          ),
+                          TextSpan(
+                            text: flag ? '\$${total.toStringAsFixed(0)}' : '\$${item.totalLiquidity.toStringAsFixed(0)}',
+                            style: Util.textStyle4Num(context, color: Colors.grey[500], spacing: 0.0, size: 22, fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
-
             Container(
               width: Util.width(250),
               alignment: Alignment.centerLeft,
               child: Text(
-                '\$ ${item.swapTokenPrice2}',
+                '${item.swapTokenPrice2}',
                 style: Util.textStyle4Num(context, color: Colors.grey[800], spacing: 0.0, size: 28, fontWeight: FontWeight.w500),
               ),
             ),

@@ -873,6 +873,36 @@ class S {
     );
   }
 
+  /// `Name`
+  String get swapName {
+    return Intl.message(
+      'Name',
+      name: 'swapName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price`
+  String get swapMarketPrice {
+    return Intl.message(
+      'Price',
+      name: 'swapMarketPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change`
+  String get swapChange {
+    return Intl.message(
+      'Change',
+      name: 'swapChange',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `trading:  directly to the platform of JustSwap`
   String get swapTips01 {
     return Intl.message(

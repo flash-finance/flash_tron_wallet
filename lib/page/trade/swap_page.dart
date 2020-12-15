@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:decimal/decimal.dart';
+import 'package:flash_tron_wallet/common/common_config.dart';
+import 'package:flash_tron_wallet/common/common_service.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/model/swap_model.dart';
 import 'package:flash_tron_wallet/provider/index_provider.dart';
@@ -54,6 +56,9 @@ class _SwapPageState extends State<SwapPage> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      _reloadSwapData();
+    });
   }
 
   @override
@@ -1406,7 +1411,7 @@ class _SwapPageState extends State<SwapPage> {
       elevation: 0,
       titleSpacing: 0.0,
       title: Container(
-        child: Image.asset('images/logo150.png', fit: BoxFit.contain, width: Util.width(110), height: Util.width(110)),
+        child: Image.asset('images/flash.png', fit: BoxFit.contain, width: Util.width(110), height: Util.width(110)),
       ),
       centerTitle: true,
     );
@@ -1414,9 +1419,72 @@ class _SwapPageState extends State<SwapPage> {
 
 
 
+
+  SwapData _swapData;
+
   List<SwapRow> _swapRows = [];
 
+  bool _reloadSwapDataFlag = false;
+
   var _balanceMap = Map<String, String>();
+
+  _reloadSwapData() async {
+    _getSwapData();
+    _timer1 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
+      if (_reloadSwapDataFlag) {
+        _getSwapData();
+      }
+    });
+  }
+
+  void _getSwapData() async {
+    _reloadSwapDataFlag = false;
+    try {
+      String url = servicePath['swapQuery'];
+      await requestGet(url).then((value) {
+        var respData = Map<String, dynamic>.from(value);
+        SwapRespModel respModel = SwapRespModel.fromJson(respData);
+        if (respModel != null && respModel.code == 0) {
+          _swapData = respModel.data;
+          if (_swapData != null && _swapData.rows != null && _swapData.rows.length > 0) {
+            _swapRows = _swapData.rows;
+          }
+        }
+      });
+      _flag1 = _swapRows.length > 0 ? true : false;
+      _flag2 = _swapRows.length > 1 ? true : false;
+      _reloadSub();
+      if (mounted) {
+        setState(() {});
+      }
+    } catch (e) {
+      print(e);
+    }
+    _reloadSwapDataFlag = true;
+  }
+
+  void _reloadSub() {
+    if (_flag1 && _flag2) {
+      _leftKey = '$_account+${_swapRows[_leftSelectIndex].swapTokenAddress}';
+      _rightKey = '$_account+${_swapRows[_rightSelectIndex].swapTokenAddress}';
+    }
+
+    if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrecision > 0 && _balanceMap[_leftKey] != null) {
+      _leftBalanceAmount = (Decimal.tryParse(_balanceMap[_leftKey])/Decimal.fromInt(10).pow(_swapRows[_leftSelectIndex].swapTokenPrecision)).toString();
+    }
+    if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrecision > 0 && _balanceMap[_rightKey] != null) {
+      _rightBalanceAmount = (Decimal.tryParse(_balanceMap[_rightKey])/Decimal.fromInt(10).pow(_swapRows[_rightSelectIndex].swapTokenPrecision)).toString();
+    }
+
+    if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
+      _leftPrice = (_swapRows[_leftSelectIndex].swapTokenPrice1/_swapRows[_rightSelectIndex].swapTokenPrice1).toString();
+    }
+    if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
+      _rightPrice = (_swapRows[_rightSelectIndex].swapTokenPrice1/_swapRows[_leftSelectIndex].swapTokenPrice1).toString();
+    }
+  }
+
+  bool _reloadTokenBalanceFlag = false;
 
 
 }

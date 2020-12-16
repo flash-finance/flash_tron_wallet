@@ -118,7 +118,7 @@ class _MarketPageState extends State<MarketPage> {
       child: Container(
         padding: EdgeInsets.only(left: Util.width(30), right: Util.width(30), top: Util.height(20), bottom: Util.height(20)),
         decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.25)),
+          border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.2)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

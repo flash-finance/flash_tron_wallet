@@ -48,6 +48,7 @@ class _MarketPageState extends State<MarketPage> {
     return Container(
       child: ListView(
         children: <Widget>[
+          SizedBox(height: Util.height(15)),
           _titleWidget(context),
           _assetDataWidget(context),
         ],

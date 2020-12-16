@@ -116,7 +116,7 @@ class _SwapPageState extends State<SwapPage> {
       color: Colors.white,
       child: Column(
         children: <Widget>[
-          SizedBox(height: Util.height(10)),
+          SizedBox(height: Util.height(20)),
           _topWidget(context),
           SizedBox(height: Util.height(30)),
           Expanded(

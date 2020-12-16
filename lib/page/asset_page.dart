@@ -100,10 +100,6 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
                 color: Util.themeColor,
-                /*image: DecorationImage(
-                  image: AssetImage('images/bg03.png'),
-                  fit: BoxFit.cover,
-                ),*/
               ),
               child: Scaffold(
                 backgroundColor: Colors.transparent,

@@ -19,6 +19,7 @@ class SwapPage extends StatefulWidget {
 }
 
 class _SwapPageState extends State<SwapPage> {
+  bool _langType = true;
   var _scaffoldKey = GlobalKey<ScaffoldState>();
   String _account = '';
   String _leftKey = '';
@@ -84,7 +85,7 @@ class _SwapPageState extends State<SwapPage> {
 
   @override
   Widget build(BuildContext context) {
-    bool langType = Provider.of<IndexProvider>(context, listen: true).langType;
+    _langType = Provider.of<IndexProvider>(context, listen: true).langType;
     _leftSwapAmountController =  TextEditingController.fromValue(TextEditingValue(text: _leftSwapAmount,
         selection: TextSelection.fromPosition(TextPosition(affinity: TextAffinity.downstream, offset: _leftSwapAmount.length))));
     _rightSwapAmountController =  TextEditingController.fromValue(TextEditingValue(text: _rightSwapAmount,
@@ -207,7 +208,7 @@ class _SwapPageState extends State<SwapPage> {
             _dataLeftWidget(context),
             SizedBox(height: Util.height(0)),
             _dataMidWidget(context),
-            SizedBox(height: Util.height(0)),
+            SizedBox(height: Util.height(5)),
             _dataRightWidget(context),
           ],
         )
@@ -463,7 +464,7 @@ class _SwapPageState extends State<SwapPage> {
             color: Colors.white,
             alignment: Alignment.center,
             child: Icon(
-              Icons.swap_horiz,
+              Icons.sync_rounded,
               size: ScreenUtil().setSp(45),
               color: Colors.grey[700],
             ),
@@ -1393,18 +1394,18 @@ class _SwapPageState extends State<SwapPage> {
       child: Container(
         child: Align(
           child: SizedBox(
-            width: Util.width(320),
+            width: _langType ? Util.width(320) : Util.width(350),
             child: RaisedButton(
               child: Container(
                 padding: EdgeInsets.all(12),
                 child: Text(
                   _swapFlag ? '${S.of(context).swapSwap}' : '${S.of(context).swapTokenNotEnough}',
-                  style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.6, size: 31),
+                  style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.6, size: 28),
                 ),
               ),
-              color:  Util.themeColor,
+              color: Util.themeColor,
               onPressed: () {
-                Navigator.pop(context);
+                //Navigator.pop(context);
               },
               shape: StadiumBorder(side: BorderSide(color:  Util.themeColor)),
             ),

@@ -181,7 +181,9 @@ class _MarketPageState extends State<MarketPage> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 //color: change >= 0 ? Color(0xFF03AD90) : Color(0xFFD14B64),
-                color: change >= 0 ? Color(0xFF00AD90) : Color(0xFFD1345E),
+                //color: change >= 0 ? Color(0xFF00AD90) : Color(0xFFD1345E),
+                //color: change >= 0 ? Color(0xFF2EBD85) : Color(0xFFF6465D),
+                color: change >= 0 ? Color(0xFF05b791) : Color(0xFFF6465D),
               ),
               child: Text(
                 change >= 0 ? '+${change.toStringAsFixed(2)}%' : '${change.toStringAsFixed(2)}%',

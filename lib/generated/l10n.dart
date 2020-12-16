@@ -953,20 +953,20 @@ class S {
     );
   }
 
-  /// `Token Name`
+  /// `Name`
   String get swapTokenName {
     return Intl.message(
-      'Token Name',
+      'Name',
       name: 'swapTokenName',
       desc: '',
       args: [],
     );
   }
 
-  /// `Price (USD)`
+  /// `Price`
   String get swapTokenPrice {
     return Intl.message(
-      'Price (USD)',
+      'Price',
       name: 'swapTokenPrice',
       desc: '',
       args: [],

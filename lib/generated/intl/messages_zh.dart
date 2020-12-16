@@ -120,9 +120,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "swapTips01" : MessageLookupByLibrary.simpleMessage("交易:  聚合JustSwap平台"),
     "swapToken" : MessageLookupByLibrary.simpleMessage("Token"),
     "swapTokenBalance" : MessageLookupByLibrary.simpleMessage("余额"),
-    "swapTokenName" : MessageLookupByLibrary.simpleMessage("Token 名称"),
+    "swapTokenName" : MessageLookupByLibrary.simpleMessage("名称"),
     "swapTokenNotEnough" : MessageLookupByLibrary.simpleMessage("余额不足"),
-    "swapTokenPrice" : MessageLookupByLibrary.simpleMessage("价格 (USD)"),
+    "swapTokenPrice" : MessageLookupByLibrary.simpleMessage("价格"),
     "swapTotalLiquidity" : MessageLookupByLibrary.simpleMessage("总流动性")
   };
 }

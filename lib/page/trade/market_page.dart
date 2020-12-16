@@ -104,15 +104,7 @@ class _MarketPageState extends State<MarketPage> {
   }
 
   Widget _itemWidget(BuildContext context, SwapRow item) {
-    double total = 0;
-    bool flag = item.swapTokenName.trim() == 'TRX';
-    if (flag) {
-        for(int i = 0; i < _swapRows.length; i++) {
-          total += _swapRows[i].totalLiquidity;
-        }
-    }
     double change = item.swapTokenChange2 * 100;
-
     return InkWell(
       onTap: () {},
       child: Container(
@@ -155,11 +147,11 @@ class _MarketPageState extends State<MarketPage> {
                         children: <TextSpan>[
                           TextSpan(
                             text: 'TL: ',
-                            style: Util.textStyle4En(context, 1, color: Colors.grey[500], spacing: 0.0, size: 18),
+                            style: Util.textStyle4En(context, 2, color: Colors.grey[500], spacing: 0.0, size: 18),
                           ),
                           TextSpan(
-                            text: flag ? '\$${total.toStringAsFixed(0)}' : '\$${item.totalLiquidity.toStringAsFixed(0)}',
-                            style: Util.textStyle4Num(context, color: Colors.grey[500], spacing: 0.0, size: 20, fontWeight: FontWeight.w400),
+                            text: '\$${item.totalLiquidity.toStringAsFixed(0)}',
+                            style: Util.textStyle4Num(context, color: Colors.grey[500], spacing: 0.0, size: 20, fontWeight: FontWeight.w500),
                           ),
                         ],
                       ),

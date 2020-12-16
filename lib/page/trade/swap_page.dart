@@ -208,7 +208,7 @@ class _SwapPageState extends State<SwapPage> {
             _dataLeftWidget(context),
             SizedBox(height: Util.height(0)),
             _dataMidWidget(context),
-            SizedBox(height: Util.height(5)),
+            SizedBox(height: Util.height(0)),
             _dataRightWidget(context),
           ],
         )
@@ -760,19 +760,27 @@ class _SwapPageState extends State<SwapPage> {
               padding: EdgeInsets.only(left: Util.width(10)),
               child: Text(
                 '${S.of(context).swapTokenName}',
-                style: Util.textStyle(context, 2, color: Colors.grey[700], spacing: 0.0, size: 26),
+                style: Util.textStyle(context, 2, color: Colors.grey[600], spacing: 0.0, size: 26),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               )),
           Container(
               alignment: Alignment.centerRight,
-              padding: EdgeInsets.only(right: Util.width(8)),
-              child: Text(
-                '${S.of(context).swapTokenPrice}',
-                style: Util.textStyle(context, 2, color: Colors.grey[700], spacing: 0.0, size: 26),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              )),
+              child: RichText(
+                text: TextSpan(
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: '${S.of(context).swapTokenPrice}',
+                      style: Util.textStyle(context, 2, color: Colors.grey[600], spacing: 0.0, size: 26),
+                    ),
+                    TextSpan(
+                      text: '（\$）',
+                      style: Util.textStyle4En(context, 2, color: Colors.grey[600], spacing: 0.0, size: 26),
+                    ),
+                  ],
+                ),
+              ),
+          ),
         ],
       ),
     );
@@ -814,8 +822,7 @@ class _SwapPageState extends State<SwapPage> {
         width: Util.width(600),
         padding: EdgeInsets.only(top: Util.height(18), bottom: Util.height(18)),
         decoration: BoxDecoration(
-          shape: BoxShape.rectangle,
-          color: flag ? Colors.grey[100] : null,
+          color: flag ? Colors.grey[50].withOpacity(0.8) : null,
           borderRadius: BorderRadius.all(Radius.circular(5.0)),
         ),
         child: Row(
@@ -830,8 +837,8 @@ class _SwapPageState extends State<SwapPage> {
                     child: ClipOval(
                       child: Image.network(
                         '${item.swapPicUrl}',
-                        width: Util.width(35),
-                        height: Util.width(35),
+                        width: Util.width(38),
+                        height: Util.width(38),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -841,12 +848,12 @@ class _SwapPageState extends State<SwapPage> {
                     alignment: Alignment.centerLeft,
                     child: type == 1 ? Text(
                       '${item.swapTokenName}',
-                      style: Util.textStyle4En(context, 2, color: index != _rightSelectIndex  ? Colors.grey[800] :Colors.grey[500], spacing: 0.0, size: 26),
+                      style: Util.textStyle4En(context, 2, color: index != _rightSelectIndex  ? Colors.grey[800] :Colors.grey[500], spacing: 0.0, size: 27),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ) : Text(
                       '${item.swapTokenName}',
-                      style: Util.textStyle4En(context, 2, color: index != _leftSelectIndex  ? Colors.grey[800] :Colors.grey[500], spacing: 0.0, size: 26),
+                      style: Util.textStyle4En(context, 2, color: index != _leftSelectIndex  ? Colors.grey[800] :Colors.grey[500], spacing: 0.0, size: 27),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -860,20 +867,12 @@ class _SwapPageState extends State<SwapPage> {
                 padding: EdgeInsets.only(right: Util.width(20)),
                 child: type == 1 ? Text(
                   '${Util.formatNum(item.swapTokenPrice2, 6)}',
-                  style: TextStyle(
-                    color: index != _rightSelectIndex  ? Colors.grey[800] :Colors.grey[500],
-                    fontSize: ScreenUtil().setSp(26),
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: Util.textStyle4Num(context, color: index != _rightSelectIndex  ? Colors.grey[800] :Colors.grey[500], size: 26, fontWeight: FontWeight.w500),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ) : Text(
                   '${Util.formatNum(item.swapTokenPrice2, 6)}',
-                  style: TextStyle(
-                    color: index != _leftSelectIndex  ? Colors.grey[800] :Colors.grey[500],
-                    fontSize: ScreenUtil().setSp(26),
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: Util.textStyle4Num(context, color: index != _leftSelectIndex  ? Colors.grey[800] :Colors.grey[500], size: 26, fontWeight: FontWeight.w500),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),

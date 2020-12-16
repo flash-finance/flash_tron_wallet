@@ -120,9 +120,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "swapTips01" : MessageLookupByLibrary.simpleMessage("trading:  directly to the platform of JustSwap"),
     "swapToken" : MessageLookupByLibrary.simpleMessage("Token"),
     "swapTokenBalance" : MessageLookupByLibrary.simpleMessage("Balance"),
-    "swapTokenName" : MessageLookupByLibrary.simpleMessage("Token Name"),
+    "swapTokenName" : MessageLookupByLibrary.simpleMessage("Name"),
     "swapTokenNotEnough" : MessageLookupByLibrary.simpleMessage("Token Not Enough"),
-    "swapTokenPrice" : MessageLookupByLibrary.simpleMessage("Price (USD)"),
+    "swapTokenPrice" : MessageLookupByLibrary.simpleMessage("Price"),
     "swapTotalLiquidity" : MessageLookupByLibrary.simpleMessage("Total Liquidity")
   };
 }

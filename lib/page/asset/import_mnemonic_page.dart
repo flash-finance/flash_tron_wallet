@@ -110,6 +110,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
         onSaved: (String value) => _name = value,
         maxLength: 10,
         inputFormatters: [],
+        cursorColor: Util.themeColor,
         decoration: InputDecoration(
           labelText: '${S.of(context).assetWalletName}',
           labelStyle: Util.textStyle(context, 2, color: Colors.grey[700], spacing: 0.1, size: 26),
@@ -133,6 +134,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
         onSaved: (String value) => _mnemonic = value,
         maxLines: 2,
         maxLength: 150,
+        cursorColor: Util.themeColor,
         decoration: InputDecoration(
           labelText: '${S.of(context).assetMnemonic}',
           labelStyle: Util.textStyle(context, 2, color: Colors.grey[700], spacing: 0.1, size: 26),
@@ -163,6 +165,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
         maxLength: 6,
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
         keyboardType: TextInputType.number,
+        cursorColor: Util.themeColor,
         decoration: InputDecoration(
             labelText: '${S.of(context).assetSetPassword}',
             labelStyle: Util.textStyle(context, 2, color: Colors.grey[700], spacing: 0.1, size: 26),
@@ -209,6 +212,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
         maxLength: 6,
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
         keyboardType: TextInputType.number,
+        cursorColor: Util.themeColor,
         decoration: InputDecoration(
             labelText: '${S.of(context).assetConfirmPassword}',
             labelStyle: Util.textStyle(context, 2, color: Colors.grey[700], spacing: 0.1, size: 26),
@@ -298,17 +302,17 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
             alignment: Alignment.centerLeft,
             child: Text(
               '${S.of(context).addWalletTip1}',
-              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.1, size: 22.5),
+              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.1, size: 21),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(30, 5, 30, 15),
+            padding: EdgeInsets.fromLTRB(30, 5, 30, 12),
             alignment: Alignment.centerLeft,
             child: Text(
               '${S.of(context).addWalletTip2}',
-              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.1, size: 22.5),
+              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.1, size: 21),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),

@@ -304,6 +304,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                         value = value.substring(0, 6);
                       }
                     },
+                    cursorColor: Util.themeColor,
                     decoration: InputDecoration(
                       hintText: '',
                       filled: true,

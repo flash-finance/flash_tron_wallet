@@ -82,17 +82,17 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             alignment: Alignment.centerLeft,
             child: Text(
               '${S.of(context).addWalletTip3}',
-              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.1, size: 22.5),
+              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.1, size: 21),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(30, 5, 10, 15),
+            padding: EdgeInsets.fromLTRB(30, 5, 10, 12),
             alignment: Alignment.centerLeft,
             child: Text(
               '${S.of(context).addWalletTip4}',
-              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.1, size: 22.5),
+              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.1, size: 21),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),

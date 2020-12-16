@@ -91,6 +91,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
         maxLength: 6,
         keyboardType: TextInputType.numberWithOptions(decimal: true),
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
+        cursorColor: Util.themeColor,
         decoration: InputDecoration(
             labelText: '${S.of(context).commonEnterOldPwd}',
             labelStyle: Util.textStyle(context, 2, color: Colors.grey[700], spacing: 0.1, size: 26),
@@ -132,6 +133,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
         maxLength: 6,
         keyboardType: TextInputType.numberWithOptions(decimal: true),
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
+        cursorColor: Util.themeColor,
         decoration: InputDecoration(
             labelText: '${S.of(context).commonSetNewPwd}',
             labelStyle: Util.textStyle(context, 2, color: Colors.grey[700], spacing: 0.1, size: 26),
@@ -171,6 +173,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
         maxLength: 6,
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
         keyboardType: TextInputType.number,
+        cursorColor: Util.themeColor,
         decoration: InputDecoration(
             labelText: '${S.of(context).commonConfirmNewPwd}',
             labelStyle: Util.textStyle(context, 2, color: Colors.grey[700], spacing: 0.1, size: 26),
@@ -253,17 +256,17 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
             alignment: Alignment.centerLeft,
             child: Text(
               '${S.of(context).addWalletTip1}',
-              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.1, size: 22.5),
+              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.1, size: 21),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(30, 5, 10, 15),
+            padding: EdgeInsets.fromLTRB(30, 5, 10, 12),
             alignment: Alignment.centerLeft,
             child: Text(
               '${S.of(context).addWalletTip2}',
-              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.1, size: 22.5),
+              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.1, size: 21),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),

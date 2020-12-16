@@ -36,7 +36,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         brightness: Brightness.light,
         title: Text(
           '${S.of(context).assetWalletDetails}',
-          style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.2, size: 34),
+          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2, size: 34),
         ),
         centerTitle: true,
         elevation: 0,
@@ -47,7 +47,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
           child: Icon(
             Icons.arrow_back,
             size: ScreenUtil().setSp(45),
-            color: Colors.grey[850],
+            color: Colors.grey[800],
           ),
         ),
       ),
@@ -101,7 +101,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                         Container(
                           child: Text(
                             '${wallet.name}',
-                            style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 28),
+                            style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 28),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -111,7 +111,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                           child: Icon(
                             IconData(0xe635, fontFamily: 'ICON'),
                             size: ScreenUtil().setSp(35),
-                            color: Colors.grey[850],
+                            color: Colors.grey[800],
                           ),
                         ),
                       ],
@@ -130,7 +130,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                         Container(
                           child: Text(
                             '$tronAddress',
-                            style: Util.textStyle4En(context, 2, color: Colors.grey[850], spacing: 0.0, size: 28),
+                            style: Util.textStyle4En(context, 2, color: Colors.grey[800], spacing: 0.0, size: 28),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -140,7 +140,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                           child: Icon(
                             IconData(0xe618, fontFamily: 'ICON'),
                             size: ScreenUtil().setSp(30),
-                            color: Colors.grey[850],
+                            color: Colors.grey[800],
                           ),
                         ),
                       ],
@@ -172,7 +172,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
             Container(
               child: Text(
                 '${S.of(context).assetBackupMnemonic}',
-                style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
+                style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
               ),
             ),
             Container(
@@ -205,7 +205,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
             Container(
               child: Text(
                 '${S.of(context).assetBackupPrivateKey}',
-                style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
+                style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
               ),
             ),
             Container(
@@ -238,7 +238,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
             Container(
               child: Text(
                 '${S.of(context).assetUpdatePassword}',
-                style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
+                style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
               ),
             ),
             Container(
@@ -268,7 +268,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
             Container(
               child: Text(
                 '${S.of(context).assetDeleteWallet}',
-                style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.0, size: 30),
+                style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
               ),
             ),
             Container(
@@ -290,7 +290,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         builder: (context) => CupertinoAlertDialog(
           title: Text(
             '${S.of(context).commonPleaseEnterYourPassword}',
-            style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.2, size: 30),
+            style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2, size: 30),
           ),
           content: Card(
             elevation: 0.0,
@@ -309,7 +309,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                       filled: true,
                       fillColor: Colors.white,
                     ),
-                    style: Util.textStyle4Num(context, color: Colors.grey[850], spacing: 0.2, size: 32, fontWeight: FontWeight.w500),
+                    style: Util.textStyle4Num(context, color: Colors.grey[800], spacing: 0.2, size: 32, fontWeight: FontWeight.w500),
                     obscureText: true,
                     maxLength: 6,
                     maxLengthEnforced: true,
@@ -371,7 +371,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         builder: (context) => CupertinoAlertDialog(
           title: Text(
             '${S.of(context).assetUpdateWalletName}',
-            style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.0, size: 30),
+            style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
           ),
           content: Card(
             elevation: 0.0,
@@ -388,7 +388,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                       filled: true,
                       fillColor: Colors.white,
                     ),
-                    style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.2, size: 30),
+                    style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2, size: 30),
                     //obscureText: true,
                     maxLength: 10,
                     maxLengthEnforced: true,
@@ -442,7 +442,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         builder: (context) => CupertinoAlertDialog(
           title: Text(
             '${S.of(context).commonDeleteWalletTip}',
-            style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.2, size: 28),
+            style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2, size: 28),
           ),
           actions: <Widget>[
             FlatButton(

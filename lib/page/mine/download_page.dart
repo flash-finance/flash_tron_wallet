@@ -33,7 +33,7 @@ class _DownloadPageState extends State<DownloadPage> {
       child: CupertinoAlertDialog(
         title: Text(
           '更新中...',
-          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2, size: 32),
+          style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.2, size: 32),
         ),
         content: Container(
           padding: EdgeInsets.only(top: 5),
@@ -47,7 +47,7 @@ class _DownloadPageState extends State<DownloadPage> {
                   style: TextStyle(
                     fontFamily: 'SHS-M',
                     letterSpacing: 0.0,
-                    color: Colors.grey[900],
+                    color: Colors.grey[850],
                     fontSize: ScreenUtil().setSp(28),
                     height: ScreenUtil().setSp(3.2),
                   ),
@@ -57,7 +57,7 @@ class _DownloadPageState extends State<DownloadPage> {
                   style: TextStyle(
                     fontFamily: 'SHS-M',
                     letterSpacing: 0.0,
-                    color: Colors.grey[900],
+                    color: Colors.grey[850],
                     fontSize: ScreenUtil().setSp(32),
                     height: ScreenUtil().setSp(3.2),
                   ),
@@ -69,7 +69,7 @@ class _DownloadPageState extends State<DownloadPage> {
             style: TextStyle(
               fontFamily: 'SHS-M',
               letterSpacing: 0.0,
-              color: Colors.grey[900],
+              color: Colors.grey[850],
               fontSize: ScreenUtil().setSp(28),
               height: ScreenUtil().setSp(3.2),
             ),

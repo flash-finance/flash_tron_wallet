@@ -141,7 +141,7 @@ class _MarketPageState extends State<MarketPage> {
                         Container(
                             child: Text(
                               '${item.swapTokenName}',
-                              style: Util.textStyle4En(context, 2, color: Colors.grey[900], spacing: 0.0, size: 28),
+                              style: Util.textStyle4En(context, 2, color: Colors.grey[850], spacing: 0.0, size: 28),
                             )),
                       ],
                     ),
@@ -171,7 +171,7 @@ class _MarketPageState extends State<MarketPage> {
               alignment: Alignment.centerLeft,
               child: Text(
                 '${item.swapTokenPrice2}',
-                style: Util.textStyle4Num(context, color: Colors.grey[850], spacing: 0.0, size: 30, fontWeight: FontWeight.w500),
+                style: Util.textStyle4Num(context, color: Colors.grey[800], spacing: 0.0, size: 30, fontWeight: FontWeight.w500),
               ),
             ),
             Container(

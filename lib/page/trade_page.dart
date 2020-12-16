@@ -62,10 +62,10 @@ class _TradePageState extends State<TradePage> with SingleTickerProviderStateMix
                 controller: tabController,
                 isScrollable: false,
                 indicatorPadding: EdgeInsets.only(bottom: Util.width(15)),
-                indicatorColor: Colors.grey[900],
+                indicatorColor: Colors.grey[850],
                 indicatorSize: TabBarIndicatorSize.label,
                 labelStyle: Util.textStyle(context, 2, spacing: 0.2, size: 32),
-                labelColor: Colors.grey[900],
+                labelColor: Colors.grey[850],
                 unselectedLabelColor: Colors.grey[500],
                 indicatorWeight: 2.0,
                 tabs: <Tab>[

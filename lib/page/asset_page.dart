@@ -194,7 +194,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                     child: Icon(
                       IconData(0xe7b8, fontFamily: 'ICON'),
                       size: ScreenUtil().setSp(55),
-                      color: Colors.grey[900],
+                      color: Colors.grey[850],
                     ),
                   ),
                 ),
@@ -208,7 +208,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                     child: Icon(
                       IconData(0xe606, fontFamily: 'ICON'),
                       size: ScreenUtil().setSp(60),
-                      color: Colors.grey[900],
+                      color: Colors.grey[850],
                     ),
                   ),
                 ),
@@ -472,7 +472,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   Container(
                       child: Text(
                         '${item.name}',
-                        style: Util.textStyle4En(context, 2, color: Colors.grey[900], spacing: 0.0, size: 32),
+                        style: Util.textStyle4En(context, 2, color: Colors.grey[850], spacing: 0.0, size: 32),
                       )),
                 ],
               ),
@@ -484,7 +484,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   Container(
                     child: Text(
                       '${Util.formatNum(item.balance, 4)}',
-                      style: Util.textStyle4Num(context, color: Colors.grey[850], spacing: 0.1, size: 30, fontWeight: FontWeight.w500),
+                      style: Util.textStyle4Num(context, color: Colors.grey[800], spacing: 0.1, size: 30, fontWeight: FontWeight.w500),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -518,7 +518,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
               children: <Widget>[
                 Container(
                   child: Opacity(
-                    opacity: 0.9,
+                    opacity: 1.0,
                     child: Image.asset(
                       'images/flash-logo.png',
                       width: Util.width(150),
@@ -566,7 +566,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                       Container(
                         child: Text(
                           '${S.of(context).assetImportPrivateKey}',
-                          style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.0, size: 30),
+                          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],
@@ -606,7 +606,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                       Container(
                         child: Text(
                           '${S.of(context).assetImportMnemonic}',
-                          style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.0, size: 30),
+                          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],
@@ -643,7 +643,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                       Container(
                         child: Text(
                           '${S.of(context).assetCreateWallet}',
-                          style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.0, size: 30),
+                          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],
@@ -705,7 +705,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
         context: context,
         isScrollControlled: true,
         enableDrag: false,
-        barrierColor: Colors.grey[900].withOpacity(0.98),
+        barrierColor: Colors.grey[850].withOpacity(0.98),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15.0))),
         builder: (BuildContext context) {
           return Container(
@@ -723,7 +723,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   ),
                   child: Text(
                     '${S.of(context).assetWalletList}',
-                    style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.4, size: 32),
+                    style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.4, size: 32),
                   ),
                 ),
                 Expanded(

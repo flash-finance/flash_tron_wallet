@@ -37,7 +37,7 @@ class _MinePageState extends State<MinePage> {
         brightness: Brightness.light,
         title: Text(
           '${S.of(context).bottomTab3}',
-          style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.2 , size: 34),
+          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2 , size: 34),
         ),
         centerTitle: true,
         elevation: 0,
@@ -76,14 +76,14 @@ class _MinePageState extends State<MinePage> {
                   child: Icon(
                     IconData(0xe6e0, fontFamily: 'ICON'),
                     size: ScreenUtil().setSp(42),
-                    color: Colors.grey[850],
+                    color: Colors.grey[800],
                   ),
                 ),
                 SizedBox(width: Util.width(50)),
                 Container(
                   child: Text(
                     '${S.of(context).mineManageWallet}',
-                    style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
+                    style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
                   ),
                 ),
               ],
@@ -122,7 +122,7 @@ class _MinePageState extends State<MinePage> {
                   child: Icon(
                     IconData(0xe676, fontFamily: 'ICON'),
                     size: ScreenUtil().setSp(40),
-                    color: Colors.grey[850],
+                    color: Colors.grey[800],
                   ),
                 ),
                 SizedBox(width: Util.width(50)),
@@ -131,14 +131,14 @@ class _MinePageState extends State<MinePage> {
                     Container(
                       child: Text(
                         'English/',
-                        style: Util.textStyle4En(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
+                        style: Util.textStyle4En(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
                       ),
                     ),
                     Container(
                       padding: EdgeInsets.only(top: Util.height(1)),
                       child: Text(
                         '中文',
-                        style: Util.textStyle4Zh(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
+                        style: Util.textStyle4Zh(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
                       ),
                     ),
                   ],
@@ -186,7 +186,7 @@ class _MinePageState extends State<MinePage> {
                     CupertinoAlertDialog(
                       title: Text(
                         '新版本 V${dexInfo.androidVersionNum}',
-                        style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
+                        style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
                       ),
                       content: Container(
                         padding: EdgeInsets.only(top: Util.height(10)),
@@ -197,7 +197,7 @@ class _MinePageState extends State<MinePage> {
                           style: TextStyle(
                               fontFamily: 'SHS-R',
                               letterSpacing: 0.1,
-                              color: Colors.grey[900],
+                              color: Colors.grey[850],
                               fontSize: ScreenUtil().setSp(25),
                               height: ScreenUtil().setSp(3.2),
                             ),
@@ -237,7 +237,7 @@ class _MinePageState extends State<MinePage> {
                 CupertinoAlertDialog(
                       title: Text(
                         '新版本 V${dexInfo.iosVersionNum}',
-                        style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
+                        style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
                       ),
                       content: Container(
                         padding: EdgeInsets.only(top: Util.height(10)),
@@ -248,7 +248,7 @@ class _MinePageState extends State<MinePage> {
                           style: TextStyle(
                             fontFamily: 'SHS-R',
                             letterSpacing: 0.1,
-                            color: Colors.grey[900],
+                            color: Colors.grey[850],
                             fontSize: ScreenUtil().setSp(25),
                             height: ScreenUtil().setSp(3.2),
                           ),
@@ -292,14 +292,14 @@ class _MinePageState extends State<MinePage> {
                   child: Icon(
                     IconData(0xe6db, fontFamily: 'ICON'),
                     size: ScreenUtil().setSp(42),
-                    color: Colors.grey[850],
+                    color: Colors.grey[800],
                   ),
                 ),
                 SizedBox(width: Util.width(50)),
                 Container(
                   child: Text(
                     '${S.of(context).mineCurrentVersion}',
-                    style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
+                    style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
                   ),
                 ),
               ],
@@ -355,7 +355,7 @@ class _MinePageState extends State<MinePage> {
         builder: (_) => CupertinoAlertDialog(
           title: Text(
             '${S.of(context).mineLangTip1}',
-            style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.2, size: 30),
+            style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2, size: 30),
           ),
           actions: <Widget>[
             FlatButton(

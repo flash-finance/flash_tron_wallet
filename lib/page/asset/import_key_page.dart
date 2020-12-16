@@ -43,7 +43,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
         brightness: Brightness.light,
         title: Text(
           '${S.of(context).assetImportPrivateKey}',
-          style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.2, size: 34),
+          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2, size: 34),
         ),
         centerTitle: true,
         elevation: 0,
@@ -54,7 +54,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
           child: Icon(
             Icons.arrow_back,
             size: ScreenUtil().setSp(45),
-            color: Colors.grey[900],
+            color: Colors.grey[850],
           ),
         ),
       ),
@@ -145,7 +145,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
           labelText: '${S.of(context).assetWalletName}',
           labelStyle: Util.textStyle(context, 2, color: Colors.grey[700], spacing: 0.1, size: 26),
         ),
-        style: Util.textStyle(context, 2, color: Colors.grey[900], spacing: 0.2, size: 30),
+        style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2, size: 30),
         validator: (String value) {
           if (value.isEmpty) {
             return '${S.of(context).commonCanNotBeEmpty}';
@@ -169,7 +169,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
           labelText: '${S.of(context).assetPrivateKey}',
           labelStyle: Util.textStyle(context, 2, color: Colors.grey[700], spacing: 0.1, size: 26),
         ),
-        style: Util.textStyle4En(context, 2, color: Colors.grey[900], spacing: 0.0, size: 28),
+        style: Util.textStyle4En(context, 2, color: Colors.grey[850], spacing: 0.0, size: 28),
         validator: (String value) {
           if (value.isEmpty) {
             return '${S.of(context).commonCanNotBeEmpty}';
@@ -214,7 +214,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
               },
             )
         ),
-        style: Util.textStyle4Num(context, color: Colors.grey[850], spacing: 0.2, size: 32, fontWeight: FontWeight.w500),
+        style: Util.textStyle4Num(context, color: Colors.grey[800], spacing: 0.2, size: 32, fontWeight: FontWeight.w500),
         validator: (String value) {
           if (value.isEmpty) {
             return '${S.of(context).commonCanNotBeEmpty}';
@@ -259,7 +259,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
               },
             )
         ),
-        style: Util.textStyle4Num(context, color: Colors.grey[850], spacing: 0.2, size: 32, fontWeight: FontWeight.w500),
+        style: Util.textStyle4Num(context, color: Colors.grey[800], spacing: 0.2, size: 32, fontWeight: FontWeight.w500),
         validator: (String value) {
           if (value.isEmpty) {
             return '${S.of(context).commonCanNotBeEmpty}';

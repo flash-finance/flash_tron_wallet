@@ -231,25 +231,6 @@ class HomeProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  String _assetHide = '0';
-
-  String get assetHide => _assetHide;
-
-  Future<bool> updateAssetHide(String value) async {
-    //print('updateAssetHide start');
-    try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      _assetHide = value;
-      prefs.setString('assetHide', value);
-    } catch (e) {
-      print(e);
-      return false;
-    }
-    //print('updateAssetHide end');
-    notifyListeners();
-    return true;
-  }
-
   int _selectAssetFilterIndex = 0;
 
   int get selectAssetFilterIndex => _selectAssetFilterIndex;
@@ -263,13 +244,13 @@ class HomeProvider with ChangeNotifier {
 
   TronInfo get tronInfo => _tronInfo;
 
-  int _chainType = 1;
-
-  int get chainType => _chainType;
-
   String _tronGrpcIP = 'grpc.trongrid.io';
 
   String get tronGrpcIP => _tronGrpcIP;
+
+  String _swapAddress = 'TGS7NxoAQ44pQYCSAW3FPrVMhQ1TpdsTXg';
+
+  String get swapAddress => _swapAddress;
 
   List<TokenRows> _tokenList = [];
 
@@ -295,6 +276,9 @@ class HomeProvider with ChangeNotifier {
             _tronInfo = respModel.data.tronInfo;
             if (_tronInfo.tronGrpcIP != null) {
               _tronGrpcIP = _tronInfo.tronGrpcIP;
+            }
+            if (_tronInfo.swapContract != null) {
+              _swapAddress = _tronInfo.swapContract;
             }
           }
 

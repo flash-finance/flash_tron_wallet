@@ -256,12 +256,8 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
   }
 
   Widget _cardWidget(BuildContext context) {
-    bool flag = Platform.isAndroid;
     List<AssetEntity> assetList =
         Provider.of<HomeProvider>(context, listen: true).assetList;
-    TronInfo tronInfo =
-        Provider.of<HomeProvider>(context, listen: true).tronInfo;
-    double totalAssetCny = 0.0;
     double totalAssetUsd = 0.0;
 
     int selectIndex =
@@ -269,9 +265,8 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
 
     if (assetList != null && assetList.length > 0) {
       for (AssetEntity item in assetList) {
-        totalAssetCny += double.parse(Util.formatNum(item.usd, 2));
+        totalAssetUsd += item.usd;
       }
-      totalAssetUsd = totalAssetCny / 6.75;
     }
     return InkWell(
       onTap: () {
@@ -516,7 +511,7 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
                       child: Text(
                     '${item.name}',
                     style: Util.textStyle4En(context, 2,
-                        color: Colors.grey[850], spacing: 0.0, size: 32),
+                        color: Colors.grey[850], spacing: 0.0, size: 30),
                   )),
                 ],
               ),
@@ -540,7 +535,7 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
                   SizedBox(height: Util.height(8)),
                   Container(
                     child: Text(
-                      '≈  \$ ${Util.formatNum(item.usd / 6.75, 2)}',
+                      '≈  \$ ${Util.formatNum(item.usd, 2)}',
                       style: Util.textStyle4Num(context,
                           color: Colors.grey[600],
                           spacing: 0.0,

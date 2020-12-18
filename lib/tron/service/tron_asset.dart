@@ -58,7 +58,7 @@ class TronAsset {
   AssetEntity getTrxBalance(
       Account response, String userAddress, TokenRows item) {
     AssetEntity entity = AssetEntity(
-        type: 0,
+        type: 1,
         address: item.tokenAddress,
         name: item.tokenShort,
         precision: item.tokenPrecision,

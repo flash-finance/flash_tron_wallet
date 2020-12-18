@@ -10,24 +10,18 @@ class AssetEntity {
 
   double balance;
 
-  double frozen;
-
-  double order;
-
-  double cny;
+  double usd;
 
   String logoUrl;
 
-  AssetEntity({this.type, this.address, this.name, this.precision, this.balance, this.frozen, this.order, this.cny, this.logoUrl});
+  AssetEntity({this.type, this.address, this.name, this.precision, this.balance, this.usd, this.logoUrl});
 
   AssetEntity.fromJson(Map<String, dynamic> json) {
     type = json['type'];
     address = json['address'];
     name = json['name'];
     balance = json['balance'];
-    frozen = json['frozen'];
-    order = json['order'];
-    cny = json['cny'];
+    usd = json['usd'];
     logoUrl = json['logoUrl'];
   }
 
@@ -37,9 +31,7 @@ class AssetEntity {
     data['address'] = this.address;
     data['name'] = this.name;
     data['balance'] = this.balance;
-    data['frozen'] = this.frozen;
-    data['order'] = this.order;
-    data['cny'] = this.cny;
+    data['cny'] = this.usd;
     data['logoUrl'] = this.logoUrl;
     return data;
   }

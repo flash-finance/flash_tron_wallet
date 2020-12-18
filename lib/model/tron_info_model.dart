@@ -1,14 +1,15 @@
-class DexInfoRespModel {
+class TronInfoRespModel {
   int code;
   String msg;
-  DexInfoData data;
+  TronInfoData data;
 
-  DexInfoRespModel({this.code, this.msg, this.data});
+  TronInfoRespModel({this.code, this.msg, this.data});
 
-  DexInfoRespModel.fromJson(Map<String, dynamic> json) {
+  TronInfoRespModel.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     msg = json['msg'];
-    data = json['data'] != null ? new DexInfoData.fromJson(json['data']) : null;
+    data =
+        json['data'] != null ? new TronInfoData.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -22,15 +23,16 @@ class DexInfoRespModel {
   }
 }
 
-class DexInfoData {
-  DexInfo dexInfo;
+class TronInfoData {
+  TronInfo tronInfo;
   List<TokenRows> tokenRows;
 
-  DexInfoData({this.dexInfo, this.tokenRows});
+  TronInfoData({this.tronInfo, this.tokenRows});
 
-  DexInfoData.fromJson(Map<String, dynamic> json) {
-    dexInfo =
-    json['dexInfo'] != null ? new DexInfo.fromJson(json['dexInfo']) : null;
+  TronInfoData.fromJson(Map<String, dynamic> json) {
+    tronInfo = json['tronInfo'] != null
+        ? new TronInfo.fromJson(json['tronInfo'])
+        : null;
     if (json['tokenRows'] != null) {
       tokenRows = new List<TokenRows>();
       json['tokenRows'].forEach((v) {
@@ -41,8 +43,8 @@ class DexInfoData {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.dexInfo != null) {
-      data['dexInfo'] = this.dexInfo.toJson();
+    if (this.tronInfo != null) {
+      data['tronInfo'] = this.tronInfo.toJson();
     }
     if (this.tokenRows != null) {
       data['tokenRows'] = this.tokenRows.map((v) => v.toJson()).toList();
@@ -51,58 +53,55 @@ class DexInfoData {
   }
 }
 
-class DexInfo {
+class TronInfo {
   int id;
   int chainType;
   String tronGrpcIP;
-  double trxPriceUsdt;
-  double usdtPriceCny;
-  double dexLimitOrderTrx;
-  double dexLimitOrderUsdt;
-  String dexContract;
+  double trxPriceUsd;
+  String swapContract;
   String androidVersionNum;
   String androidDownloadUrl;
-  String androidUpdateInfo;
+  String androidUpdateInfo1;
+  String androidUpdateInfo2;
   int androidUpdateType;
   String iosVersionNum;
   String iosDownloadUrl;
-  String iosUpdateInfo;
+  String iosUpdateInfo1;
+  String iosUpdateInfo2;
   int iosUpdateType;
 
-  DexInfo(
+  TronInfo(
       {this.id,
-        this.chainType,
-        this.tronGrpcIP,
-        this.trxPriceUsdt,
-        this.usdtPriceCny,
-        this.dexLimitOrderTrx,
-        this.dexLimitOrderUsdt,
-        this.dexContract,
-        this.androidVersionNum,
-        this.androidDownloadUrl,
-        this.androidUpdateInfo,
-        this.androidUpdateType,
-        this.iosVersionNum,
-        this.iosDownloadUrl,
-        this.iosUpdateInfo,
-        this.iosUpdateType});
+      this.chainType,
+      this.tronGrpcIP,
+      this.trxPriceUsd,
+      this.swapContract,
+      this.androidVersionNum,
+      this.androidDownloadUrl,
+      this.androidUpdateInfo1,
+      this.androidUpdateInfo2,
+      this.androidUpdateType,
+      this.iosVersionNum,
+      this.iosDownloadUrl,
+      this.iosUpdateInfo1,
+      this.iosUpdateInfo2,
+      this.iosUpdateType});
 
-  DexInfo.fromJson(Map<String, dynamic> json) {
+  TronInfo.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     chainType = json['chainType'];
     tronGrpcIP = json['tronGrpcIP'];
-    trxPriceUsdt = (json['trxPriceUsdt'] as num)?.toDouble();
-    usdtPriceCny = (json['usdtPriceCny'] as num)?.toDouble();
-    dexLimitOrderTrx = (json['dexLimitOrderTrx'] as num)?.toDouble();
-    dexLimitOrderUsdt = (json['dexLimitOrderUsdt'] as num)?.toDouble();
-    dexContract = json['dexContract'];
+    trxPriceUsd = (json['trxPriceUsd'] as num)?.toDouble();
+    swapContract = json['swapContract'];
     androidVersionNum = json['androidVersionNum'];
     androidDownloadUrl = json['androidDownloadUrl'];
-    androidUpdateInfo = json['androidUpdateInfo'];
+    androidUpdateInfo1 = json['androidUpdateInfo1'];
+    androidUpdateInfo2 = json['androidUpdateInfo2'];
     androidUpdateType = json['androidUpdateType'];
     iosVersionNum = json['iosVersionNum'];
     iosDownloadUrl = json['iosDownloadUrl'];
-    iosUpdateInfo = json['iosUpdateInfo'];
+    iosUpdateInfo1 = json['iosUpdateInfo1'];
+    iosUpdateInfo2 = json['iosUpdateInfo2'];
     iosUpdateType = json['iosUpdateType'];
   }
 
@@ -111,18 +110,17 @@ class DexInfo {
     data['id'] = this.id;
     data['chainType'] = this.chainType;
     data['tronGrpcIP'] = this.tronGrpcIP;
-    data['trxPriceUsdt'] = this.trxPriceUsdt;
-    data['usdtPriceCny'] = this.usdtPriceCny;
-    data['dexLimitOrderTrx'] = this.dexLimitOrderTrx;
-    data['dexLimitOrderUsdt'] = this.dexLimitOrderUsdt;
-    data['dexContract'] = this.dexContract;
+    data['trxPriceUsd'] = this.trxPriceUsd;
+    data['swapContract'] = this.swapContract;
     data['androidVersionNum'] = this.androidVersionNum;
     data['androidDownloadUrl'] = this.androidDownloadUrl;
-    data['androidUpdateInfo'] = this.androidUpdateInfo;
+    data['androidUpdateInfo1'] = this.androidUpdateInfo1;
+    data['androidUpdateInfo2'] = this.androidUpdateInfo2;
     data['androidUpdateType'] = this.androidUpdateType;
     data['iosVersionNum'] = this.iosVersionNum;
     data['iosDownloadUrl'] = this.iosDownloadUrl;
-    data['iosUpdateInfo'] = this.iosUpdateInfo;
+    data['iosUpdateInfo1'] = this.iosUpdateInfo1;
+    data['iosUpdateInfo2'] = this.iosUpdateInfo2;
     data['iosUpdateType'] = this.iosUpdateType;
     return data;
   }
@@ -136,17 +134,17 @@ class TokenRows {
   int tokenPrecision;
   String logoUrl;
   double priceTrx;
-  int status;
+  double priceUsd;
 
   TokenRows(
       {this.id,
-        this.tokenType,
-        this.tokenShort,
-        this.tokenAddress,
-        this.tokenPrecision,
-        this.logoUrl,
-        this.priceTrx,
-        this.status});
+      this.tokenType,
+      this.tokenShort,
+      this.tokenAddress,
+      this.tokenPrecision,
+      this.logoUrl,
+      this.priceTrx,
+      this.priceUsd});
 
   TokenRows.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -156,7 +154,7 @@ class TokenRows {
     tokenPrecision = json['tokenPrecision'];
     logoUrl = json['logoUrl'];
     priceTrx = (json['priceTrx'] as num)?.toDouble();
-    status = json['status'];
+    priceUsd = (json['priceUsd'] as num)?.toDouble();
   }
 
   Map<String, dynamic> toJson() {
@@ -168,7 +166,7 @@ class TokenRows {
     data['tokenPrecision'] = this.tokenPrecision;
     data['logoUrl'] = this.logoUrl;
     data['priceTrx'] = this.priceTrx;
-    data['status'] = this.status;
+    data['priceUsd'] = this.priceUsd;
     return data;
   }
 }

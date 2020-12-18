@@ -7,7 +7,7 @@ import 'package:flash_tron_wallet/common/common_config.dart';
 import 'package:flash_tron_wallet/common/common_service.dart';
 import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
-import 'package:flash_tron_wallet/model/dex_info_model.dart';
+import 'package:flash_tron_wallet/model/tron_info_model.dart';
 import 'package:flash_tron_wallet/tron/api/api.pbgrpc.dart';
 import 'package:flash_tron_wallet/tron/core/Tron.pb.dart';
 import 'package:flash_tron_wallet/tron/service/tron_asset.dart';
@@ -23,7 +23,6 @@ class HomeProvider with ChangeNotifier {
     await getSelectWalletIndex();
     await getSelectWallet();
     await getDexInfo();
-    await getAssetHide();
     await getAsset4Init();
     getAsset4ReloadAsync();
   }
@@ -43,7 +42,6 @@ class HomeProvider with ChangeNotifier {
 
   List<WalletEntity> _walletList = [];
   List<WalletEntity> get walletList => _walletList;
-
 
   int _selectWalletIndex = -1;
   int get selectWalletIndex => _selectWalletIndex;
@@ -151,7 +149,7 @@ class HomeProvider with ChangeNotifier {
     }
     return true;
   }
-  
+
   Future<bool> updateName(int index, String newName) async {
     try {
       if (_walletList.length > index) {
@@ -199,14 +197,12 @@ class HomeProvider with ChangeNotifier {
         notifyListeners();
         await saveSelectWalletList(_walletList);
       }
-
     } catch (e) {
       print(e);
       return false;
     }
     return true;
   }
-
 
   String _firstRandom = '';
 
@@ -254,15 +250,6 @@ class HomeProvider with ChangeNotifier {
     return true;
   }
 
-  getAssetHide() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String value = prefs.getString('assetHide');
-    if (value != null && value != '') {
-      _assetHide = value;
-    }
-    notifyListeners();
-  }
-
   int _selectAssetFilterIndex = 0;
 
   int get selectAssetFilterIndex => _selectAssetFilterIndex;
@@ -272,44 +259,19 @@ class HomeProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  DexInfo _dexInfo = DexInfo(
-      tronGrpcIP: 'grpc.shasta.trongrid.io',
-      trxPriceUsdt: 0.01500,
-      usdtPriceCny: 7.18);
+  TronInfo _tronInfo;
 
-  DexInfo get dexInfo => _dexInfo;
+  TronInfo get tronInfo => _tronInfo;
 
   int _chainType = 1;
 
   int get chainType => _chainType;
 
-  String _tronGrpcIP = 'grpc.shasta.trongrid.io';
+  String _tronGrpcIP = 'grpc.trongrid.io';
 
   String get tronGrpcIP => _tronGrpcIP;
 
-  double _usdtPriceCny = 7.18;
-
-  double get usdtPriceCny => _usdtPriceCny;
-
-  double _dexLimitOrderTrx = 10.0;
-
-  double get dexLimitOrderTrx => _dexLimitOrderTrx;
-
-  double _trxPriceCny = 0.015000 * 7.18;
-
-  double get trxPriceCny => _trxPriceCny;
-
-  List<TokenRows> _tokenList = [
-    TokenRows(
-        id: 1,
-        tokenType: 0,
-        tokenShort: 'TRX',
-        tokenAddress: 'T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb',
-        tokenPrecision: 6,
-        logoUrl: '',
-        priceTrx: 1,
-        status: 1),
-  ];
+  List<TokenRows> _tokenList = [];
 
   List<TokenRows> get tokenList => _tokenList;
 
@@ -320,34 +282,19 @@ class HomeProvider with ChangeNotifier {
   getDexInfo() async {
     //print('getDexInfo start');
     try {
-      String url = servicePath['dexInfoQuery'];
+      String url = servicePath['tronInfoQuery'];
       PackageInfo packageInfo = await PackageInfo.fromPlatform();
       _currentVersion = packageInfo.version;
       await requestGet(url).then((val) {
         var respData = Map<String, dynamic>.from(val);
-        DexInfoRespModel respModel = DexInfoRespModel.fromJson(respData);
+        TronInfoRespModel respModel = TronInfoRespModel.fromJson(respData);
         if (respModel != null &&
             respModel.code == 0 &&
             respModel.data != null) {
-          if (respModel.data.dexInfo != null) {
-            _dexInfo = respModel.data.dexInfo;
-            if (_dexInfo.dexLimitOrderTrx != null) {
-              _dexLimitOrderTrx = _dexInfo.dexLimitOrderTrx;
-            }
-            if (_dexInfo.dexContract != null) {
-              _dexContract = _dexInfo.dexContract;
-            }
-            if (_dexInfo.chainType != null) {
-              _chainType = _dexInfo.chainType;
-            }
-
-            if (_dexInfo.tronGrpcIP != null) {
-              _tronGrpcIP = _dexInfo.tronGrpcIP;
-            }
-            if (_dexInfo.trxPriceUsdt != null &&
-                _dexInfo.usdtPriceCny != null) {
-              _usdtPriceCny = _dexInfo.usdtPriceCny;
-              _trxPriceCny = _dexInfo.trxPriceUsdt * _dexInfo.usdtPriceCny;
+          if (respModel.data.tronInfo != null) {
+            _tronInfo = respModel.data.tronInfo;
+            if (_tronInfo.tronGrpcIP != null) {
+              _tronGrpcIP = _tronInfo.tronGrpcIP;
             }
           }
 
@@ -364,7 +311,6 @@ class HomeProvider with ChangeNotifier {
     //print('getDexInfo end');
   }
 
-
   getAsset4Init() async {
     if (_selectWalletEntity == null) {
       if (_assetList != null && _assetList.length > 0) {
@@ -377,7 +323,14 @@ class HomeProvider with ChangeNotifier {
       List<AssetEntity> list = [];
       for (int i = 0; i < tokenList.length; i++) {
         TokenRows item = tokenList[i];
-        AssetEntity entity = AssetEntity(type: item.tokenType, address: item.tokenAddress, name: item.tokenShort, precision: item.tokenPrecision, balance: 0, frozen: 0, order: 0, cny: 0, logoUrl: item.logoUrl);
+        AssetEntity entity = AssetEntity(
+            type: item.tokenType,
+            address: item.tokenAddress,
+            name: item.tokenShort,
+            precision: item.tokenPrecision,
+            balance: 0,
+            usd: 0,
+            logoUrl: item.logoUrl);
         list.add(entity);
       }
       _assetList = list;
@@ -400,18 +353,17 @@ class HomeProvider with ChangeNotifier {
       String userAddress = _selectWalletEntity.tronAddress;
       for (int i = 0; i < tokenList.length; i++) {
         if (tokenList[i].tokenType == 0) {
-          getTrxBalance4Async(userAddress, tokenList[i], trxPriceCny);
+          getTrxBalance4Async(userAddress, tokenList[i]);
         } else if (tokenList[i].tokenType == 2) {
-          getTrc20Balance4Async(userAddress, tokenList[i], trxPriceCny);
+          getTrc20Balance4Async(userAddress, tokenList[i]);
         }
       }
     } catch (e) {
       print(e);
     }
-
   }
 
-  getTrxBalance4Async(String userAddress, TokenRows item, double trxPriceCny) async {
+  getTrxBalance4Async(String userAddress, TokenRows item) async {
     final channel = ClientChannel(
       tronGrpcIP.trim(),
       port: 50051,
@@ -420,8 +372,10 @@ class HomeProvider with ChangeNotifier {
     final stub = WalletClient(channel);
     try {
       Uint8List originAddress = base58.decode(userAddress).sublist(0, 21);
-      Account response = await stub.getAccount(Account()..address = originAddress);
-      AssetEntity entity = TronAsset().getTrxBalance(response, userAddress, item, trxPriceCny);
+      Account response =
+          await stub.getAccount(Account()..address = originAddress);
+      AssetEntity entity =
+          TronAsset().getTrxBalance(response, userAddress, item);
       //print('getTrxBalance4Async:${entity.toJson()}, length:${_assetList.length}');
       for (int i = 0; i < _assetList.length; i++) {
         if (_assetList[i].address == entity.address) {
@@ -430,9 +384,7 @@ class HomeProvider with ChangeNotifier {
           _assetList[i].name = entity.name;
           _assetList[i].precision = entity.precision;
           _assetList[i].balance = entity.balance;
-          _assetList[i].frozen = entity.frozen;
-          _assetList[i].order = entity.order;
-          _assetList[i].cny = entity.cny;
+          _assetList[i].usd = entity.usd;
           _assetList[i].logoUrl = entity.logoUrl;
           notifyListeners();
           break;
@@ -446,7 +398,7 @@ class HomeProvider with ChangeNotifier {
     }
   }
 
-  getTrc20Balance4Async(String userAddress, TokenRows item, double trxPriceCny) async {
+  getTrc20Balance4Async(String userAddress, TokenRows item) async {
     final channel = ClientChannel(
       tronGrpcIP.trim(),
       port: 50051,
@@ -454,7 +406,8 @@ class HomeProvider with ChangeNotifier {
     );
     try {
       final stub = WalletClient(channel);
-      AssetEntity entity = await TronAsset().getTrc20Balance(stub, userAddress, item, trxPriceCny);
+      AssetEntity entity =
+          await TronAsset().getTrc20Balance(stub, userAddress, item);
       //print('getTrc20Balance4Async:${entity.toJson()}, length:${_assetList.length}');
       for (int i = 0; i < _assetList.length; i++) {
         if (_assetList[i].address == entity.address) {
@@ -463,9 +416,7 @@ class HomeProvider with ChangeNotifier {
           _assetList[i].name = entity.name;
           _assetList[i].precision = entity.precision;
           _assetList[i].balance = entity.balance;
-          _assetList[i].frozen = entity.frozen;
-          _assetList[i].order = entity.order;
-          _assetList[i].cny = entity.cny;
+          _assetList[i].usd = entity.usd;
           _assetList[i].logoUrl = entity.logoUrl;
           notifyListeners();
           break;
@@ -474,7 +425,7 @@ class HomeProvider with ChangeNotifier {
       return;
     } catch (e) {
       print(e);
-    } finally{
+    } finally {
       await channel.shutdown();
     }
   }
@@ -490,7 +441,6 @@ class HomeProvider with ChangeNotifier {
     }
     String userAddress = _selectWalletEntity.tronAddress;
     String tronGrpcIP = _tronGrpcIP;
-    double trxPriceCny = _trxPriceCny;
     List<AssetEntity> list = [];
     final channel = ClientChannel(
       tronGrpcIP.trim(),
@@ -500,17 +450,16 @@ class HomeProvider with ChangeNotifier {
     final stub = WalletClient(channel);
     Uint8List originAddress = base58.decode(userAddress).sublist(0, 21);
     try {
-      Account response = await stub.getAccount(Account()..address = originAddress);
+      Account response =
+          await stub.getAccount(Account()..address = originAddress);
       for (int i = 0; i < tokenList.length; i++) {
-        if (tokenList[i].tokenType == 0) {
-          AssetEntity trxEntity = TronAsset().getTrxBalance(response, userAddress, tokenList[i], trxPriceCny);
+        if (tokenList[i].tokenType == 1) {
+          AssetEntity trxEntity =
+              TronAsset().getTrxBalance(response, userAddress, tokenList[i]);
           list.add(trxEntity);
-        } else if (tokenList[i].tokenType == 1) {
-          AssetEntity trc10Entity = TronAsset().getTrc10Balance(response, userAddress, tokenList[i], trxPriceCny);
-          list.add(trc10Entity);
         } else if (tokenList[i].tokenType == 2) {
           AssetEntity trc20Balance = await TronAsset()
-              .getTrc20Balance(stub, userAddress, tokenList[i], trxPriceCny);
+              .getTrc20Balance(stub, userAddress, tokenList[i]);
           list.add(trc20Balance);
         }
       }
@@ -521,7 +470,6 @@ class HomeProvider with ChangeNotifier {
     }
     await channel.shutdown();
   }
-
 
   bool _importKeyLoading = false;
 
@@ -562,7 +510,6 @@ class HomeProvider with ChangeNotifier {
 
   String get currentVersion => _currentVersion;
 }
-
 
 class TransferFilterModel {
   String name;

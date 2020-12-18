@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
-import 'package:flash_tron_wallet/model/dex_info_model.dart';
+import 'package:flash_tron_wallet/model/tron_info_model.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
@@ -24,7 +24,7 @@ class AssetPage extends StatefulWidget {
   _AssetPageState createState() => _AssetPageState();
 }
 
-class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
+class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
   Timer _timer;
   ScanController controller = ScanController();
   bool _langType = true;
@@ -33,7 +33,7 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance.addPostFrameCallback((_){
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       //_reloadAsset();
       _reloadAssetSub();
     });
@@ -43,16 +43,18 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
     print('didChangeAppLifecycleState:${state.toString()}');
-    switch(state) {
+    switch (state) {
       case AppLifecycleState.inactive:
         break;
       case AppLifecycleState.resumed:
-        Provider.of<HomeProvider>(context, listen: false).changeBackgroundFlag(false);
+        Provider.of<HomeProvider>(context, listen: false)
+            .changeBackgroundFlag(false);
         // 无法关闭 会重新唤醒?
         controller.pause();
         break;
       case AppLifecycleState.paused:
-        Provider.of<HomeProvider>(context, listen: false).changeBackgroundFlag(true);
+        Provider.of<HomeProvider>(context, listen: false)
+            .changeBackgroundFlag(true);
         controller.pause();
         break;
       default:
@@ -71,11 +73,11 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     _langType = Provider.of<IndexProvider>(context, listen: true).langType;
-    WalletEntity wallet = Provider.of<HomeProvider>(context, listen: true).selectWalletEntity;
+    WalletEntity wallet =
+        Provider.of<HomeProvider>(context, listen: true).selectWalletEntity;
     if (wallet != null && wallet.tronAddress != null) {
       return Scaffold(
         backgroundColor: Colors.white,
@@ -138,8 +140,10 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
   }
 
   Widget _headWidget(BuildContext context) {
-    WalletEntity item = Provider.of<HomeProvider>(context, listen: true).selectWalletEntity;
-    List<WalletEntity> walletList = Provider.of<HomeProvider>(context, listen: true).walletList;
+    WalletEntity item =
+        Provider.of<HomeProvider>(context, listen: true).selectWalletEntity;
+    List<WalletEntity> walletList =
+        Provider.of<HomeProvider>(context, listen: true).walletList;
     return Container(
       margin: EdgeInsets.only(top: Util.height(20)),
       child: Row(
@@ -151,7 +155,8 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
             },
             child: Container(
               child: Chip(
-                padding: EdgeInsets.only(left: Util.width(8), right: Util.width(0)),
+                padding:
+                    EdgeInsets.only(left: Util.width(8), right: Util.width(0)),
                 backgroundColor: Util.themeColor,
                 label: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -159,7 +164,8 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                     Container(
                       child: Text(
                         '${item.name}',
-                        style: Util.textStyle(context, 1, color: Colors.white, spacing: 0.2, size: 23),
+                        style: Util.textStyle(context, 1,
+                            color: Colors.white, spacing: 0.2, size: 23),
                       ),
                     ),
                     SizedBox(width: Util.width(5)),
@@ -167,7 +173,10 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                       alignment: Alignment.center,
                       height: Util.height(40),
                       width: Util.height(40),
-                      decoration: BoxDecoration(image: DecorationImage(image: AssetImage('icons/circle.png'), fit: BoxFit.fill)),
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage('icons/circle.png'),
+                              fit: BoxFit.fill)),
                       child: Icon(
                         Icons.arrow_forward_ios,
                         size: ScreenUtil().setSp(22),
@@ -184,7 +193,9 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
               children: <Widget>[
                 InkWell(
                   onTap: () {
-                    Application.router.navigateTo(context,  Routes.assetAddWallet, transition: TransitionType.cupertino);
+                    Application.router.navigateTo(
+                        context, Routes.assetAddWallet,
+                        transition: TransitionType.cupertino);
                   },
                   child: Container(
                     child: Icon(
@@ -196,9 +207,12 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                 ),
                 SizedBox(width: Util.width(30)),
                 InkWell(
-                  onTap: ()  {
-                    Provider.of<HomeProvider>(context, listen: false).changeSelectAssetFilterIndex(0);
-                    Application.router.navigateTo(context, Routes.assetQrScan + '/1', transition: TransitionType.fadeIn);
+                  onTap: () {
+                    Provider.of<HomeProvider>(context, listen: false)
+                        .changeSelectAssetFilterIndex(0);
+                    Application.router.navigateTo(
+                        context, Routes.assetQrScan + '/1',
+                        transition: TransitionType.fadeIn);
                   },
                   child: Container(
                     child: Icon(
@@ -219,7 +233,8 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
   Widget _bodyWidget(BuildContext context) {
     return EasyRefresh(
       header: MaterialHeader(enableHapticFeedback: true),
-      footer: MaterialFooter(enableHapticFeedback: true, enableInfiniteLoad: false),
+      footer:
+          MaterialFooter(enableHapticFeedback: true, enableInfiniteLoad: false),
       child: Container(
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
@@ -242,26 +257,31 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
 
   Widget _cardWidget(BuildContext context) {
     bool flag = Platform.isAndroid;
-    List<AssetEntity> assetList = Provider.of<HomeProvider>(context, listen: true).assetList;
-    DexInfo dexInfo = Provider.of<HomeProvider>(context).dexInfo;
-    double trxPrice4Cny = dexInfo.trxPriceUsdt * dexInfo.usdtPriceCny;
+    List<AssetEntity> assetList =
+        Provider.of<HomeProvider>(context, listen: true).assetList;
+    TronInfo tronInfo =
+        Provider.of<HomeProvider>(context, listen: true).tronInfo;
     double totalAssetCny = 0.0;
     double totalAssetUsd = 0.0;
 
-    int selectIndex = Provider.of<HomeProvider>(context, listen: true).selectWalletIndex;
+    int selectIndex =
+        Provider.of<HomeProvider>(context, listen: true).selectWalletIndex;
 
     if (assetList != null && assetList.length > 0) {
       for (AssetEntity item in assetList) {
-        totalAssetCny += double.parse(Util.formatNum(item.cny, 2));
+        totalAssetCny += double.parse(Util.formatNum(item.usd, 2));
       }
       totalAssetUsd = totalAssetCny / 6.75;
     }
     return InkWell(
       onTap: () {
-        Application.router.navigateTo(context, Routes.assetWalletDetail + '/$selectIndex', transition: TransitionType.cupertino);
+        Application.router.navigateTo(
+            context, Routes.assetWalletDetail + '/$selectIndex',
+            transition: TransitionType.cupertino);
       },
       child: Container(
-        padding: EdgeInsets.only(left: Util.width(40), top: Util.height(30), right: Util.width(40)),
+        padding: EdgeInsets.only(
+            left: Util.width(40), top: Util.height(30), right: Util.width(40)),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
           image: DecorationImage(
@@ -278,7 +298,8 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   Container(
                     child: Text(
                       '${S.of(context).assetMyAssets} （\$）',
-                      style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.5, size: 25),
+                      style: Util.textStyle(context, 1,
+                          color: Colors.white, spacing: 0.5, size: 25),
                     ),
                   ),
                   Container(
@@ -287,12 +308,17 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                         Container(
                           child: Text(
                             '${S.of(context).assetDetails}',
-                            style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.5, size: 25),
+                            style: Util.textStyle(context, 1,
+                                color: Colors.white, spacing: 0.5, size: 25),
                           ),
                         ),
                         SizedBox(width: Util.width(10)),
                         Container(
-                          padding: EdgeInsets.only(top:_langType ? Util.height(0) : Util.height(1.5), bottom: _langType ? Util.height(1) : Util.height(0)),
+                          padding: EdgeInsets.only(
+                              top:
+                                  _langType ? Util.height(0) : Util.height(1.5),
+                              bottom:
+                                  _langType ? Util.height(1) : Util.height(0)),
                           child: Icon(
                             Icons.arrow_forward_ios,
                             size: ScreenUtil().setSp(23),
@@ -308,14 +334,21 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
             SizedBox(height: Util.height(10)),
             InkWell(
               onTap: () {
-                Application.router.navigateTo(context, Routes.assetWalletDetail + '/$selectIndex', transition: TransitionType.cupertino);
+                Application.router.navigateTo(
+                    context, Routes.assetWalletDetail + '/$selectIndex',
+                    transition: TransitionType.cupertino);
               },
               child: Container(
                 alignment: Alignment.centerLeft,
-                padding: EdgeInsets.only(top: Util.height(20), bottom: Util.height(20)),
+                padding: EdgeInsets.only(
+                    top: Util.height(20), bottom: Util.height(20)),
                 child: Text(
                   '${Util.formatNum(totalAssetUsd, 2)}',
-                  style: Util.textStyle4Num(context, color: Colors.white, spacing: 0.2, size: 45, fontWeight: FontWeight.w500),
+                  style: Util.textStyle4Num(context,
+                      color: Colors.white,
+                      spacing: 0.2,
+                      size: 45,
+                      fontWeight: FontWeight.w500),
                 ),
               ),
             ),
@@ -326,9 +359,12 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                 children: <Widget>[
                   InkWell(
                     onTap: () {
-                      Provider.of<HomeProvider>(context, listen: false).changeSelectAssetFilterIndex(0);
+                      Provider.of<HomeProvider>(context, listen: false)
+                          .changeSelectAssetFilterIndex(0);
                       String value = '';
-                      Application.router.navigateTo(context, Routes.assetSendToken + '/$value', transition: TransitionType.cupertino);
+                      Application.router.navigateTo(
+                          context, Routes.assetSendToken + '/$value',
+                          transition: TransitionType.cupertino);
                     },
                     child: Container(
                       padding: EdgeInsets.only(bottom: Util.height(20)),
@@ -345,7 +381,8 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                           Container(
                             child: Text(
                               '${S.of(context).assetTransfer}',
-                              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.6, size: 25),
+                              style: Util.textStyle(context, 1,
+                                  color: Colors.white, spacing: 0.6, size: 25),
                             ),
                           ),
                         ],
@@ -354,7 +391,9 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   ),
                   InkWell(
                     onTap: () {
-                      Application.router.navigateTo(context, Routes.assetReceiveToken, transition: TransitionType.cupertino);
+                      Application.router.navigateTo(
+                          context, Routes.assetReceiveToken,
+                          transition: TransitionType.cupertino);
                     },
                     child: Container(
                       padding: EdgeInsets.only(bottom: Util.height(20)),
@@ -372,7 +411,8 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                           Container(
                             child: Text(
                               '${S.of(context).assetReceive}',
-                              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.6, size: 25),
+                              style: Util.textStyle(context, 1,
+                                  color: Colors.white, spacing: 0.6, size: 25),
                             ),
                           ),
                         ],
@@ -395,7 +435,8 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                           Container(
                             child: Text(
                               '${S.of(context).assetSwap}',
-                              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.6, size: 25),
+                              style: Util.textStyle(context, 1,
+                                  color: Colors.white, spacing: 0.6, size: 25),
                             ),
                           ),
                         ],
@@ -417,7 +458,8 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
         alignment: Alignment.centerLeft,
         child: Text(
           '${S.of(context).assetAssets}',
-          style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.5, size: 32),
+          style: Util.textStyle(context, 2,
+              color: Colors.grey[800], spacing: 0.5, size: 32),
         ));
   }
 
@@ -436,19 +478,24 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
     );
   }
 
-  Widget _assetDataItemWidget(BuildContext context, List<AssetEntity> assetList, int index) {
+  Widget _assetDataItemWidget(
+      BuildContext context, List<AssetEntity> assetList, int index) {
     AssetEntity item = assetList[index];
     bool flag = index != assetList.length - 1;
     return InkWell(
       onTap: () {
-        Provider.of<HomeProvider>(context, listen: false).changeSelectAssetFilterIndex(index);
+        Provider.of<HomeProvider>(context, listen: false)
+            .changeSelectAssetFilterIndex(index);
         String value = '';
-        Application.router.navigateTo(context, 'asset/sendToken/$value', transition: TransitionType.cupertino);
+        Application.router.navigateTo(context, 'asset/sendToken/$value',
+            transition: TransitionType.cupertino);
       },
       child: Container(
         padding: EdgeInsets.only(top: Util.height(20), bottom: Util.height(20)),
         decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: flag ? Colors.black45 : Colors.white, width: 0.3)),
+          border: Border(
+              bottom: BorderSide(
+                  color: flag ? Colors.black45 : Colors.white, width: 0.3)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -467,9 +514,10 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   SizedBox(width: Util.width(30)),
                   Container(
                       child: Text(
-                        '${item.name}',
-                        style: Util.textStyle4En(context, 2, color: Colors.grey[850], spacing: 0.0, size: 32),
-                      )),
+                    '${item.name}',
+                    style: Util.textStyle4En(context, 2,
+                        color: Colors.grey[850], spacing: 0.0, size: 32),
+                  )),
                 ],
               ),
             ),
@@ -480,7 +528,11 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   Container(
                     child: Text(
                       '${Util.formatNum(item.balance, 4)}',
-                      style: Util.textStyle4Num(context, color: Colors.grey[800], spacing: 0.1, size: 30, fontWeight: FontWeight.w500),
+                      style: Util.textStyle4Num(context,
+                          color: Colors.grey[800],
+                          spacing: 0.1,
+                          size: 30,
+                          fontWeight: FontWeight.w500),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -488,8 +540,12 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                   SizedBox(height: Util.height(8)),
                   Container(
                     child: Text(
-                      '≈  \$ ${Util.formatNum(item.cny / 6.75, 2)}',
-                      style: Util.textStyle4Num(context, color: Colors.grey[600], spacing: 0.0, size: 23, fontWeight: FontWeight.w400),
+                      '≈  \$ ${Util.formatNum(item.usd / 6.75, 2)}',
+                      style: Util.textStyle4Num(context,
+                          color: Colors.grey[600],
+                          spacing: 0.0,
+                          size: 23,
+                          fontWeight: FontWeight.w400),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -527,7 +583,8 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                 Container(
                   child: Text(
                     'Flash  Wallet',
-                    style: Util.textStyle4En(context, 1, color: Colors.white, spacing: 0.0, size: 40),
+                    style: Util.textStyle4En(context, 1,
+                        color: Colors.white, spacing: 0.0, size: 40),
                   ),
                 ),
               ],
@@ -540,18 +597,22 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
 
   Widget _logOutBodyWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: Util.width(30), top: Util.height(30), right: Util.width(30)),
+      margin: EdgeInsets.only(
+          left: Util.width(30), top: Util.height(30), right: Util.width(30)),
       child: Column(
         children: <Widget>[
           SizedBox(height: Util.height(30)),
           InkWell(
             onTap: () {
-              Application.router.navigateTo(context, Routes.assetImportKey + '/1', transition: TransitionType.cupertino);
+              Application.router.navigateTo(
+                  context, Routes.assetImportKey + '/1',
+                  transition: TransitionType.cupertino);
             },
             child: Container(
               padding: EdgeInsets.only(bottom: Util.height(30)),
               decoration: BoxDecoration(
-                border: Border(bottom: BorderSide(color: Colors.grey[350], width: 0.5)),
+                border: Border(
+                    bottom: BorderSide(color: Colors.grey[350], width: 0.5)),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -562,7 +623,8 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                       Container(
                         child: Text(
                           '${S.of(context).assetImportPrivateKey}',
-                          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
+                          style: Util.textStyle(context, 2,
+                              color: Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],
@@ -586,12 +648,15 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
           SizedBox(height: Util.height(30)),
           InkWell(
             onTap: () {
-              Application.router.navigateTo(context, Routes.assetImportMnemonic + '/1', transition: TransitionType.cupertino);
+              Application.router.navigateTo(
+                  context, Routes.assetImportMnemonic + '/1',
+                  transition: TransitionType.cupertino);
             },
             child: Container(
               padding: EdgeInsets.only(bottom: Util.height(30)),
               decoration: BoxDecoration(
-                border: Border(bottom: BorderSide(color: Colors.grey[350], width: 0.5)),
+                border: Border(
+                    bottom: BorderSide(color: Colors.grey[350], width: 0.5)),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -602,7 +667,8 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                       Container(
                         child: Text(
                           '${S.of(context).assetImportMnemonic}',
-                          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
+                          style: Util.textStyle(context, 2,
+                              color: Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],
@@ -626,7 +692,9 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
           SizedBox(height: Util.height(30)),
           InkWell(
             onTap: () {
-              Application.router.navigateTo(context, Routes.assetBuildFirstWallet + '/1', transition: TransitionType.cupertino);
+              Application.router.navigateTo(
+                  context, Routes.assetBuildFirstWallet + '/1',
+                  transition: TransitionType.cupertino);
             },
             child: Container(
               padding: EdgeInsets.only(bottom: Util.height(30)),
@@ -639,7 +707,8 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                       Container(
                         child: Text(
                           '${S.of(context).assetCreateWallet}',
-                          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.0, size: 30),
+                          style: Util.textStyle(context, 2,
+                              color: Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],
@@ -669,7 +738,8 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
 
   _reloadAsset() async {
     _timer = Timer.periodic(Duration(milliseconds: 3000), (timer) async {
-      bool backgroundFlag = Provider.of<HomeProvider>(context, listen: false).backgroundFlag;
+      bool backgroundFlag =
+          Provider.of<HomeProvider>(context, listen: false).backgroundFlag;
       if (!backgroundFlag && _reloadTokenBalanceFlag) {
         await _reloadAssetSub();
       }
@@ -679,7 +749,8 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
   _reloadAssetSub() async {
     try {
       _reloadTokenBalanceFlag = false;
-      await Provider.of<HomeProvider>(context, listen: false).getAsset4ReloadSync();
+      await Provider.of<HomeProvider>(context, listen: false)
+          .getAsset4ReloadSync();
     } catch (e) {
       print('_reloadAssetSub error: ${e.toString()}');
     } finally {
@@ -687,11 +758,12 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
     }
   }
 
-
   _getAsset() async {
-    WalletEntity wallet = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
+    WalletEntity wallet =
+        Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
     if (wallet != null && wallet.tronAddress != null) {
-      List<TokenRows> tokenList = Provider.of<HomeProvider>(context, listen: false).tokenList;
+      List<TokenRows> tokenList =
+          Provider.of<HomeProvider>(context, listen: false).tokenList;
       TronAsset().getAsset(context, wallet.tronAddress, tokenList);
     }
   }
@@ -702,7 +774,8 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
         isScrollControlled: true,
         enableDrag: false,
         barrierColor: Colors.grey[850].withOpacity(0.98),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15.0))),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15.0))),
         builder: (BuildContext context) {
           return Container(
             height: Util.height(800),
@@ -711,15 +784,17 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                 Container(
                   alignment: Alignment.center,
                   padding: EdgeInsets.only(
-                      top: Util.height(20),
-                      bottom: Util.height(20)),
+                      top: Util.height(20), bottom: Util.height(20)),
                   margin: EdgeInsets.only(bottom: Util.height(25)),
                   decoration: BoxDecoration(
-                    border: Border(bottom: BorderSide(color: Colors.grey[400], width: 0.3)),
+                    border: Border(
+                        bottom:
+                            BorderSide(color: Colors.grey[400], width: 0.3)),
                   ),
                   child: Text(
                     '${S.of(context).assetWalletList}',
-                    style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.4, size: 32),
+                    style: Util.textStyle(context, 2,
+                        color: Colors.grey[850], spacing: 0.4, size: 32),
                   ),
                 ),
                 Expanded(
@@ -740,13 +815,23 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
         });
   }
 
-  Widget _walletItemWidget(BuildContext context, List<WalletEntity> list, int index) {
-    int selectIndex = Provider.of<HomeProvider>(context, listen: false).selectWalletIndex;
+  Widget _walletItemWidget(
+      BuildContext context, List<WalletEntity> list, int index) {
+    int selectIndex =
+        Provider.of<HomeProvider>(context, listen: false).selectWalletIndex;
     String name = list[index].name;
-    String tronAddress = list[index].tronAddress.substring(0, 10) + '...' + list[index].tronAddress.substring(list[index].tronAddress.length - 10, list[index].tronAddress.length);
+    String tronAddress = list[index].tronAddress.substring(0, 10) +
+        '...' +
+        list[index].tronAddress.substring(list[index].tronAddress.length - 10,
+            list[index].tronAddress.length);
     return Container(
-      margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30), bottom: Util.height(20)),
-      padding: EdgeInsets.only(left: Util.width(40), top: Util.height(30), right: Util.width(40), bottom: Util.height(30)),
+      margin: EdgeInsets.only(
+          left: Util.width(30), right: Util.width(30), bottom: Util.height(20)),
+      padding: EdgeInsets.only(
+          left: Util.width(40),
+          top: Util.height(30),
+          right: Util.width(40),
+          bottom: Util.height(30)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
         //color: Util.themeColor,
@@ -756,10 +841,12 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
         ),
       ),
       child: InkWell(
-        onTap: () async{
+        onTap: () async {
           Navigator.pop(context);
-          await Provider.of<HomeProvider>(context, listen: false).changeSelectWallet(index);
-          Provider.of<HomeProvider>(context, listen: false).getAsset4ReloadAsync();
+          await Provider.of<HomeProvider>(context, listen: false)
+              .changeSelectWallet(index);
+          Provider.of<HomeProvider>(context, listen: false)
+              .getAsset4ReloadAsync();
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -770,13 +857,15 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                 Container(
                   child: Text(
                     '$name',
-                    style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.5, size: 30),
+                    style: Util.textStyle(context, 1,
+                        color: Colors.white, spacing: 0.5, size: 30),
                   ),
                 ),
                 SizedBox(height: Util.height(15)),
                 InkWell(
                   onTap: () {
-                    Clipboard.setData(ClipboardData(text: list[index].tronAddress));
+                    Clipboard.setData(
+                        ClipboardData(text: list[index].tronAddress));
                     Util.showToast('${S.of(context).commonCopySuccess}');
                   },
                   child: Container(
@@ -785,7 +874,8 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
                         Container(
                           child: Text(
                             '$tronAddress',
-                            style: Util.textStyle4En(context, 1, color: Colors.white, spacing: 0.0, size: 26),
+                            style: Util.textStyle4En(context, 1,
+                                color: Colors.white, spacing: 0.0, size: 26),
                           ),
                         ),
                         SizedBox(width: Util.width(50)),
@@ -818,5 +908,4 @@ class _AssetPageState extends State<AssetPage>  with WidgetsBindingObserver {
       ),
     );
   }
-
 }

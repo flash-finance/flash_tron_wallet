@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flash_tron_wallet/generated/l10n.dart';
-import 'package:flash_tron_wallet/model/dex_info_model.dart';
+import 'package:flash_tron_wallet/model/tron_info_model.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
@@ -17,7 +17,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'common/common_page.dart';
 import 'mine/download_page.dart';
-
 
 class MinePage extends StatefulWidget {
   @override
@@ -37,7 +36,8 @@ class _MinePageState extends State<MinePage> {
         brightness: Brightness.light,
         title: Text(
           '${S.of(context).bottomTab3}',
-          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2 , size: 34),
+          style: Util.textStyle(context, 2,
+              color: Colors.grey[850], spacing: 0.2, size: 34),
         ),
         centerTitle: true,
         elevation: 0,
@@ -59,13 +59,16 @@ class _MinePageState extends State<MinePage> {
   Widget _walletManageWidget(BuildContext context) {
     return InkWell(
       onTap: () {
-        Application.router.navigateTo(context, Routes.mineWalletManage, transition: TransitionType.cupertino);
+        Application.router.navigateTo(context, Routes.mineWalletManage,
+            transition: TransitionType.cupertino);
       },
       child: Container(
-        margin: EdgeInsets.only(left: Util.width(40), top: Util.height(30), right: Util.width(40)),
+        margin: EdgeInsets.only(
+            left: Util.width(40), top: Util.height(30), right: Util.width(40)),
         padding: EdgeInsets.only(bottom: Util.height(30)),
         decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
+          border:
+              Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -83,7 +86,8 @@ class _MinePageState extends State<MinePage> {
                 Container(
                   child: Text(
                     '${S.of(context).mineManageWallet}',
-                    style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
+                    style: Util.textStyle(context, 2,
+                        color: Colors.grey[800], spacing: 0.0, size: 30),
                   ),
                 ),
               ],
@@ -107,11 +111,12 @@ class _MinePageState extends State<MinePage> {
         _showSwitchLangDialLog(context);
       },
       child: Container(
-        margin: EdgeInsets.only(left: Util.width(40), top: Util.height(30), right: Util.width(40)),
+        margin: EdgeInsets.only(
+            left: Util.width(40), top: Util.height(30), right: Util.width(40)),
         padding: EdgeInsets.only(bottom: Util.height(30)),
         decoration: BoxDecoration(
-          border: Border(
-              bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
+          border:
+              Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -131,14 +136,16 @@ class _MinePageState extends State<MinePage> {
                     Container(
                       child: Text(
                         'English/',
-                        style: Util.textStyle4En(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
+                        style: Util.textStyle4En(context, 2,
+                            color: Colors.grey[800], spacing: 0.0, size: 30),
                       ),
                     ),
                     Container(
                       padding: EdgeInsets.only(top: Util.height(1)),
                       child: Text(
                         '中文',
-                        style: Util.textStyle4Zh(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
+                        style: Util.textStyle4Zh(context, 2,
+                            color: Colors.grey[800], spacing: 0.0, size: 30),
                       ),
                     ),
                   ],
@@ -159,91 +166,48 @@ class _MinePageState extends State<MinePage> {
   }
 
   Widget _versionWidget(BuildContext context) {
-    DexInfo dexInfo = Provider.of<HomeProvider>(context, listen: true).dexInfo;
-    String currentVersion = Provider.of<HomeProvider>(context, listen: true).currentVersion;
+    TronInfo tronInfo =
+        Provider.of<HomeProvider>(context, listen: true).tronInfo;
+    String currentVersion =
+        Provider.of<HomeProvider>(context, listen: true).currentVersion;
 
     int androidNeedUpdateType = 0;
     int iosNeedUpdateType = 0;
 
-    if (Platform.isAndroid && dexInfo.androidVersionNum != null) {
-      if (currentVersion.compareTo(dexInfo.androidVersionNum) == -1) {
-        androidNeedUpdateType = dexInfo.androidUpdateType;
+    if (Platform.isAndroid &&
+        tronInfo != null &&
+        tronInfo.androidVersionNum != null) {
+      if (currentVersion.compareTo(tronInfo.androidVersionNum) == -1) {
+        androidNeedUpdateType = tronInfo.androidUpdateType;
       }
     }
-    if (Platform.isIOS && dexInfo.iosVersionNum != null) {
-      if (currentVersion.compareTo(dexInfo.iosVersionNum) == -1) {
-        iosNeedUpdateType = dexInfo.iosUpdateType;
+    if (Platform.isIOS && tronInfo != null && tronInfo.iosVersionNum != null) {
+      if (currentVersion.compareTo(tronInfo.iosVersionNum) == -1) {
+        iosNeedUpdateType = tronInfo.iosUpdateType;
       }
     }
 
     return InkWell(
       onTap: () async {
-        if (Platform.isAndroid && dexInfo.androidVersionNum != null) {
+        if (Platform.isAndroid &&
+            tronInfo != null &&
+            tronInfo.androidVersionNum != null) {
           if (androidNeedUpdateType == 0) {
             Util.showToast('已经是最新版本');
           } else if (androidNeedUpdateType == 1) {
-            return showCupertinoDialog(context: context, builder: (context) =>
-                    CupertinoAlertDialog(
+            return showCupertinoDialog(
+                context: context,
+                builder: (context) => CupertinoAlertDialog(
                       title: Text(
-                        '新版本 V${dexInfo.androidVersionNum}',
-                        style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
+                        '新版本 V${tronInfo.androidVersionNum}',
+                        style: Util.textStyle(context, 2,
+                            color: Colors.grey[800], spacing: 0.0, size: 30),
                       ),
                       content: Container(
                         padding: EdgeInsets.only(top: Util.height(10)),
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          '${dexInfo.androidUpdateInfo.replaceAll('\\n', '\n')}',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              fontFamily: 'SHS-R',
-                              letterSpacing: 0.1,
-                              color: Colors.grey[850],
-                              fontSize: ScreenUtil().setSp(25),
-                              height: ScreenUtil().setSp(3.2),
-                            ),
-                        ),
-                      ),
-                      actions: <Widget>[
-                        FlatButton(
-                          child: Text(
-                            '以后再说',
-                            style: Util.textStyle(context, 2, color:  Util.themeColor, spacing: 0.1, size: 30),
-                          ),
-                          onPressed: () => Navigator.pop(context),
-                        ),
-                        FlatButton(
-                            child: Text(
-                              '立即体验',
-                              style: Util.textStyle(context, 2, color:  Util.themeColor, spacing: 0.1, size: 30),
-                            ),
-                            onPressed: () {
-                              Navigator.pop(context);
-                              return showDialog(
-                                context: context,
-                                barrierDismissible: false,
-                                child: DownloadPage(dexInfo.androidDownloadUrl)
-                              );
-                            }
-                        ),
-                      ],
-                    ));
-          }
-        }
-        if (Platform.isIOS && dexInfo.iosVersionNum != null) {
-          if (iosNeedUpdateType == 0) {
-            Util.showToast('已经是最新版本');
-          } else if (iosNeedUpdateType == 1) {
-            return showCupertinoDialog(context: context, builder: (context) =>
-                CupertinoAlertDialog(
-                      title: Text(
-                        '新版本 V${dexInfo.iosVersionNum}',
-                        style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
-                      ),
-                      content: Container(
-                        padding: EdgeInsets.only(top: Util.height(10)),
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          '${dexInfo.iosUpdateInfo.replaceAll('\\n', '\n')}',
+                          '${tronInfo.androidUpdateInfo1.replaceAll('\\n', '\n')}',
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             fontFamily: 'SHS-R',
@@ -258,30 +222,93 @@ class _MinePageState extends State<MinePage> {
                         FlatButton(
                           child: Text(
                             '以后再说',
-                            style: Util.textStyle(context, 2, color: Util.themeColor, spacing: 0.0, size: 30),
+                            style: Util.textStyle(context, 2,
+                                color: Util.themeColor, spacing: 0.1, size: 30),
                           ),
                           onPressed: () => Navigator.pop(context),
                         ),
                         FlatButton(
                             child: Text(
                               '立即体验',
-                              style: Util.textStyle(context, 2, color:  Util.themeColor, spacing: 0.0, size: 30),
+                              style: Util.textStyle(context, 2,
+                                  color: Util.themeColor,
+                                  spacing: 0.1,
+                                  size: 30),
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                              return showDialog(
+                                  context: context,
+                                  barrierDismissible: false,
+                                  child: DownloadPage(
+                                      tronInfo.androidDownloadUrl));
+                            }),
+                      ],
+                    ));
+          }
+        }
+        if (Platform.isIOS &&
+            tronInfo != null &&
+            tronInfo.iosVersionNum != null) {
+          if (iosNeedUpdateType == 0) {
+            Util.showToast('已经是最新版本');
+          } else if (iosNeedUpdateType == 1) {
+            return showCupertinoDialog(
+                context: context,
+                builder: (context) => CupertinoAlertDialog(
+                      title: Text(
+                        '新版本 V${tronInfo.iosVersionNum}',
+                        style: Util.textStyle(context, 2,
+                            color: Colors.grey[800], spacing: 0.0, size: 30),
+                      ),
+                      content: Container(
+                        padding: EdgeInsets.only(top: Util.height(10)),
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          '${tronInfo.iosUpdateInfo1.replaceAll('\\n', '\n')}',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontFamily: 'SHS-R',
+                            letterSpacing: 0.1,
+                            color: Colors.grey[850],
+                            fontSize: ScreenUtil().setSp(25),
+                            height: ScreenUtil().setSp(3.2),
+                          ),
+                        ),
+                      ),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text(
+                            '以后再说',
+                            style: Util.textStyle(context, 2,
+                                color: Util.themeColor, spacing: 0.0, size: 30),
+                          ),
+                          onPressed: () => Navigator.pop(context),
+                        ),
+                        FlatButton(
+                            child: Text(
+                              '立即体验',
+                              style: Util.textStyle(context, 2,
+                                  color: Util.themeColor,
+                                  spacing: 0.0,
+                                  size: 30),
                             ),
                             onPressed: () async {
-                              if (await canLaunch(dexInfo.iosDownloadUrl)) {
-                                await launch(dexInfo.iosDownloadUrl);
+                              if (await canLaunch(tronInfo.iosDownloadUrl)) {
+                                await launch(tronInfo.iosDownloadUrl);
                               } else {
-                                print('could not launch ${dexInfo.iosDownloadUrl}');
+                                print(
+                                    'could not launch ${tronInfo.iosDownloadUrl}');
                               }
-                            }
-                        ),
+                            }),
                       ],
                     ));
           }
         }
       },
       child: Container(
-        margin: EdgeInsets.only(left: Util.width(40), top: Util.height(30), right: Util.width(40)),
+        margin: EdgeInsets.only(
+            left: Util.width(40), top: Util.height(30), right: Util.width(40)),
         padding: EdgeInsets.only(bottom: Util.height(30)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -299,7 +326,8 @@ class _MinePageState extends State<MinePage> {
                 Container(
                   child: Text(
                     '${S.of(context).mineCurrentVersion}',
-                    style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
+                    style: Util.textStyle(context, 2,
+                        color: Colors.grey[800], spacing: 0.0, size: 30),
                   ),
                 ),
               ],
@@ -308,7 +336,8 @@ class _MinePageState extends State<MinePage> {
               child: Row(
                 children: <Widget>[
                   Container(
-                    child: versionSubWidget(currentVersion, androidNeedUpdateType, iosNeedUpdateType),
+                    child: versionSubWidget(currentVersion,
+                        androidNeedUpdateType, iosNeedUpdateType),
                   ),
                   Container(
                     child: Icon(
@@ -326,7 +355,8 @@ class _MinePageState extends State<MinePage> {
     );
   }
 
-  Widget versionSubWidget(String currentVersion, int androidNeedUpdateType, int iosNeedUpdateType) {
+  Widget versionSubWidget(
+      String currentVersion, int androidNeedUpdateType, int iosNeedUpdateType) {
     bool flag = androidNeedUpdateType == 1 || iosNeedUpdateType == 1;
     return Container(
       child: Row(
@@ -336,14 +366,19 @@ class _MinePageState extends State<MinePage> {
             alignment: Alignment.centerRight,
             child: Text(
               '$currentVersion',
-              style: Util.textStyle4En(context, 2, color: Colors.grey[700], size: 27),
+              style: Util.textStyle4En(context, 2,
+                  color: Colors.grey[700], size: 27),
             ),
           ),
-          flag ? Container(
-            padding: EdgeInsets.only(left: Util.width(5), right: Util.width(10)),
-            alignment: Alignment.centerRight,
-            child: Icon(Icons.brightness_1, size: ScreenUtil().setSp(15), color: Util.themeColor),
-          ) :Container(),
+          flag
+              ? Container(
+                  padding: EdgeInsets.only(
+                      left: Util.width(5), right: Util.width(10)),
+                  alignment: Alignment.centerRight,
+                  child: Icon(Icons.brightness_1,
+                      size: ScreenUtil().setSp(15), color: Util.themeColor),
+                )
+              : Container(),
         ],
       ),
     );
@@ -353,30 +388,32 @@ class _MinePageState extends State<MinePage> {
     showCupertinoDialog(
         context: context,
         builder: (_) => CupertinoAlertDialog(
-          title: Text(
-            '${S.of(context).mineLangTip1}',
-            style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2, size: 30),
-          ),
-          actions: <Widget>[
-            FlatButton(
-              child: Text(
-                '${S.of(context).commonCancel}',
-                style: Util.textStyle(context, 2, color: Util.themeColor, spacing: 0.5, size: 30),
+              title: Text(
+                '${S.of(context).mineLangTip1}',
+                style: Util.textStyle(context, 2,
+                    color: Colors.grey[850], spacing: 0.2, size: 30),
               ),
-              onPressed: () => Navigator.pop(context),
-            ),
-            FlatButton(
-                child: Text(
-                  '${S.of(context).commonConfirm}',
-                  style: Util.textStyle(context, 2, color: Util.themeColor, spacing: 0.5, size: 30),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text(
+                    '${S.of(context).commonCancel}',
+                    style: Util.textStyle(context, 2,
+                        color: Util.themeColor, spacing: 0.5, size: 30),
+                  ),
+                  onPressed: () => Navigator.pop(context),
                 ),
-                onPressed: () {
-                  Navigator.pop(context);
-                  Provider.of<IndexProvider>(context, listen: false).changeLangType();
-                }
-            ),
-          ],
-        ));
+                FlatButton(
+                    child: Text(
+                      '${S.of(context).commonConfirm}',
+                      style: Util.textStyle(context, 2,
+                          color: Util.themeColor, spacing: 0.5, size: 30),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Provider.of<IndexProvider>(context, listen: false)
+                          .changeLangType();
+                    }),
+              ],
+            ));
   }
-
 }

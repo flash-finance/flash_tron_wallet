@@ -352,7 +352,7 @@ class HomeProvider with ChangeNotifier {
     try {
       String userAddress = _selectWalletEntity.tronAddress;
       for (int i = 0; i < tokenList.length; i++) {
-        if (tokenList[i].tokenType == 0) {
+        if (tokenList[i].tokenType == 1) {
           getTrxBalance4Async(userAddress, tokenList[i]);
         } else if (tokenList[i].tokenType == 2) {
           getTrc20Balance4Async(userAddress, tokenList[i]);

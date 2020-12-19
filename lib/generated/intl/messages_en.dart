@@ -68,7 +68,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "assetWalletName" : MessageLookupByLibrary.simpleMessage("Wallet Name"),
     "backupWalletTip1" : MessageLookupByLibrary.simpleMessage("please back up the mnemonic to a safe place, once the mnemonic is lost, it cannot be retrieved"),
     "backupWalletTip2" : MessageLookupByLibrary.simpleMessage("please back up the private key to a safe place, once the private key is lost, it cannot be retrieved"),
-    "bottomTab1" : MessageLookupByLibrary.simpleMessage("Assets"),
+    "bottomTab1" : MessageLookupByLibrary.simpleMessage("Asset"),
     "bottomTab2" : MessageLookupByLibrary.simpleMessage("Trade"),
     "bottomTab3" : MessageLookupByLibrary.simpleMessage("Mine"),
     "commonBackupMnemonic" : MessageLookupByLibrary.simpleMessage("please backup your mnemonic"),

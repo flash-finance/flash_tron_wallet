@@ -91,6 +91,23 @@ class Util {
     );
   }
 
+  static TextStyle textStyle4Index(BuildContext context, int type,
+      {Color color, double spacing}) {
+    double letterSpacing = spacing != null ? spacing : 0.0;
+    bool langType = Provider.of<IndexProvider>(context, listen: false).langType;
+    return langType
+        ? TextStyle(
+            fontFamily: type == 1 ? 'ZH-R' : 'ZH-M',
+            letterSpacing: letterSpacing,
+            color: color,
+          )
+        : TextStyle(
+            fontFamily: type == 1 ? 'EN-R' : 'EN-M',
+            letterSpacing: 0.0,
+            color: color,
+          );
+  }
+
   static String formatNum(double num, int position) {
     if ((num.toString().length - num.toString().lastIndexOf(".") - 1) <
         position) {

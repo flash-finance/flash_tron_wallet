@@ -34,26 +34,28 @@ class _IndexPageState extends State<IndexPage> {
         type: BottomNavigationBarType.fixed,
         currentIndex: provider.currentIndex,
         backgroundColor: Colors.white,
+        selectedFontSize: Util.sp(23),
+        unselectedFontSize: Util.sp(23),
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.donut_small),
             title: Text(
               '${S.of(context).bottomTab1}',
-              style: Util.textStyle(context, 2),
+              style: Util.textStyle4Index(context, 2),
             ),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.explore),
             title: Text(
               '${S.of(context).bottomTab2}',
-              style: Util.textStyle(context, 2),
+              style: Util.textStyle4Index(context, 2),
             ),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),
             title: Text(
               '${S.of(context).bottomTab3}',
-              style: Util.textStyle(context, 2),
+              style: Util.textStyle4Index(context, 2),
             ),
           ),
         ],

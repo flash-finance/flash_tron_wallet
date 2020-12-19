@@ -277,7 +277,8 @@ class _SwapPageState extends State<SwapPage> {
               children: <Widget>[
                 InkWell(
                   onTap: () {
-                    _showSwapTokenDialLog(context, 1);
+                    //_showSwapTokenDialLog(context, 1);
+                    _showBottomSheetWidget(context, 1);
                   },
                   child: Container(
                     padding: EdgeInsets.only(
@@ -590,7 +591,8 @@ class _SwapPageState extends State<SwapPage> {
               children: <Widget>[
                 InkWell(
                   onTap: () {
-                    _showSwapTokenDialLog(context, 2);
+                    //_showSwapTokenDialLog(context, 2);
+                    _showBottomSheetWidget(context, 2);
                   },
                   child: Container(
                     padding: EdgeInsets.only(
@@ -844,204 +846,6 @@ class _SwapPageState extends State<SwapPage> {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  _showSwapTokenDialLog(BuildContext context, int type) {
-    showDialog(
-      context: context,
-      child: AlertDialog(
-        elevation: 3,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20.0))),
-        content: Container(
-          width: Util.width(600),
-          height: Util.height(650),
-          padding: EdgeInsets.only(top: Util.height(20)),
-          child: Column(
-            children: <Widget>[
-              _selectSwapTitleWidget(context),
-              Expanded(
-                child: Container(
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    itemCount: _swapRows.length,
-                    itemBuilder: (context, index) {
-                      return _selectSwapTokenWidget(
-                          context, index, _swapRows[index], type);
-                    },
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _selectSwapTitleWidget(BuildContext context) {
-    return Container(
-      width: Util.width(600),
-      padding: EdgeInsets.only(bottom: Util.height(20)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Container(
-              width: Util.width(300),
-              alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(left: Util.width(10)),
-              child: Text(
-                '${S.of(context).swapTokenName}',
-                style: Util.textStyle(context, 2,
-                    color: Colors.grey[600], spacing: 0.0, size: 26),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              )),
-          Container(
-            alignment: Alignment.centerRight,
-            child: RichText(
-              text: TextSpan(
-                children: <TextSpan>[
-                  TextSpan(
-                    text: '${S.of(context).swapTokenPrice}',
-                    style: Util.textStyle(context, 2,
-                        color: Colors.grey[600], spacing: 0.0, size: 26),
-                  ),
-                  TextSpan(
-                    text: '（\$）',
-                    style: Util.textStyle4En(context, 2,
-                        color: Colors.grey[600], spacing: 0.0, size: 26),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _selectSwapTokenWidget(
-      BuildContext context, int index, SwapRow item, int type) {
-    bool flag = false;
-    if (type == 1) {
-      flag = index == _leftSelectIndex ? true : false;
-    } else if (type == 2) {
-      flag = index == _rightSelectIndex ? true : false;
-    }
-
-    return InkWell(
-      borderRadius: BorderRadius.all(Radius.circular(5.0)),
-      onTap: () {
-        if (type == 1 && index != _rightSelectIndex) {
-          _leftSelectIndex = index;
-          _leftSwapAmount = '';
-          _leftSwapValue = '';
-          _rightSwapAmount = '';
-          _rightSwapValue = '';
-          //_reloadSub();
-          setState(() {});
-          Navigator.pop(context);
-        } else if (type == 2 && index != _leftSelectIndex) {
-          _rightSelectIndex = index;
-          _leftSwapAmount = '';
-          _leftSwapValue = '';
-          _rightSwapAmount = '';
-          _rightSwapValue = '';
-          //_reloadSub();
-          setState(() {});
-          Navigator.pop(context);
-        }
-      },
-      child: Container(
-        width: Util.width(600),
-        padding: EdgeInsets.only(top: Util.height(18), bottom: Util.height(18)),
-        decoration: BoxDecoration(
-          color: flag ? Colors.grey[50].withOpacity(0.8) : null,
-          borderRadius: BorderRadius.all(Radius.circular(5.0)),
-        ),
-        child: Row(
-          children: <Widget>[
-            Container(
-              width: Util.width(300),
-              alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(left: Util.width(20)),
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    child: ClipOval(
-                      child: Image.network(
-                        '${item.swapPicUrl}',
-                        width: Util.width(38),
-                        height: Util.width(38),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(left: Util.width(20)),
-                    alignment: Alignment.centerLeft,
-                    child: type == 1
-                        ? Text(
-                            '${item.swapTokenName}',
-                            style: Util.textStyle4En(context, 2,
-                                color: index != _rightSelectIndex
-                                    ? Colors.grey[800]
-                                    : Colors.grey[500],
-                                spacing: 0.0,
-                                size: 27),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          )
-                        : Text(
-                            '${item.swapTokenName}',
-                            style: Util.textStyle4En(context, 2,
-                                color: index != _leftSelectIndex
-                                    ? Colors.grey[800]
-                                    : Colors.grey[500],
-                                spacing: 0.0,
-                                size: 27),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Container(
-                alignment: Alignment.centerRight,
-                padding: EdgeInsets.only(right: Util.width(20)),
-                child: type == 1
-                    ? Text(
-                        '${Util.formatNum(item.swapTokenPrice2, 6)}',
-                        style: Util.textStyle4Num(context,
-                            color: index != _rightSelectIndex
-                                ? Colors.grey[800]
-                                : Colors.grey[500],
-                            size: 26,
-                            fontWeight: FontWeight.w500),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      )
-                    : Text(
-                        '${Util.formatNum(item.swapTokenPrice2, 6)}',
-                        style: Util.textStyle4Num(context,
-                            color: index != _leftSelectIndex
-                                ? Colors.grey[800]
-                                : Colors.grey[500],
-                            size: 26,
-                            fontWeight: FontWeight.w500),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
@@ -1649,18 +1453,6 @@ class _SwapPageState extends State<SwapPage> {
     );
   }
 
-  Widget _appBarWidget(BuildContext context) {
-    return AppBar(
-      backgroundColor: Colors.white,
-      elevation: 0,
-      titleSpacing: 0.0,
-      title: Container(
-          //child: Image.asset('images/flash.png', fit: BoxFit.contain, width: Util.width(110), height: Util.width(110)),
-          ),
-      centerTitle: true,
-    );
-  }
-
   SwapData _swapData;
 
   List<SwapRow> _swapRows = [];
@@ -1744,4 +1536,199 @@ class _SwapPageState extends State<SwapPage> {
   }
 
   bool _reloadTokenBalanceFlag = false;
+
+  _showBottomSheetWidget(BuildContext context, int type) {
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        enableDrag: false,
+        //barrierColor: Colors.grey[850].withOpacity(0.98),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15.0))),
+        builder: (BuildContext context) {
+          return Container(
+            height: Util.height(800),
+            child: Column(
+              children: <Widget>[
+                _selectTokenTitleWidget(context),
+                Expanded(
+                  child: Container(
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: BouncingScrollPhysics(),
+                        scrollDirection: Axis.vertical,
+                        itemCount: _swapRows.length,
+                        itemBuilder: (context, index) {
+                          return _selectTokenItemWidget(
+                              context, index, _swapRows[index], type);
+                        }),
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
+  }
+
+  Widget _selectTokenTitleWidget(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(
+          left: Util.width(30),
+          right: Util.width(30),
+          top: Util.height(20),
+          bottom: Util.height(20)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Container(
+            width: Util.width(200),
+            child: Text(
+              '${S.of(context).swapName}',
+              style: Util.textStyle(context, 2,
+                  color: Colors.grey[500], spacing: 0.2, size: 22),
+            ),
+          ),
+          Container(
+            width: Util.width(250),
+            alignment: Alignment.centerLeft,
+            child: Text(
+              '${S.of(context).swapMarketPrice}（\$）',
+              style: Util.textStyle(context, 2,
+                  color: Colors.grey[500], spacing: 0.2, size: 22),
+            ),
+          ),
+          Container(
+            width: Util.width(140),
+            alignment: Alignment.centerRight,
+            padding: EdgeInsets.only(right: Util.width(3)),
+            child: Text(
+              '${S.of(context).swapChange}',
+              style: Util.textStyle(context, 2,
+                  color: Colors.grey[500], spacing: 0.2, size: 22),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _selectTokenItemWidget(
+      BuildContext context, int index, SwapRow item, int type) {
+    bool flag = false;
+    if (type == 1) {
+      flag = index == _leftSelectIndex ? true : false;
+    } else if (type == 2) {
+      flag = index == _rightSelectIndex ? true : false;
+    }
+    double change = item.swapTokenChange2 * 100;
+    return InkWell(
+      onTap: () {
+        if (type == 1 && index != _rightSelectIndex) {
+          _leftSelectIndex = index;
+          _leftSwapAmount = '';
+          _leftSwapValue = '';
+          _rightSwapAmount = '';
+          _rightSwapValue = '';
+          //_reloadSub();
+          setState(() {});
+          Navigator.pop(context);
+        } else if (type == 2 && index != _leftSelectIndex) {
+          _rightSelectIndex = index;
+          _leftSwapAmount = '';
+          _leftSwapValue = '';
+          _rightSwapAmount = '';
+          _rightSwapValue = '';
+          //_reloadSub();
+          setState(() {});
+          Navigator.pop(context);
+        }
+      },
+      child: Container(
+        padding: EdgeInsets.only(
+            left: Util.width(30),
+            right: Util.width(30),
+            top: Util.height(20),
+            bottom: Util.height(20)),
+        decoration: BoxDecoration(
+          color: flag ? Util.themeColor.withOpacity(0.10) : null,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Container(
+              width: Util.width(200),
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    child: Image.network(
+                      '${item.swapPicUrl}',
+                      width: Util.width(35),
+                      height: Util.width(35),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  SizedBox(width: Util.width(10)),
+                  Container(
+                      child: Text(
+                    '${item.swapTokenName}',
+                    style: Util.textStyle4En(context, 2,
+                        color: type == 1
+                            ? (index != _rightSelectIndex
+                                ? Colors.grey[850]
+                                : Colors.grey[400])
+                            : (index != _leftSelectIndex
+                                ? Colors.grey[850]
+                                : Colors.grey[400]),
+                        spacing: 0.0,
+                        size: 26),
+                  )),
+                ],
+              ),
+            ),
+            Container(
+              width: Util.width(250),
+              alignment: Alignment.centerLeft,
+              child: Text(
+                '${item.swapTokenPrice2}',
+                style: Util.textStyle4Num(context,
+                    color: type == 1
+                        ? (index != _rightSelectIndex
+                            ? Colors.grey[850]
+                            : Colors.grey[400])
+                        : (index != _leftSelectIndex
+                            ? Colors.grey[850]
+                            : Colors.grey[400]),
+                    spacing: 0.0,
+                    size: 28,
+                    fontWeight: FontWeight.w500),
+              ),
+            ),
+            Container(
+              width: Util.width(140),
+              padding: EdgeInsets.only(
+                  top: Util.height(14),
+                  bottom: Util.height(14),
+                  left: Util.width(13),
+                  right: Util.width(13)),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                color: change >= 0 ? Color(0xFF05B791) : Color(0xFFF6465D),
+              ),
+              child: Text(
+                change >= 0
+                    ? '+${change.toStringAsFixed(2)}%'
+                    : '${change.toStringAsFixed(2)}%',
+                style: Util.textStyle4Num(context,
+                    color: Colors.white,
+                    spacing: 0.0,
+                    size: 24,
+                    fontWeight: FontWeight.w500),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

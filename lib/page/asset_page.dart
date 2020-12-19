@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'dart:io';
 
+import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
@@ -10,7 +10,6 @@ import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/router/router.dart';
 import 'package:flash_tron_wallet/tron/service/tron_asset.dart';
-import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -768,7 +767,7 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
         context: context,
         isScrollControlled: true,
         enableDrag: false,
-        barrierColor: Colors.grey[850].withOpacity(0.98),
+        //barrierColor: Colors.grey[850].withOpacity(0.98),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(15.0))),
         builder: (BuildContext context) {

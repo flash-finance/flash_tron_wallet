@@ -414,6 +414,10 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
                     ),
                   ),
                   InkWell(
+                    onTap: () {
+                      Provider.of<IndexProvider>(context, listen: false)
+                          .changeCurrentIndex(1);
+                    },
                     child: Container(
                       padding: EdgeInsets.only(bottom: Util.height(20)),
                       child: Row(
@@ -428,7 +432,7 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
                           SizedBox(width: Util.width(10)),
                           Container(
                             child: Text(
-                              '${S.of(context).assetSwap}',
+                              '${S.of(context).assetTrade}',
                               style: Util.textStyle(context, 1,
                                   color: Colors.white, spacing: 0.6, size: 25),
                             ),

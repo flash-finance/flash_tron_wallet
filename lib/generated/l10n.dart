@@ -43,10 +43,10 @@ class S {
     );
   }
 
-  /// `Swap`
+  /// `Trade`
   String get bottomTab2 {
     return Intl.message(
-      'Swap',
+      'Trade',
       name: 'bottomTab2',
       desc: '',
       args: [],
@@ -393,11 +393,11 @@ class S {
     );
   }
 
-  /// `Swap`
-  String get assetSwap {
+  /// `Trade`
+  String get assetTrade {
     return Intl.message(
-      'Swap',
-      name: 'assetSwap',
+      'Trade',
+      name: 'assetTrade',
       desc: '',
       args: [],
     );

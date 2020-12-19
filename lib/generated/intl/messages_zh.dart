@@ -45,7 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "assetReceivingAddress" : MessageLookupByLibrary.simpleMessage("收款地址"),
     "assetReceivingQrCode" : MessageLookupByLibrary.simpleMessage("收款二维码"),
     "assetSetPassword" : MessageLookupByLibrary.simpleMessage("设置密码"),
-    "assetSwap" : MessageLookupByLibrary.simpleMessage("交易"),
+    "assetTrade" : MessageLookupByLibrary.simpleMessage("交易"),
     "assetTransfer" : MessageLookupByLibrary.simpleMessage("转账"),
     "assetTransferAddress" : MessageLookupByLibrary.simpleMessage("转出地址"),
     "assetTransferAmount" : MessageLookupByLibrary.simpleMessage("转账数量"),

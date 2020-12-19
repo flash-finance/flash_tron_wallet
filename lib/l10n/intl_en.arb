@@ -1,6 +1,6 @@
 {
   "bottomTab1": "Assets",
-  "bottomTab2": "Swap",
+  "bottomTab2": "Trade",
   "bottomTab3": "Mine",
 
   "commonCopySuccess": "Copy Success",
@@ -38,7 +38,7 @@
   "assetDetails": "Details",
   "assetTransfer": "Transfer",
   "assetReceive": "Receive",
-  "assetSwap": "Swap",
+  "assetTrade": "Trade",
 
   "assetAddWallet": "Add Wallet",
   "assetImportPrivateKey": "Import Private Key",

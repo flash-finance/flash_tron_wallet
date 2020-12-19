@@ -38,7 +38,7 @@
   "assetDetails": "详情",
   "assetTransfer": "转账",
   "assetReceive": "收款",
-  "assetSwap": "交易",
+  "assetTrade": "交易",
 
   "assetAddWallet": "添加钱包",
   "assetImportPrivateKey": "导入私钥",

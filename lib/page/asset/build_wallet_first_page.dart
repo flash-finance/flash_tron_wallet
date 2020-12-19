@@ -44,12 +44,13 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
         brightness: Brightness.light,
         title: Text(
           '${S.of(context).assetCreateWallet}',
-          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2, size: 34),
+          style: Util.textStyle(context, 2,
+              color: Colors.grey[850], spacing: 0.2, size: 34),
         ),
         centerTitle: true,
         elevation: 0,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Navigator.of(context)..pop();
           },
           child: Icon(
@@ -60,7 +61,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
         ),
       ),
       body: GestureDetector(
-        onTap: (){
+        onTap: () {
           FocusScope.of(context).requestFocus(FocusNode());
         },
         child: Stack(
@@ -73,7 +74,8 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
                   _descWidget(),
                   SizedBox(height: Util.height(20)),
                   Container(
-                    margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
+                    margin: EdgeInsets.only(
+                        left: Util.width(30), right: Util.width(30)),
                     child: Column(
                       children: <Widget>[
                         _nameWidget(),
@@ -89,14 +91,16 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
                 ],
               ),
             ),
-            buildWalletLoading ? Container(
-              padding: EdgeInsets.only(top: Util.height(300), left: Util.width(350)),
-              child: CupertinoActivityIndicator(),
-            ) : Container(),
+            buildWalletLoading
+                ? Container(
+                    padding: EdgeInsets.only(
+                        top: Util.height(300), left: Util.width(350)),
+                    child: CupertinoActivityIndicator(),
+                  )
+                : Container(),
           ],
         ),
       ),
-
     );
   }
 
@@ -110,9 +114,11 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
         cursorColor: Util.themeColor,
         decoration: InputDecoration(
           labelText: '${S.of(context).assetWalletName}',
-          labelStyle: Util.textStyle(context, 2, color: Colors.grey[700], spacing: 0.1, size: 26),
+          labelStyle: Util.textStyle(context, 2,
+              color: Colors.grey[700], spacing: 0.1, size: 26),
         ),
-        style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2, size: 30),
+        style: Util.textStyle(context, 2,
+            color: Colors.grey[850], spacing: 0.2, size: 30),
         validator: (String value) {
           if (value.isEmpty) {
             return '${S.of(context).commonCanNotBeEmpty}';
@@ -141,7 +147,8 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
         cursorColor: Util.themeColor,
         decoration: InputDecoration(
             labelText: '${S.of(context).assetSetPassword}',
-            labelStyle: Util.textStyle(context, 2, color: Colors.grey[700], spacing: 0.1, size: 26),
+            labelStyle: Util.textStyle(context, 2,
+                color: Colors.grey[700], spacing: 0.1, size: 26),
             suffixIcon: IconButton(
               icon: Icon(
                 Icons.remove_red_eye,
@@ -151,12 +158,16 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
               onPressed: () {
                 setState(() {
                   _setPwdClickEye = !_setPwdClickEye;
-                  _setPwdEyeColor = _setPwdClickEye ? Colors.grey :  Util.themeColor;
+                  _setPwdEyeColor =
+                      _setPwdClickEye ? Colors.grey : Util.themeColor;
                 });
               },
-            )
-        ),
-        style: Util.textStyle4Num(context, color: Colors.grey[800], spacing: 0.2, size: 32, fontWeight: FontWeight.w500),
+            )),
+        style: Util.textStyle4Num(context,
+            color: Colors.grey[800],
+            spacing: 0.2,
+            size: 32,
+            fontWeight: FontWeight.w500),
         validator: (String value) {
           if (value.isEmpty) {
             return '${S.of(context).commonCanNotBeEmpty}';
@@ -187,7 +198,8 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
         cursorColor: Util.themeColor,
         decoration: InputDecoration(
             labelText: '${S.of(context).assetConfirmPassword}',
-            labelStyle: Util.textStyle(context, 2, color: Colors.grey[700], spacing: 0.1, size: 26),
+            labelStyle: Util.textStyle(context, 2,
+                color: Colors.grey[700], spacing: 0.1, size: 26),
             suffixIcon: IconButton(
               icon: Icon(
                 Icons.remove_red_eye,
@@ -197,12 +209,16 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
               onPressed: () {
                 setState(() {
                   _confirmPwdClickEye = !_confirmPwdClickEye;
-                  _confirmPwdEyeColor = _confirmPwdClickEye ? Colors.grey :  Util.themeColor;
+                  _confirmPwdEyeColor =
+                      _confirmPwdClickEye ? Colors.grey : Util.themeColor;
                 });
               },
-            )
-        ),
-        style: Util.textStyle4Num(context, color: Colors.grey[800], spacing: 0.2, size: 32, fontWeight: FontWeight.w500),
+            )),
+        style: Util.textStyle4Num(context,
+            color: Colors.grey[800],
+            spacing: 0.2,
+            size: 32,
+            fontWeight: FontWeight.w500),
         validator: (String value) {
           if (value.isEmpty) {
             return '${S.of(context).commonCanNotBeEmpty}';
@@ -224,29 +240,38 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
               padding: EdgeInsets.all(12),
               child: Text(
                 '${S.of(context).commonSubmit}',
-                style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.6, size: 31),
+                style: Util.textStyle(context, 1,
+                    color: Colors.white, spacing: 0.6, size: 31),
               ),
             ),
-            color:  Util.themeColor,
-            onPressed: !buildWalletLoading ? () {
-              FocusScope.of(context).requestFocus(FocusNode());
-              if (_formKey.currentState.validate()) {
-                _formKey.currentState.save();
-                if (_setPwd != _confirmPwd) {
-                  Util.showToast('${S.of(context).commonConfirmPwdError}');
-                } else {
-                  _submit(context).then((val) {
-                    Provider.of<HomeProvider>(context, listen: false).changeBuildWalletLoading(false);
-                    if (val == true) {
-                      Application.router.navigateTo(context, Routes.assetBuildSecondWallet + '/${widget.type}', transition: TransitionType.cupertino);
-                    } else {
-                      Util.showToast('${S.of(context).commonCreateFail}');
+            color: Util.themeColor,
+            onPressed: !buildWalletLoading
+                ? () {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                    if (_formKey.currentState.validate()) {
+                      _formKey.currentState.save();
+                      if (_setPwd != _confirmPwd) {
+                        Util.showToast(
+                            '${S.of(context).commonConfirmPwdError}');
+                      } else {
+                        _submit(context).then((val) {
+                          Provider.of<HomeProvider>(context, listen: false)
+                              .changeBuildWalletLoading(false);
+                          if (val == true) {
+                            Application.router.navigateTo(
+                                context,
+                                Routes.assetBuildSecondWallet +
+                                    '/${widget.type}',
+                                transition: TransitionType.cupertino);
+                          } else {
+                            Util.showToast('${S.of(context).commonCreateFail}');
+                          }
+                        });
+                      }
                     }
-                  });
-                }
-              }
-            } : () {},
-            shape: StadiumBorder(side: BorderSide(color:  Util.themeColor)),
+                  }
+                : () {},
+            shape: StadiumBorder(side: BorderSide(color: Util.themeColor)),
           ),
         ),
       ),
@@ -258,7 +283,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
       margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color:  Util.themeColor,
+        color: Util.themeColor,
       ),
       child: Column(
         children: <Widget>[
@@ -267,7 +292,8 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
             alignment: Alignment.centerLeft,
             child: Text(
               '${S.of(context).addWalletTip1}',
-              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.1, size: 21),
+              style: Util.textStyle(context, 1,
+                  color: Colors.white, spacing: 0.1, size: 21),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
@@ -277,7 +303,8 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
             alignment: Alignment.centerLeft,
             child: Text(
               '${S.of(context).addWalletTip2}',
-              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.1, size: 21),
+              style: Util.textStyle(context, 1,
+                  color: Colors.white, spacing: 0.1, size: 21),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
@@ -288,14 +315,15 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
   }
 
   Future<bool> _submit(BuildContext context) async {
-    Provider.of<HomeProvider>(context, listen: false).changeBuildWalletLoading(true);
+    Provider.of<HomeProvider>(context, listen: false)
+        .changeBuildWalletLoading(true);
     WalletEntity entity = TronWallet().createWallet(_name, _setPwd);
-    bool result =  await Provider.of<HomeProvider>(context, listen: false).addWallet(entity);
+    bool result = await Provider.of<HomeProvider>(context, listen: false)
+        .addWallet(entity);
     if (result) {
       await _getAsset(context);
     }
-    await Future.delayed(Duration(milliseconds: 1000), () {
-    });
+    await Future.delayed(Duration(milliseconds: 1000), () {});
 
     return result;
   }

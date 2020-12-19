@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 
 class AddWalletPage extends StatefulWidget {
-
   @override
   _AddWalletPageState createState() => _AddWalletPageState();
 }
@@ -23,12 +22,13 @@ class _AddWalletPageState extends State<AddWalletPage> {
         brightness: Brightness.light,
         title: Text(
           '${S.of(context).assetAddWallet}',
-          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2 , size: 34),
+          style: Util.textStyle(context, 2,
+              color: Colors.grey[850], spacing: 0.2, size: 34),
         ),
         centerTitle: true,
         elevation: 0,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Navigator.of(context)..pop();
           },
           child: Icon(
@@ -58,12 +58,15 @@ class _AddWalletPageState extends State<AddWalletPage> {
           SizedBox(height: Util.height(30)),
           InkWell(
             onTap: () {
-              Application.router.navigateTo(context, Routes.assetImportKey + '/2', transition: TransitionType.cupertino);
+              Application.router.navigateTo(
+                  context, Routes.assetImportKey + '/2',
+                  transition: TransitionType.cupertino);
             },
             child: Container(
               padding: EdgeInsets.only(bottom: Util.height(30)),
               decoration: BoxDecoration(
-                border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
+                border: Border(
+                    bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,7 +77,8 @@ class _AddWalletPageState extends State<AddWalletPage> {
                       Container(
                         child: Text(
                           '${S.of(context).assetImportPrivateKey}',
-                          style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
+                          style: Util.textStyle(context, 2,
+                              color: Colors.grey[800], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],
@@ -91,7 +95,6 @@ class _AddWalletPageState extends State<AddWalletPage> {
                       SizedBox(width: Util.width(10)),
                     ],
                   ),
-
                 ],
               ),
             ),
@@ -99,12 +102,15 @@ class _AddWalletPageState extends State<AddWalletPage> {
           SizedBox(height: Util.height(30)),
           InkWell(
             onTap: () {
-              Application.router.navigateTo(context, Routes.assetImportMnemonic + '/2', transition: TransitionType.cupertino);
+              Application.router.navigateTo(
+                  context, Routes.assetImportMnemonic + '/2',
+                  transition: TransitionType.cupertino);
             },
             child: Container(
               padding: EdgeInsets.only(bottom: Util.height(30)),
               decoration: BoxDecoration(
-                border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
+                border: Border(
+                    bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -115,9 +121,9 @@ class _AddWalletPageState extends State<AddWalletPage> {
                       Container(
                         child: Text(
                           '${S.of(context).assetImportMnemonic}',
-                          style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
+                          style: Util.textStyle(context, 2,
+                              color: Colors.grey[800], spacing: 0.0, size: 30),
                         ),
-
                       ),
                     ],
                   ),
@@ -133,7 +139,6 @@ class _AddWalletPageState extends State<AddWalletPage> {
                       SizedBox(width: Util.width(10)),
                     ],
                   ),
-
                 ],
               ),
             ),
@@ -141,7 +146,9 @@ class _AddWalletPageState extends State<AddWalletPage> {
           SizedBox(height: Util.height(30)),
           InkWell(
             onTap: () {
-              Application.router.navigateTo(context, Routes.assetBuildFirstWallet + '/2', transition: TransitionType.cupertino);
+              Application.router.navigateTo(
+                  context, Routes.assetBuildFirstWallet + '/2',
+                  transition: TransitionType.cupertino);
             },
             child: Container(
               padding: EdgeInsets.only(bottom: Util.height(30)),
@@ -154,7 +161,8 @@ class _AddWalletPageState extends State<AddWalletPage> {
                       Container(
                         child: Text(
                           '${S.of(context).assetCreateWallet}',
-                          style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.0, size: 30),
+                          style: Util.textStyle(context, 2,
+                              color: Colors.grey[800], spacing: 0.0, size: 30),
                         ),
                       ),
                     ],

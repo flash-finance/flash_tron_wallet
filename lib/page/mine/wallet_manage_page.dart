@@ -29,12 +29,13 @@ class _WalletManagePageState extends State<WalletManagePage> {
         brightness: Brightness.light,
         title: Text(
           '${S.of(context).mineManageWallet}',
-          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2, size: 34),
+          style: Util.textStyle(context, 2,
+              color: Colors.grey[850], spacing: 0.2, size: 34),
         ),
         centerTitle: true,
         elevation: 0,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Navigator.of(context)..pop();
           },
           child: Icon(
@@ -49,11 +50,14 @@ class _WalletManagePageState extends State<WalletManagePage> {
   }
 
   Widget _bodyWidget(BuildContext context) {
-    List<WalletEntity> walletList = Provider.of<HomeProvider>(context, listen: true).walletList;
+    List<WalletEntity> walletList =
+        Provider.of<HomeProvider>(context, listen: true).walletList;
     return Container(
       child: Column(
         children: <Widget>[
-         walletList.length > 0 ? Expanded(child: _walletListWidget(context, walletList)) : _notWalletWidget(context),
+          walletList.length > 0
+              ? Expanded(child: _walletListWidget(context, walletList))
+              : _notWalletWidget(context),
         ],
       ),
     );
@@ -61,7 +65,11 @@ class _WalletManagePageState extends State<WalletManagePage> {
 
   Widget _notWalletWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: Util.width(30), top: Util.height(10), right: Util.width(30), bottom: Util.height(20)),
+      margin: EdgeInsets.only(
+          left: Util.width(30),
+          top: Util.height(10),
+          right: Util.width(30),
+          bottom: Util.height(20)),
       padding: EdgeInsets.only(top: Util.height(50), bottom: Util.height(50)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -74,13 +82,15 @@ class _WalletManagePageState extends State<WalletManagePage> {
         alignment: Alignment.center,
         child: Text(
           '${S.of(context).mineNoWallet}',
-          style: Util.textStyle(context, 2, color: Colors.white, spacing: 0.5, size: 28),
+          style: Util.textStyle(context, 2,
+              color: Colors.white, spacing: 0.5, size: 28),
         ),
       ),
     );
   }
 
-  Widget _walletListWidget(BuildContext context, List<WalletEntity> walletList) {
+  Widget _walletListWidget(
+      BuildContext context, List<WalletEntity> walletList) {
     return Container(
       child: ListView.builder(
           shrinkWrap: true,
@@ -93,14 +103,27 @@ class _WalletManagePageState extends State<WalletManagePage> {
     );
   }
 
-  Widget _walletItemWidget(BuildContext context, List<WalletEntity> list, int index) {
-    int selectIndex = Provider.of<HomeProvider>(context, listen: true).selectWalletIndex;
+  Widget _walletItemWidget(
+      BuildContext context, List<WalletEntity> list, int index) {
+    int selectIndex =
+        Provider.of<HomeProvider>(context, listen: true).selectWalletIndex;
     bool flag = selectIndex == index;
     String name = list[index].name;
-    String tronAddress = list[index].tronAddress.substring(0, 10) + '...' + list[index].tronAddress.substring(list[index].tronAddress.length - 10, list[index].tronAddress.length);
+    String tronAddress = list[index].tronAddress.substring(0, 10) +
+        '...' +
+        list[index].tronAddress.substring(list[index].tronAddress.length - 10,
+            list[index].tronAddress.length);
     return Container(
-      margin: EdgeInsets.only(left: Util.width(30), top: index == 0 ? Util.height(10) : Util.height(0), right: Util.width(30), bottom: Util.height(20)),
-      padding: EdgeInsets.only(left: Util.width(40), top: Util.height(30), right: Util.width(40), bottom: Util.height(30)),
+      margin: EdgeInsets.only(
+          left: Util.width(30),
+          top: index == 0 ? Util.height(10) : Util.height(0),
+          right: Util.width(30),
+          bottom: Util.height(20)),
+      padding: EdgeInsets.only(
+          left: Util.width(40),
+          top: Util.height(30),
+          right: Util.width(40),
+          bottom: Util.height(30)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
         image: DecorationImage(
@@ -110,7 +133,9 @@ class _WalletManagePageState extends State<WalletManagePage> {
       ),
       child: InkWell(
         onTap: () {
-          Application.router.navigateTo(context, Routes.assetWalletDetail + '/$index', transition: TransitionType.cupertino);
+          Application.router.navigateTo(
+              context, Routes.assetWalletDetail + '/$index',
+              transition: TransitionType.cupertino);
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -124,24 +149,36 @@ class _WalletManagePageState extends State<WalletManagePage> {
                       Container(
                         child: Text(
                           '$name',
-                          style: Util.textStyle(context, 2, color: Colors.white, spacing: 0.5, size: 30),
+                          style: Util.textStyle(context, 2,
+                              color: Colors.white, spacing: 0.5, size: 30),
                         ),
                       ),
                       SizedBox(width: Util.width(50)),
-                      flag ? Container(
-                        width: Util.width(80),
-                        padding: _langType ? EdgeInsets.only(top: Util.height(2), bottom: Util.height(2))
-                        : EdgeInsets.only(top: Util.height(5), bottom: Util.height(5)),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                          color: Colors.white,
-                        ),
-                        child: Text(
-                          '${S.of(context).commonCurrent}',
-                          style: Util.textStyle(context, 2, color: Util.themeColor, spacing: 0.2, size: 20),
-                        ),
-                      ) : Container(),
+                      flag
+                          ? Container(
+                              width: Util.width(80),
+                              padding: _langType
+                                  ? EdgeInsets.only(
+                                      top: Util.height(2),
+                                      bottom: Util.height(2))
+                                  : EdgeInsets.only(
+                                      top: Util.height(5),
+                                      bottom: Util.height(5)),
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5.0)),
+                                color: Colors.white,
+                              ),
+                              child: Text(
+                                '${S.of(context).commonCurrent}',
+                                style: Util.textStyle(context, 2,
+                                    color: Util.themeColor,
+                                    spacing: 0.2,
+                                    size: 20),
+                              ),
+                            )
+                          : Container(),
                     ],
                   ),
                 ),
@@ -154,7 +191,6 @@ class _WalletManagePageState extends State<WalletManagePage> {
                 ),
               ],
             ),
-
             SizedBox(height: Util.height(10)),
             InkWell(
               onTap: () {
@@ -167,7 +203,8 @@ class _WalletManagePageState extends State<WalletManagePage> {
                     Container(
                       child: Text(
                         '$tronAddress',
-                        style: Util.textStyle4En(context, 1, color: Colors.white, spacing: 0.5, size: 26),
+                        style: Util.textStyle4En(context, 1,
+                            color: Colors.white, spacing: 0.5, size: 26),
                       ),
                     ),
                     SizedBox(width: Util.width(50)),
@@ -186,9 +223,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
             ),
           ],
         ),
-
       ),
     );
   }
-
 }

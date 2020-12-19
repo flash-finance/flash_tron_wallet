@@ -1659,7 +1659,7 @@ class _SwapPageState extends State<SwapPage> {
               width: Util.width(200),
               child: Row(
                 children: <Widget>[
-                  Container(
+                  ClipOval(
                     child: Image.network(
                       '${item.swapPicUrl}',
                       width: Util.width(35),

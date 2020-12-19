@@ -497,7 +497,7 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
             Container(
               child: Row(
                 children: <Widget>[
-                  Container(
+                  ClipOval(
                     child: Image.network(
                       '${item.logoUrl}',
                       width: Util.width(50),

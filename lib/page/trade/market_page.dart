@@ -79,7 +79,8 @@ class _MarketPageState extends State<MarketPage> {
             width: Util.width(200),
             child: Text(
               '${S.of(context).swapName}',
-              style: Util.textStyle(context, 2, color: Colors.grey[500], spacing: 0.2 , size: 22),
+              style: Util.textStyle(context, 2,
+                  color: Colors.grey[500], spacing: 0.2, size: 22),
             ),
           ),
           Container(
@@ -87,7 +88,8 @@ class _MarketPageState extends State<MarketPage> {
             alignment: Alignment.centerLeft,
             child: Text(
               '${S.of(context).swapMarketPrice}（\$）',
-              style: Util.textStyle(context, 2, color: Colors.grey[500], spacing: 0.2, size: 22),
+              style: Util.textStyle(context, 2,
+                  color: Colors.grey[500], spacing: 0.2, size: 22),
             ),
           ),
           Container(
@@ -96,7 +98,8 @@ class _MarketPageState extends State<MarketPage> {
             padding: EdgeInsets.only(right: Util.width(3)),
             child: Text(
               '${S.of(context).swapChange}',
-              style: Util.textStyle(context, 2, color: Colors.grey[500], spacing: 0.2, size: 22),
+              style: Util.textStyle(context, 2,
+                  color: Colors.grey[500], spacing: 0.2, size: 22),
             ),
           ),
         ],
@@ -109,9 +112,14 @@ class _MarketPageState extends State<MarketPage> {
     return InkWell(
       onTap: () {},
       child: Container(
-        padding: EdgeInsets.only(left: Util.width(30), right: Util.width(30), top: Util.height(20), bottom: Util.height(20)),
+        padding: EdgeInsets.only(
+            left: Util.width(30),
+            right: Util.width(30),
+            top: Util.height(20),
+            bottom: Util.height(20)),
         decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.2)),
+          border:
+              Border(bottom: BorderSide(color: Colors.grey[300], width: 0.2)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -124,7 +132,7 @@ class _MarketPageState extends State<MarketPage> {
                   Container(
                     child: Row(
                       children: <Widget>[
-                        Container(
+                        ClipOval(
                           child: Image.network(
                             '${item.swapPicUrl}',
                             width: Util.width(35),
@@ -135,9 +143,10 @@ class _MarketPageState extends State<MarketPage> {
                         SizedBox(width: Util.width(10)),
                         Container(
                             child: Text(
-                              '${item.swapTokenName}',
-                              style: Util.textStyle4En(context, 2, color: Colors.grey[850], spacing: 0.0, size: 28),
-                            )),
+                          '${item.swapTokenName}',
+                          style: Util.textStyle4En(context, 2,
+                              color: Colors.grey[850], spacing: 0.0, size: 28),
+                        )),
                       ],
                     ),
                   ),
@@ -148,11 +157,18 @@ class _MarketPageState extends State<MarketPage> {
                         children: <TextSpan>[
                           TextSpan(
                             text: 'TL: ',
-                            style: Util.textStyle4En(context, 1, color: Colors.grey[500], spacing: 0.0, size: 18),
+                            style: Util.textStyle4En(context, 1,
+                                color: Colors.grey[500],
+                                spacing: 0.0,
+                                size: 18),
                           ),
                           TextSpan(
                             text: '\$${item.totalLiquidity.toStringAsFixed(0)}',
-                            style: Util.textStyle4Num(context, color: Colors.grey[500], spacing: 0.0, size: 20, fontWeight: FontWeight.w400),
+                            style: Util.textStyle4Num(context,
+                                color: Colors.grey[500],
+                                spacing: 0.0,
+                                size: 20,
+                                fontWeight: FontWeight.w400),
                           ),
                         ],
                       ),
@@ -166,20 +182,34 @@ class _MarketPageState extends State<MarketPage> {
               alignment: Alignment.centerLeft,
               child: Text(
                 '${item.swapTokenPrice2}',
-                style: Util.textStyle4Num(context, color: Colors.grey[800], spacing: 0.0, size: 30, fontWeight: FontWeight.w500),
+                style: Util.textStyle4Num(context,
+                    color: Colors.grey[800],
+                    spacing: 0.0,
+                    size: 30,
+                    fontWeight: FontWeight.w500),
               ),
             ),
             Container(
               width: Util.width(140),
-              padding: EdgeInsets.only(top: Util.height(14), bottom: Util.height(14), left: Util.width(13), right: Util.width(13)),
+              padding: EdgeInsets.only(
+                  top: Util.height(14),
+                  bottom: Util.height(14),
+                  left: Util.width(13),
+                  right: Util.width(13)),
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 color: change >= 0 ? Color(0xFF05B791) : Color(0xFFF6465D),
               ),
               child: Text(
-                change >= 0 ? '+${change.toStringAsFixed(2)}%' : '${change.toStringAsFixed(2)}%',
-                style: Util.textStyle4Num(context, color: Colors.white, spacing: 0.0, size: 25, fontWeight: FontWeight.w500),
+                change >= 0
+                    ? '+${change.toStringAsFixed(2)}%'
+                    : '${change.toStringAsFixed(2)}%',
+                style: Util.textStyle4Num(context,
+                    color: Colors.white,
+                    spacing: 0.0,
+                    size: 25,
+                    fontWeight: FontWeight.w500),
               ),
             ),
           ],
@@ -187,7 +217,6 @@ class _MarketPageState extends State<MarketPage> {
       ),
     );
   }
-
 
   SwapData _swapData;
 
@@ -201,7 +230,9 @@ class _MarketPageState extends State<MarketPage> {
         SwapRespModel respModel = SwapRespModel.fromJson(respData);
         if (respModel != null && respModel.code == 0) {
           _swapData = respModel.data;
-          if (_swapData != null && _swapData.rows != null && _swapData.rows.length > 0) {
+          if (_swapData != null &&
+              _swapData.rows != null &&
+              _swapData.rows.length > 0) {
             _swapRows = _swapData.rows;
           }
         }
@@ -211,5 +242,4 @@ class _MarketPageState extends State<MarketPage> {
       print(e);
     }
   }
-
 }

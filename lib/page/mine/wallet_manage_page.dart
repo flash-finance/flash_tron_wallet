@@ -40,7 +40,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
           },
           child: Icon(
             Icons.arrow_back,
-            size: ScreenUtil().setSp(45),
+            size: Util.sp(45),
             color: Colors.grey[850],
           ),
         ),
@@ -185,7 +185,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
                 Container(
                   child: Icon(
                     Icons.arrow_forward_ios,
-                    size: ScreenUtil().setSp(28),
+                    size: Util.sp(28),
                     color: Colors.white,
                   ),
                 ),

@@ -1,11 +1,10 @@
+import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/page/common/common_page.dart';
 import 'package:flash_tron_wallet/router/application.dart';
-import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:flash_tron_wallet/router/router.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/screenutil.dart';
 
 class AddWalletPage extends StatefulWidget {
   @override
@@ -33,7 +32,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
           },
           child: Icon(
             Icons.arrow_back,
-            size: ScreenUtil().setSp(45),
+            size: Util.sp(45),
             color: Colors.grey[850],
           ),
         ),
@@ -88,7 +87,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                       Container(
                         child: Icon(
                           Icons.arrow_forward_ios,
-                          size: ScreenUtil().setSp(27),
+                          size: Util.sp(27),
                           color: Colors.grey[700],
                         ),
                       ),
@@ -132,7 +131,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                       Container(
                         child: Icon(
                           Icons.arrow_forward_ios,
-                          size: ScreenUtil().setSp(27),
+                          size: Util.sp(27),
                           color: Colors.grey[700],
                         ),
                       ),
@@ -172,7 +171,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
                       Container(
                         child: Icon(
                           Icons.arrow_forward_ios,
-                          size: ScreenUtil().setSp(27),
+                          size: Util.sp(27),
                           color: Colors.grey[700],
                         ),
                       ),

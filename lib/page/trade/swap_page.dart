@@ -3,14 +3,13 @@ import 'dart:async';
 import 'package:decimal/decimal.dart';
 import 'package:flash_tron_wallet/common/common_config.dart';
 import 'package:flash_tron_wallet/common/common_service.dart';
+import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/model/swap_model.dart';
 import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:flash_tron_wallet/common/common_util.dart';
 
 class SwapPage extends StatefulWidget {
   @override
@@ -319,8 +318,7 @@ class _SwapPageState extends State<SwapPage> {
                           SizedBox(width: Util.width(5)),
                           Container(
                             child: Icon(Icons.arrow_drop_down,
-                                size: ScreenUtil().setSp(35),
-                                color: Colors.grey[700]),
+                                size: Util.sp(35), color: Colors.grey[700]),
                           ),
                         ],
                       ),
@@ -530,7 +528,7 @@ class _SwapPageState extends State<SwapPage> {
             alignment: Alignment.center,
             child: Icon(
               Icons.sync_rounded,
-              size: ScreenUtil().setSp(45),
+              size: Util.sp(45),
               color: Colors.grey[700],
             ),
           )),
@@ -633,8 +631,7 @@ class _SwapPageState extends State<SwapPage> {
                           SizedBox(width: Util.width(5)),
                           Container(
                             child: Icon(Icons.arrow_drop_down,
-                                size: ScreenUtil().setSp(35),
-                                color: Colors.grey[700]),
+                                size: Util.sp(35), color: Colors.grey[700]),
                           ),
                         ],
                       ),
@@ -920,7 +917,7 @@ class _SwapPageState extends State<SwapPage> {
                                   : '${_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0)}',
                               style: TextStyle(
                                 color: Colors.grey[800],
-                                fontSize: ScreenUtil().setSp(26),
+                                fontSize: Util.sp(26),
                                 fontWeight: FontWeight.w500,
                               ),
                               maxLines: 1,
@@ -971,7 +968,7 @@ class _SwapPageState extends State<SwapPage> {
                                   : '${_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
                               style: TextStyle(
                                 color: Colors.grey[800],
-                                fontSize: ScreenUtil().setSp(26),
+                                fontSize: Util.sp(26),
                                 fontWeight: FontWeight.w500,
                               ),
                               maxLines: 1,
@@ -1013,7 +1010,7 @@ class _SwapPageState extends State<SwapPage> {
                                   : '${_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
                               style: TextStyle(
                                 color: Colors.grey[800],
-                                fontSize: ScreenUtil().setSp(26),
+                                fontSize: Util.sp(26),
                                 fontWeight: FontWeight.w500,
                               ),
                               maxLines: 1,
@@ -1117,7 +1114,7 @@ class _SwapPageState extends State<SwapPage> {
                                     '${_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0)}',
                                     style: TextStyle(
                                       color: Colors.grey[800],
-                                      fontSize: ScreenUtil().setSp(26),
+                                      fontSize: Util.sp(26),
                                       fontWeight: FontWeight.w500,
                                     ),
                                     maxLines: 1,
@@ -1169,7 +1166,7 @@ class _SwapPageState extends State<SwapPage> {
                                     '${_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
                                     style: TextStyle(
                                       color: Colors.grey[800],
-                                      fontSize: ScreenUtil().setSp(26),
+                                      fontSize: Util.sp(26),
                                       fontWeight: FontWeight.w500,
                                     ),
                                     maxLines: 1,
@@ -1210,7 +1207,7 @@ class _SwapPageState extends State<SwapPage> {
                                     '${_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
                                     style: TextStyle(
                                       color: Colors.grey[800],
-                                      fontSize: ScreenUtil().setSp(26),
+                                      fontSize: Util.sp(26),
                                       fontWeight: FontWeight.w500,
                                     ),
                                     maxLines: 1,
@@ -1298,7 +1295,7 @@ class _SwapPageState extends State<SwapPage> {
                                     '${_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0)}',
                                     style: TextStyle(
                                       color: Colors.grey[800],
-                                      fontSize: ScreenUtil().setSp(26),
+                                      fontSize: Util.sp(26),
                                       fontWeight: FontWeight.w500,
                                     ),
                                     maxLines: 1,
@@ -1350,7 +1347,7 @@ class _SwapPageState extends State<SwapPage> {
                                     '${_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
                                     style: TextStyle(
                                       color: Colors.grey[800],
-                                      fontSize: ScreenUtil().setSp(26),
+                                      fontSize: Util.sp(26),
                                       fontWeight: FontWeight.w500,
                                     ),
                                     maxLines: 1,
@@ -1391,7 +1388,7 @@ class _SwapPageState extends State<SwapPage> {
                                     '${_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
                                     style: TextStyle(
                                       color: Colors.grey[800],
-                                      fontSize: ScreenUtil().setSp(26),
+                                      fontSize: Util.sp(26),
                                       fontWeight: FontWeight.w500,
                                     ),
                                     maxLines: 1,

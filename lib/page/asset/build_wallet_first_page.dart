@@ -1,15 +1,14 @@
+import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/router/router.dart';
 import 'package:flash_tron_wallet/tron/service/tron_wallet.dart';
-import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
 
 class BuildWalletFirstPage extends StatefulWidget {
@@ -55,7 +54,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
           },
           child: Icon(
             Icons.arrow_back,
-            size: ScreenUtil().setSp(45),
+            size: Util.sp(45),
             color: Colors.grey[850],
           ),
         ),
@@ -153,7 +152,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
               icon: Icon(
                 Icons.remove_red_eye,
                 color: _setPwdEyeColor,
-                size: ScreenUtil().setSp(38),
+                size: Util.sp(38),
               ),
               onPressed: () {
                 setState(() {
@@ -204,7 +203,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
               icon: Icon(
                 Icons.remove_red_eye,
                 color: _confirmPwdEyeColor,
-                size: ScreenUtil().setSp(38),
+                size: Util.sp(38),
               ),
               onPressed: () {
                 setState(() {

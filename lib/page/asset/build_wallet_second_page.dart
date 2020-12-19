@@ -1,10 +1,9 @@
+import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
-import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class BuildWalletSecondPage extends StatefulWidget {
@@ -12,13 +11,15 @@ class BuildWalletSecondPage extends StatefulWidget {
   BuildWalletSecondPage(this.type);
 
   @override
-  _BackupMnemonicSecondPageState createState() => _BackupMnemonicSecondPageState();
+  _BackupMnemonicSecondPageState createState() =>
+      _BackupMnemonicSecondPageState();
 }
 
 class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
   @override
   Widget build(BuildContext context) {
-    WalletEntity wallet = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
+    WalletEntity wallet =
+        Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -26,54 +27,57 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
         brightness: Brightness.light,
         title: Text(
           '${S.of(context).assetCreateWallet}',
-          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2, size: 34),
+          style: Util.textStyle(context, 2,
+              color: Colors.grey[850], spacing: 0.2, size: 34),
         ),
         centerTitle: true,
         elevation: 0,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Navigator.of(context)..pop();
           },
           child: Icon(
             Icons.arrow_back,
-            size: ScreenUtil().setSp(45),
+            size: Util.sp(45),
             color: Colors.grey[850],
           ),
         ),
       ),
-      body: wallet != null && wallet.mnemonic != null ? Container(
-        width: Util.width(750),
-        child: ListView(
-          children: <Widget>[
-            SizedBox(height: Util.height(20)),
-            _descWidget(),
-            SizedBox(height: Util.height(10)),
-            Container(
-             margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
-             child: Column(
-               children: <Widget>[
-                 SizedBox(height: Util.height(10)),
-                 _tipsWidget(wallet.mnemonic),
-                 SizedBox(height: Util.height(10)),
-                 _dataWidget(wallet.mnemonic),
-                 SizedBox(height: Util.height(80)),
-                 _submitWidget(context),
-               ],
-             ),
-           ),
-          ],
-        ),
-      ) : Container(),
+      body: wallet != null && wallet.mnemonic != null
+          ? Container(
+              width: Util.width(750),
+              child: ListView(
+                children: <Widget>[
+                  SizedBox(height: Util.height(20)),
+                  _descWidget(),
+                  SizedBox(height: Util.height(10)),
+                  Container(
+                    margin: EdgeInsets.only(
+                        left: Util.width(30), right: Util.width(30)),
+                    child: Column(
+                      children: <Widget>[
+                        SizedBox(height: Util.height(10)),
+                        _tipsWidget(wallet.mnemonic),
+                        SizedBox(height: Util.height(10)),
+                        _dataWidget(wallet.mnemonic),
+                        SizedBox(height: Util.height(80)),
+                        _submitWidget(context),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            )
+          : Container(),
     );
   }
-
 
   Widget _descWidget() {
     return Container(
       margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color:  Util.themeColor,
+        color: Util.themeColor,
       ),
       child: Column(
         children: <Widget>[
@@ -82,7 +86,8 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             alignment: Alignment.centerLeft,
             child: Text(
               '${S.of(context).addWalletTip3}',
-              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.1, size: 21),
+              style: Util.textStyle(context, 1,
+                  color: Colors.white, spacing: 0.1, size: 21),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
@@ -92,7 +97,8 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             alignment: Alignment.centerLeft,
             child: Text(
               '${S.of(context).addWalletTip4}',
-              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.1, size: 21),
+              style: Util.textStyle(context, 1,
+                  color: Colors.white, spacing: 0.1, size: 21),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
@@ -101,7 +107,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
       ),
     );
   }
-  
+
   Widget _tipsWidget(String mnemonic) {
     return Container(
       width: Util.width(750),
@@ -112,7 +118,8 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
           Container(
             child: Text(
               '${S.of(context).commonBackupMnemonic}',
-              style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.4, size: 26),
+              style: Util.textStyle(context, 2,
+                  color: Colors.grey[800], spacing: 0.4, size: 26),
             ),
           ),
           InkWell(
@@ -141,7 +148,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
     List<Widget> _listWidget = [];
     if (_list.length > 0) {
       for (int i = 0; i < _list.length; i++) {
-        _listWidget.add(_itemWidget(i+1, _list[i]));
+        _listWidget.add(_itemWidget(i + 1, _list[i]));
       }
       return Container(
         child: Wrap(
@@ -169,7 +176,8 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
             child: Text(
               '$index',
-              style: Util.textStyle4Num(context, color: Colors.grey[500], size: 20),
+              style: Util.textStyle4Num(context,
+                  color: Colors.grey[500], size: 20),
             ),
           ),
           Container(
@@ -177,7 +185,8 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             padding: EdgeInsets.only(bottom: 13),
             child: Text(
               '$value',
-              style: Util.textStyle4En(context, 2, color: Colors.grey[800], size: 27),
+              style: Util.textStyle4En(context, 2,
+                  color: Colors.grey[800], size: 27),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -197,10 +206,11 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
               padding: EdgeInsets.all(12),
               child: Text(
                 '${S.of(context).commonSavedSafely}',
-                style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.2, size: 30),
+                style: Util.textStyle(context, 1,
+                    color: Colors.white, spacing: 0.2, size: 30),
               ),
             ),
-            color:  Util.themeColor,
+            color: Util.themeColor,
             onPressed: () {
               if (widget.type == '1') {
                 Navigator.of(context)..pop()..pop();
@@ -208,12 +218,10 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
                 Navigator.of(context)..pop()..pop()..pop();
               }
             },
-            shape: StadiumBorder(side: BorderSide(color:  Util.themeColor)),
+            shape: StadiumBorder(side: BorderSide(color: Util.themeColor)),
           ),
         ),
       ),
     );
   }
-
 }
-

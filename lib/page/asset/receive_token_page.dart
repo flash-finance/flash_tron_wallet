@@ -1,10 +1,9 @@
+import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
-import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -16,7 +15,8 @@ class ReceiveTokenPage extends StatefulWidget {
 class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
   @override
   Widget build(BuildContext context) {
-    WalletEntity wallet = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
+    WalletEntity wallet =
+        Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -24,17 +24,18 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
         brightness: Brightness.light,
         title: Text(
           '${S.of(context).assetReceivingQrCode}',
-          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2 , size: 34),
+          style: Util.textStyle(context, 2,
+              color: Colors.grey[850], spacing: 0.2, size: 34),
         ),
         centerTitle: true,
         elevation: 0,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Navigator.of(context)..pop();
           },
           child: Icon(
             Icons.arrow_back,
-            size: ScreenUtil().setSp(45),
+            size: Util.sp(45),
             color: Colors.grey[850],
           ),
         ),
@@ -57,13 +58,13 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
     );
   }
 
-
   Widget _qrCodeWidget(BuildContext context, String address) {
     return Container(
       margin: EdgeInsets.only(left: Util.width(50), right: Util.width(50)),
       child: Card(
         elevation: 3,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20.0))),
         child: Container(
           padding: EdgeInsets.only(top: Util.width(75), bottom: Util.width(75)),
           alignment: Alignment.center,
@@ -84,7 +85,8 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
             alignment: Alignment.center,
             child: Text(
               '$name',
-              style: Util.textStyle(context, 2, color: Colors.grey[800], spacing: 0.2, size: 30),
+              style: Util.textStyle(context, 2,
+                  color: Colors.grey[800], spacing: 0.2, size: 30),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -102,7 +104,8 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
             alignment: Alignment.center,
             child: Text(
               '$address',
-              style: Util.textStyle4En(context, 2, color: Colors.grey[850], spacing: 0.0, size: 27),
+              style: Util.textStyle4En(context, 2,
+                  color: Colors.grey[850], spacing: 0.0, size: 27),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -122,19 +125,19 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
               padding: EdgeInsets.all(12),
               child: Text(
                 '${S.of(context).assetCopyAddress}',
-                  style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.6, size: 31),
+                style: Util.textStyle(context, 1,
+                    color: Colors.white, spacing: 0.6, size: 31),
               ),
             ),
-            color:  Util.themeColor,
+            color: Util.themeColor,
             onPressed: () {
               Clipboard.setData(ClipboardData(text: address));
               Util.showToast('${S.of(context).commonCopySuccess}');
             },
-            shape: StadiumBorder(side: BorderSide(color:  Util.themeColor)),
+            shape: StadiumBorder(side: BorderSide(color: Util.themeColor)),
           ),
         ),
       ),
     );
   }
-
 }

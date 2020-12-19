@@ -14,7 +14,6 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:scan/scan.dart';
 
@@ -178,7 +177,7 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
                               fit: BoxFit.fill)),
                       child: Icon(
                         Icons.arrow_forward_ios,
-                        size: ScreenUtil().setSp(22),
+                        size: Util.sp(22),
                         color: Util.themeColor,
                       ),
                     ),
@@ -199,7 +198,7 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
                   child: Container(
                     child: Icon(
                       IconData(0xe7b8, fontFamily: 'ICON'),
-                      size: ScreenUtil().setSp(55),
+                      size: Util.sp(55),
                       color: Colors.grey[850],
                     ),
                   ),
@@ -216,7 +215,7 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
                   child: Container(
                     child: Icon(
                       IconData(0xe606, fontFamily: 'ICON'),
-                      size: ScreenUtil().setSp(60),
+                      size: Util.sp(60),
                       color: Colors.grey[850],
                     ),
                   ),
@@ -315,7 +314,7 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
                                   _langType ? Util.height(1) : Util.height(0)),
                           child: Icon(
                             Icons.arrow_forward_ios,
-                            size: ScreenUtil().setSp(23),
+                            size: Util.sp(23),
                             color: Colors.white,
                           ),
                         ),
@@ -367,7 +366,7 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
                           Container(
                             child: Icon(
                               Icons.transit_enterexit_sharp,
-                              size: ScreenUtil().setSp(35),
+                              size: Util.sp(35),
                               color: Colors.white,
                             ),
                           ),
@@ -397,7 +396,7 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
                             padding: EdgeInsets.only(top: Util.height(2.5)),
                             child: Icon(
                               Icons.download_sharp,
-                              size: ScreenUtil().setSp(33),
+                              size: Util.sp(33),
                               color: Colors.white,
                             ),
                           ),
@@ -425,7 +424,7 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
                           Container(
                             child: Icon(
                               Icons.sync_rounded,
-                              size: ScreenUtil().setSp(33),
+                              size: Util.sp(33),
                               color: Colors.white,
                             ),
                           ),
@@ -632,7 +631,7 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
                       Container(
                         child: Icon(
                           Icons.arrow_forward_ios,
-                          size: ScreenUtil().setSp(27),
+                          size: Util.sp(27),
                           color: Colors.grey[700],
                         ),
                       ),
@@ -676,7 +675,7 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
                       Container(
                         child: Icon(
                           Icons.arrow_forward_ios,
-                          size: ScreenUtil().setSp(27),
+                          size: Util.sp(27),
                           color: Colors.grey[700],
                         ),
                       ),
@@ -716,7 +715,7 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
                       Container(
                         child: Icon(
                           Icons.arrow_forward_ios,
-                          size: ScreenUtil().setSp(27),
+                          size: Util.sp(27),
                           color: Colors.grey[700],
                         ),
                       ),
@@ -896,7 +895,7 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
                 ? Container(
                     child: Icon(
                       Icons.done_rounded,
-                      size: ScreenUtil().setSp(40),
+                      size: Util.sp(40),
                       color: Colors.white,
                     ),
                   )

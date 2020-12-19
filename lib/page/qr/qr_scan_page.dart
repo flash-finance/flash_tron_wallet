@@ -81,7 +81,7 @@ class _QrScanPageState extends State<QrScanPage> {
                   child: Container(
                     child: Icon(
                       Icons.arrow_back,
-                      size: ScreenUtil().setSp(45),
+                      size: Util.sp(45),
                       color: Colors.white,
                     ),
                   ),

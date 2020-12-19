@@ -57,8 +57,8 @@ class _IndexPageState extends State<IndexPage> {
             ),
           ),
         ],
-        selectedFontSize: 12.5,
-        unselectedFontSize: 12.5,
+        selectedFontSize: Util.sp(20),
+        unselectedFontSize: Util.sp(20),
         onTap: (int index) {
           provider.changeCurrentIndex(index);
         },

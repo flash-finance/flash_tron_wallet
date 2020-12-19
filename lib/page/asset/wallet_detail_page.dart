@@ -1,15 +1,14 @@
+import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/page/common/common_page.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
-import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:flash_tron_wallet/router/router.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
 
 class WalletDetailPage extends StatefulWidget {
@@ -48,7 +47,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
           },
           child: Icon(
             Icons.arrow_back,
-            size: ScreenUtil().setSp(45),
+            size: Util.sp(45),
             color: Colors.grey[800],
           ),
         ),
@@ -122,7 +121,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                         Container(
                           child: Icon(
                             IconData(0xe635, fontFamily: 'ICON'),
-                            size: ScreenUtil().setSp(35),
+                            size: Util.sp(35),
                             color: Colors.grey[800],
                           ),
                         ),
@@ -154,7 +153,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                         Container(
                           child: Icon(
                             IconData(0xe618, fontFamily: 'ICON'),
-                            size: ScreenUtil().setSp(30),
+                            size: Util.sp(30),
                             color: Colors.grey[800],
                           ),
                         ),
@@ -196,7 +195,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
             Container(
               child: Icon(
                 Icons.arrow_forward_ios,
-                size: ScreenUtil().setSp(27),
+                size: Util.sp(27),
                 color: Colors.grey[700],
               ),
             ),
@@ -232,7 +231,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
             Container(
               child: Icon(
                 Icons.arrow_forward_ios,
-                size: ScreenUtil().setSp(27),
+                size: Util.sp(27),
                 color: Colors.grey[700],
               ),
             ),
@@ -269,7 +268,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
             Container(
               child: Icon(
                 Icons.arrow_forward_ios,
-                size: ScreenUtil().setSp(27),
+                size: Util.sp(27),
                 color: Colors.grey[700],
               ),
             ),
@@ -301,7 +300,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
             Container(
               child: Icon(
                 Icons.arrow_forward_ios,
-                size: ScreenUtil().setSp(27),
+                size: Util.sp(27),
                 color: Colors.grey[700],
               ),
             ),

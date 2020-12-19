@@ -1,15 +1,13 @@
+import 'package:bip39/bip39.dart' as bip39;
+import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/tron/service/tron_wallet.dart';
-import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
-
-import 'package:bip39/bip39.dart' as bip39;
 
 class ImportMnemonicPage extends StatefulWidget {
   final String type;
@@ -38,7 +36,8 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
 
   @override
   Widget build(BuildContext context) {
-    importMnemonicLoading = Provider.of<HomeProvider>(context).importMnemonicLoading;
+    importMnemonicLoading =
+        Provider.of<HomeProvider>(context).importMnemonicLoading;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -46,23 +45,24 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
         brightness: Brightness.light,
         title: Text(
           '${S.of(context).assetImportMnemonic}',
-          style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2, size: 34),
+          style: Util.textStyle(context, 2,
+              color: Colors.grey[850], spacing: 0.2, size: 34),
         ),
         centerTitle: true,
         elevation: 0,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Navigator.of(context)..pop();
           },
           child: Icon(
             Icons.arrow_back,
-            size: ScreenUtil().setSp(45),
+            size: Util.sp(45),
             color: Colors.grey[850],
           ),
         ),
       ),
       body: GestureDetector(
-        onTap: (){
+        onTap: () {
           FocusScope.of(context).requestFocus(FocusNode());
         },
         child: Stack(
@@ -75,7 +75,8 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
                   _descWidget(),
                   SizedBox(height: Util.height(20)),
                   Container(
-                    margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
+                    margin: EdgeInsets.only(
+                        left: Util.width(30), right: Util.width(30)),
                     child: Column(
                       children: <Widget>[
                         _nameWidget(),
@@ -92,16 +93,18 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
                 ],
               ),
             ),
-            importMnemonicLoading ? Container(
-              padding: EdgeInsets.only(top: Util.height(300), left: Util.width(350)),
-              child: CupertinoActivityIndicator(),
-            ) : Container(),
+            importMnemonicLoading
+                ? Container(
+                    padding: EdgeInsets.only(
+                        top: Util.height(300), left: Util.width(350)),
+                    child: CupertinoActivityIndicator(),
+                  )
+                : Container(),
           ],
         ),
       ),
     );
   }
-
 
   Widget _nameWidget() {
     return Container(
@@ -113,9 +116,11 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
         cursorColor: Util.themeColor,
         decoration: InputDecoration(
           labelText: '${S.of(context).assetWalletName}',
-          labelStyle: Util.textStyle(context, 2, color: Colors.grey[700], spacing: 0.1, size: 26),
+          labelStyle: Util.textStyle(context, 2,
+              color: Colors.grey[700], spacing: 0.1, size: 26),
         ),
-        style: Util.textStyle(context, 2, color: Colors.grey[850], spacing: 0.2, size: 30),
+        style: Util.textStyle(context, 2,
+            color: Colors.grey[850], spacing: 0.2, size: 30),
         validator: (String value) {
           if (value.isEmpty) {
             return '${S.of(context).commonCanNotBeEmpty}';
@@ -137,9 +142,11 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
         cursorColor: Util.themeColor,
         decoration: InputDecoration(
           labelText: '${S.of(context).assetMnemonic}',
-          labelStyle: Util.textStyle(context, 2, color: Colors.grey[700], spacing: 0.1, size: 26),
+          labelStyle: Util.textStyle(context, 2,
+              color: Colors.grey[700], spacing: 0.1, size: 26),
         ),
-        style: Util.textStyle4En(context, 2, color: Colors.grey[850], spacing: 0.0, size: 28),
+        style: Util.textStyle4En(context, 2,
+            color: Colors.grey[850], spacing: 0.0, size: 28),
         validator: (String value) {
           if (value.isEmpty) {
             return '${S.of(context).commonCanNotBeEmpty}';
@@ -168,23 +175,27 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
         cursorColor: Util.themeColor,
         decoration: InputDecoration(
             labelText: '${S.of(context).assetSetPassword}',
-            labelStyle: Util.textStyle(context, 2, color: Colors.grey[700], spacing: 0.1, size: 26),
+            labelStyle: Util.textStyle(context, 2,
+                color: Colors.grey[700], spacing: 0.1, size: 26),
             suffixIcon: IconButton(
               icon: Icon(
                 Icons.remove_red_eye,
                 color: _setPwdEyeColor,
-                size: ScreenUtil().setSp(38),
+                size: Util.sp(38),
               ),
               onPressed: () {
                 setState(() {
                   _setPwdClickEye = !_setPwdClickEye;
-                  _setPwdEyeColor = _setPwdClickEye ? Colors.grey :  Util.themeColor;
+                  _setPwdEyeColor =
+                      _setPwdClickEye ? Colors.grey : Util.themeColor;
                 });
               },
-            )
-        ),
-
-        style: Util.textStyle4Num(context, color: Colors.grey[800], spacing: 0.2, size: 32, fontWeight: FontWeight.w500),
+            )),
+        style: Util.textStyle4Num(context,
+            color: Colors.grey[800],
+            spacing: 0.2,
+            size: 32,
+            fontWeight: FontWeight.w500),
         validator: (String value) {
           if (value.isEmpty) {
             return '${S.of(context).commonCanNotBeEmpty}';
@@ -215,22 +226,27 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
         cursorColor: Util.themeColor,
         decoration: InputDecoration(
             labelText: '${S.of(context).assetConfirmPassword}',
-            labelStyle: Util.textStyle(context, 2, color: Colors.grey[700], spacing: 0.1, size: 26),
+            labelStyle: Util.textStyle(context, 2,
+                color: Colors.grey[700], spacing: 0.1, size: 26),
             suffixIcon: IconButton(
               icon: Icon(
                 Icons.remove_red_eye,
                 color: _confirmPwdEyeColor,
-                size: ScreenUtil().setSp(38),
+                size: Util.sp(38),
               ),
               onPressed: () {
                 setState(() {
                   _confirmPwdClickEye = !_confirmPwdClickEye;
-                  _confirmPwdEyeColor = _confirmPwdClickEye ? Colors.grey :  Util.themeColor;
+                  _confirmPwdEyeColor =
+                      _confirmPwdClickEye ? Colors.grey : Util.themeColor;
                 });
               },
-            )
-        ),
-        style: Util.textStyle4Num(context, color: Colors.grey[800], spacing: 0.2, size: 32, fontWeight: FontWeight.w500),
+            )),
+        style: Util.textStyle4Num(context,
+            color: Colors.grey[800],
+            spacing: 0.2,
+            size: 32,
+            fontWeight: FontWeight.w500),
         validator: (String value) {
           if (value.isEmpty) {
             return '${S.of(context).commonCanNotBeEmpty}';
@@ -252,36 +268,43 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
               padding: EdgeInsets.all(12),
               child: Text(
                 '${S.of(context).commonSubmit}',
-                style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.6, size: 31),
+                style: Util.textStyle(context, 1,
+                    color: Colors.white, spacing: 0.6, size: 31),
               ),
             ),
-            color:  Util.themeColor,
-            onPressed: !importMnemonicLoading ? () {
-              FocusScope.of(context).requestFocus(FocusNode());
-              if (_formKey.currentState.validate()) {
-                _formKey.currentState.save();
-                if (_setPwd != _confirmPwd) {
-                  Util.showToast('${S.of(context).commonConfirmPwdError}');
-                } else if (!validateMnemonic()) {
-                  Util.showToast('${S.of(context).commonIncorrectFormat}');
-                } else {
-                  _submit().then((val) {
-                    Provider.of<HomeProvider>(context, listen: false).changeImportMnemonicLoading(false);
-                    if(val == true) {
-                      Util.showToast('${S.of(context).commonImportSuccess}');
-                      if (widget.type == '1') {
-                        Navigator.of(context)..pop();
-                      } else if (widget.type == '2') {
-                        Navigator.of(context)..pop()..pop();
+            color: Util.themeColor,
+            onPressed: !importMnemonicLoading
+                ? () {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                    if (_formKey.currentState.validate()) {
+                      _formKey.currentState.save();
+                      if (_setPwd != _confirmPwd) {
+                        Util.showToast(
+                            '${S.of(context).commonConfirmPwdError}');
+                      } else if (!validateMnemonic()) {
+                        Util.showToast(
+                            '${S.of(context).commonIncorrectFormat}');
+                      } else {
+                        _submit().then((val) {
+                          Provider.of<HomeProvider>(context, listen: false)
+                              .changeImportMnemonicLoading(false);
+                          if (val == true) {
+                            Util.showToast(
+                                '${S.of(context).commonImportSuccess}');
+                            if (widget.type == '1') {
+                              Navigator.of(context)..pop();
+                            } else if (widget.type == '2') {
+                              Navigator.of(context)..pop()..pop();
+                            }
+                          } else {
+                            Util.showToast('${S.of(context).commonImportFail}');
+                          }
+                        });
                       }
-                    } else {
-                      Util.showToast('${S.of(context).commonImportFail}');
                     }
-                  });
-                }
-              }
-            } : () {},
-            shape: StadiumBorder(side: BorderSide(color:  Util.themeColor)),
+                  }
+                : () {},
+            shape: StadiumBorder(side: BorderSide(color: Util.themeColor)),
           ),
         ),
       ),
@@ -293,7 +316,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
       margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color:  Util.themeColor,
+        color: Util.themeColor,
       ),
       child: Column(
         children: <Widget>[
@@ -302,7 +325,8 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
             alignment: Alignment.centerLeft,
             child: Text(
               '${S.of(context).addWalletTip1}',
-              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.1, size: 21),
+              style: Util.textStyle(context, 1,
+                  color: Colors.white, spacing: 0.1, size: 21),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
@@ -312,7 +336,8 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
             alignment: Alignment.centerLeft,
             child: Text(
               '${S.of(context).addWalletTip2}',
-              style: Util.textStyle(context, 1, color:Colors.white, spacing: 0.1, size: 21),
+              style: Util.textStyle(context, 1,
+                  color: Colors.white, spacing: 0.1, size: 21),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
@@ -339,9 +364,12 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
   }
 
   Future<bool> _submit() async {
-    Provider.of<HomeProvider>(context, listen: false).changeImportMnemonicLoading(true);
-    WalletEntity entity =  TronWallet().importWalletByMnemonic(_name, _setPwd, _mnemonic);
-    bool result =  await Provider.of<HomeProvider>(context, listen: false).addWallet(entity);
+    Provider.of<HomeProvider>(context, listen: false)
+        .changeImportMnemonicLoading(true);
+    WalletEntity entity =
+        TronWallet().importWalletByMnemonic(_name, _setPwd, _mnemonic);
+    bool result = await Provider.of<HomeProvider>(context, listen: false)
+        .addWallet(entity);
     if (result) {
       await _getAsset();
     }

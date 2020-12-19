@@ -78,7 +78,7 @@ class _MinePageState extends State<MinePage> {
                 Container(
                   child: Icon(
                     IconData(0xe6e0, fontFamily: 'ICON'),
-                    size: ScreenUtil().setSp(42),
+                    size: Util.sp(42),
                     color: Colors.grey[800],
                   ),
                 ),
@@ -95,7 +95,7 @@ class _MinePageState extends State<MinePage> {
             Container(
               child: Icon(
                 Icons.arrow_forward_ios,
-                size: ScreenUtil().setSp(27),
+                size: Util.sp(27),
                 color: Colors.grey[700],
               ),
             ),
@@ -126,7 +126,7 @@ class _MinePageState extends State<MinePage> {
                 Container(
                   child: Icon(
                     IconData(0xe676, fontFamily: 'ICON'),
-                    size: ScreenUtil().setSp(40),
+                    size: Util.sp(40),
                     color: Colors.grey[800],
                   ),
                 ),
@@ -155,7 +155,7 @@ class _MinePageState extends State<MinePage> {
             Container(
               child: Icon(
                 Icons.arrow_forward_ios,
-                size: ScreenUtil().setSp(27),
+                size: Util.sp(27),
                 color: Colors.grey[700],
               ),
             ),
@@ -213,8 +213,8 @@ class _MinePageState extends State<MinePage> {
                             fontFamily: 'SHS-R',
                             letterSpacing: 0.1,
                             color: Colors.grey[850],
-                            fontSize: ScreenUtil().setSp(25),
-                            height: ScreenUtil().setSp(3.2),
+                            fontSize: Util.sp(25),
+                            height: Util.sp(3.2),
                           ),
                         ),
                       ),
@@ -271,8 +271,8 @@ class _MinePageState extends State<MinePage> {
                             fontFamily: 'SHS-R',
                             letterSpacing: 0.1,
                             color: Colors.grey[850],
-                            fontSize: ScreenUtil().setSp(25),
-                            height: ScreenUtil().setSp(3.2),
+                            fontSize: Util.sp(25),
+                            height: Util.sp(3.2),
                           ),
                         ),
                       ),
@@ -318,7 +318,7 @@ class _MinePageState extends State<MinePage> {
                 Container(
                   child: Icon(
                     IconData(0xe6db, fontFamily: 'ICON'),
-                    size: ScreenUtil().setSp(42),
+                    size: Util.sp(42),
                     color: Colors.grey[800],
                   ),
                 ),
@@ -342,7 +342,7 @@ class _MinePageState extends State<MinePage> {
                   Container(
                     child: Icon(
                       Icons.arrow_forward_ios,
-                      size: ScreenUtil().setSp(27),
+                      size: Util.sp(27),
                       color: Colors.grey[700],
                     ),
                   ),
@@ -376,7 +376,7 @@ class _MinePageState extends State<MinePage> {
                       left: Util.width(5), right: Util.width(10)),
                   alignment: Alignment.centerRight,
                   child: Icon(Icons.brightness_1,
-                      size: ScreenUtil().setSp(15), color: Util.themeColor),
+                      size: Util.sp(15), color: Util.themeColor),
                 )
               : Container(),
         ],

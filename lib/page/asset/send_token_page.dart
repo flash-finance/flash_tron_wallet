@@ -1,4 +1,5 @@
 import 'package:fixnum/fixnum.dart';
+import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
@@ -9,12 +10,10 @@ import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/router/router.dart';
 import 'package:flash_tron_wallet/tron/service/tron_transaction.dart';
 import 'package:flash_tron_wallet/tron/service/tron_wallet.dart';
-import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -48,7 +47,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
           },
           child: Icon(
             Icons.arrow_back,
-            size: ScreenUtil().setSp(45),
+            size: Util.sp(45),
             color: Colors.grey[850],
           ),
         ),
@@ -221,7 +220,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                   child: Container(
                     child: Icon(
                       IconData(0xe606, fontFamily: 'ICON'),
-                      size: ScreenUtil().setSp(52),
+                      size: Util.sp(52),
                       color: Colors.grey[850],
                     ),
                   ),
@@ -278,7 +277,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                               letterSpacing: 0.0,
                               color: Colors.grey[800],
                               fontWeight: FontWeight.w500,
-                              fontSize: ScreenUtil().setSp(26),
+                              fontSize: Util.sp(26),
                             ),
                           ),
                         ),
@@ -286,7 +285,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                           padding: EdgeInsets.only(top: Util.height(1.8)),
                           child: Icon(
                             Icons.arrow_forward_ios,
-                            size: ScreenUtil().setSp(25),
+                            size: Util.sp(25),
                             color: Colors.grey[800],
                           ),
                         ),
@@ -393,7 +392,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                 letterSpacing: 0.0,
                 color: Colors.grey[800],
                 fontWeight: FontWeight.w500,
-                fontSize: ScreenUtil().setSp(28),
+                fontSize: Util.sp(28),
               ),
             ),
           ),
@@ -491,7 +490,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                   : Icon(
                       Icons.check,
                       color: Colors.grey[850],
-                      size: ScreenUtil().setSp(42),
+                      size: Util.sp(42),
                     ),
             ),
           ],

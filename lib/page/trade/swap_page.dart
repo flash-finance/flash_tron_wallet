@@ -1541,7 +1541,10 @@ class _SwapPageState extends State<SwapPage> {
         enableDrag: false,
         //barrierColor: Colors.grey[850].withOpacity(0.98),
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(15.0))),
+            borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(15.0),
+          topRight: Radius.circular(15.0),
+        )),
         builder: (BuildContext context) {
           return Container(
             height: Util.height(800),
@@ -1570,8 +1573,8 @@ class _SwapPageState extends State<SwapPage> {
   Widget _selectTokenTitleWidget(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(
-          left: Util.width(30),
-          right: Util.width(30),
+          left: Util.width(40),
+          right: Util.width(40),
           top: Util.height(20),
           bottom: Util.height(20)),
       child: Row(
@@ -1642,8 +1645,8 @@ class _SwapPageState extends State<SwapPage> {
       },
       child: Container(
         padding: EdgeInsets.only(
-            left: Util.width(30),
-            right: Util.width(30),
+            left: Util.width(40),
+            right: Util.width(40),
             top: Util.height(20),
             bottom: Util.height(20)),
         decoration: BoxDecoration(
@@ -1654,32 +1657,18 @@ class _SwapPageState extends State<SwapPage> {
           children: <Widget>[
             Container(
               width: Util.width(200),
-              child: Row(
-                children: <Widget>[
-                  ClipOval(
-                    child: Image.network(
-                      '${item.swapPicUrl}',
-                      width: Util.width(35),
-                      height: Util.width(35),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  SizedBox(width: Util.width(10)),
-                  Container(
-                      child: Text(
-                    '${item.swapTokenName}',
-                    style: Util.textStyle4En(context, 2,
-                        color: type == 1
-                            ? (index != _rightSelectIndex
-                                ? Colors.grey[850]
-                                : Colors.grey[400])
-                            : (index != _leftSelectIndex
-                                ? Colors.grey[850]
-                                : Colors.grey[400]),
-                        spacing: 0.0,
-                        size: 26),
-                  )),
-                ],
+              child: Text(
+                '${item.swapTokenName}',
+                style: Util.textStyle4En(context, 2,
+                    color: type == 1
+                        ? (index != _rightSelectIndex
+                            ? Colors.grey[850]
+                            : Colors.grey[400])
+                        : (index != _leftSelectIndex
+                            ? Colors.grey[850]
+                            : Colors.grey[400]),
+                    spacing: 0.0,
+                    size: 27),
               ),
             ),
             Container(

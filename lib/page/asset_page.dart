@@ -149,7 +149,7 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
         children: <Widget>[
           InkWell(
             onTap: () {
-              _showBottomSheet(context, walletList);
+              _showBottomSheetWidget(context, walletList);
             },
             child: Container(
               child: Chip(
@@ -765,14 +765,17 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
     }
   }
 
-  _showBottomSheet(BuildContext context, List<WalletEntity> walletList) {
+  _showBottomSheetWidget(BuildContext context, List<WalletEntity> walletList) {
     showModalBottomSheet(
         context: context,
         isScrollControlled: true,
         enableDrag: false,
         //barrierColor: Colors.grey[850].withOpacity(0.98),
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(15.0))),
+            borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(15.0),
+          topRight: Radius.circular(15.0),
+        )),
         builder: (BuildContext context) {
           return Container(
             height: Util.height(800),

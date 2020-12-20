@@ -80,7 +80,7 @@ class _MarketPageState extends State<MarketPage> {
             child: Text(
               '${S.of(context).swapName}',
               style: Util.textStyle(context, 2,
-                  color: Colors.grey[500], spacing: 0.2, size: 22),
+                  color: Colors.grey[600], spacing: 0.2, size: 24),
             ),
           ),
           Container(
@@ -89,7 +89,7 @@ class _MarketPageState extends State<MarketPage> {
             child: Text(
               '${S.of(context).swapMarketPrice}（\$）',
               style: Util.textStyle(context, 2,
-                  color: Colors.grey[500], spacing: 0.2, size: 22),
+                  color: Colors.grey[600], spacing: 0.2, size: 24),
             ),
           ),
           Container(
@@ -99,7 +99,7 @@ class _MarketPageState extends State<MarketPage> {
             child: Text(
               '${S.of(context).swapChange}',
               style: Util.textStyle(context, 2,
-                  color: Colors.grey[500], spacing: 0.2, size: 22),
+                  color: Colors.grey[600], spacing: 0.2, size: 24),
             ),
           ),
         ],
@@ -152,12 +152,13 @@ class _MarketPageState extends State<MarketPage> {
                   ),
                   SizedBox(height: Util.height(8)),
                   Container(
+                    padding: EdgeInsets.only(left: Util.width(2)),
                     child: RichText(
                       text: TextSpan(
                         children: <TextSpan>[
                           TextSpan(
                             text: 'TL: ',
-                            style: Util.textStyle4En(context, 1,
+                            style: Util.textStyle4En(context, 2,
                                 color: Colors.grey[500],
                                 spacing: 0.0,
                                 size: 18),
@@ -168,7 +169,7 @@ class _MarketPageState extends State<MarketPage> {
                                 color: Colors.grey[500],
                                 spacing: 0.0,
                                 size: 20,
-                                fontWeight: FontWeight.w400),
+                                fontWeight: FontWeight.w500),
                           ),
                         ],
                       ),

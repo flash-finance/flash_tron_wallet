@@ -915,9 +915,10 @@ class _SwapPageState extends State<SwapPage> {
                               _swapRows[_leftSelectIndex].swapTokenType == 2
                                   ? '${_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0)}'
                                   : '${_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0)}',
-                              style: TextStyle(
+                              style: Util.textStyle4Num(
+                                context,
                                 color: Colors.grey[800],
-                                fontSize: Util.sp(26),
+                                size: 28,
                                 fontWeight: FontWeight.w500,
                               ),
                               maxLines: 1,
@@ -930,7 +931,7 @@ class _SwapPageState extends State<SwapPage> {
                               style: Util.textStyle4En(context, 2,
                                   color: Colors.grey[800],
                                   spacing: 0.2,
-                                  size: 26),
+                                  size: 27),
                             ),
                           ),
                         ],
@@ -966,9 +967,10 @@ class _SwapPageState extends State<SwapPage> {
                               _swapRows[_leftSelectIndex].swapTokenType == 2
                                   ? '${_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0)}'
                                   : '${_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
-                              style: TextStyle(
+                              style: Util.textStyle4Num(
+                                context,
                                 color: Colors.grey[800],
-                                fontSize: Util.sp(26),
+                                size: 28,
                                 fontWeight: FontWeight.w500,
                               ),
                               maxLines: 1,
@@ -981,7 +983,7 @@ class _SwapPageState extends State<SwapPage> {
                               style: Util.textStyle4En(context, 2,
                                   color: Colors.grey[800],
                                   spacing: 0.0,
-                                  size: 26),
+                                  size: 27),
                             ),
                           ),
                         ],
@@ -1008,9 +1010,10 @@ class _SwapPageState extends State<SwapPage> {
                               _swapRows[_leftSelectIndex].swapTokenType == 2
                                   ? '${_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0)}'
                                   : '${_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
-                              style: TextStyle(
+                              style: Util.textStyle4Num(
+                                context,
                                 color: Colors.grey[800],
-                                fontSize: Util.sp(26),
+                                size: 28,
                                 fontWeight: FontWeight.w500,
                               ),
                               maxLines: 1,
@@ -1023,7 +1026,7 @@ class _SwapPageState extends State<SwapPage> {
                               style: Util.textStyle4En(context, 2,
                                   color: Colors.grey[800],
                                   spacing: 0.2,
-                                  size: 26),
+                                  size: 27),
                             ),
                           ),
                         ],
@@ -1112,9 +1115,10 @@ class _SwapPageState extends State<SwapPage> {
                                       EdgeInsets.only(left: Util.width(15)),
                                   child: Text(
                                     '${_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0)}',
-                                    style: TextStyle(
+                                    style: Util.textStyle4Num(
+                                      context,
                                       color: Colors.grey[800],
-                                      fontSize: Util.sp(26),
+                                      size: 28,
                                       fontWeight: FontWeight.w500,
                                     ),
                                     maxLines: 1,
@@ -1127,7 +1131,7 @@ class _SwapPageState extends State<SwapPage> {
                                     style: Util.textStyle4En(context, 2,
                                         color: Colors.grey[800],
                                         spacing: 0.0,
-                                        size: 26),
+                                        size: 27),
                                   ),
                                 ),
                               ],
@@ -1164,9 +1168,10 @@ class _SwapPageState extends State<SwapPage> {
                                       EdgeInsets.only(left: Util.width(15)),
                                   child: Text(
                                     '${_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
-                                    style: TextStyle(
+                                    style: Util.textStyle4Num(
+                                      context,
                                       color: Colors.grey[800],
-                                      fontSize: Util.sp(26),
+                                      size: 28,
                                       fontWeight: FontWeight.w500,
                                     ),
                                     maxLines: 1,
@@ -1179,7 +1184,7 @@ class _SwapPageState extends State<SwapPage> {
                                     style: Util.textStyle4En(context, 2,
                                         color: Colors.grey[800],
                                         spacing: 0.0,
-                                        size: 26),
+                                        size: 27),
                                   ),
                                 ),
                               ],
@@ -1205,9 +1210,10 @@ class _SwapPageState extends State<SwapPage> {
                                       EdgeInsets.only(left: Util.width(15)),
                                   child: Text(
                                     '${_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
-                                    style: TextStyle(
+                                    style: Util.textStyle4Num(
+                                      context,
                                       color: Colors.grey[800],
-                                      fontSize: Util.sp(26),
+                                      size: 28,
                                       fontWeight: FontWeight.w500,
                                     ),
                                     maxLines: 1,
@@ -1220,7 +1226,7 @@ class _SwapPageState extends State<SwapPage> {
                                     style: Util.textStyle4En(context, 2,
                                         color: Colors.grey[800],
                                         spacing: 0.0,
-                                        size: 26),
+                                        size: 27),
                                   ),
                                 ),
                               ],
@@ -1293,9 +1299,10 @@ class _SwapPageState extends State<SwapPage> {
                                       EdgeInsets.only(left: Util.width(15)),
                                   child: Text(
                                     '${_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0)}',
-                                    style: TextStyle(
+                                    style: Util.textStyle4Num(
+                                      context,
                                       color: Colors.grey[800],
-                                      fontSize: Util.sp(26),
+                                      size: 28,
                                       fontWeight: FontWeight.w500,
                                     ),
                                     maxLines: 1,
@@ -1308,7 +1315,7 @@ class _SwapPageState extends State<SwapPage> {
                                     style: Util.textStyle4En(context, 2,
                                         color: Colors.grey[800],
                                         spacing: 0.0,
-                                        size: 26),
+                                        size: 27),
                                   ),
                                 ),
                               ],
@@ -1319,7 +1326,7 @@ class _SwapPageState extends State<SwapPage> {
                             alignment: Alignment.centerLeft,
                             child: Text(
                               '${S.of(context).swapToken}',
-                              style: Util.textStyle(context, 2,
+                              style: Util.textStyle4En(context, 2,
                                   color: Colors.grey[700],
                                   spacing: 0.0,
                                   size: 26),
@@ -1345,9 +1352,10 @@ class _SwapPageState extends State<SwapPage> {
                                       EdgeInsets.only(left: Util.width(15)),
                                   child: Text(
                                     '${_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
-                                    style: TextStyle(
+                                    style: Util.textStyle4Num(
+                                      context,
                                       color: Colors.grey[800],
-                                      fontSize: Util.sp(26),
+                                      size: 28,
                                       fontWeight: FontWeight.w500,
                                     ),
                                     maxLines: 1,
@@ -1360,7 +1368,7 @@ class _SwapPageState extends State<SwapPage> {
                                     style: Util.textStyle4En(context, 2,
                                         color: Colors.grey[800],
                                         spacing: 0.0,
-                                        size: 26),
+                                        size: 27),
                                   ),
                                 ),
                               ],
@@ -1386,9 +1394,10 @@ class _SwapPageState extends State<SwapPage> {
                                       EdgeInsets.only(left: Util.width(15)),
                                   child: Text(
                                     '${_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
-                                    style: TextStyle(
+                                    style: Util.textStyle4Num(
+                                      context,
                                       color: Colors.grey[800],
-                                      fontSize: Util.sp(26),
+                                      size: 28,
                                       fontWeight: FontWeight.w500,
                                     ),
                                     maxLines: 1,
@@ -1401,7 +1410,7 @@ class _SwapPageState extends State<SwapPage> {
                                     style: Util.textStyle4En(context, 2,
                                         color: Colors.grey[800],
                                         spacing: 0.0,
-                                        size: 26),
+                                        size: 27),
                                   ),
                                 ),
                               ],
@@ -1585,7 +1594,7 @@ class _SwapPageState extends State<SwapPage> {
             child: Text(
               '${S.of(context).swapName}',
               style: Util.textStyle(context, 2,
-                  color: Colors.grey[500], spacing: 0.2, size: 22),
+                  color: Colors.grey[600], spacing: 0.2, size: 24),
             ),
           ),
           Container(
@@ -1594,7 +1603,7 @@ class _SwapPageState extends State<SwapPage> {
             child: Text(
               '${S.of(context).swapMarketPrice}（\$）',
               style: Util.textStyle(context, 2,
-                  color: Colors.grey[500], spacing: 0.2, size: 22),
+                  color: Colors.grey[600], spacing: 0.2, size: 24),
             ),
           ),
           Container(
@@ -1604,7 +1613,7 @@ class _SwapPageState extends State<SwapPage> {
             child: Text(
               '${S.of(context).swapChange}',
               style: Util.textStyle(context, 2,
-                  color: Colors.grey[500], spacing: 0.2, size: 22),
+                  color: Colors.grey[600], spacing: 0.2, size: 24),
             ),
           ),
         ],

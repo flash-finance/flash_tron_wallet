@@ -11,7 +11,8 @@ class TradePage extends StatefulWidget {
   _TradePageState createState() => _TradePageState();
 }
 
-class _TradePageState extends State<TradePage> with SingleTickerProviderStateMixin {
+class _TradePageState extends State<TradePage>
+    with SingleTickerProviderStateMixin {
   bool _langType = true;
   TabController tabController;
 
@@ -30,6 +31,7 @@ class _TradePageState extends State<TradePage> with SingleTickerProviderStateMix
         }
       });
   }
+
   @override
   Widget build(BuildContext context) {
     _langType = Provider.of<IndexProvider>(context, listen: true).langType;
@@ -54,7 +56,11 @@ class _TradePageState extends State<TradePage> with SingleTickerProviderStateMix
         child: Column(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.only(top: Util.height(10), left: Util.width(150), right: Util.width(150), bottom: Util.height(10)),
+              padding: EdgeInsets.only(
+                  top: Util.height(10),
+                  left: Util.width(150),
+                  right: Util.width(150),
+                  bottom: Util.height(10)),
               decoration: BoxDecoration(
                 color: Colors.white,
               ),
@@ -66,7 +72,7 @@ class _TradePageState extends State<TradePage> with SingleTickerProviderStateMix
                 indicatorSize: TabBarIndicatorSize.label,
                 labelStyle: Util.textStyle(context, 2, spacing: 0.2, size: 32),
                 labelColor: Colors.grey[850],
-                unselectedLabelColor: Colors.grey[500],
+                unselectedLabelColor: Colors.grey[600],
                 indicatorWeight: 2.0,
                 tabs: <Tab>[
                   Tab(text: '${S.of(context).swapMarket}'),
@@ -89,6 +95,4 @@ class _TradePageState extends State<TradePage> with SingleTickerProviderStateMix
       ),
     );
   }
-
-
 }

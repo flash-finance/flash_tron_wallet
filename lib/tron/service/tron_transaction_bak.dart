@@ -19,7 +19,7 @@ import 'msg_signature.dart';
 
 import 'package:ethereum_util/src/abi.dart' as abi;
 
-class TronTransaction {
+class TronTransactionBak {
   Future<bool> transTrx(BuildContext context, String fromAddress,
       String toAddress, Int64 amount) async {
     print('TronTransaction transTrx');
@@ -183,6 +183,143 @@ class TronTransaction {
 
       bool flag = await execute(
           stub, hexPrivateKey, fromAddress, contractAddress, dataList, 0);
+      await channel.shutdown();
+      return flag;
+    } catch (e) {
+      print(e);
+      await channel.shutdown();
+      return false;
+    }
+  }
+
+  Future<bool> trc20DexOrder(
+      BuildContext context,
+      String contractAddress,
+      int orderType,
+      String userAddress,
+      String quoteTokenAddress,
+      int quoteAmount,
+      String baseTokenAddress,
+      int baseAmount,
+      int tradePrice,
+      int channelID) async {
+    print('TronTransaction trc20DexOrder');
+    String tronGrpcIP =
+        Provider.of<HomeProvider>(context, listen: false).tronGrpcIP;
+    final channel = ClientChannel(
+      tronGrpcIP.trim(),
+      port: 50051,
+      options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
+    );
+    final stub = WalletClient(channel);
+    try {
+      SmartContract response = await stub.getContract(BytesMessage()
+        ..value = base58.decode(contractAddress).sublist(0, 21));
+      String abiCode = jsonEncode(response.abi.toProto3Json()).substring(10);
+      abiCode = abiCode.substring(0, abiCode.length - 1);
+
+      String functionName = orderType == 1 ? 'buy' : 'sell';
+      AbiEntity abiEntity = AbiEntity.fromJson(response.abi.toProto3Json());
+      List<String> inputList = [];
+      if (abiEntity != null && abiEntity.entrys != null) {
+        for (Entrys item in abiEntity.entrys) {
+          if (functionName == item.name) {
+            if (item.inputs != null) {
+              for (Inputs input in item.inputs) {
+                inputList.add(input.type);
+              }
+            }
+          }
+        }
+      }
+
+      Uint8List methodID = abi.methodID(functionName, inputList);
+
+      List<dynamic> params = [];
+      String abiQuoteTokenAddress = getAbiTronAddress(quoteTokenAddress);
+      params.add(abiQuoteTokenAddress);
+      params.add(BigInt.from(quoteAmount));
+
+      String abiBaseTokenAddress = getAbiTronAddress(baseTokenAddress);
+      params.add(abiBaseTokenAddress);
+      params.add(BigInt.from(baseAmount));
+
+      params.add(BigInt.from(tradePrice));
+      params.add(BigInt.from(channelID));
+
+      Uint8List rawEncode = abi.rawEncode(inputList, params);
+      Uint8List dataList =
+          hexToBytes(bytesToHex(methodID) + bytesToHex(rawEncode));
+      //print('encode dataList1 hex: ${bytesToHex(dataList)}');
+
+      String hexPrivateKey = Provider.of<HomeProvider>(context, listen: false)
+          .selectWalletEntity
+          .privateKey;
+
+      int callValue = 0;
+      if (orderType == 1) {
+        callValue = baseAmount;
+      }
+      bool flag = await execute(stub, hexPrivateKey, userAddress,
+          contractAddress, dataList, callValue);
+      await channel.shutdown();
+      return flag;
+    } catch (e) {
+      print(e);
+      await channel.shutdown();
+      return false;
+    }
+  }
+
+  Future<bool> trc20DexCancel(BuildContext context, String contractAddress,
+      String userAddress, int orderID) async {
+    print('TronTransaction trc20DexCancel');
+    String tronGrpcIP =
+        Provider.of<HomeProvider>(context, listen: false).tronGrpcIP;
+    final channel = ClientChannel(
+      tronGrpcIP.trim(),
+      port: 50051,
+      options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
+    );
+    final stub = WalletClient(channel);
+    try {
+      SmartContract response = await stub.getContract(BytesMessage()
+        ..value = base58.decode(contractAddress).sublist(0, 21));
+      String abiCode = jsonEncode(response.abi.toProto3Json()).substring(10);
+      abiCode = abiCode.substring(0, abiCode.length - 1);
+
+      String functionName = 'cancel';
+      AbiEntity abiEntity = AbiEntity.fromJson(response.abi.toProto3Json());
+      List<String> inputList = [];
+      if (abiEntity != null && abiEntity.entrys != null) {
+        for (Entrys item in abiEntity.entrys) {
+          if (functionName == item.name) {
+            if (item.inputs != null) {
+              for (Inputs input in item.inputs) {
+                inputList.add(input.type);
+              }
+            }
+          }
+        }
+      }
+
+      Uint8List methodID = abi.methodID(functionName, inputList);
+
+      List<dynamic> params = [];
+      params.add(BigInt.from(orderID));
+
+      Uint8List rawEncode = abi.rawEncode(inputList, params);
+      Uint8List dataList =
+          hexToBytes(bytesToHex(methodID) + bytesToHex(rawEncode));
+      //print('encode dataList1 hex: ${bytesToHex(dataList)}');
+
+      String hexPrivateKey = Provider.of<HomeProvider>(context, listen: false)
+          .selectWalletEntity
+          .privateKey;
+
+      int callValue = 0;
+      bool flag = await execute(stub, hexPrivateKey, userAddress,
+          contractAddress, dataList, callValue);
       await channel.shutdown();
       return flag;
     } catch (e) {

@@ -695,18 +695,15 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
       transferLoading = true;
     });
     double amount = double.parse(_assetAmount) * _getPrecision(item.precision);
-    if (item.type == 0) {
+    if (item.type == 1) {
       bool result = await TronTransaction().transTrx(
           context, ownerAddress, _receiveAddress, Int64(amount.toInt()));
       return result ? 0 : 1;
-    } else if (item.type == 1) {
-      bool result = await TronTransaction().transTrc10(context, item.address,
-          ownerAddress, _receiveAddress, Int64(amount.toInt()));
-      return result ? 0 : 1;
-    } else {
+    } else if (item.type == 2) {
       bool result = await TronTransaction().transTrc20(
           context, item.address, ownerAddress, _receiveAddress, amount.toInt());
       return result ? 0 : 1;
     }
+    return 0;
   }
 }

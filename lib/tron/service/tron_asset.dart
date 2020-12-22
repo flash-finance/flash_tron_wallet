@@ -46,30 +46,33 @@ class TronAsset {
         }
       }
       Provider.of<HomeProvider>(context, listen: false).updateAssetList(list);
+      return true;
     } catch (e) {
       print(e);
-      await channel.shutdown();
       return false;
+    } finally {
+      await channel.shutdown();
     }
-    await channel.shutdown();
-    return true;
   }
 
   AssetEntity getTrxBalance(
       Account response, String userAddress, TokenRows item) {
     AssetEntity entity = AssetEntity(
-        type: 1,
-        address: item.tokenAddress,
-        name: item.tokenShort,
-        precision: item.tokenPrecision,
-        balance: 0,
-        usd: 0,
-        logoUrl: item.logoUrl);
+      type: 1,
+      address: item.tokenAddress,
+      name: item.tokenShort,
+      precision: item.tokenPrecision,
+      balance: 0,
+      usd: 0,
+      logoUrl: item.logoUrl,
+      originBalance: '0',
+    );
     if (response != null && response.balance != null) {
       double trxBalance =
           response.balance.toDouble() / getPrecision(item.tokenPrecision);
       entity.balance = trxBalance;
       entity.usd = trxBalance * item.priceUsd;
+      entity.originBalance = response.balance.toString();
     }
     return entity;
   }
@@ -77,20 +80,20 @@ class TronAsset {
   Future<AssetEntity> getTrc20Balance(
       WalletClient stub, String userAddress, TokenRows item) async {
     AssetEntity entity = AssetEntity(
-        type: 2,
-        address: item.tokenAddress,
-        name: item.tokenShort,
-        precision: item.tokenPrecision,
-        balance: 0,
-        usd: 0,
-        logoUrl: item.logoUrl);
+      type: 2,
+      address: item.tokenAddress,
+      name: item.tokenShort,
+      precision: item.tokenPrecision,
+      balance: 0,
+      usd: 0,
+      logoUrl: item.logoUrl,
+      originBalance: '0',
+    );
     try {
       SmartContract response = await stub.getContract(BytesMessage()
         ..value = base58.decode(item.tokenAddress).sublist(0, 21));
       String abiCode = jsonEncode(response.abi.toProto3Json()).substring(10);
       abiCode = abiCode.substring(0, abiCode.length - 1);
-      //print('contractName:\n $contractName');
-      //print('abiCode:\n $abiCode');
 
       String abiUserAddress = getAbiTronAddress(userAddress);
       String functionName = 'balanceOf';
@@ -112,7 +115,6 @@ class TronAsset {
       Uint8List rawEncode = abi.rawEncode(inputList, [abiUserAddress]);
       Uint8List dataList =
           hexToBytes(bytesToHex(methodID) + bytesToHex(rawEncode));
-      //print('encode dataList hex: ${bytesToHex(dataList)}');
 
       TriggerSmartContract req = TriggerSmartContract();
       req.ownerAddress = base58.decode(userAddress).sublist(0, 21);
@@ -120,9 +122,6 @@ class TronAsset {
       req.data = dataList;
 
       final result = await stub.triggerContract(req);
-      //print('result: ${result.toProto3Json()}');
-      //print('result msg: ${utf8.decode(result.result.message)}');
-      // print('balance: ${bytesToInt(result.constantResult[0]).toInt()}');
       if (result != null &&
           result.constantResult != null &&
           result.constantResult.length > 0) {
@@ -130,6 +129,7 @@ class TronAsset {
             getPrecision(item.tokenPrecision);
         entity.balance = balance;
         entity.usd = balance * item.priceUsd;
+        entity.originBalance = bytesToInt(result.constantResult[0]).toString();
       }
     } catch (e) {
       print(e);

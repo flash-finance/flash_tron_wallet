@@ -308,13 +308,15 @@ class HomeProvider with ChangeNotifier {
       for (int i = 0; i < tokenList.length; i++) {
         TokenRows item = tokenList[i];
         AssetEntity entity = AssetEntity(
-            type: item.tokenType,
-            address: item.tokenAddress,
-            name: item.tokenShort,
-            precision: item.tokenPrecision,
-            balance: 0,
-            usd: 0,
-            logoUrl: item.logoUrl);
+          type: item.tokenType,
+          address: item.tokenAddress,
+          name: item.tokenShort,
+          precision: item.tokenPrecision,
+          balance: 0,
+          usd: 0,
+          logoUrl: item.logoUrl,
+          originBalance: '0',
+        );
         list.add(entity);
       }
       _assetList = list;
@@ -371,6 +373,11 @@ class HomeProvider with ChangeNotifier {
           _assetList[i].balance = entity.balance;
           _assetList[i].usd = entity.usd;
           _assetList[i].logoUrl = entity.logoUrl;
+          _assetList[i].originBalance = entity.originBalance;
+          String _key = '$userAddress+${_assetList[i].address}';
+          _balanceMap[_key] = _assetList[i].originBalance;
+          print('getTrxBalance4Async 00 key:$_key');
+          print('getTrxBalance4Async 11 value:${_balanceMap[_key]}');
           notifyListeners();
           break;
         }
@@ -404,6 +411,11 @@ class HomeProvider with ChangeNotifier {
           _assetList[i].balance = entity.balance;
           _assetList[i].usd = entity.usd;
           _assetList[i].logoUrl = entity.logoUrl;
+          _assetList[i].originBalance = entity.originBalance;
+          String _key = '$userAddress+${_assetList[i].address}';
+          _balanceMap[_key] = _assetList[i].originBalance;
+          print('getTrc20Balance4Async 222 key:$_key}');
+          print('getTrc20Balance4Async 222 value:${_balanceMap[_key]}');
           notifyListeners();
           break;
         }
@@ -456,6 +468,10 @@ class HomeProvider with ChangeNotifier {
     }
     await channel.shutdown();
   }
+
+  Map<String, String> _balanceMap = Map<String, String>();
+
+  Map<String, String> get balanceMap => _balanceMap;
 
   bool _importKeyLoading = false;
 

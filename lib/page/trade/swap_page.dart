@@ -58,7 +58,7 @@ class _SwapPageState extends State<SwapPage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _reloadSwapData();
-      _reloadTokenBalance();
+      //_reloadTokenBalance();
     });
   }
 
@@ -85,6 +85,7 @@ class _SwapPageState extends State<SwapPage> {
     if (wallet != null && wallet.tronAddress != null) {
       _account = wallet.tronAddress;
     }
+    _balanceMap = Provider.of<HomeProvider>(context, listen: true).balanceMap;
     _langType = Provider.of<IndexProvider>(context, listen: true).langType;
     _leftSwapAmountController = TextEditingController.fromValue(
         TextEditingValue(
@@ -1652,7 +1653,7 @@ class _SwapPageState extends State<SwapPage> {
 
   bool _reloadSwapDataFlag = false;
 
-  var _balanceMap = Map<String, String>();
+  Map<String, String> _balanceMap = Map<String, String>();
 
   _reloadSwapData() async {
     _getSwapData();

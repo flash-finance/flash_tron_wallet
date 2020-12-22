@@ -108,11 +108,16 @@ class _SwapPageState extends State<SwapPage> {
         ),
         preferredSize: Size.fromHeight(Util.height(0)),
       ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _mainWidget(context),
-        ],
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _mainWidget(context),
+          ],
+        ),
       ),
     );
   }

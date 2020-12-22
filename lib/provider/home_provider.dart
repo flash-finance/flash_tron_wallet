@@ -363,7 +363,6 @@ class HomeProvider with ChangeNotifier {
           await stub.getAccount(Account()..address = originAddress);
       AssetEntity entity =
           TronAsset().getTrxBalance(response, userAddress, item);
-      //print('getTrxBalance4Async:${entity.toJson()}, length:${_assetList.length}');
       for (int i = 0; i < _assetList.length; i++) {
         if (_assetList[i].address == entity.address) {
           _assetList[i].type = entity.type;
@@ -374,10 +373,9 @@ class HomeProvider with ChangeNotifier {
           _assetList[i].usd = entity.usd;
           _assetList[i].logoUrl = entity.logoUrl;
           _assetList[i].originBalance = entity.originBalance;
+          notifyListeners();
           String _key = '$userAddress+${_assetList[i].address}';
           _balanceMap[_key] = _assetList[i].originBalance;
-          print('getTrxBalance4Async 00 key:$_key');
-          print('getTrxBalance4Async 11 value:${_balanceMap[_key]}');
           notifyListeners();
           break;
         }
@@ -401,7 +399,6 @@ class HomeProvider with ChangeNotifier {
       final stub = WalletClient(channel);
       AssetEntity entity =
           await TronAsset().getTrc20Balance(stub, userAddress, item);
-      //print('getTrc20Balance4Async:${entity.toJson()}, length:${_assetList.length}');
       for (int i = 0; i < _assetList.length; i++) {
         if (_assetList[i].address == entity.address) {
           _assetList[i].type = entity.type;
@@ -412,10 +409,9 @@ class HomeProvider with ChangeNotifier {
           _assetList[i].usd = entity.usd;
           _assetList[i].logoUrl = entity.logoUrl;
           _assetList[i].originBalance = entity.originBalance;
+          notifyListeners();
           String _key = '$userAddress+${_assetList[i].address}';
           _balanceMap[_key] = _assetList[i].originBalance;
-          print('getTrc20Balance4Async 222 key:$_key}');
-          print('getTrc20Balance4Async 222 value:${_balanceMap[_key]}');
           notifyListeners();
           break;
         }

@@ -9,7 +9,6 @@ import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/model/swap_model.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/provider/index_provider.dart';
-import 'package:flash_tron_wallet/tron/service/tron_swap.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -58,7 +57,6 @@ class _SwapPageState extends State<SwapPage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _reloadSwapData();
-      //_reloadTokenBalance();
     });
   }
 
@@ -1558,7 +1556,7 @@ class _SwapPageState extends State<SwapPage> {
           _leftSwapValue = '';
           _rightSwapAmount = '';
           _rightSwapValue = '';
-          //_reloadSub();
+          _reloadSub();
           setState(() {});
           Navigator.pop(context);
         } else if (type == 2 && index != _leftSelectIndex) {
@@ -1567,7 +1565,7 @@ class _SwapPageState extends State<SwapPage> {
           _leftSwapValue = '';
           _rightSwapAmount = '';
           _rightSwapValue = '';
-          //_reloadSub();
+          _reloadSub();
           setState(() {});
           Navigator.pop(context);
         }
@@ -1727,44 +1725,5 @@ class _SwapPageState extends State<SwapPage> {
               _swapRows[_leftSelectIndex].swapTokenPrice1)
           .toString();
     }
-  }
-
-  bool _reloadTokenBalanceFlag = false;
-
-  _reloadTokenBalance() async {
-    _getTokenBalance();
-    _timer2 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
-      if (_reloadTokenBalanceFlag) {
-        _getTokenBalance();
-      }
-    });
-  }
-
-  _getTokenBalance() async {
-    _reloadTokenBalanceFlag = false;
-    if (_account != '') {
-      String tronGrpcIP =
-          Provider.of<HomeProvider>(context, listen: false).tronGrpcIP;
-
-      for (int i = 0; i < _swapRows.length; i++) {
-        String _key = '$_account+${_swapRows[i].swapTokenAddress}';
-        if (_balanceMap[_key] == null) {
-          if (_swapRows[i].swapTokenType == 1) {
-            String balance =
-                await TronSwap().getTrxBalance(tronGrpcIP, _account);
-            setState(() {
-              _balanceMap[_key] = balance;
-            });
-          } else if (_swapRows[i].swapTokenType == 2) {
-            String balance = await TronSwap().getTrc20Balance(
-                tronGrpcIP, _account, _swapRows[i].swapTokenAddress);
-            setState(() {
-              _balanceMap[_key] = balance;
-            });
-          }
-        }
-      }
-    }
-    _reloadTokenBalanceFlag = true;
   }
 }

@@ -53,6 +53,7 @@ dependencies:
   url_launcher: ^5.7.10
   cached_network_image: ^2.3.3
   scan: ^0.0.3
+  decimal: ^0.3.5
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

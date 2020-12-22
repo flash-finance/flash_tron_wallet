@@ -4,9 +4,12 @@ import 'package:decimal/decimal.dart';
 import 'package:flash_tron_wallet/common/common_config.dart';
 import 'package:flash_tron_wallet/common/common_service.dart';
 import 'package:flash_tron_wallet/common/common_util.dart';
+import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/model/swap_model.dart';
+import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/provider/index_provider.dart';
+import 'package:flash_tron_wallet/tron/service/tron_swap.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,7 +28,6 @@ class _SwapPageState extends State<SwapPage> {
   bool _tronFlag = false;
   Timer _timer1;
   Timer _timer2;
-  Timer _timer3;
 
   bool _flag1 = false;
   bool _flag2 = false;
@@ -56,6 +58,7 @@ class _SwapPageState extends State<SwapPage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _reloadSwapData();
+      _reloadTokenBalance();
     });
   }
 
@@ -72,16 +75,16 @@ class _SwapPageState extends State<SwapPage> {
         _timer2.cancel();
       }
     }
-    if (_timer3 != null) {
-      if (_timer3.isActive) {
-        _timer3.cancel();
-      }
-    }
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    WalletEntity wallet =
+        Provider.of<HomeProvider>(context, listen: true).selectWalletEntity;
+    if (wallet != null && wallet.tronAddress != null) {
+      _account = wallet.tronAddress;
+    }
     _langType = Provider.of<IndexProvider>(context, listen: true).langType;
     _leftSwapAmountController = TextEditingController.fromValue(
         TextEditingValue(
@@ -1459,90 +1462,6 @@ class _SwapPageState extends State<SwapPage> {
     );
   }
 
-  SwapData _swapData;
-
-  List<SwapRow> _swapRows = [];
-
-  bool _reloadSwapDataFlag = false;
-
-  var _balanceMap = Map<String, String>();
-
-  _reloadSwapData() async {
-    _getSwapData();
-    _timer1 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
-      if (_reloadSwapDataFlag) {
-        _getSwapData();
-      }
-    });
-  }
-
-  void _getSwapData() async {
-    _reloadSwapDataFlag = false;
-    try {
-      String url = servicePath['swapQuery'];
-      await requestGet(url).then((value) {
-        var respData = Map<String, dynamic>.from(value);
-        SwapRespModel respModel = SwapRespModel.fromJson(respData);
-        if (respModel != null && respModel.code == 0) {
-          _swapData = respModel.data;
-          if (_swapData != null &&
-              _swapData.rows != null &&
-              _swapData.rows.length > 0) {
-            _swapRows = _swapData.rows;
-          }
-        }
-      });
-      _flag1 = _swapRows.length > 0 ? true : false;
-      _flag2 = _swapRows.length > 1 ? true : false;
-      _reloadSub();
-      if (mounted) {
-        setState(() {});
-      }
-    } catch (e) {
-      print(e);
-    }
-    _reloadSwapDataFlag = true;
-  }
-
-  void _reloadSub() {
-    if (_flag1 && _flag2) {
-      _leftKey = '$_account+${_swapRows[_leftSelectIndex].swapTokenAddress}';
-      _rightKey = '$_account+${_swapRows[_rightSelectIndex].swapTokenAddress}';
-    }
-
-    if (_flag1 &&
-        _flag2 &&
-        _swapRows[_leftSelectIndex].swapTokenPrecision > 0 &&
-        _balanceMap[_leftKey] != null) {
-      _leftBalanceAmount = (Decimal.tryParse(_balanceMap[_leftKey]) /
-              Decimal.fromInt(10)
-                  .pow(_swapRows[_leftSelectIndex].swapTokenPrecision))
-          .toString();
-    }
-    if (_flag1 &&
-        _flag2 &&
-        _swapRows[_rightSelectIndex].swapTokenPrecision > 0 &&
-        _balanceMap[_rightKey] != null) {
-      _rightBalanceAmount = (Decimal.tryParse(_balanceMap[_rightKey]) /
-              Decimal.fromInt(10)
-                  .pow(_swapRows[_rightSelectIndex].swapTokenPrecision))
-          .toString();
-    }
-
-    if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
-      _leftPrice = (_swapRows[_leftSelectIndex].swapTokenPrice1 /
-              _swapRows[_rightSelectIndex].swapTokenPrice1)
-          .toString();
-    }
-    if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
-      _rightPrice = (_swapRows[_rightSelectIndex].swapTokenPrice1 /
-              _swapRows[_leftSelectIndex].swapTokenPrice1)
-          .toString();
-    }
-  }
-
-  bool _reloadTokenBalanceFlag = false;
-
   _showBottomSheetWidget(BuildContext context, int type) {
     showModalBottomSheet(
         context: context,
@@ -1725,5 +1644,126 @@ class _SwapPageState extends State<SwapPage> {
         ),
       ),
     );
+  }
+
+  SwapData _swapData;
+
+  List<SwapRow> _swapRows = [];
+
+  bool _reloadSwapDataFlag = false;
+
+  var _balanceMap = Map<String, String>();
+
+  _reloadSwapData() async {
+    _getSwapData();
+    _timer1 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
+      if (_reloadSwapDataFlag) {
+        _getSwapData();
+      }
+    });
+  }
+
+  void _getSwapData() async {
+    _reloadSwapDataFlag = false;
+    try {
+      String url = servicePath['swapQuery'];
+      await requestGet(url).then((value) {
+        var respData = Map<String, dynamic>.from(value);
+        SwapRespModel respModel = SwapRespModel.fromJson(respData);
+        if (respModel != null && respModel.code == 0) {
+          _swapData = respModel.data;
+          if (_swapData != null &&
+              _swapData.rows != null &&
+              _swapData.rows.length > 0) {
+            _swapRows = _swapData.rows;
+          }
+        }
+      });
+      _flag1 = _swapRows.length > 0 ? true : false;
+      _flag2 = _swapRows.length > 1 ? true : false;
+      _reloadSub();
+      if (mounted) {
+        setState(() {});
+      }
+    } catch (e) {
+      print(e);
+    }
+    _reloadSwapDataFlag = true;
+  }
+
+  void _reloadSub() {
+    if (_flag1 && _flag2) {
+      _leftKey = '$_account+${_swapRows[_leftSelectIndex].swapTokenAddress}';
+      _rightKey = '$_account+${_swapRows[_rightSelectIndex].swapTokenAddress}';
+    }
+
+    if (_flag1 &&
+        _flag2 &&
+        _swapRows[_leftSelectIndex].swapTokenPrecision > 0 &&
+        _balanceMap[_leftKey] != null) {
+      _leftBalanceAmount = (Decimal.tryParse(_balanceMap[_leftKey]) /
+              Decimal.fromInt(10)
+                  .pow(_swapRows[_leftSelectIndex].swapTokenPrecision))
+          .toString();
+    }
+    if (_flag1 &&
+        _flag2 &&
+        _swapRows[_rightSelectIndex].swapTokenPrecision > 0 &&
+        _balanceMap[_rightKey] != null) {
+      _rightBalanceAmount = (Decimal.tryParse(_balanceMap[_rightKey]) /
+              Decimal.fromInt(10)
+                  .pow(_swapRows[_rightSelectIndex].swapTokenPrecision))
+          .toString();
+    }
+
+    if (_flag1 && _flag2 && _swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
+      _leftPrice = (_swapRows[_leftSelectIndex].swapTokenPrice1 /
+              _swapRows[_rightSelectIndex].swapTokenPrice1)
+          .toString();
+    }
+    if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
+      _rightPrice = (_swapRows[_rightSelectIndex].swapTokenPrice1 /
+              _swapRows[_leftSelectIndex].swapTokenPrice1)
+          .toString();
+    }
+  }
+
+  bool _reloadTokenBalanceFlag = false;
+
+  _reloadTokenBalance() async {
+    _getTokenBalance();
+    _timer2 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
+      if (_reloadTokenBalanceFlag) {
+        _getTokenBalance();
+      }
+    });
+  }
+
+  _getTokenBalance() async {
+    _reloadTokenBalanceFlag = false;
+    if (_account != '') {
+      String tronGrpcIP =
+          Provider.of<HomeProvider>(context, listen: false).tronGrpcIP;
+
+      for (int i = 0; i < _swapRows.length; i++) {
+        String _key = '$_account+${_swapRows[i].swapTokenAddress}';
+        if (_balanceMap[_key] == null) {
+          if (_swapRows[i].swapTokenType == 1) {
+            String balance =
+                await TronSwap().getTrxBalance(tronGrpcIP, _account);
+            setState(() {
+              _balanceMap[_key] = balance;
+            });
+          } else if (_swapRows[i].swapTokenType == 2) {
+            String balance = await TronSwap().getTrc20Balance(
+                tronGrpcIP, _account, _swapRows[i].swapTokenAddress);
+            setState(() {
+              _balanceMap[_key] = balance;
+            });
+          }
+        }
+      }
+    }
+    _reloadTokenBalanceFlag = true;
   }
 }

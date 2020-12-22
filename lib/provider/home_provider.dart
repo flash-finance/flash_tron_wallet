@@ -347,6 +347,7 @@ class HomeProvider with ChangeNotifier {
     }
   }
 
+  // 异步
   getTrxBalance4Async(String userAddress, TokenRows item) async {
     final channel = ClientChannel(
       tronGrpcIP.trim(),
@@ -382,6 +383,7 @@ class HomeProvider with ChangeNotifier {
     }
   }
 
+  // 异步
   getTrc20Balance4Async(String userAddress, TokenRows item) async {
     final channel = ClientChannel(
       tronGrpcIP.trim(),
@@ -493,11 +495,4 @@ class HomeProvider with ChangeNotifier {
   String _currentVersion = '';
 
   String get currentVersion => _currentVersion;
-}
-
-class TransferFilterModel {
-  String name;
-  String value;
-
-  TransferFilterModel({this.name, this.value});
 }

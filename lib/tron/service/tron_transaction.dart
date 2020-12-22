@@ -60,17 +60,16 @@ class TronTransaction {
 
       Return result = await stub.broadcastTransaction(transaction);
       if (result.toProto3Json().toString().contains('true') == true) {
-        await channel.shutdown();
         return true;
       } else {
         print('transTrx result error msg: ${utf8.decode(result.message)}');
-        await channel.shutdown();
         return false;
       }
     } catch (e) {
       print(e);
-      await channel.shutdown();
       return false;
+    } finally {
+      await channel.shutdown();
     }
   }
 
@@ -124,12 +123,12 @@ class TronTransaction {
 
       bool flag = await execute(
           stub, hexPrivateKey, fromAddress, contractAddress, dataList, 0);
-      await channel.shutdown();
       return flag;
     } catch (e) {
       print(e);
-      await channel.shutdown();
       return false;
+    } finally {
+      await channel.shutdown();
     }
   }
 
@@ -183,12 +182,12 @@ class TronTransaction {
 
       bool flag = await execute(
           stub, hexPrivateKey, fromAddress, contractAddress, dataList, 0);
-      await channel.shutdown();
       return flag;
     } catch (e) {
       print(e);
-      await channel.shutdown();
       return false;
+    } finally {
+      await channel.shutdown();
     }
   }
 

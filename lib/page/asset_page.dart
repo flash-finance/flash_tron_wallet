@@ -11,6 +11,7 @@ import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/router/router.dart';
 import 'package:flash_tron_wallet/tron/service/tron_asset.dart';
 import 'package:fluro/fluro.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -462,17 +463,25 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
 
   Widget _assetDataWidget(BuildContext context) {
     List<AssetEntity> assetList = Provider.of<HomeProvider>(context).assetList;
-    return Container(
-      margin: EdgeInsets.only(left: Util.width(10), right: Util.width(10)),
-      child: ListView.builder(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          scrollDirection: Axis.vertical,
-          itemCount: assetList.length,
-          itemBuilder: (context, index) {
-            return _assetDataItemWidget(context, assetList, index);
-          }),
-    );
+    return assetList.length > 0
+        ? Container(
+            margin:
+                EdgeInsets.only(left: Util.width(10), right: Util.width(10)),
+            child: ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                itemCount: assetList.length,
+                itemBuilder: (context, index) {
+                  return _assetDataItemWidget(context, assetList, index);
+                }),
+          )
+        : Container(
+            margin: EdgeInsets.only(top: Util.height(100)),
+            child: Center(
+              child: CupertinoActivityIndicator(),
+            ),
+          );
   }
 
   Widget _assetDataItemWidget(

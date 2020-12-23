@@ -158,18 +158,21 @@ class _MarketPageState extends State<MarketPage> {
                         children: <TextSpan>[
                           TextSpan(
                             text: 'TL: ',
-                            style: Util.textStyle4En(context, 2,
-                                color: Colors.grey[500],
-                                spacing: 0.0,
-                                size: 18),
+                            style: Util.textStyle4En(
+                              context,
+                              1,
+                              color: Colors.grey[600],
+                              spacing: 0.0,
+                              size: 18,
+                            ),
                           ),
                           TextSpan(
                             text: '\$${item.totalLiquidity.toStringAsFixed(0)}',
                             style: Util.textStyle4Num(context,
-                                color: Colors.grey[500],
+                                color: Colors.grey[600],
                                 spacing: 0.0,
                                 size: 20,
-                                fontWeight: FontWeight.w500),
+                                fontWeight: FontWeight.w400),
                           ),
                         ],
                       ),

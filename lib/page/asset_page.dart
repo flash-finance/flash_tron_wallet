@@ -169,12 +169,12 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
                     SizedBox(width: Util.width(5)),
                     Container(
                       alignment: Alignment.center,
-                      height: Util.height(40),
-                      width: Util.height(40),
+                      height: Util.height(36),
+                      width: Util.height(36),
                       decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage('icons/circle.png'),
-                              fit: BoxFit.fill)),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(18.0),
+                      ),
                       child: Icon(
                         Icons.arrow_forward_ios,
                         size: Util.sp(22),

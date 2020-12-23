@@ -99,12 +99,8 @@ class TronSwap {
     }
   }
 
-  Future<double> allowance(
-      String tronGrpcIP,
-      String userAddress,
-      String swapTokenAddress,
-      String flashSwapAddress,
-      int tokenPrecision) async {
+  Future<String> allowance(String tronGrpcIP, String userAddress,
+      String swapTokenAddress, String flashSwapAddress) async {
     final channel = ClientChannel(
       tronGrpcIP.trim(),
       port: 50051,
@@ -151,15 +147,14 @@ class TronSwap {
       if (result != null &&
           result.constantResult != null &&
           result.constantResult.length > 0) {
-        double balance = bytesToInt(result.constantResult[0]).toDouble() /
-            getPrecision(tokenPrecision);
+        String balance = bytesToInt(result.constantResult[0]).toString();
         return balance;
       } else {
-        return 0;
+        return '';
       }
     } catch (e) {
       print(e);
-      return 0;
+      return '';
     } finally {
       await channel.shutdown();
     }
@@ -288,8 +283,7 @@ class TronSwap {
       String flashSwapAddress,
       String swapTokenAddress,
       String lpTokenAddress,
-      String tokensSold,
-      int tokenPrecision) async {
+      String tokensSold) async {
     print('TronSwap tokenToTrxSwap');
 
     final channel = ClientChannel(
@@ -325,9 +319,8 @@ class TronSwap {
       params.add(getAbiTronAddress(swapTokenAddress));
       params.add(getAbiTronAddress(lpTokenAddress));
 
-      double tokensSoldValue = NumUtil.multiply(
-          double.parse(tokensSold), getPrecision(tokenPrecision));
-      params.add(BigInt.from(tokensSoldValue));
+      String tokensSoldValue = tokensSold;
+      params.add(tokensSoldValue);
       int minTrx = 1;
       params.add(BigInt.from(minTrx));
       params.add(getAbiTronAddress(userAddress));

@@ -35,8 +35,8 @@ void testAllowance() async {
   String swapTokenAddress = 'TMwFHYXLJaRUPeW6421aqXL4ZEzPRFGkGT';
   String flashSwapAddress = 'TGS7NxoAQ44pQYCSAW3FPrVMhQ1TpdsTXg';
   int tokenPrecision = 6;
-  double result = await TronSwap().allowance(tronGrpcIP, userAddress,
-      swapTokenAddress, flashSwapAddress, tokenPrecision);
+  String result = await TronSwap()
+      .allowance(tronGrpcIP, userAddress, swapTokenAddress, flashSwapAddress);
   print('testAllowance end result:$result');
 }
 
@@ -67,7 +67,6 @@ void testTokenToTrxSwap() async {
   String swapTokenAddress = 'TKkeiboTkxXKJpbmVFbv4a8ov5rAfRDMf9';
   String lpTokenAddress = 'TUEYcyPAqc4hTg1fSuBCPc18vGWcJDECVw';
   String tokensSold = '3.1';
-  int tokenPrecision = 18;
   bool result = await TronSwap().tokenToTrxSwap(
       tronGrpcIP,
       userAddress,
@@ -75,8 +74,7 @@ void testTokenToTrxSwap() async {
       flashSwapAddress,
       swapTokenAddress,
       lpTokenAddress,
-      tokensSold,
-      tokenPrecision);
+      tokensSold);
   print('testTokenToTrxSwap end, result:$result');
 }
 

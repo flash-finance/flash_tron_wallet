@@ -387,7 +387,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
           ),
           Container(
             child: Text(
-              '${assetFilterConList[index].balance}  ${assetFilterConList[index].name}',
+              '${Util.formatNum(assetFilterConList[index].balance, 4)}  ${assetFilterConList[index].name}',
               style: GoogleFonts.roboto(
                 letterSpacing: 0.0,
                 color: Colors.grey[800],

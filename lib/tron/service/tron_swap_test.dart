@@ -84,7 +84,6 @@ void testTokenToTokenSwap() async {
   String swapTokenAddress = 'TKkeiboTkxXKJpbmVFbv4a8ov5rAfRDMf9';
   String lpTokenAddress = 'TUEYcyPAqc4hTg1fSuBCPc18vGWcJDECVw';
   String tokensSold = '3.1';
-  int tokenPrecision = 18;
   String targetTokenAddress = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t';
   bool result = await TronSwap().tokenToTokenSwap(
       tronGrpcIP,
@@ -94,7 +93,6 @@ void testTokenToTokenSwap() async {
       swapTokenAddress,
       lpTokenAddress,
       tokensSold,
-      tokenPrecision,
       targetTokenAddress);
   print('testTokenToTrxSwap end, result:$result');
 }

@@ -1458,80 +1458,124 @@ class _SwapPageState extends State<SwapPage> {
             color: Util.themeColor,
             onPressed: () async {
               print('111');
-              if (_account != '' && _flag1 && _flag2 && _swapFlag) {
-                print('222');
-                double value1 = double.parse(_leftSwapValue);
-                double value2 = double.parse(_rightSwapValue);
-                if (value1 > 0 && value2 > 0) {
-                  setState(() {
-                    _loadFlag = true;
-                  });
-                  HomeProvider provider =
-                      Provider.of<HomeProvider>(context, listen: false);
-                  String tronGrpcIP = provider.tronGrpcIP;
-                  String userAddress = _account;
-                  String swapTokenAddress =
-                      _swapRows[_leftSelectIndex].swapTokenAddress;
-                  String flashSwapAddress = provider.swapAddress;
+              try {
+                if (_account != '' && _flag1 && _flag2 && _swapFlag) {
+                  print('222');
+                  double value1 = double.parse(_leftSwapValue);
+                  double value2 = double.parse(_rightSwapValue);
+                  if (value1 > 0 && value2 > 0) {
+                    setState(() {
+                      _loadFlag = true;
+                    });
+                    HomeProvider provider =
+                        Provider.of<HomeProvider>(context, listen: false);
+                    String tronGrpcIP = provider.tronGrpcIP;
+                    String userAddress = _account;
+                    String flashSwapAddress = provider.swapAddress;
 
-                  WalletEntity wallet = provider.selectWalletEntity;
-                  String privateKey = '';
-                  if (wallet != null && wallet.privateKey != null) {
-                    privateKey = wallet.privateKey;
-                  }
-                  String lpTokenAddress =
-                      _swapRows[_leftSelectIndex].lpTokenAddress;
-                  String tokensSold = _leftSwapValue;
-
-                  if (_swapRows[_leftSelectIndex].swapTokenType == 2) {
-                    //js.context.callMethod('allowance', [_swapRows[_leftSelectIndex].lpTokenAddress, 2, _swapRows[_rightSelectIndex].swapTokenType, _swapRows[_leftSelectIndex].swapTokenAddress, _swapRows[_rightSelectIndex].swapTokenAddress, _account, _leftSwapValue, _rightSwapValue]);
-                    int baseTokenType =
-                        _swapRows[_rightSelectIndex].swapTokenType;
-                    String allowanceAmount = await TronSwap().allowance(
-                        tronGrpcIP,
-                        userAddress,
-                        swapTokenAddress,
-                        flashSwapAddress);
-                    print('allowanceAmount: $allowanceAmount');
-                    if (allowanceAmount == '') {
-                      print('allowanceAmount null');
-
-                      /// TODO
-                      return;
+                    WalletEntity wallet = provider.selectWalletEntity;
+                    String privateKey = '';
+                    if (wallet != null && wallet.privateKey != null) {
+                      privateKey = wallet.privateKey;
                     }
-                    double allowanceValue =
-                        Decimal.tryParse(allowanceAmount).toDouble();
-                    double swapValue = double.parse(_leftSwapValue);
-                    print(
-                        'swapValue: $swapValue, allowanceValue:$allowanceValue');
 
-                    if (swapValue > allowanceValue) {
-                      print('swapValue > allowanceValue');
-                    } else {
-                      print('swapValue < allowanceValue');
-                      if (_account != '' && baseTokenType == 1) {
-                        print('baseTokenType == 1');
-                        bool result = await TronSwap().tokenToTrxSwap(
-                            tronGrpcIP,
-                            userAddress,
-                            privateKey,
-                            flashSwapAddress,
-                            swapTokenAddress,
-                            lpTokenAddress,
-                            tokensSold);
-                        print('result: $result');
-                        setState(() {
-                          _loadFlag = false;
-                        });
-                      } else if (_account != '' && baseTokenType == 2) {
-                        print('baseTokenType == 2');
+                    if (_swapRows[_leftSelectIndex].swapTokenType == 2) {
+                      //js.context.callMethod('allowance', [_swapRows[_leftSelectIndex].lpTokenAddress, 2, _swapRows[_rightSelectIndex].swapTokenType, _swapRows[_leftSelectIndex].swapTokenAddress, _swapRows[_rightSelectIndex].swapTokenAddress, _account, _leftSwapValue, _rightSwapValue]);
+                      String swapTokenAddress =
+                          _swapRows[_leftSelectIndex].swapTokenAddress;
+                      String lpTokenAddress =
+                          _swapRows[_leftSelectIndex].lpTokenAddress;
+                      String tokensSold = _leftSwapValue;
+
+                      String targetTokenAddress =
+                          _swapRows[_rightSelectIndex].swapTokenAddress;
+
+                      int baseTokenType =
+                          _swapRows[_rightSelectIndex].swapTokenType;
+                      String allowanceAmount = await TronSwap().allowance(
+                          tronGrpcIP,
+                          userAddress,
+                          swapTokenAddress,
+                          flashSwapAddress);
+                      print('allowanceAmount: $allowanceAmount');
+                      if (allowanceAmount == '') {
+                        print('allowanceAmount null');
+
+                        /// TODO
+                        return;
                       }
+                      double allowanceValue =
+                          Decimal.tryParse(allowanceAmount).toDouble();
+                      double swapValue = double.parse(_leftSwapValue);
+                      print(
+                          'swapValue: $swapValue, allowanceValue:$allowanceValue');
+
+                      if (swapValue > allowanceValue) {
+                        print('swapValue > allowanceValue');
+                      } else {
+                        print('swapValue < allowanceValue');
+                        if (_account != '' && baseTokenType == 1) {
+                          print('baseTokenType == 1');
+
+                          /// tokenToTrxSwap
+                          bool result = await TronSwap().tokenToTrxSwap(
+                              tronGrpcIP,
+                              userAddress,
+                              privateKey,
+                              flashSwapAddress,
+                              swapTokenAddress,
+                              lpTokenAddress,
+                              tokensSold);
+                          print('result: $result');
+                        } else if (_account != '' && baseTokenType == 2) {
+                          print('baseTokenType == 2');
+
+                          /// tokenToTokenSwap
+                          bool result = await TronSwap().tokenToTokenSwap(
+                              tronGrpcIP,
+                              userAddress,
+                              privateKey,
+                              flashSwapAddress,
+                              swapTokenAddress,
+                              lpTokenAddress,
+                              tokensSold,
+                              targetTokenAddress);
+                          print('result: $result');
+                        }
+                      }
+                    } else if (_swapRows[_leftSelectIndex].swapTokenType == 1 &&
+                        _swapRows[_rightSelectIndex].swapTokenType == 2) {
+                      print('swapTokenType == 1 && swapTokenType == 2');
+                      //js.context.callMethod('trxToTokenSwap', [_swapRows[_rightSelectIndex].swapTokenAddress, _swapRows[_rightSelectIndex].lpTokenAddress, 1, _leftSwapValue, _account]);
+                      String swapTokenAddress =
+                          _swapRows[_rightSelectIndex].swapTokenAddress;
+                      String lpTokenAddress =
+                          _swapRows[_rightSelectIndex].lpTokenAddress;
+                      String trxSold = _leftSwapValue;
+
+                      /// trxToTokenSwap
+                      bool result = await TronSwap().trxToTokenSwap(
+                          tronGrpcIP,
+                          userAddress,
+                          privateKey,
+                          flashSwapAddress,
+                          swapTokenAddress,
+                          lpTokenAddress,
+                          trxSold);
+                      print('result: $result');
                     }
-                  } else if (_swapRows[_leftSelectIndex].swapTokenType == 1 &&
-                      _swapRows[_rightSelectIndex].swapTokenType == 2) {
-                    //js.context.callMethod('trxToTokenSwap', [_swapRows[_rightSelectIndex].swapTokenAddress, _swapRows[_rightSelectIndex].lpTokenAddress, 1, _leftSwapValue, _account]);
                   }
                 }
+              } catch (e) {
+                print(e);
+              } finally {
+                setState(() {
+                  _loadFlag = false;
+                  _leftSwapAmount = '';
+                  _leftSwapValue = '';
+                  _rightSwapAmount = '';
+                  _rightSwapValue = '';
+                });
               }
             },
             shape: StadiumBorder(side: BorderSide(color: Util.themeColor)),

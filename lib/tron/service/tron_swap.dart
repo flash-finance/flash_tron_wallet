@@ -260,10 +260,8 @@ class TronSwap {
       Uint8List rawEncode = abi.rawEncode(inputList, params);
       Uint8List dataList =
           hexToBytes(bytesToHex(methodID) + bytesToHex(rawEncode));
-      //print('encode dataList1 hex: ${bytesToHex(dataList)}');
 
-      double trxSoldValue =
-          NumUtil.multiply(double.parse(trxSold), getPrecision(6));
+      double trxSoldValue = double.parse(trxSold);
 
       bool flag = await execute(stub, privateKey, userAddress, flashSwapAddress,
           dataList, BigInt.from(trxSoldValue).toInt());
@@ -349,7 +347,6 @@ class TronSwap {
       String swapTokenAddress,
       String lpTokenAddress,
       String tokensSold,
-      int tokenPrecision,
       String targetTokenAddress) async {
     print('TronSwap tokenToTokenSwap');
 
@@ -385,9 +382,8 @@ class TronSwap {
       List<dynamic> params = [];
       params.add(getAbiTronAddress(swapTokenAddress));
       params.add(getAbiTronAddress(lpTokenAddress));
-      double tokensSoldValue = NumUtil.multiply(
-          double.parse(tokensSold), getPrecision(tokenPrecision));
-      params.add(BigInt.from(tokensSoldValue));
+      String tokensSoldValue = tokensSold;
+      params.add(tokensSoldValue);
       int minTokensBought = 1;
       params.add(BigInt.from(minTokensBought));
       int minTrxBought = 1;

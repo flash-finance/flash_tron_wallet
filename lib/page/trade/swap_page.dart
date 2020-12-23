@@ -7,6 +7,7 @@ import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/model/swap_model.dart';
+import 'package:flash_tron_wallet/model/tron_info_model.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flash_tron_wallet/tron/service/tron_swap.dart';
@@ -1458,6 +1459,8 @@ class _SwapPageState extends State<SwapPage> {
             color: Util.themeColor,
             onPressed: () async {
               print('111');
+              HomeProvider provider =
+                  Provider.of<HomeProvider>(context, listen: false);
               try {
                 if (_account != '' && _flag1 && _flag2 && _swapFlag) {
                   print('222');
@@ -1467,8 +1470,6 @@ class _SwapPageState extends State<SwapPage> {
                     setState(() {
                       _loadFlag = true;
                     });
-                    HomeProvider provider =
-                        Provider.of<HomeProvider>(context, listen: false);
                     String tronGrpcIP = provider.tronGrpcIP;
                     String userAddress = _account;
                     String flashSwapAddress = provider.swapAddress;
@@ -1576,6 +1577,32 @@ class _SwapPageState extends State<SwapPage> {
                   _rightSwapAmount = '';
                   _rightSwapValue = '';
                 });
+                List<TokenRows> tokenList = provider.tokenList;
+                for (int i = 0; i < 5; i++) {
+                  print('tokenList i: $i');
+                  await Future.delayed(Duration(milliseconds: 1000), () {
+                    if (_swapRows[_leftSelectIndex].swapTokenType == 1 &&
+                        tokenList.length > _leftSelectIndex) {
+                      provider.getTrxBalance4Async(
+                          _account, tokenList[_leftSelectIndex]);
+                    }
+                    if (_swapRows[_leftSelectIndex].swapTokenType == 2 &&
+                        tokenList.length > _leftSelectIndex) {
+                      provider.getTrc20Balance4Async(
+                          _account, tokenList[_leftSelectIndex]);
+                    }
+                    if (_swapRows[_rightSelectIndex].swapTokenType == 1 &&
+                        tokenList.length > _rightSelectIndex) {
+                      provider.getTrxBalance4Async(
+                          _account, tokenList[_rightSelectIndex]);
+                    }
+                    if (_swapRows[_rightSelectIndex].swapTokenType == 2 &&
+                        tokenList.length > _rightSelectIndex) {
+                      provider.getTrc20Balance4Async(
+                          _account, tokenList[_rightSelectIndex]);
+                    }
+                  });
+                }
               }
             },
             shape: StadiumBorder(side: BorderSide(color: Util.themeColor)),

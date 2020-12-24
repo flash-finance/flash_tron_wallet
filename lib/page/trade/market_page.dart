@@ -1,12 +1,14 @@
-import 'dart:io';
+import 'dart:async';
 
 import 'package:flash_tron_wallet/common/common_config.dart';
 import 'package:flash_tron_wallet/common/common_service.dart';
 import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/model/swap_model.dart';
+import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:provider/provider.dart';
 
 class MarketPage extends StatefulWidget {
@@ -20,11 +22,22 @@ class MarketPage extends StatefulWidget {
 
 class _MarketPageState extends State<MarketPage> {
   bool _langType = true;
+  Timer _timer1;
 
   @override
   void initState() {
     super.initState();
-    _getSwapData();
+    _reloadSwapData();
+  }
+
+  @override
+  void dispose() {
+    if (_timer1 != null) {
+      if (_timer1.isActive) {
+        _timer1.cancel();
+      }
+    }
+    super.dispose();
   }
 
   @override
@@ -46,26 +59,35 @@ class _MarketPageState extends State<MarketPage> {
 
   Widget _bodyWidget(BuildContext context) {
     return Container(
-      child: ListView(
+      child: Column(
         children: <Widget>[
           SizedBox(height: Util.height(15)),
           _titleWidget(context),
-          _assetDataWidget(context),
+          Expanded(
+            child: _assetDataWidget(context),
+          ),
         ],
       ),
     );
   }
 
   Widget _assetDataWidget(BuildContext context) {
-    return Container(
+    return EasyRefresh(
+      header: MaterialHeader(enableHapticFeedback: true),
+      footer:
+          MaterialFooter(enableHapticFeedback: true, enableInfiniteLoad: false),
       child: ListView.builder(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          scrollDirection: Axis.vertical,
-          itemCount: _swapRows.length,
-          itemBuilder: (context, index) {
-            return _itemWidget(context, _swapRows[index]);
-          }),
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        scrollDirection: Axis.vertical,
+        itemCount: _swapRows.length,
+        itemBuilder: (context, index) {
+          return _itemWidget(context, _swapRows[index]);
+        },
+      ),
+      onRefresh: () async {
+        _getSwapData();
+      },
     );
   }
 
@@ -226,7 +248,21 @@ class _MarketPageState extends State<MarketPage> {
 
   List<SwapRow> _swapRows = [];
 
+  bool _reloadSwapDataFlag = false;
+
+  _reloadSwapData() async {
+    _getSwapData();
+    _timer1 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
+      bool backgroundFlag =
+          Provider.of<HomeProvider>(context, listen: false).backgroundFlag;
+      if (!backgroundFlag && _reloadSwapDataFlag) {
+        _getSwapData();
+      }
+    });
+  }
+
   void _getSwapData() async {
+    _reloadSwapDataFlag = false;
     try {
       String url = servicePath['swapQuery'];
       await requestGet(url).then((value) {
@@ -244,6 +280,8 @@ class _MarketPageState extends State<MarketPage> {
       setState(() {});
     } catch (e) {
       print(e);
+    } finally {
+      _reloadSwapDataFlag = true;
     }
   }
 }

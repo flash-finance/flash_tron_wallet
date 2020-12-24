@@ -26,7 +26,6 @@ class _SwapPageState extends State<SwapPage> {
   String _leftKey = '';
   String _rightKey = '';
   Timer _timer1;
-  Timer _timer2;
 
   bool _flag1 = false;
   bool _flag2 = false;
@@ -66,11 +65,6 @@ class _SwapPageState extends State<SwapPage> {
     if (_timer1 != null) {
       if (_timer1.isActive) {
         _timer1.cancel();
-      }
-    }
-    if (_timer2 != null) {
-      if (_timer2.isActive) {
-        _timer2.cancel();
       }
     }
     super.dispose();
@@ -1825,7 +1819,9 @@ class _SwapPageState extends State<SwapPage> {
   _reloadSwapData() async {
     _getSwapData();
     _timer1 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
-      if (_reloadSwapDataFlag) {
+      bool backgroundFlag =
+          Provider.of<HomeProvider>(context, listen: false).backgroundFlag;
+      if (!backgroundFlag && _reloadSwapDataFlag) {
         _getSwapData();
       }
     });
@@ -1855,8 +1851,9 @@ class _SwapPageState extends State<SwapPage> {
       }
     } catch (e) {
       print(e);
+    } finally {
+      _reloadSwapDataFlag = true;
     }
-    _reloadSwapDataFlag = true;
   }
 
   void _reloadSub() {

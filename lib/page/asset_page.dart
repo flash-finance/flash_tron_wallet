@@ -31,7 +31,7 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-
+    WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       //_reloadAsset();
       _reloadAssetSub();

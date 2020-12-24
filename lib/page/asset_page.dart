@@ -547,11 +547,13 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
                   Container(
                     child: Text(
                       '≈  \$ ${Util.formatNum(item.usd, 2)}',
-                      style: Util.textStyle4Num(context,
-                          color: Colors.grey[600],
-                          spacing: 0.0,
-                          size: 23,
-                          fontWeight: FontWeight.w400),
+                      style: Util.textStyle4En(
+                        context,
+                        2,
+                        color: Colors.grey[600],
+                        spacing: 0.0,
+                        size: 21,
+                      ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),

@@ -524,10 +524,8 @@ class _SwapSubPageState extends State<SwapSubPage>
       child: InkWell(
           onTap: () {
             FocusScope.of(context).requestFocus(FocusNode());
-            int temp1 = _leftSelectIndex;
-            _leftSelectIndex = _rightSelectIndex;
-            _rightSelectIndex = temp1;
-
+            int temp11 = _leftSelectIndex;
+            int temp12 = _rightSelectIndex;
             String temp2 = _leftSwapAmount;
             _leftSwapAmount = _rightSwapAmount;
             _rightSwapAmount = temp2;
@@ -552,8 +550,11 @@ class _SwapSubPageState extends State<SwapSubPage>
                 _swapFlag = true;
               }
             }
-
             setState(() {});
+            Provider.of<HomeProvider>(context, listen: false)
+                .changeSwapLeftIndex(temp12);
+            Provider.of<HomeProvider>(context, listen: false)
+                .changeSwapRightIndex(temp11);
           },
           child: Container(
             color: Colors.white,

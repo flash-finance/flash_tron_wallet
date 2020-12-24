@@ -89,7 +89,7 @@ class _MarketPageState extends State<MarketPage>
               scrollDirection: Axis.vertical,
               itemCount: _swapRows.length,
               itemBuilder: (context, index) {
-                return _itemWidget(context, _swapRows[index]);
+                return _itemWidget(context, _swapRows[index], index);
               },
             ),
             onRefresh: () async {
@@ -141,10 +141,18 @@ class _MarketPageState extends State<MarketPage>
     );
   }
 
-  Widget _itemWidget(BuildContext context, SwapRow item) {
+  Widget _itemWidget(BuildContext context, SwapRow item, int index) {
     double change = item.swapTokenChange2 * 100;
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        int _swapLeftIndex = index == 0 ? 0 : index;
+        int _swapRightIndex = index == 0 ? 1 : 0;
+        Provider.of<HomeProvider>(context, listen: false)
+            .changeSwapLeftIndex(_swapLeftIndex);
+        Provider.of<HomeProvider>(context, listen: false)
+            .changeSwapRightIndex(_swapRightIndex);
+        widget.tabController.index = 1;
+      },
       child: Container(
         padding: EdgeInsets.only(
             left: Util.width(30),

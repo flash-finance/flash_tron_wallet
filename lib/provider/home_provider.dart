@@ -507,4 +507,22 @@ class HomeProvider with ChangeNotifier {
   String _currentVersion = '';
 
   String get currentVersion => _currentVersion;
+
+  int _swapLeftIndex = 0;
+
+  int get swapLeftIndex => _swapLeftIndex;
+
+  changeSwapLeftIndex(int value) {
+    _swapLeftIndex = value;
+    notifyListeners();
+  }
+
+  int _swapRightIndex = 1;
+
+  int get swapRightIndex => _swapRightIndex;
+
+  changeSwapRightIndex(int value) {
+    _swapRightIndex = value;
+    notifyListeners();
+  }
 }

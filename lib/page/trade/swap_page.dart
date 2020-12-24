@@ -20,7 +20,32 @@ class SwapPage extends StatefulWidget {
   _SwapPageState createState() => _SwapPageState();
 }
 
-class _SwapPageState extends State<SwapPage>
+class _SwapPageState extends State<SwapPage> {
+  int _swapLeftIndex = 0;
+  int _swapRightIndex = 1;
+
+  @override
+  Widget build(BuildContext context) {
+    _swapLeftIndex =
+        Provider.of<HomeProvider>(context, listen: true).swapLeftIndex;
+    _swapRightIndex =
+        Provider.of<HomeProvider>(context, listen: true).swapRightIndex;
+    return Container(
+      child: SwapSubPage(_swapLeftIndex, _swapRightIndex),
+    );
+  }
+}
+
+class SwapSubPage extends StatefulWidget {
+  final int swapLeftIndex;
+  final int swapRightIndex;
+  SwapSubPage(this.swapLeftIndex, this.swapRightIndex);
+
+  @override
+  _SwapSubPageState createState() => _SwapSubPageState();
+}
+
+class _SwapSubPageState extends State<SwapSubPage>
     with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
@@ -77,6 +102,8 @@ class _SwapPageState extends State<SwapPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    _leftSelectIndex = widget.swapLeftIndex;
+    _rightSelectIndex = widget.swapRightIndex;
     WalletEntity wallet =
         Provider.of<HomeProvider>(context, listen: true).selectWalletEntity;
     if (wallet != null && wallet.tronAddress != null) {
@@ -282,7 +309,6 @@ class _SwapPageState extends State<SwapPage>
               children: <Widget>[
                 InkWell(
                   onTap: () {
-                    //_showSwapTokenDialLog(context, 1);
                     _showBottomSheetWidget(context, 1);
                   },
                   child: Container(
@@ -1719,7 +1745,6 @@ class _SwapPageState extends State<SwapPage>
     return InkWell(
       onTap: () {
         if (type == 1 && index != _rightSelectIndex) {
-          _leftSelectIndex = index;
           _leftSwapAmount = '';
           _leftSwapValue = '';
           _rightSwapAmount = '';
@@ -1727,8 +1752,9 @@ class _SwapPageState extends State<SwapPage>
           _reloadSub();
           setState(() {});
           Navigator.pop(context);
+          Provider.of<HomeProvider>(context, listen: false)
+              .changeSwapLeftIndex(index);
         } else if (type == 2 && index != _leftSelectIndex) {
-          _rightSelectIndex = index;
           _leftSwapAmount = '';
           _leftSwapValue = '';
           _rightSwapAmount = '';
@@ -1736,6 +1762,8 @@ class _SwapPageState extends State<SwapPage>
           _reloadSub();
           setState(() {});
           Navigator.pop(context);
+          Provider.of<HomeProvider>(context, listen: false)
+              .changeSwapRightIndex(index);
         }
       },
       child: Container(

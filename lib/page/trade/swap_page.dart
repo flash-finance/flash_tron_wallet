@@ -1750,23 +1750,21 @@ class _SwapSubPageState extends State<SwapSubPage>
           _leftSwapValue = '';
           _rightSwapAmount = '';
           _rightSwapValue = '';
+          _reloadSub(index, _rightSelectIndex);
           setState(() {});
           Navigator.pop(context);
           await Provider.of<HomeProvider>(context, listen: false)
               .changeSwapLeftIndex(index);
-          _reloadSub();
-          setState(() {});
         } else if (type == 2 && index != _leftSelectIndex) {
           _leftSwapAmount = '';
           _leftSwapValue = '';
           _rightSwapAmount = '';
           _rightSwapValue = '';
+          _reloadSub(_leftSelectIndex, index);
           setState(() {});
           Navigator.pop(context);
           await Provider.of<HomeProvider>(context, listen: false)
               .changeSwapRightIndex(index);
-          _reloadSub();
-          setState(() {});
         }
       },
       child: Container(
@@ -1881,7 +1879,7 @@ class _SwapSubPageState extends State<SwapSubPage>
       });
       _flag1 = _swapRows.length > 0 ? true : false;
       _flag2 = _swapRows.length > 1 ? true : false;
-      _reloadSub();
+      _reloadSub(_leftSelectIndex, _rightSelectIndex);
       if (mounted) {
         setState(() {});
       }
@@ -1892,7 +1890,7 @@ class _SwapSubPageState extends State<SwapSubPage>
     }
   }
 
-  void _reloadSub() {
+  void _reloadSub(int _leftSelectIndex, int _rightSelectIndex) {
     if (_flag1 && _flag2) {
       _leftKey = '$_account+${_swapRows[_leftSelectIndex].swapTokenAddress}';
       _rightKey = '$_account+${_swapRows[_rightSelectIndex].swapTokenAddress}';

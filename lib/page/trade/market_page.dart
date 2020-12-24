@@ -20,9 +20,13 @@ class MarketPage extends StatefulWidget {
   _MarketPageState createState() => _MarketPageState();
 }
 
-class _MarketPageState extends State<MarketPage> {
+class _MarketPageState extends State<MarketPage>
+    with AutomaticKeepAliveClientMixin {
   bool _langType = true;
   Timer _timer1;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
@@ -42,6 +46,7 @@ class _MarketPageState extends State<MarketPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     _langType = Provider.of<IndexProvider>(context, listen: true).langType;
     return Scaffold(
       backgroundColor: Colors.white,

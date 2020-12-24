@@ -20,7 +20,11 @@ class SwapPage extends StatefulWidget {
   _SwapPageState createState() => _SwapPageState();
 }
 
-class _SwapPageState extends State<SwapPage> {
+class _SwapPageState extends State<SwapPage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   bool _langType = true;
   String _account = '';
   String _leftKey = '';
@@ -72,6 +76,7 @@ class _SwapPageState extends State<SwapPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     WalletEntity wallet =
         Provider.of<HomeProvider>(context, listen: true).selectWalletEntity;
     if (wallet != null && wallet.tronAddress != null) {

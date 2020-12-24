@@ -7,6 +7,7 @@ import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flash_tron_wallet/model/swap_model.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/provider/index_provider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:provider/provider.dart';
@@ -77,23 +78,29 @@ class _MarketPageState extends State<MarketPage>
   }
 
   Widget _assetDataWidget(BuildContext context) {
-    return EasyRefresh(
-      header: MaterialHeader(enableHapticFeedback: true),
-      footer:
-          MaterialFooter(enableHapticFeedback: true, enableInfiniteLoad: false),
-      child: ListView.builder(
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        scrollDirection: Axis.vertical,
-        itemCount: _swapRows.length,
-        itemBuilder: (context, index) {
-          return _itemWidget(context, _swapRows[index]);
-        },
-      ),
-      onRefresh: () async {
-        _getSwapData();
-      },
-    );
+    return _swapRows.length > 0
+        ? EasyRefresh(
+            header: MaterialHeader(enableHapticFeedback: true),
+            footer: MaterialFooter(
+                enableHapticFeedback: true, enableInfiniteLoad: false),
+            child: ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              itemCount: _swapRows.length,
+              itemBuilder: (context, index) {
+                return _itemWidget(context, _swapRows[index]);
+              },
+            ),
+            onRefresh: () async {
+              _getSwapData();
+            },
+          )
+        : Container(
+            child: Center(
+              child: CupertinoActivityIndicator(),
+            ),
+          );
   }
 
   Widget _titleWidget(BuildContext context) {

@@ -23,7 +23,10 @@ class AssetPage extends StatefulWidget {
   _AssetPageState createState() => _AssetPageState();
 }
 
-class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
+class _AssetPageState extends State<AssetPage>
+    with WidgetsBindingObserver, AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
   Timer _timer;
   ScanController controller = ScanController();
   bool _langType = true;
@@ -477,7 +480,7 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
                 }),
           )
         : Container(
-            margin: EdgeInsets.only(top: Util.height(100)),
+            margin: EdgeInsets.only(top: Util.height(120)),
             child: Center(
               child: CupertinoActivityIndicator(),
             ),

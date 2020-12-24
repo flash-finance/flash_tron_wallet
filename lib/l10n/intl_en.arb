@@ -113,6 +113,8 @@
   "swapTotalLiquidity": "Total Liquidity",
   "swapToken": "Token",
   "swapTokenNotEnough": "Token Not Enough",
+  "swapSuccess": "Trade Success",
+  "swapTip1": "trade failed, please try again later",
 
   "mineManageWallet" : "Manage Wallets",
   "mineCurrentVersion" : "Current Version",

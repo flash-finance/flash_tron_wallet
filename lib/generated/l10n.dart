@@ -1023,6 +1023,26 @@ class S {
     );
   }
 
+  /// `Trade Success`
+  String get swapSuccess {
+    return Intl.message(
+      'Trade Success',
+      name: 'swapSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `trade failed, please try again later`
+  String get swapTip1 {
+    return Intl.message(
+      'trade failed, please try again later',
+      name: 'swapTip1',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Manage Wallets`
   String get mineManageWallet {
     return Intl.message(

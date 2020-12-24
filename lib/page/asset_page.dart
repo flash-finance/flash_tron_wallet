@@ -501,7 +501,7 @@ class _AssetPageState extends State<AssetPage> with WidgetsBindingObserver {
         decoration: BoxDecoration(
           border: Border(
               bottom: BorderSide(
-                  color: flag ? Colors.black45 : Colors.white, width: 0.3)),
+                  color: flag ? Colors.black26 : Colors.white, width: 0.3)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

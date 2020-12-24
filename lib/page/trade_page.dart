@@ -14,22 +14,12 @@ class TradePage extends StatefulWidget {
 class _TradePageState extends State<TradePage>
     with SingleTickerProviderStateMixin {
   bool _langType = true;
-  TabController tabController;
+  TabController _tabController;
 
   @override
   void initState() {
     super.initState();
-    tabController = TabController(vsync: this, length: 2)
-      ..addListener(() {
-        switch (tabController.index) {
-          case 0:
-            print(0);
-            break;
-          case 1:
-            print(1);
-            break;
-        }
-      });
+    _tabController = TabController(vsync: this, length: 2);
   }
 
   @override
@@ -65,7 +55,7 @@ class _TradePageState extends State<TradePage>
                 color: Colors.white,
               ),
               child: TabBar(
-                controller: tabController,
+                controller: _tabController,
                 isScrollable: false,
                 indicatorPadding: EdgeInsets.only(bottom: Util.width(15)),
                 indicatorColor: Colors.grey[850],
@@ -83,9 +73,9 @@ class _TradePageState extends State<TradePage>
             Expanded(
               flex: 1,
               child: TabBarView(
-                controller: tabController,
+                controller: _tabController,
                 children: <Widget>[
-                  MarketPage(tabController),
+                  MarketPage(_tabController),
                   SwapPage(),
                 ],
               ),

@@ -113,6 +113,8 @@
   "swapTotalLiquidity": "总流动性",
   "swapToken": "Token",
   "swapTokenNotEnough": "余额不足",
+  "swapSuccess": "交易成功",
+  "swapTip1": "交易失败，请稍后再试",
 
   "mineManageWallet" : "钱包管理",
   "mineCurrentVersion" : "当前版本",

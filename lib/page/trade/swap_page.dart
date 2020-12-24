@@ -1501,8 +1501,7 @@ class _SwapPageState extends State<SwapPage> {
                       print('allowanceAmount: $allowanceAmount');
                       if (allowanceAmount == '') {
                         print('allowanceAmount null');
-
-                        /// TODO
+                        Util.showToast('${S.of(context).swapTip1}');
                         return;
                       }
                       double allowanceValue =
@@ -1528,6 +1527,12 @@ class _SwapPageState extends State<SwapPage> {
                               lpTokenAddress,
                               tokensSold);
                           print('result: $result');
+                          if (result) {
+                            Util.showToast('${S.of(context).swapSuccess}');
+                          } else {
+                            Util.showToast('${S.of(context).swapTip1}');
+                          }
+                          return;
                         } else if (_account != '' && baseTokenType == 2) {
                           print('baseTokenType == 2');
 
@@ -1542,6 +1547,12 @@ class _SwapPageState extends State<SwapPage> {
                               tokensSold,
                               targetTokenAddress);
                           print('result: $result');
+                          if (result) {
+                            Util.showToast('${S.of(context).swapSuccess}');
+                          } else {
+                            Util.showToast('${S.of(context).swapTip1}');
+                          }
+                          return;
                         }
                       }
                     } else if (_swapRows[_leftSelectIndex].swapTokenType == 1 &&
@@ -1564,6 +1575,12 @@ class _SwapPageState extends State<SwapPage> {
                           lpTokenAddress,
                           trxSold);
                       print('result: $result');
+                      if (result) {
+                        Util.showToast('${S.of(context).swapSuccess}');
+                      } else {
+                        Util.showToast('${S.of(context).swapTip1}');
+                      }
+                      return;
                     }
                   }
                 }
@@ -1601,6 +1618,7 @@ class _SwapPageState extends State<SwapPage> {
                       provider.getTrc20Balance4Async(
                           _account, tokenList[_rightSelectIndex]);
                     }
+                    provider.getTrxBalance4Async(_account, tokenList[0]);
                   });
                 }
               }

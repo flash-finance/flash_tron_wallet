@@ -661,6 +661,9 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                                 Navigator.of(context)..pop()..pop();
                                 Util.showToast(
                                     '${S.of(context).assetTransferSuccess}');
+                                Provider.of<HomeProvider>(context,
+                                        listen: false)
+                                    .getAsset4ReloadAsync();
                               } else if (result == 1) {
                                 Navigator.of(context)..pop()..pop();
                                 Util.showToast(

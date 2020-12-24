@@ -37,7 +37,7 @@ class _AssetPageState extends State<AssetPage>
     WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       //_reloadAsset();
-      _reloadAssetSub();
+      //_reloadAssetSub();
     });
   }
 

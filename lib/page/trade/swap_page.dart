@@ -1750,21 +1750,23 @@ class _SwapSubPageState extends State<SwapSubPage>
           _leftSwapValue = '';
           _rightSwapAmount = '';
           _rightSwapValue = '';
-          _reloadSub();
           setState(() {});
           Navigator.pop(context);
           Provider.of<HomeProvider>(context, listen: false)
               .changeSwapLeftIndex(index);
+          _reloadSub();
+          setState(() {});
         } else if (type == 2 && index != _leftSelectIndex) {
           _leftSwapAmount = '';
           _leftSwapValue = '';
           _rightSwapAmount = '';
           _rightSwapValue = '';
-          _reloadSub();
           setState(() {});
           Navigator.pop(context);
           Provider.of<HomeProvider>(context, listen: false)
               .changeSwapRightIndex(index);
+          _reloadSub();
+          setState(() {});
         }
       },
       child: Container(

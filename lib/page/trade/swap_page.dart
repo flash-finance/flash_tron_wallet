@@ -1744,7 +1744,7 @@ class _SwapSubPageState extends State<SwapSubPage>
     }
     double change = item.swapTokenChange2 * 100;
     return InkWell(
-      onTap: () {
+      onTap: () async {
         if (type == 1 && index != _rightSelectIndex) {
           _leftSwapAmount = '';
           _leftSwapValue = '';
@@ -1752,7 +1752,7 @@ class _SwapSubPageState extends State<SwapSubPage>
           _rightSwapValue = '';
           setState(() {});
           Navigator.pop(context);
-          Provider.of<HomeProvider>(context, listen: false)
+          await Provider.of<HomeProvider>(context, listen: false)
               .changeSwapLeftIndex(index);
           _reloadSub();
           setState(() {});
@@ -1763,7 +1763,7 @@ class _SwapSubPageState extends State<SwapSubPage>
           _rightSwapValue = '';
           setState(() {});
           Navigator.pop(context);
-          Provider.of<HomeProvider>(context, listen: false)
+          await Provider.of<HomeProvider>(context, listen: false)
               .changeSwapRightIndex(index);
           _reloadSub();
           setState(() {});

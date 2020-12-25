@@ -90,7 +90,6 @@ class _SwapSubPageState extends State<SwapSubPage>
 
   @override
   void dispose() {
-    print('SwapPcPage dispose');
     if (_timer1 != null) {
       if (_timer1.isActive) {
         _timer1.cancel();
@@ -559,6 +558,7 @@ class _SwapSubPageState extends State<SwapSubPage>
           child: Container(
             color: Colors.white,
             alignment: Alignment.center,
+            width: Util.width(150),
             child: Icon(
               Icons.sync_rounded,
               size: Util.sp(45),
@@ -1484,12 +1484,10 @@ class _SwapSubPageState extends State<SwapSubPage>
             ),
             color: Util.themeColor,
             onPressed: () async {
-              print('111');
               HomeProvider provider =
                   Provider.of<HomeProvider>(context, listen: false);
               try {
                 if (_account != '' && _flag1 && _flag2 && _swapFlag) {
-                  print('222');
                   double value1 = double.parse(_leftSwapValue);
                   double value2 = double.parse(_rightSwapValue);
                   if (value1 > 0 && value2 > 0) {
@@ -1507,7 +1505,6 @@ class _SwapSubPageState extends State<SwapSubPage>
                     }
 
                     if (_swapRows[_leftSelectIndex].swapTokenType == 2) {
-                      //js.context.callMethod('allowance', [_swapRows[_leftSelectIndex].lpTokenAddress, 2, _swapRows[_rightSelectIndex].swapTokenType, _swapRows[_leftSelectIndex].swapTokenAddress, _swapRows[_rightSelectIndex].swapTokenAddress, _account, _leftSwapValue, _rightSwapValue]);
                       String swapTokenAddress =
                           _swapRows[_leftSelectIndex].swapTokenAddress;
                       String lpTokenAddress =
@@ -1538,53 +1535,63 @@ class _SwapSubPageState extends State<SwapSubPage>
 
                       if (swapValue > allowanceValue) {
                         print('swapValue > allowanceValue');
-                      } else {
-                        print('swapValue < allowanceValue');
-                        if (_account != '' && baseTokenType == 1) {
-                          print('baseTokenType == 1');
-
-                          /// tokenToTrxSwap
-                          bool result = await TronSwap().tokenToTrxSwap(
-                              tronGrpcIP,
-                              userAddress,
-                              privateKey,
-                              flashSwapAddress,
-                              swapTokenAddress,
-                              lpTokenAddress,
-                              tokensSold);
-                          print('result: $result');
-                          if (result) {
-                            Util.showToast('${S.of(context).swapSuccess}');
-                          } else {
-                            Util.showToast('${S.of(context).swapTip1}');
-                          }
-                          return;
-                        } else if (_account != '' && baseTokenType == 2) {
-                          print('baseTokenType == 2');
-
-                          /// tokenToTokenSwap
-                          bool result = await TronSwap().tokenToTokenSwap(
-                              tronGrpcIP,
-                              userAddress,
-                              privateKey,
-                              flashSwapAddress,
-                              swapTokenAddress,
-                              lpTokenAddress,
-                              tokensSold,
-                              targetTokenAddress);
-                          print('result: $result');
-                          if (result) {
-                            Util.showToast('${S.of(context).swapSuccess}');
-                          } else {
-                            Util.showToast('${S.of(context).swapTip1}');
-                          }
+                        bool approveFlag = await TronSwap().approve(
+                            tronGrpcIP,
+                            userAddress,
+                            privateKey,
+                            swapTokenAddress,
+                            flashSwapAddress);
+                        print('approveFlag:$approveFlag');
+                        if (!approveFlag) {
+                          Util.showToast('${S.of(context).swapTip1}');
                           return;
                         }
+                      }
+
+                      print('swapValue < allowanceValue');
+                      if (_account != '' && baseTokenType == 1) {
+                        print('baseTokenType == 1');
+
+                        /// tokenToTrxSwap
+                        bool result = await TronSwap().tokenToTrxSwap(
+                            tronGrpcIP,
+                            userAddress,
+                            privateKey,
+                            flashSwapAddress,
+                            swapTokenAddress,
+                            lpTokenAddress,
+                            tokensSold);
+                        print('result: $result');
+                        if (result) {
+                          Util.showToast('${S.of(context).swapSuccess}');
+                        } else {
+                          Util.showToast('${S.of(context).swapTip1}');
+                        }
+                        return;
+                      } else if (_account != '' && baseTokenType == 2) {
+                        print('baseTokenType == 2');
+
+                        /// tokenToTokenSwap
+                        bool result = await TronSwap().tokenToTokenSwap(
+                            tronGrpcIP,
+                            userAddress,
+                            privateKey,
+                            flashSwapAddress,
+                            swapTokenAddress,
+                            lpTokenAddress,
+                            tokensSold,
+                            targetTokenAddress);
+                        print('result: $result');
+                        if (result) {
+                          Util.showToast('${S.of(context).swapSuccess}');
+                        } else {
+                          Util.showToast('${S.of(context).swapTip1}');
+                        }
+                        return;
                       }
                     } else if (_swapRows[_leftSelectIndex].swapTokenType == 1 &&
                         _swapRows[_rightSelectIndex].swapTokenType == 2) {
                       print('swapTokenType == 1 && swapTokenType == 2');
-                      //js.context.callMethod('trxToTokenSwap', [_swapRows[_rightSelectIndex].swapTokenAddress, _swapRows[_rightSelectIndex].lpTokenAddress, 1, _leftSwapValue, _account]);
                       String swapTokenAddress =
                           _swapRows[_rightSelectIndex].swapTokenAddress;
                       String lpTokenAddress =

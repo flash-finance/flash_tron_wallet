@@ -108,6 +108,28 @@ class Util {
           );
   }
 
+  static TextStyle textStyle4Update(BuildContext context, int type,
+      {Color color, double spacing, double size}) {
+    double letterSpacing = spacing != null ? spacing : 0.0;
+    double fontSize = size != null ? size : 20.0;
+    bool langType = Provider.of<IndexProvider>(context, listen: false).langType;
+    return langType
+        ? TextStyle(
+            fontFamily: type == 1 ? 'ZH-R' : 'ZH-M',
+            letterSpacing: letterSpacing,
+            color: color,
+            fontSize: Util.sp(fontSize + 4),
+            height: Util.sp(3.2),
+          )
+        : TextStyle(
+            fontFamily: type == 1 ? 'EN-R' : 'EN-M',
+            letterSpacing: 0.0,
+            color: color,
+            fontSize: Util.sp(fontSize + 1),
+            height: Util.sp(3.2),
+          );
+  }
+
   static String formatNum(double num, int position) {
     if ((num.toString().length - num.toString().lastIndexOf(".") - 1) <
         position) {

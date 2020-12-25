@@ -231,13 +231,8 @@ class _MinePageState extends State<MinePage> {
                               ? '${tronInfo.androidUpdateInfo1.replaceAll('\\n', '\n')}'
                               : '${tronInfo.androidUpdateInfo2.replaceAll('\\n', '\n')}',
                           textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontFamily: 'SHS-R',
-                            letterSpacing: 0.1,
-                            color: Colors.grey[850],
-                            fontSize: Util.sp(25),
-                            height: Util.sp(3.2),
-                          ),
+                          style: Util.textStyle4Update(context, 1,
+                              color: Colors.grey[850], spacing: 0.0, size: 25),
                         ),
                       ),
                       actions: <Widget>[
@@ -245,7 +240,7 @@ class _MinePageState extends State<MinePage> {
                           child: Text(
                             '${S.of(context).mineVersionTips2}',
                             style: Util.textStyle(context, 2,
-                                color: Util.themeColor, spacing: 0.1, size: 30),
+                                color: Util.themeColor, spacing: 0.0, size: 30),
                           ),
                           onPressed: () => Navigator.pop(context),
                         ),
@@ -312,13 +307,8 @@ class _MinePageState extends State<MinePage> {
                               ? '${tronInfo.iosUpdateInfo1.replaceAll('\\n', '\n')}'
                               : '${tronInfo.iosUpdateInfo2.replaceAll('\\n', '\n')}',
                           textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontFamily: 'SHS-R',
-                            letterSpacing: 0.0,
-                            color: Colors.grey[850],
-                            fontSize: Util.sp(25),
-                            height: Util.sp(3.2),
-                          ),
+                          style: Util.textStyle4Update(context, 1,
+                              color: Colors.grey[850], spacing: 0.0, size: 25),
                         ),
                       ),
                       actions: <Widget>[

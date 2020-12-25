@@ -22,7 +22,7 @@ class HomeProvider with ChangeNotifier {
   init() async {
     await getSelectWalletIndex();
     await getSelectWallet();
-    await getDexInfo();
+    await getTronInfo();
     await getAsset4Init();
     getAsset4ReloadAsync();
   }
@@ -260,8 +260,7 @@ class HomeProvider with ChangeNotifier {
 
   String get dexContract => _dexContract;
 
-  getDexInfo() async {
-    //print('getDexInfo start');
+  getTronInfo() async {
     try {
       String url = servicePath['tronInfoQuery'];
       PackageInfo packageInfo = await PackageInfo.fromPlatform();
@@ -292,7 +291,6 @@ class HomeProvider with ChangeNotifier {
     } catch (e) {
       print(e);
     }
-    //print('getDexInfo end');
   }
 
   getAsset4Init() async {

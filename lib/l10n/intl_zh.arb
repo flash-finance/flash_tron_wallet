@@ -119,5 +119,10 @@
   "mineManageWallet" : "钱包管理",
   "mineCurrentVersion" : "当前版本",
   "mineNoWallet": "暂无钱包",
-  "mineLangTip1": "是否切换语言"
+  "mineLangTip1": "是否切换语言",
+
+  "mineVersionTips1": "已经是最新版本",
+  "mineVersionNew": "新版本",
+  "mineVersionTips2": "以后再说",
+  "mineVersionTips3": "立即体验"
 }

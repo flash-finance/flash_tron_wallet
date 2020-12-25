@@ -119,5 +119,10 @@
   "mineManageWallet" : "Manage Wallets",
   "mineCurrentVersion" : "Current Version",
   "mineNoWallet": "No Wallet",
-  "mineLangTip1": "whether to switch language"
+  "mineLangTip1": "whether to switch language",
+
+  "mineVersionTips1": "already the latest version",
+  "mineVersionNew": "New Version",
+  "mineVersionTips2": "Update Later",
+  "mineVersionTips3": "Update Now"
 }

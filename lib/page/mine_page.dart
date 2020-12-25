@@ -192,21 +192,44 @@ class _MinePageState extends State<MinePage> {
             tronInfo != null &&
             tronInfo.androidVersionNum != null) {
           if (androidNeedUpdateType == 0) {
-            Util.showToast('已经是最新版本');
+            Util.showToast('${S.of(context).mineVersionTips1}');
           } else if (androidNeedUpdateType == 1) {
             return showCupertinoDialog(
                 context: context,
                 builder: (context) => CupertinoAlertDialog(
-                      title: Text(
-                        '新版本 V${tronInfo.androidVersionNum}',
-                        style: Util.textStyle(context, 2,
-                            color: Colors.grey[800], spacing: 0.0, size: 30),
+                      title: Container(
+                        alignment: Alignment.center,
+                        child: RichText(
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: '${S.of(context).mineVersionNew}',
+                                style: Util.textStyle(context, 2,
+                                    color: Colors.grey[800],
+                                    spacing: 0.0,
+                                    size: 30),
+                              ),
+                              TextSpan(
+                                text: ' V${tronInfo.androidVersionNum}',
+                                style: Util.textStyle4En(
+                                  context,
+                                  2,
+                                  color: Colors.grey[800],
+                                  spacing: 0.0,
+                                  size: 30,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                       content: Container(
                         padding: EdgeInsets.only(top: Util.height(10)),
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          '${tronInfo.androidUpdateInfo1.replaceAll('\\n', '\n')}',
+                          _langType
+                              ? '${tronInfo.androidUpdateInfo1.replaceAll('\\n', '\n')}'
+                              : '${tronInfo.androidUpdateInfo2.replaceAll('\\n', '\n')}',
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             fontFamily: 'SHS-R',
@@ -220,7 +243,7 @@ class _MinePageState extends State<MinePage> {
                       actions: <Widget>[
                         FlatButton(
                           child: Text(
-                            '以后再说',
+                            '${S.of(context).mineVersionTips2}',
                             style: Util.textStyle(context, 2,
                                 color: Util.themeColor, spacing: 0.1, size: 30),
                           ),
@@ -228,10 +251,10 @@ class _MinePageState extends State<MinePage> {
                         ),
                         FlatButton(
                             child: Text(
-                              '立即体验',
+                              '${S.of(context).mineVersionTips3}',
                               style: Util.textStyle(context, 2,
                                   color: Util.themeColor,
-                                  spacing: 0.1,
+                                  spacing: 0.0,
                                   size: 30),
                             ),
                             onPressed: () {
@@ -250,25 +273,48 @@ class _MinePageState extends State<MinePage> {
             tronInfo != null &&
             tronInfo.iosVersionNum != null) {
           if (iosNeedUpdateType == 0) {
-            Util.showToast('已经是最新版本');
+            Util.showToast('${S.of(context).mineVersionTips1}');
           } else if (iosNeedUpdateType == 1) {
             return showCupertinoDialog(
                 context: context,
                 builder: (context) => CupertinoAlertDialog(
-                      title: Text(
-                        '新版本 V${tronInfo.iosVersionNum}',
-                        style: Util.textStyle(context, 2,
-                            color: Colors.grey[800], spacing: 0.0, size: 30),
+                      title: Container(
+                        alignment: Alignment.center,
+                        child: RichText(
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: '${S.of(context).mineVersionNew}',
+                                style: Util.textStyle(context, 2,
+                                    color: Colors.grey[800],
+                                    spacing: 0.0,
+                                    size: 30),
+                              ),
+                              TextSpan(
+                                text: ' V${tronInfo.iosVersionNum}',
+                                style: Util.textStyle4En(
+                                  context,
+                                  2,
+                                  color: Colors.grey[800],
+                                  spacing: 0.0,
+                                  size: 30,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                       content: Container(
                         padding: EdgeInsets.only(top: Util.height(10)),
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          '${tronInfo.iosUpdateInfo1.replaceAll('\\n', '\n')}',
+                          _langType
+                              ? '${tronInfo.iosUpdateInfo1.replaceAll('\\n', '\n')}'
+                              : '${tronInfo.iosUpdateInfo2.replaceAll('\\n', '\n')}',
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             fontFamily: 'SHS-R',
-                            letterSpacing: 0.1,
+                            letterSpacing: 0.0,
                             color: Colors.grey[850],
                             fontSize: Util.sp(25),
                             height: Util.sp(3.2),
@@ -278,7 +324,7 @@ class _MinePageState extends State<MinePage> {
                       actions: <Widget>[
                         FlatButton(
                           child: Text(
-                            '以后再说',
+                            '${S.of(context).mineVersionTips2}',
                             style: Util.textStyle(context, 2,
                                 color: Util.themeColor, spacing: 0.0, size: 30),
                           ),
@@ -286,7 +332,7 @@ class _MinePageState extends State<MinePage> {
                         ),
                         FlatButton(
                             child: Text(
-                              '立即体验',
+                              '${S.of(context).mineVersionTips3}',
                               style: Util.textStyle(context, 2,
                                   color: Util.themeColor,
                                   spacing: 0.0,

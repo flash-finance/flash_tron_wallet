@@ -1082,6 +1082,46 @@ class S {
       args: [],
     );
   }
+
+  /// `already the latest version`
+  String get mineVersionTips1 {
+    return Intl.message(
+      'already the latest version',
+      name: 'mineVersionTips1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Version`
+  String get mineVersionNew {
+    return Intl.message(
+      'New Version',
+      name: 'mineVersionNew',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update Later`
+  String get mineVersionTips2 {
+    return Intl.message(
+      'Update Later',
+      name: 'mineVersionTips2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update Now`
+  String get mineVersionTips3 {
+    return Intl.message(
+      'Update Now',
+      name: 'mineVersionTips3',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

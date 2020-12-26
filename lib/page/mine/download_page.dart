@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:flash_tron_wallet/common/common_util.dart';
+import 'package:flash_tron_wallet/generated/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/screenutil.dart';
 import 'package:open_file/open_file.dart';
 import 'package:ota_update/ota_update.dart';
 import 'package:path_provider/path_provider.dart';
@@ -31,7 +31,7 @@ class _DownloadPageState extends State<DownloadPage> {
     return Container(
         child: CupertinoAlertDialog(
       title: Text(
-        '更新中...',
+        '${S.of(context).mineAppUpdating}',
         style: Util.textStyle(context, 2,
             color: Colors.grey[800], spacing: 0.0, size: 32),
       ),
@@ -43,19 +43,14 @@ class _DownloadPageState extends State<DownloadPage> {
                 text: TextSpan(
                   children: <TextSpan>[
                     TextSpan(
-                      text: '下载进度:  ',
-                      style: TextStyle(
-                        fontFamily: 'SHS-M',
-                        letterSpacing: 0.0,
-                        color: Colors.grey[850],
-                        fontSize: Util.sp(28),
-                        height: Util.sp(3.2),
-                      ),
+                      text: '${S.of(context).mineAppDownloadProgress}',
+                      style: Util.textStyle4Update(context, 2,
+                          color: Colors.grey[850], spacing: 0.0, size: 28),
                     ),
                     TextSpan(
                       text: '$progress%',
                       style: TextStyle(
-                        fontFamily: 'SHS-M',
+                        fontFamily: 'ZH-M',
                         letterSpacing: 0.0,
                         color: Colors.grey[850],
                         fontSize: Util.sp(32),
@@ -66,14 +61,9 @@ class _DownloadPageState extends State<DownloadPage> {
                 ),
               )
             : Text(
-                '准备下载...',
-                style: TextStyle(
-                  fontFamily: 'SHS-M',
-                  letterSpacing: 0.0,
-                  color: Colors.grey[850],
-                  fontSize: Util.sp(28),
-                  height: Util.sp(3.2),
-                ),
+                '${S.of(context).mineAppReadyToDownload}',
+                style: Util.textStyle4Update(context, 2,
+                    color: Colors.grey[850], spacing: 0.0, size: 28),
               ),
       ),
     ));
@@ -104,11 +94,11 @@ class _DownloadPageState extends State<DownloadPage> {
               break;
             case OtaStatus.PERMISSION_NOT_GRANTED_ERROR:
               Navigator.pop(context);
-              Util.showToast('更新失败，请稍后再试');
+              Util.showToast('${S.of(context).mineAppDownloadFail}');
               break;
             default:
               Navigator.pop(context);
-              Util.showToast('更新失败，请稍后再试');
+              Util.showToast('${S.of(context).mineAppDownloadFail}');
               break;
           }
         },

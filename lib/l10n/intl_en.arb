@@ -124,5 +124,9 @@
   "mineVersionTips1": "already the latest version",
   "mineVersionNew": "New Version",
   "mineVersionTips2": "Update Later",
-  "mineVersionTips3": "Update Now"
+  "mineVersionTips3": "Update Now",
+  "mineAppUpdating": "Updating...",
+  "mineAppDownloadProgress": "Download Progress:   ",
+  "mineAppReadyToDownload": "Ready to Download... ",
+  "mineAppDownloadFail": "update failed. please try again later"
 }

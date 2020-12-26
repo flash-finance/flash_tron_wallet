@@ -1122,6 +1122,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Updating...`
+  String get mineAppUpdating {
+    return Intl.message(
+      'Updating...',
+      name: 'mineAppUpdating',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Download Progress:   `
+  String get mineAppDownloadProgress {
+    return Intl.message(
+      'Download Progress:   ',
+      name: 'mineAppDownloadProgress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ready to Download... `
+  String get mineAppReadyToDownload {
+    return Intl.message(
+      'Ready to Download... ',
+      name: 'mineAppReadyToDownload',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `update failed. please try again later`
+  String get mineAppDownloadFail {
+    return Intl.message(
+      'update failed. please try again later',
+      name: 'mineAppDownloadFail',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

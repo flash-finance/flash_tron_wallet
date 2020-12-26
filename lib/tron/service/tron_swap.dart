@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:bs58check/bs58check.dart';
-import 'package:common_utils/common_utils.dart';
 import 'package:crypto/crypto.dart';
 import 'package:ethereum_util/src/abi.dart' as abi;
 import 'package:fixnum/fixnum.dart';
@@ -11,18 +10,14 @@ import 'package:flash_tron_wallet/google/protobuf/any.pb.dart';
 import 'package:flash_tron_wallet/tron/api/api.pbgrpc.dart';
 import 'package:flash_tron_wallet/tron/core/Contract.pb.dart';
 import 'package:flash_tron_wallet/tron/core/Tron.pb.dart';
-import 'package:grpc/grpc.dart';
+import 'package:flash_tron_wallet/tron/grpc/grpc_client.dart';
 import 'package:web3dart/crypto.dart';
 
 import 'msg_signature.dart';
 
 class TronSwap {
   Future<String> getTrxBalance(String tronGrpcIP, String userAddress) async {
-    final channel = ClientChannel(
-      tronGrpcIP.trim(),
-      port: 50051,
-      options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
-    );
+    final channel = ClientChannelManager.getChannel(tronGrpcIP);
     final stub = WalletClient(channel);
     try {
       Uint8List originAddress = base58.decode(userAddress).sublist(0, 21);
@@ -37,18 +32,12 @@ class TronSwap {
     } catch (e) {
       print(e);
       return '0';
-    } finally {
-      await channel.shutdown();
     }
   }
 
   Future<String> getTrc20Balance(
       String tronGrpcIP, String userAddress, String tokenAddress) async {
-    final channel = ClientChannel(
-      tronGrpcIP.trim(),
-      port: 50051,
-      options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
-    );
+    final channel = ClientChannelManager.getChannel(tronGrpcIP);
     final stub = WalletClient(channel);
     try {
       SmartContract response = await stub.getContract(
@@ -94,18 +83,12 @@ class TronSwap {
     } catch (e) {
       print(e);
       return '0';
-    } finally {
-      await channel.shutdown();
     }
   }
 
   Future<String> allowance(String tronGrpcIP, String userAddress,
       String swapTokenAddress, String flashSwapAddress) async {
-    final channel = ClientChannel(
-      tronGrpcIP.trim(),
-      port: 50051,
-      options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
-    );
+    final channel = ClientChannelManager.getChannel(tronGrpcIP);
     final stub = WalletClient(channel);
     try {
       SmartContract response = await stub.getContract(BytesMessage()
@@ -155,18 +138,12 @@ class TronSwap {
     } catch (e) {
       print(e);
       return '';
-    } finally {
-      await channel.shutdown();
     }
   }
 
   Future<bool> approve(String tronGrpcIP, String userAddress, String privateKey,
       String swapTokenAddress, String flashSwapAddress) async {
-    final channel = ClientChannel(
-      tronGrpcIP.trim(),
-      port: 50051,
-      options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
-    );
+    final channel = ClientChannelManager.getChannel(tronGrpcIP);
     final stub = WalletClient(channel);
     try {
       SmartContract response = await stub.getContract(BytesMessage()
@@ -206,8 +183,6 @@ class TronSwap {
     } catch (e) {
       print(e);
       return false;
-    } finally {
-      await channel.shutdown();
     }
   }
 
@@ -221,11 +196,7 @@ class TronSwap {
       String trxSold) async {
     print('TronSwap trxToTokenSwap');
 
-    final channel = ClientChannel(
-      tronGrpcIP.trim(),
-      port: 50051,
-      options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
-    );
+    final channel = ClientChannelManager.getChannel(tronGrpcIP);
     final stub = WalletClient(channel);
     try {
       SmartContract response = await stub.getContract(BytesMessage()
@@ -269,8 +240,6 @@ class TronSwap {
     } catch (e) {
       print(e);
       return false;
-    } finally {
-      await channel.shutdown();
     }
   }
 
@@ -284,11 +253,7 @@ class TronSwap {
       String tokensSold) async {
     print('TronSwap tokenToTrxSwap');
 
-    final channel = ClientChannel(
-      tronGrpcIP.trim(),
-      port: 50051,
-      options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
-    );
+    final channel = ClientChannelManager.getChannel(tronGrpcIP);
     final stub = WalletClient(channel);
     try {
       SmartContract response = await stub.getContract(BytesMessage()
@@ -334,8 +299,6 @@ class TronSwap {
     } catch (e) {
       print(e);
       return false;
-    } finally {
-      await channel.shutdown();
     }
   }
 
@@ -350,11 +313,7 @@ class TronSwap {
       String targetTokenAddress) async {
     print('TronSwap tokenToTokenSwap');
 
-    final channel = ClientChannel(
-      tronGrpcIP.trim(),
-      port: 50051,
-      options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
-    );
+    final channel = ClientChannelManager.getChannel(tronGrpcIP);
     final stub = WalletClient(channel);
     try {
       SmartContract response = await stub.getContract(BytesMessage()
@@ -402,8 +361,6 @@ class TronSwap {
     } catch (e) {
       print(e);
       return false;
-    } finally {
-      await channel.shutdown();
     }
   }
 

@@ -9,6 +9,7 @@ import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/tron/api/api.pbgrpc.dart';
 import 'package:flash_tron_wallet/tron/core/Contract.pb.dart';
 import 'package:flash_tron_wallet/tron/core/Tron.pb.dart';
+import 'package:flash_tron_wallet/tron/grpc/grpc_client.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:grpc/grpc.dart';
 import 'package:provider/provider.dart';
@@ -23,11 +24,7 @@ class TronAsset {
     String tronGrpcIP =
         Provider.of<HomeProvider>(context, listen: false).tronGrpcIP;
     List<AssetEntity> list = [];
-    final channel = ClientChannel(
-      tronGrpcIP.trim(),
-      port: 50051,
-      options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
-    );
+    final channel = ClientChannelManager.getChannel(tronGrpcIP);
     final stub = WalletClient(channel);
     Uint8List originAddress = base58.decode(userAddress).sublist(0, 21);
     try {
@@ -50,8 +47,6 @@ class TronAsset {
     } catch (e) {
       print(e);
       return false;
-    } finally {
-      await channel.shutdown();
     }
   }
 

@@ -7,7 +7,10 @@ class ClientChannelManager {
   // 优先级最低的key
   static String exitKey = '';
 
-  static ClientChannel getChannel(String host, int port) {
+  static int port = 50051;
+
+  static ClientChannel getChannel(String host) {
+    host = host.trim();
     //连接存在 取缓存 不存在则创建
     if (clientChannels.containsKey(host + '$port')) {
       //每取一次请求数量加1
@@ -28,14 +31,14 @@ class ClientChannelManager {
       object.clientChannel.shutdown(); // 关闭优先级最低的连接
       clientChannels.remove(exitKey); // 清出连接池
     }
-    ClientChannel channel = new ClientChannel(
-        host,
+    ClientChannel channel = new ClientChannel(host,
         port: port,
-        options: const ChannelOptions(credentials: const ChannelCredentials.insecure()));
+        options: const ChannelOptions(
+            credentials: const ChannelCredentials.insecure()));
     clientChannels[host + '$port'] = ClientChannelManagerObject()
       ..clientChannel = channel
       ..number = 1
-      ..createtime = new DateTime.now().millisecondsSinceEpoch;
+      ..createTime = new DateTime.now().millisecondsSinceEpoch;
     Future(() {
       sort();
     });
@@ -47,7 +50,8 @@ class ClientChannelManager {
     int currentTime = new DateTime.now().millisecondsSinceEpoch;
     double maxProportion = 0.0;
     clientChannels.forEach((String key, ClientChannelManagerObject value) {
-      value.proportion = (currentTime - value.createtime) / (value.number * 1.0); //时长除以次数，越小优先级越高
+      value.proportion = (currentTime - value.createTime) /
+          (value.number * 1.0); //时长除以次数，越小优先级越高
       if (value.proportion > maxProportion) {
         maxProportion = value.proportion;
         exitKey = key;
@@ -59,6 +63,6 @@ class ClientChannelManager {
 class ClientChannelManagerObject {
   ClientChannel clientChannel;
   int number; //总共请求次数
-  int createtime; //第一次创建时间
+  int createTime; //第一次创建时间
   double proportion; //时长除以次数，越小优先级越高
 }

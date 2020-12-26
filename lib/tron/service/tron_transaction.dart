@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:bs58check/bs58check.dart';
 import 'package:crypto/crypto.dart';
+import 'package:ethereum_util/src/abi.dart' as abi;
 import 'package:fixnum/fixnum.dart';
 import 'package:flash_tron_wallet/entity/tron/abi_entity.dart';
 import 'package:flash_tron_wallet/google/protobuf/any.pb.dart';
@@ -10,25 +11,19 @@ import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/tron/api/api.pbgrpc.dart';
 import 'package:flash_tron_wallet/tron/core/Contract.pb.dart';
 import 'package:flash_tron_wallet/tron/core/Tron.pb.dart';
+import 'package:flash_tron_wallet/tron/grpc/grpc_client.dart';
 import 'package:flutter/material.dart';
-import 'package:grpc/grpc.dart';
 import 'package:provider/provider.dart';
 import 'package:web3dart/crypto.dart';
 
 import 'msg_signature.dart';
-
-import 'package:ethereum_util/src/abi.dart' as abi;
 
 class TronTransaction {
   Future<bool> transTrx(BuildContext context, String fromAddress,
       String toAddress, Int64 amount) async {
     String tronGrpcIP =
         Provider.of<HomeProvider>(context, listen: false).tronGrpcIP;
-    final channel = ClientChannel(
-      tronGrpcIP.trim(),
-      port: 50051,
-      options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
-    );
+    final channel = ClientChannelManager.getChannel(tronGrpcIP);
     final stub = WalletClient(channel);
     Uint8List originFromAddress = base58.decode(fromAddress).sublist(0, 21);
     Uint8List originToAddress = base58.decode(toAddress).sublist(0, 21);
@@ -67,8 +62,6 @@ class TronTransaction {
     } catch (e) {
       print(e);
       return false;
-    } finally {
-      await channel.shutdown();
     }
   }
 
@@ -76,11 +69,7 @@ class TronTransaction {
       String fromAddress, String toAddress, int amount) async {
     String tronGrpcIP =
         Provider.of<HomeProvider>(context, listen: false).tronGrpcIP;
-    final channel = ClientChannel(
-      tronGrpcIP.trim(),
-      port: 50051,
-      options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
-    );
+    final channel = ClientChannelManager.getChannel(tronGrpcIP);
     final stub = WalletClient(channel);
     try {
       SmartContract response = await stub.getContract(BytesMessage()
@@ -125,8 +114,6 @@ class TronTransaction {
     } catch (e) {
       print(e);
       return false;
-    } finally {
-      await channel.shutdown();
     }
   }
 
@@ -134,11 +121,7 @@ class TronTransaction {
       String fromAddress, String toAddress, int amount) async {
     String tronGrpcIP =
         Provider.of<HomeProvider>(context, listen: false).tronGrpcIP;
-    final channel = ClientChannel(
-      tronGrpcIP.trim(),
-      port: 50051,
-      options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
-    );
+    final channel = ClientChannelManager.getChannel(tronGrpcIP);
     final stub = WalletClient(channel);
     try {
       SmartContract response = await stub.getContract(BytesMessage()
@@ -182,8 +165,6 @@ class TronTransaction {
     } catch (e) {
       print(e);
       return false;
-    } finally {
-      await channel.shutdown();
     }
   }
 

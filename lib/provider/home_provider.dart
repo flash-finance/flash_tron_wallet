@@ -10,10 +10,10 @@ import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/model/tron_info_model.dart';
 import 'package:flash_tron_wallet/tron/api/api.pbgrpc.dart';
 import 'package:flash_tron_wallet/tron/core/Tron.pb.dart';
+import 'package:flash_tron_wallet/tron/grpc/grpc_client.dart';
 import 'package:flash_tron_wallet/tron/service/tron_asset.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:grpc/grpc.dart';
 import 'package:package_info/package_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:synchronized/synchronized.dart';
@@ -349,11 +349,7 @@ class HomeProvider with ChangeNotifier {
 
   // 异步
   getTrxBalance4Async(String userAddress, TokenRows item) async {
-    final channel = ClientChannel(
-      tronGrpcIP.trim(),
-      port: 50051,
-      options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
-    );
+    final channel = ClientChannelManager.getChannel(tronGrpcIP);
     final stub = WalletClient(channel);
     try {
       Uint8List originAddress = base58.decode(userAddress).sublist(0, 21);
@@ -381,18 +377,12 @@ class HomeProvider with ChangeNotifier {
       return;
     } catch (e) {
       print(e);
-    } finally {
-      await channel.shutdown();
     }
   }
 
   // 异步
   getTrc20Balance4Async(String userAddress, TokenRows item) async {
-    final channel = ClientChannel(
-      tronGrpcIP.trim(),
-      port: 50051,
-      options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
-    );
+    final channel = ClientChannelManager.getChannel(tronGrpcIP);
     try {
       final stub = WalletClient(channel);
       AssetEntity entity =
@@ -417,8 +407,6 @@ class HomeProvider with ChangeNotifier {
       return;
     } catch (e) {
       print(e);
-    } finally {
-      await channel.shutdown();
     }
   }
 
@@ -434,11 +422,7 @@ class HomeProvider with ChangeNotifier {
     String userAddress = _selectWalletEntity.tronAddress;
     String tronGrpcIP = _tronGrpcIP;
     List<AssetEntity> list = [];
-    final channel = ClientChannel(
-      tronGrpcIP.trim(),
-      port: 50051,
-      options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
-    );
+    final channel = ClientChannelManager.getChannel(tronGrpcIP);
     final stub = WalletClient(channel);
     Uint8List originAddress = base58.decode(userAddress).sublist(0, 21);
     try {
@@ -460,7 +444,6 @@ class HomeProvider with ChangeNotifier {
     } catch (e) {
       print(e);
     }
-    await channel.shutdown();
   }
 
   Map<String, String> _balanceMap = Map<String, String>();

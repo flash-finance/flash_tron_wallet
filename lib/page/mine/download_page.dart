@@ -50,7 +50,7 @@ class _DownloadPageState extends State<DownloadPage> {
                     TextSpan(
                       text: '$progress%',
                       style: TextStyle(
-                        fontFamily: 'ZH-M',
+                        fontFamily: 'EN-M',
                         letterSpacing: 0.0,
                         color: Colors.grey[850],
                         fontSize: Util.sp(32),

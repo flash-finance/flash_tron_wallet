@@ -1133,20 +1133,20 @@ class S {
     );
   }
 
-  /// `Download Progress:   `
+  /// `Download Progress: `
   String get mineAppDownloadProgress {
     return Intl.message(
-      'Download Progress:   ',
+      'Download Progress: ',
       name: 'mineAppDownloadProgress',
       desc: '',
       args: [],
     );
   }
 
-  /// `Ready to Download... `
+  /// `Ready to Download...`
   String get mineAppReadyToDownload {
     return Intl.message(
-      'Ready to Download... ',
+      'Ready to Download...',
       name: 'mineAppReadyToDownload',
       desc: '',
       args: [],

@@ -104,7 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "commonSubmit" : MessageLookupByLibrary.simpleMessage("提交"),
     "commonUpdateSuccess" : MessageLookupByLibrary.simpleMessage("修改成功"),
     "mineAppDownloadFail" : MessageLookupByLibrary.simpleMessage("更新失败，请稍后再试"),
-    "mineAppDownloadProgress" : MessageLookupByLibrary.simpleMessage("下载进度:   "),
+    "mineAppDownloadProgress" : MessageLookupByLibrary.simpleMessage("下载进度: "),
     "mineAppReadyToDownload" : MessageLookupByLibrary.simpleMessage("准备下载..."),
     "mineAppUpdating" : MessageLookupByLibrary.simpleMessage("更新中..."),
     "mineCurrentVersion" : MessageLookupByLibrary.simpleMessage("当前版本"),

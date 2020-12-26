@@ -126,7 +126,7 @@
   "mineVersionTips2": "Update Later",
   "mineVersionTips3": "Update Now",
   "mineAppUpdating": "Updating...",
-  "mineAppDownloadProgress": "Download Progress:   ",
-  "mineAppReadyToDownload": "Ready to Download... ",
+  "mineAppDownloadProgress": "Download Progress: ",
+  "mineAppReadyToDownload": "Ready to Download...",
   "mineAppDownloadFail": "update failed. please try again later"
 }

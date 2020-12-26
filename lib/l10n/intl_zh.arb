@@ -126,7 +126,7 @@
   "mineVersionTips2": "以后再说",
   "mineVersionTips3": "立即体验",
   "mineAppUpdating": "更新中...",
-  "mineAppDownloadProgress": "下载进度:   ",
+  "mineAppDownloadProgress": "下载进度: ",
   "mineAppReadyToDownload": "准备下载...",
   "mineAppDownloadFail": "更新失败，请稍后再试"
 }

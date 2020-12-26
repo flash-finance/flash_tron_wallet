@@ -1629,7 +1629,6 @@ class _SwapSubPageState extends State<SwapSubPage>
                 });
                 List<TokenRows> tokenList = provider.tokenList;
                 for (int i = 0; i < 5; i++) {
-                  print('tokenList i: $i');
                   await Future.delayed(Duration(milliseconds: 1000), () {
                     if (_swapRows[_leftSelectIndex].swapTokenType == 1 &&
                         tokenList.length > _leftSelectIndex) {

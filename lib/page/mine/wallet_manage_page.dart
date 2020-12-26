@@ -8,7 +8,6 @@ import 'package:flash_tron_wallet/router/router.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
 
 class WalletManagePage extends StatefulWidget {

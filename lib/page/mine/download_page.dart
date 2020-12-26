@@ -33,7 +33,7 @@ class _DownloadPageState extends State<DownloadPage> {
       title: Text(
         '更新中...',
         style: Util.textStyle(context, 2,
-            color: Colors.grey[800], spacing: 0.2, size: 32),
+            color: Colors.grey[800], spacing: 0.0, size: 32),
       ),
       content: Container(
         padding: EdgeInsets.only(top: 5),

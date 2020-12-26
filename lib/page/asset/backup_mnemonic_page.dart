@@ -114,12 +114,10 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
             child: Container(
               width: Util.width(80),
               alignment: Alignment.centerRight,
-              child: Image.asset(
-                'icons/copy.png',
-                width: Util.width(40),
-                height: Util.width(40),
-                color: Colors.grey[800],
-                fit: BoxFit.fill,
+              child: Icon(
+                IconData(0xe618, fontFamily: 'ICON'),
+                size: Util.sp(28),
+                color: Colors.white,
               ),
             ),
           ),

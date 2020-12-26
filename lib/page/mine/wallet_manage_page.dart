@@ -208,12 +208,10 @@ class _WalletManagePageState extends State<WalletManagePage> {
                     ),
                     SizedBox(width: Util.width(50)),
                     Container(
-                      child: Image.asset(
-                        'icons/copy.png',
-                        width: Util.width(28),
-                        height: Util.width(28),
+                      child: Icon(
+                        IconData(0xe618, fontFamily: 'ICON'),
+                        size: Util.sp(28),
                         color: Colors.white,
-                        fit: BoxFit.fill,
                       ),
                     ),
                   ],

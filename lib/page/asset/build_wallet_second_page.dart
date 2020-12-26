@@ -129,12 +129,10 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             },
             child: Container(
               padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
-              child: Image.asset(
-                'icons/copy.png',
-                width: Util.width(35),
-                height: Util.width(35),
-                color: Colors.grey[800],
-                fit: BoxFit.fill,
+              child: Icon(
+                IconData(0xe618, fontFamily: 'ICON'),
+                size: Util.sp(28),
+                color: Colors.white,
               ),
             ),
           ),

@@ -71,6 +71,7 @@ class _AssetPageState extends State<AssetPage>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     _langType = Provider.of<IndexProvider>(context, listen: true).langType;
     WalletEntity wallet =
         Provider.of<HomeProvider>(context, listen: true).selectWalletEntity;
@@ -858,12 +859,10 @@ class _AssetPageState extends State<AssetPage>
                         ),
                         SizedBox(width: Util.width(50)),
                         Container(
-                          child: Image.asset(
-                            'icons/copy.png',
-                            width: Util.width(28),
-                            height: Util.width(28),
+                          child: Icon(
+                            IconData(0xe618, fontFamily: 'ICON'),
+                            size: Util.sp(28),
                             color: Colors.white,
-                            fit: BoxFit.fill,
                           ),
                         ),
                       ],

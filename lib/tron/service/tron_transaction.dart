@@ -22,7 +22,6 @@ import 'package:ethereum_util/src/abi.dart' as abi;
 class TronTransaction {
   Future<bool> transTrx(BuildContext context, String fromAddress,
       String toAddress, Int64 amount) async {
-    print('TronTransaction transTrx');
     String tronGrpcIP =
         Provider.of<HomeProvider>(context, listen: false).tronGrpcIP;
     final channel = ClientChannel(
@@ -75,7 +74,6 @@ class TronTransaction {
 
   Future<bool> transTrc20(BuildContext context, String contractAddress,
       String fromAddress, String toAddress, int amount) async {
-    print('TronTransaction transTrc20');
     String tronGrpcIP =
         Provider.of<HomeProvider>(context, listen: false).tronGrpcIP;
     final channel = ClientChannel(
@@ -134,7 +132,6 @@ class TronTransaction {
 
   Future<bool> trc20Approve(BuildContext context, String contractAddress,
       String fromAddress, String toAddress, int amount) async {
-    print('TronTransaction trc20Approve');
     String tronGrpcIP =
         Provider.of<HomeProvider>(context, listen: false).tronGrpcIP;
     final channel = ClientChannel(
@@ -174,7 +171,6 @@ class TronTransaction {
       Uint8List rawEncode = abi.rawEncode(inputList, params);
       Uint8List dataList =
           hexToBytes(bytesToHex(methodID) + bytesToHex(rawEncode));
-      //print('encode dataList1 hex: ${bytesToHex(dataList)}');
 
       String hexPrivateKey = Provider.of<HomeProvider>(context, listen: false)
           .selectWalletEntity
@@ -209,7 +205,6 @@ class TronTransaction {
     Return result = await stub.broadcastTransaction(trans);
 
     if (result.toProto3Json().toString().contains('true') == true) {
-      print('execute success');
       return true;
     } else {
       print('execute error msg: ${utf8.decode(result.message)}');
@@ -249,7 +244,6 @@ class TronTransaction {
         .millisecondsSinceEpoch);
 
     Uint8List hash = sha256.convert(trans.rawData.writeToBuffer()).bytes;
-    //print('hash: ${bytesToHex(hash)}');
 
     MsgSignature msgSignature = sign(hash, hexToBytes(hexPrivateKey));
 

@@ -837,7 +837,7 @@ class _AssetPageState extends State<AssetPage>
                   child: Text(
                     '$name',
                     style: Util.textStyle(context, 1,
-                        color: Colors.white, spacing: 0.5, size: 30),
+                        color: Colors.white, spacing: 0.5, size: 28),
                   ),
                 ),
                 SizedBox(height: Util.height(15)),

@@ -149,7 +149,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
                         child: Text(
                           '$name',
                           style: Util.textStyle(context, 2,
-                              color: Colors.white, spacing: 0.5, size: 30),
+                              color: Colors.white, spacing: 0.5, size: 28),
                         ),
                       ),
                       SizedBox(width: Util.width(50)),

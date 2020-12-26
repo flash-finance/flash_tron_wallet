@@ -411,7 +411,7 @@ class HomeProvider with ChangeNotifier {
   }
 
   // 同步
-  getAsset4ReloadSync() async {
+  /*getAsset4ReloadSync() async {
     if (_selectWalletEntity == null) {
       if (_assetList != null && _assetList.length > 0) {
         _assetList = [];
@@ -444,7 +444,7 @@ class HomeProvider with ChangeNotifier {
     } catch (e) {
       print(e);
     }
-  }
+  }*/
 
   Map<String, String> _balanceMap = Map<String, String>();
 

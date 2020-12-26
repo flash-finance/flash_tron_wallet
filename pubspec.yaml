@@ -75,9 +75,8 @@ flutter:
   uses-material-design: true
 
   assets:
-    - icons/
     - images/
-    -
+
   fonts:
     - family: ZH-M
       fonts:

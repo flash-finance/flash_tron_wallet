@@ -4,12 +4,10 @@ import 'package:flash_tron_wallet/common/common_util.dart';
 import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/generated/l10n.dart';
-import 'package:flash_tron_wallet/model/tron_info_model.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flash_tron_wallet/router/application.dart';
 import 'package:flash_tron_wallet/router/router.dart';
-import 'package:flash_tron_wallet/tron/service/tron_asset.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -35,16 +33,12 @@ class _AssetPageState extends State<AssetPage>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      //_reloadAsset();
-      //_reloadAssetSub();
-    });
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    print('didChangeAppLifecycleState:${state.toString()}');
+    //print('didChangeAppLifecycleState:${state.toString()}');
     switch (state) {
       case AppLifecycleState.inactive:
         break;
@@ -252,7 +246,7 @@ class _AssetPageState extends State<AssetPage>
         ),
       ),
       onRefresh: () async {
-        _getAsset();
+        _getAsset4Async();
       },
     );
   }
@@ -745,38 +739,8 @@ class _AssetPageState extends State<AssetPage>
     );
   }
 
-  bool _reloadTokenBalanceFlag = true;
-
-  _reloadAsset() async {
-    _timer = Timer.periodic(Duration(milliseconds: 3000), (timer) async {
-      bool backgroundFlag =
-          Provider.of<HomeProvider>(context, listen: false).backgroundFlag;
-      if (!backgroundFlag && _reloadTokenBalanceFlag) {
-        await _reloadAssetSub();
-      }
-    });
-  }
-
-  _reloadAssetSub() async {
-    try {
-      _reloadTokenBalanceFlag = false;
-      await Provider.of<HomeProvider>(context, listen: false)
-          .getAsset4ReloadSync();
-    } catch (e) {
-      print('_reloadAssetSub error: ${e.toString()}');
-    } finally {
-      _reloadTokenBalanceFlag = true;
-    }
-  }
-
-  _getAsset() async {
-    WalletEntity wallet =
-        Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
-    if (wallet != null && wallet.tronAddress != null) {
-      List<TokenRows> tokenList =
-          Provider.of<HomeProvider>(context, listen: false).tokenList;
-      TronAsset().getAsset(context, wallet.tronAddress, tokenList);
-    }
+  _getAsset4Async() async {
+    Provider.of<HomeProvider>(context, listen: false).getAsset4ReloadAsync();
   }
 
   _showBottomSheetWidget(BuildContext context, List<WalletEntity> walletList) {

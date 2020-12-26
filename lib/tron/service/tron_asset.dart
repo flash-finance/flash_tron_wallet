@@ -11,7 +11,6 @@ import 'package:flash_tron_wallet/tron/core/Contract.pb.dart';
 import 'package:flash_tron_wallet/tron/core/Tron.pb.dart';
 import 'package:flash_tron_wallet/tron/grpc/grpc_client.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:grpc/grpc.dart';
 import 'package:provider/provider.dart';
 import 'package:web3dart/crypto.dart';
 

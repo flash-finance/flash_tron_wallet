@@ -423,6 +423,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                         onSaved: (String value) {
                           _name = value;
                         },
+                        cursorColor: Util.themeColor,
                         decoration: InputDecoration(
                           hintText: '',
                           filled: true,

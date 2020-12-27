@@ -371,7 +371,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
     bool result = await Provider.of<HomeProvider>(context, listen: false)
         .addWallet(entity);
     if (result) {
-      await _getAsset();
+      _getAsset();
     }
     return result;
   }

@@ -321,7 +321,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
     bool result = await Provider.of<HomeProvider>(context, listen: false)
         .addWallet(entity);
     if (result) {
-      await _getAsset(context);
+      _getAsset(context);
     }
     await Future.delayed(Duration(milliseconds: 1000), () {});
 

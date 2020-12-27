@@ -355,7 +355,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
     bool result = await Provider.of<HomeProvider>(context, listen: false)
         .addWallet(entity);
     if (result) {
-      await _getAsset();
+      _getAsset();
     }
     return result;
   }

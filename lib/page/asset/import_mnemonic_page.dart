@@ -377,6 +377,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
   }
 
   Future<bool> _getAsset() async {
+    await Provider.of<HomeProvider>(context, listen: false).getAsset4Init();
     Provider.of<HomeProvider>(context, listen: false).getAsset4ReloadAsync();
     return true;
   }

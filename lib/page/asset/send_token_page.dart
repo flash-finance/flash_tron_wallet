@@ -703,8 +703,8 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
           context, ownerAddress, _receiveAddress, Int64(amount.toInt()));
       return result ? 0 : 1;
     } else if (item.type == 2) {
-      bool result = await TronTransaction().transTrc20(
-          context, item.address, ownerAddress, _receiveAddress, amount.toInt());
+      bool result = await TronTransaction().transTrc20(context, item.address,
+          ownerAddress, _receiveAddress, amount.toStringAsFixed(0));
       return result ? 0 : 1;
     }
     return 0;

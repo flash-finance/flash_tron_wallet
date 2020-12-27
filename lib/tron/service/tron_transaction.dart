@@ -66,7 +66,7 @@ class TronTransaction {
   }
 
   Future<bool> transTrc20(BuildContext context, String contractAddress,
-      String fromAddress, String toAddress, int amount) async {
+      String fromAddress, String toAddress, String amount) async {
     String tronGrpcIP =
         Provider.of<HomeProvider>(context, listen: false).tronGrpcIP;
     final channel = ClientChannelManager.getChannel(tronGrpcIP);
@@ -97,7 +97,7 @@ class TronTransaction {
       List<dynamic> params = [];
       String abiToAddress = getAbiTronAddress(toAddress);
       params.add(abiToAddress);
-      params.add(BigInt.from(amount));
+      params.add(amount);
 
       Uint8List rawEncode = abi.rawEncode(inputList, params);
       Uint8List dataList =

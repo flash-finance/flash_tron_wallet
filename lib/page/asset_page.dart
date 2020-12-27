@@ -590,7 +590,7 @@ class _AssetPageState extends State<AssetPage>
                   child: Text(
                     'Flash  Wallet',
                     style: Util.textStyle4En(context, 1,
-                        color: Colors.white, spacing: 0.0, size: 40),
+                        color: Colors.white, spacing: 0.3, size: 40),
                   ),
                 ),
               ],

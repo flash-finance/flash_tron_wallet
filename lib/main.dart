@@ -1,14 +1,15 @@
 import 'dart:io';
+import 'package:flash_tron_wallet/page/index_page.dart';
 import 'package:flash_tron_wallet/provider/home_provider.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:splash_screen_view/SplashScreenView.dart';
 
 import 'common/common_util.dart';
 import 'generated/l10n.dart';
-import 'page/index_page.dart';
 import 'provider/index_provider.dart';
 import 'router/application.dart';
 import 'router/router.dart';
@@ -51,7 +52,21 @@ class MyApp extends StatelessWidget {
           highlightColor: Colors.transparent,
           fontFamily: 'ZH-M',
         ),
-        home: IndexPage(),
+        home: SplashScreenView(
+          home: IndexPage(),
+          duration: 1200,
+          imageSize: 95,
+          imageSrc: "images/flash-logo.png",
+          text: "Flash Wallet",
+          textType: TextType.NormalText,
+          textStyle: TextStyle(
+            fontFamily: 'EN-R',
+            letterSpacing: 0.3,
+            color: Colors.white,
+            fontSize: 21,
+          ),
+          backgroundColor: Util.themeColor,
+        ),
         localizationsDelegates: [
           S.delegate,
           GlobalMaterialLocalizations.delegate,
@@ -64,6 +79,15 @@ class MyApp extends StatelessWidget {
           return;
         },
       ),
+    );
+  }
+}
+
+class MainScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.redAccent,
     );
   }
 }

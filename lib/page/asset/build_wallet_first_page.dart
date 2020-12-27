@@ -31,11 +31,10 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
   String _setPwd;
   String _confirmPwd;
 
-  bool buildWalletLoading = false;
+  bool _buildWalletLoading = false;
 
   @override
   Widget build(BuildContext context) {
-    buildWalletLoading = Provider.of<HomeProvider>(context).buildWalletLoading;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -90,7 +89,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
                 ],
               ),
             ),
-            buildWalletLoading
+            _buildWalletLoading
                 ? Container(
                     padding: EdgeInsets.only(
                         top: Util.height(300), left: Util.width(350)),
@@ -106,7 +105,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
   Widget _nameWidget() {
     return Container(
       child: TextFormField(
-        readOnly: !buildWalletLoading ? false : true,
+        readOnly: !_buildWalletLoading ? false : true,
         onSaved: (String value) => _name = value,
         maxLength: 10,
         inputFormatters: [],
@@ -132,7 +131,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
   Widget _setPwdWidget() {
     return Container(
       child: TextFormField(
-        readOnly: !buildWalletLoading ? false : true,
+        readOnly: !_buildWalletLoading ? false : true,
         obscureText: _setPwdClickEye,
         onSaved: (String value) {
           if (value.length > 6) {
@@ -183,7 +182,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
   Widget _confirmPwdWidget() {
     return Container(
       child: TextFormField(
-        readOnly: !buildWalletLoading ? false : true,
+        readOnly: !_buildWalletLoading ? false : true,
         obscureText: _confirmPwdClickEye,
         onSaved: (String value) {
           if (value.length > 6) {
@@ -244,7 +243,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
               ),
             ),
             color: Util.themeColor,
-            onPressed: !buildWalletLoading
+            onPressed: !_buildWalletLoading
                 ? () {
                     FocusScope.of(context).requestFocus(FocusNode());
                     if (_formKey.currentState.validate()) {
@@ -254,8 +253,9 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
                             '${S.of(context).commonConfirmPwdError}');
                       } else {
                         _submit(context).then((val) {
-                          Provider.of<HomeProvider>(context, listen: false)
-                              .changeBuildWalletLoading(false);
+                          setState(() {
+                            _buildWalletLoading = false;
+                          });
                           if (val == true) {
                             Application.router.navigateTo(
                                 context,
@@ -314,8 +314,9 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
   }
 
   Future<bool> _submit(BuildContext context) async {
-    Provider.of<HomeProvider>(context, listen: false)
-        .changeBuildWalletLoading(true);
+    setState(() {
+      _buildWalletLoading = true;
+    });
     WalletEntity entity = TronWallet().createWallet(_name, _setPwd);
     bool result = await Provider.of<HomeProvider>(context, listen: false)
         .addWallet(entity);
@@ -328,9 +329,6 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
   }
 
   Future<bool> _getAsset(BuildContext context) async {
-    //String tronAddress = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity.tronAddress;
-    //List<TokenRows> tokenList = Provider.of<HomeProvider>(context, listen: false).tokenList;
-    //return await TronAsset().getAsset(context, tronAddress, tokenList);
     Provider.of<HomeProvider>(context, listen: false).getAsset4Init();
     return true;
   }

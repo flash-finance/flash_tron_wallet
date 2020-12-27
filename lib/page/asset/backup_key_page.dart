@@ -116,8 +116,8 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
               alignment: Alignment.centerRight,
               child: Icon(
                 IconData(0xe618, fontFamily: 'ICON'),
-                size: Util.sp(28),
-                color: Colors.white,
+                size: Util.sp(30),
+                color: Colors.grey[850],
               ),
             ),
           ),

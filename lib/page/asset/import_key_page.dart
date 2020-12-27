@@ -30,11 +30,10 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
   String _setPwd;
   String _confirmPwd;
 
-  bool importKeyLoading = false;
+  bool _importKeyLoading = false;
 
   @override
   Widget build(BuildContext context) {
-    importKeyLoading = Provider.of<HomeProvider>(context).importKeyLoading;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -91,7 +90,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
                 ],
               ),
             ),
-            importKeyLoading
+            _importKeyLoading
                 ? Container(
                     padding: EdgeInsets.only(
                         top: Util.height(300), left: Util.width(350)),
@@ -143,7 +142,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
   Widget _nameWidget() {
     return Container(
       child: TextFormField(
-        readOnly: !importKeyLoading ? false : true,
+        readOnly: !_importKeyLoading ? false : true,
         onSaved: (String value) => _name = value,
         maxLength: 10,
         inputFormatters: [],
@@ -169,7 +168,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
   Widget _keyWidget() {
     return Container(
       child: TextFormField(
-        readOnly: !importKeyLoading ? false : true,
+        readOnly: !_importKeyLoading ? false : true,
         onSaved: (String value) => _key = value,
         maxLines: 2,
         maxLength: 64,
@@ -200,7 +199,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
   Widget _setPwdWidget() {
     return Container(
       child: TextFormField(
-        readOnly: !importKeyLoading ? false : true,
+        readOnly: !_importKeyLoading ? false : true,
         obscureText: _setPwdClickEye,
         onSaved: (String value) {
           if (value.length > 6) {
@@ -251,7 +250,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
   Widget _confirmPwdWidget() {
     return Container(
       child: TextFormField(
-        readOnly: !importKeyLoading ? false : true,
+        readOnly: !_importKeyLoading ? false : true,
         obscureText: _confirmPwdClickEye,
         onSaved: (String value) {
           if (value.length > 6) {
@@ -312,7 +311,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
               ),
             ),
             color: Util.themeColor,
-            onPressed: !importKeyLoading
+            onPressed: !_importKeyLoading
                 ? () {
                     FocusScope.of(context).requestFocus(FocusNode());
                     if (_formKey.currentState.validate()) {
@@ -322,8 +321,9 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
                             '${S.of(context).commonConfirmPwdError}');
                       } else {
                         _submit().then((val) {
-                          Provider.of<HomeProvider>(context, listen: false)
-                              .changeImportKeyLoading(false);
+                          setState(() {
+                            _importKeyLoading = false;
+                          });
                           if (val == true) {
                             Util.showToast(
                                 '${S.of(context).commonImportSuccess}');
@@ -348,8 +348,9 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
   }
 
   Future<bool> _submit() async {
-    Provider.of<HomeProvider>(context, listen: false)
-        .changeImportKeyLoading(true);
+    setState(() {
+      _importKeyLoading = true;
+    });
     WalletEntity entity = TronWallet().importWalletByKey(_name, _setPwd, _key);
     bool result = await Provider.of<HomeProvider>(context, listen: false)
         .addWallet(entity);
@@ -360,9 +361,6 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
   }
 
   Future<bool> _getAsset() async {
-    //String tronAddress = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity.tronAddress;
-    //List<TokenRows> tokenList = Provider.of<HomeProvider>(context, listen: false).tokenList;
-    //return await TronAsset().getAsset(context, tronAddress, tokenList);
     Provider.of<HomeProvider>(context, listen: false).getAsset4ReloadAsync();
     return true;
   }

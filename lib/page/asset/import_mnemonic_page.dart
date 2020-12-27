@@ -32,12 +32,10 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
   String _confirmPwd;
   List<String> _list = [];
 
-  bool importMnemonicLoading = false;
+  bool _importMnemonicLoading = false;
 
   @override
   Widget build(BuildContext context) {
-    importMnemonicLoading =
-        Provider.of<HomeProvider>(context).importMnemonicLoading;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -93,7 +91,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
                 ],
               ),
             ),
-            importMnemonicLoading
+            _importMnemonicLoading
                 ? Container(
                     padding: EdgeInsets.only(
                         top: Util.height(300), left: Util.width(350)),
@@ -109,7 +107,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
   Widget _nameWidget() {
     return Container(
       child: TextFormField(
-        readOnly: !importMnemonicLoading ? false : true,
+        readOnly: !_importMnemonicLoading ? false : true,
         onSaved: (String value) => _name = value,
         maxLength: 10,
         inputFormatters: [],
@@ -135,7 +133,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
   Widget _mnemonicWidget() {
     return Container(
       child: TextFormField(
-        readOnly: !importMnemonicLoading ? false : true,
+        readOnly: !_importMnemonicLoading ? false : true,
         onSaved: (String value) => _mnemonic = value,
         maxLines: 2,
         maxLength: 150,
@@ -161,7 +159,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
   Widget _setPwdWidget() {
     return Container(
       child: TextFormField(
-        readOnly: !importMnemonicLoading ? false : true,
+        readOnly: !_importMnemonicLoading ? false : true,
         obscureText: _setPwdClickEye,
         onSaved: (String value) {
           if (value.length > 6) {
@@ -212,7 +210,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
   Widget _confirmPwdWidget() {
     return Container(
       child: TextFormField(
-        readOnly: !importMnemonicLoading ? false : true,
+        readOnly: !_importMnemonicLoading ? false : true,
         obscureText: _confirmPwdClickEye,
         onSaved: (String value) {
           if (value.length > 6) {
@@ -273,7 +271,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
               ),
             ),
             color: Util.themeColor,
-            onPressed: !importMnemonicLoading
+            onPressed: !_importMnemonicLoading
                 ? () {
                     FocusScope.of(context).requestFocus(FocusNode());
                     if (_formKey.currentState.validate()) {
@@ -286,8 +284,9 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
                             '${S.of(context).commonIncorrectFormat}');
                       } else {
                         _submit().then((val) {
-                          Provider.of<HomeProvider>(context, listen: false)
-                              .changeImportMnemonicLoading(false);
+                          setState(() {
+                            _importMnemonicLoading = false;
+                          });
                           if (val == true) {
                             Util.showToast(
                                 '${S.of(context).commonImportSuccess}');
@@ -364,8 +363,9 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
   }
 
   Future<bool> _submit() async {
-    Provider.of<HomeProvider>(context, listen: false)
-        .changeImportMnemonicLoading(true);
+    setState(() {
+      _importMnemonicLoading = true;
+    });
     WalletEntity entity =
         TronWallet().importWalletByMnemonic(_name, _setPwd, _mnemonic);
     bool result = await Provider.of<HomeProvider>(context, listen: false)
@@ -377,9 +377,6 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
   }
 
   Future<bool> _getAsset() async {
-    //String tronAddress = Provider.of<HomeProvider>(context, listen: false).selectWalletEntity.tronAddress;
-    //List<TokenRows> tokenList = Provider.of<HomeProvider>(context, listen: false).tokenList;
-    //return await TronAsset().getAsset(context, tronAddress, tokenList);
     Provider.of<HomeProvider>(context, listen: false).getAsset4ReloadAsync();
     return true;
   }

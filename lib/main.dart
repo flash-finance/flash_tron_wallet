@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
         ),
         home: SplashScreenView(
           home: IndexPage(),
-          duration: 1200,
+          duration: 1500,
           imageSize: 95,
           imageSrc: "images/flash-logo.png",
           text: "Flash Wallet",

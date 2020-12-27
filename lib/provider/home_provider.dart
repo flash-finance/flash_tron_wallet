@@ -450,33 +450,6 @@ class HomeProvider with ChangeNotifier {
 
   Map<String, String> get balanceMap => _balanceMap;
 
-  bool _importKeyLoading = false;
-
-  get importKeyLoading => _importKeyLoading;
-
-  changeImportKeyLoading(bool value) {
-    _importKeyLoading = value;
-    notifyListeners();
-  }
-
-  bool _importMnemonicLoading = false;
-
-  get importMnemonicLoading => _importMnemonicLoading;
-
-  changeImportMnemonicLoading(bool value) {
-    _importMnemonicLoading = value;
-    notifyListeners();
-  }
-
-  bool _buildWalletLoading = false;
-
-  bool get buildWalletLoading => _buildWalletLoading;
-
-  changeBuildWalletLoading(bool value) {
-    _buildWalletLoading = value;
-    notifyListeners();
-  }
-
   bool _appDownloaded = false;
 
   bool get appDownloaded => _appDownloaded;

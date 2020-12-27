@@ -109,34 +109,34 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
   }
 
   Widget _tipsWidget(String mnemonic) {
-    return Container(
-      width: Util.width(750),
-      margin: EdgeInsets.only(top: 10, bottom: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Container(
-            child: Text(
-              '${S.of(context).commonBackupMnemonic}',
-              style: Util.textStyle(context, 2,
-                  color: Colors.grey[800], spacing: 0.4, size: 26),
+    return InkWell(
+      onTap: () {
+        Clipboard.setData(ClipboardData(text: mnemonic));
+        Util.showToast('${S.of(context).commonCopySuccess}');
+      },
+      child: Container(
+        width: Util.width(750),
+        margin: EdgeInsets.only(top: 10, bottom: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              child: Text(
+                '${S.of(context).commonBackupMnemonic}',
+                style: Util.textStyle(context, 2,
+                    color: Colors.grey[800], spacing: 0.4, size: 26),
+              ),
             ),
-          ),
-          InkWell(
-            onTap: () {
-              Clipboard.setData(ClipboardData(text: mnemonic));
-              Util.showToast('${S.of(context).commonCopySuccess}');
-            },
-            child: Container(
+            Container(
               padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
               child: Icon(
                 IconData(0xe618, fontFamily: 'ICON'),
-                size: Util.sp(28),
-                color: Colors.white,
+                size: Util.sp(30),
+                color: Colors.grey[850],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

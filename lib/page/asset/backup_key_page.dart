@@ -88,30 +88,30 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
   }
 
   Widget _dataWidget(BuildContext context, String key) {
-    return Container(
-      width: Util.width(700),
-      decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(width: 0.6, color: Colors.black12)),
-      ),
-      child: Row(
-        children: <Widget>[
-          Container(
-            width: Util.width(600),
-            padding: EdgeInsets.fromLTRB(5, 15, 0, 10),
-            child: Text(
-              '$key',
-              style: Util.textStyle4En(context, 2,
-                  color: Colors.grey[800], spacing: 0.0, size: 28),
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
+    return InkWell(
+      onTap: () {
+        Clipboard.setData(ClipboardData(text: key));
+        Util.showToast('${S.of(context).commonCopySuccess}');
+      },
+      child: Container(
+        width: Util.width(700),
+        decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(width: 0.6, color: Colors.black12)),
+        ),
+        child: Row(
+          children: <Widget>[
+            Container(
+              width: Util.width(600),
+              padding: EdgeInsets.fromLTRB(5, 15, 0, 10),
+              child: Text(
+                '$key',
+                style: Util.textStyle4En(context, 2,
+                    color: Colors.grey[800], spacing: 0.0, size: 28),
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-          ),
-          InkWell(
-            onTap: () {
-              Clipboard.setData(ClipboardData(text: key));
-              Util.showToast('${S.of(context).commonCopySuccess}');
-            },
-            child: Container(
+            Container(
               width: Util.width(80),
               alignment: Alignment.centerRight,
               child: Icon(
@@ -120,8 +120,8 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
                 color: Colors.grey[850],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

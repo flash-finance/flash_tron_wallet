@@ -19,7 +19,10 @@ class _TradePageState extends State<TradePage>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(vsync: this, length: 2);
+    _tabController = TabController(vsync: this, length: 2)
+      ..addListener(() {
+        FocusScope.of(context).requestFocus(FocusNode());
+      });
   }
 
   @override

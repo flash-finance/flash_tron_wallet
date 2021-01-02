@@ -39,6 +39,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    bool flag = Platform.isAndroid;
     return Container(
       child: MaterialApp(
         title: 'FT Wallet',
@@ -55,17 +56,17 @@ class MyApp extends StatelessWidget {
         home: SplashScreenView(
           home: IndexPage(),
           duration: 1500,
-          imageSize: 95,
-          imageSrc: "images/flash-logo.png",
-          text: "Flash Wallet",
+          imageSize: flag ? 95 : 120,
+          imageSrc: flag ? 'images/flash-logo.png' : 'images/flash.png',
+          text: 'Flash Wallet',
           textType: TextType.NormalText,
           textStyle: TextStyle(
             fontFamily: 'EN-R',
             letterSpacing: 0.3,
-            color: Colors.white,
+            color: flag ? Colors.white : Colors.white,
             fontSize: 21,
           ),
-          backgroundColor: Util.themeColor,
+          backgroundColor: flag ? Util.themeColor : Colors.white,
         ),
         localizationsDelegates: [
           S.delegate,

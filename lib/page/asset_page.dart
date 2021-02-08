@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flash_tron_wallet/common/enum/import_wallet_type.dart';
 import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/common_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
@@ -77,63 +78,43 @@ class _AssetPageState extends State<AssetPage>
         body: _logInWidget(context),
       );
     } else {
-      return Container(
-        color: Colors.white,
-        child: Column(
-          children: <Widget>[
-            Container(
-              width: MyScreenUtil.width(750),
-              height: MyScreenUtil.height(500),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(25),
-                  bottomRight: Radius.circular(25),
-                ),
-                color: MyColorUtil.theme,
-              ),
-              child: Scaffold(
-                backgroundColor: Colors.transparent,
-                appBar: AppBar(
-                  backgroundColor: Colors.transparent,
-                  elevation: 0,
-                ),
-                body: _logOutHeadWidget(context),
-              ),
-            ),
-            Expanded(
-              child: Container(
-                margin: EdgeInsets.only(top: MyScreenUtil.height(0)),
-                child: _logOutBodyWidget(context),
-              ),
-            ),
-          ],
-        ),
-      );
-      /*return _logOutWidget(context);*/
+      return _logOutWidget(context);
     }
   }
 
   Widget _logOutWidget(BuildContext context) {
-    return MediaQuery.removePadding(
-        removeTop: true,
-        context: context,
-        child: ListView(
-          children: <Widget>[
-            Container(
-              width: MyScreenUtil.width(750),
-              height: MyScreenUtil.height(500),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(25),
-                  bottomRight: Radius.circular(25),
-                ),
-                color: MyColorUtil.theme,
+    return Container(
+      color: MyColorUtil.background(),
+      child: Column(
+        children: <Widget>[
+          Container(
+            width: MyScreenUtil.width(750),
+            height: MyScreenUtil.height(500),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(25),
+                bottomRight: Radius.circular(25),
               ),
-              child: _logOutHeadWidget(context),
+              color: MyColorUtil.theme,
             ),
-            _logOutBodyWidget(context),
-          ],
-        ));
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              appBar: AppBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+              ),
+              body: _logOutHeadWidget(context),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              margin: EdgeInsets.only(top: MyScreenUtil.height(0)),
+              child: _logOutBodyWidget(context),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _logInWidget(BuildContext context) {
@@ -625,144 +606,65 @@ class _AssetPageState extends State<AssetPage>
 
   Widget _logOutBodyWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(
-          left: MyScreenUtil.width(30),
-          top: MyScreenUtil.height(30),
-          right: MyScreenUtil.width(30)),
+      margin: MyCommonUtil.edge(left: 30, right: 30, top: 30),
       child: Column(
         children: <Widget>[
-          SizedBox(height: MyScreenUtil.height(30)),
-          InkWell(
-            onTap: () {
-              /*Application.router.navigateTo(
-                  context, Routes.assetImportKey + '/1',
-                  transition: TransitionType.cupertino);*/
-              Get.toNamed(AppRoute.assetImportKey + '/1');
-            },
-            child: Container(
-              padding: EdgeInsets.only(bottom: MyScreenUtil.height(30)),
-              decoration: BoxDecoration(
-                border: Border(
-                    bottom: BorderSide(color: Colors.grey[350], width: 0.5)),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      SizedBox(width: MyScreenUtil.width(10)),
-                      Container(
-                        child: Text(
-                          '${MyLocaleKey.assetImportPrivateKey.tr}',
-                          style: MyTextUtil.textStyle(2,
-                              color: Colors.grey[850], spacing: 0.0, size: 30),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          size: MyScreenUtil.sp(27),
-                          color: Colors.grey[700],
-                        ),
-                      ),
-                      SizedBox(width: MyScreenUtil.width(10)),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(height: MyScreenUtil.height(30)),
-          InkWell(
-            onTap: () {
-              /*Application.router.navigateTo(
-                  context, Routes.assetImportMnemonic + '/1',
-                  transition: TransitionType.cupertino);*/
-              Get.toNamed(AppRoute.assetImportMnemonic + '/1');
-            },
-            child: Container(
-              padding: EdgeInsets.only(bottom: MyScreenUtil.height(30)),
-              decoration: BoxDecoration(
-                border: Border(
-                    bottom: BorderSide(color: Colors.grey[350], width: 0.5)),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      SizedBox(width: MyScreenUtil.width(10)),
-                      Container(
-                        child: Text(
-                          '${MyLocaleKey.assetImportMnemonic.tr}',
-                          style: MyTextUtil.textStyle(2,
-                              color: Colors.grey[850], spacing: 0.0, size: 30),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          size: MyScreenUtil.sp(27),
-                          color: Colors.grey[700],
-                        ),
-                      ),
-                      SizedBox(width: MyScreenUtil.width(10)),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(height: MyScreenUtil.height(30)),
-          InkWell(
-            onTap: () {
-              /*Application.router.navigateTo(
-                  context, Routes.assetBuildFirstWallet + '/1',
-                  transition: TransitionType.cupertino);*/
-              Get.toNamed(AppRoute.assetBuildFirstWallet + '/1');
-            },
-            child: Container(
-              padding: EdgeInsets.only(bottom: MyScreenUtil.height(30)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      SizedBox(width: MyScreenUtil.width(10)),
-                      Container(
-                        child: Text(
-                          '${MyLocaleKey.assetCreateWallet.tr}',
-                          style: MyTextUtil.textStyle(2,
-                              color: Colors.grey[850], spacing: 0.0, size: 30),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          size: MyScreenUtil.sp(27),
-                          color: Colors.grey[700],
-                        ),
-                      ),
-                      SizedBox(width: MyScreenUtil.width(10)),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
+          _importWalletTypeWidget(
+              context,
+              '${MyLocaleKey.assetImportPrivateKey.tr}',
+              ImportWalletType.importKey,
+              true),
+          _importWalletTypeWidget(
+              context,
+              '${MyLocaleKey.assetImportMnemonic.tr}',
+              ImportWalletType.importMnemonic,
+              true),
+          _importWalletTypeWidget(
+              context,
+              '${MyLocaleKey.assetCreateWallet.tr}',
+              ImportWalletType.createWallet,
+              false),
         ],
+      ),
+    );
+  }
+
+  Widget _importWalletTypeWidget(
+      BuildContext context, String name, ImportWalletType type, bool flag) {
+    return InkWell(
+      onTap: () {
+        switch (type) {
+          case ImportWalletType.importKey:
+            Get.toNamed(AppRoute.assetImportKey + '/1');
+            break;
+          case ImportWalletType.importMnemonic:
+            Get.toNamed(AppRoute.assetImportMnemonic + '/1');
+            break;
+          case ImportWalletType.createWallet:
+            Get.toNamed(AppRoute.assetBuildFirstWallet + '/1');
+            break;
+          default:
+            break;
+        }
+      },
+      child: Container(
+        padding: MyCommonUtil.edge(bottom: 30),
+        decoration: BoxDecoration(
+          border: flag ? MyCommonUtil.bottomBorder() : null,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Container(
+              child: Text(
+                '$name',
+                style: MyTextUtil.textStyle(2,
+                    color: Colors.grey[850], spacing: 0.0, size: 30),
+              ),
+            ),
+            MyCommonUtil.arrowForward(),
+          ],
+        ),
       ),
     );
   }

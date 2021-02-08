@@ -1,21 +1,19 @@
 import 'dart:math';
 
 import 'package:flash_tron_wallet/common/util/color_util.dart';
+import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/provider/global_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class MyCommonUtil {
-  ///判断深色模式 true: 白天模式 false: 深色模式
   static flag() {
     int themeModeValue = GlobalService.to.themeModeValue;
     print('flag: $themeModeValue');
     return themeModeValue == 0;
   }
 
-  ///轻提示
   static showToast(String msg) {
     Fluttertoast.showToast(
       msg: msg,
@@ -23,28 +21,43 @@ class MyCommonUtil {
       toastLength: Toast.LENGTH_SHORT,
       timeInSecForIosWeb: 1,
       textColor: flag() ? Colors.white : Colors.grey[850],
-      fontSize: ScreenUtil().setSp(25),
+      fontSize: MyScreenUtil.sp(25),
       backgroundColor: flag() ? Colors.grey[850] : Colors.white,
     );
   }
 
-  ///底部分割线
   static bottomBorder() {
     return Border(
-        bottom: BorderSide(color: MyColorUtil.bottomBorder(), width: 0.20));
+        bottom: BorderSide(color: MyColorUtil.bottomBorder(), width: 0.5));
   }
 
-  /// 边距
   static edge({double left, double right, double top, double bottom}) {
     left = left ?? 30;
     right = right ?? 30;
     top = top ?? 30;
     bottom = bottom ?? 30;
     return EdgeInsets.only(
-      left: ScreenUtil().setWidth(left),
-      right: ScreenUtil().setWidth(right),
-      top: ScreenUtil().setHeight(top),
-      bottom: ScreenUtil().setHeight(bottom),
+      left: MyScreenUtil.width(left),
+      right: MyScreenUtil.width(right),
+      top: MyScreenUtil.height(top),
+      bottom: MyScreenUtil.height(bottom),
+    );
+  }
+
+  static sizedBox({double width, double height}) {
+    return SizedBox(
+      width: MyScreenUtil.width(width ?? 0),
+      height: MyScreenUtil.height(height ?? 0),
+    );
+  }
+
+  static arrowForward() {
+    return Container(
+      child: Icon(
+        Icons.arrow_forward_ios,
+        size: MyScreenUtil.sp(27),
+        color: Colors.grey[700],
+      ),
     );
   }
 

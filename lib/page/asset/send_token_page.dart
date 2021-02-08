@@ -3,7 +3,6 @@ import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/common_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
-import 'package:flash_tron_wallet/common/widget/common/common_widget.dart';
 import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
 import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
@@ -74,15 +73,15 @@ class _SendTokenPageState extends State<SendTokenPage> {
         key: _formKey,
         child: ListView(
           children: <Widget>[
-            IntervalWidget(25),
+            MyCommonUtil.interval(value: 20),
             _sendWidget(context, wallet),
-            IntervalWidget(25),
+            MyCommonUtil.interval(value: 20),
             _receiveWidget(context),
-            IntervalWidget(25),
+            MyCommonUtil.interval(value: 20),
             _amountWidget(context, assetFilterConList, selectAssetFilterIndex),
             _balanceWidget(context, assetFilterConList, selectAssetFilterIndex),
-            IntervalWidget(25),
-            SizedBox(height: MyScreenUtil.height(120)),
+            MyCommonUtil.interval(value: 20),
+            MyCommonUtil.sizedBox(height: 120),
             _submitWidget(context, wallet),
           ],
         ),
@@ -92,12 +91,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
 
   Widget _sendWidget(BuildContext context, WalletEntity wallet) {
     return Container(
-      margin: EdgeInsets.only(
-        left: MyScreenUtil.width(40),
-        top: MyScreenUtil.height(25),
-        right: MyScreenUtil.width(40),
-        bottom: MyScreenUtil.height(25),
-      ),
+      margin: MyCommonUtil.edge(left: 40, right: 40, top: 30, bottom: 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -108,7 +102,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                   color: Colors.grey[850], spacing: 0.2, size: 26),
             ),
           ),
-          SizedBox(height: MyScreenUtil.height(15)),
+          MyCommonUtil.sizedBox(height: 15),
           Container(
             child: Text(
               '${wallet.tronAddress}',
@@ -123,12 +117,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
 
   Widget _receiveWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(
-        left: MyScreenUtil.width(40),
-        top: MyScreenUtil.height(25),
-        right: MyScreenUtil.width(40),
-        bottom: MyScreenUtil.height(15),
-      ),
+      margin: MyCommonUtil.edge(left: 40, right: 40, top: 30, bottom: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -139,7 +128,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                   color: Colors.grey[850], spacing: 0.2, size: 26),
             ),
           ),
-          SizedBox(height: MyScreenUtil.height(5)),
+          MyCommonUtil.sizedBox(height: 5),
           Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -168,9 +157,6 @@ class _SendTokenPageState extends State<SendTokenPage> {
                 ),
                 InkWell(
                   onTap: () {
-                    /*Application.router.navigateTo(
-                        context, Routes.assetQrScan + '/2',
-                        transition: TransitionType.fadeIn);*/
                     Get.toNamed(AppRoute.assetQrScan + '/2');
                   },
                   child: Container(
@@ -201,11 +187,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            margin: EdgeInsets.only(
-              left: MyScreenUtil.width(40),
-              top: MyScreenUtil.height(25),
-              right: MyScreenUtil.width(35),
-            ),
+            margin: MyCommonUtil.edge(left: 40, right: 35, top: 30),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -227,8 +209,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
                         Container(
-                          padding:
-                              EdgeInsets.only(top: MyScreenUtil.height(1.5)),
+                          padding: MyCommonUtil.edge(top: 1.5),
                           child: Text(
                             !flag ? '${assetFilterConList[index].name} ' : '',
                             style: GoogleFonts.roboto(
@@ -240,8 +221,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                           ),
                         ),
                         Container(
-                          padding:
-                              EdgeInsets.only(top: MyScreenUtil.height(1.8)),
+                          padding: MyCommonUtil.edge(top: 1.8),
                           child: Icon(
                             Icons.arrow_forward_ios,
                             size: MyScreenUtil.sp(25),
@@ -255,10 +235,9 @@ class _SendTokenPageState extends State<SendTokenPage> {
               ],
             ),
           ),
-          SizedBox(height: MyScreenUtil.height(10)),
+          MyCommonUtil.sizedBox(height: 10),
           Container(
-            margin: EdgeInsets.only(
-                left: MyScreenUtil.width(40), right: MyScreenUtil.width(40)),
+            margin: MyCommonUtil.edge(left: 40, right: 40, top: 5, bottom: 5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -302,12 +281,8 @@ class _SendTokenPageState extends State<SendTokenPage> {
                   child: Container(
                     width: MyScreenUtil.width(80),
                     padding: _langType
-                        ? EdgeInsets.only(
-                            top: MyScreenUtil.height(5),
-                            bottom: MyScreenUtil.height(5))
-                        : EdgeInsets.only(
-                            top: MyScreenUtil.height(7.5),
-                            bottom: MyScreenUtil.height(7.5)),
+                        ? MyCommonUtil.edge(top: 5, bottom: 5)
+                        : MyCommonUtil.edge(top: 7.5, bottom: 7.5),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(5.0)),
@@ -331,12 +306,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
   Widget _balanceWidget(
       BuildContext context, List<AssetEntity> assetFilterConList, int index) {
     return Container(
-      margin: EdgeInsets.only(
-        left: MyScreenUtil.width(40),
-        top: MyScreenUtil.height(25),
-        right: MyScreenUtil.width(40),
-        bottom: MyScreenUtil.height(25),
-      ),
+      margin: MyCommonUtil.edge(left: 40, right: 40, top: 30, bottom: 30),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -373,7 +343,6 @@ class _SendTokenPageState extends State<SendTokenPage> {
         content: Container(
           width: MyScreenUtil.width(600),
           height: MyScreenUtil.height(500),
-          padding: EdgeInsets.only(top: MyScreenUtil.height(0)),
           child: Column(
             children: <Widget>[
               Expanded(
@@ -407,8 +376,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
       },
       child: Container(
         width: MyScreenUtil.width(600),
-        padding: EdgeInsets.only(
-            top: MyScreenUtil.height(16), bottom: MyScreenUtil.height(16)),
+        padding: MyCommonUtil.edge(top: 20, bottom: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -429,7 +397,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: MyScreenUtil.width(30)),
+                    padding: MyCommonUtil.edge(left: 30),
                     alignment: Alignment.centerLeft,
                     child: Text(
                       '${item.name}',
@@ -444,7 +412,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
             ),
             Container(
               width: MyScreenUtil.width(60),
-              padding: EdgeInsets.only(right: MyScreenUtil.width(10)),
+              padding: MyCommonUtil.edge(right: 10),
               alignment: Alignment.centerRight,
               child: !flag
                   ? Container()
@@ -463,55 +431,38 @@ class _SendTokenPageState extends State<SendTokenPage> {
   Widget _submitWidget(BuildContext context, WalletEntity wallet) {
     List<AssetEntity> assetList = GlobalService.to.assetList;
     int index = GlobalService.to.selectAssetFilterIndex;
-    return Container(
-      child: Align(
-        child: SizedBox(
-          width: MyScreenUtil.width(320),
-          child: RaisedButton(
-            child: Container(
-              padding: EdgeInsets.all(12),
-              child: Text(
-                '${MyLocaleKey.commonSend.tr}',
-                style: MyTextUtil.textStyle(1,
-                    color: Colors.white, spacing: 0.6, size: 31),
-              ),
-            ),
-            color: MyColorUtil.theme,
-            onPressed: () {
-              FocusScope.of(context).requestFocus(FocusNode());
-              if (_formKey.currentState.validate()) {
-                _formKey.currentState.save();
-                if (_receiveAddress.isEmpty) {
-                  MyCommonUtil.showToast(
-                      '${MyLocaleKey.assetTransferError1.tr}');
-                } else if (!TronWallet()
-                    .checkTronAddress(_receiveAddress.trim())) {
-                  MyCommonUtil.showToast(
-                      '${MyLocaleKey.assetTransferError2.tr}');
-                } else if (_receiveAddress.trim() == wallet.tronAddress) {
-                  MyCommonUtil.showToast(
-                      '${MyLocaleKey.assetTransferError3.tr}');
-                } else if (_assetAmount.isEmpty) {
-                  MyCommonUtil.showToast(
-                      '${MyLocaleKey.assetTransferError4.tr}');
-                } else if (double.parse(_assetAmount) <= 0.0) {
-                  MyCommonUtil.showToast(
-                      '${MyLocaleKey.assetTransferError5.tr}');
-                } else if (double.parse(_assetAmount) >
-                    assetList[index].balance) {
-                  MyCommonUtil.showToast(
-                      '${MyLocaleKey.assetTransferError6.tr}');
-                } else {
-                  _showPwdDialog(context, wallet.tronAddress, wallet.pwd,
-                      assetList[index]);
-                }
-              }
-            },
-            shape: StadiumBorder(side: BorderSide(color: MyColorUtil.theme)),
-          ),
-        ),
-      ),
+    return MyCommonUtil.submitWidget(
+      context,
+      320,
+      '${MyLocaleKey.commonSend.tr}',
+      onPressed(context, wallet, assetList, index),
     );
+  }
+
+  Function onPressed(BuildContext context, WalletEntity wallet,
+      List<AssetEntity> assetList, int index) {
+    return () {
+      FocusScope.of(context).requestFocus(FocusNode());
+      if (_formKey.currentState.validate()) {
+        _formKey.currentState.save();
+        if (_receiveAddress.isEmpty) {
+          MyCommonUtil.showToast('${MyLocaleKey.assetTransferError1.tr}');
+        } else if (!TronWallet().checkTronAddress(_receiveAddress.trim())) {
+          MyCommonUtil.showToast('${MyLocaleKey.assetTransferError2.tr}');
+        } else if (_receiveAddress.trim() == wallet.tronAddress) {
+          MyCommonUtil.showToast('${MyLocaleKey.assetTransferError3.tr}');
+        } else if (_assetAmount.isEmpty) {
+          MyCommonUtil.showToast('${MyLocaleKey.assetTransferError4.tr}');
+        } else if (double.parse(_assetAmount) <= 0.0) {
+          MyCommonUtil.showToast('${MyLocaleKey.assetTransferError5.tr}');
+        } else if (double.parse(_assetAmount) > assetList[index].balance) {
+          MyCommonUtil.showToast('${MyLocaleKey.assetTransferError6.tr}');
+        } else {
+          _showPwdDialog(
+              context, wallet.tronAddress, wallet.pwd, assetList[index]);
+        }
+      }
+    };
   }
 
   void _showPwdDialog(BuildContext context, String ownerAddress, String userPwd,

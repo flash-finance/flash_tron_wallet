@@ -1,4 +1,3 @@
-import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/common_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
@@ -30,17 +29,16 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
   Widget _bodyWidget(BuildContext context) {
     WalletEntity wallet = GlobalService.to.selectWalletEntity;
     return Container(
-      margin: EdgeInsets.only(
-          left: MyScreenUtil.width(30), right: MyScreenUtil.width(30)),
+      margin: MyCommonUtil.edge(left: 30, right: 30),
       child: ListView(
         children: <Widget>[
-          SizedBox(height: MyScreenUtil.height(30)),
+          MyCommonUtil.sizedBox(height: 30),
           _qrCodeWidget(context, wallet.tronAddress.trim()),
-          SizedBox(height: MyScreenUtil.height(20)),
+          MyCommonUtil.sizedBox(height: 20),
           _nameWidget(context, wallet.name),
-          SizedBox(height: MyScreenUtil.height(10)),
+          MyCommonUtil.sizedBox(height: 10),
           _addressWidget(context, wallet.tronAddress),
-          SizedBox(height: MyScreenUtil.height(80)),
+          MyCommonUtil.sizedBox(height: 80),
           _copyButtonWidget(context, wallet.tronAddress),
         ],
       ),
@@ -49,15 +47,13 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
 
   Widget _qrCodeWidget(BuildContext context, String address) {
     return Container(
-      margin: EdgeInsets.only(
-          left: MyScreenUtil.width(50), right: MyScreenUtil.width(50)),
+      margin: MyCommonUtil.edge(left: 50, right: 50),
       child: Card(
         elevation: 3,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20.0))),
         child: Container(
-          padding: EdgeInsets.only(
-              top: MyScreenUtil.width(75), bottom: MyScreenUtil.width(75)),
+          margin: MyCommonUtil.edge(top: 75, bottom: 75),
           alignment: Alignment.center,
           child: QrImage(
             data: address,
@@ -107,28 +103,18 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
   }
 
   Widget _copyButtonWidget(BuildContext context, String address) {
-    return Container(
-      child: Align(
-        child: SizedBox(
-          width: MyScreenUtil.width(320),
-          child: RaisedButton(
-            child: Container(
-              padding: EdgeInsets.all(12),
-              child: Text(
-                '${MyLocaleKey.assetCopyAddress.tr}',
-                style: MyTextUtil.textStyle(1,
-                    color: Colors.white, spacing: 0.6, size: 31),
-              ),
-            ),
-            color: MyColorUtil.theme,
-            onPressed: () {
-              Clipboard.setData(ClipboardData(text: address));
-              MyCommonUtil.showToast('${MyLocaleKey.commonCopySuccess.tr}');
-            },
-            shape: StadiumBorder(side: BorderSide(color: MyColorUtil.theme)),
-          ),
-        ),
-      ),
+    return MyCommonUtil.submitWidget(
+      context,
+      320,
+      '${MyLocaleKey.assetCopyAddress.tr}',
+      onPressed(address),
     );
+  }
+
+  Function onPressed(String address) {
+    return () {
+      Clipboard.setData(ClipboardData(text: address));
+      MyCommonUtil.showToast('${MyLocaleKey.commonCopySuccess.tr}');
+    };
   }
 }

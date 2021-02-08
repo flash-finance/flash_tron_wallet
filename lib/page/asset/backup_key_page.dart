@@ -31,16 +31,15 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
     return Container(
       child: ListView(
         children: <Widget>[
-          SizedBox(height: MyScreenUtil.height(20)),
+          MyCommonUtil.sizedBox(height: 20),
           _descWidget(),
-          SizedBox(height: MyScreenUtil.height(20)),
+          MyCommonUtil.sizedBox(height: 20),
           Container(
-            margin: EdgeInsets.only(
-                left: MyScreenUtil.width(30), right: MyScreenUtil.width(30)),
+            margin: MyCommonUtil.edge(left: 30, right: 30),
             child: Column(
               children: <Widget>[
                 _dataWidget(context, wallet.privateKey),
-                SizedBox(height: MyScreenUtil.height(150)),
+                MyCommonUtil.sizedBox(height: 150),
                 _submitWidget(context),
               ],
             ),
@@ -52,8 +51,7 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
 
   Widget _descWidget() {
     return Container(
-      margin: EdgeInsets.only(
-          left: MyScreenUtil.width(30), right: MyScreenUtil.width(30)),
+      margin: MyCommonUtil.edge(left: 30, right: 30),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         color: MyColorUtil.theme,
@@ -61,7 +59,8 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
       child: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.fromLTRB(30, 15, 30, 12),
+            padding:
+                MyCommonUtil.edge(left: 60, right: 60, top: 30, bottom: 20),
             alignment: Alignment.center,
             child: Text(
               '${MyLocaleKey.backupWalletTip2.tr}',
@@ -91,7 +90,7 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
           children: <Widget>[
             Container(
               width: MyScreenUtil.width(600),
-              padding: EdgeInsets.fromLTRB(5, 15, 0, 10),
+              padding: MyCommonUtil.edge(left: 10, top: 25, bottom: 20),
               child: Text(
                 '$key',
                 style: MyTextUtil.textStyle4En(2,
@@ -116,27 +115,13 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
   }
 
   Widget _submitWidget(BuildContext context) {
-    return Container(
-      child: Align(
-        child: SizedBox(
-          width: MyScreenUtil.width(320),
-          child: RaisedButton(
-            child: Container(
-              padding: EdgeInsets.all(12),
-              child: Text(
-                '${MyLocaleKey.commonDone.tr}',
-                style: MyTextUtil.textStyle(1,
-                    color: Colors.white, spacing: 0.6, size: 31),
-              ),
-            ),
-            color: MyColorUtil.theme,
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            shape: StadiumBorder(side: BorderSide(color: MyColorUtil.theme)),
-          ),
-        ),
-      ),
+    return MyCommonUtil.submitWidget(
+      context,
+      320,
+      '${MyLocaleKey.commonDone.tr}',
+      () {
+        Navigator.pop(context);
+      },
     );
   }
 }

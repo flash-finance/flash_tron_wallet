@@ -47,49 +47,42 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
   }
 
   Widget _bodyWidget(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).requestFocus(FocusNode());
-      },
-      child: Stack(
-        children: <Widget>[
-          Form(
-            key: _formKey,
-            child: ListView(
-              children: <Widget>[
-                SizedBox(height: MyScreenUtil.height(20)),
-                _descWidget(),
-                SizedBox(height: MyScreenUtil.height(20)),
-                Container(
-                  margin: EdgeInsets.only(
-                      left: MyScreenUtil.width(30),
-                      right: MyScreenUtil.width(30)),
-                  child: Column(
-                    children: <Widget>[
-                      _nameWidget(),
-                      _mnemonicWidget(),
-                      SizedBox(height: MyScreenUtil.height(0)),
-                      _setPwdWidget(),
-                      SizedBox(height: MyScreenUtil.height(0)),
-                      _confirmPwdWidget(),
-                      SizedBox(height: MyScreenUtil.height(50)),
-                      _submitWidget(context),
-                    ],
-                  ),
+    return Stack(
+      children: <Widget>[
+        Form(
+          key: _formKey,
+          child: ListView(
+            children: <Widget>[
+              MyCommonUtil.sizedBox(height: 20),
+              _descWidget(),
+              MyCommonUtil.sizedBox(height: 20),
+              Container(
+                margin: MyCommonUtil.edge(left: 30, right: 30),
+                child: Column(
+                  children: <Widget>[
+                    _nameWidget(),
+                    _mnemonicWidget(),
+                    MyCommonUtil.sizedBox(height: 0),
+                    _setPwdWidget(),
+                    MyCommonUtil.sizedBox(height: 0),
+                    _confirmPwdWidget(),
+                    MyCommonUtil.sizedBox(height: 50),
+                    _submitWidget(context),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          _importMnemonicLoading
-              ? Container(
-                  padding: EdgeInsets.only(
-                      top: MyScreenUtil.height(300),
-                      left: MyScreenUtil.width(350)),
-                  child: CupertinoActivityIndicator(),
-                )
-              : Container(),
-        ],
-      ),
+        ),
+        _importMnemonicLoading
+            ? Container(
+                padding: EdgeInsets.only(
+                    top: MyScreenUtil.height(300),
+                    left: MyScreenUtil.width(350)),
+                child: CupertinoActivityIndicator(),
+              )
+            : Container(),
+      ],
     );
   }
 
@@ -246,64 +239,53 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
   }
 
   Widget _submitWidget(BuildContext context) {
-    return Container(
-      child: Align(
-        child: SizedBox(
-          width: MyScreenUtil.width(320),
-          child: RaisedButton(
-            child: Container(
-              padding: EdgeInsets.all(12),
-              child: Text(
-                '${MyLocaleKey.commonSubmit.tr}',
-                style: MyTextUtil.textStyle(1,
-                    color: Colors.white, spacing: 0.6, size: 31),
-              ),
-            ),
-            color: MyColorUtil.theme,
-            onPressed: !_importMnemonicLoading
-                ? () {
-                    FocusScope.of(context).requestFocus(FocusNode());
-                    if (_formKey.currentState.validate()) {
-                      _formKey.currentState.save();
-                      if (_setPwd != _confirmPwd) {
-                        MyCommonUtil.showToast(
-                            '${MyLocaleKey.commonConfirmPwdError.tr}');
-                      } else if (!validateMnemonic()) {
-                        MyCommonUtil.showToast(
-                            '${MyLocaleKey.commonIncorrectFormat.tr}');
-                      } else {
-                        _submit().then((val) {
-                          setState(() {
-                            _importMnemonicLoading = false;
-                          });
-                          if (val == true) {
-                            MyCommonUtil.showToast(
-                                '${MyLocaleKey.commonImportSuccess.tr}');
-                            if (widget.type == '1') {
-                              Navigator.of(context)..pop();
-                            } else if (widget.type == '2') {
-                              Navigator.of(context)..pop()..pop();
-                            }
-                          } else {
-                            MyCommonUtil.showToast(
-                                '${MyLocaleKey.commonImportFail.tr}');
-                          }
-                        });
-                      }
-                    }
-                  }
-                : () {},
-            shape: StadiumBorder(side: BorderSide(color: MyColorUtil.theme)),
-          ),
-        ),
-      ),
+    return MyCommonUtil.submitWidget(
+      context,
+      320,
+      '${MyLocaleKey.commonSubmit.tr}',
+      onPressed(context),
     );
+  }
+
+  Function onPressed(BuildContext context) {
+    return !_importMnemonicLoading
+        ? () {
+            FocusScope.of(context).requestFocus(FocusNode());
+            if (_formKey.currentState.validate()) {
+              _formKey.currentState.save();
+              if (_setPwd != _confirmPwd) {
+                MyCommonUtil.showToast(
+                    '${MyLocaleKey.commonConfirmPwdError.tr}');
+              } else if (!validateMnemonic()) {
+                MyCommonUtil.showToast(
+                    '${MyLocaleKey.commonIncorrectFormat.tr}');
+              } else {
+                _submit().then((val) {
+                  setState(() {
+                    _importMnemonicLoading = false;
+                  });
+                  if (val == true) {
+                    MyCommonUtil.showToast(
+                        '${MyLocaleKey.commonImportSuccess.tr}');
+                    if (widget.type == '1') {
+                      Navigator.of(context)..pop();
+                    } else if (widget.type == '2') {
+                      Navigator.of(context)..pop()..pop();
+                    }
+                  } else {
+                    MyCommonUtil.showToast(
+                        '${MyLocaleKey.commonImportFail.tr}');
+                  }
+                });
+              }
+            }
+          }
+        : () {};
   }
 
   Widget _descWidget() {
     return Container(
-      margin: EdgeInsets.only(
-          left: MyScreenUtil.width(30), right: MyScreenUtil.width(30)),
+      margin: MyCommonUtil.edge(left: 30, right: 30),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: MyColorUtil.theme,
@@ -311,7 +293,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
       child: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.fromLTRB(30, 15, 30, 0),
+            padding: MyCommonUtil.edge(left: 60, right: 60, top: 30, bottom: 0),
             alignment: Alignment.centerLeft,
             child: Text(
               '${MyLocaleKey.addWalletTip1.tr}',
@@ -322,7 +304,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
             ),
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(30, 5, 30, 12),
+            padding: MyCommonUtil.edge(left: 60, right: 60, top: 5, bottom: 20),
             alignment: Alignment.centerLeft,
             child: Text(
               '${MyLocaleKey.addWalletTip2.tr}',

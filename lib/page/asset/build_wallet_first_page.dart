@@ -207,7 +207,11 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
 
   Widget _submitWidget(BuildContext context) {
     return MyCommonUtil.submitWidget(
-        context, 320, '${MyLocaleKey.commonSubmit.tr}', _onPressed(context));
+      context,
+      320,
+      '${MyLocaleKey.commonSubmit.tr}',
+      _onPressed(context),
+    );
   }
 
   Function _onPressed(BuildContext context) {

@@ -91,7 +91,8 @@ class MyCommonUtil {
           width: MyScreenUtil.width(width ?? 320),
           child: RaisedButton(
             child: Container(
-              padding: EdgeInsets.all(12),
+              padding:
+                  MyCommonUtil.edge(left: 10, right: 10, top: 18, bottom: 18),
               child: Text(
                 '$name',
                 style: MyTextUtil.textStyle(1,

@@ -120,13 +120,12 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
                     color: Colors.white, spacing: 0.6, size: 31),
               ),
             ),
-            color: MyColorUtil.themeColor,
+            color: MyColorUtil.theme,
             onPressed: () {
               Clipboard.setData(ClipboardData(text: address));
               MyCommonUtil.showToast('${MyLocaleKey.commonCopySuccess.tr}');
             },
-            shape:
-                StadiumBorder(side: BorderSide(color: MyColorUtil.themeColor)),
+            shape: StadiumBorder(side: BorderSide(color: MyColorUtil.theme)),
           ),
         ),
       ),

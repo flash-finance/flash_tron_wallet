@@ -97,7 +97,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
         onSaved: (String value) => _name = value,
         maxLength: 10,
         inputFormatters: [],
-        cursorColor: MyColorUtil.themeColor,
+        cursorColor: MyColorUtil.theme,
         decoration: InputDecoration(
           labelText: '${MyLocaleKey.assetWalletName.tr}',
           labelStyle: MyTextUtil.textStyle(2,
@@ -130,7 +130,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
         maxLength: 6,
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
         keyboardType: TextInputType.number,
-        cursorColor: MyColorUtil.themeColor,
+        cursorColor: MyColorUtil.theme,
         decoration: InputDecoration(
             labelText: '${MyLocaleKey.assetSetPassword.tr}',
             labelStyle: MyTextUtil.textStyle(2,
@@ -145,7 +145,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
                 setState(() {
                   _setPwdClickEye = !_setPwdClickEye;
                   _setPwdEyeColor =
-                      _setPwdClickEye ? Colors.grey : MyColorUtil.themeColor;
+                      _setPwdClickEye ? Colors.grey : MyColorUtil.theme;
                 });
               },
             )),
@@ -181,7 +181,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
         maxLength: 6,
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
         keyboardType: TextInputType.number,
-        cursorColor: MyColorUtil.themeColor,
+        cursorColor: MyColorUtil.theme,
         decoration: InputDecoration(
             labelText: '${MyLocaleKey.assetConfirmPassword.tr}',
             labelStyle: MyTextUtil.textStyle(2,
@@ -195,9 +195,8 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
               onPressed: () {
                 setState(() {
                   _confirmPwdClickEye = !_confirmPwdClickEye;
-                  _confirmPwdEyeColor = _confirmPwdClickEye
-                      ? Colors.grey
-                      : MyColorUtil.themeColor;
+                  _confirmPwdEyeColor =
+                      _confirmPwdClickEye ? Colors.grey : MyColorUtil.theme;
                 });
               },
             )),
@@ -232,7 +231,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
                     color: Colors.white, spacing: 0.6, size: 31),
               ),
             ),
-            color: MyColorUtil.themeColor,
+            color: MyColorUtil.theme,
             onPressed: !_buildWalletLoading
                 ? () {
                     FocusScope.of(context).requestFocus(FocusNode());
@@ -263,8 +262,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
                     }
                   }
                 : () {},
-            shape:
-                StadiumBorder(side: BorderSide(color: MyColorUtil.themeColor)),
+            shape: StadiumBorder(side: BorderSide(color: MyColorUtil.theme)),
           ),
         ),
       ),
@@ -277,7 +275,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
           left: MyScreenUtil.width(30), right: MyScreenUtil.width(30)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: MyColorUtil.themeColor,
+        color: MyColorUtil.theme,
       ),
       child: Column(
         children: <Widget>[

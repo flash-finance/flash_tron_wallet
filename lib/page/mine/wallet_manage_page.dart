@@ -154,7 +154,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
                               child: Text(
                                 '${MyLocaleKey.commonCurrent.tr}',
                                 style: MyTextUtil.textStyle(2,
-                                    color: MyColorUtil.themeColor,
+                                    color: MyColorUtil.theme,
                                     spacing: 0.2,
                                     size: 20),
                               ),

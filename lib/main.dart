@@ -26,9 +26,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MyLogUtil.init();
-    if (Platform.isAndroid) {
-      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-    }
     return GetMaterialApp(
       title: 'Flash Wallet',
       debugShowCheckedModeBanner: false,

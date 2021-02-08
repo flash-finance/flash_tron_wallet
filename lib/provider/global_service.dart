@@ -498,8 +498,8 @@ class GlobalService extends GetxService {
 class MyTheme {
   static final ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
-    primaryColor: MyColorUtil.themeColor,
-    accentColor: MyColorUtil.themeColor,
+    primaryColor: MyColorUtil.theme,
+    accentColor: MyColorUtil.theme,
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
     fontFamily: CommonConfig.fontFamily,
@@ -507,8 +507,8 @@ class MyTheme {
 
   static final ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: MyColorUtil.themeColor,
-    accentColor: MyColorUtil.themeColor,
+    primaryColor: MyColorUtil.theme,
+    accentColor: MyColorUtil.theme,
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
     fontFamily: CommonConfig.fontFamily,

@@ -50,7 +50,7 @@ class _QrScanPageState extends State<QrScanPage> {
             child: ScanView(
               controller: controller,
               scanAreaScale: 0.7,
-              scanLineColor: MyColorUtil.themeColor,
+              scanLineColor: MyColorUtil.theme,
               onCapture: (data) {
                 if (widget.type == '1') {
                   Navigator.of(context)..pop();

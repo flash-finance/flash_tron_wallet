@@ -311,7 +311,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                      color: MyColorUtil.themeColor,
+                      color: MyColorUtil.theme,
                     ),
                     child: Text(
                       '${MyLocaleKey.commonMax.tr}',
@@ -476,7 +476,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                     color: Colors.white, spacing: 0.6, size: 31),
               ),
             ),
-            color: MyColorUtil.themeColor,
+            color: MyColorUtil.theme,
             onPressed: () {
               FocusScope.of(context).requestFocus(FocusNode());
               if (_formKey.currentState.validate()) {
@@ -507,8 +507,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                 }
               }
             },
-            shape:
-                StadiumBorder(side: BorderSide(color: MyColorUtil.themeColor)),
+            shape: StadiumBorder(side: BorderSide(color: MyColorUtil.theme)),
           ),
         ),
       ),
@@ -590,7 +589,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                   child: Text(
                     '${MyLocaleKey.commonCancel.tr}',
                     style: MyTextUtil.textStyle(2,
-                        color: MyColorUtil.themeColor, spacing: 0.5, size: 30),
+                        color: MyColorUtil.theme, spacing: 0.5, size: 30),
                   ),
                   onPressed: () {
                     FocusScope.of(context).requestFocus(FocusNode());
@@ -606,9 +605,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                     child: Text(
                       '${MyLocaleKey.commonConfirm.tr}',
                       style: MyTextUtil.textStyle(2,
-                          color: MyColorUtil.themeColor,
-                          spacing: 0.5,
-                          size: 30),
+                          color: MyColorUtil.theme, spacing: 0.5, size: 30),
                     ),
                     onPressed: () {
                       FocusScope.of(context).requestFocus(FocusNode());

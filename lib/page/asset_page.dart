@@ -14,6 +14,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:scan/scan.dart';
 
@@ -77,7 +78,7 @@ class _AssetPageState extends State<AssetPage>
         body: _logInWidget(context),
       );
     } else {
-      return Container(
+      /*return Container(
         color: Colors.white,
         child: Column(
           children: <Widget>[
@@ -89,7 +90,7 @@ class _AssetPageState extends State<AssetPage>
                   bottomLeft: Radius.circular(25),
                   bottomRight: Radius.circular(25),
                 ),
-                color: MyColorUtil.themeColor,
+                color: MyColorUtil.theme,
               ),
               child: Scaffold(
                 backgroundColor: Colors.transparent,
@@ -108,8 +109,32 @@ class _AssetPageState extends State<AssetPage>
             ),
           ],
         ),
-      );
+      );*/
+      return _logOutWidget(context);
     }
+  }
+
+  Widget _logOutWidget(BuildContext context) {
+    return MediaQuery.removePadding(
+        removeTop: true,
+        context: context,
+        child: ListView(
+          children: <Widget>[
+            Container(
+              width: MyScreenUtil.width(750),
+              height: MyScreenUtil.height(500),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(25),
+                  bottomRight: Radius.circular(25),
+                ),
+                color: MyColorUtil.theme,
+              ),
+              child: _logOutHeadWidget(context),
+            ),
+            _logOutBodyWidget(context),
+          ],
+        ));
   }
 
   Widget _logInWidget(BuildContext context) {
@@ -144,7 +169,7 @@ class _AssetPageState extends State<AssetPage>
               child: Chip(
                 padding: EdgeInsets.only(
                     left: MyScreenUtil.width(8), right: MyScreenUtil.width(0)),
-                backgroundColor: MyColorUtil.themeColor,
+                backgroundColor: MyColorUtil.theme,
                 label: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -167,7 +192,7 @@ class _AssetPageState extends State<AssetPage>
                       child: Icon(
                         Icons.arrow_forward_ios,
                         size: MyScreenUtil.sp(22),
-                        color: MyColorUtil.themeColor,
+                        color: MyColorUtil.theme,
                       ),
                     ),
                   ],
@@ -571,37 +596,35 @@ class _AssetPageState extends State<AssetPage>
   }
 
   Widget _logOutHeadWidget(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: MyScreenUtil.height(50)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Container(
-            child: Column(
-              children: <Widget>[
-                Container(
-                  child: Opacity(
-                    opacity: 1.0,
-                    child: Image.asset(
-                      'asset/image/flash-logo.png',
-                      width: MyScreenUtil.width(150),
-                      height: MyScreenUtil.width(150),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+    return Padding(
+      padding: EdgeInsets.only(
+        top: ScreenUtil().setHeight(50),
+      ),
+      child: Container(
+        alignment: Alignment.center,
+        child: Column(
+          children: <Widget>[
+            Container(
+              child: Opacity(
+                opacity: 1.0,
+                child: Image.asset(
+                  'asset/image/flash-logo.png',
+                  width: MyScreenUtil.width(150),
+                  height: MyScreenUtil.width(150),
+                  fit: BoxFit.cover,
                 ),
-                SizedBox(height: MyScreenUtil.height(20)),
-                Container(
-                  child: Text(
-                    'Flash  Wallet',
-                    style: MyTextUtil.textStyle4En(1,
-                        color: Colors.white, spacing: 0.3, size: 40),
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
-        ],
+            SizedBox(height: MyScreenUtil.height(20)),
+            Container(
+              child: Text(
+                'Flash  Wallet11',
+                style: MyTextUtil.textStyle4En(1,
+                    color: Colors.white, spacing: 0.3, size: 40),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

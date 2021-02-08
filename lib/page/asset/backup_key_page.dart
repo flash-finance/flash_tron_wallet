@@ -56,7 +56,7 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
           left: MyScreenUtil.width(30), right: MyScreenUtil.width(30)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
-        color: MyColorUtil.themeColor,
+        color: MyColorUtil.theme,
       ),
       child: Column(
         children: <Widget>[
@@ -129,12 +129,11 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
                     color: Colors.white, spacing: 0.6, size: 31),
               ),
             ),
-            color: MyColorUtil.themeColor,
+            color: MyColorUtil.theme,
             onPressed: () {
               Navigator.pop(context);
             },
-            shape:
-                StadiumBorder(side: BorderSide(color: MyColorUtil.themeColor)),
+            shape: StadiumBorder(side: BorderSide(color: MyColorUtil.theme)),
           ),
         ),
       ),

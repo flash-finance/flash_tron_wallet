@@ -858,7 +858,7 @@ class _SwapSubPageState extends State<SwapSubPage>
             child: Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: MyColorUtil.themeColor,
+                color: MyColorUtil.theme,
                 borderRadius: BorderRadius.circular(6),
               ),
               padding: EdgeInsets.only(
@@ -1477,7 +1477,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                       child: CupertinoActivityIndicator(),
                     ),
             ),
-            color: MyColorUtil.themeColor,
+            color: MyColorUtil.theme,
             onPressed: () async {
               try {
                 if (_account != '' && _flag1 && _flag2 && _swapFlag) {
@@ -1652,7 +1652,7 @@ class _SwapSubPageState extends State<SwapSubPage>
               }
             },
             shape:
-                StadiumBorder(side: BorderSide(color: MyColorUtil.themeColor)),
+                StadiumBorder(side: BorderSide(color: MyColorUtil.theme)),
           ),
         ),
       ),
@@ -1775,7 +1775,7 @@ class _SwapSubPageState extends State<SwapSubPage>
             top: MyScreenUtil.height(20),
             bottom: MyScreenUtil.height(20)),
         decoration: BoxDecoration(
-          color: flag ? MyColorUtil.themeColor.withOpacity(0.10) : null,
+          color: flag ? MyColorUtil.theme.withOpacity(0.10) : null,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

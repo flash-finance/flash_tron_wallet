@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class MyColorUtil {
   ///主题颜色
-  static final Color themeColor = Color(0xFF1677FF);
+  static final Color theme = Color(0xFF2676f8);
 
   ///主题颜色(浅 接近蓝色背景下的白色)
   static final Color themeColorLight = Color(0xFFE7F1FF);
@@ -12,7 +12,7 @@ class MyColorUtil {
   static final Color whiteColor = Colors.white;
 
   ///背景主要颜色
-  static final Color backgroundColorLight = Color(0xFFF5F5F5);
+  static final Color backgroundColorLight = Color(0xFFFFFFFF);
   static final Color backgroundColorDark = Color(0xFF071724);
   static Color background() {
     return MyCommonUtil.flag() ? backgroundColorLight : backgroundColorDark;

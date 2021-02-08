@@ -330,7 +330,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                             value = value.substring(0, 6);
                           }
                         },
-                        cursorColor: MyColorUtil.themeColor,
+                        cursorColor: MyColorUtil.theme,
                         decoration: InputDecoration(
                           hintText: '',
                           filled: true,
@@ -367,7 +367,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                   child: Text(
                     '${MyLocaleKey.commonCancel.tr}',
                     style: MyTextUtil.textStyle(2,
-                        color: MyColorUtil.themeColor, spacing: 0.5, size: 30),
+                        color: MyColorUtil.theme, spacing: 0.5, size: 30),
                   ),
                   onPressed: () => Navigator.pop(context),
                 ),
@@ -375,9 +375,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                     child: Text(
                       '${MyLocaleKey.commonConfirm.tr}',
                       style: MyTextUtil.textStyle(2,
-                          color: MyColorUtil.themeColor,
-                          spacing: 0.5,
-                          size: 30),
+                          color: MyColorUtil.theme, spacing: 0.5, size: 30),
                     ),
                     onPressed: () {
                       if (_formKey.currentState.validate()) {
@@ -426,7 +424,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                         onSaved: (String value) {
                           _name = value;
                         },
-                        cursorColor: MyColorUtil.themeColor,
+                        cursorColor: MyColorUtil.theme,
                         decoration: InputDecoration(
                           hintText: '',
                           filled: true,
@@ -454,7 +452,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                   child: Text(
                     '${MyLocaleKey.commonCancel.tr}',
                     style: MyTextUtil.textStyle(2,
-                        color: MyColorUtil.themeColor, spacing: 0.5, size: 30),
+                        color: MyColorUtil.theme, spacing: 0.5, size: 30),
                   ),
                   onPressed: () => Navigator.pop(context),
                 ),
@@ -462,9 +460,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                     child: Text(
                       '${MyLocaleKey.commonConfirm.tr}',
                       style: MyTextUtil.textStyle(2,
-                          color: MyColorUtil.themeColor,
-                          spacing: 0.5,
-                          size: 30),
+                          color: MyColorUtil.theme, spacing: 0.5, size: 30),
                     ),
                     onPressed: () {
                       if (_formKey.currentState.validate()) {
@@ -499,7 +495,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                   child: Text(
                     '${MyLocaleKey.commonCancel.tr}',
                     style: MyTextUtil.textStyle(2,
-                        color: MyColorUtil.themeColor, spacing: 0.5, size: 30),
+                        color: MyColorUtil.theme, spacing: 0.5, size: 30),
                   ),
                   onPressed: () => Navigator.pop(context),
                 ),
@@ -507,9 +503,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                     child: Text(
                       '${MyLocaleKey.commonConfirm.tr}',
                       style: MyTextUtil.textStyle(2,
-                          color: MyColorUtil.themeColor,
-                          spacing: 0.5,
-                          size: 30),
+                          color: MyColorUtil.theme, spacing: 0.5, size: 30),
                     ),
                     onPressed: () {
                       _delWallet(context).then((val) {

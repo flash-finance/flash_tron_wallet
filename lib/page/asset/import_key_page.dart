@@ -98,7 +98,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
           left: MyScreenUtil.width(30), right: MyScreenUtil.width(30)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: MyColorUtil.themeColor,
+        color: MyColorUtil.theme,
       ),
       child: Column(
         children: <Widget>[
@@ -136,7 +136,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
         onSaved: (String value) => _name = value,
         maxLength: 10,
         inputFormatters: [],
-        cursorColor: MyColorUtil.themeColor,
+        cursorColor: MyColorUtil.theme,
         decoration: InputDecoration(
           labelText: '${MyLocaleKey.assetWalletName.tr}',
           labelStyle: MyTextUtil.textStyle(2,
@@ -165,7 +165,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
         inputFormatters: [
           FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]|[0-9]"))
         ],
-        cursorColor: MyColorUtil.themeColor,
+        cursorColor: MyColorUtil.theme,
         decoration: InputDecoration(
           labelText: '${MyLocaleKey.assetPrivateKey.tr}',
           labelStyle: MyTextUtil.textStyle(2,
@@ -200,7 +200,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
         maxLength: 6,
         keyboardType: TextInputType.numberWithOptions(decimal: true),
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
-        cursorColor: MyColorUtil.themeColor,
+        cursorColor: MyColorUtil.theme,
         decoration: InputDecoration(
             labelText: '${MyLocaleKey.assetSetPassword.tr}',
             labelStyle: MyTextUtil.textStyle(2,
@@ -215,7 +215,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
                 setState(() {
                   _setPwdClickEye = !_setPwdClickEye;
                   _setPwdEyeColor =
-                      _setPwdClickEye ? Colors.grey : MyColorUtil.themeColor;
+                      _setPwdClickEye ? Colors.grey : MyColorUtil.theme;
                 });
               },
             )),
@@ -251,7 +251,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
         maxLength: 6,
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
         keyboardType: TextInputType.number,
-        cursorColor: MyColorUtil.themeColor,
+        cursorColor: MyColorUtil.theme,
         decoration: InputDecoration(
             labelText: '${MyLocaleKey.assetConfirmPassword}.tr',
             labelStyle: MyTextUtil.textStyle(2,
@@ -265,9 +265,8 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
               onPressed: () {
                 setState(() {
                   _confirmPwdClickEye = !_confirmPwdClickEye;
-                  _confirmPwdEyeColor = _confirmPwdClickEye
-                      ? Colors.grey
-                      : MyColorUtil.themeColor;
+                  _confirmPwdEyeColor =
+                      _confirmPwdClickEye ? Colors.grey : MyColorUtil.theme;
                 });
               },
             )),
@@ -301,7 +300,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
                     color: Colors.white, spacing: 0.6, size: 31),
               ),
             ),
-            color: MyColorUtil.themeColor,
+            color: MyColorUtil.theme,
             onPressed: !_importKeyLoading
                 ? () {
                     FocusScope.of(context).requestFocus(FocusNode());
@@ -332,8 +331,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
                     }
                   }
                 : () {},
-            shape:
-                StadiumBorder(side: BorderSide(color: MyColorUtil.themeColor)),
+            shape: StadiumBorder(side: BorderSide(color: MyColorUtil.theme)),
           ),
         ),
       ),

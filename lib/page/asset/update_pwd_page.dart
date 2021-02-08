@@ -78,7 +78,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
         maxLength: 6,
         keyboardType: TextInputType.numberWithOptions(decimal: true),
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
-        cursorColor: MyColorUtil.themeColor,
+        cursorColor: MyColorUtil.theme,
         decoration: InputDecoration(
             labelText: '${MyLocaleKey.commonEnterOldPwd.tr}',
             labelStyle: MyTextUtil.textStyle(2,
@@ -93,7 +93,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
                 setState(() {
                   _oldPwdClickEye = !_oldPwdClickEye;
                   _oldPwdEyeColor =
-                      _oldPwdClickEye ? Colors.grey : MyColorUtil.themeColor;
+                      _oldPwdClickEye ? Colors.grey : MyColorUtil.theme;
                 });
               },
             )),
@@ -125,7 +125,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
         maxLength: 6,
         keyboardType: TextInputType.numberWithOptions(decimal: true),
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
-        cursorColor: MyColorUtil.themeColor,
+        cursorColor: MyColorUtil.theme,
         decoration: InputDecoration(
             labelText: '${MyLocaleKey.commonSetNewPwd.tr}',
             labelStyle: MyTextUtil.textStyle(2,
@@ -140,7 +140,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
                 setState(() {
                   _setPwdClickEye = !_setPwdClickEye;
                   _setPwdEyeColor =
-                      _setPwdClickEye ? Colors.grey : MyColorUtil.themeColor;
+                      _setPwdClickEye ? Colors.grey : MyColorUtil.theme;
                 });
               },
             )),
@@ -170,7 +170,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
         maxLength: 6,
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
         keyboardType: TextInputType.number,
-        cursorColor: MyColorUtil.themeColor,
+        cursorColor: MyColorUtil.theme,
         decoration: InputDecoration(
             labelText: '${MyLocaleKey.commonConfirmNewPwd.tr}',
             labelStyle: MyTextUtil.textStyle(2,
@@ -184,9 +184,8 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
               onPressed: () {
                 setState(() {
                   _confirmPwdClickEye = !_confirmPwdClickEye;
-                  _confirmPwdEyeColor = _confirmPwdClickEye
-                      ? Colors.grey
-                      : MyColorUtil.themeColor;
+                  _confirmPwdEyeColor =
+                      _confirmPwdClickEye ? Colors.grey : MyColorUtil.theme;
                 });
               },
             )),
@@ -220,7 +219,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
                     color: Colors.white, spacing: 0.6, size: 31),
               ),
             ),
-            color: MyColorUtil.themeColor,
+            color: MyColorUtil.theme,
             onPressed: () {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
@@ -241,8 +240,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
                 }
               }
             },
-            shape:
-                StadiumBorder(side: BorderSide(color: MyColorUtil.themeColor)),
+            shape: StadiumBorder(side: BorderSide(color: MyColorUtil.theme)),
           ),
         ),
       ),
@@ -255,7 +253,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
           left: MyScreenUtil.width(30), right: MyScreenUtil.width(30)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: MyColorUtil.themeColor,
+        color: MyColorUtil.theme,
       ),
       child: Column(
         children: <Widget>[

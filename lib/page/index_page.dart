@@ -1,7 +1,6 @@
 import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
-import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
 import 'package:flash_tron_wallet/page/asset_page.dart';
 import 'package:flash_tron_wallet/page/mine_page.dart';
 import 'package:flash_tron_wallet/page/trade_page.dart';
@@ -27,8 +26,7 @@ class _IndexPageState extends State<IndexPage> {
     print('index 000');
     ScreenUtil.init(context,
         designSize: Size(750, 1624), allowFontScaling: false);
-    return MyScaffold(
-      hasAppBar: false,
+    return Scaffold(
       body: _bodyWidget(context),
       bottomNavigationBar: Obx(
         () => _bottomNavigationBarWidget(context),

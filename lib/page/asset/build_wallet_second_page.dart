@@ -67,7 +67,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
           left: MyScreenUtil.width(30), right: MyScreenUtil.width(30)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: MyColorUtil.themeColor,
+        color: MyColorUtil.theme,
       ),
       child: Column(
         children: <Widget>[
@@ -198,7 +198,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
                     color: Colors.white, spacing: 0.2, size: 30),
               ),
             ),
-            color: MyColorUtil.themeColor,
+            color: MyColorUtil.theme,
             onPressed: () {
               if (widget.type == '1') {
                 Navigator.of(context)..pop()..pop();
@@ -206,8 +206,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
                 Navigator.of(context)..pop()..pop()..pop();
               }
             },
-            shape:
-                StadiumBorder(side: BorderSide(color: MyColorUtil.themeColor)),
+            shape: StadiumBorder(side: BorderSide(color: MyColorUtil.theme)),
           ),
         ),
       ),

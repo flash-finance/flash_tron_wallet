@@ -41,7 +41,7 @@ class MyScaffold extends StatelessWidget {
 
   Widget _appBarWidget(BuildContext context) {
     return AppBar(
-      backgroundColor: MyColorUtil.whiteColor,
+      backgroundColor: MyColorUtil.background(),
       brightness: Brightness.light,
       title: Text(
         '$title',
@@ -68,7 +68,7 @@ class MyScaffold extends StatelessWidget {
   PreferredSize _preferredSizeWidget(BuildContext context) {
     return PreferredSize(
       child: AppBar(
-        backgroundColor: MyColorUtil.whiteColor,
+        backgroundColor: MyColorUtil.background(),
         brightness: Brightness.light,
         elevation: 0,
       ),

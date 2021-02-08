@@ -235,7 +235,7 @@ class _MinePageState extends State<MinePage> {
                           child: Text(
                             '${MyLocaleKey.mineVersionTips2.tr}',
                             style: MyTextUtil.textStyle(2,
-                                color: MyColorUtil.themeColor,
+                                color: MyColorUtil.theme,
                                 spacing: 0.0,
                                 size: 30),
                           ),
@@ -245,7 +245,7 @@ class _MinePageState extends State<MinePage> {
                             child: Text(
                               '${MyLocaleKey.mineVersionTips3.tr}',
                               style: MyTextUtil.textStyle(2,
-                                  color: MyColorUtil.themeColor,
+                                  color: MyColorUtil.theme,
                                   spacing: 0.0,
                                   size: 30),
                             ),
@@ -312,7 +312,7 @@ class _MinePageState extends State<MinePage> {
                           child: Text(
                             '${MyLocaleKey.mineVersionTips2.tr}',
                             style: MyTextUtil.textStyle(2,
-                                color: MyColorUtil.themeColor,
+                                color: MyColorUtil.theme,
                                 spacing: 0.0,
                                 size: 30),
                           ),
@@ -322,7 +322,7 @@ class _MinePageState extends State<MinePage> {
                             child: Text(
                               '${MyLocaleKey.mineVersionTips3.tr}',
                               style: MyTextUtil.textStyle(2,
-                                  color: MyColorUtil.themeColor,
+                                  color: MyColorUtil.theme,
                                   spacing: 0.0,
                                   size: 30),
                             ),
@@ -413,7 +413,7 @@ class _MinePageState extends State<MinePage> {
                       right: MyScreenUtil.width(10)),
                   alignment: Alignment.centerRight,
                   child: Icon(Icons.brightness_1,
-                      size: MyScreenUtil.sp(15), color: MyColorUtil.themeColor),
+                      size: MyScreenUtil.sp(15), color: MyColorUtil.theme),
                 )
               : Container(),
         ],
@@ -435,7 +435,7 @@ class _MinePageState extends State<MinePage> {
                   child: Text(
                     '${MyLocaleKey.commonCancel.tr}',
                     style: MyTextUtil.textStyle(2,
-                        color: MyColorUtil.themeColor, spacing: 0.5, size: 30),
+                        color: MyColorUtil.theme, spacing: 0.5, size: 30),
                   ),
                   onPressed: () => Navigator.pop(context),
                 ),
@@ -443,9 +443,7 @@ class _MinePageState extends State<MinePage> {
                     child: Text(
                       '${MyLocaleKey.commonConfirm.tr}',
                       style: MyTextUtil.textStyle(2,
-                          color: MyColorUtil.themeColor,
-                          spacing: 0.5,
-                          size: 30),
+                          color: MyColorUtil.theme, spacing: 0.5, size: 30),
                     ),
                     onPressed: () {
                       Navigator.pop(context);

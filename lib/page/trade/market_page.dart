@@ -1,16 +1,17 @@
 import 'dart:async';
 
-import 'package:flash_tron_wallet/common/common_config.dart';
-import 'package:flash_tron_wallet/common/common_service.dart';
-import 'package:flash_tron_wallet/common/common_util.dart';
-import 'package:flash_tron_wallet/generated/l10n.dart';
+import 'package:flash_tron_wallet/common/config/common_config.dart';
+import 'package:flash_tron_wallet/common/util/http_util.dart';
+import 'package:flash_tron_wallet/common/util/screen_util.dart';
+import 'package:flash_tron_wallet/common/util/text_util.dart';
+import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
+import 'package:flash_tron_wallet/locale/app_Locale.dart';
 import 'package:flash_tron_wallet/model/swap_model.dart';
-import 'package:flash_tron_wallet/provider/home_provider.dart';
-import 'package:flash_tron_wallet/provider/index_provider.dart';
+import 'package:flash_tron_wallet/provider/global_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 class MarketPage extends StatefulWidget {
   final TabController tabController;
@@ -48,17 +49,8 @@ class _MarketPageState extends State<MarketPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    _langType = Provider.of<IndexProvider>(context, listen: true).langType;
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: PreferredSize(
-        child: AppBar(
-          backgroundColor: Colors.white,
-          brightness: Brightness.light,
-          elevation: 0,
-        ),
-        preferredSize: Size.fromHeight(Util.height(0)),
-      ),
+    return MyScaffold(
+      hasAppBar: false,
       body: _bodyWidget(context),
     );
   }
@@ -67,7 +59,7 @@ class _MarketPageState extends State<MarketPage>
     return Container(
       child: Column(
         children: <Widget>[
-          SizedBox(height: Util.height(15)),
+          SizedBox(height: MyScreenUtil.height(15)),
           _titleWidget(context),
           Expanded(
             child: _assetDataWidget(context),
@@ -105,34 +97,35 @@ class _MarketPageState extends State<MarketPage>
 
   Widget _titleWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
+      margin: EdgeInsets.only(
+          left: MyScreenUtil.width(30), right: MyScreenUtil.width(30)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
-            width: Util.width(200),
+            width: MyScreenUtil.width(200),
             child: Text(
-              '${S.of(context).swapName}',
-              style: Util.textStyle(context, 2,
+              '${MyLocaleKey.swapName.tr}',
+              style: MyTextUtil.textStyle(2,
                   color: Colors.grey[600], spacing: 0.2, size: 24),
             ),
           ),
           Container(
-            width: Util.width(250),
+            width: MyScreenUtil.width(250),
             alignment: Alignment.centerLeft,
             child: Text(
-              '${S.of(context).swapMarketPrice}（\$）',
-              style: Util.textStyle(context, 2,
+              '${MyLocaleKey.swapMarketPrice.tr}（\$）',
+              style: MyTextUtil.textStyle(2,
                   color: Colors.grey[600], spacing: 0.2, size: 24),
             ),
           ),
           Container(
-            width: Util.width(140),
+            width: MyScreenUtil.width(140),
             alignment: Alignment.centerRight,
-            padding: EdgeInsets.only(right: Util.width(3)),
+            padding: EdgeInsets.only(right: MyScreenUtil.width(3)),
             child: Text(
-              '${S.of(context).swapChange}',
-              style: Util.textStyle(context, 2,
+              '${MyLocaleKey.swapChange.tr}',
+              style: MyTextUtil.textStyle(2,
                   color: Colors.grey[600], spacing: 0.2, size: 24),
             ),
           ),
@@ -147,18 +140,17 @@ class _MarketPageState extends State<MarketPage>
       onTap: () {
         int _swapLeftIndex = index == 0 ? 0 : index;
         int _swapRightIndex = index == 0 ? 1 : 0;
-        Provider.of<HomeProvider>(context, listen: false)
-            .changeSwapLeftIndex(_swapLeftIndex);
-        Provider.of<HomeProvider>(context, listen: false)
-            .changeSwapRightIndex(_swapRightIndex);
+        GlobalService.to.changeSwapLeftIndex(_swapLeftIndex);
+        GlobalService.to.changeSwapRightIndex(_swapRightIndex);
         widget.tabController.index = 1;
       },
       child: Container(
         padding: EdgeInsets.only(
-            left: Util.width(30),
-            right: Util.width(30),
-            top: Util.height(20),
-            bottom: Util.height(20)),
+          left: MyScreenUtil.width(30),
+          right: MyScreenUtil.width(30),
+          top: MyScreenUtil.height(20),
+          bottom: MyScreenUtil.height(20),
+        ),
         decoration: BoxDecoration(
           border:
               Border(bottom: BorderSide(color: Colors.grey[350], width: 0.25)),
@@ -167,7 +159,7 @@ class _MarketPageState extends State<MarketPage>
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
-              width: Util.width(200),
+              width: MyScreenUtil.width(200),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -177,31 +169,30 @@ class _MarketPageState extends State<MarketPage>
                         ClipOval(
                           child: Image.network(
                             '${item.swapPicUrl}',
-                            width: Util.width(35),
-                            height: Util.width(35),
+                            width: MyScreenUtil.width(35),
+                            height: MyScreenUtil.width(35),
                             fit: BoxFit.cover,
                           ),
                         ),
-                        SizedBox(width: Util.width(10)),
+                        SizedBox(width: MyScreenUtil.width(10)),
                         Container(
                             child: Text(
                           '${item.swapTokenName}',
-                          style: Util.textStyle4En(context, 2,
+                          style: MyTextUtil.textStyle4En(2,
                               color: Colors.grey[850], spacing: 0.0, size: 28),
                         )),
                       ],
                     ),
                   ),
-                  SizedBox(height: Util.height(8)),
+                  SizedBox(height: MyScreenUtil.height(8)),
                   Container(
-                    padding: EdgeInsets.only(left: Util.width(2)),
+                    padding: EdgeInsets.only(left: MyScreenUtil.width(2)),
                     child: RichText(
                       text: TextSpan(
                         children: <TextSpan>[
                           TextSpan(
                             text: 'TL: ',
-                            style: Util.textStyle4En(
-                              context,
+                            style: MyTextUtil.textStyle4En(
                               2,
                               color: Colors.grey[600],
                               spacing: 0.1,
@@ -210,8 +201,7 @@ class _MarketPageState extends State<MarketPage>
                           ),
                           TextSpan(
                             text: '\$${item.totalLiquidity.toStringAsFixed(0)}',
-                            style: Util.textStyle4En(
-                              context,
+                            style: MyTextUtil.textStyle4En(
                               2,
                               color: Colors.grey[600],
                               spacing: 0.1,
@@ -226,11 +216,11 @@ class _MarketPageState extends State<MarketPage>
               ),
             ),
             Container(
-              width: Util.width(250),
+              width: MyScreenUtil.width(250),
               alignment: Alignment.centerLeft,
               child: Text(
                 '${item.swapTokenPrice2}',
-                style: Util.textStyle4Num(context,
+                style: MyTextUtil.textStyle4Num(
                     color: Colors.grey[800],
                     spacing: 0.0,
                     size: 30,
@@ -238,12 +228,12 @@ class _MarketPageState extends State<MarketPage>
               ),
             ),
             Container(
-              width: Util.width(140),
+              width: MyScreenUtil.width(140),
               padding: EdgeInsets.only(
-                  top: Util.height(14),
-                  bottom: Util.height(14),
-                  left: Util.width(13),
-                  right: Util.width(13)),
+                  top: MyScreenUtil.height(14),
+                  bottom: MyScreenUtil.height(14),
+                  left: MyScreenUtil.width(13),
+                  right: MyScreenUtil.width(13)),
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
@@ -253,7 +243,7 @@ class _MarketPageState extends State<MarketPage>
                 change >= 0
                     ? '+${change.toStringAsFixed(2)}%'
                     : '${change.toStringAsFixed(2)}%',
-                style: Util.textStyle4Num(context,
+                style: MyTextUtil.textStyle4Num(
                     color: Colors.white,
                     spacing: 0.0,
                     size: 25,
@@ -275,8 +265,7 @@ class _MarketPageState extends State<MarketPage>
   _reloadSwapData() async {
     _getSwapData();
     _timer1 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
-      bool backgroundFlag =
-          Provider.of<HomeProvider>(context, listen: false).backgroundFlag;
+      bool backgroundFlag = GlobalService.to.backgroundFlag;
       if (!backgroundFlag && _reloadSwapDataFlag) {
         _getSwapData();
       }
@@ -286,8 +275,8 @@ class _MarketPageState extends State<MarketPage>
   void _getSwapData() async {
     _reloadSwapDataFlag = false;
     try {
-      String url = servicePath['swapQuery'];
-      await requestGet(url).then((value) {
+      String url = CommonConfig.servicePath[CommonConfig.swapQueryUrl];
+      await HttpUtil.get(url).then((value) {
         var respData = Map<String, dynamic>.from(value);
         SwapRespModel respModel = SwapRespModel.fromJson(respData);
         if (respModel != null && respModel.code == 0) {

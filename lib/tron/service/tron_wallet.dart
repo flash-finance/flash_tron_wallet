@@ -1,17 +1,15 @@
 import 'dart:typed_data';
+
+import 'package:bip39/bip39.dart' as bip39;
 import 'package:bs58check/bs58check.dart';
 import 'package:crypto/crypto.dart';
 import 'package:ed25519_hd_key/ed25519_hd_key.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
-import 'package:web3dart/crypto.dart';
 import "package:hex/hex.dart";
-
-import 'package:bip39/bip39.dart' as bip39;
+import 'package:web3dart/crypto.dart';
 
 class TronWallet {
-
   WalletEntity createWallet(String name, String pwd) {
-
     String randomMnemonic = bip39.generateMnemonic();
     String hexSeed = bip39.mnemonicToSeedHex(randomMnemonic);
 
@@ -25,10 +23,16 @@ class TronWallet {
 
     String base58Address = getBase58Address(tronAddress);
 
-    return WalletEntity(name: name, pwd: pwd, mnemonic: randomMnemonic, privateKey: privateKey, tronAddress: base58Address);
+    return WalletEntity(
+        name: name,
+        pwd: pwd,
+        mnemonic: randomMnemonic,
+        privateKey: privateKey,
+        tronAddress: base58Address);
   }
 
-  WalletEntity importWalletByMnemonic(String name, String pwd, String mnemonic) {
+  WalletEntity importWalletByMnemonic(
+      String name, String pwd, String mnemonic) {
     String hexSeed = bip39.mnemonicToSeedHex(mnemonic);
 
     KeyData data = ED25519_HD_KEY.derivePath("m/44'/195'", hexSeed);
@@ -42,7 +46,12 @@ class TronWallet {
 
     String base58Address = getBase58Address(tronAddress);
 
-    return WalletEntity(name: name, pwd: pwd, mnemonic: mnemonic, privateKey: privateKey, tronAddress: base58Address);
+    return WalletEntity(
+        name: name,
+        pwd: pwd,
+        mnemonic: mnemonic,
+        privateKey: privateKey,
+        tronAddress: base58Address);
   }
 
   WalletEntity importWalletByKey(String name, String pwd, String privateKey) {
@@ -52,7 +61,11 @@ class TronWallet {
 
     String base58Address = getBase58Address(tronAddress);
 
-    return WalletEntity(name: name, pwd: pwd, privateKey: privateKey, tronAddress: base58Address);
+    return WalletEntity(
+        name: name,
+        pwd: pwd,
+        privateKey: privateKey,
+        tronAddress: base58Address);
   }
 
   Uint8List getTronAddress(Uint8List pubKey) {
@@ -86,4 +99,3 @@ class TronWallet {
     return true;
   }
 }
-

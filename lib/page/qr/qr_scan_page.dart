@@ -1,17 +1,14 @@
-import 'package:flash_tron_wallet/common/common_util.dart';
-import 'package:flash_tron_wallet/generated/l10n.dart';
-import 'package:flash_tron_wallet/provider/index_provider.dart';
-import 'package:flash_tron_wallet/router/application.dart';
-import 'package:fluro/fluro.dart';
+import 'package:flash_tron_wallet/common/util/color_util.dart';
+import 'package:flash_tron_wallet/common/util/screen_util.dart';
+import 'package:flash_tron_wallet/common/util/text_util.dart';
+import 'package:flash_tron_wallet/locale/app_Locale.dart';
+import 'package:flash_tron_wallet/route/app_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/screenutil.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 import 'package:scan/scan.dart';
 
 class QrScanPage extends StatefulWidget {
-  final String type;
-
-  QrScanPage(this.type);
+  final String type = Get.parameters['type'];
 
   @override
   _QrScanPageState createState() => _QrScanPageState();
@@ -34,14 +31,13 @@ class _QrScanPageState extends State<QrScanPage> {
 
   @override
   Widget build(BuildContext context) {
-    _langType = Provider.of<IndexProvider>(context, listen: false).langType;
     return Scaffold(
       appBar: PreferredSize(
         child: Container(
           width: double.infinity,
           child: _qrCodeWidget(context),
         ),
-        preferredSize: Size(double.infinity, Util.height(1334)),
+        preferredSize: Size(double.infinity, MyScreenUtil.height(1334)),
       ),
     );
   }
@@ -54,23 +50,25 @@ class _QrScanPageState extends State<QrScanPage> {
             child: ScanView(
               controller: controller,
               scanAreaScale: 0.7,
-              scanLineColor: Util.themeColor,
+              scanLineColor: MyColorUtil.themeColor,
               onCapture: (data) {
                 if (widget.type == '1') {
                   Navigator.of(context)..pop();
                 } else {
                   Navigator.of(context)..pop()..pop();
                 }
-                Application.router.navigateTo(context, 'asset/sendToken/$data',
-                    transition: TransitionType.cupertino);
+                /*Application.router.navigateTo(context, 'asset/sendToken/$data',
+                    transition: TransitionType.cupertino);*/
+                Get.toNamed(AppRoute.assetSendToken + '/$data');
               },
             ),
           ),
           Container(
             margin: EdgeInsets.only(
-                left: Util.width(30),
-                top: Util.height(65),
-                right: Util.width(30)),
+              left: MyScreenUtil.width(30),
+              top: MyScreenUtil.height(65),
+              right: MyScreenUtil.width(30),
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -81,24 +79,26 @@ class _QrScanPageState extends State<QrScanPage> {
                   child: Container(
                     child: Icon(
                       Icons.arrow_back,
-                      size: Util.sp(45),
+                      size: MyScreenUtil.sp(45),
                       color: Colors.white,
                     ),
                   ),
                 ),
                 Container(
                   padding: EdgeInsets.only(
-                      left: _langType ? Util.width(20) : Util.width(130)),
+                      left: _langType
+                          ? MyScreenUtil.width(20)
+                          : MyScreenUtil.width(130)),
                   child: Text(
-                    '${S.of(context).commonScan}',
-                    style: Util.textStyle(context, 2,
+                    '${MyLocaleKey.commonScan.tr}',
+                    style: MyTextUtil.textStyle(2,
                         color: Colors.white, spacing: 0.2, size: 32),
                   ),
                 ),
                 Container(
                   child: Text(
-                    '${S.of(context).commonPhotoAlbum}',
-                    style: Util.textStyle(context, 2,
+                    '${MyLocaleKey.commonPhotoAlbum.tr}',
+                    style: MyTextUtil.textStyle(2,
                         color: Colors.white.withOpacity(0),
                         spacing: 0.2,
                         size: 32),

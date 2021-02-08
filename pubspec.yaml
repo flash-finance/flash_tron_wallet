@@ -29,9 +29,7 @@ dependencies:
   dio: ^3.0.10
   flutter_screenutil: ^3.2.0
   flutter_easyrefresh: ^2.1.6
-  provider: ^4.3.2+2
   fluttertoast: ^7.1.1
-  fluro: ^1.7.7
   shared_preferences: ^0.5.12+4
   common_utils: ^1.2.1
   synchronized: ^2.2.0+2
@@ -55,7 +53,7 @@ dependencies:
   scan: ^0.0.3
   decimal: ^0.3.5
   splash_screen_view: ^1.0.1
-
+  get: ^3.24.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -77,30 +75,30 @@ flutter:
   uses-material-design: true
 
   assets:
-    - images/
+    - asset/image/
 
   fonts:
     - family: ZH-M
       fonts:
-        - asset: fonts/PingFangSC-Medium.ttf
+        - asset: asset/font/PingFangSC-Medium.ttf
           weight: 400
 
     - family: ZH-R
       fonts:
-        - asset: fonts/PingFangSC-Regular.ttf
+        - asset: asset/font/PingFangSC-Regular.ttf
 
     - family: EN-M
       fonts:
-        - asset: fonts/SF-Pro-Display-Medium.otf
+        - asset: asset/font/SF-Pro-Display-Medium.otf
           weight: 400
 
     - family: EN-R
       fonts:
-        - asset: fonts/SF-Pro-Display-Regular.otf
+        - asset: asset/font/SF-Pro-Display-Regular.otf
 
     - family: ICON
       fonts:
-        - asset: fonts/iconfont.ttf
+        - asset: asset/font/iconfont.ttf
 
 
 
@@ -134,6 +132,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-
-flutter_intl:
-  enabled: true

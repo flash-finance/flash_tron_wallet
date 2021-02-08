@@ -1,19 +1,22 @@
 import 'dart:async';
 
 import 'package:decimal/decimal.dart';
-import 'package:flash_tron_wallet/common/common_config.dart';
-import 'package:flash_tron_wallet/common/common_service.dart';
-import 'package:flash_tron_wallet/common/common_util.dart';
+import 'package:flash_tron_wallet/common/config/common_config.dart';
+import 'package:flash_tron_wallet/common/util/color_util.dart';
+import 'package:flash_tron_wallet/common/util/common_util.dart';
+import 'package:flash_tron_wallet/common/util/http_util.dart';
+import 'package:flash_tron_wallet/common/util/screen_util.dart';
+import 'package:flash_tron_wallet/common/util/text_util.dart';
+import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
-import 'package:flash_tron_wallet/generated/l10n.dart';
+import 'package:flash_tron_wallet/locale/app_Locale.dart';
 import 'package:flash_tron_wallet/model/swap_model.dart';
 import 'package:flash_tron_wallet/model/tron_info_model.dart';
-import 'package:flash_tron_wallet/provider/home_provider.dart';
-import 'package:flash_tron_wallet/provider/index_provider.dart';
+import 'package:flash_tron_wallet/provider/global_service.dart';
 import 'package:flash_tron_wallet/tron/service/tron_swap.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 class SwapPage extends StatefulWidget {
   @override
@@ -26,10 +29,8 @@ class _SwapPageState extends State<SwapPage> {
 
   @override
   Widget build(BuildContext context) {
-    _swapLeftIndex =
-        Provider.of<HomeProvider>(context, listen: true).swapLeftIndex;
-    _swapRightIndex =
-        Provider.of<HomeProvider>(context, listen: true).swapRightIndex;
+    _swapLeftIndex = GlobalService.to.swapLeftIndex;
+    _swapRightIndex = GlobalService.to.swapRightIndex;
     return Container(
       child: SwapSubPage(_swapLeftIndex, _swapRightIndex),
     );
@@ -103,13 +104,12 @@ class _SwapSubPageState extends State<SwapSubPage>
     super.build(context);
     _leftSelectIndex = widget.swapLeftIndex;
     _rightSelectIndex = widget.swapRightIndex;
-    WalletEntity wallet =
-        Provider.of<HomeProvider>(context, listen: true).selectWalletEntity;
+    WalletEntity wallet = GlobalService.to.selectWalletEntity;
     if (wallet != null && wallet.tronAddress != null) {
       _account = wallet.tronAddress;
     }
-    _balanceMap = Provider.of<HomeProvider>(context, listen: true).balanceMap;
-    _langType = Provider.of<IndexProvider>(context, listen: true).langType;
+    _balanceMap = GlobalService.to.balanceMap;
+    //_langType = GlobalService.to.langType;
     _leftSwapAmountController = TextEditingController.fromValue(
         TextEditingValue(
             text: _leftSwapAmount,
@@ -123,50 +123,32 @@ class _SwapSubPageState extends State<SwapSubPage>
                 affinity: TextAffinity.downstream,
                 offset: _rightSwapAmount.length))));
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: PreferredSize(
-        child: AppBar(
-          backgroundColor: Colors.white,
-          brightness: Brightness.light,
-          elevation: 0,
-        ),
-        preferredSize: Size.fromHeight(Util.height(0)),
-      ),
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(FocusNode());
-        },
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            _mainWidget(context),
-          ],
-        ),
-      ),
-    );
+    return MyScaffold(
+      hasAppBar: false,
+      body: _bodyWidget(context),
+    ) ;
   }
 
-  Widget _mainWidget(BuildContext context) {
+  Widget _bodyWidget(BuildContext context) {
     return Container(
-      width: Util.width(750),
+      width: MyScreenUtil.width(750),
       color: Colors.white,
       child: Column(
         children: <Widget>[
-          SizedBox(height: Util.height(20)),
+          SizedBox(height: MyScreenUtil.height(20)),
           _topWidget(context),
-          SizedBox(height: Util.height(30)),
+          SizedBox(height: MyScreenUtil.height(30)),
           Expanded(
-            child: _bodyWidget(context),
+            child: _mainWidget(context),
           ),
         ],
       ),
     );
   }
 
-  Widget _bodyWidget(BuildContext context) {
+  Widget _mainWidget(BuildContext context) {
     return Container(
-      width: Util.width(750),
+      width: MyScreenUtil.width(750),
       child: ListView(
         children: <Widget>[
           _bizWidget(context),
@@ -177,7 +159,8 @@ class _SwapSubPageState extends State<SwapSubPage>
 
   Widget _topWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
+      margin: EdgeInsets.only(
+          left: MyScreenUtil.width(30), right: MyScreenUtil.width(30)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(20.0)),
         image: DecorationImage(
@@ -190,22 +173,23 @@ class _SwapSubPageState extends State<SwapSubPage>
         children: <Widget>[
           Container(
               padding: EdgeInsets.only(
-                  top: Util.height(30), bottom: Util.height(30)),
+                  top: MyScreenUtil.height(30),
+                  bottom: MyScreenUtil.height(30)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
                     child: Text(
                       'Flash  Swap',
-                      style: Util.textStyle4En(context, 1,
+                      style: MyTextUtil.textStyle4En(1,
                           color: Colors.white, spacing: 0.0, size: 37),
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: Util.height(5)),
+                    margin: EdgeInsets.only(top: MyScreenUtil.height(5)),
                     child: Text(
-                      '${S.of(context).swapTips01}',
-                      style: Util.textStyle(context, 1,
+                      '${MyLocaleKey.swapTips01.tr}',
+                      style: MyTextUtil.textStyle(1,
                           color: Colors.white, spacing: 0.0, size: 20),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
@@ -221,20 +205,22 @@ class _SwapSubPageState extends State<SwapSubPage>
   Widget _bizWidget(BuildContext context) {
     return Card(
       elevation: 2.0,
-      margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
+      margin: EdgeInsets.only(
+          left: MyScreenUtil.width(30), right: MyScreenUtil.width(30)),
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20.0))),
       child: Container(
-        padding: EdgeInsets.only(top: Util.height(20), bottom: Util.height(20)),
+        padding: EdgeInsets.only(
+            top: MyScreenUtil.height(20), bottom: MyScreenUtil.height(20)),
         child: Column(
           children: <Widget>[
-            SizedBox(height: Util.height(50)),
+            SizedBox(height: MyScreenUtil.height(50)),
             _dataWidget(context),
-            SizedBox(height: Util.height(10)),
+            SizedBox(height: MyScreenUtil.height(10)),
             _poolWidget(context),
-            SizedBox(height: Util.height(50)),
+            SizedBox(height: MyScreenUtil.height(50)),
             _swapWidget(context),
-            SizedBox(height: Util.height(50)),
+            SizedBox(height: MyScreenUtil.height(50)),
           ],
         ),
       ),
@@ -246,9 +232,9 @@ class _SwapSubPageState extends State<SwapSubPage>
         child: Column(
       children: <Widget>[
         _dataLeftWidget(context),
-        SizedBox(height: Util.height(0)),
+        SizedBox(height: MyScreenUtil.height(0)),
         _dataMidWidget(context),
-        SizedBox(height: Util.height(0)),
+        SizedBox(height: MyScreenUtil.height(0)),
         _dataRightWidget(context),
       ],
     ));
@@ -256,7 +242,8 @@ class _SwapSubPageState extends State<SwapSubPage>
 
   Widget _dataLeftWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
+      margin: EdgeInsets.only(
+          left: MyScreenUtil.width(30), right: MyScreenUtil.width(30)),
       child: Column(
         children: <Widget>[
           Container(
@@ -264,27 +251,27 @@ class _SwapSubPageState extends State<SwapSubPage>
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(left: Util.width(2)),
+                  padding: EdgeInsets.only(left: MyScreenUtil.width(2)),
                   child: Text(
-                    '${S.of(context).swapSend}',
-                    style: Util.textStyle(context, 2,
+                    '${MyLocaleKey.swapSend.tr}',
+                    style: MyTextUtil.textStyle(2,
                         color: Colors.grey[800], spacing: 0.0, size: 26),
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(right: Util.width(2)),
+                  padding: EdgeInsets.only(right: MyScreenUtil.width(2)),
                   child: RichText(
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                          text: '${S.of(context).swapBalance}:  ',
-                          style: Util.textStyle(context, 2,
+                          text: '${MyLocaleKey.swapBalance.tr}:  ',
+                          style: MyTextUtil.textStyle(2,
                               color: Colors.grey[600], spacing: 0.0, size: 26),
                         ),
                         TextSpan(
                           text:
-                              '${Util.formatNum(double.parse(_leftBalanceAmount), 4)}',
-                          style: Util.textStyle4Num(context,
+                              '${MyCommonUtil.formatNum(double.parse(_leftBalanceAmount), 4)}',
+                          style: MyTextUtil.textStyle4Num(
                               color: Colors.grey[800],
                               spacing: 0.0,
                               size: 28,
@@ -297,7 +284,7 @@ class _SwapSubPageState extends State<SwapSubPage>
               ],
             ),
           ),
-          SizedBox(height: Util.height(10)),
+          SizedBox(height: MyScreenUtil.height(10)),
           Container(
             decoration: BoxDecoration(
               color: Colors.grey[100],
@@ -312,44 +299,46 @@ class _SwapSubPageState extends State<SwapSubPage>
                   },
                   child: Container(
                     padding: EdgeInsets.only(
-                        top: Util.height(5), bottom: Util.height(5)),
+                        top: MyScreenUtil.height(5),
+                        bottom: MyScreenUtil.height(5)),
                     child: Container(
                       child: Row(
                         children: <Widget>[
-                          SizedBox(width: Util.width(15)),
+                          SizedBox(width: MyScreenUtil.width(15)),
                           Container(
                             child: ClipOval(
                               child: _flag1
                                   ? Image.network(
                                       '${_swapRows[_leftSelectIndex].swapPicUrl}',
-                                      width: Util.width(42),
-                                      height: Util.width(42),
+                                      width: MyScreenUtil.width(42),
+                                      height: MyScreenUtil.width(42),
                                       fit: BoxFit.cover,
                                     )
                                   : Container(
-                                      width: Util.width(42),
-                                      height: Util.width(42),
+                                      width: MyScreenUtil.width(42),
+                                      height: MyScreenUtil.width(42),
                                     ),
                             ),
                           ),
-                          SizedBox(width: Util.width(10)),
+                          SizedBox(width: MyScreenUtil.width(10)),
                           Container(
-                            width: Util.width(90),
+                            width: MyScreenUtil.width(90),
                             alignment: Alignment.center,
                             child: Text(
                               _flag1
                                   ? '${_swapRows[_leftSelectIndex].swapTokenName}'
                                   : '',
-                              style: Util.textStyle4En(context, 2,
+                              style: MyTextUtil.textStyle4En(2,
                                   color: Colors.grey[800],
                                   spacing: 0.0,
                                   size: 27),
                             ),
                           ),
-                          SizedBox(width: Util.width(5)),
+                          SizedBox(width: MyScreenUtil.width(5)),
                           Container(
                             child: Icon(Icons.arrow_drop_down,
-                                size: Util.sp(35), color: Colors.grey[700]),
+                                size: MyScreenUtil.sp(35),
+                                color: Colors.grey[700]),
                           ),
                         ],
                       ),
@@ -357,11 +346,11 @@ class _SwapSubPageState extends State<SwapSubPage>
                   ),
                 ),
                 Container(
-                    width: Util.width(350),
+                    width: MyScreenUtil.width(350),
                     padding: EdgeInsets.only(
-                        left: Util.width(20),
-                        top: Util.height(3),
-                        bottom: Util.height(3)),
+                        left: MyScreenUtil.width(20),
+                        top: MyScreenUtil.height(3),
+                        bottom: MyScreenUtil.height(3)),
                     color: Colors.white,
                     alignment: Alignment.centerLeft,
                     child: TextFormField(
@@ -373,7 +362,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                         hintStyle: TextStyle(),
                         border: InputBorder.none,
                       ),
-                      style: Util.textStyle4Num(context,
+                      style: MyTextUtil.textStyle4Num(
                           color: Colors.grey[800],
                           size: 30,
                           fontWeight: FontWeight.w500),
@@ -400,7 +389,8 @@ class _SwapSubPageState extends State<SwapSubPage>
                             double rightAmount = leftAmount *
                                 _swapRows[_leftSelectIndex].swapTokenPrice1 /
                                 _swapRows[_rightSelectIndex].swapTokenPrice1;
-                            _rightSwapAmount = Util.formatNum(rightAmount, 6);
+                            _rightSwapAmount =
+                                MyCommonUtil.formatNum(rightAmount, 6);
                             _rightSwapValue =
                                 (Decimal.tryParse(rightAmount.toString()) *
                                         Decimal.fromInt(10).pow(
@@ -430,8 +420,8 @@ class _SwapSubPageState extends State<SwapSubPage>
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      _leftSwapAmount =
-                          Util.formatNum(double.parse(_leftBalanceAmount), 6);
+                      _leftSwapAmount = MyCommonUtil.formatNum(
+                          double.parse(_leftBalanceAmount), 6);
                       double leftAmount =
                           Decimal.tryParse(_leftBalanceAmount).toDouble();
 
@@ -444,7 +434,8 @@ class _SwapSubPageState extends State<SwapSubPage>
                           double rightAmount = leftAmount *
                               _swapRows[_leftSelectIndex].swapTokenPrice1 /
                               _swapRows[_rightSelectIndex].swapTokenPrice1;
-                          _rightSwapAmount = Util.formatNum(rightAmount, 6);
+                          _rightSwapAmount =
+                              MyCommonUtil.formatNum(rightAmount, 6);
                           _rightSwapValue =
                               (Decimal.tryParse(rightAmount.toString()) *
                                       Decimal.fromInt(10).pow(
@@ -463,11 +454,12 @@ class _SwapSubPageState extends State<SwapSubPage>
                     },
                     child: Container(
                       padding: EdgeInsets.only(
-                          top: Util.height(3), bottom: Util.height(3)),
+                          top: MyScreenUtil.height(3),
+                          bottom: MyScreenUtil.height(3)),
                       alignment: Alignment.center,
                       child: Text(
                         'MAX',
-                        style: Util.textStyle4En(context, 2,
+                        style: MyTextUtil.textStyle4En(2,
                             color: Colors.grey[800], spacing: 0.0, size: 25),
                       ),
                     ),
@@ -476,26 +468,26 @@ class _SwapSubPageState extends State<SwapSubPage>
               ],
             ),
           ),
-          SizedBox(height: Util.height(10)),
+          SizedBox(height: MyScreenUtil.height(10)),
           _flag1 && _flag2
               ? Container(
                   child: Row(
                     children: <Widget>[
                       Container(
                         alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(left: Util.width(5)),
+                        padding: EdgeInsets.only(left: MyScreenUtil.width(5)),
                         child: Text(
-                          '1  ${_swapRows[_leftSelectIndex].swapTokenName} ≈ ${Util.formatNum(double.parse(_leftPrice), 4)}  ${_swapRows[_rightSelectIndex].swapTokenName}',
-                          style: Util.textStyle4En(context, 2,
+                          '1  ${_swapRows[_leftSelectIndex].swapTokenName} ≈ ${MyCommonUtil.formatNum(double.parse(_leftPrice), 4)}  ${_swapRows[_rightSelectIndex].swapTokenName}',
+                          style: MyTextUtil.textStyle4En(2,
                               color: Colors.grey[600], spacing: 0.0, size: 21),
                         ),
                       ),
                       Container(
                         alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(right: Util.width(5)),
+                        padding: EdgeInsets.only(right: MyScreenUtil.width(5)),
                         child: Text(
-                          ' ≈ ${Util.formatNum(_swapRows[_leftSelectIndex].swapTokenPrice2, 4)}  USD',
-                          style: Util.textStyle4En(context, 2,
+                          ' ≈ ${MyCommonUtil.formatNum(_swapRows[_leftSelectIndex].swapTokenPrice2, 4)}  USD',
+                          style: MyTextUtil.textStyle4En(2,
                               color: Colors.grey[600], spacing: 0.0, size: 21),
                         ),
                       ),
@@ -504,10 +496,10 @@ class _SwapSubPageState extends State<SwapSubPage>
                 )
               : Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: Util.width(5)),
+                  padding: EdgeInsets.only(left: MyScreenUtil.width(5)),
                   child: Text(
                     '1 USDT ≈ 1 USD',
-                    style: Util.textStyle4En(context, 2,
+                    style: MyTextUtil.textStyle4En(2,
                         color: Colors.white, spacing: 0.0, size: 21),
                   ),
                 ),
@@ -519,7 +511,8 @@ class _SwapSubPageState extends State<SwapSubPage>
   Widget _dataMidWidget(BuildContext context) {
     return Container(
       color: Colors.white,
-      margin: EdgeInsets.only(top: Util.height(20), bottom: Util.height(0)),
+      margin: EdgeInsets.only(
+          top: MyScreenUtil.height(20), bottom: MyScreenUtil.height(0)),
       child: InkWell(
           onTap: () {
             FocusScope.of(context).requestFocus(FocusNode());
@@ -550,18 +543,16 @@ class _SwapSubPageState extends State<SwapSubPage>
               }
             }
             setState(() {});
-            Provider.of<HomeProvider>(context, listen: false)
-                .changeSwapLeftIndex(temp12);
-            Provider.of<HomeProvider>(context, listen: false)
-                .changeSwapRightIndex(temp11);
+            GlobalService.to.changeSwapLeftIndex(temp12);
+            GlobalService.to.changeSwapRightIndex(temp11);
           },
           child: Container(
             color: Colors.white,
             alignment: Alignment.center,
-            width: Util.width(150),
+            width: MyScreenUtil.width(150),
             child: Icon(
               Icons.sync_rounded,
-              size: Util.sp(45),
+              size: MyScreenUtil.sp(45),
               color: Colors.grey[700],
             ),
           )),
@@ -570,7 +561,8 @@ class _SwapSubPageState extends State<SwapSubPage>
 
   Widget _dataRightWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
+      margin: EdgeInsets.only(
+          left: MyScreenUtil.width(30), right: MyScreenUtil.width(30)),
       child: Column(
         children: <Widget>[
           Container(
@@ -578,27 +570,27 @@ class _SwapSubPageState extends State<SwapSubPage>
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(left: Util.width(2)),
+                  padding: EdgeInsets.only(left: MyScreenUtil.width(2)),
                   child: Text(
-                    '${S.of(context).swapReceive}',
-                    style: Util.textStyle(context, 2,
+                    '${MyLocaleKey.swapReceive.tr}',
+                    style: MyTextUtil.textStyle(2,
                         color: Colors.grey[800], spacing: 0.0, size: 26),
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(right: Util.width(2)),
+                  padding: EdgeInsets.only(right: MyScreenUtil.width(2)),
                   child: RichText(
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                          text: '${S.of(context).swapBalance}:  ',
-                          style: Util.textStyle(context, 2,
+                          text: '${MyLocaleKey.swapBalance.tr}:  ',
+                          style: MyTextUtil.textStyle(2,
                               color: Colors.grey[600], spacing: 0.0, size: 26),
                         ),
                         TextSpan(
                           text:
-                              '${Util.formatNum(double.parse(_rightBalanceAmount), 4)}',
-                          style: Util.textStyle4Num(context,
+                              '${MyCommonUtil.formatNum(double.parse(_rightBalanceAmount), 4)}',
+                          style: MyTextUtil.textStyle4Num(
                               color: Colors.grey[800],
                               spacing: 0.0,
                               size: 28,
@@ -611,7 +603,7 @@ class _SwapSubPageState extends State<SwapSubPage>
               ],
             ),
           ),
-          SizedBox(height: Util.height(10)),
+          SizedBox(height: MyScreenUtil.height(10)),
           Container(
             decoration: BoxDecoration(
               color: Colors.grey[100],
@@ -627,44 +619,46 @@ class _SwapSubPageState extends State<SwapSubPage>
                   },
                   child: Container(
                     padding: EdgeInsets.only(
-                        top: Util.height(5), bottom: Util.height(5)),
+                        top: MyScreenUtil.height(5),
+                        bottom: MyScreenUtil.height(5)),
                     child: Container(
                       child: Row(
                         children: <Widget>[
-                          SizedBox(width: Util.width(15)),
+                          SizedBox(width: MyScreenUtil.width(15)),
                           Container(
                             child: ClipOval(
                               child: _flag2
                                   ? Image.network(
                                       '${_swapRows[_rightSelectIndex].swapPicUrl}',
-                                      width: Util.width(42),
-                                      height: Util.width(42),
+                                      width: MyScreenUtil.width(42),
+                                      height: MyScreenUtil.width(42),
                                       fit: BoxFit.cover,
                                     )
                                   : Container(
-                                      width: Util.width(42),
-                                      height: Util.width(42),
+                                      width: MyScreenUtil.width(42),
+                                      height: MyScreenUtil.width(42),
                                     ),
                             ),
                           ),
-                          SizedBox(width: Util.width(10)),
+                          SizedBox(width: MyScreenUtil.width(10)),
                           Container(
-                            width: Util.width(90),
+                            width: MyScreenUtil.width(90),
                             alignment: Alignment.center,
                             child: Text(
                               _flag2
                                   ? '${_swapRows[_rightSelectIndex].swapTokenName}'
                                   : '',
-                              style: Util.textStyle4En(context, 2,
+                              style: MyTextUtil.textStyle4En(2,
                                   color: Colors.grey[800],
                                   spacing: 0.0,
                                   size: 27),
                             ),
                           ),
-                          SizedBox(width: Util.width(5)),
+                          SizedBox(width: MyScreenUtil.width(5)),
                           Container(
                             child: Icon(Icons.arrow_drop_down,
-                                size: Util.sp(35), color: Colors.grey[700]),
+                                size: MyScreenUtil.sp(35),
+                                color: Colors.grey[700]),
                           ),
                         ],
                       ),
@@ -672,11 +666,11 @@ class _SwapSubPageState extends State<SwapSubPage>
                   ),
                 ),
                 Container(
-                    width: Util.width(350),
+                    width: MyScreenUtil.width(350),
                     padding: EdgeInsets.only(
-                        left: Util.width(20),
-                        top: Util.height(3),
-                        bottom: Util.height(3)),
+                        left: MyScreenUtil.width(20),
+                        top: MyScreenUtil.height(3),
+                        bottom: MyScreenUtil.height(3)),
                     color: Colors.white,
                     alignment: Alignment.centerLeft,
                     child: TextFormField(
@@ -688,7 +682,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                         hintStyle: TextStyle(),
                         border: InputBorder.none,
                       ),
-                      style: Util.textStyle4Num(context,
+                      style: MyTextUtil.textStyle4Num(
                           color: Colors.grey[800],
                           size: 30,
                           fontWeight: FontWeight.w500),
@@ -715,7 +709,8 @@ class _SwapSubPageState extends State<SwapSubPage>
                             double leftAmount = rightAmount *
                                 _swapRows[_rightSelectIndex].swapTokenPrice1 /
                                 _swapRows[_leftSelectIndex].swapTokenPrice1;
-                            _leftSwapAmount = Util.formatNum(leftAmount, 6);
+                            _leftSwapAmount =
+                                MyCommonUtil.formatNum(leftAmount, 6);
                             _leftSwapValue =
                                 (Decimal.tryParse(leftAmount.toString()) *
                                         Decimal.fromInt(10).pow(
@@ -748,7 +743,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                   child: InkWell(
                     onTap: () {
                       if (_flag1 && _flag2) {
-                        _rightSwapAmount = Util.formatNum(
+                        _rightSwapAmount = MyCommonUtil.formatNum(
                             double.parse(_rightBalanceAmount), 6);
                         double rightAmount =
                             Decimal.tryParse(_rightBalanceAmount).toDouble();
@@ -762,7 +757,8 @@ class _SwapSubPageState extends State<SwapSubPage>
                             double leftAmount = rightAmount *
                                 _swapRows[_rightSelectIndex].swapTokenPrice1 /
                                 _swapRows[_leftSelectIndex].swapTokenPrice1;
-                            _leftSwapAmount = Util.formatNum(leftAmount, 4);
+                            _leftSwapAmount =
+                                MyCommonUtil.formatNum(leftAmount, 4);
                             _leftSwapValue =
                                 (Decimal.tryParse(leftAmount.toString()) *
                                         Decimal.fromInt(10).pow(
@@ -784,11 +780,12 @@ class _SwapSubPageState extends State<SwapSubPage>
                     },
                     child: Container(
                       padding: EdgeInsets.only(
-                          top: Util.height(3), bottom: Util.height(3)),
+                          top: MyScreenUtil.height(3),
+                          bottom: MyScreenUtil.height(3)),
                       alignment: Alignment.center,
                       child: Text(
                         'MAX',
-                        style: Util.textStyle4En(context, 2,
+                        style: MyTextUtil.textStyle4En(2,
                             color: Colors.grey[800], spacing: 0.0, size: 25),
                       ),
                     ),
@@ -797,26 +794,26 @@ class _SwapSubPageState extends State<SwapSubPage>
               ],
             ),
           ),
-          SizedBox(height: Util.height(10)),
+          SizedBox(height: MyScreenUtil.height(10)),
           _flag1 && _flag2
               ? Container(
                   child: Row(
                     children: <Widget>[
                       Container(
                         alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(left: Util.width(5)),
+                        padding: EdgeInsets.only(left: MyScreenUtil.width(5)),
                         child: Text(
-                          '1  ${_swapRows[_rightSelectIndex].swapTokenName} ≈ ${Util.formatNum(double.parse(_rightPrice), 4)}  ${_swapRows[_leftSelectIndex].swapTokenName}',
-                          style: Util.textStyle4En(context, 2,
+                          '1  ${_swapRows[_rightSelectIndex].swapTokenName} ≈ ${MyCommonUtil.formatNum(double.parse(_rightPrice), 4)}  ${_swapRows[_leftSelectIndex].swapTokenName}',
+                          style: MyTextUtil.textStyle4En(2,
                               color: Colors.grey[600], spacing: 0.0, size: 21),
                         ),
                       ),
                       Container(
                         alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(right: Util.width(5)),
+                        padding: EdgeInsets.only(right: MyScreenUtil.width(5)),
                         child: Text(
-                          ' ≈ ${Util.formatNum(_swapRows[_rightSelectIndex].swapTokenPrice2, 4)}  USD',
-                          style: Util.textStyle4En(context, 2,
+                          ' ≈ ${MyCommonUtil.formatNum(_swapRows[_rightSelectIndex].swapTokenPrice2, 4)}  USD',
+                          style: MyTextUtil.textStyle4En(2,
                               color: Colors.grey[600], spacing: 0.0, size: 21),
                         ),
                       ),
@@ -825,10 +822,10 @@ class _SwapSubPageState extends State<SwapSubPage>
                 )
               : Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: Util.width(5)),
+                  padding: EdgeInsets.only(left: MyScreenUtil.width(5)),
                   child: Text(
                     '1 USDT ≈ 1 USD',
-                    style: Util.textStyle4En(context, 2,
+                    style: MyTextUtil.textStyle4En(2,
                         color: Colors.white, spacing: 0.0, size: 21),
                   ),
                 ),
@@ -839,7 +836,8 @@ class _SwapSubPageState extends State<SwapSubPage>
 
   Widget _poolWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
+      margin: EdgeInsets.only(
+          left: MyScreenUtil.width(30), right: MyScreenUtil.width(30)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
@@ -860,17 +858,17 @@ class _SwapSubPageState extends State<SwapSubPage>
             child: Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: Util.themeColor,
+                color: MyColorUtil.themeColor,
                 borderRadius: BorderRadius.circular(6),
               ),
               padding: EdgeInsets.only(
-                  left: Util.width(18),
-                  top: Util.height(8),
-                  bottom: Util.height(8),
-                  right: Util.width(18)),
+                  left: MyScreenUtil.width(18),
+                  top: MyScreenUtil.height(8),
+                  bottom: MyScreenUtil.height(8),
+                  right: MyScreenUtil.width(18)),
               child: Text(
-                '${S.of(context).swapPooledTokens}',
-                style: Util.textStyle(context, 1,
+                '${MyLocaleKey.swapPooledTokens.tr}',
+                style: MyTextUtil.textStyle(1,
                     color: Colors.white, spacing: 0.0, size: 21),
               ),
             ),
@@ -889,21 +887,22 @@ class _SwapSubPageState extends State<SwapSubPage>
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
         ),
         content: Container(
-          width: Util.width(600),
-          height: Util.height(380),
-          padding: EdgeInsets.only(top: Util.height(10)),
+          width: MyScreenUtil.width(600),
+          height: MyScreenUtil.height(380),
+          padding: EdgeInsets.only(top: MyScreenUtil.height(10)),
           child: ListView(
             children: <Widget>[
               Container(
                 padding: EdgeInsets.only(
-                    top: Util.height(10), bottom: Util.height(10)),
+                    top: MyScreenUtil.height(10),
+                    bottom: MyScreenUtil.height(10)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
                       child: Text(
                         '${_swapRows[_leftSelectIndex].swapTokenName}/${_swapRows[_rightSelectIndex].swapTokenName}',
-                        style: Util.textStyle4En(context, 2,
+                        style: MyTextUtil.textStyle4En(2,
                             color: Colors.grey[800], spacing: 0.0, size: 30),
                       ),
                     ),
@@ -913,21 +912,21 @@ class _SwapSubPageState extends State<SwapSubPage>
               SizedBox(height: 0),
               Container(
                 padding: EdgeInsets.only(
-                    left: Util.width(20),
-                    top: Util.height(20),
-                    bottom: Util.height(20),
-                    right: Util.width(20)),
+                    left: MyScreenUtil.width(20),
+                    top: MyScreenUtil.height(20),
+                    bottom: MyScreenUtil.height(20),
+                    right: MyScreenUtil.width(20)),
                 child: Column(
                   children: <Widget>[
                     Container(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        '${S.of(context).swapTotalLiquidity}',
-                        style: Util.textStyle(context, 2,
+                        '${MyLocaleKey.swapTotalLiquidity.tr}',
+                        style: MyTextUtil.textStyle(2,
                             color: Colors.grey[700], spacing: 0.2, size: 26),
                       ),
                     ),
-                    SizedBox(height: Util.height(15)),
+                    SizedBox(height: MyScreenUtil.height(15)),
                     Container(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -936,20 +935,20 @@ class _SwapSubPageState extends State<SwapSubPage>
                             child: ClipOval(
                               child: Image.asset(
                                 'images/usd.png',
-                                width: Util.width(38),
-                                height: Util.width(38),
+                                width: MyScreenUtil.width(38),
+                                height: MyScreenUtil.width(38),
                                 fit: BoxFit.cover,
                               ),
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(left: Util.width(15)),
+                            padding:
+                                EdgeInsets.only(left: MyScreenUtil.width(15)),
                             child: Text(
                               _swapRows[_leftSelectIndex].swapTokenType == 2
                                   ? '${_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0)}'
                                   : '${_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0)}',
-                              style: Util.textStyle4Num(
-                                context,
+                              style: MyTextUtil.textStyle4Num(
                                 color: Colors.grey[800],
                                 size: 28,
                                 fontWeight: FontWeight.w500,
@@ -961,7 +960,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                           Container(
                             child: Text(
                               '  USD',
-                              style: Util.textStyle4En(context, 2,
+                              style: MyTextUtil.textStyle4En(2,
                                   color: Colors.grey[800],
                                   spacing: 0.2,
                                   size: 27),
@@ -970,16 +969,16 @@ class _SwapSubPageState extends State<SwapSubPage>
                         ],
                       ),
                     ),
-                    SizedBox(height: Util.height(40)),
+                    SizedBox(height: MyScreenUtil.height(40)),
                     Container(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        '${S.of(context).swapToken}',
-                        style: Util.textStyle4En(context, 2,
+                        '${MyLocaleKey.swapToken.tr}',
+                        style: MyTextUtil.textStyle4En(2,
                             color: Colors.grey[700], spacing: 0.2, size: 26),
                       ),
                     ),
-                    SizedBox(height: Util.height(15)),
+                    SizedBox(height: MyScreenUtil.height(15)),
                     Container(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -988,20 +987,20 @@ class _SwapSubPageState extends State<SwapSubPage>
                             child: ClipOval(
                               child: Image.network(
                                 '${_swapRows[_leftSelectIndex].swapPicUrl}',
-                                width: Util.width(35),
-                                height: Util.width(35),
+                                width: MyScreenUtil.width(35),
+                                height: MyScreenUtil.width(35),
                                 fit: BoxFit.cover,
                               ),
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(left: Util.width(15)),
+                            padding:
+                                EdgeInsets.only(left: MyScreenUtil.width(15)),
                             child: Text(
                               _swapRows[_leftSelectIndex].swapTokenType == 2
                                   ? '${_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0)}'
                                   : '${_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
-                              style: Util.textStyle4Num(
-                                context,
+                              style: MyTextUtil.textStyle4Num(
                                 color: Colors.grey[800],
                                 size: 28,
                                 fontWeight: FontWeight.w500,
@@ -1013,7 +1012,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                           Container(
                             child: Text(
                               '  ${_swapRows[_leftSelectIndex].swapTokenName}',
-                              style: Util.textStyle4En(context, 2,
+                              style: MyTextUtil.textStyle4En(2,
                                   color: Colors.grey[800],
                                   spacing: 0.0,
                                   size: 27),
@@ -1022,7 +1021,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                         ],
                       ),
                     ),
-                    SizedBox(height: Util.height(15)),
+                    SizedBox(height: MyScreenUtil.height(15)),
                     Container(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -1031,20 +1030,20 @@ class _SwapSubPageState extends State<SwapSubPage>
                             child: ClipOval(
                               child: Image.network(
                                 '${_swapRows[_rightSelectIndex].swapPicUrl}',
-                                width: Util.width(35),
-                                height: Util.width(35),
+                                width: MyScreenUtil.width(35),
+                                height: MyScreenUtil.width(35),
                                 fit: BoxFit.cover,
                               ),
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(left: Util.width(15)),
+                            padding:
+                                EdgeInsets.only(left: MyScreenUtil.width(15)),
                             child: Text(
                               _swapRows[_leftSelectIndex].swapTokenType == 2
                                   ? '${_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0)}'
                                   : '${_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
-                              style: Util.textStyle4Num(
-                                context,
+                              style: MyTextUtil.textStyle4Num(
                                 color: Colors.grey[800],
                                 size: 28,
                                 fontWeight: FontWeight.w500,
@@ -1056,7 +1055,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                           Container(
                             child: Text(
                               '  ${_swapRows[_rightSelectIndex].swapTokenName}',
-                              style: Util.textStyle4En(context, 2,
+                              style: MyTextUtil.textStyle4En(2,
                                   color: Colors.grey[800],
                                   spacing: 0.2,
                                   size: 27),
@@ -1083,9 +1082,9 @@ class _SwapSubPageState extends State<SwapSubPage>
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20.0))),
         content: Container(
-          width: Util.width(600),
-          height: Util.height(700),
-          padding: EdgeInsets.only(top: Util.height(10)),
+          width: MyScreenUtil.width(600),
+          height: MyScreenUtil.height(700),
+          padding: EdgeInsets.only(top: MyScreenUtil.height(10)),
           child: ListView(
             children: <Widget>[
               Container(
@@ -1093,14 +1092,15 @@ class _SwapSubPageState extends State<SwapSubPage>
                   children: <Widget>[
                     Container(
                       padding: EdgeInsets.only(
-                          top: Util.height(10), bottom: Util.height(0)),
+                          top: MyScreenUtil.height(10),
+                          bottom: MyScreenUtil.height(0)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Container(
                             child: Text(
                               '${_swapRows[_leftSelectIndex].swapTokenName}/${_swapRows[_leftSelectIndex].baseTokenName}',
-                              style: Util.textStyle4En(context, 2,
+                              style: MyTextUtil.textStyle4En(2,
                                   color: Colors.grey[800],
                                   spacing: 0.0,
                                   size: 30),
@@ -1112,23 +1112,23 @@ class _SwapSubPageState extends State<SwapSubPage>
                     SizedBox(height: 0),
                     Container(
                       padding: EdgeInsets.only(
-                          left: Util.width(20),
-                          top: Util.height(20),
-                          bottom: Util.height(20),
-                          right: Util.width(20)),
+                          left: MyScreenUtil.width(20),
+                          top: MyScreenUtil.height(20),
+                          bottom: MyScreenUtil.height(20),
+                          right: MyScreenUtil.width(20)),
                       child: Column(
                         children: <Widget>[
                           Container(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              '${S.of(context).swapTotalLiquidity}',
-                              style: Util.textStyle(context, 2,
+                              '${MyLocaleKey.swapTotalLiquidity.tr}',
+                              style: MyTextUtil.textStyle(2,
                                   color: Colors.grey[700],
                                   spacing: 0.2,
                                   size: 26),
                             ),
                           ),
-                          SizedBox(height: Util.height(15)),
+                          SizedBox(height: MyScreenUtil.height(15)),
                           Container(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -1137,19 +1137,18 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   child: ClipOval(
                                     child: Image.asset(
                                       'images/usd.png',
-                                      width: Util.width(38),
-                                      height: Util.width(38),
+                                      width: MyScreenUtil.width(38),
+                                      height: MyScreenUtil.width(38),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
                                 Container(
-                                  padding:
-                                      EdgeInsets.only(left: Util.width(15)),
+                                  padding: EdgeInsets.only(
+                                      left: MyScreenUtil.width(15)),
                                   child: Text(
                                     '${_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0)}',
-                                    style: Util.textStyle4Num(
-                                      context,
+                                    style: MyTextUtil.textStyle4Num(
                                       color: Colors.grey[800],
                                       size: 28,
                                       fontWeight: FontWeight.w500,
@@ -1161,7 +1160,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                 Container(
                                   child: Text(
                                     '  USD',
-                                    style: Util.textStyle4En(context, 2,
+                                    style: MyTextUtil.textStyle4En(2,
                                         color: Colors.grey[800],
                                         spacing: 0.0,
                                         size: 27),
@@ -1170,18 +1169,18 @@ class _SwapSubPageState extends State<SwapSubPage>
                               ],
                             ),
                           ),
-                          SizedBox(height: Util.height(20)),
+                          SizedBox(height: MyScreenUtil.height(20)),
                           Container(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              '${S.of(context).swapToken}',
-                              style: Util.textStyle4En(context, 2,
+                              '${MyLocaleKey.swapToken.tr}',
+                              style: MyTextUtil.textStyle4En(2,
                                   color: Colors.grey[700],
                                   spacing: 0.0,
                                   size: 26),
                             ),
                           ),
-                          SizedBox(height: Util.height(15)),
+                          SizedBox(height: MyScreenUtil.height(15)),
                           Container(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -1190,19 +1189,18 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   child: ClipOval(
                                     child: Image.network(
                                       '${_swapRows[_leftSelectIndex].swapPicUrl}',
-                                      width: Util.width(35),
-                                      height: Util.width(35),
+                                      width: MyScreenUtil.width(35),
+                                      height: MyScreenUtil.width(35),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
                                 Container(
-                                  padding:
-                                      EdgeInsets.only(left: Util.width(15)),
+                                  padding: EdgeInsets.only(
+                                      left: MyScreenUtil.width(15)),
                                   child: Text(
                                     '${_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
-                                    style: Util.textStyle4Num(
-                                      context,
+                                    style: MyTextUtil.textStyle4Num(
                                       color: Colors.grey[800],
                                       size: 28,
                                       fontWeight: FontWeight.w500,
@@ -1214,7 +1212,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                 Container(
                                   child: Text(
                                     '  ${_swapRows[_leftSelectIndex].swapTokenName}',
-                                    style: Util.textStyle4En(context, 2,
+                                    style: MyTextUtil.textStyle4En(2,
                                         color: Colors.grey[800],
                                         spacing: 0.0,
                                         size: 27),
@@ -1223,7 +1221,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                               ],
                             ),
                           ),
-                          SizedBox(height: Util.height(15)),
+                          SizedBox(height: MyScreenUtil.height(15)),
                           Container(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -1232,19 +1230,18 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   child: ClipOval(
                                     child: Image.network(
                                       '${_swapRows[_leftSelectIndex].basePicUrl}',
-                                      width: Util.width(35),
-                                      height: Util.width(35),
+                                      width: MyScreenUtil.width(35),
+                                      height: MyScreenUtil.width(35),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
                                 Container(
-                                  padding:
-                                      EdgeInsets.only(left: Util.width(15)),
+                                  padding: EdgeInsets.only(
+                                      left: MyScreenUtil.width(15)),
                                   child: Text(
                                     '${_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
-                                    style: Util.textStyle4Num(
-                                      context,
+                                    style: MyTextUtil.textStyle4Num(
                                       color: Colors.grey[800],
                                       size: 28,
                                       fontWeight: FontWeight.w500,
@@ -1256,7 +1253,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                 Container(
                                   child: Text(
                                     '  ${_swapRows[_leftSelectIndex].baseTokenName}',
-                                    style: Util.textStyle4En(context, 2,
+                                    style: MyTextUtil.textStyle4En(2,
                                         color: Colors.grey[800],
                                         spacing: 0.0,
                                         size: 27),
@@ -1271,20 +1268,21 @@ class _SwapSubPageState extends State<SwapSubPage>
                   ],
                 ),
               ),
-              SizedBox(height: Util.height(20)),
+              SizedBox(height: MyScreenUtil.height(20)),
               Container(
                 child: Column(
                   children: <Widget>[
                     Container(
                       padding: EdgeInsets.only(
-                          top: Util.height(10), bottom: Util.height(0)),
+                          top: MyScreenUtil.height(10),
+                          bottom: MyScreenUtil.height(0)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Container(
                             child: Text(
                               '${_swapRows[_rightSelectIndex].baseTokenName}/${_swapRows[_rightSelectIndex].swapTokenName}',
-                              style: Util.textStyle4En(context, 2,
+                              style: MyTextUtil.textStyle4En(2,
                                   color: Colors.grey[800],
                                   spacing: 0.0,
                                   size: 30),
@@ -1296,23 +1294,23 @@ class _SwapSubPageState extends State<SwapSubPage>
                     SizedBox(height: 0),
                     Container(
                       padding: EdgeInsets.only(
-                          left: Util.width(20),
-                          top: Util.height(20),
-                          bottom: Util.height(20),
-                          right: Util.width(20)),
+                          left: MyScreenUtil.width(20),
+                          top: MyScreenUtil.height(20),
+                          bottom: MyScreenUtil.height(20),
+                          right: MyScreenUtil.width(20)),
                       child: Column(
                         children: <Widget>[
                           Container(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              '${S.of(context).swapTotalLiquidity}',
-                              style: Util.textStyle(context, 2,
+                              '${MyLocaleKey.swapTotalLiquidity.tr}',
+                              style: MyTextUtil.textStyle(2,
                                   color: Colors.grey[700],
                                   spacing: 0.0,
                                   size: 26),
                             ),
                           ),
-                          SizedBox(height: Util.height(15)),
+                          SizedBox(height: MyScreenUtil.height(15)),
                           Container(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -1321,19 +1319,18 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   child: ClipOval(
                                     child: Image.asset(
                                       'images/usd.png',
-                                      width: Util.width(38),
-                                      height: Util.width(38),
+                                      width: MyScreenUtil.width(38),
+                                      height: MyScreenUtil.width(38),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
                                 Container(
-                                  padding:
-                                      EdgeInsets.only(left: Util.width(15)),
+                                  padding: EdgeInsets.only(
+                                      left: MyScreenUtil.width(15)),
                                   child: Text(
                                     '${_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0)}',
-                                    style: Util.textStyle4Num(
-                                      context,
+                                    style: MyTextUtil.textStyle4Num(
                                       color: Colors.grey[800],
                                       size: 28,
                                       fontWeight: FontWeight.w500,
@@ -1345,7 +1342,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                 Container(
                                   child: Text(
                                     '  USD',
-                                    style: Util.textStyle4En(context, 2,
+                                    style: MyTextUtil.textStyle4En(2,
                                         color: Colors.grey[800],
                                         spacing: 0.0,
                                         size: 27),
@@ -1354,18 +1351,18 @@ class _SwapSubPageState extends State<SwapSubPage>
                               ],
                             ),
                           ),
-                          SizedBox(height: Util.height(20)),
+                          SizedBox(height: MyScreenUtil.height(20)),
                           Container(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              '${S.of(context).swapToken}',
-                              style: Util.textStyle4En(context, 2,
+                              '${MyLocaleKey.swapToken.tr}',
+                              style: MyTextUtil.textStyle4En(2,
                                   color: Colors.grey[700],
                                   spacing: 0.0,
                                   size: 26),
                             ),
                           ),
-                          SizedBox(height: Util.height(15)),
+                          SizedBox(height: MyScreenUtil.height(15)),
                           Container(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -1374,19 +1371,18 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   child: ClipOval(
                                     child: Image.network(
                                       '${_swapRows[_rightSelectIndex].basePicUrl}',
-                                      width: Util.width(35),
-                                      height: Util.width(35),
+                                      width: MyScreenUtil.width(35),
+                                      height: MyScreenUtil.width(35),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
                                 Container(
-                                  padding:
-                                      EdgeInsets.only(left: Util.width(15)),
+                                  padding: EdgeInsets.only(
+                                      left: MyScreenUtil.width(15)),
                                   child: Text(
                                     '${_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
-                                    style: Util.textStyle4Num(
-                                      context,
+                                    style: MyTextUtil.textStyle4Num(
                                       color: Colors.grey[800],
                                       size: 28,
                                       fontWeight: FontWeight.w500,
@@ -1398,7 +1394,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                 Container(
                                   child: Text(
                                     '  ${_swapRows[_rightSelectIndex].baseTokenName}',
-                                    style: Util.textStyle4En(context, 2,
+                                    style: MyTextUtil.textStyle4En(2,
                                         color: Colors.grey[800],
                                         spacing: 0.0,
                                         size: 27),
@@ -1407,7 +1403,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                               ],
                             ),
                           ),
-                          SizedBox(height: Util.height(15)),
+                          SizedBox(height: MyScreenUtil.height(15)),
                           Container(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -1416,19 +1412,18 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   child: ClipOval(
                                     child: Image.network(
                                       '${_swapRows[_rightSelectIndex].swapPicUrl}',
-                                      width: Util.width(35),
-                                      height: Util.width(35),
+                                      width: MyScreenUtil.width(35),
+                                      height: MyScreenUtil.width(35),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
                                 Container(
-                                  padding:
-                                      EdgeInsets.only(left: Util.width(15)),
+                                  padding: EdgeInsets.only(
+                                      left: MyScreenUtil.width(15)),
                                   child: Text(
                                     '${_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
-                                    style: Util.textStyle4Num(
-                                      context,
+                                    style: MyTextUtil.textStyle4Num(
                                       color: Colors.grey[800],
                                       size: 28,
                                       fontWeight: FontWeight.w500,
@@ -1440,7 +1435,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                 Container(
                                   child: Text(
                                     '  ${_swapRows[_rightSelectIndex].swapTokenName}',
-                                    style: Util.textStyle4En(context, 2,
+                                    style: MyTextUtil.textStyle4En(2,
                                         color: Colors.grey[800],
                                         spacing: 0.0,
                                         size: 27),
@@ -1466,26 +1461,24 @@ class _SwapSubPageState extends State<SwapSubPage>
     return Container(
       child: Align(
         child: SizedBox(
-          width: _langType ? Util.width(320) : Util.width(350),
+          width: _langType ? MyScreenUtil.width(320) : MyScreenUtil.width(350),
           child: RaisedButton(
             child: Container(
               padding: EdgeInsets.all(12),
               child: !_loadFlag
                   ? Text(
                       _swapFlag
-                          ? '${S.of(context).swapSwap}'
-                          : '${S.of(context).swapTokenNotEnough}',
-                      style: Util.textStyle(context, 1,
+                          ? '${MyLocaleKey.swapSwap.tr}'
+                          : '${MyLocaleKey.swapTokenNotEnough.tr}',
+                      style: MyTextUtil.textStyle(1,
                           color: Colors.white, spacing: 0.6, size: 28),
                     )
                   : Container(
                       child: CupertinoActivityIndicator(),
                     ),
             ),
-            color: Util.themeColor,
+            color: MyColorUtil.themeColor,
             onPressed: () async {
-              HomeProvider provider =
-                  Provider.of<HomeProvider>(context, listen: false);
               try {
                 if (_account != '' && _flag1 && _flag2 && _swapFlag) {
                   double value1 = double.parse(_leftSwapValue);
@@ -1494,11 +1487,11 @@ class _SwapSubPageState extends State<SwapSubPage>
                     setState(() {
                       _loadFlag = true;
                     });
-                    String tronGrpcIP = provider.tronGrpcIP;
+                    String tronGrpcIP = GlobalService.to.tronGrpcIP;
                     String userAddress = _account;
-                    String flashSwapAddress = provider.swapAddress;
+                    String flashSwapAddress = GlobalService.to.swapAddress;
 
-                    WalletEntity wallet = provider.selectWalletEntity;
+                    WalletEntity wallet = GlobalService.to.selectWalletEntity;
                     String privateKey = '';
                     if (wallet != null && wallet.privateKey != null) {
                       privateKey = wallet.privateKey;
@@ -1524,7 +1517,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                       print('allowanceAmount: $allowanceAmount');
                       if (allowanceAmount == '') {
                         print('allowanceAmount null');
-                        Util.showToast('${S.of(context).swapTip1}');
+                        MyCommonUtil.showToast('${MyLocaleKey.swapTip1.tr}');
                         return;
                       }
                       double allowanceValue =
@@ -1543,7 +1536,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                             flashSwapAddress);
                         print('approveFlag:$approveFlag');
                         if (!approveFlag) {
-                          Util.showToast('${S.of(context).swapTip1}');
+                          MyCommonUtil.showToast('${MyLocaleKey.swapTip1.tr}');
                           return;
                         }
                       }
@@ -1563,9 +1556,10 @@ class _SwapSubPageState extends State<SwapSubPage>
                             tokensSold);
                         print('result: $result');
                         if (result) {
-                          Util.showToast('${S.of(context).swapSuccess}');
+                          MyCommonUtil.showToast(
+                              '${MyLocaleKey.swapSuccess.tr}');
                         } else {
-                          Util.showToast('${S.of(context).swapTip1}');
+                          MyCommonUtil.showToast('${MyLocaleKey.swapTip1.tr}');
                         }
                         return;
                       } else if (_account != '' && baseTokenType == 2) {
@@ -1583,9 +1577,10 @@ class _SwapSubPageState extends State<SwapSubPage>
                             targetTokenAddress);
                         print('result: $result');
                         if (result) {
-                          Util.showToast('${S.of(context).swapSuccess}');
+                          MyCommonUtil.showToast(
+                              '${MyLocaleKey.swapSuccess.tr}');
                         } else {
-                          Util.showToast('${S.of(context).swapTip1}');
+                          MyCommonUtil.showToast('${MyLocaleKey.swapTip1.tr}');
                         }
                         return;
                       }
@@ -1609,9 +1604,9 @@ class _SwapSubPageState extends State<SwapSubPage>
                           trxSold);
                       print('result: $result');
                       if (result) {
-                        Util.showToast('${S.of(context).swapSuccess}');
+                        MyCommonUtil.showToast('${MyLocaleKey.swapSuccess.tr}');
                       } else {
-                        Util.showToast('${S.of(context).swapTip1}');
+                        MyCommonUtil.showToast('${MyLocaleKey.swapTip1.tr}');
                       }
                       return;
                     }
@@ -1627,35 +1622,37 @@ class _SwapSubPageState extends State<SwapSubPage>
                   _rightSwapAmount = '';
                   _rightSwapValue = '';
                 });
-                List<TokenRows> tokenList = provider.tokenList;
+                List<TokenRows> tokenList = GlobalService.to.tokenList;
                 for (int i = 0; i < 5; i++) {
                   await Future.delayed(Duration(milliseconds: 1000), () {
                     if (_swapRows[_leftSelectIndex].swapTokenType == 1 &&
                         tokenList.length > _leftSelectIndex) {
-                      provider.getTrxBalance4Async(
+                      GlobalService.to.getTrxBalance4Async(
                           _account, tokenList[_leftSelectIndex]);
                     }
                     if (_swapRows[_leftSelectIndex].swapTokenType == 2 &&
                         tokenList.length > _leftSelectIndex) {
-                      provider.getTrc20Balance4Async(
+                      GlobalService.to.getTrc20Balance4Async(
                           _account, tokenList[_leftSelectIndex]);
                     }
                     if (_swapRows[_rightSelectIndex].swapTokenType == 1 &&
                         tokenList.length > _rightSelectIndex) {
-                      provider.getTrxBalance4Async(
+                      GlobalService.to.getTrxBalance4Async(
                           _account, tokenList[_rightSelectIndex]);
                     }
                     if (_swapRows[_rightSelectIndex].swapTokenType == 2 &&
                         tokenList.length > _rightSelectIndex) {
-                      provider.getTrc20Balance4Async(
+                      GlobalService.to.getTrc20Balance4Async(
                           _account, tokenList[_rightSelectIndex]);
                     }
-                    provider.getTrxBalance4Async(_account, tokenList[0]);
+                    GlobalService.to
+                        .getTrxBalance4Async(_account, tokenList[0]);
                   });
                 }
               }
             },
-            shape: StadiumBorder(side: BorderSide(color: Util.themeColor)),
+            shape:
+                StadiumBorder(side: BorderSide(color: MyColorUtil.themeColor)),
           ),
         ),
       ),
@@ -1675,7 +1672,7 @@ class _SwapSubPageState extends State<SwapSubPage>
         )),
         builder: (BuildContext context) {
           return Container(
-            height: Util.height(800),
+            height: MyScreenUtil.height(800),
             child: Column(
               children: <Widget>[
                 _selectTokenTitleWidget(context),
@@ -1701,37 +1698,37 @@ class _SwapSubPageState extends State<SwapSubPage>
   Widget _selectTokenTitleWidget(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(
-          left: Util.width(40),
-          right: Util.width(40),
-          top: Util.height(20),
-          bottom: Util.height(20)),
+          left: MyScreenUtil.width(40),
+          right: MyScreenUtil.width(40),
+          top: MyScreenUtil.height(20),
+          bottom: MyScreenUtil.height(20)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
-            width: Util.width(200),
+            width: MyScreenUtil.width(200),
             child: Text(
-              '${S.of(context).swapName}',
-              style: Util.textStyle(context, 2,
+              '${MyLocaleKey.swapName.tr}',
+              style: MyTextUtil.textStyle(2,
                   color: Colors.grey[600], spacing: 0.2, size: 24),
             ),
           ),
           Container(
-            width: Util.width(250),
+            width: MyScreenUtil.width(250),
             alignment: Alignment.centerLeft,
             child: Text(
-              '${S.of(context).swapMarketPrice}（\$）',
-              style: Util.textStyle(context, 2,
+              '${MyLocaleKey.swapMarketPrice.tr}（\$）',
+              style: MyTextUtil.textStyle(2,
                   color: Colors.grey[600], spacing: 0.2, size: 24),
             ),
           ),
           Container(
-            width: Util.width(140),
+            width: MyScreenUtil.width(140),
             alignment: Alignment.centerRight,
-            padding: EdgeInsets.only(right: Util.width(3)),
+            padding: EdgeInsets.only(right: MyScreenUtil.width(3)),
             child: Text(
-              '${S.of(context).swapChange}',
-              style: Util.textStyle(context, 2,
+              '${MyLocaleKey.swapChange.tr}',
+              style: MyTextUtil.textStyle(2,
                   color: Colors.grey[600], spacing: 0.2, size: 24),
             ),
           ),
@@ -1759,8 +1756,7 @@ class _SwapSubPageState extends State<SwapSubPage>
           _reloadSub(index, _rightSelectIndex);
           setState(() {});
           Navigator.pop(context);
-          await Provider.of<HomeProvider>(context, listen: false)
-              .changeSwapLeftIndex(index);
+          await GlobalService.to.changeSwapLeftIndex(index);
         } else if (type == 2 && index != _leftSelectIndex) {
           _leftSwapAmount = '';
           _leftSwapValue = '';
@@ -1769,27 +1765,26 @@ class _SwapSubPageState extends State<SwapSubPage>
           _reloadSub(_leftSelectIndex, index);
           setState(() {});
           Navigator.pop(context);
-          await Provider.of<HomeProvider>(context, listen: false)
-              .changeSwapRightIndex(index);
+          await GlobalService.to.changeSwapRightIndex(index);
         }
       },
       child: Container(
         padding: EdgeInsets.only(
-            left: Util.width(40),
-            right: Util.width(40),
-            top: Util.height(20),
-            bottom: Util.height(20)),
+            left: MyScreenUtil.width(40),
+            right: MyScreenUtil.width(40),
+            top: MyScreenUtil.height(20),
+            bottom: MyScreenUtil.height(20)),
         decoration: BoxDecoration(
-          color: flag ? Util.themeColor.withOpacity(0.10) : null,
+          color: flag ? MyColorUtil.themeColor.withOpacity(0.10) : null,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
-              width: Util.width(200),
+              width: MyScreenUtil.width(200),
               child: Text(
                 '${item.swapTokenName}',
-                style: Util.textStyle4En(context, 2,
+                style: MyTextUtil.textStyle4En(2,
                     color: type == 1
                         ? (index != _rightSelectIndex
                             ? Colors.grey[850]
@@ -1802,11 +1797,11 @@ class _SwapSubPageState extends State<SwapSubPage>
               ),
             ),
             Container(
-              width: Util.width(250),
+              width: MyScreenUtil.width(250),
               alignment: Alignment.centerLeft,
               child: Text(
                 '${item.swapTokenPrice2}',
-                style: Util.textStyle4Num(context,
+                style: MyTextUtil.textStyle4Num(
                     color: type == 1
                         ? (index != _rightSelectIndex
                             ? Colors.grey[850]
@@ -1820,12 +1815,12 @@ class _SwapSubPageState extends State<SwapSubPage>
               ),
             ),
             Container(
-              width: Util.width(140),
+              width: MyScreenUtil.width(140),
               padding: EdgeInsets.only(
-                  top: Util.height(14),
-                  bottom: Util.height(14),
-                  left: Util.width(13),
-                  right: Util.width(13)),
+                  top: MyScreenUtil.height(14),
+                  bottom: MyScreenUtil.height(14),
+                  left: MyScreenUtil.width(13),
+                  right: MyScreenUtil.width(13)),
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
@@ -1835,7 +1830,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                 change >= 0
                     ? '+${change.toStringAsFixed(2)}%'
                     : '${change.toStringAsFixed(2)}%',
-                style: Util.textStyle4Num(context,
+                style: MyTextUtil.textStyle4Num(
                     color: Colors.white,
                     spacing: 0.0,
                     size: 24,
@@ -1859,8 +1854,7 @@ class _SwapSubPageState extends State<SwapSubPage>
   _reloadSwapData() async {
     _getSwapData();
     _timer1 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
-      bool backgroundFlag =
-          Provider.of<HomeProvider>(context, listen: false).backgroundFlag;
+      bool backgroundFlag = GlobalService.to.backgroundFlag;
       if (!backgroundFlag && _reloadSwapDataFlag) {
         _getSwapData();
       }
@@ -1870,8 +1864,8 @@ class _SwapSubPageState extends State<SwapSubPage>
   void _getSwapData() async {
     _reloadSwapDataFlag = false;
     try {
-      String url = servicePath['swapQuery'];
-      await requestGet(url).then((value) {
+      String url = CommonConfig.servicePath[CommonConfig.swapQueryUrl];
+      await HttpUtil.get(url).then((value) {
         var respData = Map<String, dynamic>.from(value);
         SwapRespModel respModel = SwapRespModel.fromJson(respData);
         if (respModel != null && respModel.code == 0) {

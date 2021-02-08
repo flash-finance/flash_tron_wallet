@@ -1,10 +1,11 @@
-import 'package:flash_tron_wallet/common/common_util.dart';
-import 'package:flash_tron_wallet/generated/l10n.dart';
+import 'package:flash_tron_wallet/common/util/screen_util.dart';
+import 'package:flash_tron_wallet/common/util/text_util.dart';
+import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
+import 'package:flash_tron_wallet/locale/app_Locale.dart';
 import 'package:flash_tron_wallet/page/trade/market_page.dart';
 import 'package:flash_tron_wallet/page/trade/swap_page.dart';
-import 'package:flash_tron_wallet/provider/index_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 class TradePage extends StatefulWidget {
   @override
@@ -13,7 +14,6 @@ class TradePage extends StatefulWidget {
 
 class _TradePageState extends State<TradePage>
     with SingleTickerProviderStateMixin {
-  bool _langType = true;
   TabController _tabController;
 
   @override
@@ -27,17 +27,8 @@ class _TradePageState extends State<TradePage>
 
   @override
   Widget build(BuildContext context) {
-    _langType = Provider.of<IndexProvider>(context, listen: true).langType;
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: PreferredSize(
-        child: AppBar(
-          backgroundColor: Colors.white,
-          brightness: Brightness.light,
-          elevation: 0,
-        ),
-        preferredSize: Size.fromHeight(Util.height(0)),
-      ),
+    return MyScaffold(
+      hasAppBar: false,
       body: _bodyWidget(context),
     );
   }
@@ -50,26 +41,28 @@ class _TradePageState extends State<TradePage>
           children: <Widget>[
             Container(
               padding: EdgeInsets.only(
-                  top: Util.height(10),
-                  left: Util.width(150),
-                  right: Util.width(150),
-                  bottom: Util.height(10)),
+                top: MyScreenUtil.height(10),
+                left: MyScreenUtil.width(150),
+                right: MyScreenUtil.width(150),
+                bottom: MyScreenUtil.height(10),
+              ),
               decoration: BoxDecoration(
                 color: Colors.white,
               ),
               child: TabBar(
                 controller: _tabController,
                 isScrollable: false,
-                indicatorPadding: EdgeInsets.only(bottom: Util.width(15)),
+                indicatorPadding:
+                    EdgeInsets.only(bottom: MyScreenUtil.width(15)),
                 indicatorColor: Colors.grey[850],
                 indicatorSize: TabBarIndicatorSize.label,
-                labelStyle: Util.textStyle(context, 2, spacing: 0.2, size: 32),
+                labelStyle: MyTextUtil.textStyle(2, spacing: 0.2, size: 32),
                 labelColor: Colors.grey[850],
                 unselectedLabelColor: Colors.grey[600],
                 indicatorWeight: 2.0,
                 tabs: <Tab>[
-                  Tab(text: '${S.of(context).swapMarket}'),
-                  Tab(text: '${S.of(context).swapSwap}'),
+                  Tab(text: '${MyLocaleKey.swapMarket.tr}'),
+                  Tab(text: '${MyLocaleKey.swapSwap.tr}'),
                 ],
               ),
             ),

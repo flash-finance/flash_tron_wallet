@@ -2,26 +2,23 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:bs58check/bs58check.dart';
+import 'package:ethereum_util/src/abi.dart' as abi;
 import 'package:flash_tron_wallet/entity/tron/abi_entity.dart';
 import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
 import 'package:flash_tron_wallet/model/tron_info_model.dart';
-import 'package:flash_tron_wallet/provider/home_provider.dart';
+import 'package:flash_tron_wallet/provider/global_service.dart';
 import 'package:flash_tron_wallet/tron/api/api.pbgrpc.dart';
 import 'package:flash_tron_wallet/tron/core/Contract.pb.dart';
 import 'package:flash_tron_wallet/tron/core/Tron.pb.dart';
 import 'package:flash_tron_wallet/tron/grpc/grpc_client.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:provider/provider.dart';
 import 'package:web3dart/crypto.dart';
-
-import 'package:ethereum_util/src/abi.dart' as abi;
 
 class TronAsset {
   Future<bool> getAsset(BuildContext context, String userAddress,
       List<TokenRows> tokenList) async {
     //print('TronAsset getAsset');
-    String tronGrpcIP =
-        Provider.of<HomeProvider>(context, listen: false).tronGrpcIP;
+    String tronGrpcIP = GlobalService.to.tronGrpcIP;
     List<AssetEntity> list = [];
     final channel = ClientChannelManager.getChannel(tronGrpcIP);
     final stub = WalletClient(channel);
@@ -41,7 +38,7 @@ class TronAsset {
           list.add(trc20Balance);
         }
       }
-      Provider.of<HomeProvider>(context, listen: false).updateAssetList(list);
+      GlobalService.to.updateAssetList(list);
       return true;
     } catch (e) {
       print(e);

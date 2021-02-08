@@ -1,19 +1,20 @@
 import 'dart:async';
 
-import 'package:flash_tron_wallet/common/common_util.dart';
+import 'package:flash_tron_wallet/common/util/color_util.dart';
+import 'package:flash_tron_wallet/common/util/common_util.dart';
+import 'package:flash_tron_wallet/common/util/screen_util.dart';
+import 'package:flash_tron_wallet/common/util/text_util.dart';
+import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
 import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
-import 'package:flash_tron_wallet/generated/l10n.dart';
-import 'package:flash_tron_wallet/provider/home_provider.dart';
-import 'package:flash_tron_wallet/provider/index_provider.dart';
-import 'package:flash_tron_wallet/router/application.dart';
-import 'package:flash_tron_wallet/router/router.dart';
-import 'package:fluro/fluro.dart';
+import 'package:flash_tron_wallet/locale/app_Locale.dart';
+import 'package:flash_tron_wallet/provider/global_service.dart';
+import 'package:flash_tron_wallet/route/app_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 import 'package:scan/scan.dart';
 
 class AssetPage extends StatefulWidget {
@@ -38,19 +39,16 @@ class _AssetPageState extends State<AssetPage>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    //print('didChangeAppLifecycleState:${state.toString()}');
     switch (state) {
       case AppLifecycleState.inactive:
         break;
       case AppLifecycleState.resumed:
-        Provider.of<HomeProvider>(context, listen: false)
-            .changeBackgroundFlag(false);
+        GlobalService.to.changeBackgroundFlag(false);
         // 无法关闭 会重新唤醒?
         controller.pause();
         break;
       case AppLifecycleState.paused:
-        Provider.of<HomeProvider>(context, listen: false)
-            .changeBackgroundFlag(true);
+        GlobalService.to.changeBackgroundFlag(true);
         controller.pause();
         break;
       default:
@@ -72,20 +70,10 @@ class _AssetPageState extends State<AssetPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    _langType = Provider.of<IndexProvider>(context, listen: true).langType;
-    WalletEntity wallet =
-        Provider.of<HomeProvider>(context, listen: true).selectWalletEntity;
+    WalletEntity wallet = GlobalService.to.selectWalletEntity;
     if (wallet != null && wallet.tronAddress != null) {
-      return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: PreferredSize(
-          child: AppBar(
-            backgroundColor: Colors.white,
-            brightness: Brightness.light,
-            elevation: 0,
-          ),
-          preferredSize: Size.fromHeight(Util.height(0)),
-        ),
+      return MyScaffold(
+        hasAppBar: false,
         body: _logInWidget(context),
       );
     } else {
@@ -94,11 +82,14 @@ class _AssetPageState extends State<AssetPage>
         child: Column(
           children: <Widget>[
             Container(
-              width: Util.width(750),
-              height: Util.height(500),
+              width: MyScreenUtil.width(750),
+              height: MyScreenUtil.height(500),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                color: Util.themeColor,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(25),
+                  bottomRight: Radius.circular(25),
+                ),
+                color: MyColorUtil.themeColor,
               ),
               child: Scaffold(
                 backgroundColor: Colors.transparent,
@@ -111,7 +102,7 @@ class _AssetPageState extends State<AssetPage>
             ),
             Expanded(
               child: Container(
-                margin: EdgeInsets.only(top: Util.height(0)),
+                margin: EdgeInsets.only(top: MyScreenUtil.height(0)),
                 child: _logOutBodyWidget(context),
               ),
             ),
@@ -123,11 +114,12 @@ class _AssetPageState extends State<AssetPage>
 
   Widget _logInWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
+      margin: EdgeInsets.only(
+          left: MyScreenUtil.width(30), right: MyScreenUtil.width(30)),
       child: Column(
         children: <Widget>[
           _headWidget(context),
-          SizedBox(height: Util.height(15)),
+          SizedBox(height: MyScreenUtil.height(15)),
           Expanded(
             child: _bodyWidget(context),
           ),
@@ -137,12 +129,10 @@ class _AssetPageState extends State<AssetPage>
   }
 
   Widget _headWidget(BuildContext context) {
-    WalletEntity item =
-        Provider.of<HomeProvider>(context, listen: true).selectWalletEntity;
-    List<WalletEntity> walletList =
-        Provider.of<HomeProvider>(context, listen: true).walletList;
+    WalletEntity item = GlobalService.to.selectWalletEntity;
+    List<WalletEntity> walletList = GlobalService.to.walletList;
     return Container(
-      margin: EdgeInsets.only(top: Util.height(20)),
+      margin: EdgeInsets.only(top: MyScreenUtil.height(20)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -152,32 +142,32 @@ class _AssetPageState extends State<AssetPage>
             },
             child: Container(
               child: Chip(
-                padding:
-                    EdgeInsets.only(left: Util.width(8), right: Util.width(0)),
-                backgroundColor: Util.themeColor,
+                padding: EdgeInsets.only(
+                    left: MyScreenUtil.width(8), right: MyScreenUtil.width(0)),
+                backgroundColor: MyColorUtil.themeColor,
                 label: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
                       child: Text(
                         '${item.name}',
-                        style: Util.textStyle(context, 1,
+                        style: MyTextUtil.textStyle(1,
                             color: Colors.white, spacing: 0.2, size: 23),
                       ),
                     ),
-                    SizedBox(width: Util.width(5)),
+                    SizedBox(width: MyScreenUtil.width(5)),
                     Container(
                       alignment: Alignment.center,
-                      height: Util.height(36),
-                      width: Util.height(36),
+                      height: MyScreenUtil.height(36),
+                      width: MyScreenUtil.height(36),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(18.0),
                       ),
                       child: Icon(
                         Icons.arrow_forward_ios,
-                        size: Util.sp(22),
-                        color: Util.themeColor,
+                        size: MyScreenUtil.sp(22),
+                        color: MyColorUtil.themeColor,
                       ),
                     ),
                   ],
@@ -190,31 +180,31 @@ class _AssetPageState extends State<AssetPage>
               children: <Widget>[
                 InkWell(
                   onTap: () {
-                    Application.router.navigateTo(
-                        context, Routes.assetAddWallet,
-                        transition: TransitionType.cupertino);
+                    Get.toNamed(AppRoute.assetAddWallet);
                   },
                   child: Container(
                     child: Icon(
                       IconData(0xe7b8, fontFamily: 'ICON'),
-                      size: Util.sp(55),
+                      size: MyScreenUtil.sp(55),
                       color: Colors.grey[850],
                     ),
                   ),
                 ),
-                SizedBox(width: Util.width(30)),
+                SizedBox(width: MyScreenUtil.width(30)),
                 InkWell(
                   onTap: () {
-                    Provider.of<HomeProvider>(context, listen: false)
+                    /*Provider.of<HomeProvider>(context, listen: false)
                         .changeSelectAssetFilterIndex(0);
                     Application.router.navigateTo(
                         context, Routes.assetQrScan + '/1',
-                        transition: TransitionType.fadeIn);
+                        transition: TransitionType.fadeIn);*/
+                    GlobalService.to.changeSelectAssetFilterIndex(0);
+                    Get.toNamed(AppRoute.assetQrScan + '/1');
                   },
                   child: Container(
                     child: Icon(
                       IconData(0xe606, fontFamily: 'ICON'),
-                      size: Util.sp(60),
+                      size: MyScreenUtil.sp(60),
                       color: Colors.grey[850],
                     ),
                   ),
@@ -238,9 +228,9 @@ class _AssetPageState extends State<AssetPage>
           child: Column(
             children: <Widget>[
               _cardWidget(context),
-              SizedBox(height: Util.height(30)),
+              SizedBox(height: MyScreenUtil.height(30)),
               _assetTitleWidget(context),
-              SizedBox(height: Util.height(5)),
+              SizedBox(height: MyScreenUtil.height(5)),
               _assetDataWidget(context),
             ],
           ),
@@ -253,13 +243,9 @@ class _AssetPageState extends State<AssetPage>
   }
 
   Widget _cardWidget(BuildContext context) {
-    List<AssetEntity> assetList =
-        Provider.of<HomeProvider>(context, listen: true).assetList;
+    List<AssetEntity> assetList = GlobalService.to.assetList;
     double totalAssetUsd = 0.0;
-
-    int selectIndex =
-        Provider.of<HomeProvider>(context, listen: true).selectWalletIndex;
-
+    int selectIndex = GlobalService.to.selectWalletIndex;
     if (assetList != null && assetList.length > 0) {
       for (AssetEntity item in assetList) {
         totalAssetUsd += item.usd;
@@ -267,13 +253,17 @@ class _AssetPageState extends State<AssetPage>
     }
     return InkWell(
       onTap: () {
-        Application.router.navigateTo(
+        /*Application.router.navigateTo(
             context, Routes.assetWalletDetail + '/$selectIndex',
-            transition: TransitionType.cupertino);
+            transition: TransitionType.cupertino);*/
+
+        Get.toNamed(AppRoute.assetWalletDetail + '/$selectIndex');
       },
       child: Container(
         padding: EdgeInsets.only(
-            left: Util.width(40), top: Util.height(30), right: Util.width(40)),
+            left: MyScreenUtil.width(40),
+            top: MyScreenUtil.height(30),
+            right: MyScreenUtil.width(40)),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
           image: DecorationImage(
@@ -289,8 +279,9 @@ class _AssetPageState extends State<AssetPage>
                 children: <Widget>[
                   Container(
                     child: Text(
-                      '${S.of(context).assetMyAssets} （\$）',
-                      style: Util.textStyle(context, 1,
+                      //'${S.of(context).assetMyAssets} （\$）',
+                      '${MyLocaleKey.assetMyAssets.tr} （\$）',
+                      style: MyTextUtil.textStyle(1,
                           color: Colors.white, spacing: 0.5, size: 25),
                     ),
                   ),
@@ -299,21 +290,23 @@ class _AssetPageState extends State<AssetPage>
                       children: <Widget>[
                         Container(
                           child: Text(
-                            '${S.of(context).assetDetails}',
-                            style: Util.textStyle(context, 1,
+                            '${MyLocaleKey.assetDetails.tr}',
+                            style: MyTextUtil.textStyle(1,
                                 color: Colors.white, spacing: 0.5, size: 25),
                           ),
                         ),
-                        SizedBox(width: Util.width(10)),
+                        SizedBox(width: MyScreenUtil.width(10)),
                         Container(
                           padding: EdgeInsets.only(
-                              top:
-                                  _langType ? Util.height(0) : Util.height(1.5),
-                              bottom:
-                                  _langType ? Util.height(1) : Util.height(0)),
+                              top: _langType
+                                  ? MyScreenUtil.height(0)
+                                  : MyScreenUtil.height(1.5),
+                              bottom: _langType
+                                  ? MyScreenUtil.height(1)
+                                  : MyScreenUtil.height(0)),
                           child: Icon(
                             Icons.arrow_forward_ios,
-                            size: Util.sp(23),
+                            size: MyScreenUtil.sp(23),
                             color: Colors.white,
                           ),
                         ),
@@ -323,20 +316,22 @@ class _AssetPageState extends State<AssetPage>
                 ],
               ),
             ),
-            SizedBox(height: Util.height(10)),
+            SizedBox(height: MyScreenUtil.height(10)),
             InkWell(
               onTap: () {
-                Application.router.navigateTo(
+                /* Application.router.navigateTo(
                     context, Routes.assetWalletDetail + '/$selectIndex',
-                    transition: TransitionType.cupertino);
+                    transition: TransitionType.cupertino);*/
+                Get.toNamed(AppRoute.assetWalletDetail + '/$selectIndex');
               },
               child: Container(
                 alignment: Alignment.centerLeft,
                 padding: EdgeInsets.only(
-                    top: Util.height(20), bottom: Util.height(20)),
+                    top: MyScreenUtil.height(20),
+                    bottom: MyScreenUtil.height(20)),
                 child: Text(
-                  '${Util.formatNum(totalAssetUsd, 2)}',
-                  style: Util.textStyle4Num(context,
+                  '${MyCommonUtil.formatNum(totalAssetUsd, 2)}',
+                  style: MyTextUtil.textStyle4Num(
                       color: Colors.white,
                       spacing: 0.2,
                       size: 45,
@@ -344,36 +339,39 @@ class _AssetPageState extends State<AssetPage>
                 ),
               ),
             ),
-            SizedBox(height: Util.height(10)),
+            SizedBox(height: MyScreenUtil.height(10)),
             Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   InkWell(
                     onTap: () {
-                      Provider.of<HomeProvider>(context, listen: false)
+                      /*Provider.of<HomeProvider>(context, listen: false)
                           .changeSelectAssetFilterIndex(0);
                       String value = '';
                       Application.router.navigateTo(
                           context, Routes.assetSendToken + '/$value',
-                          transition: TransitionType.cupertino);
+                          transition: TransitionType.cupertino);*/
+                      GlobalService.to.changeSelectAssetFilterIndex(0);
+                      String value = '';
+                      Get.toNamed(AppRoute.assetSendToken + '/$value');
                     },
                     child: Container(
-                      padding: EdgeInsets.only(bottom: Util.height(20)),
+                      padding: EdgeInsets.only(bottom: MyScreenUtil.height(20)),
                       child: Row(
                         children: <Widget>[
                           Container(
                             child: Icon(
                               Icons.transit_enterexit_sharp,
-                              size: Util.sp(35),
+                              size: MyScreenUtil.sp(35),
                               color: Colors.white,
                             ),
                           ),
-                          SizedBox(width: Util.width(10)),
+                          SizedBox(width: MyScreenUtil.width(10)),
                           Container(
                             child: Text(
-                              '${S.of(context).assetTransfer}',
-                              style: Util.textStyle(context, 1,
+                              '${MyLocaleKey.assetTransfer}',
+                              style: MyTextUtil.textStyle(1,
                                   color: Colors.white, spacing: 0.6, size: 25),
                             ),
                           ),
@@ -383,27 +381,29 @@ class _AssetPageState extends State<AssetPage>
                   ),
                   InkWell(
                     onTap: () {
-                      Application.router.navigateTo(
+                      /*Application.router.navigateTo(
                           context, Routes.assetReceiveToken,
-                          transition: TransitionType.cupertino);
+                          transition: TransitionType.cupertino);*/
+                      Get.toNamed(AppRoute.assetReceiveToken);
                     },
                     child: Container(
-                      padding: EdgeInsets.only(bottom: Util.height(20)),
+                      padding: EdgeInsets.only(bottom: MyScreenUtil.height(20)),
                       child: Row(
                         children: <Widget>[
                           Container(
-                            padding: EdgeInsets.only(top: Util.height(2.5)),
+                            padding:
+                                EdgeInsets.only(top: MyScreenUtil.height(2.5)),
                             child: Icon(
                               Icons.download_sharp,
-                              size: Util.sp(33),
+                              size: MyScreenUtil.sp(33),
                               color: Colors.white,
                             ),
                           ),
-                          SizedBox(width: Util.width(10)),
+                          SizedBox(width: MyScreenUtil.width(10)),
                           Container(
                             child: Text(
-                              '${S.of(context).assetReceive}',
-                              style: Util.textStyle(context, 1,
+                              '${MyLocaleKey.assetReceive}',
+                              style: MyTextUtil.textStyle(1,
                                   color: Colors.white, spacing: 0.6, size: 25),
                             ),
                           ),
@@ -413,25 +413,26 @@ class _AssetPageState extends State<AssetPage>
                   ),
                   InkWell(
                     onTap: () {
-                      Provider.of<IndexProvider>(context, listen: false)
-                          .changeCurrentIndex(1);
+                      /*Provider.of<IndexProvider>(context, listen: false)
+                          .changeCurrentIndex(1);*/
+                      GlobalService.to.changeCurrentIndex(1);
                     },
                     child: Container(
-                      padding: EdgeInsets.only(bottom: Util.height(20)),
+                      padding: EdgeInsets.only(bottom: MyScreenUtil.height(20)),
                       child: Row(
                         children: <Widget>[
                           Container(
                             child: Icon(
                               Icons.sync_rounded,
-                              size: Util.sp(33),
+                              size: MyScreenUtil.sp(33),
                               color: Colors.white,
                             ),
                           ),
-                          SizedBox(width: Util.width(10)),
+                          SizedBox(width: MyScreenUtil.width(10)),
                           Container(
                             child: Text(
-                              '${S.of(context).assetTrade}',
-                              style: Util.textStyle(context, 1,
+                              '${MyLocaleKey.assetTrade}',
+                              style: MyTextUtil.textStyle(1,
                                   color: Colors.white, spacing: 0.6, size: 25),
                             ),
                           ),
@@ -450,21 +451,22 @@ class _AssetPageState extends State<AssetPage>
 
   Widget _assetTitleWidget(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(left: Util.width(10), right: Util.width(10)),
+        margin: EdgeInsets.only(
+            left: MyScreenUtil.width(10), right: MyScreenUtil.width(10)),
         alignment: Alignment.centerLeft,
         child: Text(
-          '${S.of(context).assetAssets}',
-          style: Util.textStyle(context, 2,
+          '${MyLocaleKey.assetAssets}',
+          style: MyTextUtil.textStyle(2,
               color: Colors.grey[800], spacing: 0.5, size: 32),
         ));
   }
 
   Widget _assetDataWidget(BuildContext context) {
-    List<AssetEntity> assetList = Provider.of<HomeProvider>(context).assetList;
+    List<AssetEntity> assetList = GlobalService.to.assetList;
     return assetList.length > 0
         ? Container(
-            margin:
-                EdgeInsets.only(left: Util.width(10), right: Util.width(10)),
+            margin: EdgeInsets.only(
+                left: MyScreenUtil.width(10), right: MyScreenUtil.width(10)),
             child: ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
@@ -475,7 +477,7 @@ class _AssetPageState extends State<AssetPage>
                 }),
           )
         : Container(
-            margin: EdgeInsets.only(top: Util.height(120)),
+            margin: EdgeInsets.only(top: MyScreenUtil.height(120)),
             child: Center(
               child: CupertinoActivityIndicator(),
             ),
@@ -488,14 +490,18 @@ class _AssetPageState extends State<AssetPage>
     bool flag = index != assetList.length - 1;
     return InkWell(
       onTap: () {
-        Provider.of<HomeProvider>(context, listen: false)
+        /*Provider.of<HomeProvider>(context, listen: false)
             .changeSelectAssetFilterIndex(index);
         String value = '';
         Application.router.navigateTo(context, 'asset/sendToken/$value',
-            transition: TransitionType.cupertino);
+            transition: TransitionType.cupertino);*/
+        GlobalService.to.changeSelectAssetFilterIndex(index);
+        String value = '';
+        Get.toNamed(AppRoute.assetSendToken + '/$value');
       },
       child: Container(
-        padding: EdgeInsets.only(top: Util.height(20), bottom: Util.height(20)),
+        padding: EdgeInsets.only(
+            top: MyScreenUtil.height(20), bottom: MyScreenUtil.height(20)),
         decoration: BoxDecoration(
           border: Border(
               bottom: BorderSide(
@@ -510,16 +516,16 @@ class _AssetPageState extends State<AssetPage>
                   ClipOval(
                     child: Image.network(
                       '${item.logoUrl}',
-                      width: Util.width(50),
-                      height: Util.width(50),
+                      width: MyScreenUtil.width(50),
+                      height: MyScreenUtil.width(50),
                       fit: BoxFit.cover,
                     ),
                   ),
-                  SizedBox(width: Util.width(30)),
+                  SizedBox(width: MyScreenUtil.width(30)),
                   Container(
                       child: Text(
                     '${item.name}',
-                    style: Util.textStyle4En(context, 2,
+                    style: MyTextUtil.textStyle4En(2,
                         color: Colors.grey[850], spacing: 0.0, size: 30),
                   )),
                 ],
@@ -531,8 +537,8 @@ class _AssetPageState extends State<AssetPage>
                 children: <Widget>[
                   Container(
                     child: Text(
-                      '${Util.formatNum(item.balance, 4)}',
-                      style: Util.textStyle4Num(context,
+                      '${MyCommonUtil.formatNum(item.balance, 4)}',
+                      style: MyTextUtil.textStyle4Num(
                           color: Colors.grey[800],
                           spacing: 0.1,
                           size: 30,
@@ -541,12 +547,11 @@ class _AssetPageState extends State<AssetPage>
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  SizedBox(height: Util.height(8)),
+                  SizedBox(height: MyScreenUtil.height(8)),
                   Container(
                     child: Text(
-                      '≈  \$ ${Util.formatNum(item.usd, 2)}',
-                      style: Util.textStyle4En(
-                        context,
+                      '≈  \$ ${MyCommonUtil.formatNum(item.usd, 2)}',
+                      style: MyTextUtil.textStyle4En(
                         2,
                         color: Colors.grey[600],
                         spacing: 0.0,
@@ -567,7 +572,7 @@ class _AssetPageState extends State<AssetPage>
 
   Widget _logOutHeadWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: Util.height(50)),
+      margin: EdgeInsets.only(top: MyScreenUtil.height(50)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -578,18 +583,18 @@ class _AssetPageState extends State<AssetPage>
                   child: Opacity(
                     opacity: 1.0,
                     child: Image.asset(
-                      'images/flash-logo.png',
-                      width: Util.width(150),
-                      height: Util.width(150),
+                      'asset/image/flash-logo.png',
+                      width: MyScreenUtil.width(150),
+                      height: MyScreenUtil.width(150),
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                SizedBox(height: Util.height(20)),
+                SizedBox(height: MyScreenUtil.height(20)),
                 Container(
                   child: Text(
                     'Flash  Wallet',
-                    style: Util.textStyle4En(context, 1,
+                    style: MyTextUtil.textStyle4En(1,
                         color: Colors.white, spacing: 0.3, size: 40),
                   ),
                 ),
@@ -604,18 +609,21 @@ class _AssetPageState extends State<AssetPage>
   Widget _logOutBodyWidget(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
-          left: Util.width(30), top: Util.height(30), right: Util.width(30)),
+          left: MyScreenUtil.width(30),
+          top: MyScreenUtil.height(30),
+          right: MyScreenUtil.width(30)),
       child: Column(
         children: <Widget>[
-          SizedBox(height: Util.height(30)),
+          SizedBox(height: MyScreenUtil.height(30)),
           InkWell(
             onTap: () {
-              Application.router.navigateTo(
+              /*Application.router.navigateTo(
                   context, Routes.assetImportKey + '/1',
-                  transition: TransitionType.cupertino);
+                  transition: TransitionType.cupertino);*/
+              Get.toNamed(AppRoute.assetImportKey + '/1');
             },
             child: Container(
-              padding: EdgeInsets.only(bottom: Util.height(30)),
+              padding: EdgeInsets.only(bottom: MyScreenUtil.height(30)),
               decoration: BoxDecoration(
                 border: Border(
                     bottom: BorderSide(color: Colors.grey[350], width: 0.5)),
@@ -625,11 +633,11 @@ class _AssetPageState extends State<AssetPage>
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      SizedBox(width: Util.width(10)),
+                      SizedBox(width: MyScreenUtil.width(10)),
                       Container(
                         child: Text(
-                          '${S.of(context).assetImportPrivateKey}',
-                          style: Util.textStyle(context, 2,
+                          '${MyLocaleKey.assetImportPrivateKey.tr}',
+                          style: MyTextUtil.textStyle(2,
                               color: Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
@@ -640,26 +648,27 @@ class _AssetPageState extends State<AssetPage>
                       Container(
                         child: Icon(
                           Icons.arrow_forward_ios,
-                          size: Util.sp(27),
+                          size: MyScreenUtil.sp(27),
                           color: Colors.grey[700],
                         ),
                       ),
-                      SizedBox(width: Util.width(10)),
+                      SizedBox(width: MyScreenUtil.width(10)),
                     ],
                   ),
                 ],
               ),
             ),
           ),
-          SizedBox(height: Util.height(30)),
+          SizedBox(height: MyScreenUtil.height(30)),
           InkWell(
             onTap: () {
-              Application.router.navigateTo(
+              /*Application.router.navigateTo(
                   context, Routes.assetImportMnemonic + '/1',
-                  transition: TransitionType.cupertino);
+                  transition: TransitionType.cupertino);*/
+              Get.toNamed(AppRoute.assetImportMnemonic + '/1');
             },
             child: Container(
-              padding: EdgeInsets.only(bottom: Util.height(30)),
+              padding: EdgeInsets.only(bottom: MyScreenUtil.height(30)),
               decoration: BoxDecoration(
                 border: Border(
                     bottom: BorderSide(color: Colors.grey[350], width: 0.5)),
@@ -669,11 +678,11 @@ class _AssetPageState extends State<AssetPage>
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      SizedBox(width: Util.width(10)),
+                      SizedBox(width: MyScreenUtil.width(10)),
                       Container(
                         child: Text(
-                          '${S.of(context).assetImportMnemonic}',
-                          style: Util.textStyle(context, 2,
+                          '${MyLocaleKey.assetImportMnemonic.tr}',
+                          style: MyTextUtil.textStyle(2,
                               color: Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
@@ -684,36 +693,37 @@ class _AssetPageState extends State<AssetPage>
                       Container(
                         child: Icon(
                           Icons.arrow_forward_ios,
-                          size: Util.sp(27),
+                          size: MyScreenUtil.sp(27),
                           color: Colors.grey[700],
                         ),
                       ),
-                      SizedBox(width: Util.width(10)),
+                      SizedBox(width: MyScreenUtil.width(10)),
                     ],
                   ),
                 ],
               ),
             ),
           ),
-          SizedBox(height: Util.height(30)),
+          SizedBox(height: MyScreenUtil.height(30)),
           InkWell(
             onTap: () {
-              Application.router.navigateTo(
+              /*Application.router.navigateTo(
                   context, Routes.assetBuildFirstWallet + '/1',
-                  transition: TransitionType.cupertino);
+                  transition: TransitionType.cupertino);*/
+              Get.toNamed(AppRoute.assetBuildFirstWallet + '/1');
             },
             child: Container(
-              padding: EdgeInsets.only(bottom: Util.height(30)),
+              padding: EdgeInsets.only(bottom: MyScreenUtil.height(30)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      SizedBox(width: Util.width(10)),
+                      SizedBox(width: MyScreenUtil.width(10)),
                       Container(
                         child: Text(
-                          '${S.of(context).assetCreateWallet}',
-                          style: Util.textStyle(context, 2,
+                          '${MyLocaleKey.assetCreateWallet.tr}',
+                          style: MyTextUtil.textStyle(2,
                               color: Colors.grey[850], spacing: 0.0, size: 30),
                         ),
                       ),
@@ -724,11 +734,11 @@ class _AssetPageState extends State<AssetPage>
                       Container(
                         child: Icon(
                           Icons.arrow_forward_ios,
-                          size: Util.sp(27),
+                          size: MyScreenUtil.sp(27),
                           color: Colors.grey[700],
                         ),
                       ),
-                      SizedBox(width: Util.width(10)),
+                      SizedBox(width: MyScreenUtil.width(10)),
                     ],
                   ),
                 ],
@@ -741,7 +751,7 @@ class _AssetPageState extends State<AssetPage>
   }
 
   _getAsset4Async() async {
-    Provider.of<HomeProvider>(context, listen: false).getAsset4ReloadAsync();
+    GlobalService.to.getAsset4ReloadAsync();
   }
 
   _showBottomSheetWidget(BuildContext context, List<WalletEntity> walletList) {
@@ -751,28 +761,30 @@ class _AssetPageState extends State<AssetPage>
         enableDrag: false,
         //barrierColor: Colors.grey[850].withOpacity(0.98),
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(15.0),
-          topRight: Radius.circular(15.0),
-        )),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15.0),
+            topRight: Radius.circular(15.0),
+          ),
+        ),
         builder: (BuildContext context) {
           return Container(
-            height: Util.height(800),
+            height: MyScreenUtil.height(800),
             child: Column(
               children: <Widget>[
                 Container(
                   alignment: Alignment.center,
                   padding: EdgeInsets.only(
-                      top: Util.height(20), bottom: Util.height(20)),
-                  margin: EdgeInsets.only(bottom: Util.height(25)),
+                      top: MyScreenUtil.height(20),
+                      bottom: MyScreenUtil.height(20)),
+                  margin: EdgeInsets.only(bottom: MyScreenUtil.height(25)),
                   decoration: BoxDecoration(
                     border: Border(
                         bottom:
                             BorderSide(color: Colors.grey[400], width: 0.3)),
                   ),
                   child: Text(
-                    '${S.of(context).assetWalletList}',
-                    style: Util.textStyle(context, 2,
+                    '${MyLocaleKey.assetWalletList}',
+                    style: MyTextUtil.textStyle(2,
                         color: Colors.grey[850], spacing: 0.4, size: 32),
                   ),
                 ),
@@ -796,8 +808,7 @@ class _AssetPageState extends State<AssetPage>
 
   Widget _walletItemWidget(
       BuildContext context, List<WalletEntity> list, int index) {
-    int selectIndex =
-        Provider.of<HomeProvider>(context, listen: false).selectWalletIndex;
+    int selectIndex = GlobalService.to.selectWalletIndex;
     String name = list[index].name;
     String tronAddress = list[index].tronAddress.substring(0, 10) +
         '...' +
@@ -805,15 +816,17 @@ class _AssetPageState extends State<AssetPage>
             list[index].tronAddress.length);
     return Container(
       margin: EdgeInsets.only(
-          left: Util.width(30), right: Util.width(30), bottom: Util.height(20)),
+          left: MyScreenUtil.width(30),
+          right: MyScreenUtil.width(30),
+          bottom: MyScreenUtil.height(20)),
       padding: EdgeInsets.only(
-          left: Util.width(40),
-          top: Util.height(30),
-          right: Util.width(40),
-          bottom: Util.height(30)),
+          left: MyScreenUtil.width(40),
+          top: MyScreenUtil.height(30),
+          right: MyScreenUtil.width(40),
+          bottom: MyScreenUtil.height(30)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
-        //color: Util.themeColor,
+        //color: MyScreenUtil.themeColor,
         image: DecorationImage(
           image: AssetImage('images/bg02.png'),
           fit: BoxFit.cover,
@@ -822,10 +835,8 @@ class _AssetPageState extends State<AssetPage>
       child: InkWell(
         onTap: () async {
           Navigator.pop(context);
-          await Provider.of<HomeProvider>(context, listen: false)
-              .changeSelectWallet(index);
-          Provider.of<HomeProvider>(context, listen: false)
-              .getAsset4ReloadAsync();
+          await GlobalService.to.changeSelectWallet(index);
+          GlobalService.to.getAsset4ReloadAsync();
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -836,16 +847,16 @@ class _AssetPageState extends State<AssetPage>
                 Container(
                   child: Text(
                     '$name',
-                    style: Util.textStyle(context, 1,
+                    style: MyTextUtil.textStyle(1,
                         color: Colors.white, spacing: 0.5, size: 28),
                   ),
                 ),
-                SizedBox(height: Util.height(15)),
+                SizedBox(height: MyScreenUtil.height(15)),
                 InkWell(
                   onTap: () {
                     Clipboard.setData(
                         ClipboardData(text: list[index].tronAddress));
-                    Util.showToast('${S.of(context).commonCopySuccess}');
+                    MyCommonUtil.showToast('${MyLocaleKey.commonCopySuccess}');
                   },
                   child: Container(
                     child: Row(
@@ -853,15 +864,15 @@ class _AssetPageState extends State<AssetPage>
                         Container(
                           child: Text(
                             '$tronAddress',
-                            style: Util.textStyle4En(context, 1,
+                            style: MyTextUtil.textStyle4En(1,
                                 color: Colors.white, spacing: 0.0, size: 26),
                           ),
                         ),
-                        SizedBox(width: Util.width(50)),
+                        SizedBox(width: MyScreenUtil.width(50)),
                         Container(
                           child: Icon(
                             IconData(0xe618, fontFamily: 'ICON'),
-                            size: Util.sp(28),
+                            size: MyScreenUtil.sp(28),
                             color: Colors.white,
                           ),
                         ),
@@ -875,7 +886,7 @@ class _AssetPageState extends State<AssetPage>
                 ? Container(
                     child: Icon(
                       Icons.done_rounded,
-                      size: Util.sp(40),
+                      size: MyScreenUtil.sp(40),
                       color: Colors.white,
                     ),
                   )

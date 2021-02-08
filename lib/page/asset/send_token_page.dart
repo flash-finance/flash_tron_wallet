@@ -1,77 +1,31 @@
 import 'package:fixnum/fixnum.dart';
-import 'package:flash_tron_wallet/common/common_util.dart';
+import 'package:flash_tron_wallet/common/util/color_util.dart';
+import 'package:flash_tron_wallet/common/util/common_util.dart';
+import 'package:flash_tron_wallet/common/util/screen_util.dart';
+import 'package:flash_tron_wallet/common/util/text_util.dart';
+import 'package:flash_tron_wallet/common/widget/common/common_widget.dart';
+import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
 import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
-import 'package:flash_tron_wallet/generated/l10n.dart';
-import 'package:flash_tron_wallet/page/common/common_page.dart';
-import 'package:flash_tron_wallet/provider/home_provider.dart';
-import 'package:flash_tron_wallet/provider/index_provider.dart';
-import 'package:flash_tron_wallet/router/application.dart';
-import 'package:flash_tron_wallet/router/router.dart';
+import 'package:flash_tron_wallet/locale/app_Locale.dart';
+import 'package:flash_tron_wallet/provider/global_service.dart';
+import 'package:flash_tron_wallet/route/app_route.dart';
 import 'package:flash_tron_wallet/tron/service/tron_transaction.dart';
 import 'package:flash_tron_wallet/tron/service/tron_wallet.dart';
-import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class SendTokenPage extends StatefulWidget {
-  final String value;
-
-  SendTokenPage(this.value);
+  final String value = Get.parameters['value'];
 
   @override
   _SendTokenPageState createState() => _SendTokenPageState();
 }
 
 class _SendTokenPageState extends State<SendTokenPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        brightness: Brightness.light,
-        title: Text(
-          '${S.of(context).assetTransfer}',
-          style: Util.textStyle(context, 2,
-              color: Colors.grey[850], spacing: 0.2, size: 34),
-        ),
-        centerTitle: true,
-        elevation: 0,
-        leading: InkWell(
-          onTap: () {
-            Navigator.of(context)..pop();
-          },
-          child: Icon(
-            Icons.arrow_back,
-            size: Util.sp(45),
-            color: Colors.grey[850],
-          ),
-        ),
-      ),
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(FocusNode());
-        },
-        child: SendTokenSubPage(widget.value),
-      ),
-    );
-  }
-}
-
-class SendTokenSubPage extends StatefulWidget {
-  final String value;
-
-  SendTokenSubPage(this.value);
-
-  @override
-  _SendTokenSubPageState createState() => _SendTokenSubPageState();
-}
-
-class _SendTokenSubPageState extends State<SendTokenSubPage> {
   final _formKey = GlobalKey<FormState>();
   bool _langType = true;
 
@@ -103,62 +57,62 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
 
   @override
   Widget build(BuildContext context) {
-    _langType = Provider.of<IndexProvider>(context, listen: false).langType;
-    List<AssetEntity> assetFilterConList =
-        Provider.of<HomeProvider>(context, listen: true).assetList;
-    int selectAssetFilterIndex =
-        Provider.of<HomeProvider>(context, listen: true).selectAssetFilterIndex;
-    WalletEntity wallet =
-        Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
+    return MyScaffold(
+      hasAppBar: true,
+      hasBack: true,
+      title: '${MyLocaleKey.assetTransfer.tr}',
+      body: _bodyWidget(context),
+    );
+  }
+
+  Widget _bodyWidget(BuildContext context) {
+    List<AssetEntity> assetFilterConList = GlobalService.to.assetList;
+    int selectAssetFilterIndex = GlobalService.to.selectAssetFilterIndex;
+    WalletEntity wallet = GlobalService.to.selectWalletEntity;
     return Container(
-      child: GestureDetector(
-          onTap: () {
-            FocusScope.of(context).requestFocus(FocusNode());
-          },
-          child: Form(
-            key: _formKey,
-            child: ListView(
-              children: <Widget>[
-                IntervalPage(Util.height(25)),
-                _sendWidget(context, wallet),
-                IntervalPage(Util.height(25)),
-                _receiveWidget(context),
-                IntervalPage(Util.height(25)),
-                _amountWidget(
-                    context, assetFilterConList, selectAssetFilterIndex),
-                _balanceWidget(
-                    context, assetFilterConList, selectAssetFilterIndex),
-                IntervalPage(Util.height(25)),
-                SizedBox(height: Util.height(120)),
-                _submitWidget(context, wallet),
-              ],
-            ),
-          )),
+      child: Form(
+        key: _formKey,
+        child: ListView(
+          children: <Widget>[
+            IntervalWidget(25),
+            _sendWidget(context, wallet),
+            IntervalWidget(25),
+            _receiveWidget(context),
+            IntervalWidget(25),
+            _amountWidget(context, assetFilterConList, selectAssetFilterIndex),
+            _balanceWidget(context, assetFilterConList, selectAssetFilterIndex),
+            IntervalWidget(25),
+            SizedBox(height: MyScreenUtil.height(120)),
+            _submitWidget(context, wallet),
+          ],
+        ),
+      ),
     );
   }
 
   Widget _sendWidget(BuildContext context, WalletEntity wallet) {
     return Container(
       margin: EdgeInsets.only(
-          left: Util.width(40),
-          top: Util.height(25),
-          right: Util.width(40),
-          bottom: Util.height(25)),
+        left: MyScreenUtil.width(40),
+        top: MyScreenUtil.height(25),
+        right: MyScreenUtil.width(40),
+        bottom: MyScreenUtil.height(25),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
             child: Text(
-              '${S.of(context).assetTransferAddress}',
-              style: Util.textStyle(context, 2,
+              '${MyLocaleKey.assetTransferAddress.tr}',
+              style: MyTextUtil.textStyle(2,
                   color: Colors.grey[850], spacing: 0.2, size: 26),
             ),
           ),
-          SizedBox(height: Util.height(15)),
+          SizedBox(height: MyScreenUtil.height(15)),
           Container(
             child: Text(
               '${wallet.tronAddress}',
-              style: Util.textStyle4En(context, 2,
+              style: MyTextUtil.textStyle4En(2,
                   color: Colors.grey[800], spacing: 0.0, size: 27),
             ),
           ),
@@ -170,38 +124,39 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
   Widget _receiveWidget(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
-          left: Util.width(40),
-          top: Util.height(25),
-          right: Util.width(40),
-          bottom: Util.height(15)),
+        left: MyScreenUtil.width(40),
+        top: MyScreenUtil.height(25),
+        right: MyScreenUtil.width(40),
+        bottom: MyScreenUtil.height(15),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
             child: Text(
-              '${S.of(context).assetReceivingAddress}',
-              style: Util.textStyle(context, 2,
+              '${MyLocaleKey.assetReceivingAddress.tr}',
+              style: MyTextUtil.textStyle(2,
                   color: Colors.grey[850], spacing: 0.2, size: 26),
             ),
           ),
-          SizedBox(height: Util.height(5)),
+          SizedBox(height: MyScreenUtil.height(5)),
           Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  width: Util.width(600),
+                  width: MyScreenUtil.width(600),
                   child: TextFormField(
                     controller: _receiveAddressController,
                     cursorColor: Colors.grey[850],
                     decoration: InputDecoration(
                       isDense: true,
-                      hintText: '${S.of(context).assetTransferTip1}',
-                      hintStyle: Util.textStyle(context, 1,
+                      hintText: '${MyLocaleKey.assetTransferTip1.tr}',
+                      hintStyle: MyTextUtil.textStyle(1,
                           color: Colors.grey[400], spacing: 0.2, size: 25),
                       border: InputBorder.none,
                     ),
-                    style: Util.textStyle4En(context, 2,
+                    style: MyTextUtil.textStyle4En(2,
                         color: Colors.grey[850], spacing: 0.0, size: 28),
                     maxLines: 1,
                     inputFormatters: [
@@ -213,14 +168,15 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                 ),
                 InkWell(
                   onTap: () {
-                    Application.router.navigateTo(
+                    /*Application.router.navigateTo(
                         context, Routes.assetQrScan + '/2',
-                        transition: TransitionType.fadeIn);
+                        transition: TransitionType.fadeIn);*/
+                    Get.toNamed(AppRoute.assetQrScan + '/2');
                   },
                   child: Container(
                     child: Icon(
                       IconData(0xe606, fontFamily: 'ICON'),
-                      size: Util.sp(52),
+                      size: MyScreenUtil.sp(52),
                       color: Colors.grey[850],
                     ),
                   ),
@@ -237,7 +193,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
       BuildContext context, List<AssetEntity> assetFilterConList, int index) {
     bool flag = assetFilterConList.length == 0 ? true : false;
     return Container(
-      padding: EdgeInsets.only(bottom: Util.height(10)),
+      padding: EdgeInsets.only(bottom: MyScreenUtil.height(10)),
       decoration: BoxDecoration(
         border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
       ),
@@ -246,17 +202,18 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
         children: <Widget>[
           Container(
             margin: EdgeInsets.only(
-                left: Util.width(40),
-                top: Util.height(25),
-                right: Util.width(35)),
+              left: MyScreenUtil.width(40),
+              top: MyScreenUtil.height(25),
+              right: MyScreenUtil.width(35),
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  width: Util.width(200),
+                  width: MyScreenUtil.width(200),
                   child: Text(
-                    '${S.of(context).assetTransferAmount}',
-                    style: Util.textStyle(context, 2,
+                    '${MyLocaleKey.assetTransferAmount.tr}',
+                    style: MyTextUtil.textStyle(2,
                         color: Colors.grey[850], spacing: 0.2, size: 26),
                   ),
                 ),
@@ -270,22 +227,24 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
                         Container(
-                          padding: EdgeInsets.only(top: Util.height(1.5)),
+                          padding:
+                              EdgeInsets.only(top: MyScreenUtil.height(1.5)),
                           child: Text(
                             !flag ? '${assetFilterConList[index].name} ' : '',
                             style: GoogleFonts.roboto(
                               letterSpacing: 0.0,
                               color: Colors.grey[800],
                               fontWeight: FontWeight.w500,
-                              fontSize: Util.sp(26),
+                              fontSize: MyScreenUtil.sp(26),
                             ),
                           ),
                         ),
                         Container(
-                          padding: EdgeInsets.only(top: Util.height(1.8)),
+                          padding:
+                              EdgeInsets.only(top: MyScreenUtil.height(1.8)),
                           child: Icon(
                             Icons.arrow_forward_ios,
-                            size: Util.sp(25),
+                            size: MyScreenUtil.sp(25),
                             color: Colors.grey[800],
                           ),
                         ),
@@ -296,26 +255,26 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
               ],
             ),
           ),
-          SizedBox(height: Util.height(10)),
+          SizedBox(height: MyScreenUtil.height(10)),
           Container(
-            margin:
-                EdgeInsets.only(left: Util.width(40), right: Util.width(40)),
+            margin: EdgeInsets.only(
+                left: MyScreenUtil.width(40), right: MyScreenUtil.width(40)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  width: Util.width(500),
+                  width: MyScreenUtil.width(500),
                   child: TextFormField(
                     controller: _assetAmountController,
                     cursorColor: Colors.grey[850],
                     decoration: InputDecoration(
                       isDense: true,
-                      hintText: '${S.of(context).assetTransferTip2}',
-                      hintStyle: Util.textStyle(context, 1,
+                      hintText: '${MyLocaleKey.assetTransferTip2.tr}',
+                      hintStyle: MyTextUtil.textStyle(1,
                           color: Colors.grey[400], spacing: 0.2, size: 25),
                       border: InputBorder.none,
                     ),
-                    style: Util.textStyle4Num(context,
+                    style: MyTextUtil.textStyle4Num(
                         color: Colors.grey[850],
                         spacing: 0.2,
                         size: 32,
@@ -341,20 +300,22 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                         : '';
                   },
                   child: Container(
-                    width: Util.width(80),
+                    width: MyScreenUtil.width(80),
                     padding: _langType
                         ? EdgeInsets.only(
-                            top: Util.height(5), bottom: Util.height(5))
+                            top: MyScreenUtil.height(5),
+                            bottom: MyScreenUtil.height(5))
                         : EdgeInsets.only(
-                            top: Util.height(7.5), bottom: Util.height(7.5)),
+                            top: MyScreenUtil.height(7.5),
+                            bottom: MyScreenUtil.height(7.5)),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                      color: Util.themeColor,
+                      color: MyColorUtil.themeColor,
                     ),
                     child: Text(
-                      '${S.of(context).commonMax}',
-                      style: Util.textStyle(context, 2,
+                      '${MyLocaleKey.commonMax.tr}',
+                      style: MyTextUtil.textStyle(2,
                           color: Colors.white, spacing: 0.2, size: 20),
                     ),
                   ),
@@ -371,28 +332,29 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
       BuildContext context, List<AssetEntity> assetFilterConList, int index) {
     return Container(
       margin: EdgeInsets.only(
-          left: Util.width(40),
-          top: Util.height(25),
-          right: Util.width(40),
-          bottom: Util.height(25)),
+        left: MyScreenUtil.width(40),
+        top: MyScreenUtil.height(25),
+        right: MyScreenUtil.width(40),
+        bottom: MyScreenUtil.height(25),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
             child: Text(
-              '${S.of(context).assetBalance}',
-              style: Util.textStyle(context, 2,
+              '${MyLocaleKey.assetBalance.tr}',
+              style: MyTextUtil.textStyle(2,
                   color: Colors.grey[850], spacing: 0.2, size: 26),
             ),
           ),
           Container(
             child: Text(
-              '${Util.formatNum(assetFilterConList[index].balance, 4)}  ${assetFilterConList[index].name}',
+              '${MyCommonUtil.formatNum(assetFilterConList[index].balance, 4)}  ${assetFilterConList[index].name}',
               style: GoogleFonts.roboto(
                 letterSpacing: 0.0,
                 color: Colors.grey[800],
                 fontWeight: FontWeight.w500,
-                fontSize: Util.sp(28),
+                fontSize: MyScreenUtil.sp(28),
               ),
             ),
           ),
@@ -409,9 +371,9 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20.0))),
         content: Container(
-          width: Util.width(600),
-          height: Util.height(500),
-          padding: EdgeInsets.only(top: Util.height(0)),
+          width: MyScreenUtil.width(600),
+          height: MyScreenUtil.height(500),
+          padding: EdgeInsets.only(top: MyScreenUtil.height(0)),
           child: Column(
             children: <Widget>[
               Expanded(
@@ -434,45 +396,44 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
   }
 
   Widget _selectTokenWidget(BuildContext context, int index, AssetEntity item) {
-    int selectAssetFilterIndex =
-        Provider.of<HomeProvider>(context, listen: true).selectAssetFilterIndex;
+    int selectAssetFilterIndex = GlobalService.to.selectAssetFilterIndex;
     bool flag = index == selectAssetFilterIndex;
 
     return InkWell(
       onTap: () {
-        Provider.of<HomeProvider>(context, listen: false)
-            .changeSelectAssetFilterIndex(index);
+        GlobalService.to.changeSelectAssetFilterIndex(index);
         Navigator.pop(context);
         _assetAmountController.text = '';
       },
       child: Container(
-        width: Util.width(600),
-        padding: EdgeInsets.only(top: Util.height(16), bottom: Util.height(16)),
+        width: MyScreenUtil.width(600),
+        padding: EdgeInsets.only(
+            top: MyScreenUtil.height(16), bottom: MyScreenUtil.height(16)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
-              width: Util.width(300),
+              width: MyScreenUtil.width(300),
               alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(left: Util.width(10)),
+              padding: EdgeInsets.only(left: MyScreenUtil.width(10)),
               child: Row(
                 children: <Widget>[
                   Container(
                     child: ClipOval(
                       child: Image.network(
                         '${item.logoUrl}',
-                        width: Util.width(40),
-                        height: Util.width(40),
+                        width: MyScreenUtil.width(40),
+                        height: MyScreenUtil.width(40),
                         fit: BoxFit.cover,
                       ),
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: Util.width(30)),
+                    padding: EdgeInsets.only(left: MyScreenUtil.width(30)),
                     alignment: Alignment.centerLeft,
                     child: Text(
                       '${item.name}',
-                      style: Util.textStyle4En(context, 2,
+                      style: MyTextUtil.textStyle4En(2,
                           color: Colors.grey[850], spacing: 0.0, size: 29),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -482,15 +443,15 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
               ),
             ),
             Container(
-              width: Util.width(60),
-              padding: EdgeInsets.only(right: Util.width(10)),
+              width: MyScreenUtil.width(60),
+              padding: EdgeInsets.only(right: MyScreenUtil.width(10)),
               alignment: Alignment.centerRight,
               child: !flag
                   ? Container()
                   : Icon(
                       Icons.check,
                       color: Colors.grey[850],
-                      size: Util.sp(42),
+                      size: MyScreenUtil.sp(42),
                     ),
             ),
           ],
@@ -500,47 +461,54 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
   }
 
   Widget _submitWidget(BuildContext context, WalletEntity wallet) {
-    List<AssetEntity> assetList = Provider.of<HomeProvider>(context).assetList;
-    int index = Provider.of<HomeProvider>(context).selectAssetFilterIndex;
+    List<AssetEntity> assetList = GlobalService.to.assetList;
+    int index = GlobalService.to.selectAssetFilterIndex;
     return Container(
       child: Align(
         child: SizedBox(
-          width: Util.width(320),
+          width: MyScreenUtil.width(320),
           child: RaisedButton(
             child: Container(
               padding: EdgeInsets.all(12),
               child: Text(
-                '${S.of(context).commonSend}',
-                style: Util.textStyle(context, 1,
+                '${MyLocaleKey.commonSend.tr}',
+                style: MyTextUtil.textStyle(1,
                     color: Colors.white, spacing: 0.6, size: 31),
               ),
             ),
-            color: Util.themeColor,
+            color: MyColorUtil.themeColor,
             onPressed: () {
               FocusScope.of(context).requestFocus(FocusNode());
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 if (_receiveAddress.isEmpty) {
-                  Util.showToast('${S.of(context).assetTransferError1}');
+                  MyCommonUtil.showToast(
+                      '${MyLocaleKey.assetTransferError1.tr}');
                 } else if (!TronWallet()
                     .checkTronAddress(_receiveAddress.trim())) {
-                  Util.showToast('${S.of(context).assetTransferError2}');
+                  MyCommonUtil.showToast(
+                      '${MyLocaleKey.assetTransferError2.tr}');
                 } else if (_receiveAddress.trim() == wallet.tronAddress) {
-                  Util.showToast('${S.of(context).assetTransferError3}');
+                  MyCommonUtil.showToast(
+                      '${MyLocaleKey.assetTransferError3.tr}');
                 } else if (_assetAmount.isEmpty) {
-                  Util.showToast('${S.of(context).assetTransferError4}');
+                  MyCommonUtil.showToast(
+                      '${MyLocaleKey.assetTransferError4.tr}');
                 } else if (double.parse(_assetAmount) <= 0.0) {
-                  Util.showToast('${S.of(context).assetTransferError5}');
+                  MyCommonUtil.showToast(
+                      '${MyLocaleKey.assetTransferError5.tr}');
                 } else if (double.parse(_assetAmount) >
                     assetList[index].balance) {
-                  Util.showToast('${S.of(context).assetTransferError6}');
+                  MyCommonUtil.showToast(
+                      '${MyLocaleKey.assetTransferError6.tr}');
                 } else {
                   _showPwdDialog(context, wallet.tronAddress, wallet.pwd,
                       assetList[index]);
                 }
               }
             },
-            shape: StadiumBorder(side: BorderSide(color: Util.themeColor)),
+            shape:
+                StadiumBorder(side: BorderSide(color: MyColorUtil.themeColor)),
           ),
         ),
       ),
@@ -557,15 +525,15 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      '${S.of(context).assetTransfer} ',
-                      style: Util.textStyle(context, 2,
+                      '${MyLocaleKey.assetTransfer.tr} ',
+                      style: MyTextUtil.textStyle(2,
                           color: Colors.grey[850], spacing: 0.0, size: 30),
                     ),
                   ),
                   Container(
                     child: Text(
                       '$_assetAmount ${item.name} ',
-                      style: Util.textStyle4Num(context,
+                      style: MyTextUtil.textStyle4Num(
                           color: Colors.grey[850], spacing: 0.0, size: 30),
                     ),
                   ),
@@ -589,7 +557,7 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                           filled: true,
                           fillColor: Colors.white,
                         ),
-                        style: Util.textStyle4Num(context,
+                        style: MyTextUtil.textStyle4Num(
                             color: Colors.grey[800],
                             spacing: 0.2,
                             size: 32,
@@ -603,11 +571,11 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                         ],
                         validator: (String value) {
                           if (value.isEmpty) {
-                            return '${S.of(context).commonError1}';
+                            return '${MyLocaleKey.commonError1.tr}';
                           } else if (value.length < 6) {
-                            return '${S.of(context).commonError2}';
+                            return '${MyLocaleKey.commonError2.tr}';
                           } else if (value.substring(0, 6) != userPwd) {
-                            return '${S.of(context).commonError3}';
+                            return '${MyLocaleKey.commonError3.tr}';
                           } else {
                             return null;
                           }
@@ -620,38 +588,42 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
               actions: <Widget>[
                 FlatButton(
                   child: Text(
-                    '${S.of(context).commonCancel}',
-                    style: Util.textStyle(context, 2,
-                        color: Util.themeColor, spacing: 0.5, size: 30),
+                    '${MyLocaleKey.commonCancel.tr}',
+                    style: MyTextUtil.textStyle(2,
+                        color: MyColorUtil.themeColor, spacing: 0.5, size: 30),
                   ),
                   onPressed: () {
                     FocusScope.of(context).requestFocus(FocusNode());
                     if (!transferLoading) {
                       Navigator.of(context)..pop();
                     } else {
-                      Util.showToast('${S.of(context).assetTransferTip3}');
+                      MyCommonUtil.showToast(
+                          '${MyLocaleKey.assetTransferTip3.tr}');
                     }
                   },
                 ),
                 FlatButton(
                     child: Text(
-                      '${S.of(context).commonConfirm}',
-                      style: Util.textStyle(context, 2,
-                          color: Util.themeColor, spacing: 0.5, size: 30),
+                      '${MyLocaleKey.commonConfirm.tr}',
+                      style: MyTextUtil.textStyle(2,
+                          color: MyColorUtil.themeColor,
+                          spacing: 0.5,
+                          size: 30),
                     ),
                     onPressed: () {
                       FocusScope.of(context).requestFocus(FocusNode());
                       if (_sendFormKey.currentState.validate()) {
                         _sendFormKey.currentState.save();
                         if (_sendPwd.trim() != userPwd) {
-                          Util.showToast('${S.of(context).commonError3}');
+                          MyCommonUtil.showToast(
+                              '${MyLocaleKey.commonError3.tr}');
                         } else {
                           if (transferLoading) {
-                            Util.showToast(
-                                '${S.of(context).assetTransferTip4}');
+                            MyCommonUtil.showToast(
+                                '${MyLocaleKey.assetTransferTip4.tr}');
                           } else {
-                            Util.showToast(
-                                '${S.of(context).assetTransferTip3}');
+                            MyCommonUtil.showToast(
+                                '${MyLocaleKey.assetTransferTip3.tr}');
                             _transHandle(context, item, ownerAddress)
                                 .then((result) {
                               if (result == 0) {
@@ -659,15 +631,13 @@ class _SendTokenSubPageState extends State<SendTokenSubPage> {
                                   transferLoading = false;
                                 });
                                 Navigator.of(context)..pop()..pop();
-                                Util.showToast(
-                                    '${S.of(context).assetTransferSuccess}');
-                                Provider.of<HomeProvider>(context,
-                                        listen: false)
-                                    .getAsset4ReloadAsync();
+                                MyCommonUtil.showToast(
+                                    '${MyLocaleKey.assetTransferSuccess.tr}');
+                                GlobalService.to.getAsset4ReloadAsync();
                               } else if (result == 1) {
                                 Navigator.of(context)..pop()..pop();
-                                Util.showToast(
-                                    '${S.of(context).assetTransferTip5}');
+                                MyCommonUtil.showToast(
+                                    '${MyLocaleKey.assetTransferTip5.tr}');
                               } else if (result == -1) {
                                 //Util.showToast('转账处理中，请勿重复操作');
                               }

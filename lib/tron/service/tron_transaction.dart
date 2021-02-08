@@ -7,13 +7,12 @@ import 'package:ethereum_util/src/abi.dart' as abi;
 import 'package:fixnum/fixnum.dart';
 import 'package:flash_tron_wallet/entity/tron/abi_entity.dart';
 import 'package:flash_tron_wallet/google/protobuf/any.pb.dart';
-import 'package:flash_tron_wallet/provider/home_provider.dart';
+import 'package:flash_tron_wallet/provider/global_service.dart';
 import 'package:flash_tron_wallet/tron/api/api.pbgrpc.dart';
 import 'package:flash_tron_wallet/tron/core/Contract.pb.dart';
 import 'package:flash_tron_wallet/tron/core/Tron.pb.dart';
 import 'package:flash_tron_wallet/tron/grpc/grpc_client.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:web3dart/crypto.dart';
 
 import 'msg_signature.dart';
@@ -21,8 +20,7 @@ import 'msg_signature.dart';
 class TronTransaction {
   Future<bool> transTrx(BuildContext context, String fromAddress,
       String toAddress, Int64 amount) async {
-    String tronGrpcIP =
-        Provider.of<HomeProvider>(context, listen: false).tronGrpcIP;
+    String tronGrpcIP = GlobalService.to.tronGrpcIP;
     final channel = ClientChannelManager.getChannel(tronGrpcIP);
     final stub = WalletClient(channel);
     Uint8List originFromAddress = base58.decode(fromAddress).sublist(0, 21);
@@ -38,9 +36,7 @@ class TronTransaction {
       Transaction_raw rawData = trxResult.transaction.rawData;
       Uint8List hash = sha256.convert(rawData.writeToBuffer()).bytes;
 
-      String hexPrivateKey = Provider.of<HomeProvider>(context, listen: false)
-          .selectWalletEntity
-          .privateKey;
+      String hexPrivateKey = GlobalService.to.selectWalletEntity.privateKey;
 
       MsgSignature msgSignature = sign(hash, hexToBytes(hexPrivateKey));
 
@@ -67,8 +63,7 @@ class TronTransaction {
 
   Future<bool> transTrc20(BuildContext context, String contractAddress,
       String fromAddress, String toAddress, String amount) async {
-    String tronGrpcIP =
-        Provider.of<HomeProvider>(context, listen: false).tronGrpcIP;
+    String tronGrpcIP = GlobalService.to.tronGrpcIP;
     final channel = ClientChannelManager.getChannel(tronGrpcIP);
     final stub = WalletClient(channel);
     try {
@@ -104,9 +99,7 @@ class TronTransaction {
           hexToBytes(bytesToHex(methodID) + bytesToHex(rawEncode));
       //print('encode dataList1 hex: ${bytesToHex(dataList)}');
 
-      String hexPrivateKey = Provider.of<HomeProvider>(context, listen: false)
-          .selectWalletEntity
-          .privateKey;
+      String hexPrivateKey = GlobalService.to.selectWalletEntity.privateKey;
 
       bool flag = await execute(
           stub, hexPrivateKey, fromAddress, contractAddress, dataList, 0);
@@ -119,8 +112,7 @@ class TronTransaction {
 
   Future<bool> trc20Approve(BuildContext context, String contractAddress,
       String fromAddress, String toAddress, int amount) async {
-    String tronGrpcIP =
-        Provider.of<HomeProvider>(context, listen: false).tronGrpcIP;
+    String tronGrpcIP = GlobalService.to.tronGrpcIP;
     final channel = ClientChannelManager.getChannel(tronGrpcIP);
     final stub = WalletClient(channel);
     try {
@@ -155,9 +147,7 @@ class TronTransaction {
       Uint8List dataList =
           hexToBytes(bytesToHex(methodID) + bytesToHex(rawEncode));
 
-      String hexPrivateKey = Provider.of<HomeProvider>(context, listen: false)
-          .selectWalletEntity
-          .privateKey;
+      String hexPrivateKey = GlobalService.to.selectWalletEntity.privateKey;
 
       bool flag = await execute(
           stub, hexPrivateKey, fromAddress, contractAddress, dataList, 0);

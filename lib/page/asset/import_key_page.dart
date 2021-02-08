@@ -1,17 +1,19 @@
-import 'package:flash_tron_wallet/common/common_util.dart';
+import 'package:flash_tron_wallet/common/util/color_util.dart';
+import 'package:flash_tron_wallet/common/util/common_util.dart';
+import 'package:flash_tron_wallet/common/util/screen_util.dart';
+import 'package:flash_tron_wallet/common/util/text_util.dart';
+import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
-import 'package:flash_tron_wallet/generated/l10n.dart';
-import 'package:flash_tron_wallet/provider/home_provider.dart';
+import 'package:flash_tron_wallet/locale/app_Locale.dart';
+import 'package:flash_tron_wallet/provider/global_service.dart';
 import 'package:flash_tron_wallet/tron/service/tron_wallet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 class ImportKeyPage extends StatefulWidget {
-  final String type;
-
-  ImportKeyPage(this.type);
+  final String type = Get.parameters['type'];
 
   @override
   _ImportKeyPageState createState() => _ImportKeyPageState();
@@ -34,81 +36,69 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        brightness: Brightness.light,
-        title: Text(
-          '${S.of(context).assetImportPrivateKey}',
-          style: Util.textStyle(context, 2,
-              color: Colors.grey[850], spacing: 0.2, size: 34),
-        ),
-        centerTitle: true,
-        elevation: 0,
-        leading: InkWell(
-          onTap: () {
-            Navigator.of(context)..pop();
-          },
-          child: Icon(
-            Icons.arrow_back,
-            size: Util.sp(45),
-            color: Colors.grey[850],
-          ),
-        ),
-      ),
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(FocusNode());
-        },
-        child: Stack(
-          children: <Widget>[
-            Form(
-              key: _formKey,
-              child: ListView(
-                children: <Widget>[
-                  SizedBox(height: Util.height(20)),
-                  _descWidget(),
-                  SizedBox(height: Util.height(20)),
-                  Container(
-                    margin: EdgeInsets.only(
-                        left: Util.width(30), right: Util.width(30)),
-                    child: Column(
-                      children: <Widget>[
-                        _nameWidget(),
-                        SizedBox(height: Util.height(0)),
-                        _keyWidget(),
-                        SizedBox(height: Util.height(0)),
-                        _setPwdWidget(),
-                        SizedBox(height: Util.height(0)),
-                        _confirmPwdWidget(),
-                        SizedBox(height: Util.height(50)),
-                        _submitWidget(context),
-                      ],
-                    ),
+    return MyScaffold(
+      hasAppBar: true,
+      hasBack: true,
+      title: '${MyLocaleKey.assetImportPrivateKey.tr}',
+      body: _bodyWidget(context),
+    );
+  }
+
+  Widget _bodyWidget(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Stack(
+        children: <Widget>[
+          Form(
+            key: _formKey,
+            child: ListView(
+              children: <Widget>[
+                SizedBox(height: MyScreenUtil.height(20)),
+                _descWidget(),
+                SizedBox(height: MyScreenUtil.height(20)),
+                Container(
+                  margin: EdgeInsets.only(
+                      left: MyScreenUtil.width(30),
+                      right: MyScreenUtil.width(30)),
+                  child: Column(
+                    children: <Widget>[
+                      _nameWidget(),
+                      SizedBox(height: MyScreenUtil.height(0)),
+                      _keyWidget(),
+                      SizedBox(height: MyScreenUtil.height(0)),
+                      _setPwdWidget(),
+                      SizedBox(height: MyScreenUtil.height(0)),
+                      _confirmPwdWidget(),
+                      SizedBox(height: MyScreenUtil.height(50)),
+                      _submitWidget(context),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            _importKeyLoading
-                ? Container(
-                    padding: EdgeInsets.only(
-                        top: Util.height(300), left: Util.width(350)),
-                    child: CupertinoActivityIndicator(),
-                  )
-                : Container(),
-          ],
-        ),
+          ),
+          _importKeyLoading
+              ? Container(
+                  padding: EdgeInsets.only(
+                      top: MyScreenUtil.height(300),
+                      left: MyScreenUtil.width(350)),
+                  child: CupertinoActivityIndicator(),
+                )
+              : Container(),
+        ],
       ),
     );
   }
 
   Widget _descWidget() {
     return Container(
-      margin: EdgeInsets.only(left: Util.width(30), right: Util.width(30)),
+      margin: EdgeInsets.only(
+          left: MyScreenUtil.width(30), right: MyScreenUtil.width(30)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Util.themeColor,
+        color: MyColorUtil.themeColor,
       ),
       child: Column(
         children: <Widget>[
@@ -116,8 +106,8 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
             padding: EdgeInsets.fromLTRB(30, 15, 30, 0),
             alignment: Alignment.centerLeft,
             child: Text(
-              '${S.of(context).addWalletTip1}',
-              style: Util.textStyle(context, 1,
+              '${MyLocaleKey.addWalletTip1.tr}',
+              style: MyTextUtil.textStyle(1,
                   color: Colors.white, spacing: 0.1, size: 21),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
@@ -127,8 +117,8 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
             padding: EdgeInsets.fromLTRB(30, 5, 30, 12),
             alignment: Alignment.centerLeft,
             child: Text(
-              '${S.of(context).addWalletTip2}',
-              style: Util.textStyle(context, 1,
+              '${MyLocaleKey.addWalletTip2.tr}',
+              style: MyTextUtil.textStyle(1,
                   color: Colors.white, spacing: 0.1, size: 21),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
@@ -146,17 +136,17 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
         onSaved: (String value) => _name = value,
         maxLength: 10,
         inputFormatters: [],
-        cursorColor: Util.themeColor,
+        cursorColor: MyColorUtil.themeColor,
         decoration: InputDecoration(
-          labelText: '${S.of(context).assetWalletName}',
-          labelStyle: Util.textStyle(context, 2,
+          labelText: '${MyLocaleKey.assetWalletName.tr}',
+          labelStyle: MyTextUtil.textStyle(2,
               color: Colors.grey[700], spacing: 0.1, size: 26),
         ),
-        style: Util.textStyle(context, 2,
+        style: MyTextUtil.textStyle(2,
             color: Colors.grey[850], spacing: 0.2, size: 30),
         validator: (String value) {
           if (value.isEmpty) {
-            return '${S.of(context).commonCanNotBeEmpty}';
+            return '${MyLocaleKey.commonCanNotBeEmpty.tr}';
           } else {
             return null;
           }
@@ -175,19 +165,19 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
         inputFormatters: [
           FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]|[0-9]"))
         ],
-        cursorColor: Util.themeColor,
+        cursorColor: MyColorUtil.themeColor,
         decoration: InputDecoration(
-          labelText: '${S.of(context).assetPrivateKey}',
-          labelStyle: Util.textStyle(context, 2,
+          labelText: '${MyLocaleKey.assetPrivateKey.tr}',
+          labelStyle: MyTextUtil.textStyle(2,
               color: Colors.grey[700], spacing: 0.1, size: 26),
         ),
-        style: Util.textStyle4En(context, 2,
+        style: MyTextUtil.textStyle4En(2,
             color: Colors.grey[850], spacing: 0.0, size: 28),
         validator: (String value) {
           if (value.isEmpty) {
-            return '${S.of(context).commonCanNotBeEmpty}';
+            return '${MyLocaleKey.commonCanNotBeEmpty.tr}';
           } else if (value.trim().length != 64) {
-            return '${S.of(context).commonIncorrectFormat}';
+            return '${MyLocaleKey.commonIncorrectFormat.tr}';
           } else {
             return null;
           }
@@ -210,35 +200,35 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
         maxLength: 6,
         keyboardType: TextInputType.numberWithOptions(decimal: true),
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
-        cursorColor: Util.themeColor,
+        cursorColor: MyColorUtil.themeColor,
         decoration: InputDecoration(
-            labelText: '${S.of(context).assetSetPassword}',
-            labelStyle: Util.textStyle(context, 2,
+            labelText: '${MyLocaleKey.assetSetPassword.tr}',
+            labelStyle: MyTextUtil.textStyle(2,
                 color: Colors.grey[700], spacing: 0.1, size: 26),
             suffixIcon: IconButton(
               icon: Icon(
                 Icons.remove_red_eye,
                 color: _setPwdEyeColor,
-                size: Util.sp(38),
+                size: MyScreenUtil.sp(38),
               ),
               onPressed: () {
                 setState(() {
                   _setPwdClickEye = !_setPwdClickEye;
                   _setPwdEyeColor =
-                      _setPwdClickEye ? Colors.grey : Util.themeColor;
+                      _setPwdClickEye ? Colors.grey : MyColorUtil.themeColor;
                 });
               },
             )),
-        style: Util.textStyle4Num(context,
+        style: MyTextUtil.textStyle4Num(
             color: Colors.grey[800],
             spacing: 0.2,
             size: 32,
             fontWeight: FontWeight.w500),
         validator: (String value) {
           if (value.isEmpty) {
-            return '${S.of(context).commonCanNotBeEmpty}';
+            return '${MyLocaleKey.commonCanNotBeEmpty.tr}';
           } else if (value.trim().length < 6) {
-            return '${S.of(context).commonNeed6Digit}';
+            return '${MyLocaleKey.commonNeed6Digit.tr}';
           } else {
             return null;
           }
@@ -261,33 +251,34 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
         maxLength: 6,
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
         keyboardType: TextInputType.number,
-        cursorColor: Util.themeColor,
+        cursorColor: MyColorUtil.themeColor,
         decoration: InputDecoration(
-            labelText: '${S.of(context).assetConfirmPassword}',
-            labelStyle: Util.textStyle(context, 2,
+            labelText: '${MyLocaleKey.assetConfirmPassword}.tr',
+            labelStyle: MyTextUtil.textStyle(2,
                 color: Colors.grey[700], spacing: 0.1, size: 26),
             suffixIcon: IconButton(
               icon: Icon(
                 Icons.remove_red_eye,
                 color: _confirmPwdEyeColor,
-                size: Util.sp(38),
+                size: MyScreenUtil.sp(38),
               ),
               onPressed: () {
                 setState(() {
                   _confirmPwdClickEye = !_confirmPwdClickEye;
-                  _confirmPwdEyeColor =
-                      _confirmPwdClickEye ? Colors.grey : Util.themeColor;
+                  _confirmPwdEyeColor = _confirmPwdClickEye
+                      ? Colors.grey
+                      : MyColorUtil.themeColor;
                 });
               },
             )),
-        style: Util.textStyle4Num(context,
+        style: MyTextUtil.textStyle4Num(
             color: Colors.grey[800],
             spacing: 0.2,
             size: 32,
             fontWeight: FontWeight.w500),
         validator: (String value) {
           if (value.isEmpty) {
-            return '${S.of(context).commonCanNotBeEmpty}';
+            return '${MyLocaleKey.commonCanNotBeEmpty.tr}';
           } else {
             return null;
           }
@@ -300,47 +291,49 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
     return Container(
       child: Align(
         child: SizedBox(
-          width: Util.width(320),
+          width: MyScreenUtil.width(320),
           child: RaisedButton(
             child: Container(
               padding: EdgeInsets.all(12),
               child: Text(
-                '${S.of(context).commonSubmit}',
-                style: Util.textStyle(context, 1,
+                '${MyLocaleKey.commonSubmit.tr}',
+                style: MyTextUtil.textStyle(1,
                     color: Colors.white, spacing: 0.6, size: 31),
               ),
             ),
-            color: Util.themeColor,
+            color: MyColorUtil.themeColor,
             onPressed: !_importKeyLoading
                 ? () {
                     FocusScope.of(context).requestFocus(FocusNode());
                     if (_formKey.currentState.validate()) {
                       _formKey.currentState.save();
                       if (_setPwd != _confirmPwd) {
-                        Util.showToast(
-                            '${S.of(context).commonConfirmPwdError}');
+                        MyCommonUtil.showToast(
+                            '${MyLocaleKey.commonConfirmPwdError.tr}');
                       } else {
                         _submit().then((val) {
                           setState(() {
                             _importKeyLoading = false;
                           });
                           if (val == true) {
-                            Util.showToast(
-                                '${S.of(context).commonImportSuccess}');
+                            MyCommonUtil.showToast(
+                                '${MyLocaleKey.commonImportSuccess.tr}');
                             if (widget.type == '1') {
                               Navigator.of(context)..pop();
                             } else if (widget.type == '2') {
                               Navigator.of(context)..pop()..pop();
                             }
                           } else {
-                            Util.showToast('${S.of(context).commonImportFail}');
+                            MyCommonUtil.showToast(
+                                '${MyLocaleKey.commonImportFail.tr}');
                           }
                         });
                       }
                     }
                   }
                 : () {},
-            shape: StadiumBorder(side: BorderSide(color: Util.themeColor)),
+            shape:
+                StadiumBorder(side: BorderSide(color: MyColorUtil.themeColor)),
           ),
         ),
       ),
@@ -352,8 +345,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
       _importKeyLoading = true;
     });
     WalletEntity entity = TronWallet().importWalletByKey(_name, _setPwd, _key);
-    bool result = await Provider.of<HomeProvider>(context, listen: false)
-        .addWallet(entity);
+    bool result = await GlobalService.to.addWallet(entity);
     if (result) {
       _getAsset();
     }
@@ -361,8 +353,8 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
   }
 
   Future<bool> _getAsset() async {
-    await Provider.of<HomeProvider>(context, listen: false).getAsset4Init();
-    Provider.of<HomeProvider>(context, listen: false).getAsset4ReloadAsync();
+    await GlobalService.to.getAsset4Init();
+    GlobalService.to.getAsset4ReloadAsync();
     return true;
   }
 }

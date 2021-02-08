@@ -1,21 +1,20 @@
 import 'dart:io';
 
-import 'package:flash_tron_wallet/generated/l10n.dart';
+import 'package:flash_tron_wallet/common/util/color_util.dart';
+import 'package:flash_tron_wallet/common/util/common_util.dart';
+import 'package:flash_tron_wallet/common/util/screen_util.dart';
+import 'package:flash_tron_wallet/common/util/text_util.dart';
+import 'package:flash_tron_wallet/common/widget/common/common_widget.dart';
+import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
+import 'package:flash_tron_wallet/locale/app_Locale.dart';
 import 'package:flash_tron_wallet/model/tron_info_model.dart';
-import 'package:flash_tron_wallet/provider/home_provider.dart';
-import 'package:flash_tron_wallet/provider/index_provider.dart';
-import 'package:flash_tron_wallet/router/application.dart';
-import 'package:flash_tron_wallet/common/common_util.dart';
-import 'package:flash_tron_wallet/router/router.dart';
-import 'package:fluro/fluro.dart';
+import 'package:flash_tron_wallet/page/mine/download_page.dart';
+import 'package:flash_tron_wallet/provider/global_service.dart';
+import 'package:flash_tron_wallet/route/app_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import 'common/common_page.dart';
-import 'mine/download_page.dart';
 
 class MinePage extends StatefulWidget {
   @override
@@ -27,30 +26,22 @@ class _MinePageState extends State<MinePage> {
 
   @override
   Widget build(BuildContext context) {
-    _langType = Provider.of<IndexProvider>(context, listen: true).langType;
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        brightness: Brightness.light,
-        title: Text(
-          '${S.of(context).bottomTab3}',
-          style: Util.textStyle(context, 2,
-              color: Colors.grey[850], spacing: 0.2, size: 34),
-        ),
-        centerTitle: true,
-        elevation: 0,
-      ),
-      body: Container(
-        child: ListView(
-          children: <Widget>[
-            IntervalPage(Util.height(25)),
-            _walletManageWidget(context),
-            _langWidget(context),
-            _versionWidget(context),
-            IntervalPage(Util.height(25)),
-          ],
-        ),
+    return MyScaffold(
+      hasAppBar: true,
+      body: _bodyWidget(context),
+    );
+  }
+
+  Widget _bodyWidget(BuildContext context) {
+    return Container(
+      child: ListView(
+        children: <Widget>[
+          IntervalWidget(25),
+          _walletManageWidget(context),
+          _langWidget(context),
+          _versionWidget(context),
+          IntervalWidget(25),
+        ],
       ),
     );
   }
@@ -58,13 +49,17 @@ class _MinePageState extends State<MinePage> {
   Widget _walletManageWidget(BuildContext context) {
     return InkWell(
       onTap: () {
-        Application.router.navigateTo(context, Routes.mineWalletManage,
-            transition: TransitionType.cupertino);
+        /*Application.router.navigateTo(context, Routes.mineWalletManage,
+            transition: TransitionType.cupertino);*/
+        Get.toNamed(AppRoute.mineWalletManage);
       },
       child: Container(
         margin: EdgeInsets.only(
-            left: Util.width(40), top: Util.height(30), right: Util.width(40)),
-        padding: EdgeInsets.only(bottom: Util.height(30)),
+          left: MyScreenUtil.width(40),
+          top: MyScreenUtil.height(30),
+          right: MyScreenUtil.width(40),
+        ),
+        padding: EdgeInsets.only(bottom: MyScreenUtil.height(30)),
         decoration: BoxDecoration(
           border:
               Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
@@ -77,15 +72,15 @@ class _MinePageState extends State<MinePage> {
                 Container(
                   child: Icon(
                     IconData(0xe6e0, fontFamily: 'ICON'),
-                    size: Util.sp(42),
+                    size: MyScreenUtil.sp(42),
                     color: Colors.grey[800],
                   ),
                 ),
-                SizedBox(width: Util.width(50)),
+                SizedBox(width: MyScreenUtil.width(50)),
                 Container(
                   child: Text(
-                    '${S.of(context).mineManageWallet}',
-                    style: Util.textStyle(context, 2,
+                    '${MyLocaleKey.mineManageWallet.tr}',
+                    style: MyTextUtil.textStyle(2,
                         color: Colors.grey[800], spacing: 0.0, size: 30),
                   ),
                 ),
@@ -94,7 +89,7 @@ class _MinePageState extends State<MinePage> {
             Container(
               child: Icon(
                 Icons.arrow_forward_ios,
-                size: Util.sp(27),
+                size: MyScreenUtil.sp(27),
                 color: Colors.grey[700],
               ),
             ),
@@ -111,8 +106,11 @@ class _MinePageState extends State<MinePage> {
       },
       child: Container(
         margin: EdgeInsets.only(
-            left: Util.width(40), top: Util.height(30), right: Util.width(40)),
-        padding: EdgeInsets.only(bottom: Util.height(30)),
+          left: MyScreenUtil.width(40),
+          top: MyScreenUtil.height(30),
+          right: MyScreenUtil.width(40),
+        ),
+        padding: EdgeInsets.only(bottom: MyScreenUtil.height(30)),
         decoration: BoxDecoration(
           border:
               Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
@@ -125,25 +123,25 @@ class _MinePageState extends State<MinePage> {
                 Container(
                   child: Icon(
                     IconData(0xe676, fontFamily: 'ICON'),
-                    size: Util.sp(40),
+                    size: MyScreenUtil.sp(40),
                     color: Colors.grey[800],
                   ),
                 ),
-                SizedBox(width: Util.width(50)),
+                SizedBox(width: MyScreenUtil.width(50)),
                 Row(
                   children: <Widget>[
                     Container(
                       child: Text(
                         'English/',
-                        style: Util.textStyle4En(context, 2,
+                        style: MyTextUtil.textStyle4En(2,
                             color: Colors.grey[800], spacing: 0.0, size: 30),
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.only(top: Util.height(1)),
+                      padding: EdgeInsets.only(top: MyScreenUtil.height(1)),
                       child: Text(
                         '中文',
-                        style: Util.textStyle4Zh(context, 2,
+                        style: MyTextUtil.textStyle4Zh(2,
                             color: Colors.grey[800], spacing: 0.0, size: 30),
                       ),
                     ),
@@ -154,7 +152,7 @@ class _MinePageState extends State<MinePage> {
             Container(
               child: Icon(
                 Icons.arrow_forward_ios,
-                size: Util.sp(27),
+                size: MyScreenUtil.sp(27),
                 color: Colors.grey[700],
               ),
             ),
@@ -165,10 +163,8 @@ class _MinePageState extends State<MinePage> {
   }
 
   Widget _versionWidget(BuildContext context) {
-    TronInfo tronInfo =
-        Provider.of<HomeProvider>(context, listen: true).tronInfo;
-    String currentVersion =
-        Provider.of<HomeProvider>(context, listen: true).currentVersion;
+    TronInfo tronInfo = GlobalService.to.tronInfo;
+    String currentVersion = GlobalService.to.currentVersion;
 
     int androidNeedUpdateType = 0;
     int iosNeedUpdateType = 0;
@@ -192,7 +188,7 @@ class _MinePageState extends State<MinePage> {
             tronInfo != null &&
             tronInfo.androidVersionNum != null) {
           if (androidNeedUpdateType == 0) {
-            Util.showToast('${S.of(context).mineVersionTips1}');
+            MyCommonUtil.showToast('${MyLocaleKey.mineVersionTips1.tr}');
           } else if (androidNeedUpdateType == 1) {
             return showCupertinoDialog(
                 context: context,
@@ -203,16 +199,15 @@ class _MinePageState extends State<MinePage> {
                           text: TextSpan(
                             children: <TextSpan>[
                               TextSpan(
-                                text: '${S.of(context).mineVersionNew}',
-                                style: Util.textStyle(context, 2,
+                                text: '${MyLocaleKey.mineVersionNew.tr}',
+                                style: MyTextUtil.textStyle(2,
                                     color: Colors.grey[800],
                                     spacing: 0.0,
                                     size: 30),
                               ),
                               TextSpan(
                                 text: ' V${tronInfo.androidVersionNum}',
-                                style: Util.textStyle4En(
-                                  context,
+                                style: MyTextUtil.textStyle4En(
                                   2,
                                   color: Colors.grey[800],
                                   spacing: 0.0,
@@ -224,31 +219,33 @@ class _MinePageState extends State<MinePage> {
                         ),
                       ),
                       content: Container(
-                        padding: EdgeInsets.only(top: Util.height(10)),
+                        padding: EdgeInsets.only(top: MyScreenUtil.height(10)),
                         alignment: Alignment.centerLeft,
                         child: Text(
                           _langType
                               ? '${tronInfo.androidUpdateInfo1.replaceAll('\\n', '\n')}'
                               : '${tronInfo.androidUpdateInfo2.replaceAll('\\n', '\n')}',
                           textAlign: TextAlign.left,
-                          style: Util.textStyle4Update(context, 1,
+                          style: MyTextUtil.textStyle4Update(1,
                               color: Colors.grey[850], spacing: 0.0, size: 25),
                         ),
                       ),
                       actions: <Widget>[
                         FlatButton(
                           child: Text(
-                            '${S.of(context).mineVersionTips2}',
-                            style: Util.textStyle(context, 2,
-                                color: Util.themeColor, spacing: 0.0, size: 30),
+                            '${MyLocaleKey.mineVersionTips2.tr}',
+                            style: MyTextUtil.textStyle(2,
+                                color: MyColorUtil.themeColor,
+                                spacing: 0.0,
+                                size: 30),
                           ),
                           onPressed: () => Navigator.pop(context),
                         ),
                         FlatButton(
                             child: Text(
-                              '${S.of(context).mineVersionTips3}',
-                              style: Util.textStyle(context, 2,
-                                  color: Util.themeColor,
+                              '${MyLocaleKey.mineVersionTips3.tr}',
+                              style: MyTextUtil.textStyle(2,
+                                  color: MyColorUtil.themeColor,
                                   spacing: 0.0,
                                   size: 30),
                             ),
@@ -268,7 +265,7 @@ class _MinePageState extends State<MinePage> {
             tronInfo != null &&
             tronInfo.iosVersionNum != null) {
           if (iosNeedUpdateType == 0) {
-            Util.showToast('${S.of(context).mineVersionTips1}');
+            MyCommonUtil.showToast('${MyLocaleKey.mineVersionTips1.tr}');
           } else if (iosNeedUpdateType == 1) {
             return showCupertinoDialog(
                 context: context,
@@ -279,16 +276,15 @@ class _MinePageState extends State<MinePage> {
                           text: TextSpan(
                             children: <TextSpan>[
                               TextSpan(
-                                text: '${S.of(context).mineVersionNew}',
-                                style: Util.textStyle(context, 2,
+                                text: '${MyLocaleKey.mineVersionNew.tr}',
+                                style: MyTextUtil.textStyle(2,
                                     color: Colors.grey[800],
                                     spacing: 0.0,
                                     size: 30),
                               ),
                               TextSpan(
                                 text: ' V${tronInfo.iosVersionNum}',
-                                style: Util.textStyle4En(
-                                  context,
+                                style: MyTextUtil.textStyle4En(
                                   2,
                                   color: Colors.grey[800],
                                   spacing: 0.0,
@@ -300,31 +296,33 @@ class _MinePageState extends State<MinePage> {
                         ),
                       ),
                       content: Container(
-                        padding: EdgeInsets.only(top: Util.height(10)),
+                        padding: EdgeInsets.only(top: MyScreenUtil.height(10)),
                         alignment: Alignment.centerLeft,
                         child: Text(
                           _langType
                               ? '${tronInfo.iosUpdateInfo1.replaceAll('\\n', '\n')}'
                               : '${tronInfo.iosUpdateInfo2.replaceAll('\\n', '\n')}',
                           textAlign: TextAlign.left,
-                          style: Util.textStyle4Update(context, 1,
+                          style: MyTextUtil.textStyle4Update(1,
                               color: Colors.grey[850], spacing: 0.0, size: 25),
                         ),
                       ),
                       actions: <Widget>[
                         FlatButton(
                           child: Text(
-                            '${S.of(context).mineVersionTips2}',
-                            style: Util.textStyle(context, 2,
-                                color: Util.themeColor, spacing: 0.0, size: 30),
+                            '${MyLocaleKey.mineVersionTips2.tr}',
+                            style: MyTextUtil.textStyle(2,
+                                color: MyColorUtil.themeColor,
+                                spacing: 0.0,
+                                size: 30),
                           ),
                           onPressed: () => Navigator.pop(context),
                         ),
                         FlatButton(
                             child: Text(
-                              '${S.of(context).mineVersionTips3}',
-                              style: Util.textStyle(context, 2,
-                                  color: Util.themeColor,
+                              '${MyLocaleKey.mineVersionTips3.tr}',
+                              style: MyTextUtil.textStyle(2,
+                                  color: MyColorUtil.themeColor,
                                   spacing: 0.0,
                                   size: 30),
                             ),
@@ -343,8 +341,11 @@ class _MinePageState extends State<MinePage> {
       },
       child: Container(
         margin: EdgeInsets.only(
-            left: Util.width(40), top: Util.height(30), right: Util.width(40)),
-        padding: EdgeInsets.only(bottom: Util.height(30)),
+          left: MyScreenUtil.width(40),
+          top: MyScreenUtil.height(30),
+          right: MyScreenUtil.width(40),
+        ),
+        padding: EdgeInsets.only(bottom: MyScreenUtil.height(30)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -353,15 +354,15 @@ class _MinePageState extends State<MinePage> {
                 Container(
                   child: Icon(
                     IconData(0xe6db, fontFamily: 'ICON'),
-                    size: Util.sp(42),
+                    size: MyScreenUtil.sp(42),
                     color: Colors.grey[800],
                   ),
                 ),
-                SizedBox(width: Util.width(50)),
+                SizedBox(width: MyScreenUtil.width(50)),
                 Container(
                   child: Text(
-                    '${S.of(context).mineCurrentVersion}',
-                    style: Util.textStyle(context, 2,
+                    '${MyLocaleKey.mineCurrentVersion.tr}',
+                    style: MyTextUtil.textStyle(2,
                         color: Colors.grey[800], spacing: 0.0, size: 30),
                   ),
                 ),
@@ -377,7 +378,7 @@ class _MinePageState extends State<MinePage> {
                   Container(
                     child: Icon(
                       Icons.arrow_forward_ios,
-                      size: Util.sp(27),
+                      size: MyScreenUtil.sp(27),
                       color: Colors.grey[700],
                     ),
                   ),
@@ -397,21 +398,22 @@ class _MinePageState extends State<MinePage> {
       child: Row(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(right: Util.width(5)),
+            padding: EdgeInsets.only(right: MyScreenUtil.width(5)),
             alignment: Alignment.centerRight,
             child: Text(
               '$currentVersion',
-              style: Util.textStyle4En(context, 2,
-                  color: Colors.grey[700], size: 27),
+              style:
+                  MyTextUtil.textStyle4En(2, color: Colors.grey[700], size: 27),
             ),
           ),
           flag
               ? Container(
                   padding: EdgeInsets.only(
-                      left: Util.width(5), right: Util.width(10)),
+                      left: MyScreenUtil.width(5),
+                      right: MyScreenUtil.width(10)),
                   alignment: Alignment.centerRight,
                   child: Icon(Icons.brightness_1,
-                      size: Util.sp(15), color: Util.themeColor),
+                      size: MyScreenUtil.sp(15), color: MyColorUtil.themeColor),
                 )
               : Container(),
         ],
@@ -424,29 +426,30 @@ class _MinePageState extends State<MinePage> {
         context: context,
         builder: (_) => CupertinoAlertDialog(
               title: Text(
-                '${S.of(context).mineLangTip1}',
-                style: Util.textStyle(context, 2,
+                '${MyLocaleKey.mineLangTip1.tr}',
+                style: MyTextUtil.textStyle(2,
                     color: Colors.grey[850], spacing: 0.2, size: 30),
               ),
               actions: <Widget>[
                 FlatButton(
                   child: Text(
-                    '${S.of(context).commonCancel}',
-                    style: Util.textStyle(context, 2,
-                        color: Util.themeColor, spacing: 0.5, size: 30),
+                    '${MyLocaleKey.commonCancel.tr}',
+                    style: MyTextUtil.textStyle(2,
+                        color: MyColorUtil.themeColor, spacing: 0.5, size: 30),
                   ),
                   onPressed: () => Navigator.pop(context),
                 ),
                 FlatButton(
                     child: Text(
-                      '${S.of(context).commonConfirm}',
-                      style: Util.textStyle(context, 2,
-                          color: Util.themeColor, spacing: 0.5, size: 30),
+                      '${MyLocaleKey.commonConfirm.tr}',
+                      style: MyTextUtil.textStyle(2,
+                          color: MyColorUtil.themeColor,
+                          spacing: 0.5,
+                          size: 30),
                     ),
                     onPressed: () {
                       Navigator.pop(context);
-                      Provider.of<IndexProvider>(context, listen: false)
-                          .changeLangType();
+                      GlobalService.to.changeLangType();
                     }),
               ],
             ));

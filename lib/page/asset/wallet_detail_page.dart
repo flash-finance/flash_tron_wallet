@@ -1,20 +1,20 @@
-import 'package:flash_tron_wallet/common/common_util.dart';
+import 'package:flash_tron_wallet/common/util/color_util.dart';
+import 'package:flash_tron_wallet/common/util/common_util.dart';
+import 'package:flash_tron_wallet/common/util/screen_util.dart';
+import 'package:flash_tron_wallet/common/util/text_util.dart';
+import 'package:flash_tron_wallet/common/widget/common/common_widget.dart';
+import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
-import 'package:flash_tron_wallet/generated/l10n.dart';
-import 'package:flash_tron_wallet/page/common/common_page.dart';
-import 'package:flash_tron_wallet/provider/home_provider.dart';
-import 'package:flash_tron_wallet/router/application.dart';
-import 'package:flash_tron_wallet/router/router.dart';
-import 'package:fluro/fluro.dart';
+import 'package:flash_tron_wallet/locale/app_Locale.dart';
+import 'package:flash_tron_wallet/provider/global_service.dart';
+import 'package:flash_tron_wallet/route/app_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 class WalletDetailPage extends StatefulWidget {
-  final String selectIndex;
-
-  WalletDetailPage(this.selectIndex);
+  final String selectIndex = Get.parameters['selectIndex'];
 
   @override
   _WalletDetailPageState createState() => _WalletDetailPageState();
@@ -26,45 +26,29 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    WalletEntity wallet =
-        Provider.of<HomeProvider>(context, listen: false).selectWalletEntity;
+    return MyScaffold(
+      hasAppBar: true,
+      hasBack: true,
+      title: '${MyLocaleKey.assetWalletDetails.tr}',
+      body: _bodyWidget(context),
+    );
+  }
+
+  Widget _bodyWidget(BuildContext context) {
+    WalletEntity wallet = GlobalService.to.selectWalletEntity;
     bool flag = wallet.mnemonic != null;
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        brightness: Brightness.light,
-        title: Text(
-          '${S.of(context).assetWalletDetails}',
-          style: Util.textStyle(context, 2,
-              color: Colors.grey[850], spacing: 0.2, size: 34),
-        ),
-        centerTitle: true,
-        elevation: 0,
-        leading: InkWell(
-          onTap: () {
-            Navigator.of(context)..pop();
-          },
-          child: Icon(
-            Icons.arrow_back,
-            size: Util.sp(45),
-            color: Colors.grey[800],
-          ),
-        ),
-      ),
-      body: Container(
-        child: ListView(
-          children: <Widget>[
-            IntervalPage(Util.height(25)),
-            _topWidget(context, wallet),
-            IntervalPage(Util.height(25)),
-            flag ? _backupMnemonicWidget(context, wallet.pwd) : Container(),
-            _backupKeyWidget(context, wallet.pwd),
-            _updatePwdWidget(context),
-            _delWalletWidget(context),
-            IntervalPage(Util.height(25)),
-          ],
-        ),
+    return Container(
+      child: ListView(
+        children: <Widget>[
+          IntervalWidget(25),
+          _topWidget(context, wallet),
+          IntervalWidget(25),
+          flag ? _backupMnemonicWidget(context, wallet.pwd) : Container(),
+          _backupKeyWidget(context, wallet.pwd),
+          _updatePwdWidget(context),
+          _delWalletWidget(context),
+          IntervalWidget(25),
+        ],
       ),
     );
   }
@@ -76,10 +60,11 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         temp.substring(temp.length - 8, temp.length);
     return Container(
       padding: EdgeInsets.only(
-          left: Util.width(10),
-          top: Util.height(10),
-          right: Util.width(30),
-          bottom: Util.height(10)),
+        left: MyScreenUtil.width(10),
+        top: MyScreenUtil.height(10),
+        right: MyScreenUtil.width(30),
+        bottom: MyScreenUtil.height(10),
+      ),
       child: Row(
         children: <Widget>[
           Container(
@@ -87,13 +72,13 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
               opacity: 0.9,
               child: Image.asset(
                 'images/flash.png',
-                width: Util.width(130),
-                height: Util.width(130),
+                width: MyScreenUtil.width(130),
+                height: MyScreenUtil.width(130),
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          SizedBox(width: Util.width(10)),
+          SizedBox(width: MyScreenUtil.width(10)),
           Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,7 +94,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                         Container(
                           child: Text(
                             '${wallet.name}',
-                            style: Util.textStyle(context, 2,
+                            style: MyTextUtil.textStyle(2,
                                 color: Colors.grey[800],
                                 spacing: 0.0,
                                 size: 28),
@@ -117,11 +102,11 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        SizedBox(width: Util.width(30)),
+                        SizedBox(width: MyScreenUtil.width(30)),
                         Container(
                           child: Icon(
                             IconData(0xe635, fontFamily: 'ICON'),
-                            size: Util.sp(35),
+                            size: MyScreenUtil.sp(35),
                             color: Colors.grey[800],
                           ),
                         ),
@@ -129,11 +114,12 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: Util.height(10)),
+                SizedBox(height: MyScreenUtil.height(10)),
                 InkWell(
                   onTap: () {
                     Clipboard.setData(ClipboardData(text: wallet.tronAddress));
-                    Util.showToast('${S.of(context).commonCopySuccess}');
+                    MyCommonUtil.showToast(
+                        '${MyLocaleKey.commonCopySuccess.tr}');
                   },
                   child: Container(
                     child: Row(
@@ -141,7 +127,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                         Container(
                           child: Text(
                             '$tronAddress',
-                            style: Util.textStyle4En(context, 2,
+                            style: MyTextUtil.textStyle4En(2,
                                 color: Colors.grey[800],
                                 spacing: 0.0,
                                 size: 28),
@@ -149,11 +135,11 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        SizedBox(width: Util.width(30)),
+                        SizedBox(width: MyScreenUtil.width(30)),
                         Container(
                           child: Icon(
                             IconData(0xe618, fontFamily: 'ICON'),
-                            size: Util.sp(30),
+                            size: MyScreenUtil.sp(30),
                             color: Colors.grey[800],
                           ),
                         ),
@@ -176,8 +162,11 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
       },
       child: Container(
         margin: EdgeInsets.only(
-            left: Util.width(40), top: Util.height(30), right: Util.width(40)),
-        padding: EdgeInsets.only(bottom: Util.height(30)),
+          left: MyScreenUtil.width(40),
+          top: MyScreenUtil.height(30),
+          right: MyScreenUtil.width(40),
+        ),
+        padding: EdgeInsets.only(bottom: MyScreenUtil.height(30)),
         decoration: BoxDecoration(
           border:
               Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
@@ -187,15 +176,15 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
           children: <Widget>[
             Container(
               child: Text(
-                '${S.of(context).assetBackupMnemonic}',
-                style: Util.textStyle(context, 2,
+                '${MyLocaleKey.assetBackupMnemonic.tr}',
+                style: MyTextUtil.textStyle(2,
                     color: Colors.grey[800], spacing: 0.0, size: 30),
               ),
             ),
             Container(
               child: Icon(
                 Icons.arrow_forward_ios,
-                size: Util.sp(27),
+                size: MyScreenUtil.sp(27),
                 color: Colors.grey[700],
               ),
             ),
@@ -212,8 +201,11 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
       },
       child: Container(
         margin: EdgeInsets.only(
-            left: Util.width(40), top: Util.height(30), right: Util.width(40)),
-        padding: EdgeInsets.only(bottom: Util.height(30)),
+          left: MyScreenUtil.width(40),
+          top: MyScreenUtil.height(30),
+          right: MyScreenUtil.width(40),
+        ),
+        padding: EdgeInsets.only(bottom: MyScreenUtil.height(30)),
         decoration: BoxDecoration(
           border:
               Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
@@ -223,15 +215,15 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
           children: <Widget>[
             Container(
               child: Text(
-                '${S.of(context).assetBackupPrivateKey}',
-                style: Util.textStyle(context, 2,
+                '${MyLocaleKey.assetBackupPrivateKey.tr}',
+                style: MyTextUtil.textStyle(2,
                     color: Colors.grey[800], spacing: 0.0, size: 30),
               ),
             ),
             Container(
               child: Icon(
                 Icons.arrow_forward_ios,
-                size: Util.sp(27),
+                size: MyScreenUtil.sp(27),
                 color: Colors.grey[700],
               ),
             ),
@@ -244,13 +236,17 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
   Widget _updatePwdWidget(BuildContext context) {
     return InkWell(
       onTap: () {
-        Application.router.navigateTo(context, Routes.assetUpdatePwd,
-            transition: TransitionType.cupertino);
+        /*Application.router.navigateTo(context, Routes.assetUpdatePwd,
+            transition: TransitionType.cupertino);*/
+        Get.toNamed(AppRoute.assetUpdatePwd);
       },
       child: Container(
         margin: EdgeInsets.only(
-            left: Util.width(40), top: Util.height(30), right: Util.width(40)),
-        padding: EdgeInsets.only(bottom: Util.height(30)),
+          left: MyScreenUtil.width(40),
+          top: MyScreenUtil.height(30),
+          right: MyScreenUtil.width(40),
+        ),
+        padding: EdgeInsets.only(bottom: MyScreenUtil.height(30)),
         decoration: BoxDecoration(
           border:
               Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
@@ -260,15 +256,15 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
           children: <Widget>[
             Container(
               child: Text(
-                '${S.of(context).assetUpdatePassword}',
-                style: Util.textStyle(context, 2,
+                '${MyLocaleKey.assetUpdatePassword.tr}',
+                style: MyTextUtil.textStyle(2,
                     color: Colors.grey[800], spacing: 0.0, size: 30),
               ),
             ),
             Container(
               child: Icon(
                 Icons.arrow_forward_ios,
-                size: Util.sp(27),
+                size: MyScreenUtil.sp(27),
                 color: Colors.grey[700],
               ),
             ),
@@ -285,22 +281,25 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
       },
       child: Container(
         margin: EdgeInsets.only(
-            left: Util.width(40), top: Util.height(30), right: Util.width(40)),
-        padding: EdgeInsets.only(bottom: Util.height(30)),
+          left: MyScreenUtil.width(40),
+          top: MyScreenUtil.height(30),
+          right: MyScreenUtil.width(40),
+        ),
+        padding: EdgeInsets.only(bottom: MyScreenUtil.height(30)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
               child: Text(
-                '${S.of(context).assetDeleteWallet}',
-                style: Util.textStyle(context, 2,
+                '${MyLocaleKey.assetDeleteWallet.tr}',
+                style: MyTextUtil.textStyle(2,
                     color: Colors.grey[850], spacing: 0.0, size: 30),
               ),
             ),
             Container(
               child: Icon(
                 Icons.arrow_forward_ios,
-                size: Util.sp(27),
+                size: MyScreenUtil.sp(27),
                 color: Colors.grey[700],
               ),
             ),
@@ -315,8 +314,8 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         context: context,
         builder: (context) => CupertinoAlertDialog(
               title: Text(
-                '${S.of(context).commonPleaseEnterYourPassword}',
-                style: Util.textStyle(context, 2,
+                '${MyLocaleKey.commonPleaseEnterYourPassword.tr}',
+                style: MyTextUtil.textStyle(2,
                     color: Colors.grey[850], spacing: 0.2, size: 30),
               ),
               content: Card(
@@ -331,13 +330,13 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                             value = value.substring(0, 6);
                           }
                         },
-                        cursorColor: Util.themeColor,
+                        cursorColor: MyColorUtil.themeColor,
                         decoration: InputDecoration(
                           hintText: '',
                           filled: true,
                           fillColor: Colors.white,
                         ),
-                        style: Util.textStyle4Num(context,
+                        style: MyTextUtil.textStyle4Num(
                             color: Colors.grey[800],
                             spacing: 0.2,
                             size: 32,
@@ -351,9 +350,9 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                         ],
                         validator: (String value) {
                           if (value.length < 6) {
-                            return '${S.of(context).commonPwd6Digit}';
+                            return '${MyLocaleKey.commonPwd6Digit.tr}';
                           } else if (value.substring(0, 6) != pwd) {
-                            return '${S.of(context).commonPwdIncorrect}';
+                            return '${MyLocaleKey.commonPwdIncorrect.tr}';
                           } else {
                             return null;
                           }
@@ -366,17 +365,19 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
               actions: <Widget>[
                 FlatButton(
                   child: Text(
-                    '${S.of(context).commonCancel}',
-                    style: Util.textStyle(context, 2,
-                        color: Util.themeColor, spacing: 0.5, size: 30),
+                    '${MyLocaleKey.commonCancel.tr}',
+                    style: MyTextUtil.textStyle(2,
+                        color: MyColorUtil.themeColor, spacing: 0.5, size: 30),
                   ),
                   onPressed: () => Navigator.pop(context),
                 ),
                 FlatButton(
                     child: Text(
-                      '${S.of(context).commonConfirm}',
-                      style: Util.textStyle(context, 2,
-                          color: Util.themeColor, spacing: 0.5, size: 30),
+                      '${MyLocaleKey.commonConfirm.tr}',
+                      style: MyTextUtil.textStyle(2,
+                          color: MyColorUtil.themeColor,
+                          spacing: 0.5,
+                          size: 30),
                     ),
                     onPressed: () {
                       if (_formKey.currentState.validate()) {
@@ -385,17 +386,19 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                           if (val == true) {
                             Navigator.pop(context);
                             if (type == 1) {
-                              Application.router.navigateTo(
+                              /*Application.router.navigateTo(
                                   context, Routes.assetBackupMnemonic,
-                                  transition: TransitionType.cupertino);
+                                  transition: TransitionType.cupertino);*/
+                              Get.toNamed(AppRoute.assetBackupMnemonic);
                             } else if (type == 2) {
-                              Application.router.navigateTo(
+                              /*Application.router.navigateTo(
                                   context, Routes.assetBackupKey,
-                                  transition: TransitionType.cupertino);
+                                  transition: TransitionType.cupertino);*/
+                              Get.toNamed(AppRoute.assetBackupKey);
                             }
                           } else {
-                            Util.showToast(
-                                '${S.of(context).commonExecutedError}');
+                            MyCommonUtil.showToast(
+                                '${MyLocaleKey.commonExecutedError.tr}');
                           }
                         });
                       }
@@ -409,8 +412,8 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         context: context,
         builder: (context) => CupertinoAlertDialog(
               title: Text(
-                '${S.of(context).assetUpdateWalletName}',
-                style: Util.textStyle(context, 2,
+                '${MyLocaleKey.assetUpdateWalletName.tr}',
+                style: MyTextUtil.textStyle(2,
                     color: Colors.grey[850], spacing: 0.0, size: 30),
               ),
               content: Card(
@@ -423,20 +426,20 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                         onSaved: (String value) {
                           _name = value;
                         },
-                        cursorColor: Util.themeColor,
+                        cursorColor: MyColorUtil.themeColor,
                         decoration: InputDecoration(
                           hintText: '',
                           filled: true,
                           fillColor: Colors.white,
                         ),
-                        style: Util.textStyle(context, 2,
+                        style: MyTextUtil.textStyle(2,
                             color: Colors.grey[850], spacing: 0.2, size: 30),
                         //obscureText: true,
                         maxLength: 10,
                         maxLengthEnforced: true,
                         validator: (String value) {
                           if (value.length > 10) {
-                            return '${S.of(context).assetNameLong}';
+                            return '${MyLocaleKey.assetNameLong.tr}';
                           } else {
                             return null;
                           }
@@ -449,29 +452,31 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
               actions: <Widget>[
                 FlatButton(
                   child: Text(
-                    '${S.of(context).commonCancel}',
-                    style: Util.textStyle(context, 2,
-                        color: Util.themeColor, spacing: 0.5, size: 30),
+                    '${MyLocaleKey.commonCancel.tr}',
+                    style: MyTextUtil.textStyle(2,
+                        color: MyColorUtil.themeColor, spacing: 0.5, size: 30),
                   ),
                   onPressed: () => Navigator.pop(context),
                 ),
                 FlatButton(
                     child: Text(
-                      '${S.of(context).commonConfirm}',
-                      style: Util.textStyle(context, 2,
-                          color: Util.themeColor, spacing: 0.5, size: 30),
+                      '${MyLocaleKey.commonConfirm.tr}',
+                      style: MyTextUtil.textStyle(2,
+                          color: MyColorUtil.themeColor,
+                          spacing: 0.5,
+                          size: 30),
                     ),
                     onPressed: () {
                       if (_formKey.currentState.validate()) {
                         _formKey.currentState.save();
                         _updateName(context, index).then((val) {
                           if (val == true) {
-                            Util.showToast(
-                                '${S.of(context).commonUpdateSuccess}');
+                            MyCommonUtil.showToast(
+                                '${MyLocaleKey.commonUpdateSuccess.tr}');
                             Navigator.pop(context);
                           } else {
-                            Util.showToast(
-                                '${S.of(context).commonExecutedError}');
+                            MyCommonUtil.showToast(
+                                '${MyLocaleKey.commonExecutedError.tr}');
                           }
                         });
                       }
@@ -485,32 +490,34 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         context: context,
         builder: (context) => CupertinoAlertDialog(
               title: Text(
-                '${S.of(context).commonDeleteWalletTip}',
-                style: Util.textStyle(context, 2,
+                '${MyLocaleKey.commonDeleteWalletTip.tr}',
+                style: MyTextUtil.textStyle(2,
                     color: Colors.grey[850], spacing: 0.2, size: 28),
               ),
               actions: <Widget>[
                 FlatButton(
                   child: Text(
-                    '${S.of(context).commonCancel}',
-                    style: Util.textStyle(context, 2,
-                        color: Util.themeColor, spacing: 0.5, size: 30),
+                    '${MyLocaleKey.commonCancel.tr}',
+                    style: MyTextUtil.textStyle(2,
+                        color: MyColorUtil.themeColor, spacing: 0.5, size: 30),
                   ),
                   onPressed: () => Navigator.pop(context),
                 ),
                 FlatButton(
                     child: Text(
-                      '${S.of(context).commonConfirm}',
-                      style: Util.textStyle(context, 2,
-                          color: Util.themeColor, spacing: 0.5, size: 30),
+                      '${MyLocaleKey.commonConfirm.tr}',
+                      style: MyTextUtil.textStyle(2,
+                          color: MyColorUtil.themeColor,
+                          spacing: 0.5,
+                          size: 30),
                     ),
                     onPressed: () {
                       _delWallet(context).then((val) {
                         if (val == true) {
                           Navigator.of(context)..pop()..pop();
                         } else {
-                          Util.showToast(
-                              '${S.of(context).commonExecutedError}');
+                          MyCommonUtil.showToast(
+                              '${MyLocaleKey.commonExecutedError.tr}');
                         }
                       });
                     }),
@@ -519,8 +526,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
   }
 
   Future<bool> _updateName(BuildContext context, int index) async {
-    return await Provider.of<HomeProvider>(context, listen: false)
-        .updateName(index, _name);
+    return await GlobalService.to.updateName(index, _name);
   }
 
   Future<bool> _backupKey(BuildContext context) async {
@@ -528,9 +534,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
   }
 
   Future<bool> _delWallet(BuildContext context) async {
-    int index =
-        Provider.of<HomeProvider>(context, listen: false).selectWalletIndex;
-    return await Provider.of<HomeProvider>(context, listen: false)
-        .delWallet(index);
+    int index = GlobalService.to.selectWalletIndex;
+    return await GlobalService.to.delWallet(index);
   }
 }

@@ -1,9 +1,12 @@
 import 'dart:io';
 
-import 'package:flash_tron_wallet/common/common_util.dart';
-import 'package:flash_tron_wallet/generated/l10n.dart';
+import 'package:flash_tron_wallet/common/util/common_util.dart';
+import 'package:flash_tron_wallet/common/util/screen_util.dart';
+import 'package:flash_tron_wallet/common/util/text_util.dart';
+import 'package:flash_tron_wallet/locale/app_Locale.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
 import 'package:ota_update/ota_update.dart';
 import 'package:path_provider/path_provider.dart';
@@ -28,45 +31,45 @@ class _DownloadPageState extends State<DownloadPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: CupertinoAlertDialog(
-      title: Text(
-        '${S.of(context).mineAppUpdating}',
-        style: Util.textStyle(context, 2,
-            color: Colors.grey[800], spacing: 0.0, size: 32),
-      ),
-      content: Container(
-        padding: EdgeInsets.only(top: 5),
-        alignment: Alignment.center,
-        child: progress != ''
-            ? RichText(
-                text: TextSpan(
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: '${S.of(context).mineAppDownloadProgress}',
-                      style: Util.textStyle4Update(context, 2,
-                          color: Colors.grey[850], spacing: 0.0, size: 28),
+    return Obx(() => Container(
+            child: CupertinoAlertDialog(
+          title: Text(
+            '${MyLocaleKey.mineAppUpdating.tr}',
+            style: MyTextUtil.textStyle(2,
+                color: Colors.grey[800], spacing: 0.0, size: 32),
+          ),
+          content: Container(
+            padding: EdgeInsets.only(top: 5),
+            alignment: Alignment.center,
+            child: progress != ''
+                ? RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: '${MyLocaleKey.mineAppDownloadProgress.tr}',
+                          style: MyTextUtil.textStyle4Update(2,
+                              color: Colors.grey[850], spacing: 0.0, size: 28),
+                        ),
+                        TextSpan(
+                          text: '$progress%',
+                          style: TextStyle(
+                            fontFamily: 'EN-M',
+                            letterSpacing: 0.0,
+                            color: Colors.grey[850],
+                            fontSize: MyScreenUtil.sp(32),
+                            height: MyScreenUtil.sp(3.2),
+                          ),
+                        ),
+                      ],
                     ),
-                    TextSpan(
-                      text: '$progress%',
-                      style: TextStyle(
-                        fontFamily: 'EN-M',
-                        letterSpacing: 0.0,
-                        color: Colors.grey[850],
-                        fontSize: Util.sp(32),
-                        height: Util.sp(3.2),
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            : Text(
-                '${S.of(context).mineAppReadyToDownload}',
-                style: Util.textStyle4Update(context, 2,
-                    color: Colors.grey[850], spacing: 0.0, size: 28),
-              ),
-      ),
-    ));
+                  )
+                : Text(
+                    '${MyLocaleKey.mineAppReadyToDownload.tr}',
+                    style: MyTextUtil.textStyle4Update(2,
+                        color: Colors.grey[850], spacing: 0.0, size: 28),
+                  ),
+          ),
+        )));
   }
 
   Future<void> tryOtaUpdate() async {
@@ -94,11 +97,11 @@ class _DownloadPageState extends State<DownloadPage> {
               break;
             case OtaStatus.PERMISSION_NOT_GRANTED_ERROR:
               Navigator.pop(context);
-              Util.showToast('${S.of(context).mineAppDownloadFail}');
+              MyCommonUtil.showToast('${MyLocaleKey.mineAppDownloadFail.tr}');
               break;
             default:
               Navigator.pop(context);
-              Util.showToast('${S.of(context).mineAppDownloadFail}');
+              MyCommonUtil.showToast('${MyLocaleKey.mineAppDownloadFail.tr}');
               break;
           }
         },

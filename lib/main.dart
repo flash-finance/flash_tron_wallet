@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flash_tron_wallet/common/util/log_util.dart';
 import 'package:flash_tron_wallet/locale/app_Locale.dart';
 import 'package:flash_tron_wallet/page/index_page.dart';
 import 'package:flash_tron_wallet/provider/global_injection.dart';
@@ -25,7 +24,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    MyLogUtil.init();
     return GetMaterialApp(
       title: 'Flash Wallet',
       debugShowCheckedModeBanner: false,

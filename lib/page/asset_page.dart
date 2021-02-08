@@ -14,7 +14,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:scan/scan.dart';
 
@@ -78,7 +77,7 @@ class _AssetPageState extends State<AssetPage>
         body: _logInWidget(context),
       );
     } else {
-      /*return Container(
+      return Container(
         color: Colors.white,
         child: Column(
           children: <Widget>[
@@ -109,8 +108,8 @@ class _AssetPageState extends State<AssetPage>
             ),
           ],
         ),
-      );*/
-      return _logOutWidget(context);
+      );
+      /*return _logOutWidget(context);*/
     }
   }
 
@@ -596,35 +595,30 @@ class _AssetPageState extends State<AssetPage>
   }
 
   Widget _logOutHeadWidget(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        top: ScreenUtil().setHeight(50),
-      ),
-      child: Container(
-        alignment: Alignment.center,
-        child: Column(
-          children: <Widget>[
-            Container(
-              child: Opacity(
-                opacity: 1.0,
-                child: Image.asset(
-                  'asset/image/flash-logo.png',
-                  width: MyScreenUtil.width(150),
-                  height: MyScreenUtil.width(150),
-                  fit: BoxFit.cover,
-                ),
+    return Container(
+      alignment: Alignment.center,
+      child: Column(
+        children: <Widget>[
+          Container(
+            child: Opacity(
+              opacity: 1.0,
+              child: Image.asset(
+                'asset/image/flash-logo.png',
+                width: MyScreenUtil.width(150),
+                height: MyScreenUtil.width(150),
+                fit: BoxFit.cover,
               ),
             ),
-            SizedBox(height: MyScreenUtil.height(20)),
-            Container(
-              child: Text(
-                'Flash  Wallet11',
-                style: MyTextUtil.textStyle4En(1,
-                    color: Colors.white, spacing: 0.3, size: 40),
-              ),
+          ),
+          SizedBox(height: MyScreenUtil.height(20)),
+          Container(
+            child: Text(
+              'Flash  Wallet',
+              style: MyTextUtil.textStyle4En(1,
+                  color: Colors.white, spacing: 0.3, size: 40),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

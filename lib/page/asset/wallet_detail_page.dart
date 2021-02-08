@@ -2,7 +2,6 @@ import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/common_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
-import 'package:flash_tron_wallet/common/widget/common/common_widget.dart';
 import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/locale/app_Locale.dart';
@@ -30,7 +29,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
       hasAppBar: true,
       hasBack: true,
       title: '${MyLocaleKey.assetWalletDetails.tr}',
-      body: _bodyWidget(context),
+      body: Obx(() => _bodyWidget(context)),
     );
   }
 
@@ -40,14 +39,14 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
     return Container(
       child: ListView(
         children: <Widget>[
-          IntervalWidget(25),
+          MyCommonUtil.interval(value: 20),
           _topWidget(context, wallet),
-          IntervalWidget(25),
+          MyCommonUtil.interval(value: 20),
           flag ? _backupMnemonicWidget(context, wallet.pwd) : Container(),
           _backupKeyWidget(context, wallet.pwd),
           _updatePwdWidget(context),
           _delWalletWidget(context),
-          IntervalWidget(25),
+          MyCommonUtil.interval(value: 20),
         ],
       ),
     );
@@ -59,26 +58,21 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         '...' +
         temp.substring(temp.length - 8, temp.length);
     return Container(
-      padding: EdgeInsets.only(
-        left: MyScreenUtil.width(10),
-        top: MyScreenUtil.height(10),
-        right: MyScreenUtil.width(30),
-        bottom: MyScreenUtil.height(10),
-      ),
+      padding: MyCommonUtil.edge(left: 10, right: 30, top: 20, bottom: 20),
       child: Row(
         children: <Widget>[
           Container(
             child: Opacity(
               opacity: 0.9,
               child: Image.asset(
-                'images/flash.png',
+                'asset/image/flash.png',
                 width: MyScreenUtil.width(130),
                 height: MyScreenUtil.width(130),
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          SizedBox(width: MyScreenUtil.width(10)),
+          MyCommonUtil.sizedBox(width: 10),
           Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,7 +108,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: MyScreenUtil.height(10)),
+                MyCommonUtil.sizedBox(height: 10),
                 InkWell(
                   onTap: () {
                     Clipboard.setData(ClipboardData(text: wallet.tronAddress));
@@ -161,15 +155,10 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         return _showInputPwdDialLog(context, 1, pwd);
       },
       child: Container(
-        margin: EdgeInsets.only(
-          left: MyScreenUtil.width(40),
-          top: MyScreenUtil.height(30),
-          right: MyScreenUtil.width(40),
-        ),
-        padding: EdgeInsets.only(bottom: MyScreenUtil.height(30)),
+        margin: MyCommonUtil.edge(left: 40, right: 40, top: 30),
+        padding: MyCommonUtil.edge(bottom: 30),
         decoration: BoxDecoration(
-          border:
-              Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
+          border: MyCommonUtil.bottomBorder(),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -200,15 +189,10 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         return _showInputPwdDialLog(context, 2, pwd);
       },
       child: Container(
-        margin: EdgeInsets.only(
-          left: MyScreenUtil.width(40),
-          top: MyScreenUtil.height(30),
-          right: MyScreenUtil.width(40),
-        ),
-        padding: EdgeInsets.only(bottom: MyScreenUtil.height(30)),
+        margin: MyCommonUtil.edge(left: 40, right: 40, top: 30),
+        padding: MyCommonUtil.edge(bottom: 30),
         decoration: BoxDecoration(
-          border:
-              Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
+          border: MyCommonUtil.bottomBorder(),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -236,20 +220,13 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
   Widget _updatePwdWidget(BuildContext context) {
     return InkWell(
       onTap: () {
-        /*Application.router.navigateTo(context, Routes.assetUpdatePwd,
-            transition: TransitionType.cupertino);*/
         Get.toNamed(AppRoute.assetUpdatePwd);
       },
       child: Container(
-        margin: EdgeInsets.only(
-          left: MyScreenUtil.width(40),
-          top: MyScreenUtil.height(30),
-          right: MyScreenUtil.width(40),
-        ),
-        padding: EdgeInsets.only(bottom: MyScreenUtil.height(30)),
+        margin: MyCommonUtil.edge(left: 40, right: 40, top: 30),
+        padding: MyCommonUtil.edge(bottom: 30),
         decoration: BoxDecoration(
-          border:
-              Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
+          border: MyCommonUtil.bottomBorder(),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -280,12 +257,8 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
         return _showDelWalletDialLog(context);
       },
       child: Container(
-        margin: EdgeInsets.only(
-          left: MyScreenUtil.width(40),
-          top: MyScreenUtil.height(30),
-          right: MyScreenUtil.width(40),
-        ),
-        padding: EdgeInsets.only(bottom: MyScreenUtil.height(30)),
+        margin: MyCommonUtil.edge(left: 40, right: 40, top: 30),
+        padding: MyCommonUtil.edge(bottom: 30),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -448,35 +421,30 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                 ),
               ),
               actions: <Widget>[
-                FlatButton(
-                  child: Text(
-                    '${MyLocaleKey.commonCancel.tr}',
-                    style: MyTextUtil.textStyle(2,
-                        color: MyColorUtil.theme, spacing: 0.5, size: 30),
-                  ),
-                  onPressed: () => Navigator.pop(context),
+                MyCommonUtil.flatButton(
+                  context,
+                  '${MyLocaleKey.commonCancel.tr}',
+                  () => Navigator.pop(context),
                 ),
-                FlatButton(
-                    child: Text(
-                      '${MyLocaleKey.commonConfirm.tr}',
-                      style: MyTextUtil.textStyle(2,
-                          color: MyColorUtil.theme, spacing: 0.5, size: 30),
-                    ),
-                    onPressed: () {
-                      if (_formKey.currentState.validate()) {
-                        _formKey.currentState.save();
-                        _updateName(context, index).then((val) {
-                          if (val == true) {
-                            MyCommonUtil.showToast(
-                                '${MyLocaleKey.commonUpdateSuccess.tr}');
-                            Navigator.pop(context);
-                          } else {
-                            MyCommonUtil.showToast(
-                                '${MyLocaleKey.commonExecutedError.tr}');
-                          }
-                        });
-                      }
-                    }),
+                MyCommonUtil.flatButton(
+                  context,
+                  '${MyLocaleKey.commonConfirm.tr}',
+                  () {
+                    if (_formKey.currentState.validate()) {
+                      _formKey.currentState.save();
+                      _updateName(context, index).then((val) {
+                        if (val == true) {
+                          MyCommonUtil.showToast(
+                              '${MyLocaleKey.commonUpdateSuccess.tr}');
+                          Navigator.pop(context);
+                        } else {
+                          MyCommonUtil.showToast(
+                              '${MyLocaleKey.commonExecutedError.tr}');
+                        }
+                      });
+                    }
+                  },
+                ),
               ],
             ));
   }
@@ -491,30 +459,25 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                     color: Colors.grey[850], spacing: 0.2, size: 28),
               ),
               actions: <Widget>[
-                FlatButton(
-                  child: Text(
-                    '${MyLocaleKey.commonCancel.tr}',
-                    style: MyTextUtil.textStyle(2,
-                        color: MyColorUtil.theme, spacing: 0.5, size: 30),
-                  ),
-                  onPressed: () => Navigator.pop(context),
+                MyCommonUtil.flatButton(
+                  context,
+                  '${MyLocaleKey.commonCancel.tr}',
+                  () => Navigator.pop(context),
                 ),
-                FlatButton(
-                    child: Text(
-                      '${MyLocaleKey.commonConfirm.tr}',
-                      style: MyTextUtil.textStyle(2,
-                          color: MyColorUtil.theme, spacing: 0.5, size: 30),
-                    ),
-                    onPressed: () {
-                      _delWallet(context).then((val) {
-                        if (val == true) {
-                          Navigator.of(context)..pop()..pop();
-                        } else {
-                          MyCommonUtil.showToast(
-                              '${MyLocaleKey.commonExecutedError.tr}');
-                        }
-                      });
+                MyCommonUtil.flatButton(
+                  context,
+                  '${MyLocaleKey.commonConfirm.tr}',
+                  () => {
+                    _delWallet(context).then((val) {
+                      if (val == true) {
+                        Navigator.of(context)..pop()..pop();
+                      } else {
+                        MyCommonUtil.showToast(
+                            '${MyLocaleKey.commonExecutedError.tr}');
+                      }
                     }),
+                  },
+                ),
               ],
             ));
   }

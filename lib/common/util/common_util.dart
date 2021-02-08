@@ -53,6 +53,17 @@ class MyCommonUtil {
     );
   }
 
+  static flatButton(BuildContext context, String name, Function onPressed) {
+    return FlatButton(
+      child: Text(
+        '$name',
+        style: MyTextUtil.textStyle(2,
+            color: MyColorUtil.theme, spacing: 0.5, size: 30),
+      ),
+      onPressed: onPressed,
+    );
+  }
+
   static arrowForward() {
     return Container(
       child: Icon(
@@ -73,7 +84,7 @@ class MyCommonUtil {
   }
 
   static submitWidget(
-      BuildContext context, double width, String name, VoidCallback onPressed) {
+      BuildContext context, double width, String name, Function onPressed) {
     return Container(
       child: Align(
         child: SizedBox(
@@ -93,6 +104,13 @@ class MyCommonUtil {
           ),
         ),
       ),
+    );
+  }
+
+  static interval({double value}) {
+    return Container(
+      height: MyScreenUtil.height(value ?? 25),
+      color: MyColorUtil.secondary(),
     );
   }
 

@@ -12,7 +12,7 @@ class MyColorUtil {
     return MyCommonUtil.flag() ? backgroundColorLight : backgroundColorDark;
   }
 
-  static final Color secondaryColorLight = Colors.white;
+  static final Color secondaryColorLight = Color(0xFFF5F5F5);
   static final Color secondaryColorDark = Color(0xFF131E30);
   static Color secondary() {
     return MyCommonUtil.flag() ? secondaryColorLight : secondaryColorDark;
@@ -36,8 +36,8 @@ class MyColorUtil {
     return MyCommonUtil.flag() ? subTitleColorLight : subTitleColorDark;
   }
 
-  static final Color bottomBorderColorLight = Color(0xFF999999);
-  static final Color bottomBorderColorDark = Colors.grey[500];
+  static final Color bottomBorderColorLight = Colors.grey[300];
+  static final Color bottomBorderColorDark = Colors.grey[300];
   static Color bottomBorder() {
     return MyCommonUtil.flag() ? bottomBorderColorLight : bottomBorderColorDark;
   }

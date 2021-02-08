@@ -1,4 +1,5 @@
 import 'package:flash_tron_wallet/common/util/color_util.dart';
+import 'package:flash_tron_wallet/common/util/common_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
 import 'package:flash_tron_wallet/locale/app_Locale.dart';
@@ -31,15 +32,31 @@ class _QrScanPageState extends State<QrScanPage> {
 
   @override
   Widget build(BuildContext context) {
+    /*double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: PreferredSize(
         child: Container(
-          width: double.infinity,
-          child: _qrCodeWidget(context),
+          width: width,
+          child: Obx(() => _qrCodeWidget(context)),
         ),
-        preferredSize: Size(double.infinity, MyScreenUtil.height(1334)),
+        preferredSize: Size(width, height),
       ),
-    );
+    );*/
+    return MediaQuery.removePadding(
+        removeTop: true,
+        context: context,
+        child: Scaffold(
+          appBar: PreferredSize(
+            child: AppBar(
+              backgroundColor: Colors.transparent,
+              brightness: Brightness.dark,
+              elevation: 0,
+            ),
+            preferredSize: Size.fromHeight(0),
+          ),
+          body: Obx(() => _qrCodeWidget(context)),
+        ));
   }
 
   Widget _qrCodeWidget(BuildContext context) {
@@ -57,18 +74,12 @@ class _QrScanPageState extends State<QrScanPage> {
                 } else {
                   Navigator.of(context)..pop()..pop();
                 }
-                /*Application.router.navigateTo(context, 'asset/sendToken/$data',
-                    transition: TransitionType.cupertino);*/
                 Get.toNamed(AppRoute.assetSendToken + '/$data');
               },
             ),
           ),
           Container(
-            margin: EdgeInsets.only(
-              left: MyScreenUtil.width(30),
-              top: MyScreenUtil.height(65),
-              right: MyScreenUtil.width(30),
-            ),
+            margin: MyCommonUtil.edge(left: 30, right: 30, top: 65),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[

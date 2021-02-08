@@ -72,7 +72,7 @@ class MyScaffold extends StatelessWidget {
         brightness: Brightness.light,
         elevation: 0,
       ),
-      preferredSize: Size.fromHeight(MyScreenUtil.height(0)),
+      preferredSize: Size.fromHeight(0),
     );
   }
 }

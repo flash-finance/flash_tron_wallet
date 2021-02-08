@@ -660,7 +660,7 @@ class _AssetPageState extends State<AssetPage>
                             BorderSide(color: Colors.grey[400], width: 0.3)),
                   ),
                   child: Text(
-                    '${MyLocaleKey.assetWalletList}',
+                    '${MyLocaleKey.assetWalletList.tr}',
                     style: MyTextUtil.textStyle(2,
                         color: Colors.grey[850], spacing: 0.4, size: 32),
                   ),
@@ -698,7 +698,7 @@ class _AssetPageState extends State<AssetPage>
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
         //color: MyScreenUtil.themeColor,
         image: DecorationImage(
-          image: AssetImage('images/bg02.png'),
+          image: AssetImage('asset/image/bg02.png'),
           fit: BoxFit.cover,
         ),
       ),
@@ -726,7 +726,8 @@ class _AssetPageState extends State<AssetPage>
                   onTap: () {
                     Clipboard.setData(
                         ClipboardData(text: list[index].tronAddress));
-                    MyCommonUtil.showToast('${MyLocaleKey.commonCopySuccess}');
+                    MyCommonUtil.showToast(
+                        '${MyLocaleKey.commonCopySuccess.tr}');
                   },
                   child: Container(
                     child: Row(

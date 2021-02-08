@@ -128,6 +128,7 @@ class GlobalService extends GetxService {
   getSelectWalletIndex() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     int temp = prefs.getInt(_selectWalletIndexKey);
+    print('getSelectWalletIndex temp: $temp');
     if (temp != null) {
       _selectWalletIndex.value = temp;
     }
@@ -148,6 +149,8 @@ class GlobalService extends GetxService {
         _selectWalletEntity.value = _walletList.value[_selectWalletIndex.value];
       }
     }
+    print(
+        'getSelectWallet _selectWalletEntity: ${_selectWalletEntity.toJson()}');
   }
 
   Future<bool> saveSelectWalletIndex(int value) async {
@@ -180,6 +183,7 @@ class GlobalService extends GetxService {
   }
 
   Future<bool> addWallet(WalletEntity item) async {
+    print('addWallet: ${item.toJson()}');
     try {
       _walletList.value.insert(0, item);
       _selectWalletIndex.value = 0;
@@ -196,6 +200,7 @@ class GlobalService extends GetxService {
         tempList.add(temp);
       }
       prefs.setStringList(_selectWalletListKey, tempList);
+      print('_walletList: ${_walletList.value.length}');
     } catch (e) {
       print(e);
       return false;

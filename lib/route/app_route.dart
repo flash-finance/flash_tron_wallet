@@ -11,6 +11,7 @@ import 'package:flash_tron_wallet/page/asset/update_pwd_page.dart';
 import 'package:flash_tron_wallet/page/asset/wallet_detail_page.dart';
 import 'package:flash_tron_wallet/page/mine/wallet_manage_page.dart';
 import 'package:flash_tron_wallet/page/qr/qr_scan_page.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 class AppRoute {
@@ -94,6 +95,7 @@ class AppRoute {
     GetPage(
       name: assetQrScanSuffix,
       page: () => QrScanPage(),
+      transition: Transition.fadeIn,
     ),
     GetPage(
       name: mineWalletManage,

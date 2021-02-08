@@ -51,7 +51,7 @@ class _IndexPageState extends State<IndexPage> {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
       currentIndex: GlobalService.to.currentIndex,
-      backgroundColor: MyColorUtil.bottomAppBarColor(),
+      backgroundColor: MyColorUtil.bottomAppBar(),
       items: _bottomTabs(context),
       selectedFontSize: MyScreenUtil.sp(22),
       unselectedFontSize: MyScreenUtil.sp(22),

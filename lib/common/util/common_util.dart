@@ -31,8 +31,7 @@ class MyCommonUtil {
   ///底部分割线
   static bottomBorder() {
     return Border(
-        bottom:
-            BorderSide(color: MyColorUtil.bottomBorderColor(), width: 0.20));
+        bottom: BorderSide(color: MyColorUtil.bottomBorder(), width: 0.20));
   }
 
   /// 边距

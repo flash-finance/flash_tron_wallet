@@ -26,7 +26,7 @@ class MyScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
-        backgroundColor: MyColorUtil.backgroundColor(),
+        backgroundColor: MyColorUtil.background(),
         appBar:
             hasAppBar ? _appBarWidget(context) : _preferredSizeWidget(context),
         body: body,
@@ -46,7 +46,7 @@ class MyScaffold extends StatelessWidget {
       title: Text(
         '$title',
         style: MyTextUtil.textStyle(2,
-            color: MyColorUtil.themeColorLight, spacing: 0.0, size: 32),
+            color: MyColorUtil.title(), spacing: 0.0, size: 32),
       ),
       centerTitle: true,
       elevation: 0,
@@ -58,7 +58,7 @@ class MyScaffold extends StatelessWidget {
               child: Icon(
                 Icons.arrow_back,
                 size: MyScreenUtil.sp(45),
-                color: MyColorUtil.themeColorLight,
+                color: MyColorUtil.title(),
               ),
             )
           : Container(),

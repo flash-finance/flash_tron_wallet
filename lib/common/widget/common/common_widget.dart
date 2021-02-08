@@ -15,7 +15,7 @@ class TitleWidget extends StatelessWidget {
       child: Text(
         '$name',
         style: MyTextUtil.textStyle(2,
-            color: MyColorUtil.titleColor(), spacing: 0.0, size: 32),
+            color: MyColorUtil.title(), spacing: 0.0, size: 32),
       ),
     );
   }
@@ -30,7 +30,7 @@ class IntervalWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: MyScreenUtil.height(value),
-      color: MyColorUtil.intervalColor(),
+      color: MyColorUtil.background(),
     );
   }
 }
@@ -65,7 +65,7 @@ class ForwardWidget extends StatelessWidget {
       child: Icon(
         Icons.arrow_forward_ios,
         size: MyScreenUtil.sp(27),
-        color: MyColorUtil.arrowForwardColor(),
+        color: MyColorUtil.subTitle(),
       ),
     );
   }

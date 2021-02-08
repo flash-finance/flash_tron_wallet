@@ -648,7 +648,7 @@ class _AssetPageState extends State<AssetPage>
         }
       },
       child: Container(
-        padding: MyCommonUtil.edge(bottom: 30),
+        padding: MyCommonUtil.edge(top: 30, bottom: 30),
         decoration: BoxDecoration(
           border: flag ? MyCommonUtil.bottomBorder() : null,
         ),

@@ -21,7 +21,6 @@ class BuildWalletSecondPage extends StatefulWidget {
 class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
   @override
   Widget build(BuildContext context) {
-    WalletEntity wallet = GlobalService.to.selectWalletEntity;
     return MyScaffold(
       hasAppBar: true,
       hasBack: true,
@@ -37,20 +36,18 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             width: MyScreenUtil.width(750),
             child: ListView(
               children: <Widget>[
-                SizedBox(height: MyScreenUtil.height(20)),
+                MyCommonUtil.sizedBox(height: 20),
                 _descWidget(),
-                SizedBox(height: MyScreenUtil.height(10)),
+                MyCommonUtil.sizedBox(height: 10),
                 Container(
-                  margin: EdgeInsets.only(
-                      left: MyScreenUtil.width(30),
-                      right: MyScreenUtil.width(30)),
+                  margin: MyCommonUtil.edge(left: 30, right: 30),
                   child: Column(
                     children: <Widget>[
-                      SizedBox(height: MyScreenUtil.height(10)),
+                      MyCommonUtil.sizedBox(height: 10),
                       _tipsWidget(wallet.mnemonic),
-                      SizedBox(height: MyScreenUtil.height(10)),
+                      MyCommonUtil.sizedBox(height: 10),
                       _dataWidget(wallet.mnemonic),
-                      SizedBox(height: MyScreenUtil.height(80)),
+                      MyCommonUtil.sizedBox(height: 80),
                       _submitWidget(context),
                     ],
                   ),
@@ -63,8 +60,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
 
   Widget _descWidget() {
     return Container(
-      margin: EdgeInsets.only(
-          left: MyScreenUtil.width(30), right: MyScreenUtil.width(30)),
+      margin: MyCommonUtil.edge(left: 30, right: 30),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: MyColorUtil.theme,
@@ -72,7 +68,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
       child: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.fromLTRB(30, 15, 10, 0),
+            padding: MyCommonUtil.edge(left: 60, right: 60, top: 30, bottom: 0),
             alignment: Alignment.centerLeft,
             child: Text(
               '${MyLocaleKey.addWalletTip3.tr}',
@@ -83,7 +79,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             ),
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(30, 5, 10, 12),
+            padding: MyCommonUtil.edge(left: 60, right: 60, top: 5, bottom: 20),
             alignment: Alignment.centerLeft,
             child: Text(
               '${MyLocaleKey.addWalletTip4.tr}',
@@ -152,7 +148,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
   Widget _itemWidget(int index, String value) {
     return Container(
       width: MyScreenUtil.width(200),
-      margin: EdgeInsets.fromLTRB(0, 3, 3, 3),
+      margin: MyCommonUtil.edge(right: 5, top: 5, bottom: 5),
       decoration: BoxDecoration(
         color: Color(0x80EEEEEE),
         borderRadius: BorderRadius.circular(5.0),
@@ -161,7 +157,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
         children: <Widget>[
           Container(
             alignment: Alignment.topLeft,
-            padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
+            padding: MyCommonUtil.edge(left: 15, top: 10),
             child: Text(
               '$index',
               style:
@@ -170,7 +166,8 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
           ),
           Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.only(bottom: 13),
+            //padding: EdgeInsets.only(bottom: 13),
+            padding: MyCommonUtil.edge(bottom: 26),
             child: Text(
               '$value',
               style:
@@ -185,31 +182,17 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
   }
 
   Widget _submitWidget(BuildContext context) {
-    return Container(
-      child: Align(
-        child: SizedBox(
-          width: MyScreenUtil.width(320),
-          child: RaisedButton(
-            child: Container(
-              padding: EdgeInsets.all(12),
-              child: Text(
-                '${MyLocaleKey.commonSavedSafely.tr}',
-                style: MyTextUtil.textStyle(1,
-                    color: Colors.white, spacing: 0.2, size: 30),
-              ),
-            ),
-            color: MyColorUtil.theme,
-            onPressed: () {
-              if (widget.type == '1') {
-                Navigator.of(context)..pop()..pop();
-              } else if (widget.type == '2') {
-                Navigator.of(context)..pop()..pop()..pop();
-              }
-            },
-            shape: StadiumBorder(side: BorderSide(color: MyColorUtil.theme)),
-          ),
-        ),
-      ),
-    );
+    return MyCommonUtil.submitWidget(context, 320,
+        '${MyLocaleKey.commonSavedSafely.tr}', _onPressed(context));
+  }
+
+  Function _onPressed(BuildContext context) {
+    return () {
+      if (widget.type == '1') {
+        Navigator.of(context)..pop()..pop();
+      } else if (widget.type == '2') {
+        Navigator.of(context)..pop()..pop()..pop();
+      }
+    };
   }
 }

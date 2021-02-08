@@ -2,7 +2,9 @@ import 'dart:math';
 
 import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
+import 'package:flash_tron_wallet/common/util/text_util.dart';
 import 'package:flash_tron_wallet/provider/global_service.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -32,10 +34,10 @@ class MyCommonUtil {
   }
 
   static edge({double left, double right, double top, double bottom}) {
-    left = left ?? 30;
-    right = right ?? 30;
-    top = top ?? 30;
-    bottom = bottom ?? 30;
+    left = left ?? 0;
+    right = right ?? 0;
+    top = top ?? 0;
+    bottom = bottom ?? 0;
     return EdgeInsets.only(
       left: MyScreenUtil.width(left),
       right: MyScreenUtil.width(right),
@@ -57,6 +59,39 @@ class MyCommonUtil {
         Icons.arrow_forward_ios,
         size: MyScreenUtil.sp(27),
         color: Colors.grey[700],
+      ),
+    );
+  }
+
+  static defaultLoading({double top, double bottom}) {
+    return Container(
+      margin: MyCommonUtil.edge(top: top ?? 0, bottom: bottom ?? 0),
+      child: Center(
+        child: CupertinoActivityIndicator(),
+      ),
+    );
+  }
+
+  static submitWidget(
+      BuildContext context, double width, String name, VoidCallback onPressed) {
+    return Container(
+      child: Align(
+        child: SizedBox(
+          width: MyScreenUtil.width(width ?? 320),
+          child: RaisedButton(
+            child: Container(
+              padding: EdgeInsets.all(12),
+              child: Text(
+                '$name',
+                style: MyTextUtil.textStyle(1,
+                    color: Colors.white, spacing: 0.6, size: 31),
+              ),
+            ),
+            color: MyColorUtil.theme,
+            onPressed: onPressed,
+            shape: StadiumBorder(side: BorderSide(color: MyColorUtil.theme)),
+          ),
+        ),
       ),
     );
   }

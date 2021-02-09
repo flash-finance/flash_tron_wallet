@@ -55,7 +55,7 @@ class _SwapSubPageState extends State<SwapSubPage>
   String _account = '';
   String _leftKey = '';
   String _rightKey = '';
-  Timer _timer1;
+  Timer _timer;
 
   bool _flag1 = false;
   bool _flag2 = false;
@@ -91,9 +91,9 @@ class _SwapSubPageState extends State<SwapSubPage>
 
   @override
   void dispose() {
-    if (_timer1 != null) {
-      if (_timer1.isActive) {
-        _timer1.cancel();
+    if (_timer != null) {
+      if (_timer.isActive) {
+        _timer.cancel();
       }
     }
     super.dispose();
@@ -109,7 +109,6 @@ class _SwapSubPageState extends State<SwapSubPage>
       _account = wallet.tronAddress;
     }
     _balanceMap = GlobalService.to.balanceMap;
-    //_langType = GlobalService.to.langType;
     _leftSwapAmountController = TextEditingController.fromValue(
         TextEditingValue(
             text: _leftSwapAmount,
@@ -125,8 +124,8 @@ class _SwapSubPageState extends State<SwapSubPage>
 
     return MyScaffold(
       hasAppBar: false,
-      body: _bodyWidget(context),
-    ) ;
+      body: Obx(() => _bodyWidget(context)),
+    );
   }
 
   Widget _bodyWidget(BuildContext context) {
@@ -135,9 +134,9 @@ class _SwapSubPageState extends State<SwapSubPage>
       color: Colors.white,
       child: Column(
         children: <Widget>[
-          SizedBox(height: MyScreenUtil.height(20)),
+          MyCommonUtil.sizedBox(height: 20),
           _topWidget(context),
-          SizedBox(height: MyScreenUtil.height(30)),
+          MyCommonUtil.sizedBox(height: 30),
           Expanded(
             child: _mainWidget(context),
           ),
@@ -159,12 +158,11 @@ class _SwapSubPageState extends State<SwapSubPage>
 
   Widget _topWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(
-          left: MyScreenUtil.width(30), right: MyScreenUtil.width(30)),
+      margin: MyCommonUtil.edge(left: 30, right: 30),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(20.0)),
         image: DecorationImage(
-          image: AssetImage('images/bg01.png'),
+          image: AssetImage('asset/image/bg01.png'),
           fit: BoxFit.cover,
         ),
       ),
@@ -172,9 +170,7 @@ class _SwapSubPageState extends State<SwapSubPage>
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
-              padding: EdgeInsets.only(
-                  top: MyScreenUtil.height(30),
-                  bottom: MyScreenUtil.height(30)),
+              padding: MyCommonUtil.edge(top: 30, bottom: 30),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -186,7 +182,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: MyScreenUtil.height(5)),
+                    margin: MyCommonUtil.edge(top: 5),
                     child: Text(
                       '${MyLocaleKey.swapTips01.tr}',
                       style: MyTextUtil.textStyle(1,
@@ -205,22 +201,20 @@ class _SwapSubPageState extends State<SwapSubPage>
   Widget _bizWidget(BuildContext context) {
     return Card(
       elevation: 2.0,
-      margin: EdgeInsets.only(
-          left: MyScreenUtil.width(30), right: MyScreenUtil.width(30)),
+      margin: MyCommonUtil.edge(left: 30, right: 30),
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20.0))),
       child: Container(
-        padding: EdgeInsets.only(
-            top: MyScreenUtil.height(20), bottom: MyScreenUtil.height(20)),
+        padding: MyCommonUtil.edge(top: 20, bottom: 20),
         child: Column(
           children: <Widget>[
-            SizedBox(height: MyScreenUtil.height(50)),
+            MyCommonUtil.sizedBox(height: 50),
             _dataWidget(context),
-            SizedBox(height: MyScreenUtil.height(10)),
+            MyCommonUtil.sizedBox(height: 10),
             _poolWidget(context),
-            SizedBox(height: MyScreenUtil.height(50)),
+            MyCommonUtil.sizedBox(height: 50),
             _swapWidget(context),
-            SizedBox(height: MyScreenUtil.height(50)),
+            MyCommonUtil.sizedBox(height: 50),
           ],
         ),
       ),
@@ -232,9 +226,9 @@ class _SwapSubPageState extends State<SwapSubPage>
         child: Column(
       children: <Widget>[
         _dataLeftWidget(context),
-        SizedBox(height: MyScreenUtil.height(0)),
+        MyCommonUtil.sizedBox(height: 0),
         _dataMidWidget(context),
-        SizedBox(height: MyScreenUtil.height(0)),
+        MyCommonUtil.sizedBox(height: 0),
         _dataRightWidget(context),
       ],
     ));
@@ -242,8 +236,7 @@ class _SwapSubPageState extends State<SwapSubPage>
 
   Widget _dataLeftWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(
-          left: MyScreenUtil.width(30), right: MyScreenUtil.width(30)),
+      margin: MyCommonUtil.edge(left: 30, right: 30),
       child: Column(
         children: <Widget>[
           Container(
@@ -251,7 +244,7 @@ class _SwapSubPageState extends State<SwapSubPage>
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(left: MyScreenUtil.width(2)),
+                  padding: MyCommonUtil.edge(left: 2),
                   child: Text(
                     '${MyLocaleKey.swapSend.tr}',
                     style: MyTextUtil.textStyle(2,
@@ -259,7 +252,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(right: MyScreenUtil.width(2)),
+                  padding: MyCommonUtil.edge(right: 2),
                   child: RichText(
                     text: TextSpan(
                       children: <TextSpan>[
@@ -284,7 +277,7 @@ class _SwapSubPageState extends State<SwapSubPage>
               ],
             ),
           ),
-          SizedBox(height: MyScreenUtil.height(10)),
+          MyCommonUtil.sizedBox(height: 10),
           Container(
             decoration: BoxDecoration(
               color: Colors.grey[100],
@@ -298,13 +291,11 @@ class _SwapSubPageState extends State<SwapSubPage>
                     _showBottomSheetWidget(context, 1);
                   },
                   child: Container(
-                    padding: EdgeInsets.only(
-                        top: MyScreenUtil.height(5),
-                        bottom: MyScreenUtil.height(5)),
+                    padding: MyCommonUtil.edge(top: 5, bottom: 5),
                     child: Container(
                       child: Row(
                         children: <Widget>[
-                          SizedBox(width: MyScreenUtil.width(15)),
+                          MyCommonUtil.sizedBox(width: 5),
                           Container(
                             child: ClipOval(
                               child: _flag1
@@ -320,7 +311,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                     ),
                             ),
                           ),
-                          SizedBox(width: MyScreenUtil.width(10)),
+                          MyCommonUtil.sizedBox(width: 10),
                           Container(
                             width: MyScreenUtil.width(90),
                             alignment: Alignment.center,
@@ -334,7 +325,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   size: 27),
                             ),
                           ),
-                          SizedBox(width: MyScreenUtil.width(5)),
+                          MyCommonUtil.sizedBox(width: 5),
                           Container(
                             child: Icon(Icons.arrow_drop_down,
                                 size: MyScreenUtil.sp(35),
@@ -347,10 +338,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                 ),
                 Container(
                     width: MyScreenUtil.width(350),
-                    padding: EdgeInsets.only(
-                        left: MyScreenUtil.width(20),
-                        top: MyScreenUtil.height(3),
-                        bottom: MyScreenUtil.height(3)),
+                    padding: MyCommonUtil.edge(left: 20, top: 3, bottom: 3),
                     color: Colors.white,
                     alignment: Alignment.centerLeft,
                     child: TextFormField(
@@ -468,7 +456,7 @@ class _SwapSubPageState extends State<SwapSubPage>
               ],
             ),
           ),
-          SizedBox(height: MyScreenUtil.height(10)),
+          MyCommonUtil.sizedBox(height: 10),
           _flag1 && _flag2
               ? Container(
                   child: Row(
@@ -496,7 +484,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                 )
               : Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: MyScreenUtil.width(5)),
+                  padding: MyCommonUtil.edge(left: 5),
                   child: Text(
                     '1 USDT ≈ 1 USD',
                     style: MyTextUtil.textStyle4En(2,
@@ -511,8 +499,7 @@ class _SwapSubPageState extends State<SwapSubPage>
   Widget _dataMidWidget(BuildContext context) {
     return Container(
       color: Colors.white,
-      margin: EdgeInsets.only(
-          top: MyScreenUtil.height(20), bottom: MyScreenUtil.height(0)),
+      margin: MyCommonUtil.edge(top: 20, bottom: 0),
       child: InkWell(
           onTap: () {
             FocusScope.of(context).requestFocus(FocusNode());
@@ -561,8 +548,7 @@ class _SwapSubPageState extends State<SwapSubPage>
 
   Widget _dataRightWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(
-          left: MyScreenUtil.width(30), right: MyScreenUtil.width(30)),
+      margin: MyCommonUtil.edge(left: 30, right: 30),
       child: Column(
         children: <Widget>[
           Container(
@@ -570,7 +556,7 @@ class _SwapSubPageState extends State<SwapSubPage>
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(left: MyScreenUtil.width(2)),
+                  padding: MyCommonUtil.edge(left: 2),
                   child: Text(
                     '${MyLocaleKey.swapReceive.tr}',
                     style: MyTextUtil.textStyle(2,
@@ -578,7 +564,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(right: MyScreenUtil.width(2)),
+                  padding: MyCommonUtil.edge(right: 2),
                   child: RichText(
                     text: TextSpan(
                       children: <TextSpan>[
@@ -603,7 +589,7 @@ class _SwapSubPageState extends State<SwapSubPage>
               ],
             ),
           ),
-          SizedBox(height: MyScreenUtil.height(10)),
+          MyCommonUtil.sizedBox(height: 10),
           Container(
             decoration: BoxDecoration(
               color: Colors.grey[100],
@@ -614,17 +600,14 @@ class _SwapSubPageState extends State<SwapSubPage>
               children: <Widget>[
                 InkWell(
                   onTap: () {
-                    //_showSwapTokenDialLog(context, 2);
                     _showBottomSheetWidget(context, 2);
                   },
                   child: Container(
-                    padding: EdgeInsets.only(
-                        top: MyScreenUtil.height(5),
-                        bottom: MyScreenUtil.height(5)),
+                    padding: MyCommonUtil.edge(top: 5, bottom: 5),
                     child: Container(
                       child: Row(
                         children: <Widget>[
-                          SizedBox(width: MyScreenUtil.width(15)),
+                          MyCommonUtil.sizedBox(width: 15),
                           Container(
                             child: ClipOval(
                               child: _flag2
@@ -640,7 +623,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                     ),
                             ),
                           ),
-                          SizedBox(width: MyScreenUtil.width(10)),
+                          MyCommonUtil.sizedBox(width: 10),
                           Container(
                             width: MyScreenUtil.width(90),
                             alignment: Alignment.center,
@@ -654,7 +637,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   size: 27),
                             ),
                           ),
-                          SizedBox(width: MyScreenUtil.width(5)),
+                          MyCommonUtil.sizedBox(width: 5),
                           Container(
                             child: Icon(Icons.arrow_drop_down,
                                 size: MyScreenUtil.sp(35),
@@ -667,10 +650,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                 ),
                 Container(
                     width: MyScreenUtil.width(350),
-                    padding: EdgeInsets.only(
-                        left: MyScreenUtil.width(20),
-                        top: MyScreenUtil.height(3),
-                        bottom: MyScreenUtil.height(3)),
+                    padding: MyCommonUtil.edge(left: 20, top: 3, bottom: 3),
                     color: Colors.white,
                     alignment: Alignment.centerLeft,
                     child: TextFormField(
@@ -779,9 +759,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                       }
                     },
                     child: Container(
-                      padding: EdgeInsets.only(
-                          top: MyScreenUtil.height(3),
-                          bottom: MyScreenUtil.height(3)),
+                      padding: MyCommonUtil.edge(top: 3, bottom: 3),
                       alignment: Alignment.center,
                       child: Text(
                         'MAX',
@@ -794,14 +772,14 @@ class _SwapSubPageState extends State<SwapSubPage>
               ],
             ),
           ),
-          SizedBox(height: MyScreenUtil.height(10)),
+          MyCommonUtil.sizedBox(height: 10),
           _flag1 && _flag2
               ? Container(
                   child: Row(
                     children: <Widget>[
                       Container(
                         alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(left: MyScreenUtil.width(5)),
+                        padding: MyCommonUtil.edge(left: 5),
                         child: Text(
                           '1  ${_swapRows[_rightSelectIndex].swapTokenName} ≈ ${MyCommonUtil.formatNum(double.parse(_rightPrice), 4)}  ${_swapRows[_leftSelectIndex].swapTokenName}',
                           style: MyTextUtil.textStyle4En(2,
@@ -810,7 +788,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                       ),
                       Container(
                         alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(right: MyScreenUtil.width(5)),
+                        padding: MyCommonUtil.edge(right: 5),
                         child: Text(
                           ' ≈ ${MyCommonUtil.formatNum(_swapRows[_rightSelectIndex].swapTokenPrice2, 4)}  USD',
                           style: MyTextUtil.textStyle4En(2,
@@ -822,7 +800,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                 )
               : Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: MyScreenUtil.width(5)),
+                  padding: MyCommonUtil.edge(left: 5),
                   child: Text(
                     '1 USDT ≈ 1 USD',
                     style: MyTextUtil.textStyle4En(2,
@@ -836,8 +814,7 @@ class _SwapSubPageState extends State<SwapSubPage>
 
   Widget _poolWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(
-          left: MyScreenUtil.width(30), right: MyScreenUtil.width(30)),
+      margin: MyCommonUtil.edge(left: 30, right: 30),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
@@ -861,11 +838,8 @@ class _SwapSubPageState extends State<SwapSubPage>
                 color: MyColorUtil.theme,
                 borderRadius: BorderRadius.circular(6),
               ),
-              padding: EdgeInsets.only(
-                  left: MyScreenUtil.width(18),
-                  top: MyScreenUtil.height(8),
-                  bottom: MyScreenUtil.height(8),
-                  right: MyScreenUtil.width(18)),
+              padding:
+                  MyCommonUtil.edge(left: 18, right: 18, top: 8, bottom: 8),
               child: Text(
                 '${MyLocaleKey.swapPooledTokens.tr}',
                 style: MyTextUtil.textStyle(1,
@@ -889,13 +863,11 @@ class _SwapSubPageState extends State<SwapSubPage>
         content: Container(
           width: MyScreenUtil.width(600),
           height: MyScreenUtil.height(380),
-          padding: EdgeInsets.only(top: MyScreenUtil.height(10)),
+          padding: MyCommonUtil.edge(top: 10),
           child: ListView(
             children: <Widget>[
               Container(
-                padding: EdgeInsets.only(
-                    top: MyScreenUtil.height(10),
-                    bottom: MyScreenUtil.height(10)),
+                padding: MyCommonUtil.edge(top: 10, bottom: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -909,13 +881,9 @@ class _SwapSubPageState extends State<SwapSubPage>
                   ],
                 ),
               ),
-              SizedBox(height: 0),
               Container(
-                padding: EdgeInsets.only(
-                    left: MyScreenUtil.width(20),
-                    top: MyScreenUtil.height(20),
-                    bottom: MyScreenUtil.height(20),
-                    right: MyScreenUtil.width(20)),
+                padding:
+                    MyCommonUtil.edge(left: 20, right: 20, top: 20, bottom: 20),
                 child: Column(
                   children: <Widget>[
                     Container(
@@ -926,7 +894,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                             color: Colors.grey[700], spacing: 0.2, size: 26),
                       ),
                     ),
-                    SizedBox(height: MyScreenUtil.height(15)),
+                    MyCommonUtil.sizedBox(height: 15),
                     Container(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -934,7 +902,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                           Container(
                             child: ClipOval(
                               child: Image.asset(
-                                'images/usd.png',
+                                'asset/image/usd.png',
                                 width: MyScreenUtil.width(38),
                                 height: MyScreenUtil.width(38),
                                 fit: BoxFit.cover,
@@ -942,8 +910,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                             ),
                           ),
                           Container(
-                            padding:
-                                EdgeInsets.only(left: MyScreenUtil.width(15)),
+                            padding: MyCommonUtil.edge(left: 15),
                             child: Text(
                               _swapRows[_leftSelectIndex].swapTokenType == 2
                                   ? '${_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0)}'
@@ -969,7 +936,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                         ],
                       ),
                     ),
-                    SizedBox(height: MyScreenUtil.height(40)),
+                    MyCommonUtil.sizedBox(height: 40),
                     Container(
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -978,7 +945,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                             color: Colors.grey[700], spacing: 0.2, size: 26),
                       ),
                     ),
-                    SizedBox(height: MyScreenUtil.height(15)),
+                    MyCommonUtil.sizedBox(height: 15),
                     Container(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -994,8 +961,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                             ),
                           ),
                           Container(
-                            padding:
-                                EdgeInsets.only(left: MyScreenUtil.width(15)),
+                            padding: MyCommonUtil.edge(left: 15),
                             child: Text(
                               _swapRows[_leftSelectIndex].swapTokenType == 2
                                   ? '${_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0)}'
@@ -1021,7 +987,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                         ],
                       ),
                     ),
-                    SizedBox(height: MyScreenUtil.height(15)),
+                    MyCommonUtil.sizedBox(height: 15),
                     Container(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -1037,8 +1003,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                             ),
                           ),
                           Container(
-                            padding:
-                                EdgeInsets.only(left: MyScreenUtil.width(15)),
+                            padding: MyCommonUtil.edge(left: 15),
                             child: Text(
                               _swapRows[_leftSelectIndex].swapTokenType == 2
                                   ? '${_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0)}'
@@ -1084,16 +1049,14 @@ class _SwapSubPageState extends State<SwapSubPage>
         content: Container(
           width: MyScreenUtil.width(600),
           height: MyScreenUtil.height(700),
-          padding: EdgeInsets.only(top: MyScreenUtil.height(10)),
+          padding: MyCommonUtil.edge(top: 10),
           child: ListView(
             children: <Widget>[
               Container(
                 child: Column(
                   children: <Widget>[
                     Container(
-                      padding: EdgeInsets.only(
-                          top: MyScreenUtil.height(10),
-                          bottom: MyScreenUtil.height(0)),
+                      padding: MyCommonUtil.edge(top: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -1109,13 +1072,9 @@ class _SwapSubPageState extends State<SwapSubPage>
                         ],
                       ),
                     ),
-                    SizedBox(height: 0),
                     Container(
-                      padding: EdgeInsets.only(
-                          left: MyScreenUtil.width(20),
-                          top: MyScreenUtil.height(20),
-                          bottom: MyScreenUtil.height(20),
-                          right: MyScreenUtil.width(20)),
+                      padding: MyCommonUtil.edge(
+                          left: 20, right: 20, top: 20, bottom: 20),
                       child: Column(
                         children: <Widget>[
                           Container(
@@ -1128,7 +1087,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   size: 26),
                             ),
                           ),
-                          SizedBox(height: MyScreenUtil.height(15)),
+                          MyCommonUtil.sizedBox(height: 15),
                           Container(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -1136,7 +1095,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                 Container(
                                   child: ClipOval(
                                     child: Image.asset(
-                                      'images/usd.png',
+                                      'asset/image/usd.png',
                                       width: MyScreenUtil.width(38),
                                       height: MyScreenUtil.width(38),
                                       fit: BoxFit.cover,
@@ -1144,8 +1103,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(
-                                      left: MyScreenUtil.width(15)),
+                                  padding: MyCommonUtil.edge(left: 15),
                                   child: Text(
                                     '${_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0)}',
                                     style: MyTextUtil.textStyle4Num(
@@ -1169,7 +1127,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                               ],
                             ),
                           ),
-                          SizedBox(height: MyScreenUtil.height(20)),
+                          MyCommonUtil.sizedBox(height: 20),
                           Container(
                             alignment: Alignment.centerLeft,
                             child: Text(
@@ -1180,7 +1138,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   size: 26),
                             ),
                           ),
-                          SizedBox(height: MyScreenUtil.height(15)),
+                          MyCommonUtil.sizedBox(height: 15),
                           Container(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -1196,8 +1154,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(
-                                      left: MyScreenUtil.width(15)),
+                                  padding: MyCommonUtil.edge(left: 15),
                                   child: Text(
                                     '${_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
                                     style: MyTextUtil.textStyle4Num(
@@ -1221,7 +1178,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                               ],
                             ),
                           ),
-                          SizedBox(height: MyScreenUtil.height(15)),
+                          MyCommonUtil.sizedBox(height: 15),
                           Container(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -1237,8 +1194,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(
-                                      left: MyScreenUtil.width(15)),
+                                  padding: MyCommonUtil.edge(left: 15),
                                   child: Text(
                                     '${_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
                                     style: MyTextUtil.textStyle4Num(
@@ -1268,14 +1224,12 @@ class _SwapSubPageState extends State<SwapSubPage>
                   ],
                 ),
               ),
-              SizedBox(height: MyScreenUtil.height(20)),
+              MyCommonUtil.sizedBox(height: 20),
               Container(
                 child: Column(
                   children: <Widget>[
                     Container(
-                      padding: EdgeInsets.only(
-                          top: MyScreenUtil.height(10),
-                          bottom: MyScreenUtil.height(0)),
+                      padding: MyCommonUtil.edge(top: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -1291,13 +1245,9 @@ class _SwapSubPageState extends State<SwapSubPage>
                         ],
                       ),
                     ),
-                    SizedBox(height: 0),
                     Container(
-                      padding: EdgeInsets.only(
-                          left: MyScreenUtil.width(20),
-                          top: MyScreenUtil.height(20),
-                          bottom: MyScreenUtil.height(20),
-                          right: MyScreenUtil.width(20)),
+                      padding: MyCommonUtil.edge(
+                          left: 20, right: 20, top: 20, bottom: 20),
                       child: Column(
                         children: <Widget>[
                           Container(
@@ -1310,7 +1260,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   size: 26),
                             ),
                           ),
-                          SizedBox(height: MyScreenUtil.height(15)),
+                          MyCommonUtil.sizedBox(height: 15),
                           Container(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -1326,8 +1276,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(
-                                      left: MyScreenUtil.width(15)),
+                                  padding: MyCommonUtil.edge(left: 15),
                                   child: Text(
                                     '${_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0)}',
                                     style: MyTextUtil.textStyle4Num(
@@ -1351,7 +1300,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                               ],
                             ),
                           ),
-                          SizedBox(height: MyScreenUtil.height(20)),
+                          MyCommonUtil.sizedBox(height: 20),
                           Container(
                             alignment: Alignment.centerLeft,
                             child: Text(
@@ -1362,7 +1311,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   size: 26),
                             ),
                           ),
-                          SizedBox(height: MyScreenUtil.height(15)),
+                          MyCommonUtil.sizedBox(height: 15),
                           Container(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -1378,8 +1327,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(
-                                      left: MyScreenUtil.width(15)),
+                                  padding: MyCommonUtil.edge(left: 15),
                                   child: Text(
                                     '${_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
                                     style: MyTextUtil.textStyle4Num(
@@ -1403,7 +1351,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                               ],
                             ),
                           ),
-                          SizedBox(height: MyScreenUtil.height(15)),
+                          MyCommonUtil.sizedBox(height: 15),
                           Container(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -1419,8 +1367,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(
-                                      left: MyScreenUtil.width(15)),
+                                  padding: MyCommonUtil.edge(left: 15),
                                   child: Text(
                                     '${_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
                                     style: MyTextUtil.textStyle4Num(
@@ -1464,7 +1411,8 @@ class _SwapSubPageState extends State<SwapSubPage>
           width: _langType ? MyScreenUtil.width(320) : MyScreenUtil.width(350),
           child: RaisedButton(
             child: Container(
-              padding: EdgeInsets.all(12),
+              padding:
+                  MyCommonUtil.edge(left: 10, right: 10, top: 18, bottom: 18),
               child: !_loadFlag
                   ? Text(
                       _swapFlag
@@ -1478,185 +1426,180 @@ class _SwapSubPageState extends State<SwapSubPage>
                     ),
             ),
             color: MyColorUtil.theme,
-            onPressed: () async {
-              try {
-                if (_account != '' && _flag1 && _flag2 && _swapFlag) {
-                  double value1 = double.parse(_leftSwapValue);
-                  double value2 = double.parse(_rightSwapValue);
-                  if (value1 > 0 && value2 > 0) {
-                    setState(() {
-                      _loadFlag = true;
-                    });
-                    String tronGrpcIP = GlobalService.to.tronGrpcIP;
-                    String userAddress = _account;
-                    String flashSwapAddress = GlobalService.to.swapAddress;
-
-                    WalletEntity wallet = GlobalService.to.selectWalletEntity;
-                    String privateKey = '';
-                    if (wallet != null && wallet.privateKey != null) {
-                      privateKey = wallet.privateKey;
-                    }
-
-                    if (_swapRows[_leftSelectIndex].swapTokenType == 2) {
-                      String swapTokenAddress =
-                          _swapRows[_leftSelectIndex].swapTokenAddress;
-                      String lpTokenAddress =
-                          _swapRows[_leftSelectIndex].lpTokenAddress;
-                      String tokensSold = _leftSwapValue;
-
-                      String targetTokenAddress =
-                          _swapRows[_rightSelectIndex].swapTokenAddress;
-
-                      int baseTokenType =
-                          _swapRows[_rightSelectIndex].swapTokenType;
-                      String allowanceAmount = await TronSwap().allowance(
-                          tronGrpcIP,
-                          userAddress,
-                          swapTokenAddress,
-                          flashSwapAddress);
-                      print('allowanceAmount: $allowanceAmount');
-                      if (allowanceAmount == '') {
-                        print('allowanceAmount null');
-                        MyCommonUtil.showToast('${MyLocaleKey.swapTip1.tr}');
-                        return;
-                      }
-                      double allowanceValue =
-                          Decimal.tryParse(allowanceAmount).toDouble();
-                      double swapValue = double.parse(_leftSwapValue);
-                      print(
-                          'swapValue: $swapValue, allowanceValue:$allowanceValue');
-
-                      if (swapValue > allowanceValue) {
-                        print('swapValue > allowanceValue');
-                        bool approveFlag = await TronSwap().approve(
-                            tronGrpcIP,
-                            userAddress,
-                            privateKey,
-                            swapTokenAddress,
-                            flashSwapAddress);
-                        print('approveFlag:$approveFlag');
-                        if (!approveFlag) {
-                          MyCommonUtil.showToast('${MyLocaleKey.swapTip1.tr}');
-                          return;
-                        }
-                      }
-
-                      print('swapValue < allowanceValue');
-                      if (_account != '' && baseTokenType == 1) {
-                        print('baseTokenType == 1');
-
-                        /// tokenToTrxSwap
-                        bool result = await TronSwap().tokenToTrxSwap(
-                            tronGrpcIP,
-                            userAddress,
-                            privateKey,
-                            flashSwapAddress,
-                            swapTokenAddress,
-                            lpTokenAddress,
-                            tokensSold);
-                        print('result: $result');
-                        if (result) {
-                          MyCommonUtil.showToast(
-                              '${MyLocaleKey.swapSuccess.tr}');
-                        } else {
-                          MyCommonUtil.showToast('${MyLocaleKey.swapTip1.tr}');
-                        }
-                        return;
-                      } else if (_account != '' && baseTokenType == 2) {
-                        print('baseTokenType == 2');
-
-                        /// tokenToTokenSwap
-                        bool result = await TronSwap().tokenToTokenSwap(
-                            tronGrpcIP,
-                            userAddress,
-                            privateKey,
-                            flashSwapAddress,
-                            swapTokenAddress,
-                            lpTokenAddress,
-                            tokensSold,
-                            targetTokenAddress);
-                        print('result: $result');
-                        if (result) {
-                          MyCommonUtil.showToast(
-                              '${MyLocaleKey.swapSuccess.tr}');
-                        } else {
-                          MyCommonUtil.showToast('${MyLocaleKey.swapTip1.tr}');
-                        }
-                        return;
-                      }
-                    } else if (_swapRows[_leftSelectIndex].swapTokenType == 1 &&
-                        _swapRows[_rightSelectIndex].swapTokenType == 2) {
-                      print('swapTokenType == 1 && swapTokenType == 2');
-                      String swapTokenAddress =
-                          _swapRows[_rightSelectIndex].swapTokenAddress;
-                      String lpTokenAddress =
-                          _swapRows[_rightSelectIndex].lpTokenAddress;
-                      String trxSold = _leftSwapValue;
-
-                      /// trxToTokenSwap
-                      bool result = await TronSwap().trxToTokenSwap(
-                          tronGrpcIP,
-                          userAddress,
-                          privateKey,
-                          flashSwapAddress,
-                          swapTokenAddress,
-                          lpTokenAddress,
-                          trxSold);
-                      print('result: $result');
-                      if (result) {
-                        MyCommonUtil.showToast('${MyLocaleKey.swapSuccess.tr}');
-                      } else {
-                        MyCommonUtil.showToast('${MyLocaleKey.swapTip1.tr}');
-                      }
-                      return;
-                    }
-                  }
-                }
-              } catch (e) {
-                print(e);
-              } finally {
-                setState(() {
-                  _loadFlag = false;
-                  _leftSwapAmount = '';
-                  _leftSwapValue = '';
-                  _rightSwapAmount = '';
-                  _rightSwapValue = '';
-                });
-                List<TokenRows> tokenList = GlobalService.to.tokenList;
-                for (int i = 0; i < 5; i++) {
-                  await Future.delayed(Duration(milliseconds: 1000), () {
-                    if (_swapRows[_leftSelectIndex].swapTokenType == 1 &&
-                        tokenList.length > _leftSelectIndex) {
-                      GlobalService.to.getTrxBalance4Async(
-                          _account, tokenList[_leftSelectIndex]);
-                    }
-                    if (_swapRows[_leftSelectIndex].swapTokenType == 2 &&
-                        tokenList.length > _leftSelectIndex) {
-                      GlobalService.to.getTrc20Balance4Async(
-                          _account, tokenList[_leftSelectIndex]);
-                    }
-                    if (_swapRows[_rightSelectIndex].swapTokenType == 1 &&
-                        tokenList.length > _rightSelectIndex) {
-                      GlobalService.to.getTrxBalance4Async(
-                          _account, tokenList[_rightSelectIndex]);
-                    }
-                    if (_swapRows[_rightSelectIndex].swapTokenType == 2 &&
-                        tokenList.length > _rightSelectIndex) {
-                      GlobalService.to.getTrc20Balance4Async(
-                          _account, tokenList[_rightSelectIndex]);
-                    }
-                    GlobalService.to
-                        .getTrxBalance4Async(_account, tokenList[0]);
-                  });
-                }
-              }
-            },
-            shape:
-                StadiumBorder(side: BorderSide(color: MyColorUtil.theme)),
+            onPressed: _onPressed(),
+            shape: StadiumBorder(side: BorderSide(color: MyColorUtil.theme)),
           ),
         ),
       ),
     );
+  }
+
+  Function _onPressed() {
+    return () async {
+      try {
+        if (_account != '' && _flag1 && _flag2 && _swapFlag) {
+          double value1 = double.parse(_leftSwapValue);
+          double value2 = double.parse(_rightSwapValue);
+          if (value1 > 0 && value2 > 0) {
+            setState(() {
+              _loadFlag = true;
+            });
+            String tronGrpcIP = GlobalService.to.tronGrpcIP;
+            String userAddress = _account;
+            String flashSwapAddress = GlobalService.to.swapAddress;
+
+            WalletEntity wallet = GlobalService.to.selectWalletEntity;
+            String privateKey = '';
+            if (wallet != null && wallet.privateKey != null) {
+              privateKey = wallet.privateKey;
+            }
+
+            if (_swapRows[_leftSelectIndex].swapTokenType == 2) {
+              String swapTokenAddress =
+                  _swapRows[_leftSelectIndex].swapTokenAddress;
+              String lpTokenAddress =
+                  _swapRows[_leftSelectIndex].lpTokenAddress;
+              String tokensSold = _leftSwapValue;
+
+              String targetTokenAddress =
+                  _swapRows[_rightSelectIndex].swapTokenAddress;
+
+              int baseTokenType = _swapRows[_rightSelectIndex].swapTokenType;
+              String allowanceAmount = await TronSwap().allowance(
+                  tronGrpcIP, userAddress, swapTokenAddress, flashSwapAddress);
+              print('allowanceAmount: $allowanceAmount');
+              if (allowanceAmount == '') {
+                print('allowanceAmount null');
+                MyCommonUtil.showToast('${MyLocaleKey.swapTip1.tr}');
+                return;
+              }
+              double allowanceValue =
+                  Decimal.tryParse(allowanceAmount).toDouble();
+              double swapValue = double.parse(_leftSwapValue);
+              print('swapValue: $swapValue, allowanceValue:$allowanceValue');
+
+              if (swapValue > allowanceValue) {
+                print('swapValue > allowanceValue');
+                bool approveFlag = await TronSwap().approve(
+                    tronGrpcIP,
+                    userAddress,
+                    privateKey,
+                    swapTokenAddress,
+                    flashSwapAddress);
+                print('approveFlag:$approveFlag');
+                if (!approveFlag) {
+                  MyCommonUtil.showToast('${MyLocaleKey.swapTip1.tr}');
+                  return;
+                }
+              }
+
+              print('swapValue < allowanceValue');
+              if (_account != '' && baseTokenType == 1) {
+                print('baseTokenType == 1');
+
+                /// tokenToTrxSwap
+                bool result = await TronSwap().tokenToTrxSwap(
+                    tronGrpcIP,
+                    userAddress,
+                    privateKey,
+                    flashSwapAddress,
+                    swapTokenAddress,
+                    lpTokenAddress,
+                    tokensSold);
+                print('result: $result');
+                if (result) {
+                  MyCommonUtil.showToast('${MyLocaleKey.swapSuccess.tr}');
+                } else {
+                  MyCommonUtil.showToast('${MyLocaleKey.swapTip1.tr}');
+                }
+                return;
+              } else if (_account != '' && baseTokenType == 2) {
+                print('baseTokenType == 2');
+
+                /// tokenToTokenSwap
+                bool result = await TronSwap().tokenToTokenSwap(
+                    tronGrpcIP,
+                    userAddress,
+                    privateKey,
+                    flashSwapAddress,
+                    swapTokenAddress,
+                    lpTokenAddress,
+                    tokensSold,
+                    targetTokenAddress);
+                print('result: $result');
+                if (result) {
+                  MyCommonUtil.showToast('${MyLocaleKey.swapSuccess.tr}');
+                } else {
+                  MyCommonUtil.showToast('${MyLocaleKey.swapTip1.tr}');
+                }
+                return;
+              }
+            } else if (_swapRows[_leftSelectIndex].swapTokenType == 1 &&
+                _swapRows[_rightSelectIndex].swapTokenType == 2) {
+              print('swapTokenType == 1 && swapTokenType == 2');
+              String swapTokenAddress =
+                  _swapRows[_rightSelectIndex].swapTokenAddress;
+              String lpTokenAddress =
+                  _swapRows[_rightSelectIndex].lpTokenAddress;
+              String trxSold = _leftSwapValue;
+
+              /// trxToTokenSwap
+              bool result = await TronSwap().trxToTokenSwap(
+                  tronGrpcIP,
+                  userAddress,
+                  privateKey,
+                  flashSwapAddress,
+                  swapTokenAddress,
+                  lpTokenAddress,
+                  trxSold);
+              print('result: $result');
+              if (result) {
+                MyCommonUtil.showToast('${MyLocaleKey.swapSuccess.tr}');
+              } else {
+                MyCommonUtil.showToast('${MyLocaleKey.swapTip1.tr}');
+              }
+              return;
+            }
+          }
+        }
+      } catch (e) {
+        print(e);
+      } finally {
+        setState(() {
+          _loadFlag = false;
+          _leftSwapAmount = '';
+          _leftSwapValue = '';
+          _rightSwapAmount = '';
+          _rightSwapValue = '';
+        });
+        List<TokenRows> tokenList = GlobalService.to.tokenList;
+        for (int i = 0; i < 5; i++) {
+          await Future.delayed(Duration(milliseconds: 1000), () {
+            if (_swapRows[_leftSelectIndex].swapTokenType == 1 &&
+                tokenList.length > _leftSelectIndex) {
+              GlobalService.to
+                  .getTrxBalance4Async(_account, tokenList[_leftSelectIndex]);
+            }
+            if (_swapRows[_leftSelectIndex].swapTokenType == 2 &&
+                tokenList.length > _leftSelectIndex) {
+              GlobalService.to
+                  .getTrc20Balance4Async(_account, tokenList[_leftSelectIndex]);
+            }
+            if (_swapRows[_rightSelectIndex].swapTokenType == 1 &&
+                tokenList.length > _rightSelectIndex) {
+              GlobalService.to
+                  .getTrxBalance4Async(_account, tokenList[_rightSelectIndex]);
+            }
+            if (_swapRows[_rightSelectIndex].swapTokenType == 2 &&
+                tokenList.length > _rightSelectIndex) {
+              GlobalService.to.getTrc20Balance4Async(
+                  _account, tokenList[_rightSelectIndex]);
+            }
+            GlobalService.to.getTrxBalance4Async(_account, tokenList[0]);
+          });
+        }
+      }
+    };
   }
 
   _showBottomSheetWidget(BuildContext context, int type) {
@@ -1697,11 +1640,7 @@ class _SwapSubPageState extends State<SwapSubPage>
 
   Widget _selectTokenTitleWidget(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(
-          left: MyScreenUtil.width(40),
-          right: MyScreenUtil.width(40),
-          top: MyScreenUtil.height(20),
-          bottom: MyScreenUtil.height(20)),
+      padding: MyCommonUtil.edge(left: 40, right: 40, top: 20, bottom: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -1769,11 +1708,7 @@ class _SwapSubPageState extends State<SwapSubPage>
         }
       },
       child: Container(
-        padding: EdgeInsets.only(
-            left: MyScreenUtil.width(40),
-            right: MyScreenUtil.width(40),
-            top: MyScreenUtil.height(20),
-            bottom: MyScreenUtil.height(20)),
+        padding: MyCommonUtil.edge(left: 40, right: 40, top: 20, bottom: 20),
         decoration: BoxDecoration(
           color: flag ? MyColorUtil.theme.withOpacity(0.10) : null,
         ),
@@ -1816,11 +1751,8 @@ class _SwapSubPageState extends State<SwapSubPage>
             ),
             Container(
               width: MyScreenUtil.width(140),
-              padding: EdgeInsets.only(
-                  top: MyScreenUtil.height(14),
-                  bottom: MyScreenUtil.height(14),
-                  left: MyScreenUtil.width(13),
-                  right: MyScreenUtil.width(13)),
+              padding:
+                  MyCommonUtil.edge(left: 13, right: 13, top: 14, bottom: 14),
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
@@ -1853,7 +1785,7 @@ class _SwapSubPageState extends State<SwapSubPage>
 
   _reloadSwapData() async {
     _getSwapData();
-    _timer1 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
+    _timer = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
       bool backgroundFlag = GlobalService.to.backgroundFlag;
       if (!backgroundFlag && _reloadSwapDataFlag) {
         _getSwapData();

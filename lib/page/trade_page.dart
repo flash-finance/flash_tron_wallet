@@ -1,3 +1,4 @@
+import 'package:flash_tron_wallet/common/util/common_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
 import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
@@ -40,12 +41,8 @@ class _TradePageState extends State<TradePage>
         child: Column(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.only(
-                top: MyScreenUtil.height(10),
-                left: MyScreenUtil.width(150),
-                right: MyScreenUtil.width(150),
-                bottom: MyScreenUtil.height(10),
-              ),
+              padding:
+                  MyCommonUtil.edge(left: 150, right: 150, top: 10, bottom: 10),
               decoration: BoxDecoration(
                 color: Colors.white,
               ),

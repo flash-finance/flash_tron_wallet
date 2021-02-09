@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flash_tron_wallet/common/config/common_config.dart';
+import 'package:flash_tron_wallet/common/util/common_util.dart';
 import 'package:flash_tron_wallet/common/util/http_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
@@ -24,7 +25,6 @@ class MarketPage extends StatefulWidget {
 
 class _MarketPageState extends State<MarketPage>
     with AutomaticKeepAliveClientMixin {
-  bool _langType = true;
   Timer _timer1;
 
   @override
@@ -59,7 +59,7 @@ class _MarketPageState extends State<MarketPage>
     return Container(
       child: Column(
         children: <Widget>[
-          SizedBox(height: MyScreenUtil.height(15)),
+          MyCommonUtil.sizedBox(height: 15),
           _titleWidget(context),
           Expanded(
             child: _assetDataWidget(context),
@@ -97,8 +97,7 @@ class _MarketPageState extends State<MarketPage>
 
   Widget _titleWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(
-          left: MyScreenUtil.width(30), right: MyScreenUtil.width(30)),
+      margin: MyCommonUtil.edge(left: 30, right: 30),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -122,7 +121,7 @@ class _MarketPageState extends State<MarketPage>
           Container(
             width: MyScreenUtil.width(140),
             alignment: Alignment.centerRight,
-            padding: EdgeInsets.only(right: MyScreenUtil.width(3)),
+            padding: MyCommonUtil.edge(right: 3),
             child: Text(
               '${MyLocaleKey.swapChange.tr}',
               style: MyTextUtil.textStyle(2,
@@ -145,15 +144,9 @@ class _MarketPageState extends State<MarketPage>
         widget.tabController.index = 1;
       },
       child: Container(
-        padding: EdgeInsets.only(
-          left: MyScreenUtil.width(30),
-          right: MyScreenUtil.width(30),
-          top: MyScreenUtil.height(20),
-          bottom: MyScreenUtil.height(20),
-        ),
+        padding: MyCommonUtil.edge(left: 30, right: 30, top: 25, bottom: 25),
         decoration: BoxDecoration(
-          border:
-              Border(bottom: BorderSide(color: Colors.grey[350], width: 0.25)),
+          border: MyCommonUtil.bottomBorder(),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -174,7 +167,7 @@ class _MarketPageState extends State<MarketPage>
                             fit: BoxFit.cover,
                           ),
                         ),
-                        SizedBox(width: MyScreenUtil.width(10)),
+                        MyCommonUtil.sizedBox(width: 10),
                         Container(
                             child: Text(
                           '${item.swapTokenName}',
@@ -184,9 +177,9 @@ class _MarketPageState extends State<MarketPage>
                       ],
                     ),
                   ),
-                  SizedBox(height: MyScreenUtil.height(8)),
+                  MyCommonUtil.sizedBox(height: 8),
                   Container(
-                    padding: EdgeInsets.only(left: MyScreenUtil.width(2)),
+                    padding: MyCommonUtil.edge(left: 2),
                     child: RichText(
                       text: TextSpan(
                         children: <TextSpan>[
@@ -229,11 +222,8 @@ class _MarketPageState extends State<MarketPage>
             ),
             Container(
               width: MyScreenUtil.width(140),
-              padding: EdgeInsets.only(
-                  top: MyScreenUtil.height(14),
-                  bottom: MyScreenUtil.height(14),
-                  left: MyScreenUtil.width(13),
-                  right: MyScreenUtil.width(13)),
+              padding:
+                  MyCommonUtil.edge(left: 13, right: 13, top: 14, bottom: 14),
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
@@ -244,10 +234,11 @@ class _MarketPageState extends State<MarketPage>
                     ? '+${change.toStringAsFixed(2)}%'
                     : '${change.toStringAsFixed(2)}%',
                 style: MyTextUtil.textStyle4Num(
-                    color: Colors.white,
-                    spacing: 0.0,
-                    size: 25,
-                    fontWeight: FontWeight.w500),
+                  color: Colors.white,
+                  spacing: 0.0,
+                  size: 25,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ],

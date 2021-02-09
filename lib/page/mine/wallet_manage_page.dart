@@ -22,9 +22,9 @@ class _WalletManagePageState extends State<WalletManagePage> {
   @override
   Widget build(BuildContext context) {
     return MyScaffold(
-      hasAppBar: true,
       hasBack: true,
       title: '${MyLocaleKey.mineManageWallet.tr}',
+      body: Obx(() => _bodyWidget(context)),
     );
   }
 
@@ -43,18 +43,12 @@ class _WalletManagePageState extends State<WalletManagePage> {
 
   Widget _notWalletWidget(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(
-        left: MyScreenUtil.width(30),
-        top: MyScreenUtil.height(10),
-        right: MyScreenUtil.width(30),
-        bottom: MyScreenUtil.height(20),
-      ),
-      padding: EdgeInsets.only(
-          top: MyScreenUtil.height(50), bottom: MyScreenUtil.height(50)),
+      margin: MyCommonUtil.edge(left: 30, right: 30, top: 10, bottom: 20),
+      padding: MyCommonUtil.edge(top: 50, bottom: 50),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
         image: DecorationImage(
-          image: AssetImage('images/bg02.png'),
+          image: AssetImage('asset/image/bg02.png'),
           fit: BoxFit.cover,
         ),
       ),
@@ -93,29 +87,18 @@ class _WalletManagePageState extends State<WalletManagePage> {
         list[index].tronAddress.substring(list[index].tronAddress.length - 10,
             list[index].tronAddress.length);
     return Container(
-      margin: EdgeInsets.only(
-          left: MyScreenUtil.width(30),
-          top: index == 0 ? MyScreenUtil.height(10) : MyScreenUtil.height(0),
-          right: MyScreenUtil.width(30),
-          bottom: MyScreenUtil.height(20)),
-      padding: EdgeInsets.only(
-        left: MyScreenUtil.width(40),
-        top: MyScreenUtil.height(30),
-        right: MyScreenUtil.width(40),
-        bottom: MyScreenUtil.height(30),
-      ),
+      margin: MyCommonUtil.edge(
+          left: 30, right: 30, top: index == 0 ? 10 : 0, bottom: 20),
+      padding: MyCommonUtil.edge(left: 40, right: 40, top: 30, bottom: 30),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
         image: DecorationImage(
-          image: AssetImage('images/bg02.png'),
+          image: AssetImage('asset/image/bg02.png'),
           fit: BoxFit.cover,
         ),
       ),
       child: InkWell(
         onTap: () {
-          /*Application.router.navigateTo(
-              context, Routes.assetWalletDetail + '/$index',
-              transition: TransitionType.cupertino);*/
           Get.toNamed(AppRoute.assetWalletDetail + '/$index');
         },
         child: Column(
@@ -134,17 +117,13 @@ class _WalletManagePageState extends State<WalletManagePage> {
                               color: Colors.white, spacing: 0.5, size: 28),
                         ),
                       ),
-                      SizedBox(width: MyScreenUtil.width(50)),
+                      MyCommonUtil.sizedBox(width: 50),
                       flag
                           ? Container(
                               width: MyScreenUtil.width(80),
                               padding: _langType
-                                  ? EdgeInsets.only(
-                                      top: MyScreenUtil.height(2),
-                                      bottom: MyScreenUtil.height(2))
-                                  : EdgeInsets.only(
-                                      top: MyScreenUtil.height(5),
-                                      bottom: MyScreenUtil.height(5)),
+                                  ? MyCommonUtil.edge(top: 2, bottom: 2)
+                                  : MyCommonUtil.edge(top: 5, bottom: 5),
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
                                 borderRadius:
@@ -172,7 +151,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
                 ),
               ],
             ),
-            SizedBox(height: MyScreenUtil.height(10)),
+            MyCommonUtil.sizedBox(height: 10),
             InkWell(
               onTap: () {
                 Clipboard.setData(ClipboardData(text: list[index].tronAddress));
@@ -188,7 +167,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
                             color: Colors.white, spacing: 0.5, size: 26),
                       ),
                     ),
-                    SizedBox(width: MyScreenUtil.width(50)),
+                    MyCommonUtil.sizedBox(width: 50),
                     Container(
                       child: Icon(
                         IconData(0xe618, fontFamily: 'ICON'),

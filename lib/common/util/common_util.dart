@@ -53,7 +53,7 @@ class MyCommonUtil {
     );
   }
 
-  static flatButton(BuildContext context, String name, Function onPressed) {
+  static flatButton(String name, Function onPressed) {
     return FlatButton(
       child: Text(
         '$name',

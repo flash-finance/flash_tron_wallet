@@ -4,7 +4,6 @@ import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/common_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
-import 'package:flash_tron_wallet/common/widget/common/common_widget.dart';
 import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
 import 'package:flash_tron_wallet/locale/app_Locale.dart';
 import 'package:flash_tron_wallet/model/tron_info_model.dart';
@@ -28,7 +27,8 @@ class _MinePageState extends State<MinePage> {
   Widget build(BuildContext context) {
     return MyScaffold(
       hasAppBar: true,
-      body: _bodyWidget(context),
+      title: '${MyLocaleKey.bottomTab3.tr}',
+      body: Obx(() => _bodyWidget(context)),
     );
   }
 
@@ -36,11 +36,11 @@ class _MinePageState extends State<MinePage> {
     return Container(
       child: ListView(
         children: <Widget>[
-          IntervalWidget(25),
+          MyCommonUtil.interval(value: 20),
           _walletManageWidget(context),
           _langWidget(context),
           _versionWidget(context),
-          IntervalWidget(25),
+          MyCommonUtil.interval(value: 20),
         ],
       ),
     );
@@ -49,20 +49,13 @@ class _MinePageState extends State<MinePage> {
   Widget _walletManageWidget(BuildContext context) {
     return InkWell(
       onTap: () {
-        /*Application.router.navigateTo(context, Routes.mineWalletManage,
-            transition: TransitionType.cupertino);*/
         Get.toNamed(AppRoute.mineWalletManage);
       },
       child: Container(
-        margin: EdgeInsets.only(
-          left: MyScreenUtil.width(40),
-          top: MyScreenUtil.height(30),
-          right: MyScreenUtil.width(40),
-        ),
-        padding: EdgeInsets.only(bottom: MyScreenUtil.height(30)),
+        margin: MyCommonUtil.edge(left: 40, right: 40, top: 30),
+        padding: MyCommonUtil.edge(bottom: 30),
         decoration: BoxDecoration(
-          border:
-              Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
+          border: MyCommonUtil.bottomBorder(),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -76,7 +69,7 @@ class _MinePageState extends State<MinePage> {
                     color: Colors.grey[800],
                   ),
                 ),
-                SizedBox(width: MyScreenUtil.width(50)),
+                MyCommonUtil.sizedBox(width: 50),
                 Container(
                   child: Text(
                     '${MyLocaleKey.mineManageWallet.tr}',
@@ -105,15 +98,10 @@ class _MinePageState extends State<MinePage> {
         _showSwitchLangDialLog(context);
       },
       child: Container(
-        margin: EdgeInsets.only(
-          left: MyScreenUtil.width(40),
-          top: MyScreenUtil.height(30),
-          right: MyScreenUtil.width(40),
-        ),
-        padding: EdgeInsets.only(bottom: MyScreenUtil.height(30)),
+        margin: MyCommonUtil.edge(left: 40, right: 40, top: 30),
+        padding: MyCommonUtil.edge(bottom: 30),
         decoration: BoxDecoration(
-          border:
-              Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
+          border: MyCommonUtil.bottomBorder(),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -127,7 +115,7 @@ class _MinePageState extends State<MinePage> {
                     color: Colors.grey[800],
                   ),
                 ),
-                SizedBox(width: MyScreenUtil.width(50)),
+                MyCommonUtil.sizedBox(width: 50),
                 Row(
                   children: <Widget>[
                     Container(
@@ -219,7 +207,7 @@ class _MinePageState extends State<MinePage> {
                         ),
                       ),
                       content: Container(
-                        padding: EdgeInsets.only(top: MyScreenUtil.height(10)),
+                        padding: MyCommonUtil.edge(top: 10),
                         alignment: Alignment.centerLeft,
                         child: Text(
                           _langType
@@ -231,32 +219,21 @@ class _MinePageState extends State<MinePage> {
                         ),
                       ),
                       actions: <Widget>[
-                        FlatButton(
-                          child: Text(
-                            '${MyLocaleKey.mineVersionTips2.tr}',
-                            style: MyTextUtil.textStyle(2,
-                                color: MyColorUtil.theme,
-                                spacing: 0.0,
-                                size: 30),
-                          ),
-                          onPressed: () => Navigator.pop(context),
+                        MyCommonUtil.flatButton(
+                          '${MyLocaleKey.mineVersionTips2.tr}',
+                          () => Navigator.pop(context),
                         ),
-                        FlatButton(
-                            child: Text(
-                              '${MyLocaleKey.mineVersionTips3.tr}',
-                              style: MyTextUtil.textStyle(2,
-                                  color: MyColorUtil.theme,
-                                  spacing: 0.0,
-                                  size: 30),
-                            ),
-                            onPressed: () {
-                              Navigator.pop(context);
-                              return showDialog(
-                                  context: context,
-                                  barrierDismissible: false,
-                                  child: DownloadPage(
-                                      tronInfo.androidDownloadUrl));
-                            }),
+                        MyCommonUtil.flatButton(
+                          '${MyLocaleKey.mineVersionTips3.tr}',
+                          () {
+                            Navigator.pop(context);
+                            return showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                child:
+                                    DownloadPage(tronInfo.androidDownloadUrl));
+                          },
+                        ),
                       ],
                     ));
           }
@@ -296,7 +273,7 @@ class _MinePageState extends State<MinePage> {
                         ),
                       ),
                       content: Container(
-                        padding: EdgeInsets.only(top: MyScreenUtil.height(10)),
+                        padding: MyCommonUtil.edge(top: 10),
                         alignment: Alignment.centerLeft,
                         child: Text(
                           _langType
@@ -308,44 +285,29 @@ class _MinePageState extends State<MinePage> {
                         ),
                       ),
                       actions: <Widget>[
-                        FlatButton(
-                          child: Text(
-                            '${MyLocaleKey.mineVersionTips2.tr}',
-                            style: MyTextUtil.textStyle(2,
-                                color: MyColorUtil.theme,
-                                spacing: 0.0,
-                                size: 30),
-                          ),
-                          onPressed: () => Navigator.pop(context),
+                        MyCommonUtil.flatButton(
+                          '${MyLocaleKey.mineVersionTips2.tr}',
+                          () => Navigator.pop(context),
                         ),
-                        FlatButton(
-                            child: Text(
-                              '${MyLocaleKey.mineVersionTips3.tr}',
-                              style: MyTextUtil.textStyle(2,
-                                  color: MyColorUtil.theme,
-                                  spacing: 0.0,
-                                  size: 30),
-                            ),
-                            onPressed: () async {
-                              if (await canLaunch(tronInfo.iosDownloadUrl)) {
-                                await launch(tronInfo.iosDownloadUrl);
-                              } else {
-                                print(
-                                    'could not launch ${tronInfo.iosDownloadUrl}');
-                              }
-                            }),
+                        MyCommonUtil.flatButton(
+                          '${MyLocaleKey.mineVersionTips3.tr}',
+                          () async {
+                            if (await canLaunch(tronInfo.iosDownloadUrl)) {
+                              await launch(tronInfo.iosDownloadUrl);
+                            } else {
+                              print(
+                                  'could not launch ${tronInfo.iosDownloadUrl}');
+                            }
+                          },
+                        ),
                       ],
                     ));
           }
         }
       },
       child: Container(
-        margin: EdgeInsets.only(
-          left: MyScreenUtil.width(40),
-          top: MyScreenUtil.height(30),
-          right: MyScreenUtil.width(40),
-        ),
-        padding: EdgeInsets.only(bottom: MyScreenUtil.height(30)),
+        margin: MyCommonUtil.edge(left: 40, right: 40, top: 30),
+        padding: MyCommonUtil.edge(bottom: 30),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -398,7 +360,7 @@ class _MinePageState extends State<MinePage> {
       child: Row(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(right: MyScreenUtil.width(5)),
+            padding: MyCommonUtil.edge(right: 5),
             alignment: Alignment.centerRight,
             child: Text(
               '$currentVersion',
@@ -408,9 +370,7 @@ class _MinePageState extends State<MinePage> {
           ),
           flag
               ? Container(
-                  padding: EdgeInsets.only(
-                      left: MyScreenUtil.width(5),
-                      right: MyScreenUtil.width(10)),
+                  padding: MyCommonUtil.edge(left: 5, right: 10),
                   alignment: Alignment.centerRight,
                   child: Icon(Icons.brightness_1,
                       size: MyScreenUtil.sp(15), color: MyColorUtil.theme),

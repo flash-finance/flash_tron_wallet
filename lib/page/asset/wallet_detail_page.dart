@@ -422,12 +422,10 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
               ),
               actions: <Widget>[
                 MyCommonUtil.flatButton(
-                  context,
                   '${MyLocaleKey.commonCancel.tr}',
                   () => Navigator.pop(context),
                 ),
                 MyCommonUtil.flatButton(
-                  context,
                   '${MyLocaleKey.commonConfirm.tr}',
                   () {
                     if (_formKey.currentState.validate()) {
@@ -460,12 +458,10 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
               ),
               actions: <Widget>[
                 MyCommonUtil.flatButton(
-                  context,
                   '${MyLocaleKey.commonCancel.tr}',
                   () => Navigator.pop(context),
                 ),
                 MyCommonUtil.flatButton(
-                  context,
                   '${MyLocaleKey.commonConfirm.tr}',
                   () => {
                     _delWallet(context).then((val) {

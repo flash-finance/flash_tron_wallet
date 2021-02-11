@@ -5,7 +5,7 @@ import 'package:flash_tron_wallet/common/util/common_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
 import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
-import 'package:flash_tron_wallet/index/mine/download_page.dart';
+import 'package:flash_tron_wallet/index/mine/download/download_page.dart';
 import 'package:flash_tron_wallet/locale/app_Locale.dart';
 import 'package:flash_tron_wallet/model/tron_info_model.dart';
 import 'package:flash_tron_wallet/provider/global_service.dart';

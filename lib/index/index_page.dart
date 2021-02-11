@@ -1,9 +1,9 @@
 import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
-import 'package:flash_tron_wallet/index/asset_page.dart';
-import 'package:flash_tron_wallet/index/mine_page.dart';
-import 'package:flash_tron_wallet/index/trade_page.dart';
+import 'package:flash_tron_wallet/index/asset/asset_page.dart';
+import 'package:flash_tron_wallet/index/mine/mine_page.dart';
+import 'package:flash_tron_wallet/index/trade/trade_page.dart';
 import 'package:flash_tron_wallet/provider/global_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';

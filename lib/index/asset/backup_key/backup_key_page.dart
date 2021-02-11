@@ -115,7 +115,7 @@ class _BackupKeyPageState extends State<BackupKeyPage> {
   }
 
   Widget _submitWidget(BuildContext context) {
-    return MyCommonUtil.submitWidget(
+    return MyCommonUtil.submit(
       context,
       320,
       '${MyLocaleKey.commonDone.tr}',

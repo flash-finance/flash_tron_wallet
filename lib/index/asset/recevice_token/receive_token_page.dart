@@ -103,7 +103,7 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
   }
 
   Widget _copyButtonWidget(BuildContext context, String address) {
-    return MyCommonUtil.submitWidget(
+    return MyCommonUtil.submit(
       context,
       320,
       '${MyLocaleKey.assetCopyAddress.tr}',

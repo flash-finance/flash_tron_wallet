@@ -182,7 +182,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
   }
 
   Widget _submitWidget(BuildContext context) {
-    return MyCommonUtil.submitWidget(context, 320,
+    return MyCommonUtil.submit(context, 320,
         '${MyLocaleKey.commonSavedSafely.tr}', _onPressed(context));
   }
 

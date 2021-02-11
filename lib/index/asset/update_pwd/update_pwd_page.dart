@@ -205,7 +205,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
   }
 
   Widget _submitWidget(BuildContext context) {
-    return MyCommonUtil.submitWidget(
+    return MyCommonUtil.submit(
       context,
       320,
       '${MyLocaleKey.commonSubmit.tr}',

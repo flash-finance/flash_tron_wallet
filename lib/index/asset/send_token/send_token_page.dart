@@ -431,7 +431,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
   Widget _submitWidget(BuildContext context, WalletEntity wallet) {
     List<AssetEntity> assetList = GlobalService.to.assetList;
     int index = GlobalService.to.selectAssetFilterIndex;
-    return MyCommonUtil.submitWidget(
+    return MyCommonUtil.submit(
       context,
       320,
       '${MyLocaleKey.commonSend.tr}',

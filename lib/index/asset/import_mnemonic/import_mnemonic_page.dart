@@ -239,7 +239,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
   }
 
   Widget _submitWidget(BuildContext context) {
-    return MyCommonUtil.submitWidget(
+    return MyCommonUtil.submit(
       context,
       320,
       '${MyLocaleKey.commonSubmit.tr}',

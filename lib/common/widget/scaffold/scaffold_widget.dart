@@ -53,7 +53,7 @@ class MyScaffold extends StatelessWidget {
               onTap: () {
                 Get.back();
               },
-              child: MyCommonUtil.iconWidget(
+              child: MyCommonUtil.icon(
                 MyIconUtil.arrowBack,
                 size: 45,
                 color: MyColorUtil.biz(),

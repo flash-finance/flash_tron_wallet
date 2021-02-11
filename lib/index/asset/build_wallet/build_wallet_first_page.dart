@@ -206,7 +206,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
   }
 
   Widget _submitWidget(BuildContext context) {
-    return MyCommonUtil.submitWidget(
+    return MyCommonUtil.submit(
       context,
       320,
       '${MyLocaleKey.commonSubmit.tr}',

@@ -115,7 +115,7 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
   }
 
   Widget _submitButton(BuildContext context) {
-    return MyCommonUtil.submitWidget(
+    return MyCommonUtil.submit(
       context,
       320,
       '${MyLocaleKey.commonDone.tr}',

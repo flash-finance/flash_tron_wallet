@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flash_tron_wallet/common/enum/text_type.dart';
 import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
@@ -83,7 +84,7 @@ class MyCommonUtil {
     );
   }
 
-  static submitWidget(
+  static submit(
       BuildContext context, double width, String name, Function onPressed) {
     return Container(
       child: Align(
@@ -115,11 +116,59 @@ class MyCommonUtil {
     );
   }
 
-  static iconWidget(IconData iconData, {double size, color}) {
+  static icon(IconData iconData, {double size, color}) {
     return Icon(
       iconData,
       size: MyScreenUtil.sp(size ?? 32),
       color: color ?? MyColorUtil.subBiz(),
+    );
+  }
+
+  static textFormField({
+    bool readOnly,
+    bool obscureText,
+    Widget suffixIcon,
+    Function onSaved,
+    int maxLine,
+    int maxLength,
+    List<TextInputFormatter> inputFormatter,
+    TextInputType keyboardType,
+    String labelText,
+    TextType textType = TextType.normal,
+    Function validator,
+  }) {
+    return TextFormField(
+      readOnly: readOnly ?? false,
+      obscureText: obscureText ?? true,
+      onSaved: onSaved,
+      maxLines: maxLine ?? 1,
+      maxLength: maxLength ?? 0,
+      inputFormatters: inputFormatter ?? [],
+      keyboardType: keyboardType,
+      cursorColor: MyColorUtil.theme,
+      decoration: InputDecoration(
+        labelText: '$labelText',
+        labelStyle: MyTextUtil.textStyle(
+          2,
+          color: MyColorUtil.biz(),
+          spacing: 0.1,
+          size: 26,
+        ),
+        suffixIcon: suffixIcon,
+      ),
+      style: textType == TextType.normal
+          ? MyTextUtil.textStyle(2,
+              color: MyColorUtil.biz(), spacing: 0.2, size: 30)
+          : textType == TextType.onlyEn
+              ? MyTextUtil.textStyle4En(2,
+                  color: MyColorUtil.biz(), spacing: 0.0, size: 28)
+              : MyTextUtil.textStyle4Num(
+                  color: MyColorUtil.biz(),
+                  spacing: 0.2,
+                  size: 32,
+                  fontWeight: FontWeight.w500,
+                ),
+      validator: validator,
     );
   }
 

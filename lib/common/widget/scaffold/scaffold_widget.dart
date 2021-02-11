@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flash_tron_wallet/common/util/color_util.dart';
-import 'package:flash_tron_wallet/common/util/screen_util.dart';
+import 'package:flash_tron_wallet/common/util/common_util.dart';
+import 'package:flash_tron_wallet/common/util/icon_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,7 +13,6 @@ class MyScaffold extends StatelessWidget {
   bool hasAppBar;
   bool hasBack;
   Widget body;
-  Widget floatingActionButton;
   Widget bottomNavigationBar;
 
   MyScaffold({
@@ -18,7 +20,6 @@ class MyScaffold extends StatelessWidget {
     this.hasAppBar = true,
     this.hasBack = false,
     this.body,
-    this.floatingActionButton,
     this.bottomNavigationBar,
   });
 
@@ -30,35 +31,32 @@ class MyScaffold extends StatelessWidget {
         appBar:
             hasAppBar ? _appBarWidget(context) : _preferredSizeWidget(context),
         body: body,
-        floatingActionButtonLocation: floatingActionButton != null
-            ? FloatingActionButtonLocation.centerDocked
-            : null,
-        floatingActionButton: floatingActionButton,
         bottomNavigationBar: bottomNavigationBar,
       ),
     );
   }
 
   Widget _appBarWidget(BuildContext context) {
+    bool flag = MyCommonUtil.isLightTheme();
     return AppBar(
       backgroundColor: MyColorUtil.background(),
-      brightness: Brightness.light,
+      brightness: flag ? Brightness.light : Brightness.dark,
       title: Text(
         '$title',
         style: MyTextUtil.textStyle(2,
-            color: MyColorUtil.title(), spacing: 0.0, size: 32),
+            color: MyColorUtil.biz(), spacing: 0.0, size: 32),
       ),
       centerTitle: true,
       elevation: 0,
       leading: hasBack
           ? InkWell(
               onTap: () {
-                Navigator.of(context)..pop();
+                Get.back();
               },
-              child: Icon(
-                Icons.arrow_back,
-                size: MyScreenUtil.sp(45),
-                color: MyColorUtil.title(),
+              child: MyCommonUtil.iconWidget(
+                MyIconUtil.arrowBack,
+                size: 45,
+                color: MyColorUtil.biz(),
               ),
             )
           : Container(),
@@ -66,10 +64,11 @@ class MyScaffold extends StatelessWidget {
   }
 
   PreferredSize _preferredSizeWidget(BuildContext context) {
+    bool flag = MyCommonUtil.isLightTheme();
     return PreferredSize(
       child: AppBar(
         backgroundColor: MyColorUtil.background(),
-        brightness: Brightness.light,
+        brightness: flag ? Brightness.light : Brightness.dark,
         elevation: 0,
       ),
       preferredSize: Size.fromHeight(0),

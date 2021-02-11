@@ -10,7 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class MyCommonUtil {
-  static flag() {
+  static isLightTheme() {
     int themeModeValue = GlobalService.to.themeModeValue;
     print('flag: $themeModeValue');
     return themeModeValue == 0;
@@ -22,15 +22,15 @@ class MyCommonUtil {
       gravity: ToastGravity.CENTER,
       toastLength: Toast.LENGTH_SHORT,
       timeInSecForIosWeb: 1,
-      textColor: flag() ? Colors.white : Colors.grey[850],
+      textColor: isLightTheme() ? Colors.white : Colors.grey[850],
       fontSize: MyScreenUtil.sp(25),
-      backgroundColor: flag() ? Colors.grey[850] : Colors.white,
+      backgroundColor: isLightTheme() ? Colors.grey[850] : Colors.white,
     );
   }
 
   static bottomBorder() {
     return Border(
-        bottom: BorderSide(color: MyColorUtil.bottomBorder(), width: 0.5));
+        bottom: BorderSide(color: MyColorUtil.dividerLine(), width: 0.5));
   }
 
   static edge({double left, double right, double top, double bottom}) {
@@ -112,6 +112,14 @@ class MyCommonUtil {
     return Container(
       height: MyScreenUtil.height(value ?? 25),
       color: MyColorUtil.secondary(),
+    );
+  }
+
+  static iconWidget(IconData iconData, {double size, color}) {
+    return Icon(
+      iconData,
+      size: MyScreenUtil.sp(size ?? 32),
+      color: color ?? MyColorUtil.subBiz(),
     );
   }
 

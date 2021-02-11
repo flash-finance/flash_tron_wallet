@@ -1,7 +1,7 @@
 import 'dart:io';
 
+import 'package:flash_tron_wallet/index/index_page.dart';
 import 'package:flash_tron_wallet/locale/app_Locale.dart';
-import 'package:flash_tron_wallet/page/index_page.dart';
 import 'package:flash_tron_wallet/provider/global_injection.dart';
 import 'package:flash_tron_wallet/provider/global_service.dart';
 import 'package:flash_tron_wallet/route/app_route.dart';

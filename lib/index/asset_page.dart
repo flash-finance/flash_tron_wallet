@@ -29,7 +29,6 @@ class _AssetPageState extends State<AssetPage>
   bool get wantKeepAlive => true;
   Timer _timer;
   ScanController controller = ScanController();
-  bool _langType = true;
 
   @override
   void initState() {
@@ -245,6 +244,7 @@ class _AssetPageState extends State<AssetPage>
   }
 
   Widget _cardWidget(BuildContext context) {
+    bool langType = GlobalService.to.langType;
     List<AssetEntity> assetList = GlobalService.to.assetList;
     double totalAssetUsd = 0.0;
     int selectIndex = GlobalService.to.selectWalletIndex;
@@ -292,8 +292,8 @@ class _AssetPageState extends State<AssetPage>
                         SizedBox(width: MyScreenUtil.width(10)),
                         Container(
                           padding: MyCommonUtil.edge(
-                              top: _langType ? 0 : 1.5,
-                              bottom: _langType ? 1 : 0),
+                              top: langType ? 0 : 1.5,
+                              bottom: langType ? 1 : 0),
                           child: Icon(
                             Icons.arrow_forward_ios,
                             size: MyScreenUtil.sp(23),

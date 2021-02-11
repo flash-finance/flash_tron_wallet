@@ -110,7 +110,7 @@ class MyCommonUtil {
 
   static interval({double value}) {
     return Container(
-      height: MyScreenUtil.height(value ?? 25),
+      height: MyScreenUtil.height(value ?? 20),
       color: MyColorUtil.secondary(),
     );
   }

@@ -166,7 +166,7 @@ class MyCommonUtil {
                   color: MyColorUtil.biz(),
                   spacing: 0.2,
                   size: 32,
-                  fontWeight: FontWeight.w500,
+                  //fontWeight: FontWeight.w500,
                 ),
       validator: validator,
     );

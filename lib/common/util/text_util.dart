@@ -4,6 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MyTextUtil {
+  static String textRegular4Zh = 'ZH-R';
+  static String textMedium4Zh = 'ZH-M';
+
+  static String textRegular4En = 'EN-R';
+  static String textMedium4En = 'EN-M';
+
   static TextStyle textStyle(int type,
       {Color color, double spacing, double size}) {
     double letterSpacing = spacing != null ? spacing : 0.0;
@@ -11,13 +17,13 @@ class MyTextUtil {
     bool langType = GlobalService.to.langType;
     return langType
         ? TextStyle(
-            fontFamily: type == 1 ? 'ZH-R' : 'ZH-M',
+            fontFamily: type == 1 ? textRegular4Zh : textMedium4Zh,
             letterSpacing: letterSpacing,
             color: color,
             fontSize: MyScreenUtil.sp(fontSize + 4),
           )
         : TextStyle(
-            fontFamily: type == 1 ? 'EN-R' : 'EN-M',
+            fontFamily: type == 1 ? textRegular4En : textMedium4En,
             letterSpacing: 0.0,
             color: color,
             fontSize: MyScreenUtil.sp(fontSize + 1),
@@ -28,7 +34,7 @@ class MyTextUtil {
       {Color color, double spacing, double size}) {
     double fontSize = size != null ? size : 20.0;
     return TextStyle(
-      fontFamily: type == 1 ? 'EN-R' : 'EN-M',
+      fontFamily: type == 1 ? textRegular4En : textMedium4En,
       letterSpacing: 0.0,
       color: color,
       fontSize: MyScreenUtil.sp(fontSize + 1),
@@ -40,7 +46,7 @@ class MyTextUtil {
     double letterSpacing = spacing != null ? spacing : 0.0;
     double fontSize = size != null ? size : 23.0;
     return TextStyle(
-      fontFamily: type == 1 ? 'ZH-R' : 'ZH-M',
+      fontFamily: type == 1 ? textRegular4Zh : textMedium4Zh,
       letterSpacing: letterSpacing,
       color: color,
       fontSize: MyScreenUtil.sp(fontSize + 4),
@@ -64,12 +70,12 @@ class MyTextUtil {
     bool langType = GlobalService.to.langType;
     return langType
         ? TextStyle(
-            fontFamily: type == 1 ? 'ZH-R' : 'ZH-M',
+            fontFamily: type == 1 ? textRegular4Zh : textMedium4Zh,
             letterSpacing: letterSpacing,
             color: color,
           )
         : TextStyle(
-            fontFamily: type == 1 ? 'EN-R' : 'EN-M',
+            fontFamily: type == 1 ? textRegular4En : textMedium4En,
             letterSpacing: 0.0,
             color: color,
           );
@@ -82,14 +88,14 @@ class MyTextUtil {
     bool langType = GlobalService.to.langType;
     return langType
         ? TextStyle(
-            fontFamily: type == 1 ? 'ZH-R' : 'ZH-M',
+            fontFamily: type == 1 ? textRegular4Zh : textMedium4Zh,
             letterSpacing: letterSpacing,
             color: color,
             fontSize: MyScreenUtil.sp(fontSize + 4),
             height: MyScreenUtil.sp(3.2),
           )
         : TextStyle(
-            fontFamily: type == 1 ? 'EN-R' : 'EN-M',
+            fontFamily: type == 1 ? textRegular4En : textMedium4En,
             letterSpacing: 0.0,
             color: color,
             fontSize: MyScreenUtil.sp(fontSize + 1),

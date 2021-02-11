@@ -1,3 +1,4 @@
+import 'package:flash_tron_wallet/common/enum/text_type.dart';
 import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/common_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
@@ -22,8 +23,8 @@ class BuildWalletFirstPage extends StatefulWidget {
 
 class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
   final _formKey = GlobalKey<FormState>();
-  Color _setPwdEyeColor = Colors.grey;
-  Color _confirmPwdEyeColor = Colors.grey;
+  Color _setPwdEyeColor = MyColorUtil.subBiz();
+  Color _confirmPwdEyeColor = MyColorUtil.subBiz();
 
   bool _setPwdClickEye = true;
   bool _confirmPwdClickEye = true;
@@ -59,9 +60,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
                 child: Column(
                   children: <Widget>[
                     _nameWidget(),
-                    MyCommonUtil.sizedBox(height: 0),
                     _setPwdWidget(),
-                    MyCommonUtil.sizedBox(height: 0),
                     _confirmPwdWidget(),
                     MyCommonUtil.sizedBox(height: 50),
                     _submitWidget(context),
@@ -79,129 +78,100 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
   }
 
   Widget _nameWidget() {
-    return Container(
-      child: TextFormField(
-        readOnly: !_buildWalletLoading ? false : true,
-        onSaved: (String value) => _name = value,
-        maxLength: 10,
-        inputFormatters: [],
-        cursorColor: MyColorUtil.theme,
-        decoration: InputDecoration(
-          labelText: '${MyLocaleKey.assetWalletName.tr}',
-          labelStyle: MyTextUtil.textStyle(2,
-              color: Colors.grey[700], spacing: 0.1, size: 26),
-        ),
-        style: MyTextUtil.textStyle(2,
-            color: Colors.grey[850], spacing: 0.2, size: 30),
-        validator: (String value) {
-          if (value.isEmpty) {
-            return '${MyLocaleKey.commonCanNotBeEmpty.tr}';
-          } else {
-            return null;
-          }
-        },
-      ),
+    return MyCommonUtil.textFormField(
+      readOnly: _buildWalletLoading,
+      onSaved: (String value) => _name = value,
+      maxLength: 10,
+      inputFormatter: [],
+      labelText: '${MyLocaleKey.assetWalletName.tr}',
+      textType: TextType.normal,
+      validator: (String value) {
+        if (value.isEmpty) {
+          return '${MyLocaleKey.commonCanNotBeEmpty.tr}';
+        } else {
+          return null;
+        }
+      },
     );
   }
 
   Widget _setPwdWidget() {
-    return Container(
-      child: TextFormField(
-        readOnly: !_buildWalletLoading ? false : true,
-        obscureText: _setPwdClickEye,
-        onSaved: (String value) {
-          if (value.length > 6) {
-            value = value.substring(0, 6);
-          }
-          _setPwd = value;
-        },
-        maxLength: 6,
-        inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
-        keyboardType: TextInputType.number,
-        cursorColor: MyColorUtil.theme,
-        decoration: InputDecoration(
-            labelText: '${MyLocaleKey.assetSetPassword.tr}',
-            labelStyle: MyTextUtil.textStyle(2,
-                color: Colors.grey[700], spacing: 0.1, size: 26),
-            suffixIcon: IconButton(
-              icon: Icon(
-                Icons.remove_red_eye,
-                color: _setPwdEyeColor,
-                size: MyScreenUtil.sp(38),
-              ),
-              onPressed: () {
-                setState(() {
-                  _setPwdClickEye = !_setPwdClickEye;
-                  _setPwdEyeColor =
-                      _setPwdClickEye ? Colors.grey : MyColorUtil.theme;
-                });
-              },
-            )),
-        style: MyTextUtil.textStyle4Num(
-            color: Colors.grey[800],
-            spacing: 0.2,
-            size: 32,
-            fontWeight: FontWeight.w500),
-        validator: (String value) {
-          if (value.isEmpty) {
-            return '${MyLocaleKey.commonCanNotBeEmpty.tr}';
-          } else if (value.trim().length < 6) {
-            return '${MyLocaleKey.commonNeed6Digit.tr}';
-          } else {
-            return null;
-          }
+    return MyCommonUtil.textFormField(
+      readOnly: _buildWalletLoading,
+      obscureText: _setPwdClickEye,
+      onSaved: (String value) {
+        if (value.length > 6) {
+          value = value.substring(0, 6);
+        }
+        _setPwd = value;
+      },
+      maxLength: 6,
+      inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
+      keyboardType: TextInputType.number,
+      labelText: '${MyLocaleKey.assetSetPassword.tr}',
+      textType: TextType.onlyNum,
+      suffixIcon: IconButton(
+        icon: Icon(
+          Icons.remove_red_eye,
+          color: _setPwdEyeColor,
+          size: MyScreenUtil.sp(38),
+        ),
+        onPressed: () {
+          setState(() {
+            _setPwdClickEye = !_setPwdClickEye;
+            _setPwdEyeColor =
+                _setPwdClickEye ? MyColorUtil.subBiz() : MyColorUtil.theme;
+          });
         },
       ),
+      validator: (String value) {
+        if (value.isEmpty) {
+          return '${MyLocaleKey.commonCanNotBeEmpty.tr}';
+        } else if (value.trim().length < 6) {
+          return '${MyLocaleKey.commonNeed6Digit.tr}';
+        } else {
+          return null;
+        }
+      },
     );
   }
 
   Widget _confirmPwdWidget() {
-    return Container(
-      child: TextFormField(
-        readOnly: !_buildWalletLoading ? false : true,
-        obscureText: _confirmPwdClickEye,
-        onSaved: (String value) {
-          if (value.length > 6) {
-            value = value.substring(0, 6);
-          }
-          _confirmPwd = value;
-        },
-        maxLength: 6,
-        inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
-        keyboardType: TextInputType.number,
-        cursorColor: MyColorUtil.theme,
-        decoration: InputDecoration(
-            labelText: '${MyLocaleKey.assetConfirmPassword.tr}',
-            labelStyle: MyTextUtil.textStyle(2,
-                color: Colors.grey[700], spacing: 0.1, size: 26),
-            suffixIcon: IconButton(
-              icon: Icon(
-                Icons.remove_red_eye,
-                color: _confirmPwdEyeColor,
-                size: MyScreenUtil.sp(38),
-              ),
-              onPressed: () {
-                setState(() {
-                  _confirmPwdClickEye = !_confirmPwdClickEye;
-                  _confirmPwdEyeColor =
-                      _confirmPwdClickEye ? Colors.grey : MyColorUtil.theme;
-                });
-              },
-            )),
-        style: MyTextUtil.textStyle4Num(
-          color: Colors.grey[800],
-          spacing: 0.2,
-          size: 32,
-          fontWeight: FontWeight.w500,
+    return MyCommonUtil.textFormField(
+      readOnly: _buildWalletLoading,
+      obscureText: _confirmPwdClickEye,
+      onSaved: (String value) {
+        if (value.length > 6) {
+          value = value.substring(0, 6);
+        }
+        _confirmPwd = value;
+      },
+      maxLength: 6,
+      inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
+      keyboardType: TextInputType.number,
+      labelText: '${MyLocaleKey.assetConfirmPassword.tr}',
+      textType: TextType.onlyNum,
+      suffixIcon: IconButton(
+        icon: Icon(
+          Icons.remove_red_eye,
+          color: _confirmPwdEyeColor,
+          size: MyScreenUtil.sp(38),
         ),
-        validator: (String value) {
-          if (value.isEmpty) {
-            return '${MyLocaleKey.commonCanNotBeEmpty.tr}';
-          } else {
-            return null;
-          }
+        onPressed: () {
+          setState(() {
+            _confirmPwdClickEye = !_confirmPwdClickEye;
+            _confirmPwdEyeColor =
+                _confirmPwdClickEye ? MyColorUtil.subBiz() : MyColorUtil.theme;
+          });
         },
       ),
+      validator: (String value) {
+        if (value.isEmpty) {
+          return '${MyLocaleKey.commonCanNotBeEmpty.tr}';
+        } else {
+          return null;
+        }
+      },
     );
   }
 

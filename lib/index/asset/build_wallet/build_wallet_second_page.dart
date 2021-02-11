@@ -1,5 +1,6 @@
 import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/common_util.dart';
+import 'package:flash_tron_wallet/common/util/icon_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
 import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
@@ -110,15 +111,15 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
               child: Text(
                 '${MyLocaleKey.commonBackupMnemonic.tr}',
                 style: MyTextUtil.textStyle(2,
-                    color: Colors.grey[800], spacing: 0.4, size: 26),
+                    color: MyColorUtil.biz(), spacing: 0.4, size: 26),
               ),
             ),
             Container(
-              padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
-              child: Icon(
-                IconData(0xe618, fontFamily: 'ICON'),
-                size: MyScreenUtil.sp(30),
-                color: Colors.grey[850],
+              padding: MyCommonUtil.edge(left: 30),
+              child: MyCommonUtil.icon(
+                MyIconUtil.copyExt,
+                size: 30,
+                color: MyColorUtil.biz(),
               ),
             ),
           ],
@@ -150,7 +151,8 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
       width: MyScreenUtil.width(200),
       margin: MyCommonUtil.edge(right: 5, top: 5, bottom: 5),
       decoration: BoxDecoration(
-        color: Color(0x80EEEEEE),
+        //color: Color(0x80EEEEEE),
+        color: Colors.grey[50],
         borderRadius: BorderRadius.circular(5.0),
       ),
       child: Column(
@@ -161,17 +163,16 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             child: Text(
               '$index',
               style:
-                  MyTextUtil.textStyle4Num(color: Colors.grey[500], size: 20),
+                  MyTextUtil.textStyle4Num(color: MyColorUtil.subBiz(), size: 20),
             ),
           ),
           Container(
             alignment: Alignment.center,
-            //padding: EdgeInsets.only(bottom: 13),
             padding: MyCommonUtil.edge(bottom: 26),
             child: Text(
               '$value',
               style:
-                  MyTextUtil.textStyle4En(2, color: Colors.grey[800], size: 27),
+                  MyTextUtil.textStyle4En(2, color: MyColorUtil.biz(), size: 27),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),

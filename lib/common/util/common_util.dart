@@ -139,7 +139,7 @@ class MyCommonUtil {
   }) {
     return TextFormField(
       readOnly: readOnly ?? false,
-      obscureText: obscureText ?? true,
+      obscureText: obscureText ?? false,
       onSaved: onSaved,
       maxLines: maxLine ?? 1,
       maxLength: maxLength ?? 0,

@@ -136,7 +136,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
     return MyCommonUtil.textFormField(
       readOnly: _importKeyLoading,
       onSaved: (String value) => _key = value,
-      maxLine: 1,
+      maxLine: 2,
       maxLength: 64,
       inputFormatter: [
         FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]|[0-9]"))

@@ -69,7 +69,7 @@ class MyCommonUtil {
       child: Icon(
         Icons.arrow_forward_ios,
         size: MyScreenUtil.sp(27),
-        color: Colors.grey[700],
+        color: MyColorUtil.subBiz(),
       ),
     );
   }

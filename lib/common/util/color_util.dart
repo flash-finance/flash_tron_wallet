@@ -21,7 +21,7 @@ class MyColorUtil {
   }
 
   static Color bottomAppBar() {
-    return secondary();
+    return background();
   }
 
   static final Color bizLight = Color(0xFF333333);

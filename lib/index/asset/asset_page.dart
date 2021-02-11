@@ -619,7 +619,7 @@ class _AssetPageState extends State<AssetPage>
               child: Text(
                 '$name',
                 style: MyTextUtil.textStyle(2,
-                    color: Colors.grey[850], spacing: 0.0, size: 30),
+                    color: MyColorUtil.biz(), spacing: 0.0, size: 30),
               ),
             ),
             MyCommonUtil.arrowForward(),

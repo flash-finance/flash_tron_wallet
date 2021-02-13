@@ -146,7 +146,10 @@ class _AssetPageState extends State<AssetPage>
         children: <Widget>[
           InkWell(
             onTap: () {
-              _showBottomSheetWidget(context, walletList);
+              MyCommonUtil.bottomSheet(
+                context,
+                _bottomSheetWidget(context, walletList),
+              );
             },
             child: Container(
               child: Chip(
@@ -646,56 +649,44 @@ class _AssetPageState extends State<AssetPage>
     GlobalService.to.getAsset4ReloadAsync();
   }
 
-  _showBottomSheetWidget(BuildContext context, List<WalletEntity> walletList) {
-    showModalBottomSheet(
-        context: context,
-        isScrollControlled: true,
-        enableDrag: false,
-        //barrierColor: MyColorUtil.biz().withOpacity(0.98),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(15.0),
-            topRight: Radius.circular(15.0),
-          ),
-        ),
-        builder: (BuildContext context) {
-          return Container(
-            height: MyScreenUtil.height(800),
-            child: Column(
-              children: <Widget>[
-                Container(
-                  alignment: Alignment.center,
-                  padding: MyCommonUtil.edge(top: 20, bottom: 20),
-                  margin: MyCommonUtil.edge(bottom: 25),
-                  decoration: BoxDecoration(
-                    border: MyCommonUtil.bottomBorder(),
-                  ),
-                  child: Text(
-                    '${MyLocaleKey.assetWalletList.tr}',
-                    style: MyTextUtil.textStyle(
-                      2,
-                      color: MyColorUtil.biz(),
-                      spacing: 0.4,
-                      size: 32,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
-                        scrollDirection: Axis.vertical,
-                        itemCount: walletList.length,
-                        itemBuilder: (context, index) {
-                          return _walletItemWidget(context, walletList, index);
-                        }),
-                  ),
-                ),
-              ],
+  Widget _bottomSheetWidget(
+      BuildContext context, List<WalletEntity> walletList) {
+    return Container(
+      height: MyScreenUtil.height(800),
+      child: Column(
+        children: <Widget>[
+          Container(
+            alignment: Alignment.center,
+            padding: MyCommonUtil.edge(top: 20, bottom: 20),
+            margin: MyCommonUtil.edge(bottom: 25),
+            decoration: BoxDecoration(
+              border: MyCommonUtil.bottomBorder(),
             ),
-          );
-        });
+            child: Text(
+              '${MyLocaleKey.assetWalletList.tr}',
+              style: MyTextUtil.textStyle(
+                2,
+                color: MyColorUtil.biz(),
+                spacing: 0.4,
+                size: 32,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: BouncingScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  itemCount: walletList.length,
+                  itemBuilder: (context, index) {
+                    return _walletItemWidget(context, walletList, index);
+                  }),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _walletItemWidget(

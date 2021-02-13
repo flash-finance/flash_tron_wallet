@@ -289,7 +289,10 @@ class _SwapSubPageState extends State<SwapSubPage>
               children: <Widget>[
                 InkWell(
                   onTap: () {
-                    _showBottomSheetWidget(context, 1);
+                    MyCommonUtil.bottomSheet(
+                      context,
+                      _bottomSheetWidget(context, 1),
+                    );
                   },
                   child: Container(
                     padding: MyCommonUtil.edge(top: 5, bottom: 5),
@@ -601,7 +604,10 @@ class _SwapSubPageState extends State<SwapSubPage>
               children: <Widget>[
                 InkWell(
                   onTap: () {
-                    _showBottomSheetWidget(context, 2);
+                    MyCommonUtil.bottomSheet(
+                      context,
+                      _bottomSheetWidget(context, 2),
+                    );
                   },
                   child: Container(
                     padding: MyCommonUtil.edge(top: 5, bottom: 5),
@@ -1603,45 +1609,33 @@ class _SwapSubPageState extends State<SwapSubPage>
     };
   }
 
-  _showBottomSheetWidget(BuildContext context, int type) {
-    showModalBottomSheet(
-        context: context,
-        isScrollControlled: true,
-        enableDrag: false,
-        //barrierColor: MyColorUtil.biz().withOpacity(0.98),
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(15.0),
-          topRight: Radius.circular(15.0),
-        )),
-        builder: (BuildContext context) {
-          return Container(
-            height: MyScreenUtil.height(800),
-            child: Column(
-              children: <Widget>[
-                _selectTokenTitleWidget(context),
-                Expanded(
-                  child: Container(
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
-                        scrollDirection: Axis.vertical,
-                        itemCount: _swapRows.length,
-                        itemBuilder: (context, index) {
-                          return _selectTokenItemWidget(
-                              context, index, _swapRows[index], type);
-                        }),
-                  ),
-                ),
-              ],
+  Widget _bottomSheetWidget(BuildContext context, int type) {
+    return Container(
+      height: MyScreenUtil.height(800),
+      child: Column(
+        children: <Widget>[
+          _selectTokenTitleWidget(context),
+          Expanded(
+            child: Container(
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: BouncingScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  itemCount: _swapRows.length,
+                  itemBuilder: (context, index) {
+                    return _selectTokenItemWidget(
+                        context, index, _swapRows[index], type);
+                  }),
             ),
-          );
-        });
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _selectTokenTitleWidget(BuildContext context) {
     return Container(
-      padding: MyCommonUtil.edge(left: 40, right: 40, top: 20, bottom: 20),
+      padding: MyCommonUtil.edge(left: 40, right: 40, top: 30, bottom: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[

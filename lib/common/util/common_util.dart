@@ -172,6 +172,22 @@ class MyCommonUtil {
     );
   }
 
+  static bottomSheet(BuildContext context, Widget child) {
+    return showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        enableDrag: false,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15.0),
+            topRight: Radius.circular(15.0),
+          ),
+        ),
+        builder: (BuildContext context) {
+          return child;
+        });
+  }
+
   static String formatNum(double num, int position) {
     if ((num.toString().length - num.toString().lastIndexOf(".") - 1) <
         position) {

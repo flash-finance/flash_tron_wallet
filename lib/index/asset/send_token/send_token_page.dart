@@ -204,7 +204,10 @@ class _SendTokenPageState extends State<SendTokenPage> {
                   child: InkWell(
                     onTap: () {
                       FocusScope.of(context).requestFocus(FocusNode());
-                      _showBottomSheetWidget(context, assetFilterConList);
+                      MyCommonUtil.bottomSheet(
+                        context,
+                        _bottomSheetWidget(context, assetFilterConList),
+                      );
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -429,54 +432,42 @@ class _SendTokenPageState extends State<SendTokenPage> {
     };
   }
 
-  _showBottomSheetWidget(BuildContext context, List<AssetEntity> list) {
-    showModalBottomSheet(
-        context: context,
-        isScrollControlled: true,
-        enableDrag: false,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(15.0),
-            topRight: Radius.circular(15.0),
-          ),
-        ),
-        builder: (BuildContext context) {
-          return Container(
-            height: MyScreenUtil.height(800),
-            child: Column(
-              children: <Widget>[
-                Container(
-                  alignment: Alignment.center,
-                  padding: MyCommonUtil.edge(top: 20, bottom: 20),
-                  margin: MyCommonUtil.edge(bottom: 25),
-                  decoration: BoxDecoration(
-                    border: MyCommonUtil.bottomBorder(),
-                  ),
-                  child: Text(
-                    '${MyLocaleKey.assetTokenList.tr}',
-                    style: MyTextUtil.textStyle(
-                      2,
-                      color: MyColorUtil.biz(),
-                      spacing: 0.4,
-                      size: 32,
-                    ),
-                  ),
-                ),
-                Expanded(
-                    child: Container(
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    itemCount: list.length,
-                    itemBuilder: (context, index) {
-                      return _selectTokenWidget(context, index, list[index]);
-                    },
-                  ),
-                )),
-              ],
+  Widget _bottomSheetWidget(BuildContext context, List<AssetEntity> list) {
+    return Container(
+      height: MyScreenUtil.height(800),
+      child: Column(
+        children: <Widget>[
+          Container(
+            alignment: Alignment.center,
+            padding: MyCommonUtil.edge(top: 20, bottom: 20),
+            margin: MyCommonUtil.edge(bottom: 25),
+            decoration: BoxDecoration(
+              border: MyCommonUtil.bottomBorder(),
             ),
-          );
-        });
+            child: Text(
+              '${MyLocaleKey.assetTokenList.tr}',
+              style: MyTextUtil.textStyle(
+                2,
+                color: MyColorUtil.biz(),
+                spacing: 0.4,
+                size: 32,
+              ),
+            ),
+          ),
+          Expanded(
+              child: Container(
+            child: ListView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              itemCount: list.length,
+              itemBuilder: (context, index) {
+                return _selectTokenWidget(context, index, list[index]);
+              },
+            ),
+          )),
+        ],
+      ),
+    );
   }
 
   void _showPwdDialog(BuildContext context, String ownerAddress, String userPwd,

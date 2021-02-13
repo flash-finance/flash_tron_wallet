@@ -35,7 +35,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
       hasAppBar: true,
       hasBack: true,
       title: '${MyLocaleKey.assetUpdatePassword.tr}',
-      body: _bodyWidget(context),
+      body: Obx(() => _bodyWidget(context)),
     );
   }
 
@@ -54,9 +54,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
               child: Column(
                 children: <Widget>[
                   _oldPwdWidget(wallet.pwd),
-                  MyCommonUtil.sizedBox(height: 0),
                   _setPwdWidget(),
-                  MyCommonUtil.sizedBox(height: 0),
                   _confirmPwdWidget(),
                   MyCommonUtil.sizedBox(height: 50),
                   _submitWidget(context),

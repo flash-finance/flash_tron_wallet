@@ -1,5 +1,6 @@
 import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/common_util.dart';
+import 'package:flash_tron_wallet/common/util/icon_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
 import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
@@ -22,7 +23,7 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
       hasAppBar: true,
       hasBack: true,
       title: '${MyLocaleKey.assetBackupMnemonic.tr}',
-      body: _bodyWidget(context),
+      body: Obx(() => _bodyWidget(context)),
     );
   }
 
@@ -33,7 +34,7 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
         children: <Widget>[
           MyCommonUtil.sizedBox(height: 20),
           _descWidget(),
-          MyCommonUtil.sizedBox(height: 20),
+          MyCommonUtil.sizedBox(height: 40),
           Container(
             margin: MyCommonUtil.edge(left: 30, right: 30),
             child: Column(
@@ -84,8 +85,7 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
         child: Container(
           width: MyScreenUtil.width(700),
           decoration: BoxDecoration(
-            border:
-                Border(bottom: BorderSide(width: 0.6, color: Colors.black12)),
+            border: MyCommonUtil.bottomBorder(),
           ),
           child: Row(
             children: <Widget>[
@@ -103,9 +103,9 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
               Container(
                 width: MyScreenUtil.width(80),
                 alignment: Alignment.centerRight,
-                child: Icon(
-                  IconData(0xe618, fontFamily: 'ICON'),
-                  size: MyScreenUtil.sp(30),
+                child: MyCommonUtil.icon(
+                  MyIconUtil.copyExt,
+                  size: 30,
                   color: MyColorUtil.biz(),
                 ),
               ),

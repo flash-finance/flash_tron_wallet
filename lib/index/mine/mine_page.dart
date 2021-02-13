@@ -66,7 +66,7 @@ class _MinePageState extends State<MinePage> {
                   child: Icon(
                     IconData(0xe6e0, fontFamily: 'ICON'),
                     size: MyScreenUtil.sp(42),
-                    color: Colors.grey[800],
+                    color: MyColorUtil.biz(),
                   ),
                 ),
                 MyCommonUtil.sizedBox(width: 50),
@@ -74,7 +74,7 @@ class _MinePageState extends State<MinePage> {
                   child: Text(
                     '${MyLocaleKey.mineManageWallet.tr}',
                     style: MyTextUtil.textStyle(2,
-                        color: Colors.grey[800], spacing: 0.0, size: 30),
+                        color: MyColorUtil.biz(), spacing: 0.0, size: 30),
                   ),
                 ),
               ],
@@ -112,7 +112,7 @@ class _MinePageState extends State<MinePage> {
                   child: Icon(
                     IconData(0xe676, fontFamily: 'ICON'),
                     size: MyScreenUtil.sp(40),
-                    color: Colors.grey[800],
+                    color: MyColorUtil.biz(),
                   ),
                 ),
                 MyCommonUtil.sizedBox(width: 50),
@@ -122,7 +122,7 @@ class _MinePageState extends State<MinePage> {
                       child: Text(
                         'English/',
                         style: MyTextUtil.textStyle4En(2,
-                            color: Colors.grey[800], spacing: 0.0, size: 30),
+                            color: MyColorUtil.biz(), spacing: 0.0, size: 30),
                       ),
                     ),
                     Container(
@@ -130,7 +130,7 @@ class _MinePageState extends State<MinePage> {
                       child: Text(
                         '中文',
                         style: MyTextUtil.textStyle4Zh(2,
-                            color: Colors.grey[800], spacing: 0.0, size: 30),
+                            color: MyColorUtil.biz(), spacing: 0.0, size: 30),
                       ),
                     ),
                   ],
@@ -189,7 +189,7 @@ class _MinePageState extends State<MinePage> {
                               TextSpan(
                                 text: '${MyLocaleKey.mineVersionNew.tr}',
                                 style: MyTextUtil.textStyle(2,
-                                    color: Colors.grey[800],
+                                    color: MyColorUtil.biz(),
                                     spacing: 0.0,
                                     size: 30),
                               ),
@@ -197,7 +197,7 @@ class _MinePageState extends State<MinePage> {
                                 text: ' V${tronInfo.androidVersionNum}',
                                 style: MyTextUtil.textStyle4En(
                                   2,
-                                  color: Colors.grey[800],
+                                  color: MyColorUtil.biz(),
                                   spacing: 0.0,
                                   size: 30,
                                 ),
@@ -215,7 +215,7 @@ class _MinePageState extends State<MinePage> {
                               : '${tronInfo.androidUpdateInfo2.replaceAll('\\n', '\n')}',
                           textAlign: TextAlign.left,
                           style: MyTextUtil.textStyle4Update(1,
-                              color: Colors.grey[850], spacing: 0.0, size: 25),
+                              color: MyColorUtil.biz(), spacing: 0.0, size: 25),
                         ),
                       ),
                       actions: <Widget>[
@@ -255,7 +255,7 @@ class _MinePageState extends State<MinePage> {
                               TextSpan(
                                 text: '${MyLocaleKey.mineVersionNew.tr}',
                                 style: MyTextUtil.textStyle(2,
-                                    color: Colors.grey[800],
+                                    color: MyColorUtil.biz(),
                                     spacing: 0.0,
                                     size: 30),
                               ),
@@ -263,7 +263,7 @@ class _MinePageState extends State<MinePage> {
                                 text: ' V${tronInfo.iosVersionNum}',
                                 style: MyTextUtil.textStyle4En(
                                   2,
-                                  color: Colors.grey[800],
+                                  color: MyColorUtil.biz(),
                                   spacing: 0.0,
                                   size: 30,
                                 ),
@@ -281,7 +281,7 @@ class _MinePageState extends State<MinePage> {
                               : '${tronInfo.iosUpdateInfo2.replaceAll('\\n', '\n')}',
                           textAlign: TextAlign.left,
                           style: MyTextUtil.textStyle4Update(1,
-                              color: Colors.grey[850], spacing: 0.0, size: 25),
+                              color: MyColorUtil.biz(), spacing: 0.0, size: 25),
                         ),
                       ),
                       actions: <Widget>[
@@ -317,7 +317,7 @@ class _MinePageState extends State<MinePage> {
                   child: Icon(
                     IconData(0xe6db, fontFamily: 'ICON'),
                     size: MyScreenUtil.sp(42),
-                    color: Colors.grey[800],
+                    color: MyColorUtil.biz(),
                   ),
                 ),
                 SizedBox(width: MyScreenUtil.width(50)),
@@ -325,7 +325,7 @@ class _MinePageState extends State<MinePage> {
                   child: Text(
                     '${MyLocaleKey.mineCurrentVersion.tr}',
                     style: MyTextUtil.textStyle(2,
-                        color: Colors.grey[800], spacing: 0.0, size: 30),
+                        color: MyColorUtil.biz(), spacing: 0.0, size: 30),
                   ),
                 ),
               ],
@@ -388,7 +388,7 @@ class _MinePageState extends State<MinePage> {
               title: Text(
                 '${MyLocaleKey.mineLangTip1.tr}',
                 style: MyTextUtil.textStyle(2,
-                    color: Colors.grey[850], spacing: 0.2, size: 30),
+                    color: MyColorUtil.biz(), spacing: 0.2, size: 30),
               ),
               actions: <Widget>[
                 FlatButton(

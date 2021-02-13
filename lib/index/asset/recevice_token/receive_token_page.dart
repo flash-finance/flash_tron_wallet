@@ -1,3 +1,4 @@
+import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/common_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
@@ -73,7 +74,7 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
             child: Text(
               '$name',
               style: MyTextUtil.textStyle(2,
-                  color: Colors.grey[800], spacing: 0.2, size: 30),
+                  color: MyColorUtil.biz(), spacing: 0.2, size: 30),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -92,7 +93,7 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
             child: Text(
               '$address',
               style: MyTextUtil.textStyle4En(2,
-                  color: Colors.grey[850], spacing: 0.0, size: 27),
+                  color: MyColorUtil.biz(), spacing: 0.0, size: 27),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),

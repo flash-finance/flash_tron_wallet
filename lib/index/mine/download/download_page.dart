@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/common_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
@@ -36,7 +37,7 @@ class _DownloadPageState extends State<DownloadPage> {
           title: Text(
             '${MyLocaleKey.mineAppUpdating.tr}',
             style: MyTextUtil.textStyle(2,
-                color: Colors.grey[800], spacing: 0.0, size: 32),
+                color: MyColorUtil.biz(), spacing: 0.0, size: 32),
           ),
           content: Container(
             padding: EdgeInsets.only(top: 5),
@@ -48,14 +49,14 @@ class _DownloadPageState extends State<DownloadPage> {
                         TextSpan(
                           text: '${MyLocaleKey.mineAppDownloadProgress.tr}',
                           style: MyTextUtil.textStyle4Update(2,
-                              color: Colors.grey[850], spacing: 0.0, size: 28),
+                              color: MyColorUtil.biz(), spacing: 0.0, size: 28),
                         ),
                         TextSpan(
                           text: '$progress%',
                           style: TextStyle(
                             fontFamily: 'EN-M',
                             letterSpacing: 0.0,
-                            color: Colors.grey[850],
+                            color: MyColorUtil.biz(),
                             fontSize: MyScreenUtil.sp(32),
                             height: MyScreenUtil.sp(3.2),
                           ),
@@ -66,7 +67,7 @@ class _DownloadPageState extends State<DownloadPage> {
                 : Text(
                     '${MyLocaleKey.mineAppReadyToDownload.tr}',
                     style: MyTextUtil.textStyle4Update(2,
-                        color: Colors.grey[850], spacing: 0.0, size: 28),
+                        color: MyColorUtil.biz(), spacing: 0.0, size: 28),
                   ),
           ),
         )));

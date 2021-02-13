@@ -97,7 +97,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
               },
             )),
         style: MyTextUtil.textStyle4Num(
-            color: Colors.grey[800],
+            color: MyColorUtil.biz(),
             spacing: 0.2,
             size: 32,
             fontWeight: FontWeight.w500),
@@ -144,7 +144,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
               },
             )),
         style: MyTextUtil.textStyle4Num(
-            color: Colors.grey[800],
+            color: MyColorUtil.biz(),
             spacing: 0.2,
             size: 32,
             fontWeight: FontWeight.w500),
@@ -189,7 +189,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
               },
             )),
         style: MyTextUtil.textStyle4Num(
-            color: Colors.grey[800],
+            color: MyColorUtil.biz(),
             spacing: 0.2,
             size: 32,
             fontWeight: FontWeight.w500),

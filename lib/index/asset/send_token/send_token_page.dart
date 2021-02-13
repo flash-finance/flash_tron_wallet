@@ -99,7 +99,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
             child: Text(
               '${MyLocaleKey.assetTransferAddress.tr}',
               style: MyTextUtil.textStyle(2,
-                  color: Colors.grey[850], spacing: 0.2, size: 26),
+                  color: MyColorUtil.biz(), spacing: 0.2, size: 26),
             ),
           ),
           MyCommonUtil.sizedBox(height: 15),
@@ -107,7 +107,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
             child: Text(
               '${wallet.tronAddress}',
               style: MyTextUtil.textStyle4En(2,
-                  color: Colors.grey[800], spacing: 0.0, size: 27),
+                  color: MyColorUtil.biz(), spacing: 0.0, size: 27),
             ),
           ),
         ],
@@ -125,7 +125,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
             child: Text(
               '${MyLocaleKey.assetReceivingAddress.tr}',
               style: MyTextUtil.textStyle(2,
-                  color: Colors.grey[850], spacing: 0.2, size: 26),
+                  color: MyColorUtil.biz(), spacing: 0.2, size: 26),
             ),
           ),
           MyCommonUtil.sizedBox(height: 5),
@@ -137,7 +137,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                   width: MyScreenUtil.width(600),
                   child: TextFormField(
                     controller: _receiveAddressController,
-                    cursorColor: Colors.grey[850],
+                    cursorColor: MyColorUtil.biz(),
                     decoration: InputDecoration(
                       isDense: true,
                       hintText: '${MyLocaleKey.assetTransferTip1.tr}',
@@ -146,7 +146,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                       border: InputBorder.none,
                     ),
                     style: MyTextUtil.textStyle4En(2,
-                        color: Colors.grey[850], spacing: 0.0, size: 28),
+                        color: MyColorUtil.biz(), spacing: 0.0, size: 28),
                     maxLines: 1,
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(
@@ -163,7 +163,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                     child: Icon(
                       IconData(0xe606, fontFamily: 'ICON'),
                       size: MyScreenUtil.sp(52),
-                      color: Colors.grey[850],
+                      color: MyColorUtil.biz(),
                     ),
                   ),
                 ),
@@ -196,7 +196,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                   child: Text(
                     '${MyLocaleKey.assetTransferAmount.tr}',
                     style: MyTextUtil.textStyle(2,
-                        color: Colors.grey[850], spacing: 0.2, size: 26),
+                        color: MyColorUtil.biz(), spacing: 0.2, size: 26),
                   ),
                 ),
                 Expanded(
@@ -214,7 +214,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                             !flag ? '${assetFilterConList[index].name} ' : '',
                             style: GoogleFonts.roboto(
                               letterSpacing: 0.0,
-                              color: Colors.grey[800],
+                              color: MyColorUtil.biz(),
                               fontWeight: FontWeight.w500,
                               fontSize: MyScreenUtil.sp(26),
                             ),
@@ -225,7 +225,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                           child: Icon(
                             Icons.arrow_forward_ios,
                             size: MyScreenUtil.sp(25),
-                            color: Colors.grey[800],
+                            color: MyColorUtil.biz(),
                           ),
                         ),
                       ],
@@ -245,7 +245,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                   width: MyScreenUtil.width(500),
                   child: TextFormField(
                     controller: _assetAmountController,
-                    cursorColor: Colors.grey[850],
+                    cursorColor: MyColorUtil.biz(),
                     decoration: InputDecoration(
                       isDense: true,
                       hintText: '${MyLocaleKey.assetTransferTip2.tr}',
@@ -254,7 +254,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                       border: InputBorder.none,
                     ),
                     style: MyTextUtil.textStyle4Num(
-                        color: Colors.grey[850],
+                        color: MyColorUtil.biz(),
                         spacing: 0.2,
                         size: 32,
                         fontWeight: FontWeight.w500),
@@ -314,7 +314,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
             child: Text(
               '${MyLocaleKey.assetBalance.tr}',
               style: MyTextUtil.textStyle(2,
-                  color: Colors.grey[850], spacing: 0.2, size: 26),
+                  color: MyColorUtil.biz(), spacing: 0.2, size: 26),
             ),
           ),
           Container(
@@ -322,7 +322,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
               '${MyCommonUtil.formatNum(assetFilterConList[index].balance, 4)}  ${assetFilterConList[index].name}',
               style: GoogleFonts.roboto(
                 letterSpacing: 0.0,
-                color: Colors.grey[800],
+                color: MyColorUtil.biz(),
                 fontWeight: FontWeight.w500,
                 fontSize: MyScreenUtil.sp(28),
               ),
@@ -402,7 +402,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                     child: Text(
                       '${item.name}',
                       style: MyTextUtil.textStyle4En(2,
-                          color: Colors.grey[850], spacing: 0.0, size: 29),
+                          color: MyColorUtil.biz(), spacing: 0.0, size: 29),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -418,7 +418,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                   ? Container()
                   : Icon(
                       Icons.check,
-                      color: Colors.grey[850],
+                      color: MyColorUtil.biz(),
                       size: MyScreenUtil.sp(42),
                     ),
             ),
@@ -477,14 +477,14 @@ class _SendTokenPageState extends State<SendTokenPage> {
                     child: Text(
                       '${MyLocaleKey.assetTransfer.tr} ',
                       style: MyTextUtil.textStyle(2,
-                          color: Colors.grey[850], spacing: 0.0, size: 30),
+                          color: MyColorUtil.biz(), spacing: 0.0, size: 30),
                     ),
                   ),
                   Container(
                     child: Text(
                       '$_assetAmount ${item.name} ',
                       style: MyTextUtil.textStyle4Num(
-                          color: Colors.grey[850], spacing: 0.0, size: 30),
+                          color: MyColorUtil.biz(), spacing: 0.0, size: 30),
                     ),
                   ),
                 ],
@@ -508,7 +508,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                           fillColor: MyColorUtil.white,
                         ),
                         style: MyTextUtil.textStyle4Num(
-                            color: Colors.grey[800],
+                            color: MyColorUtil.biz(),
                             spacing: 0.2,
                             size: 32,
                             fontWeight: FontWeight.w500),

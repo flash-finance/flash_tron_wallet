@@ -248,7 +248,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                   child: Text(
                     '${MyLocaleKey.swapSend.tr}',
                     style: MyTextUtil.textStyle(2,
-                        color: Colors.grey[800], spacing: 0.0, size: 26),
+                        color: MyColorUtil.biz(), spacing: 0.0, size: 26),
                   ),
                 ),
                 Container(
@@ -265,7 +265,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                           text:
                               '${MyCommonUtil.formatNum(double.parse(_leftBalanceAmount), 4)}',
                           style: MyTextUtil.textStyle4Num(
-                              color: Colors.grey[800],
+                              color: MyColorUtil.biz(),
                               spacing: 0.0,
                               size: 28,
                               fontWeight: FontWeight.w500),
@@ -320,7 +320,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   ? '${_swapRows[_leftSelectIndex].swapTokenName}'
                                   : '',
                               style: MyTextUtil.textStyle4En(2,
-                                  color: Colors.grey[800],
+                                  color: MyColorUtil.biz(),
                                   spacing: 0.0,
                                   size: 27),
                             ),
@@ -344,14 +344,14 @@ class _SwapSubPageState extends State<SwapSubPage>
                     child: TextFormField(
                       controller: _leftSwapAmountController,
                       enableInteractiveSelection: false,
-                      cursorColor: Colors.grey[850],
+                      cursorColor: MyColorUtil.biz(),
                       decoration: InputDecoration(
                         hintText: '',
                         hintStyle: TextStyle(),
                         border: InputBorder.none,
                       ),
                       style: MyTextUtil.textStyle4Num(
-                          color: Colors.grey[800],
+                          color: MyColorUtil.biz(),
                           size: 30,
                           fontWeight: FontWeight.w500),
                       keyboardType:
@@ -448,7 +448,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                       child: Text(
                         'MAX',
                         style: MyTextUtil.textStyle4En(2,
-                            color: Colors.grey[800], spacing: 0.0, size: 25),
+                            color: MyColorUtil.biz(), spacing: 0.0, size: 25),
                       ),
                     ),
                   ),
@@ -560,7 +560,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                   child: Text(
                     '${MyLocaleKey.swapReceive.tr}',
                     style: MyTextUtil.textStyle(2,
-                        color: Colors.grey[800], spacing: 0.0, size: 26),
+                        color: MyColorUtil.biz(), spacing: 0.0, size: 26),
                   ),
                 ),
                 Container(
@@ -577,7 +577,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                           text:
                               '${MyCommonUtil.formatNum(double.parse(_rightBalanceAmount), 4)}',
                           style: MyTextUtil.textStyle4Num(
-                              color: Colors.grey[800],
+                              color: MyColorUtil.biz(),
                               spacing: 0.0,
                               size: 28,
                               fontWeight: FontWeight.w500),
@@ -632,7 +632,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   ? '${_swapRows[_rightSelectIndex].swapTokenName}'
                                   : '',
                               style: MyTextUtil.textStyle4En(2,
-                                  color: Colors.grey[800],
+                                  color: MyColorUtil.biz(),
                                   spacing: 0.0,
                                   size: 27),
                             ),
@@ -656,14 +656,14 @@ class _SwapSubPageState extends State<SwapSubPage>
                     child: TextFormField(
                       controller: _rightSwapAmountController,
                       enableInteractiveSelection: false,
-                      cursorColor: Colors.grey[850],
+                      cursorColor: MyColorUtil.biz(),
                       decoration: InputDecoration(
                         hintText: '',
                         hintStyle: TextStyle(),
                         border: InputBorder.none,
                       ),
                       style: MyTextUtil.textStyle4Num(
-                          color: Colors.grey[800],
+                          color: MyColorUtil.biz(),
                           size: 30,
                           fontWeight: FontWeight.w500),
                       keyboardType:
@@ -764,7 +764,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                       child: Text(
                         'MAX',
                         style: MyTextUtil.textStyle4En(2,
-                            color: Colors.grey[800], spacing: 0.0, size: 25),
+                            color: MyColorUtil.biz(), spacing: 0.0, size: 25),
                       ),
                     ),
                   ),
@@ -875,7 +875,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                       child: Text(
                         '${_swapRows[_leftSelectIndex].swapTokenName}/${_swapRows[_rightSelectIndex].swapTokenName}',
                         style: MyTextUtil.textStyle4En(2,
-                            color: Colors.grey[800], spacing: 0.0, size: 30),
+                            color: MyColorUtil.biz(), spacing: 0.0, size: 30),
                       ),
                     ),
                   ],
@@ -916,7 +916,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   ? '${_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0)}'
                                   : '${_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0)}',
                               style: MyTextUtil.textStyle4Num(
-                                color: Colors.grey[800],
+                                color: MyColorUtil.biz(),
                                 size: 28,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -928,7 +928,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                             child: Text(
                               '  USD',
                               style: MyTextUtil.textStyle4En(2,
-                                  color: Colors.grey[800],
+                                  color: MyColorUtil.biz(),
                                   spacing: 0.2,
                                   size: 27),
                             ),
@@ -967,7 +967,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   ? '${_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0)}'
                                   : '${_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
                               style: MyTextUtil.textStyle4Num(
-                                color: Colors.grey[800],
+                                color: MyColorUtil.biz(),
                                 size: 28,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -979,7 +979,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                             child: Text(
                               '  ${_swapRows[_leftSelectIndex].swapTokenName}',
                               style: MyTextUtil.textStyle4En(2,
-                                  color: Colors.grey[800],
+                                  color: MyColorUtil.biz(),
                                   spacing: 0.0,
                                   size: 27),
                             ),
@@ -1009,7 +1009,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   ? '${_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0)}'
                                   : '${_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
                               style: MyTextUtil.textStyle4Num(
-                                color: Colors.grey[800],
+                                color: MyColorUtil.biz(),
                                 size: 28,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -1021,7 +1021,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                             child: Text(
                               '  ${_swapRows[_rightSelectIndex].swapTokenName}',
                               style: MyTextUtil.textStyle4En(2,
-                                  color: Colors.grey[800],
+                                  color: MyColorUtil.biz(),
                                   spacing: 0.2,
                                   size: 27),
                             ),
@@ -1064,7 +1064,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                             child: Text(
                               '${_swapRows[_leftSelectIndex].swapTokenName}/${_swapRows[_leftSelectIndex].baseTokenName}',
                               style: MyTextUtil.textStyle4En(2,
-                                  color: Colors.grey[800],
+                                  color: MyColorUtil.biz(),
                                   spacing: 0.0,
                                   size: 30),
                             ),
@@ -1107,7 +1107,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   child: Text(
                                     '${_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0)}',
                                     style: MyTextUtil.textStyle4Num(
-                                      color: Colors.grey[800],
+                                      color: MyColorUtil.biz(),
                                       size: 28,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -1119,7 +1119,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   child: Text(
                                     '  USD',
                                     style: MyTextUtil.textStyle4En(2,
-                                        color: Colors.grey[800],
+                                        color: MyColorUtil.biz(),
                                         spacing: 0.0,
                                         size: 27),
                                   ),
@@ -1158,7 +1158,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   child: Text(
                                     '${_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
                                     style: MyTextUtil.textStyle4Num(
-                                      color: Colors.grey[800],
+                                      color: MyColorUtil.biz(),
                                       size: 28,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -1170,7 +1170,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   child: Text(
                                     '  ${_swapRows[_leftSelectIndex].swapTokenName}',
                                     style: MyTextUtil.textStyle4En(2,
-                                        color: Colors.grey[800],
+                                        color: MyColorUtil.biz(),
                                         spacing: 0.0,
                                         size: 27),
                                   ),
@@ -1198,7 +1198,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   child: Text(
                                     '${_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
                                     style: MyTextUtil.textStyle4Num(
-                                      color: Colors.grey[800],
+                                      color: MyColorUtil.biz(),
                                       size: 28,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -1210,7 +1210,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   child: Text(
                                     '  ${_swapRows[_leftSelectIndex].baseTokenName}',
                                     style: MyTextUtil.textStyle4En(2,
-                                        color: Colors.grey[800],
+                                        color: MyColorUtil.biz(),
                                         spacing: 0.0,
                                         size: 27),
                                   ),
@@ -1237,7 +1237,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                             child: Text(
                               '${_swapRows[_rightSelectIndex].baseTokenName}/${_swapRows[_rightSelectIndex].swapTokenName}',
                               style: MyTextUtil.textStyle4En(2,
-                                  color: Colors.grey[800],
+                                  color: MyColorUtil.biz(),
                                   spacing: 0.0,
                                   size: 30),
                             ),
@@ -1280,7 +1280,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   child: Text(
                                     '${_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0)}',
                                     style: MyTextUtil.textStyle4Num(
-                                      color: Colors.grey[800],
+                                      color: MyColorUtil.biz(),
                                       size: 28,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -1292,7 +1292,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   child: Text(
                                     '  USD',
                                     style: MyTextUtil.textStyle4En(2,
-                                        color: Colors.grey[800],
+                                        color: MyColorUtil.biz(),
                                         spacing: 0.0,
                                         size: 27),
                                   ),
@@ -1331,7 +1331,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   child: Text(
                                     '${_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
                                     style: MyTextUtil.textStyle4Num(
-                                      color: Colors.grey[800],
+                                      color: MyColorUtil.biz(),
                                       size: 28,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -1343,7 +1343,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   child: Text(
                                     '  ${_swapRows[_rightSelectIndex].baseTokenName}',
                                     style: MyTextUtil.textStyle4En(2,
-                                        color: Colors.grey[800],
+                                        color: MyColorUtil.biz(),
                                         spacing: 0.0,
                                         size: 27),
                                   ),
@@ -1371,7 +1371,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   child: Text(
                                     '${_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
                                     style: MyTextUtil.textStyle4Num(
-                                      color: Colors.grey[800],
+                                      color: MyColorUtil.biz(),
                                       size: 28,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -1383,7 +1383,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                   child: Text(
                                     '  ${_swapRows[_rightSelectIndex].swapTokenName}',
                                     style: MyTextUtil.textStyle4En(2,
-                                        color: Colors.grey[800],
+                                        color: MyColorUtil.biz(),
                                         spacing: 0.0,
                                         size: 27),
                                   ),
@@ -1607,7 +1607,7 @@ class _SwapSubPageState extends State<SwapSubPage>
         context: context,
         isScrollControlled: true,
         enableDrag: false,
-        //barrierColor: Colors.grey[850].withOpacity(0.98),
+        //barrierColor: MyColorUtil.biz().withOpacity(0.98),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
           topLeft: Radius.circular(15.0),
@@ -1722,10 +1722,10 @@ class _SwapSubPageState extends State<SwapSubPage>
                 style: MyTextUtil.textStyle4En(2,
                     color: type == 1
                         ? (index != _rightSelectIndex
-                            ? Colors.grey[850]
+                            ? MyColorUtil.biz()
                             : Colors.grey[400])
                         : (index != _leftSelectIndex
-                            ? Colors.grey[850]
+                            ? MyColorUtil.biz()
                             : Colors.grey[400]),
                     spacing: 0.0,
                     size: 27),
@@ -1739,10 +1739,10 @@ class _SwapSubPageState extends State<SwapSubPage>
                 style: MyTextUtil.textStyle4Num(
                     color: type == 1
                         ? (index != _rightSelectIndex
-                            ? Colors.grey[850]
+                            ? MyColorUtil.biz()
                             : Colors.grey[400])
                         : (index != _leftSelectIndex
-                            ? Colors.grey[850]
+                            ? MyColorUtil.biz()
                             : Colors.grey[400]),
                     spacing: 0.0,
                     size: 28,

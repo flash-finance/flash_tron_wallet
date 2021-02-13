@@ -1,7 +1,6 @@
 import 'package:flash_tron_wallet/common/enum/import_wallet_type.dart';
 import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/common_util.dart';
-import 'package:flash_tron_wallet/common/util/icon_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
 import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
@@ -101,13 +100,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
             ),
             Row(
               children: <Widget>[
-                Container(
-                  child: MyCommonUtil.icon(
-                    MyIconUtil.arrowForwardIos,
-                    size: 27,
-                    color: MyColorUtil.subBiz(),
-                  ),
-                ),
+                MyCommonUtil.arrowForward(),
                 SizedBox(width: MyScreenUtil.width(10)),
               ],
             ),

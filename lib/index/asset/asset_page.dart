@@ -651,7 +651,7 @@ class _AssetPageState extends State<AssetPage>
         context: context,
         isScrollControlled: true,
         enableDrag: false,
-        //barrierColor: Colors.grey[850].withOpacity(0.98),
+        //barrierColor: MyColorUtil.biz().withOpacity(0.98),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(15.0),

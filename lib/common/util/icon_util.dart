@@ -19,4 +19,6 @@ class MyIconUtil {
   static const plusExt = IconData(0xe7b8, fontFamily: 'ICON');
 
   static const scanExt = IconData(0xe606, fontFamily: 'ICON');
+
+  static const noteExt = IconData(0xe635, fontFamily: 'ICON');
 }

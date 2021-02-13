@@ -23,9 +23,9 @@ class MyCommonUtil {
       gravity: ToastGravity.CENTER,
       toastLength: Toast.LENGTH_SHORT,
       timeInSecForIosWeb: 1,
-      textColor: isLightTheme() ? Colors.white : Colors.grey[850],
+      textColor: isLightTheme() ? Colors.white : MyColorUtil.biz(),
       fontSize: MyScreenUtil.sp(25),
-      backgroundColor: isLightTheme() ? Colors.grey[850] : Colors.white,
+      backgroundColor: isLightTheme() ? MyColorUtil.biz() : Colors.white,
     );
   }
 

@@ -95,7 +95,7 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
                 child: Text(
                   '$mnemonic',
                   style: MyTextUtil.textStyle4En(2,
-                      color: Colors.grey[800], spacing: 0.0, size: 30),
+                      color: MyColorUtil.biz(), spacing: 0.0, size: 30),
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -106,7 +106,7 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
                 child: Icon(
                   IconData(0xe618, fontFamily: 'ICON'),
                   size: MyScreenUtil.sp(30),
-                  color: Colors.grey[850],
+                  color: MyColorUtil.biz(),
                 ),
               ),
             ],

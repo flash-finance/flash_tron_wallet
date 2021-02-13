@@ -1,5 +1,7 @@
+import 'package:flash_tron_wallet/common/enum/detail_wallet_type.dart';
 import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/common_util.dart';
+import 'package:flash_tron_wallet/common/util/icon_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
 import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
@@ -42,10 +44,16 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
           MyCommonUtil.interval(value: 20),
           _topWidget(context, wallet),
           MyCommonUtil.interval(value: 20),
-          flag ? _backupMnemonicWidget(context, wallet.pwd) : Container(),
-          _backupKeyWidget(context, wallet.pwd),
-          _updatePwdWidget(context),
-          _delWalletWidget(context),
+          flag
+              ? _itemWidget(context, '${MyLocaleKey.assetBackupMnemonic.tr}',
+                  DetailWalletType.backupMnemonic, true)
+              : Container(),
+          _itemWidget(context, '${MyLocaleKey.assetBackupPrivateKey.tr}',
+              DetailWalletType.backupKey, true),
+          _itemWidget(context, '${MyLocaleKey.assetUpdatePassword.tr}',
+              DetailWalletType.updatePwd, true),
+          _itemWidget(context, '${MyLocaleKey.assetDeleteWallet.tr}',
+              DetailWalletType.delWallet, false),
           MyCommonUtil.interval(value: 20),
         ],
       ),
@@ -89,19 +97,19 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                           child: Text(
                             '${wallet.name}',
                             style: MyTextUtil.textStyle(2,
-                                color: Colors.grey[800],
+                                color: MyColorUtil.biz(),
                                 spacing: 0.0,
                                 size: 28),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        SizedBox(width: MyScreenUtil.width(30)),
+                        SizedBox(width: MyScreenUtil.width(50)),
                         Container(
-                          child: Icon(
-                            IconData(0xe635, fontFamily: 'ICON'),
-                            size: MyScreenUtil.sp(35),
-                            color: Colors.grey[800],
+                          child: MyCommonUtil.icon(
+                            MyIconUtil.noteExt,
+                            size: 35,
+                            color: MyColorUtil.biz(),
                           ),
                         ),
                       ],
@@ -122,19 +130,19 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                           child: Text(
                             '$tronAddress',
                             style: MyTextUtil.textStyle4En(2,
-                                color: Colors.grey[800],
+                                color: MyColorUtil.biz(),
                                 spacing: 0.0,
                                 size: 28),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        SizedBox(width: MyScreenUtil.width(30)),
+                        SizedBox(width: MyScreenUtil.width(50)),
                         Container(
-                          child: Icon(
-                            IconData(0xe618, fontFamily: 'ICON'),
-                            size: MyScreenUtil.sp(30),
-                            color: Colors.grey[800],
+                          child: MyCommonUtil.icon(
+                            MyIconUtil.copyExt,
+                            size: 30,
+                            color: MyColorUtil.biz(),
                           ),
                         ),
                       ],
@@ -149,133 +157,43 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
     );
   }
 
-  Widget _backupMnemonicWidget(BuildContext context, String pwd) {
+  Widget _itemWidget(
+      BuildContext context, String name, DetailWalletType type, bool flag) {
+    WalletEntity wallet = GlobalService.to.selectWalletEntity;
     return InkWell(
       onTap: () {
-        return _showInputPwdDialLog(context, 1, pwd);
+        switch (type) {
+          case DetailWalletType.backupMnemonic:
+            _showInputPwdDialLog(context, 1, wallet.pwd);
+            break;
+          case DetailWalletType.backupKey:
+            _showInputPwdDialLog(context, 2, wallet.pwd);
+            break;
+          case DetailWalletType.updatePwd:
+            Get.toNamed(AppRoute.assetUpdatePwd);
+            break;
+          case DetailWalletType.delWallet:
+            _showDelWalletDialLog(context);
+            break;
+        }
       },
       child: Container(
         margin: MyCommonUtil.edge(left: 40, right: 40, top: 30),
         padding: MyCommonUtil.edge(bottom: 30),
         decoration: BoxDecoration(
-          border: MyCommonUtil.bottomBorder(),
+          border: flag ? MyCommonUtil.bottomBorder() : null,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
               child: Text(
-                '${MyLocaleKey.assetBackupMnemonic.tr}',
+                '$name',
                 style: MyTextUtil.textStyle(2,
-                    color: Colors.grey[800], spacing: 0.0, size: 30),
+                    color: MyColorUtil.biz(), spacing: 0.0, size: 30),
               ),
             ),
-            Container(
-              child: Icon(
-                Icons.arrow_forward_ios,
-                size: MyScreenUtil.sp(27),
-                color: Colors.grey[700],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _backupKeyWidget(BuildContext context, String pwd) {
-    return InkWell(
-      onTap: () {
-        return _showInputPwdDialLog(context, 2, pwd);
-      },
-      child: Container(
-        margin: MyCommonUtil.edge(left: 40, right: 40, top: 30),
-        padding: MyCommonUtil.edge(bottom: 30),
-        decoration: BoxDecoration(
-          border: MyCommonUtil.bottomBorder(),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Container(
-              child: Text(
-                '${MyLocaleKey.assetBackupPrivateKey.tr}',
-                style: MyTextUtil.textStyle(2,
-                    color: Colors.grey[800], spacing: 0.0, size: 30),
-              ),
-            ),
-            Container(
-              child: Icon(
-                Icons.arrow_forward_ios,
-                size: MyScreenUtil.sp(27),
-                color: Colors.grey[700],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _updatePwdWidget(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Get.toNamed(AppRoute.assetUpdatePwd);
-      },
-      child: Container(
-        margin: MyCommonUtil.edge(left: 40, right: 40, top: 30),
-        padding: MyCommonUtil.edge(bottom: 30),
-        decoration: BoxDecoration(
-          border: MyCommonUtil.bottomBorder(),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Container(
-              child: Text(
-                '${MyLocaleKey.assetUpdatePassword.tr}',
-                style: MyTextUtil.textStyle(2,
-                    color: Colors.grey[800], spacing: 0.0, size: 30),
-              ),
-            ),
-            Container(
-              child: Icon(
-                Icons.arrow_forward_ios,
-                size: MyScreenUtil.sp(27),
-                color: Colors.grey[700],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _delWalletWidget(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        return _showDelWalletDialLog(context);
-      },
-      child: Container(
-        margin: MyCommonUtil.edge(left: 40, right: 40, top: 30),
-        padding: MyCommonUtil.edge(bottom: 30),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Container(
-              child: Text(
-                '${MyLocaleKey.assetDeleteWallet.tr}',
-                style: MyTextUtil.textStyle(2,
-                    color: Colors.grey[850], spacing: 0.0, size: 30),
-              ),
-            ),
-            Container(
-              child: Icon(
-                Icons.arrow_forward_ios,
-                size: MyScreenUtil.sp(27),
-                color: Colors.grey[700],
-              ),
-            ),
+            MyCommonUtil.arrowForward(),
           ],
         ),
       ),
@@ -289,7 +207,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
               title: Text(
                 '${MyLocaleKey.commonPleaseEnterYourPassword.tr}',
                 style: MyTextUtil.textStyle(2,
-                    color: Colors.grey[850], spacing: 0.2, size: 30),
+                    color: MyColorUtil.biz(), spacing: 0.2, size: 30),
               ),
               content: Card(
                 elevation: 0.0,
@@ -310,7 +228,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                           fillColor: MyColorUtil.white,
                         ),
                         style: MyTextUtil.textStyle4Num(
-                            color: Colors.grey[800],
+                            color: MyColorUtil.biz(),
                             spacing: 0.2,
                             size: 32,
                             fontWeight: FontWeight.w500),
@@ -336,44 +254,31 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                 ),
               ),
               actions: <Widget>[
-                FlatButton(
-                  child: Text(
-                    '${MyLocaleKey.commonCancel.tr}',
-                    style: MyTextUtil.textStyle(2,
-                        color: MyColorUtil.theme, spacing: 0.5, size: 30),
-                  ),
-                  onPressed: () => Navigator.pop(context),
+                MyCommonUtil.flatButton(
+                  '${MyLocaleKey.commonCancel.tr}',
+                  () => Navigator.pop(context),
                 ),
-                FlatButton(
-                    child: Text(
-                      '${MyLocaleKey.commonConfirm.tr}',
-                      style: MyTextUtil.textStyle(2,
-                          color: MyColorUtil.theme, spacing: 0.5, size: 30),
-                    ),
-                    onPressed: () {
-                      if (_formKey.currentState.validate()) {
-                        _formKey.currentState.save();
-                        _backupKey(context).then((val) {
-                          if (val == true) {
-                            Navigator.pop(context);
-                            if (type == 1) {
-                              /*Application.router.navigateTo(
-                                  context, Routes.assetBackupMnemonic,
-                                  transition: TransitionType.cupertino);*/
-                              Get.toNamed(AppRoute.assetBackupMnemonic);
-                            } else if (type == 2) {
-                              /*Application.router.navigateTo(
-                                  context, Routes.assetBackupKey,
-                                  transition: TransitionType.cupertino);*/
-                              Get.toNamed(AppRoute.assetBackupKey);
-                            }
-                          } else {
-                            MyCommonUtil.showToast(
-                                '${MyLocaleKey.commonExecutedError.tr}');
+                MyCommonUtil.flatButton(
+                  '${MyLocaleKey.commonConfirm.tr}',
+                  () {
+                    if (_formKey.currentState.validate()) {
+                      _formKey.currentState.save();
+                      _backupKey(context).then((val) {
+                        if (val == true) {
+                          Navigator.pop(context);
+                          if (type == 1) {
+                            Get.toNamed(AppRoute.assetBackupMnemonic);
+                          } else if (type == 2) {
+                            Get.toNamed(AppRoute.assetBackupKey);
                           }
-                        });
-                      }
-                    }),
+                        } else {
+                          MyCommonUtil.showToast(
+                              '${MyLocaleKey.commonExecutedError.tr}');
+                        }
+                      });
+                    }
+                  },
+                ),
               ],
             ));
   }
@@ -385,7 +290,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
               title: Text(
                 '${MyLocaleKey.assetUpdateWalletName.tr}',
                 style: MyTextUtil.textStyle(2,
-                    color: Colors.grey[850], spacing: 0.0, size: 30),
+                    color: MyColorUtil.biz(), spacing: 0.0, size: 30),
               ),
               content: Card(
                 elevation: 0.0,
@@ -404,7 +309,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                           fillColor: MyColorUtil.white,
                         ),
                         style: MyTextUtil.textStyle(2,
-                            color: Colors.grey[850], spacing: 0.2, size: 30),
+                            color: MyColorUtil.biz(), spacing: 0.2, size: 30),
                         //obscureText: true,
                         maxLength: 10,
                         maxLengthEnforced: true,
@@ -454,7 +359,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
               title: Text(
                 '${MyLocaleKey.commonDeleteWalletTip.tr}',
                 style: MyTextUtil.textStyle(2,
-                    color: Colors.grey[850], spacing: 0.2, size: 28),
+                    color: MyColorUtil.biz(), spacing: 0.2, size: 28),
               ),
               actions: <Widget>[
                 MyCommonUtil.flatButton(

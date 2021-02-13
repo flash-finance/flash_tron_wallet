@@ -52,10 +52,10 @@ class _TradePageState extends State<TradePage>
                 isScrollable: false,
                 indicatorPadding:
                     EdgeInsets.only(bottom: MyScreenUtil.width(15)),
-                indicatorColor: Colors.grey[850],
+                indicatorColor: MyColorUtil.biz(),
                 indicatorSize: TabBarIndicatorSize.label,
                 labelStyle: MyTextUtil.textStyle(2, spacing: 0.2, size: 32),
-                labelColor: Colors.grey[850],
+                labelColor: MyColorUtil.biz(),
                 unselectedLabelColor: Colors.grey[600],
                 indicatorWeight: 2.0,
                 tabs: <Tab>[

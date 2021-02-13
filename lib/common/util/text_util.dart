@@ -32,46 +32,40 @@ class MyTextUtil {
 
   static TextStyle textStyle4En(int type,
       {Color color, double spacing, double size}) {
-    double fontSize = size != null ? size : 20.0;
     return TextStyle(
       fontFamily: type == 1 ? textRegular4En : textMedium4En,
       letterSpacing: 0.0,
       color: color,
-      fontSize: MyScreenUtil.sp(fontSize + 1),
+      fontSize: MyScreenUtil.sp(size ?? 20.0 + 1),
     );
   }
 
   static TextStyle textStyle4Zh(int type,
       {Color color, double spacing, double size}) {
-    double letterSpacing = spacing != null ? spacing : 0.0;
-    double fontSize = size != null ? size : 23.0;
     return TextStyle(
       fontFamily: type == 1 ? textRegular4Zh : textMedium4Zh,
-      letterSpacing: letterSpacing,
+      letterSpacing: spacing ?? 0.0,
       color: color,
-      fontSize: MyScreenUtil.sp(fontSize + 4),
+      fontSize: MyScreenUtil.sp(size ?? 23.0 + 4),
     );
   }
 
   static TextStyle textStyle4Num(
       {Color color, double spacing, double size, FontWeight fontWeight}) {
-    double letterSpacing = spacing != null ? spacing : 0.0;
-    double fontSize = size != null ? size : 23.0;
     return GoogleFonts.roboto(
-      letterSpacing: letterSpacing,
+      letterSpacing: spacing ?? 0.0,
       color: color,
       fontWeight: fontWeight,
-      fontSize: MyScreenUtil.sp(fontSize),
+      fontSize: MyScreenUtil.sp(size ?? 23.0),
     );
   }
 
   static TextStyle textStyle4Index(int type, {Color color, double spacing}) {
-    double letterSpacing = spacing != null ? spacing : 0.0;
     bool langType = GlobalService.to.langType;
     return langType
         ? TextStyle(
             fontFamily: type == 1 ? textRegular4Zh : textMedium4Zh,
-            letterSpacing: letterSpacing,
+            letterSpacing: spacing ?? 0.0,
             color: color,
           )
         : TextStyle(

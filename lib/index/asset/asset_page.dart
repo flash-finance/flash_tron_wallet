@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flash_tron_wallet/common/enum/import_wallet_type.dart';
 import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/common_util.dart';
+import 'package:flash_tron_wallet/common/util/icon_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
 import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
@@ -158,7 +159,7 @@ class _AssetPageState extends State<AssetPage>
                       child: Text(
                         '${item.name}',
                         style: MyTextUtil.textStyle(1,
-                            color: Colors.white, spacing: 0.2, size: 23),
+                            color: MyColorUtil.white, spacing: 0.2, size: 23),
                       ),
                     ),
                     MyCommonUtil.sizedBox(width: 5),
@@ -167,12 +168,12 @@ class _AssetPageState extends State<AssetPage>
                       height: MyScreenUtil.height(36),
                       width: MyScreenUtil.height(36),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: MyColorUtil.white,
                         borderRadius: BorderRadius.circular(18.0),
                       ),
-                      child: Icon(
-                        Icons.arrow_forward_ios,
-                        size: MyScreenUtil.sp(22),
+                      child: MyCommonUtil.icon(
+                        MyIconUtil.arrowForwardIos,
+                        size: 22,
                         color: MyColorUtil.theme,
                       ),
                     ),
@@ -188,12 +189,10 @@ class _AssetPageState extends State<AssetPage>
                   onTap: () {
                     Get.toNamed(AppRoute.assetAddWallet);
                   },
-                  child: Container(
-                    child: Icon(
-                      IconData(0xe7b8, fontFamily: 'ICON'),
-                      size: MyScreenUtil.sp(55),
-                      color: Colors.grey[850],
-                    ),
+                  child: MyCommonUtil.icon(
+                    MyIconUtil.plusExt,
+                    size: 55,
+                    color: MyColorUtil.biz(),
                   ),
                 ),
                 SizedBox(width: MyScreenUtil.width(30)),
@@ -202,12 +201,10 @@ class _AssetPageState extends State<AssetPage>
                     GlobalService.to.changeSelectAssetFilterIndex(0);
                     Get.toNamed(AppRoute.assetQrScan + '/1');
                   },
-                  child: Container(
-                    child: Icon(
-                      IconData(0xe606, fontFamily: 'ICON'),
-                      size: MyScreenUtil.sp(60),
-                      color: Colors.grey[850],
-                    ),
+                  child: MyCommonUtil.icon(
+                    MyIconUtil.scanExt,
+                    size: 60,
+                    color: MyColorUtil.biz(),
                   ),
                 ),
               ],
@@ -275,8 +272,12 @@ class _AssetPageState extends State<AssetPage>
                   Container(
                     child: Text(
                       '${MyLocaleKey.assetMyAssets.tr} （\$）',
-                      style: MyTextUtil.textStyle(1,
-                          color: Colors.white, spacing: 0.5, size: 25),
+                      style: MyTextUtil.textStyle(
+                        1,
+                        color: MyColorUtil.white,
+                        spacing: 0.5,
+                        size: 25,
+                      ),
                     ),
                   ),
                   Container(
@@ -285,8 +286,12 @@ class _AssetPageState extends State<AssetPage>
                         Container(
                           child: Text(
                             '${MyLocaleKey.assetDetails.tr}',
-                            style: MyTextUtil.textStyle(1,
-                                color: Colors.white, spacing: 0.5, size: 25),
+                            style: MyTextUtil.textStyle(
+                              1,
+                              color: MyColorUtil.white,
+                              spacing: 0.5,
+                              size: 25,
+                            ),
                           ),
                         ),
                         SizedBox(width: MyScreenUtil.width(10)),
@@ -294,10 +299,10 @@ class _AssetPageState extends State<AssetPage>
                           padding: MyCommonUtil.edge(
                               top: langType ? 0 : 1.5,
                               bottom: langType ? 1 : 0),
-                          child: Icon(
-                            Icons.arrow_forward_ios,
-                            size: MyScreenUtil.sp(23),
-                            color: Colors.white,
+                          child: MyCommonUtil.icon(
+                            MyIconUtil.arrowForwardIos,
+                            size: 23,
+                            color: MyColorUtil.white,
                           ),
                         ),
                       ],
@@ -317,10 +322,11 @@ class _AssetPageState extends State<AssetPage>
                 child: Text(
                   '${MyCommonUtil.formatNum(totalAssetUsd, 2)}',
                   style: MyTextUtil.textStyle4Num(
-                      color: Colors.white,
-                      spacing: 0.2,
-                      size: 45,
-                      fontWeight: FontWeight.w500),
+                    color: MyColorUtil.white,
+                    spacing: 0.2,
+                    size: 45,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
             ),
@@ -340,10 +346,10 @@ class _AssetPageState extends State<AssetPage>
                       child: Row(
                         children: <Widget>[
                           Container(
-                            child: Icon(
-                              Icons.transit_enterexit_sharp,
-                              size: MyScreenUtil.sp(35),
-                              color: Colors.white,
+                            child: MyCommonUtil.icon(
+                              MyIconUtil.transit,
+                              size: 35,
+                              color: MyColorUtil.white,
                             ),
                           ),
                           MyCommonUtil.sizedBox(width: 10),
@@ -351,7 +357,9 @@ class _AssetPageState extends State<AssetPage>
                             child: Text(
                               '${MyLocaleKey.assetTransfer.tr}',
                               style: MyTextUtil.textStyle(1,
-                                  color: Colors.white, spacing: 0.6, size: 25),
+                                  color: MyColorUtil.white,
+                                  spacing: 0.6,
+                                  size: 25),
                             ),
                           ),
                         ],
@@ -368,10 +376,10 @@ class _AssetPageState extends State<AssetPage>
                         children: <Widget>[
                           Container(
                             padding: MyCommonUtil.edge(top: 2.5),
-                            child: Icon(
-                              Icons.download_sharp,
-                              size: MyScreenUtil.sp(33),
-                              color: Colors.white,
+                            child: MyCommonUtil.icon(
+                              MyIconUtil.download,
+                              size: 33,
+                              color: MyColorUtil.white,
                             ),
                           ),
                           MyCommonUtil.sizedBox(width: 10),
@@ -379,7 +387,9 @@ class _AssetPageState extends State<AssetPage>
                             child: Text(
                               '${MyLocaleKey.assetReceive.tr}',
                               style: MyTextUtil.textStyle(1,
-                                  color: Colors.white, spacing: 0.6, size: 25),
+                                  color: MyColorUtil.white,
+                                  spacing: 0.6,
+                                  size: 25),
                             ),
                           ),
                         ],
@@ -395,18 +405,22 @@ class _AssetPageState extends State<AssetPage>
                       child: Row(
                         children: <Widget>[
                           Container(
-                            child: Icon(
-                              Icons.sync_rounded,
-                              size: MyScreenUtil.sp(33),
-                              color: Colors.white,
+                            child: MyCommonUtil.icon(
+                              MyIconUtil.sync,
+                              size: 33,
+                              color: MyColorUtil.white,
                             ),
                           ),
                           MyCommonUtil.sizedBox(width: 10),
                           Container(
                             child: Text(
                               '${MyLocaleKey.assetTrade.tr}',
-                              style: MyTextUtil.textStyle(1,
-                                  color: Colors.white, spacing: 0.6, size: 25),
+                              style: MyTextUtil.textStyle(
+                                1,
+                                color: MyColorUtil.white,
+                                spacing: 0.6,
+                                size: 25,
+                              ),
                             ),
                           ),
                         ],
@@ -429,7 +443,7 @@ class _AssetPageState extends State<AssetPage>
         child: Text(
           '${MyLocaleKey.assetAssets.tr}',
           style: MyTextUtil.textStyle(2,
-              color: Colors.grey[800], spacing: 0.5, size: 32),
+              color: MyColorUtil.biz(), spacing: 0.5, size: 32),
         ));
   }
 
@@ -448,7 +462,7 @@ class _AssetPageState extends State<AssetPage>
                 }),
           )
         : Container(
-            margin: MyCommonUtil.edge(top: 120),
+            margin: MyCommonUtil.edge(top: 200),
             child: Center(
               child: CupertinoActivityIndicator(),
             ),
@@ -468,9 +482,7 @@ class _AssetPageState extends State<AssetPage>
       child: Container(
         padding: MyCommonUtil.edge(top: 20, bottom: 20),
         decoration: BoxDecoration(
-          border: Border(
-              bottom: BorderSide(
-                  color: flag ? Colors.black26 : Colors.white, width: 0.3)),
+          border: MyCommonUtil.bottomBorder(),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -491,7 +503,7 @@ class _AssetPageState extends State<AssetPage>
                       child: Text(
                     '${item.name}',
                     style: MyTextUtil.textStyle4En(2,
-                        color: Colors.grey[850], spacing: 0.0, size: 30),
+                        color: MyColorUtil.biz(), spacing: 0.0, size: 30),
                   )),
                 ],
               ),
@@ -504,10 +516,11 @@ class _AssetPageState extends State<AssetPage>
                     child: Text(
                       '${MyCommonUtil.formatNum(item.balance, 4)}',
                       style: MyTextUtil.textStyle4Num(
-                          color: Colors.grey[800],
-                          spacing: 0.1,
-                          size: 30,
-                          fontWeight: FontWeight.w500),
+                        color: MyColorUtil.biz(),
+                        spacing: 0.1,
+                        size: 30,
+                        fontWeight: FontWeight.w500,
+                      ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -518,8 +531,8 @@ class _AssetPageState extends State<AssetPage>
                       '≈  \$ ${MyCommonUtil.formatNum(item.usd, 2)}',
                       style: MyTextUtil.textStyle4En(
                         2,
-                        color: Colors.grey[600],
-                        spacing: 0.0,
+                        color: MyColorUtil.subBiz(),
+                        spacing: 0.1,
                         size: 21,
                       ),
                       maxLines: 1,
@@ -556,7 +569,7 @@ class _AssetPageState extends State<AssetPage>
             child: Text(
               'Flash  Wallet',
               style: MyTextUtil.textStyle4En(1,
-                  color: Colors.white, spacing: 0.3, size: 40),
+                  color: MyColorUtil.white, spacing: 0.3, size: 40),
             ),
           ),
         ],
@@ -655,14 +668,16 @@ class _AssetPageState extends State<AssetPage>
                   padding: MyCommonUtil.edge(top: 20, bottom: 20),
                   margin: MyCommonUtil.edge(bottom: 25),
                   decoration: BoxDecoration(
-                    border: Border(
-                        bottom:
-                            BorderSide(color: Colors.grey[400], width: 0.3)),
+                    border: MyCommonUtil.bottomBorder(),
                   ),
                   child: Text(
                     '${MyLocaleKey.assetWalletList.tr}',
-                    style: MyTextUtil.textStyle(2,
-                        color: Colors.grey[850], spacing: 0.4, size: 32),
+                    style: MyTextUtil.textStyle(
+                      2,
+                      color: MyColorUtil.biz(),
+                      spacing: 0.4,
+                      size: 32,
+                    ),
                   ),
                 ),
                 Expanded(
@@ -717,8 +732,12 @@ class _AssetPageState extends State<AssetPage>
                 Container(
                   child: Text(
                     '$name',
-                    style: MyTextUtil.textStyle(1,
-                        color: Colors.white, spacing: 0.5, size: 28),
+                    style: MyTextUtil.textStyle(
+                      1,
+                      color: MyColorUtil.white,
+                      spacing: 0.5,
+                      size: 28,
+                    ),
                   ),
                 ),
                 MyCommonUtil.sizedBox(height: 15),
@@ -735,16 +754,20 @@ class _AssetPageState extends State<AssetPage>
                         Container(
                           child: Text(
                             '$tronAddress',
-                            style: MyTextUtil.textStyle4En(1,
-                                color: Colors.white, spacing: 0.0, size: 26),
+                            style: MyTextUtil.textStyle4En(
+                              1,
+                              color: MyColorUtil.white,
+                              spacing: 0.0,
+                              size: 26,
+                            ),
                           ),
                         ),
                         SizedBox(width: MyScreenUtil.width(50)),
                         Container(
-                          child: Icon(
-                            IconData(0xe618, fontFamily: 'ICON'),
-                            size: MyScreenUtil.sp(28),
-                            color: Colors.white,
+                          child: MyCommonUtil.icon(
+                            MyIconUtil.copyExt,
+                            size: 28,
+                            color: MyColorUtil.white,
                           ),
                         ),
                       ],
@@ -755,10 +778,10 @@ class _AssetPageState extends State<AssetPage>
             ),
             selectIndex == index
                 ? Container(
-                    child: Icon(
-                      Icons.done_rounded,
-                      size: MyScreenUtil.sp(40),
-                      color: Colors.white,
+                    child: MyCommonUtil.icon(
+                      MyIconUtil.done,
+                      size: 40,
+                      color: MyColorUtil.white,
                     ),
                   )
                 : Container(),

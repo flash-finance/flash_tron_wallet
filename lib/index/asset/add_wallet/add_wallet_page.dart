@@ -1,4 +1,7 @@
+import 'package:flash_tron_wallet/common/enum/import_wallet_type.dart';
+import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/common_util.dart';
+import 'package:flash_tron_wallet/common/util/icon_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
 import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
@@ -43,126 +46,73 @@ class _AddWalletPageState extends State<AddWalletPage> {
       child: Column(
         children: <Widget>[
           SizedBox(height: MyScreenUtil.height(30)),
-          InkWell(
-            onTap: () {
-              Get.toNamed(AppRoute.assetImportKey + '/2');
-            },
-            child: Container(
-              padding: MyCommonUtil.edge(bottom: 30),
-              decoration: BoxDecoration(
-                border: MyCommonUtil.bottomBorder(),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      MyCommonUtil.sizedBox(width: 10),
-                      Container(
-                        child: Text(
-                          '${MyLocaleKey.assetImportPrivateKey.tr}',
-                          style: MyTextUtil.textStyle(2,
-                              color: Colors.grey[800], spacing: 0.0, size: 30),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          size: MyScreenUtil.sp(27),
-                          color: Colors.grey[700],
-                        ),
-                      ),
-                      SizedBox(width: MyScreenUtil.width(10)),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
+          _itemWidget(context, '${MyLocaleKey.assetImportPrivateKey.tr}',
+              ImportWalletType.importKey, true),
           SizedBox(height: MyScreenUtil.height(30)),
-          InkWell(
-            onTap: () {
-              Get.toNamed(AppRoute.assetImportMnemonic + '/2');
-            },
-            child: Container(
-              padding: MyCommonUtil.edge(bottom: 30),
-              decoration: BoxDecoration(
-                border: MyCommonUtil.bottomBorder(),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      MyCommonUtil.sizedBox(width: 10),
-                      Container(
-                        child: Text(
-                          '${MyLocaleKey.assetImportMnemonic.tr}',
-                          style: MyTextUtil.textStyle(2,
-                              color: Colors.grey[800], spacing: 0.0, size: 30),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          size: MyScreenUtil.sp(27),
-                          color: Colors.grey[700],
-                        ),
-                      ),
-                      SizedBox(width: MyScreenUtil.width(10)),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
+          _itemWidget(context, '${MyLocaleKey.assetImportMnemonic.tr}',
+              ImportWalletType.importMnemonic, true),
           SizedBox(height: MyScreenUtil.height(30)),
-          InkWell(
-            onTap: () {
-              Get.toNamed(AppRoute.assetBuildFirstWallet + '/2');
-            },
-            child: Container(
-              padding: MyCommonUtil.edge(bottom: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      SizedBox(width: MyScreenUtil.width(10)),
-                      Container(
-                        child: Text(
-                          '${MyLocaleKey.assetCreateWallet.tr}',
-                          style: MyTextUtil.textStyle(2,
-                              color: Colors.grey[800], spacing: 0.0, size: 30),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          size: MyScreenUtil.sp(27),
-                          color: Colors.grey[700],
-                        ),
-                      ),
-                      SizedBox(width: MyScreenUtil.width(10)),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
+          _itemWidget(context, '${MyLocaleKey.assetCreateWallet.tr}',
+              ImportWalletType.createWallet, false),
         ],
+      ),
+    );
+  }
+
+  Widget _itemWidget(
+      BuildContext context, String name, ImportWalletType type, bool flag) {
+    return InkWell(
+      onTap: () {
+        switch (type) {
+          case ImportWalletType.importKey:
+            Get.toNamed(AppRoute.assetImportKey + '/2');
+            break;
+          case ImportWalletType.importMnemonic:
+            Get.toNamed(AppRoute.assetImportMnemonic + '/2');
+            break;
+          case ImportWalletType.createWallet:
+            Get.toNamed(AppRoute.assetBuildFirstWallet + '/2');
+            break;
+        }
+      },
+      child: Container(
+        padding: MyCommonUtil.edge(bottom: 30),
+        decoration: BoxDecoration(
+          border: flag ? MyCommonUtil.bottomBorder() : null,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                MyCommonUtil.sizedBox(width: 10),
+                Container(
+                  child: Text(
+                    '$name',
+                    style: MyTextUtil.textStyle(
+                      2,
+                      color: MyColorUtil.biz(),
+                      spacing: 0.0,
+                      size: 30,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Container(
+                  child: MyCommonUtil.icon(
+                    MyIconUtil.arrowForwardIos,
+                    size: 27,
+                    color: MyColorUtil.subBiz(),
+                  ),
+                ),
+                SizedBox(width: MyScreenUtil.width(10)),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

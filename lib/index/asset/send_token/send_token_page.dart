@@ -291,7 +291,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                     child: Text(
                       '${MyLocaleKey.commonMax.tr}',
                       style: MyTextUtil.textStyle(2,
-                          color: Colors.white, spacing: 0.2, size: 20),
+                          color: MyColorUtil.white, spacing: 0.2, size: 20),
                     ),
                   ),
                 ),
@@ -505,7 +505,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                         decoration: InputDecoration(
                           hintText: '',
                           filled: true,
-                          fillColor: Colors.white,
+                          fillColor: MyColorUtil.white,
                         ),
                         style: MyTextUtil.textStyle4Num(
                             color: Colors.grey[800],

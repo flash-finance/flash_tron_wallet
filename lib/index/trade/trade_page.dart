@@ -1,3 +1,4 @@
+import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/common_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
@@ -44,7 +45,7 @@ class _TradePageState extends State<TradePage>
               padding:
                   MyCommonUtil.edge(left: 150, right: 150, top: 10, bottom: 10),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: MyColorUtil.white,
               ),
               child: TabBar(
                 controller: _tabController,

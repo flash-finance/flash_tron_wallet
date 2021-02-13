@@ -91,7 +91,7 @@ class _QrScanPageState extends State<QrScanPage> {
                     child: Icon(
                       Icons.arrow_back,
                       size: MyScreenUtil.sp(45),
-                      color: Colors.white,
+                      color: MyColorUtil.white,
                     ),
                   ),
                 ),
@@ -103,14 +103,14 @@ class _QrScanPageState extends State<QrScanPage> {
                   child: Text(
                     '${MyLocaleKey.commonScan.tr}',
                     style: MyTextUtil.textStyle(2,
-                        color: Colors.white, spacing: 0.2, size: 32),
+                        color: MyColorUtil.white, spacing: 0.2, size: 32),
                   ),
                 ),
                 Container(
                   child: Text(
                     '${MyLocaleKey.commonPhotoAlbum.tr}',
                     style: MyTextUtil.textStyle(2,
-                        color: Colors.white.withOpacity(0),
+                        color: MyColorUtil.white.withOpacity(0),
                         spacing: 0.2,
                         size: 32),
                   ),

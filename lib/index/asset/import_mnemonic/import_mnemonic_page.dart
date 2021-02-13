@@ -43,7 +43,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
       hasAppBar: true,
       hasBack: true,
       title: '${MyLocaleKey.assetImportMnemonic.tr}',
-      body: _bodyWidget(context),
+      body: Obx((() => _bodyWidget(context))),
     );
   }
 
@@ -256,7 +256,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
             child: Text(
               '${MyLocaleKey.addWalletTip1.tr}',
               style: MyTextUtil.textStyle(1,
-                  color: Colors.white, spacing: 0.1, size: 21),
+                  color: MyColorUtil.white, spacing: 0.1, size: 21),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
@@ -267,7 +267,7 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
             child: Text(
               '${MyLocaleKey.addWalletTip2.tr}',
               style: MyTextUtil.textStyle(1,
-                  color: Colors.white, spacing: 0.1, size: 21),
+                  color: MyColorUtil.white, spacing: 0.1, size: 21),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),

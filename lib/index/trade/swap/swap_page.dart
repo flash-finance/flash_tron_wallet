@@ -131,7 +131,7 @@ class _SwapSubPageState extends State<SwapSubPage>
   Widget _bodyWidget(BuildContext context) {
     return Container(
       width: MyScreenUtil.width(750),
-      color: Colors.white,
+      color: MyColorUtil.white,
       child: Column(
         children: <Widget>[
           MyCommonUtil.sizedBox(height: 20),
@@ -178,7 +178,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                     child: Text(
                       'Flash  Swap',
                       style: MyTextUtil.textStyle4En(1,
-                          color: Colors.white, spacing: 0.0, size: 37),
+                          color: MyColorUtil.white, spacing: 0.0, size: 37),
                     ),
                   ),
                   Container(
@@ -186,7 +186,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                     child: Text(
                       '${MyLocaleKey.swapTips01.tr}',
                       style: MyTextUtil.textStyle(1,
-                          color: Colors.white, spacing: 0.0, size: 20),
+                          color: MyColorUtil.white, spacing: 0.0, size: 20),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                     ),
@@ -339,7 +339,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                 Container(
                     width: MyScreenUtil.width(350),
                     padding: MyCommonUtil.edge(left: 20, top: 3, bottom: 3),
-                    color: Colors.white,
+                    color: MyColorUtil.white,
                     alignment: Alignment.centerLeft,
                     child: TextFormField(
                       controller: _leftSwapAmountController,
@@ -488,7 +488,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                   child: Text(
                     '1 USDT ≈ 1 USD',
                     style: MyTextUtil.textStyle4En(2,
-                        color: Colors.white, spacing: 0.0, size: 21),
+                        color: MyColorUtil.white, spacing: 0.0, size: 21),
                   ),
                 ),
         ],
@@ -498,7 +498,7 @@ class _SwapSubPageState extends State<SwapSubPage>
 
   Widget _dataMidWidget(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: MyColorUtil.white,
       margin: MyCommonUtil.edge(top: 20, bottom: 0),
       child: InkWell(
           onTap: () {
@@ -534,7 +534,7 @@ class _SwapSubPageState extends State<SwapSubPage>
             GlobalService.to.changeSwapRightIndex(temp11);
           },
           child: Container(
-            color: Colors.white,
+            color: MyColorUtil.white,
             alignment: Alignment.center,
             width: MyScreenUtil.width(150),
             child: Icon(
@@ -651,7 +651,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                 Container(
                     width: MyScreenUtil.width(350),
                     padding: MyCommonUtil.edge(left: 20, top: 3, bottom: 3),
-                    color: Colors.white,
+                    color: MyColorUtil.white,
                     alignment: Alignment.centerLeft,
                     child: TextFormField(
                       controller: _rightSwapAmountController,
@@ -804,7 +804,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                   child: Text(
                     '1 USDT ≈ 1 USD',
                     style: MyTextUtil.textStyle4En(2,
-                        color: Colors.white, spacing: 0.0, size: 21),
+                        color: MyColorUtil.white, spacing: 0.0, size: 21),
                   ),
                 ),
         ],
@@ -843,7 +843,7 @@ class _SwapSubPageState extends State<SwapSubPage>
               child: Text(
                 '${MyLocaleKey.swapPooledTokens.tr}',
                 style: MyTextUtil.textStyle(1,
-                    color: Colors.white, spacing: 0.0, size: 21),
+                    color: MyColorUtil.white, spacing: 0.0, size: 21),
               ),
             ),
           ),
@@ -1419,7 +1419,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                           ? '${MyLocaleKey.swapSwap.tr}'
                           : '${MyLocaleKey.swapTokenNotEnough.tr}',
                       style: MyTextUtil.textStyle(1,
-                          color: Colors.white, spacing: 0.6, size: 28),
+                          color: MyColorUtil.white, spacing: 0.6, size: 28),
                     )
                   : Container(
                       child: CupertinoActivityIndicator(),
@@ -1763,7 +1763,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                     ? '+${change.toStringAsFixed(2)}%'
                     : '${change.toStringAsFixed(2)}%',
                 style: MyTextUtil.textStyle4Num(
-                    color: Colors.white,
+                    color: MyColorUtil.white,
                     spacing: 0.0,
                     size: 24,
                     fontWeight: FontWeight.w500),

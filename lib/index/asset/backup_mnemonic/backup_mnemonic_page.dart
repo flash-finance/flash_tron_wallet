@@ -65,7 +65,7 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
             child: Text(
               '${MyLocaleKey.backupWalletTip1.tr}',
               style: MyTextUtil.textStyle(1,
-                  color: Colors.white, spacing: 0.1, size: 21),
+                  color: MyColorUtil.white, spacing: 0.1, size: 21),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),

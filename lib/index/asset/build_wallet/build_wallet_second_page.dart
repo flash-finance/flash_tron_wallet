@@ -26,7 +26,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
       hasAppBar: true,
       hasBack: true,
       title: '${MyLocaleKey.assetCreateWallet.tr}',
-      body: _bodyWidget(context),
+      body: Obx((() => _bodyWidget(context))),
     );
   }
 
@@ -74,7 +74,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             child: Text(
               '${MyLocaleKey.addWalletTip3.tr}',
               style: MyTextUtil.textStyle(1,
-                  color: Colors.white, spacing: 0.1, size: 21),
+                  color: MyColorUtil.white, spacing: 0.1, size: 21),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
@@ -85,7 +85,7 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             child: Text(
               '${MyLocaleKey.addWalletTip4.tr}',
               style: MyTextUtil.textStyle(1,
-                  color: Colors.white, spacing: 0.1, size: 21),
+                  color: MyColorUtil.white, spacing: 0.1, size: 21),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
@@ -162,8 +162,8 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             padding: MyCommonUtil.edge(left: 15, top: 10),
             child: Text(
               '$index',
-              style:
-                  MyTextUtil.textStyle4Num(color: MyColorUtil.subBiz(), size: 20),
+              style: MyTextUtil.textStyle4Num(
+                  color: MyColorUtil.subBiz(), size: 20),
             ),
           ),
           Container(
@@ -171,8 +171,8 @@ class _BackupMnemonicSecondPageState extends State<BuildWalletSecondPage> {
             padding: MyCommonUtil.edge(bottom: 26),
             child: Text(
               '$value',
-              style:
-                  MyTextUtil.textStyle4En(2, color: MyColorUtil.biz(), size: 27),
+              style: MyTextUtil.textStyle4En(2,
+                  color: MyColorUtil.biz(), size: 27),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),

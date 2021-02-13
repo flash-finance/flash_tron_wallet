@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flash_tron_wallet/common/config/common_config.dart';
+import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/common_util.dart';
 import 'package:flash_tron_wallet/common/util/http_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
@@ -234,7 +235,7 @@ class _MarketPageState extends State<MarketPage>
                     ? '+${change.toStringAsFixed(2)}%'
                     : '${change.toStringAsFixed(2)}%',
                 style: MyTextUtil.textStyle4Num(
-                  color: Colors.white,
+                  color: MyColorUtil.white,
                   spacing: 0.0,
                   size: 25,
                   fontWeight: FontWeight.w500,

@@ -57,7 +57,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
         child: Text(
           '${MyLocaleKey.mineNoWallet.tr}',
           style: MyTextUtil.textStyle(2,
-              color: Colors.white, spacing: 0.5, size: 28),
+              color: MyColorUtil.white, spacing: 0.5, size: 28),
         ),
       ),
     );
@@ -114,7 +114,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
                         child: Text(
                           '$name',
                           style: MyTextUtil.textStyle(2,
-                              color: Colors.white, spacing: 0.5, size: 28),
+                              color: MyColorUtil.white, spacing: 0.5, size: 28),
                         ),
                       ),
                       MyCommonUtil.sizedBox(width: 50),
@@ -128,7 +128,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
                               decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(5.0)),
-                                color: Colors.white,
+                                color: MyColorUtil.white,
                               ),
                               child: Text(
                                 '${MyLocaleKey.commonCurrent.tr}',
@@ -146,7 +146,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
                   child: Icon(
                     Icons.arrow_forward_ios,
                     size: MyScreenUtil.sp(28),
-                    color: Colors.white,
+                    color: MyColorUtil.white,
                   ),
                 ),
               ],
@@ -164,7 +164,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
                       child: Text(
                         '$tronAddress',
                         style: MyTextUtil.textStyle4En(1,
-                            color: Colors.white, spacing: 0.5, size: 26),
+                            color: MyColorUtil.white, spacing: 0.5, size: 26),
                       ),
                     ),
                     MyCommonUtil.sizedBox(width: 50),
@@ -172,7 +172,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
                       child: Icon(
                         IconData(0xe618, fontFamily: 'ICON'),
                         size: MyScreenUtil.sp(28),
-                        color: Colors.white,
+                        color: MyColorUtil.white,
                       ),
                     ),
                   ],

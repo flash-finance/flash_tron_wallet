@@ -97,7 +97,7 @@ class MyCommonUtil {
               child: Text(
                 '$name',
                 style: MyTextUtil.textStyle(1,
-                    color: Colors.white, spacing: 0.6, size: 31),
+                    color: MyColorUtil.white, spacing: 0.6, size: 31),
               ),
             ),
             color: MyColorUtil.theme,

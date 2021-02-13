@@ -41,7 +41,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
       hasAppBar: true,
       hasBack: true,
       title: '${MyLocaleKey.assetImportPrivateKey.tr}',
-      body: _bodyWidget(context),
+      body: Obx((() => _bodyWidget(context))),
     );
   }
 
@@ -93,7 +93,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
             child: Text(
               '${MyLocaleKey.addWalletTip1.tr}',
               style: MyTextUtil.textStyle(1,
-                  color: Colors.white, spacing: 0.1, size: 21),
+                  color: MyColorUtil.white, spacing: 0.1, size: 21),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
@@ -104,7 +104,7 @@ class _ImportKeyPageState extends State<ImportKeyPage> {
             child: Text(
               '${MyLocaleKey.addWalletTip2.tr}',
               style: MyTextUtil.textStyle(1,
-                  color: Colors.white, spacing: 0.1, size: 21),
+                  color: MyColorUtil.white, spacing: 0.1, size: 21),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),

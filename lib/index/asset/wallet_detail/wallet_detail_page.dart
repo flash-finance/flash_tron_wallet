@@ -307,7 +307,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                         decoration: InputDecoration(
                           hintText: '',
                           filled: true,
-                          fillColor: Colors.white,
+                          fillColor: MyColorUtil.white,
                         ),
                         style: MyTextUtil.textStyle4Num(
                             color: Colors.grey[800],
@@ -401,7 +401,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                         decoration: InputDecoration(
                           hintText: '',
                           filled: true,
-                          fillColor: Colors.white,
+                          fillColor: MyColorUtil.white,
                         ),
                         style: MyTextUtil.textStyle(2,
                             color: Colors.grey[850], spacing: 0.2, size: 30),

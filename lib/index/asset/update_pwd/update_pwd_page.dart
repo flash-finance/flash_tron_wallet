@@ -1,3 +1,4 @@
+import 'package:flash_tron_wallet/common/enum/text_type.dart';
 import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/common_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
@@ -17,9 +18,9 @@ class UpdatePwdPage extends StatefulWidget {
 
 class _UpdatePwdPageState extends State<UpdatePwdPage> {
   final _formKey = GlobalKey<FormState>();
-  Color _oldPwdEyeColor = Colors.grey;
-  Color _setPwdEyeColor = Colors.grey;
-  Color _confirmPwdEyeColor = Colors.grey;
+  Color _oldPwdEyeColor = MyColorUtil.subBiz();
+  Color _setPwdEyeColor = MyColorUtil.subBiz();
+  Color _confirmPwdEyeColor = MyColorUtil.subBiz();
 
   bool _oldPwdClickEye = true;
   bool _setPwdClickEye = true;
@@ -68,137 +69,107 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
   }
 
   Widget _oldPwdWidget(String pwd) {
-    return Container(
-      child: TextFormField(
-        obscureText: _oldPwdClickEye,
-        onSaved: (String value) => _oldPwd = value,
-        maxLength: 6,
-        keyboardType: TextInputType.numberWithOptions(decimal: true),
-        inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
-        cursorColor: MyColorUtil.theme,
-        decoration: InputDecoration(
-            labelText: '${MyLocaleKey.commonEnterOldPwd.tr}',
-            labelStyle: MyTextUtil.textStyle(2,
-                color: Colors.grey[700], spacing: 0.1, size: 26),
-            suffixIcon: IconButton(
-              icon: Icon(
-                Icons.remove_red_eye,
-                color: _oldPwdEyeColor,
-                size: MyScreenUtil.sp(38),
-              ),
-              onPressed: () {
-                setState(() {
-                  _oldPwdClickEye = !_oldPwdClickEye;
-                  _oldPwdEyeColor =
-                      _oldPwdClickEye ? Colors.grey : MyColorUtil.theme;
-                });
-              },
-            )),
-        style: MyTextUtil.textStyle4Num(
-            color: MyColorUtil.biz(),
-            spacing: 0.2,
-            size: 32,
-            fontWeight: FontWeight.w500),
-        validator: (String value) {
-          if (value.isEmpty) {
-            return '${MyLocaleKey.commonCanNotBeEmpty.tr}';
-          } else if (value.trim().length != 6) {
-            return '${MyLocaleKey.commonNeed6Digit.tr}';
-          } else if (value.trim() != pwd) {
-            return '${MyLocaleKey.commonPwdIncorrect.tr}';
-          } else {
-            return null;
-          }
+    return MyCommonUtil.textFormField(
+      obscureText: _oldPwdClickEye,
+      onSaved: (String value) => _oldPwd = value,
+      maxLength: 6,
+      inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
+      keyboardType: TextInputType.number,
+      labelText: '${MyLocaleKey.commonEnterOldPwd.tr}',
+      textType: TextType.onlyNum,
+      suffixIcon: IconButton(
+        icon: Icon(
+          Icons.remove_red_eye,
+          color: _oldPwdEyeColor,
+          size: MyScreenUtil.sp(38),
+        ),
+        onPressed: () {
+          setState(() {
+            _oldPwdClickEye = !_oldPwdClickEye;
+            _oldPwdEyeColor =
+                _oldPwdClickEye ? MyColorUtil.subBiz() : MyColorUtil.theme;
+          });
         },
       ),
+      validator: (String value) {
+        if (value.isEmpty) {
+          return '${MyLocaleKey.commonCanNotBeEmpty.tr}';
+        } else if (value.trim().length != 6) {
+          return '${MyLocaleKey.commonNeed6Digit.tr}';
+        } else if (value.trim() != pwd) {
+          return '${MyLocaleKey.commonPwdIncorrect.tr}';
+        } else {
+          return null;
+        }
+      },
     );
   }
 
   Widget _setPwdWidget() {
-    return Container(
-      child: TextFormField(
-        obscureText: _setPwdClickEye,
-        onSaved: (String value) => _setPwd = value,
-        maxLength: 6,
-        keyboardType: TextInputType.numberWithOptions(decimal: true),
-        inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
-        cursorColor: MyColorUtil.theme,
-        decoration: InputDecoration(
-            labelText: '${MyLocaleKey.commonSetNewPwd.tr}',
-            labelStyle: MyTextUtil.textStyle(2,
-                color: Colors.grey[700], spacing: 0.1, size: 26),
-            suffixIcon: IconButton(
-              icon: Icon(
-                Icons.remove_red_eye,
-                color: _setPwdEyeColor,
-                size: MyScreenUtil.sp(38),
-              ),
-              onPressed: () {
-                setState(() {
-                  _setPwdClickEye = !_setPwdClickEye;
-                  _setPwdEyeColor =
-                      _setPwdClickEye ? Colors.grey : MyColorUtil.theme;
-                });
-              },
-            )),
-        style: MyTextUtil.textStyle4Num(
-            color: MyColorUtil.biz(),
-            spacing: 0.2,
-            size: 32,
-            fontWeight: FontWeight.w500),
-        validator: (String value) {
-          if (value.isEmpty) {
-            return '${MyLocaleKey.commonCanNotBeEmpty.tr}';
-          } else if (value.trim().length != 6) {
-            return '${MyLocaleKey.commonNeed6Digit.tr}';
-          } else {
-            return null;
-          }
+    return MyCommonUtil.textFormField(
+      obscureText: _setPwdClickEye,
+      onSaved: (String value) => _setPwd = value,
+      maxLength: 6,
+      inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
+      keyboardType: TextInputType.number,
+      labelText: '${MyLocaleKey.assetSetPassword.tr}',
+      textType: TextType.onlyNum,
+      suffixIcon: IconButton(
+        icon: Icon(
+          Icons.remove_red_eye,
+          color: _setPwdEyeColor,
+          size: MyScreenUtil.sp(38),
+        ),
+        onPressed: () {
+          setState(() {
+            _setPwdClickEye = !_setPwdClickEye;
+            _setPwdEyeColor =
+                _setPwdClickEye ? MyColorUtil.subBiz() : MyColorUtil.theme;
+          });
         },
       ),
+      validator: (String value) {
+        if (value.isEmpty) {
+          return '${MyLocaleKey.commonCanNotBeEmpty.tr}';
+        } else if (value.trim().length != 6) {
+          return '${MyLocaleKey.commonNeed6Digit.tr}';
+        } else {
+          return null;
+        }
+      },
     );
   }
 
   Widget _confirmPwdWidget() {
-    return Container(
-      child: TextFormField(
-        obscureText: _confirmPwdClickEye,
-        onSaved: (String value) => _confirmPwd = value,
-        maxLength: 6,
-        inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
-        keyboardType: TextInputType.number,
-        cursorColor: MyColorUtil.theme,
-        decoration: InputDecoration(
-            labelText: '${MyLocaleKey.commonConfirmNewPwd.tr}',
-            labelStyle: MyTextUtil.textStyle(2,
-                color: Colors.grey[700], spacing: 0.1, size: 26),
-            suffixIcon: IconButton(
-              icon: Icon(
-                Icons.remove_red_eye,
-                color: _confirmPwdEyeColor,
-                size: MyScreenUtil.sp(38),
-              ),
-              onPressed: () {
-                setState(() {
-                  _confirmPwdClickEye = !_confirmPwdClickEye;
-                  _confirmPwdEyeColor =
-                      _confirmPwdClickEye ? Colors.grey : MyColorUtil.theme;
-                });
-              },
-            )),
-        style: MyTextUtil.textStyle4Num(
-            color: MyColorUtil.biz(),
-            spacing: 0.2,
-            size: 32,
-            fontWeight: FontWeight.w500),
-        validator: (String value) {
-          if (value.isEmpty) {
-            return '${MyLocaleKey.commonCanNotBeEmpty.tr}';
-          } else {
-            return null;
-          }
+    return MyCommonUtil.textFormField(
+      obscureText: _confirmPwdClickEye,
+      onSaved: (String value) => _confirmPwd = value,
+      maxLength: 6,
+      inputFormatter: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
+      keyboardType: TextInputType.number,
+      labelText: '${MyLocaleKey.assetConfirmPassword.tr}',
+      textType: TextType.onlyNum,
+      suffixIcon: IconButton(
+        icon: Icon(
+          Icons.remove_red_eye,
+          color: _confirmPwdEyeColor,
+          size: MyScreenUtil.sp(38),
+        ),
+        onPressed: () {
+          setState(() {
+            _confirmPwdClickEye = !_confirmPwdClickEye;
+            _confirmPwdEyeColor =
+                _confirmPwdClickEye ? MyColorUtil.subBiz() : MyColorUtil.theme;
+          });
         },
       ),
+      validator: (String value) {
+        if (value.isEmpty) {
+          return '${MyLocaleKey.commonCanNotBeEmpty.tr}';
+        } else {
+          return null;
+        }
+      },
     );
   }
 

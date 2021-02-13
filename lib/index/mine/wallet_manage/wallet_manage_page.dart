@@ -29,6 +29,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
   }
 
   Widget _bodyWidget(BuildContext context) {
+    _langType = GlobalService.to.langType;
     List<WalletEntity> walletList = GlobalService.to.walletList;
     return Container(
       child: Column(

@@ -129,6 +129,7 @@ class _SwapSubPageState extends State<SwapSubPage>
   }
 
   Widget _bodyWidget(BuildContext context) {
+    _langType = GlobalService.to.langType;
     return Container(
       width: MyScreenUtil.width(750),
       color: MyColorUtil.white,

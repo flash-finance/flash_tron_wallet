@@ -33,6 +33,7 @@ class _MinePageState extends State<MinePage> {
   }
 
   Widget _bodyWidget(BuildContext context) {
+    _langType = GlobalService.to.langType;
     return Container(
       child: ListView(
         children: <Widget>[

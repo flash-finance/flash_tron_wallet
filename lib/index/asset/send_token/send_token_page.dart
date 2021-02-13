@@ -1,6 +1,7 @@
 import 'package:fixnum/fixnum.dart';
 import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/common_util.dart';
+import 'package:flash_tron_wallet/common/util/icon_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
 import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
@@ -15,7 +16,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SendTokenPage extends StatefulWidget {
   final String value = Get.parameters['value'];
@@ -60,11 +60,12 @@ class _SendTokenPageState extends State<SendTokenPage> {
       hasAppBar: true,
       hasBack: true,
       title: '${MyLocaleKey.assetTransfer.tr}',
-      body: _bodyWidget(context),
+      body: Obx(() => _bodyWidget(context)),
     );
   }
 
   Widget _bodyWidget(BuildContext context) {
+    _langType = GlobalService.to.langType;
     List<AssetEntity> assetFilterConList = GlobalService.to.assetList;
     int selectAssetFilterIndex = GlobalService.to.selectAssetFilterIndex;
     WalletEntity wallet = GlobalService.to.selectWalletEntity;
@@ -142,7 +143,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                       isDense: true,
                       hintText: '${MyLocaleKey.assetTransferTip1.tr}',
                       hintStyle: MyTextUtil.textStyle(1,
-                          color: Colors.grey[400], spacing: 0.2, size: 25),
+                          color: MyColorUtil.subBiz(), spacing: 0.2, size: 25),
                       border: InputBorder.none,
                     ),
                     style: MyTextUtil.textStyle4En(2,
@@ -160,9 +161,9 @@ class _SendTokenPageState extends State<SendTokenPage> {
                     Get.toNamed(AppRoute.assetQrScan + '/2');
                   },
                   child: Container(
-                    child: Icon(
-                      IconData(0xe606, fontFamily: 'ICON'),
-                      size: MyScreenUtil.sp(52),
+                    child: MyCommonUtil.icon(
+                      MyIconUtil.scanExt,
+                      size: 52,
                       color: MyColorUtil.biz(),
                     ),
                   ),
@@ -181,7 +182,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
     return Container(
       padding: EdgeInsets.only(bottom: MyScreenUtil.height(10)),
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: Colors.grey[300], width: 0.5)),
+        border: MyCommonUtil.bottomBorder(),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -209,22 +210,18 @@ class _SendTokenPageState extends State<SendTokenPage> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
                         Container(
-                          padding: MyCommonUtil.edge(top: 1.5),
                           child: Text(
                             !flag ? '${assetFilterConList[index].name} ' : '',
-                            style: GoogleFonts.roboto(
-                              letterSpacing: 0.0,
-                              color: MyColorUtil.biz(),
-                              fontWeight: FontWeight.w500,
-                              fontSize: MyScreenUtil.sp(26),
-                            ),
+                            style: MyTextUtil.textStyle4En(2,
+                                color: MyColorUtil.biz(),
+                                spacing: 0.0,
+                                size: 26),
                           ),
                         ),
                         Container(
-                          padding: MyCommonUtil.edge(top: 1.8),
-                          child: Icon(
-                            Icons.arrow_forward_ios,
-                            size: MyScreenUtil.sp(25),
+                          child: MyCommonUtil.icon(
+                            MyIconUtil.arrowForwardIos,
+                            size: 25,
                             color: MyColorUtil.biz(),
                           ),
                         ),
@@ -250,7 +247,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                       isDense: true,
                       hintText: '${MyLocaleKey.assetTransferTip2.tr}',
                       hintStyle: MyTextUtil.textStyle(1,
-                          color: Colors.grey[400], spacing: 0.2, size: 25),
+                          color: MyColorUtil.subBiz(), spacing: 0.2, size: 25),
                       border: InputBorder.none,
                     ),
                     style: MyTextUtil.textStyle4Num(
@@ -320,11 +317,10 @@ class _SendTokenPageState extends State<SendTokenPage> {
           Container(
             child: Text(
               '${MyCommonUtil.formatNum(assetFilterConList[index].balance, 4)}  ${assetFilterConList[index].name}',
-              style: GoogleFonts.roboto(
-                letterSpacing: 0.0,
+              style: MyTextUtil.textStyle4Num(
                 color: MyColorUtil.biz(),
+                size: 28,
                 fontWeight: FontWeight.w500,
-                fontSize: MyScreenUtil.sp(28),
               ),
             ),
           ),
@@ -342,7 +338,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
             borderRadius: BorderRadius.all(Radius.circular(20.0))),
         content: Container(
           width: MyScreenUtil.width(600),
-          height: MyScreenUtil.height(500),
+          height: MyScreenUtil.height(600),
           child: Column(
             children: <Widget>[
               Expanded(
@@ -416,10 +412,10 @@ class _SendTokenPageState extends State<SendTokenPage> {
               alignment: Alignment.centerRight,
               child: !flag
                   ? Container()
-                  : Icon(
-                      Icons.check,
+                  : MyCommonUtil.icon(
+                      MyIconUtil.done,
+                      size: 42,
                       color: MyColorUtil.biz(),
-                      size: MyScreenUtil.sp(42),
                     ),
             ),
           ],
@@ -536,13 +532,9 @@ class _SendTokenPageState extends State<SendTokenPage> {
                 ),
               ),
               actions: <Widget>[
-                FlatButton(
-                  child: Text(
-                    '${MyLocaleKey.commonCancel.tr}',
-                    style: MyTextUtil.textStyle(2,
-                        color: MyColorUtil.theme, spacing: 0.5, size: 30),
-                  ),
-                  onPressed: () {
+                MyCommonUtil.flatButton(
+                  '${MyLocaleKey.commonCancel.tr}',
+                  () {
                     FocusScope.of(context).requestFocus(FocusNode());
                     if (!transferLoading) {
                       Navigator.of(context)..pop();
@@ -552,59 +544,47 @@ class _SendTokenPageState extends State<SendTokenPage> {
                     }
                   },
                 ),
-                FlatButton(
-                    child: Text(
-                      '${MyLocaleKey.commonConfirm.tr}',
-                      style: MyTextUtil.textStyle(2,
-                          color: MyColorUtil.theme, spacing: 0.5, size: 30),
-                    ),
-                    onPressed: () {
-                      FocusScope.of(context).requestFocus(FocusNode());
-                      if (_sendFormKey.currentState.validate()) {
-                        _sendFormKey.currentState.save();
-                        if (_sendPwd.trim() != userPwd) {
+                MyCommonUtil.flatButton(
+                  '${MyLocaleKey.commonConfirm.tr}',
+                  () {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                    if (_sendFormKey.currentState.validate()) {
+                      _sendFormKey.currentState.save();
+                      if (_sendPwd.trim() != userPwd) {
+                        MyCommonUtil.showToast(
+                            '${MyLocaleKey.commonError3.tr}');
+                      } else {
+                        if (transferLoading) {
                           MyCommonUtil.showToast(
-                              '${MyLocaleKey.commonError3.tr}');
+                              '${MyLocaleKey.assetTransferTip4.tr}');
                         } else {
-                          if (transferLoading) {
-                            MyCommonUtil.showToast(
-                                '${MyLocaleKey.assetTransferTip4.tr}');
-                          } else {
-                            MyCommonUtil.showToast(
-                                '${MyLocaleKey.assetTransferTip3.tr}');
-                            _transHandle(context, item, ownerAddress)
-                                .then((result) {
-                              if (result == 0) {
-                                setState(() {
-                                  transferLoading = false;
-                                });
-                                Navigator.of(context)..pop()..pop();
-                                MyCommonUtil.showToast(
-                                    '${MyLocaleKey.assetTransferSuccess.tr}');
-                                GlobalService.to.getAsset4ReloadAsync();
-                              } else if (result == 1) {
-                                Navigator.of(context)..pop()..pop();
-                                MyCommonUtil.showToast(
-                                    '${MyLocaleKey.assetTransferTip5.tr}');
-                              } else if (result == -1) {
-                                //Util.showToast('转账处理中，请勿重复操作');
-                              }
-                            });
-                          }
+                          MyCommonUtil.showToast(
+                              '${MyLocaleKey.assetTransferTip3.tr}');
+                          _transHandle(context, item, ownerAddress)
+                              .then((result) {
+                            if (result == 0) {
+                              setState(() {
+                                transferLoading = false;
+                              });
+                              Navigator.of(context)..pop()..pop();
+                              MyCommonUtil.showToast(
+                                  '${MyLocaleKey.assetTransferSuccess.tr}');
+                              GlobalService.to.getAsset4ReloadAsync();
+                            } else if (result == 1) {
+                              Navigator.of(context)..pop()..pop();
+                              MyCommonUtil.showToast(
+                                  '${MyLocaleKey.assetTransferTip5.tr}');
+                            } else if (result == -1) {
+                              //Util.showToast('转账处理中，请勿重复操作');
+                            }
+                          });
                         }
                       }
-                    }),
+                    }
+                  },
+                ),
               ],
             ));
-  }
-
-  double _getPrecision(int precision) {
-    double result = 1;
-    double baseValue = 10;
-    for (int i = 0; i < precision; i++) {
-      result = result * baseValue;
-    }
-    return result;
   }
 
   Future<int> _transHandle(
@@ -615,7 +595,8 @@ class _SendTokenPageState extends State<SendTokenPage> {
     setState(() {
       transferLoading = true;
     });
-    double amount = double.parse(_assetAmount) * _getPrecision(item.precision);
+    double amount =
+        double.parse(_assetAmount) * MyCommonUtil.getPrecision(item.precision);
     if (item.type == 1) {
       bool result = await TronTransaction().transTrx(
           context, ownerAddress, _receiveAddress, Int64(amount.toInt()));

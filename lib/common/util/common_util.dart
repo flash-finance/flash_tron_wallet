@@ -184,6 +184,15 @@ class MyCommonUtil {
           .toString();
     }
   }
+
+  static double getPrecision(int precision) {
+    double result = 1;
+    double baseValue = 10;
+    for (int i = 0; i < precision; i++) {
+      result = result * baseValue;
+    }
+    return result;
+  }
 }
 
 class DoubleFormat extends TextInputFormatter {

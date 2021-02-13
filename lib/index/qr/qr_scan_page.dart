@@ -3,6 +3,7 @@ import 'package:flash_tron_wallet/common/util/common_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
 import 'package:flash_tron_wallet/locale/app_Locale.dart';
+import 'package:flash_tron_wallet/provider/global_service.dart';
 import 'package:flash_tron_wallet/route/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -60,6 +61,7 @@ class _QrScanPageState extends State<QrScanPage> {
   }
 
   Widget _qrCodeWidget(BuildContext context) {
+    _langType = GlobalService.to.langType;
     return Container(
       child: Stack(
         children: <Widget>[

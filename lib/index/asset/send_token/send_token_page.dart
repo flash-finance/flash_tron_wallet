@@ -204,7 +204,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                   child: InkWell(
                     onTap: () {
                       FocusScope.of(context).requestFocus(FocusNode());
-                      _showSelectTokenDialLog(context, assetFilterConList);
+                      _showBottomSheetWidget(context, assetFilterConList);
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -329,37 +329,6 @@ class _SendTokenPageState extends State<SendTokenPage> {
     );
   }
 
-  _showSelectTokenDialLog(BuildContext context, List<AssetEntity> list) {
-    showDialog(
-      context: context,
-      child: AlertDialog(
-        elevation: 3,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20.0))),
-        content: Container(
-          width: MyScreenUtil.width(600),
-          height: MyScreenUtil.height(600),
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                child: Container(
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    itemCount: list.length,
-                    itemBuilder: (context, index) {
-                      return _selectTokenWidget(context, index, list[index]);
-                    },
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget _selectTokenWidget(BuildContext context, int index, AssetEntity item) {
     int selectAssetFilterIndex = GlobalService.to.selectAssetFilterIndex;
     bool flag = index == selectAssetFilterIndex;
@@ -371,8 +340,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
         _assetAmountController.text = '';
       },
       child: Container(
-        width: MyScreenUtil.width(600),
-        padding: MyCommonUtil.edge(top: 20, bottom: 20),
+        padding: MyCommonUtil.edge(left: 40, right: 40, top: 20, bottom: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -386,8 +354,8 @@ class _SendTokenPageState extends State<SendTokenPage> {
                     child: ClipOval(
                       child: Image.network(
                         '${item.logoUrl}',
-                        width: MyScreenUtil.width(40),
-                        height: MyScreenUtil.width(40),
+                        width: MyScreenUtil.width(45),
+                        height: MyScreenUtil.width(45),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -398,7 +366,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                     child: Text(
                       '${item.name}',
                       style: MyTextUtil.textStyle4En(2,
-                          color: MyColorUtil.biz(), spacing: 0.0, size: 29),
+                          color: MyColorUtil.biz(), spacing: 0.0, size: 30),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -459,6 +427,56 @@ class _SendTokenPageState extends State<SendTokenPage> {
         }
       }
     };
+  }
+
+  _showBottomSheetWidget(BuildContext context, List<AssetEntity> list) {
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        enableDrag: false,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15.0),
+            topRight: Radius.circular(15.0),
+          ),
+        ),
+        builder: (BuildContext context) {
+          return Container(
+            height: MyScreenUtil.height(800),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.center,
+                  padding: MyCommonUtil.edge(top: 20, bottom: 20),
+                  margin: MyCommonUtil.edge(bottom: 25),
+                  decoration: BoxDecoration(
+                    border: MyCommonUtil.bottomBorder(),
+                  ),
+                  child: Text(
+                    '${MyLocaleKey.assetTokenList.tr}',
+                    style: MyTextUtil.textStyle(
+                      2,
+                      color: MyColorUtil.biz(),
+                      spacing: 0.4,
+                      size: 32,
+                    ),
+                  ),
+                ),
+                Expanded(
+                    child: Container(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    itemCount: list.length,
+                    itemBuilder: (context, index) {
+                      return _selectTokenWidget(context, index, list[index]);
+                    },
+                  ),
+                )),
+              ],
+            ),
+          );
+        });
   }
 
   void _showPwdDialog(BuildContext context, String ownerAddress, String userPwd,

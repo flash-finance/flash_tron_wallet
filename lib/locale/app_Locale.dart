@@ -60,6 +60,7 @@ class MyLocaleKey {
   static final String assetNameLong = 'assetNameLong';
   static final String assetAssets = 'assetAssets';
   static final String assetWalletList = 'assetWalletList';
+  static final String assetTokenList = 'assetTokenList';
 
   static final String addWalletTip1 = 'addWalletTip1';
   static final String addWalletTip2 = 'addWalletTip2';
@@ -184,6 +185,7 @@ class MyLocale {
     MyLocaleKey.assetNameLong: 'Name Too Long',
     MyLocaleKey.assetAssets: 'Assets',
     MyLocaleKey.assetWalletList: 'Wallet List',
+    MyLocaleKey.assetTokenList: 'Token List',
     MyLocaleKey.addWalletTip1:
         '1. need to set a 6-digit password for wallet management and transaction authorization',
     MyLocaleKey.addWalletTip2:
@@ -308,6 +310,7 @@ class MyLocale {
     MyLocaleKey.assetNameLong: '名称过长',
     MyLocaleKey.assetAssets: '资产',
     MyLocaleKey.assetWalletList: '钱包列表',
+    MyLocaleKey.assetTokenList: '通证列表',
     MyLocaleKey.addWalletTip1: '1. 需要设置6位数字的密码，用于钱包管理和交易授权',
     MyLocaleKey.addWalletTip2: '2. 平台不存储密码，也无法找回，请务必妥善保管',
     MyLocaleKey.addWalletTip3: '1. 助记词即私钥，用于恢复钱包，请备份到安全的地方',

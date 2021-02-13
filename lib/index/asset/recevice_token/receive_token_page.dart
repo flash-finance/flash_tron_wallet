@@ -23,7 +23,7 @@ class _ReceiveTokenPageState extends State<ReceiveTokenPage> {
       hasAppBar: true,
       hasBack: true,
       title: '${MyLocaleKey.assetReceivingQrCode.tr}',
-      body: _bodyWidget(context),
+      body: Obx(() => _bodyWidget(context)),
     );
   }
 

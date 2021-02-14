@@ -461,21 +461,16 @@ class _AssetPageState extends State<AssetPage>
                 scrollDirection: Axis.vertical,
                 itemCount: assetList.length,
                 itemBuilder: (context, index) {
-                  return _assetDataItemWidget(context, assetList, index);
+                  return _assetDataItemWidget(
+                      context, assetList, index, assetList.length - 1 != index);
                 }),
           )
-        : Container(
-            margin: MyCommonUtil.edge(top: 200),
-            child: Center(
-              child: CupertinoActivityIndicator(),
-            ),
-          );
+        : MyCommonUtil.defaultLoading(top: 200);
   }
 
   Widget _assetDataItemWidget(
-      BuildContext context, List<AssetEntity> assetList, int index) {
+      BuildContext context, List<AssetEntity> assetList, int index, bool flag) {
     AssetEntity item = assetList[index];
-    bool flag = index != assetList.length - 1;
     return InkWell(
       onTap: () {
         GlobalService.to.changeSelectAssetFilterIndex(index);
@@ -485,7 +480,7 @@ class _AssetPageState extends State<AssetPage>
       child: Container(
         padding: MyCommonUtil.edge(top: 20, bottom: 20),
         decoration: BoxDecoration(
-          border: MyCommonUtil.bottomBorder(),
+          border: flag ? MyCommonUtil.bottomBorder() : null,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -521,7 +516,7 @@ class _AssetPageState extends State<AssetPage>
                       style: MyTextUtil.textStyle4Num(
                         color: MyColorUtil.biz(),
                         spacing: 0.1,
-                        size: 30,
+                        size: 31,
                         fontWeight: FontWeight.w500,
                       ),
                       maxLines: 1,
@@ -533,10 +528,10 @@ class _AssetPageState extends State<AssetPage>
                     child: Text(
                       '≈  \$ ${MyCommonUtil.formatNum(item.usd, 2)}',
                       style: MyTextUtil.textStyle4En(
-                        2,
+                        1,
                         color: MyColorUtil.subBiz(),
                         spacing: 0.1,
-                        size: 21,
+                        size: 22,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,

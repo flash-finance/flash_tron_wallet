@@ -31,7 +31,7 @@ class _TradePageState extends State<TradePage>
   Widget build(BuildContext context) {
     return MyScaffold(
       hasAppBar: false,
-      body: _bodyWidget(context),
+      body: Obx(() => _bodyWidget(context)),
     );
   }
 

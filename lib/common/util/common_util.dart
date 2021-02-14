@@ -188,6 +188,28 @@ class MyCommonUtil {
         });
   }
 
+  static tabBar({
+    List<Widget> tabs,
+    TabController controller,
+    Color indicatorColor,
+    Color labelColor,
+    Color unselectedLabelColor,
+    Function onTap,
+  }) {
+    return TabBar(
+      controller: controller,
+      indicatorPadding: MyCommonUtil.edge(bottom: 15),
+      indicatorColor: indicatorColor,
+      indicatorSize: TabBarIndicatorSize.label,
+      labelStyle: MyTextUtil.textStyle(2, spacing: 0.2, size: 32),
+      labelColor: labelColor,
+      unselectedLabelColor: unselectedLabelColor,
+      indicatorWeight: 2.0,
+      tabs: tabs,
+      onTap: onTap,
+    );
+  }
+
   static String formatNum(double num, int position) {
     if ((num.toString().length - num.toString().lastIndexOf(".") - 1) <
         position) {

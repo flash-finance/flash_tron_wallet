@@ -1,6 +1,5 @@
 import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/common_util.dart';
-import 'package:flash_tron_wallet/common/util/text_util.dart';
 import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
 import 'package:flash_tron_wallet/index/trade/market/market_page.dart';
 import 'package:flash_tron_wallet/index/trade/swap/swap_page.dart';
@@ -46,16 +45,12 @@ class _TradePageState extends State<TradePage>
               decoration: BoxDecoration(
                 color: MyColorUtil.white,
               ),
-              child: TabBar(
+              child: MyCommonUtil.tabBar(
+
                 controller: _tabController,
-                isScrollable: false,
-                indicatorPadding: MyCommonUtil.edge(bottom: 15),
                 indicatorColor: MyColorUtil.biz(),
-                indicatorSize: TabBarIndicatorSize.label,
-                labelStyle: MyTextUtil.textStyle(2, spacing: 0.2, size: 32),
                 labelColor: MyColorUtil.biz(),
                 unselectedLabelColor: MyColorUtil.subBiz(),
-                indicatorWeight: 2.0,
                 tabs: <Tab>[
                   Tab(text: '${MyLocaleKey.swapMarket.tr}'),
                   Tab(text: '${MyLocaleKey.swapSwap.tr}'),

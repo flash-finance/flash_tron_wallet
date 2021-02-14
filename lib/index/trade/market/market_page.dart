@@ -26,7 +26,7 @@ class MarketPage extends StatefulWidget {
 
 class _MarketPageState extends State<MarketPage>
     with AutomaticKeepAliveClientMixin {
-  Timer _timer1;
+  Timer _timer;
 
   @override
   bool get wantKeepAlive => true;
@@ -39,9 +39,9 @@ class _MarketPageState extends State<MarketPage>
 
   @override
   void dispose() {
-    if (_timer1 != null) {
-      if (_timer1.isActive) {
-        _timer1.cancel();
+    if (_timer != null) {
+      if (_timer.isActive) {
+        _timer.cancel();
       }
     }
     super.dispose();
@@ -89,11 +89,7 @@ class _MarketPageState extends State<MarketPage>
               _getSwapData();
             },
           )
-        : Container(
-            child: Center(
-              child: CupertinoActivityIndicator(),
-            ),
-          );
+        : MyCommonUtil.defaultLoading();
   }
 
   Widget _titleWidget(BuildContext context) {
@@ -107,7 +103,7 @@ class _MarketPageState extends State<MarketPage>
             child: Text(
               '${MyLocaleKey.swapName.tr}',
               style: MyTextUtil.textStyle(2,
-                  color: Colors.grey[600], spacing: 0.2, size: 24),
+                  color: MyColorUtil.subBiz(), spacing: 0.2, size: 24),
             ),
           ),
           Container(
@@ -116,7 +112,7 @@ class _MarketPageState extends State<MarketPage>
             child: Text(
               '${MyLocaleKey.swapMarketPrice.tr}（\$）',
               style: MyTextUtil.textStyle(2,
-                  color: Colors.grey[600], spacing: 0.2, size: 24),
+                  color: MyColorUtil.subBiz(), spacing: 0.2, size: 24),
             ),
           ),
           Container(
@@ -126,7 +122,7 @@ class _MarketPageState extends State<MarketPage>
             child: Text(
               '${MyLocaleKey.swapChange.tr}',
               style: MyTextUtil.textStyle(2,
-                  color: Colors.grey[600], spacing: 0.2, size: 24),
+                  color: MyColorUtil.subBiz(), spacing: 0.2, size: 24),
             ),
           ),
         ],
@@ -187,19 +183,19 @@ class _MarketPageState extends State<MarketPage>
                           TextSpan(
                             text: 'TL: ',
                             style: MyTextUtil.textStyle4En(
-                              2,
-                              color: Colors.grey[600],
+                              1,
+                              color: MyColorUtil.subBiz(),
                               spacing: 0.1,
-                              size: 18,
+                              size: 19,
                             ),
                           ),
                           TextSpan(
                             text: '\$${item.totalLiquidity.toStringAsFixed(0)}',
                             style: MyTextUtil.textStyle4En(
-                              2,
-                              color: Colors.grey[600],
+                              1,
+                              color: MyColorUtil.subBiz(),
                               spacing: 0.1,
-                              size: 18,
+                              size: 19,
                             ),
                           ),
                         ],
@@ -228,7 +224,7 @@ class _MarketPageState extends State<MarketPage>
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                color: change >= 0 ? Color(0xFF05B791) : Color(0xFFF6465D),
+                color: change >= 0 ? MyColorUtil.green : MyColorUtil.red,
               ),
               child: Text(
                 change >= 0
@@ -256,7 +252,7 @@ class _MarketPageState extends State<MarketPage>
 
   _reloadSwapData() async {
     _getSwapData();
-    _timer1 = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
+    _timer = Timer.periodic(Duration(milliseconds: 2000), (timer) async {
       bool backgroundFlag = GlobalService.to.backgroundFlag;
       if (!backgroundFlag && _reloadSwapDataFlag) {
         _getSwapData();

@@ -260,7 +260,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                         TextSpan(
                           text: '${MyLocaleKey.swapBalance.tr}:  ',
                           style: MyTextUtil.textStyle(2,
-                              color: Colors.grey[600], spacing: 0.0, size: 26),
+                              color: MyColorUtil.subBiz(), spacing: 0.0, size: 26),
                         ),
                         TextSpan(
                           text:
@@ -471,7 +471,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                         child: Text(
                           '1  ${_swapRows[_leftSelectIndex].swapTokenName} ≈ ${MyCommonUtil.formatNum(double.parse(_leftPrice), 4)}  ${_swapRows[_rightSelectIndex].swapTokenName}',
                           style: MyTextUtil.textStyle4En(2,
-                              color: Colors.grey[600], spacing: 0.0, size: 21),
+                              color: MyColorUtil.subBiz(), spacing: 0.0, size: 21),
                         ),
                       ),
                       Container(
@@ -480,7 +480,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                         child: Text(
                           ' ≈ ${MyCommonUtil.formatNum(_swapRows[_leftSelectIndex].swapTokenPrice2, 4)}  USD',
                           style: MyTextUtil.textStyle4En(2,
-                              color: Colors.grey[600], spacing: 0.0, size: 21),
+                              color: MyColorUtil.subBiz(), spacing: 0.0, size: 21),
                         ),
                       ),
                     ],
@@ -575,7 +575,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                         TextSpan(
                           text: '${MyLocaleKey.swapBalance.tr}:  ',
                           style: MyTextUtil.textStyle(2,
-                              color: Colors.grey[600], spacing: 0.0, size: 26),
+                              color: MyColorUtil.subBiz(), spacing: 0.0, size: 26),
                         ),
                         TextSpan(
                           text:
@@ -790,7 +790,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                         child: Text(
                           '1  ${_swapRows[_rightSelectIndex].swapTokenName} ≈ ${MyCommonUtil.formatNum(double.parse(_rightPrice), 4)}  ${_swapRows[_leftSelectIndex].swapTokenName}',
                           style: MyTextUtil.textStyle4En(2,
-                              color: Colors.grey[600], spacing: 0.0, size: 21),
+                              color: MyColorUtil.subBiz(), spacing: 0.0, size: 21),
                         ),
                       ),
                       Container(
@@ -799,7 +799,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                         child: Text(
                           ' ≈ ${MyCommonUtil.formatNum(_swapRows[_rightSelectIndex].swapTokenPrice2, 4)}  USD',
                           style: MyTextUtil.textStyle4En(2,
-                              color: Colors.grey[600], spacing: 0.0, size: 21),
+                              color: MyColorUtil.subBiz(), spacing: 0.0, size: 21),
                         ),
                       ),
                     ],
@@ -1644,7 +1644,7 @@ class _SwapSubPageState extends State<SwapSubPage>
             child: Text(
               '${MyLocaleKey.swapName.tr}',
               style: MyTextUtil.textStyle(2,
-                  color: Colors.grey[600], spacing: 0.2, size: 24),
+                  color: MyColorUtil.subBiz(), spacing: 0.2, size: 24),
             ),
           ),
           Container(
@@ -1653,7 +1653,7 @@ class _SwapSubPageState extends State<SwapSubPage>
             child: Text(
               '${MyLocaleKey.swapMarketPrice.tr}（\$）',
               style: MyTextUtil.textStyle(2,
-                  color: Colors.grey[600], spacing: 0.2, size: 24),
+                  color: MyColorUtil.subBiz(), spacing: 0.2, size: 24),
             ),
           ),
           Container(
@@ -1663,7 +1663,7 @@ class _SwapSubPageState extends State<SwapSubPage>
             child: Text(
               '${MyLocaleKey.swapChange.tr}',
               style: MyTextUtil.textStyle(2,
-                  color: Colors.grey[600], spacing: 0.2, size: 24),
+                  color: MyColorUtil.subBiz(), spacing: 0.2, size: 24),
             ),
           ),
         ],

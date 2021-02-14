@@ -46,7 +46,6 @@ class _TradePageState extends State<TradePage>
                 color: MyColorUtil.white,
               ),
               child: MyCommonUtil.tabBar(
-
                 controller: _tabController,
                 indicatorColor: MyColorUtil.biz(),
                 labelColor: MyColorUtil.biz(),

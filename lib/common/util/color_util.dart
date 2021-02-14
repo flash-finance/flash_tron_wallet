@@ -2,6 +2,10 @@ import 'package:flash_tron_wallet/common/util/common_util.dart';
 import 'package:flutter/material.dart';
 
 class MyColorUtil {
+  static final Color green = Color(0xFF05B791);
+
+  static final Color red = Color(0xFFF6465D);
+
   static final Color theme = Color(0xFF2676f8);
 
   static final Color white = Colors.white;

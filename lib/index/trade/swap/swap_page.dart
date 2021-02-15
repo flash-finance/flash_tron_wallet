@@ -1102,7 +1102,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                 Container(
                                   child: ClipOval(
                                     child: Image.asset(
-                                      'images/usd.png',
+                                      'asset/image/usd.png',
                                       width: MyScreenUtil.width(38),
                                       height: MyScreenUtil.width(38),
                                       fit: BoxFit.cover,

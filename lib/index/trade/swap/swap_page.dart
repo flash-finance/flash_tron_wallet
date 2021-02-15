@@ -103,6 +103,14 @@ class _SwapSubPageState extends State<SwapSubPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    return MyScaffold(
+      hasAppBar: false,
+      body: Obx(() => _bodyWidget(context)),
+    );
+  }
+
+  Widget _bodyWidget(BuildContext context) {
+    _langType = GlobalService.to.langType;
     _leftSelectIndex = widget.swapLeftIndex;
     _rightSelectIndex = widget.swapRightIndex;
     WalletEntity wallet = GlobalService.to.selectWalletEntity;
@@ -122,15 +130,6 @@ class _SwapSubPageState extends State<SwapSubPage>
             selection: TextSelection.fromPosition(TextPosition(
                 affinity: TextAffinity.downstream,
                 offset: _rightSwapAmount.length))));
-
-    return MyScaffold(
-      hasAppBar: false,
-      body: Obx(() => _bodyWidget(context)),
-    );
-  }
-
-  Widget _bodyWidget(BuildContext context) {
-    _langType = GlobalService.to.langType;
     return Container(
       width: MyScreenUtil.width(750),
       color: MyColorUtil.white,
@@ -1261,7 +1260,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                     ),
             ),
             color: MyColorUtil.theme,
-            onPressed: _onPressed(),
+            onPressed: _swapOnPressed(),
             shape: StadiumBorder(side: BorderSide(color: MyColorUtil.theme)),
           ),
         ),
@@ -1269,7 +1268,7 @@ class _SwapSubPageState extends State<SwapSubPage>
     );
   }
 
-  Function _onPressed() {
+  Function _swapOnPressed() {
     return () async {
       try {
         if (_account != '' && _flag1 && _flag2 && _swapFlag) {
@@ -1511,6 +1510,7 @@ class _SwapSubPageState extends State<SwapSubPage>
     return InkWell(
       onTap: () async {
         if (isLeft && index != _rightSelectIndex) {
+          print('1111');
           _leftSwapAmount = '';
           _leftSwapValue = '';
           _rightSwapAmount = '';
@@ -1520,6 +1520,7 @@ class _SwapSubPageState extends State<SwapSubPage>
           Navigator.pop(context);
           await GlobalService.to.changeSwapLeftIndex(index);
         } else if (index != _leftSelectIndex) {
+          print('222');
           _leftSwapAmount = '';
           _leftSwapValue = '';
           _rightSwapAmount = '';
@@ -1650,7 +1651,6 @@ class _SwapSubPageState extends State<SwapSubPage>
       _leftKey = '$_account+${_swapRows[_leftSelectIndex].swapTokenAddress}';
       _rightKey = '$_account+${_swapRows[_rightSelectIndex].swapTokenAddress}';
     }
-
     if (_flag1 &&
         _flag2 &&
         _swapRows[_leftSelectIndex].swapTokenPrecision > 0 &&

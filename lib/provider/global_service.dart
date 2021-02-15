@@ -33,6 +33,9 @@ class GlobalService extends GetxService {
   @override
   void onInit() async {
     super.onInit();
+  }
+
+  void initData() async {
     _pvController = PageController();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.getBool(_langTypeKey) != null) {
@@ -436,7 +439,7 @@ class GlobalService extends GetxService {
       }
       return;
     } catch (e) {
-      print(e);
+      print('getTrxBalance4Async error: ${e.toString()}');
     }
   }
 
@@ -464,11 +467,11 @@ class GlobalService extends GetxService {
       }
       return;
     } catch (e) {
-      print(e);
+      print('getTrc20Balance4Async error: ${e.toString()}');
     }
   }
 
-  var _balanceMap = Rx<Map<String, String>>();
+  var _balanceMap = Rx<Map<String, String>>(Map<String, String>());
   Map<String, String> get balanceMap => _balanceMap.value;
 
   var _appDownloaded = Rx<bool>(false);

@@ -3,6 +3,6 @@ import 'package:get/get.dart';
 
 class GlobalInjection {
   static Future<void> init() async {
-    Get.put(GlobalService());
+    Get.put(GlobalService()..initData());
   }
 }

@@ -364,49 +364,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                           TextInputType.numberWithOptions(decimal: true),
                       inputFormatters: [DoubleFormat(decimalRange: 6)],
                       onChanged: (String value) {
-                        if (value != null &&
-                            value != '' &&
-                            double.parse(value) >= 0) {
-                          _leftSwapAmount = value;
-                          double leftAmount =
-                              Decimal.tryParse(_leftSwapAmount).toDouble();
-                          _leftSwapValue = (Decimal.tryParse(_leftSwapAmount) *
-                                  Decimal.fromInt(10).pow(
-                                      _swapRows[_leftSelectIndex]
-                                          .swapTokenPrecision))
-                              .toStringAsFixed(0);
-
-                          if (_flag1 &&
-                              _flag2 &&
-                              _swapRows[_rightSelectIndex].swapTokenPrice1 >
-                                  0) {
-                            double rightAmount = leftAmount *
-                                _swapRows[_leftSelectIndex].swapTokenPrice1 /
-                                _swapRows[_rightSelectIndex].swapTokenPrice1;
-                            _rightSwapAmount =
-                                MyCommonUtil.formatNum(rightAmount, 6);
-                            _rightSwapValue =
-                                (Decimal.tryParse(rightAmount.toString()) *
-                                        Decimal.fromInt(10).pow(
-                                            _swapRows[_rightSelectIndex]
-                                                .swapTokenPrecision))
-                                    .toStringAsFixed(0);
-
-                            if (leftAmount > double.parse(_leftBalanceAmount)) {
-                              _swapFlag = false;
-                            } else {
-                              _swapFlag = true;
-                            }
-                            setState(() {});
-                          }
-                        } else {
-                          _leftSwapAmount = '';
-                          _leftSwapValue = '';
-                          _rightSwapAmount = '';
-                          _rightSwapValue = '';
-                          _swapFlag = true;
-                          setState(() {});
-                        }
+                        _leftOnChange(value);
                       },
                       onSaved: (String value) {},
                       onEditingComplete: () {},
@@ -414,37 +372,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      _leftSwapAmount = MyCommonUtil.formatNum(
-                          double.parse(_leftBalanceAmount), 6);
-                      double leftAmount =
-                          Decimal.tryParse(_leftBalanceAmount).toDouble();
-
-                      if (_flag1 && _flag2) {
-                        if (_balanceMap[_leftKey] != null) {
-                          _leftSwapValue = _balanceMap[_leftKey];
-                        }
-
-                        if (_swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
-                          double rightAmount = leftAmount *
-                              _swapRows[_leftSelectIndex].swapTokenPrice1 /
-                              _swapRows[_rightSelectIndex].swapTokenPrice1;
-                          _rightSwapAmount =
-                              MyCommonUtil.formatNum(rightAmount, 6);
-                          _rightSwapValue =
-                              (Decimal.tryParse(rightAmount.toString()) *
-                                      Decimal.fromInt(10).pow(
-                                          _swapRows[_rightSelectIndex]
-                                              .swapTokenPrecision))
-                                  .toStringAsFixed(0);
-
-                          if (leftAmount > double.parse(_leftBalanceAmount)) {
-                            _swapFlag = false;
-                          } else {
-                            _swapFlag = true;
-                          }
-                          setState(() {});
-                        }
-                      }
+                      _leftMax();
                     },
                     child: Container(
                       padding: EdgeInsets.only(
@@ -504,6 +432,74 @@ class _SwapSubPageState extends State<SwapSubPage>
         ],
       ),
     );
+  }
+
+  void _leftMax() {
+    _leftSwapAmount =
+        MyCommonUtil.formatNum(double.parse(_leftBalanceAmount), 6);
+    double leftAmount = Decimal.tryParse(_leftBalanceAmount).toDouble();
+
+    if (_flag1 && _flag2) {
+      if (_balanceMap[_leftKey] != null) {
+        _leftSwapValue = _balanceMap[_leftKey];
+      }
+
+      if (_swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
+        double rightAmount = leftAmount *
+            _swapRows[_leftSelectIndex].swapTokenPrice1 /
+            _swapRows[_rightSelectIndex].swapTokenPrice1;
+        _rightSwapAmount = MyCommonUtil.formatNum(rightAmount, 6);
+        _rightSwapValue = (Decimal.tryParse(rightAmount.toString()) *
+                Decimal.fromInt(10)
+                    .pow(_swapRows[_rightSelectIndex].swapTokenPrecision))
+            .toStringAsFixed(0);
+
+        if (leftAmount > double.parse(_leftBalanceAmount)) {
+          _swapFlag = false;
+        } else {
+          _swapFlag = true;
+        }
+        setState(() {});
+      }
+    }
+  }
+
+  void _leftOnChange(String value) {
+    if (value != null && value != '' && double.parse(value) >= 0) {
+      _leftSwapAmount = value;
+      double leftAmount = Decimal.tryParse(_leftSwapAmount).toDouble();
+      _leftSwapValue = (Decimal.tryParse(_leftSwapAmount) *
+              Decimal.fromInt(10)
+                  .pow(_swapRows[_leftSelectIndex].swapTokenPrecision))
+          .toStringAsFixed(0);
+
+      if (_flag1 &&
+          _flag2 &&
+          _swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
+        double rightAmount = leftAmount *
+            _swapRows[_leftSelectIndex].swapTokenPrice1 /
+            _swapRows[_rightSelectIndex].swapTokenPrice1;
+        _rightSwapAmount = MyCommonUtil.formatNum(rightAmount, 6);
+        _rightSwapValue = (Decimal.tryParse(rightAmount.toString()) *
+                Decimal.fromInt(10)
+                    .pow(_swapRows[_rightSelectIndex].swapTokenPrecision))
+            .toStringAsFixed(0);
+
+        if (leftAmount > double.parse(_leftBalanceAmount)) {
+          _swapFlag = false;
+        } else {
+          _swapFlag = true;
+        }
+        setState(() {});
+      }
+    } else {
+      _leftSwapAmount = '';
+      _leftSwapValue = '';
+      _rightSwapAmount = '';
+      _rightSwapValue = '';
+      _swapFlag = true;
+      setState(() {});
+    }
   }
 
   Widget _dataMidWidget(BuildContext context) {
@@ -656,51 +652,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                           TextInputType.numberWithOptions(decimal: true),
                       inputFormatters: [DoubleFormat(decimalRange: 6)],
                       onChanged: (String value) {
-                        if (value != null &&
-                            value != '' &&
-                            double.parse(value) >= 0) {
-                          _rightSwapAmount = value;
-                          double rightAmount =
-                              Decimal.tryParse(_rightSwapAmount).toDouble();
-                          _rightSwapValue =
-                              (Decimal.tryParse(_rightSwapAmount) *
-                                      Decimal.fromInt(10).pow(
-                                          _swapRows[_rightSelectIndex]
-                                              .swapTokenPrecision))
-                                  .toStringAsFixed(0);
-
-                          if (_flag1 &&
-                              _flag2 &&
-                              _swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
-                            double leftAmount = rightAmount *
-                                _swapRows[_rightSelectIndex].swapTokenPrice1 /
-                                _swapRows[_leftSelectIndex].swapTokenPrice1;
-                            _leftSwapAmount =
-                                MyCommonUtil.formatNum(leftAmount, 6);
-                            _leftSwapValue =
-                                (Decimal.tryParse(leftAmount.toString()) *
-                                        Decimal.fromInt(10).pow(
-                                            _swapRows[_leftSelectIndex]
-                                                .swapTokenPrecision))
-                                    .toStringAsFixed(0);
-
-                            if (_balanceMap[_leftKey] != null &&
-                                double.parse(_leftSwapValue) >
-                                    double.parse(_balanceMap[_leftKey])) {
-                              _swapFlag = false;
-                            } else {
-                              _swapFlag = true;
-                            }
-                            setState(() {});
-                          }
-                        } else {
-                          _rightSwapAmount = '';
-                          _rightSwapValue = '';
-                          _leftSwapAmount = '';
-                          _leftSwapValue = '';
-                          _swapFlag = true;
-                          setState(() {});
-                        }
+                        _rightOnChange(value);
                       },
                       onSaved: (String value) {},
                       onEditingComplete: () {},
@@ -708,41 +660,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      if (_flag1 && _flag2) {
-                        _rightSwapAmount = MyCommonUtil.formatNum(
-                            double.parse(_rightBalanceAmount), 6);
-                        double rightAmount =
-                            Decimal.tryParse(_rightBalanceAmount).toDouble();
-
-                        if (_flag1 && _flag2) {
-                          if (_balanceMap[_rightKey] != null) {
-                            _rightSwapValue = _balanceMap[_rightKey];
-                          }
-
-                          if (_swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
-                            double leftAmount = rightAmount *
-                                _swapRows[_rightSelectIndex].swapTokenPrice1 /
-                                _swapRows[_leftSelectIndex].swapTokenPrice1;
-                            _leftSwapAmount =
-                                MyCommonUtil.formatNum(leftAmount, 4);
-                            _leftSwapValue =
-                                (Decimal.tryParse(leftAmount.toString()) *
-                                        Decimal.fromInt(10).pow(
-                                            _swapRows[_leftSelectIndex]
-                                                .swapTokenPrecision))
-                                    .toStringAsFixed(0);
-
-                            if (_balanceMap[_leftKey] != null &&
-                                double.parse(_leftSwapValue) >
-                                    double.parse(_balanceMap[_leftKey])) {
-                              _swapFlag = false;
-                            } else {
-                              _swapFlag = true;
-                            }
-                            setState(() {});
-                          }
-                        }
-                      }
+                      _rightMax();
                     },
                     child: Container(
                       padding: MyCommonUtil.edge(top: 3, bottom: 3),
@@ -800,6 +718,78 @@ class _SwapSubPageState extends State<SwapSubPage>
         ],
       ),
     );
+  }
+
+  void _rightMax() {
+    if (_flag1 && _flag2) {
+      _rightSwapAmount =
+          MyCommonUtil.formatNum(double.parse(_rightBalanceAmount), 6);
+      double rightAmount = Decimal.tryParse(_rightBalanceAmount).toDouble();
+
+      if (_flag1 && _flag2) {
+        if (_balanceMap[_rightKey] != null) {
+          _rightSwapValue = _balanceMap[_rightKey];
+        }
+
+        if (_swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
+          double leftAmount = rightAmount *
+              _swapRows[_rightSelectIndex].swapTokenPrice1 /
+              _swapRows[_leftSelectIndex].swapTokenPrice1;
+          _leftSwapAmount = MyCommonUtil.formatNum(leftAmount, 4);
+          _leftSwapValue = (Decimal.tryParse(leftAmount.toString()) *
+                  Decimal.fromInt(10)
+                      .pow(_swapRows[_leftSelectIndex].swapTokenPrecision))
+              .toStringAsFixed(0);
+
+          if (_balanceMap[_leftKey] != null &&
+              double.parse(_leftSwapValue) >
+                  double.parse(_balanceMap[_leftKey])) {
+            _swapFlag = false;
+          } else {
+            _swapFlag = true;
+          }
+          setState(() {});
+        }
+      }
+    }
+  }
+
+  void _rightOnChange(String value) {
+    if (value != null && value != '' && double.parse(value) >= 0) {
+      _rightSwapAmount = value;
+      double rightAmount = Decimal.tryParse(_rightSwapAmount).toDouble();
+      _rightSwapValue = (Decimal.tryParse(_rightSwapAmount) *
+              Decimal.fromInt(10)
+                  .pow(_swapRows[_rightSelectIndex].swapTokenPrecision))
+          .toStringAsFixed(0);
+
+      if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
+        double leftAmount = rightAmount *
+            _swapRows[_rightSelectIndex].swapTokenPrice1 /
+            _swapRows[_leftSelectIndex].swapTokenPrice1;
+        _leftSwapAmount = MyCommonUtil.formatNum(leftAmount, 6);
+        _leftSwapValue = (Decimal.tryParse(leftAmount.toString()) *
+                Decimal.fromInt(10)
+                    .pow(_swapRows[_leftSelectIndex].swapTokenPrecision))
+            .toStringAsFixed(0);
+
+        if (_balanceMap[_leftKey] != null &&
+            double.parse(_leftSwapValue) >
+                double.parse(_balanceMap[_leftKey])) {
+          _swapFlag = false;
+        } else {
+          _swapFlag = true;
+        }
+        setState(() {});
+      }
+    } else {
+      _rightSwapAmount = '';
+      _rightSwapValue = '';
+      _leftSwapAmount = '';
+      _leftSwapValue = '';
+      _swapFlag = true;
+      setState(() {});
+    }
   }
 
   Widget _poolWidget(BuildContext context) {

@@ -226,16 +226,14 @@ class _SwapSubPageState extends State<SwapSubPage>
     return Container(
         child: Column(
       children: <Widget>[
-        _dataLeftWidget(context),
-        MyCommonUtil.sizedBox(height: 0),
+        _itemWidget(context, true),
         _dataMidWidget(context),
-        MyCommonUtil.sizedBox(height: 0),
-        _dataRightWidget(context),
+        _itemWidget(context, false),
       ],
     ));
   }
 
-  Widget _dataLeftWidget(BuildContext context) {
+  Widget _itemWidget(BuildContext context, bool isLeft) {
     return Container(
       margin: MyCommonUtil.edge(left: 30, right: 30),
       child: Column(
@@ -247,7 +245,9 @@ class _SwapSubPageState extends State<SwapSubPage>
                 Container(
                   padding: MyCommonUtil.edge(left: 2),
                   child: Text(
-                    '${MyLocaleKey.swapSend.tr}',
+                    isLeft
+                        ? '${MyLocaleKey.swapSend.tr}'
+                        : '${MyLocaleKey.swapReceive.tr}',
                     style: MyTextUtil.textStyle(2,
                         color: MyColorUtil.biz(), spacing: 0.0, size: 26),
                   ),
@@ -258,20 +258,26 @@ class _SwapSubPageState extends State<SwapSubPage>
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                          text: '${MyLocaleKey.swapBalance.tr}:  ',
-                          style: MyTextUtil.textStyle(2,
-                              color: MyColorUtil.subBiz(),
-                              spacing: 0.0,
-                              size: 26),
+                          text: isLeft
+                              ? '${MyLocaleKey.swapBalance.tr}:  '
+                              : '${MyLocaleKey.swapBalance.tr}:  ',
+                          style: MyTextUtil.textStyle(
+                            2,
+                            color: MyColorUtil.subBiz(),
+                            spacing: 0.0,
+                            size: 26,
+                          ),
                         ),
                         TextSpan(
-                          text:
-                              '${MyCommonUtil.formatNum(double.parse(_leftBalanceAmount), 4)}',
+                          text: isLeft
+                              ? '${MyCommonUtil.formatNum(double.parse(_leftBalanceAmount), 4)}'
+                              : '${MyCommonUtil.formatNum(double.parse(_rightBalanceAmount), 4)}',
                           style: MyTextUtil.textStyle4Num(
-                              color: MyColorUtil.biz(),
-                              spacing: 0.0,
-                              size: 28,
-                              fontWeight: FontWeight.w500),
+                            color: MyColorUtil.biz(),
+                            spacing: 0.0,
+                            size: 28,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ],
                     ),
@@ -293,7 +299,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                   onTap: () {
                     MyCommonUtil.bottomSheet(
                       context,
-                      _bottomSheetWidget(context, 1),
+                      _bottomSheetWidget(context, isLeft),
                     );
                   },
                   child: Container(
@@ -306,7 +312,9 @@ class _SwapSubPageState extends State<SwapSubPage>
                             child: ClipOval(
                               child: _flag1
                                   ? Image.network(
-                                      '${_swapRows[_leftSelectIndex].swapPicUrl}',
+                                      isLeft
+                                          ? '${_swapRows[_leftSelectIndex].swapPicUrl}'
+                                          : '${_swapRows[_rightSelectIndex].swapPicUrl}',
                                       width: MyScreenUtil.width(42),
                                       height: MyScreenUtil.width(42),
                                       fit: BoxFit.cover,
@@ -323,7 +331,9 @@ class _SwapSubPageState extends State<SwapSubPage>
                             alignment: Alignment.center,
                             child: Text(
                               _flag1
-                                  ? '${_swapRows[_leftSelectIndex].swapTokenName}'
+                                  ? isLeft
+                                      ? '${_swapRows[_leftSelectIndex].swapTokenName}'
+                                      : '${_swapRows[_rightSelectIndex].swapTokenName}'
                                   : '',
                               style: MyTextUtil.textStyle4En(2,
                                   color: MyColorUtil.biz(),
@@ -333,9 +343,11 @@ class _SwapSubPageState extends State<SwapSubPage>
                           ),
                           MyCommonUtil.sizedBox(width: 5),
                           Container(
-                            child: Icon(Icons.arrow_drop_down,
-                                size: MyScreenUtil.sp(35),
-                                color: Colors.grey[700]),
+                            child: MyCommonUtil.icon(
+                              MyIconUtil.arrowDropDown,
+                              size: 35,
+                              color: MyColorUtil.biz(),
+                            ),
                           ),
                         ],
                       ),
@@ -348,7 +360,9 @@ class _SwapSubPageState extends State<SwapSubPage>
                     color: MyColorUtil.white,
                     alignment: Alignment.centerLeft,
                     child: TextFormField(
-                      controller: _leftSwapAmountController,
+                      controller: isLeft
+                          ? _leftSwapAmountController
+                          : _rightSwapAmountController,
                       enableInteractiveSelection: false,
                       cursorColor: MyColorUtil.biz(),
                       decoration: InputDecoration(
@@ -357,14 +371,15 @@ class _SwapSubPageState extends State<SwapSubPage>
                         border: InputBorder.none,
                       ),
                       style: MyTextUtil.textStyle4Num(
-                          color: MyColorUtil.biz(),
-                          size: 30,
-                          fontWeight: FontWeight.w500),
+                        color: MyColorUtil.biz(),
+                        size: 30,
+                        fontWeight: FontWeight.w500,
+                      ),
                       keyboardType:
                           TextInputType.numberWithOptions(decimal: true),
                       inputFormatters: [DoubleFormat(decimalRange: 6)],
                       onChanged: (String value) {
-                        _leftOnChange(value);
+                        isLeft ? _leftOnChange(value) : _rightOnChange(value);
                       },
                       onSaved: (String value) {},
                       onEditingComplete: () {},
@@ -372,7 +387,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      _leftMax();
+                      isLeft ? _leftMax() : _rightMax();
                     },
                     child: Container(
                       padding: EdgeInsets.only(
@@ -399,7 +414,9 @@ class _SwapSubPageState extends State<SwapSubPage>
                         alignment: Alignment.centerLeft,
                         padding: EdgeInsets.only(left: MyScreenUtil.width(5)),
                         child: Text(
-                          '1  ${_swapRows[_leftSelectIndex].swapTokenName} ≈ ${MyCommonUtil.formatNum(double.parse(_leftPrice), 4)}  ${_swapRows[_rightSelectIndex].swapTokenName}',
+                          isLeft
+                              ? '1  ${_swapRows[_leftSelectIndex].swapTokenName} ≈ ${MyCommonUtil.formatNum(double.parse(_leftPrice), 4)}  ${_swapRows[_rightSelectIndex].swapTokenName}'
+                              : '1  ${_swapRows[_rightSelectIndex].swapTokenName} ≈ ${MyCommonUtil.formatNum(double.parse(_rightPrice), 4)}  ${_swapRows[_leftSelectIndex].swapTokenName}',
                           style: MyTextUtil.textStyle4En(2,
                               color: MyColorUtil.subBiz(),
                               spacing: 0.0,
@@ -410,7 +427,9 @@ class _SwapSubPageState extends State<SwapSubPage>
                         alignment: Alignment.centerLeft,
                         padding: EdgeInsets.only(right: MyScreenUtil.width(5)),
                         child: Text(
-                          ' ≈ ${MyCommonUtil.formatNum(_swapRows[_leftSelectIndex].swapTokenPrice2, 4)}  USD',
+                          isLeft
+                              ? ' ≈ ${MyCommonUtil.formatNum(_swapRows[_leftSelectIndex].swapTokenPrice2, 4)}  USD'
+                              : ' ≈ ${MyCommonUtil.formatNum(_swapRows[_rightSelectIndex].swapTokenPrice2, 4)}  USD',
                           style: MyTextUtil.textStyle4En(2,
                               color: MyColorUtil.subBiz(),
                               spacing: 0.0,
@@ -520,203 +539,6 @@ class _SwapSubPageState extends State<SwapSubPage>
               color: MyColorUtil.biz().withOpacity(0.7),
             ),
           )),
-    );
-  }
-
-  Widget _dataRightWidget(BuildContext context) {
-    return Container(
-      margin: MyCommonUtil.edge(left: 30, right: 30),
-      child: Column(
-        children: <Widget>[
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Container(
-                  padding: MyCommonUtil.edge(left: 2),
-                  child: Text(
-                    '${MyLocaleKey.swapReceive.tr}',
-                    style: MyTextUtil.textStyle(2,
-                        color: MyColorUtil.biz(), spacing: 0.0, size: 26),
-                  ),
-                ),
-                Container(
-                  padding: MyCommonUtil.edge(right: 2),
-                  child: RichText(
-                    text: TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: '${MyLocaleKey.swapBalance.tr}:  ',
-                          style: MyTextUtil.textStyle(2,
-                              color: MyColorUtil.subBiz(),
-                              spacing: 0.0,
-                              size: 26),
-                        ),
-                        TextSpan(
-                          text:
-                              '${MyCommonUtil.formatNum(double.parse(_rightBalanceAmount), 4)}',
-                          style: MyTextUtil.textStyle4Num(
-                              color: MyColorUtil.biz(),
-                              spacing: 0.0,
-                              size: 28,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          MyCommonUtil.sizedBox(height: 10),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.grey[100],
-              border: Border.all(width: 0.5, color: Colors.black12),
-              borderRadius: BorderRadius.circular(6),
-            ),
-            child: Row(
-              children: <Widget>[
-                InkWell(
-                  onTap: () {
-                    MyCommonUtil.bottomSheet(
-                      context,
-                      _bottomSheetWidget(context, 2),
-                    );
-                  },
-                  child: Container(
-                    padding: MyCommonUtil.edge(top: 5, bottom: 5),
-                    child: Container(
-                      child: Row(
-                        children: <Widget>[
-                          MyCommonUtil.sizedBox(width: 15),
-                          Container(
-                            child: ClipOval(
-                              child: _flag2
-                                  ? Image.network(
-                                      '${_swapRows[_rightSelectIndex].swapPicUrl}',
-                                      width: MyScreenUtil.width(42),
-                                      height: MyScreenUtil.width(42),
-                                      fit: BoxFit.cover,
-                                    )
-                                  : Container(
-                                      width: MyScreenUtil.width(42),
-                                      height: MyScreenUtil.width(42),
-                                    ),
-                            ),
-                          ),
-                          MyCommonUtil.sizedBox(width: 10),
-                          Container(
-                            width: MyScreenUtil.width(90),
-                            alignment: Alignment.center,
-                            child: Text(
-                              _flag2
-                                  ? '${_swapRows[_rightSelectIndex].swapTokenName}'
-                                  : '',
-                              style: MyTextUtil.textStyle4En(2,
-                                  color: MyColorUtil.biz(),
-                                  spacing: 0.0,
-                                  size: 27),
-                            ),
-                          ),
-                          MyCommonUtil.sizedBox(width: 5),
-                          Container(
-                            child: Icon(Icons.arrow_drop_down,
-                                size: MyScreenUtil.sp(35),
-                                color: Colors.grey[700]),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                    width: MyScreenUtil.width(350),
-                    padding: MyCommonUtil.edge(left: 20, top: 3, bottom: 3),
-                    color: MyColorUtil.white,
-                    alignment: Alignment.centerLeft,
-                    child: TextFormField(
-                      controller: _rightSwapAmountController,
-                      enableInteractiveSelection: false,
-                      cursorColor: MyColorUtil.biz(),
-                      decoration: InputDecoration(
-                        hintText: '',
-                        hintStyle: TextStyle(),
-                        border: InputBorder.none,
-                      ),
-                      style: MyTextUtil.textStyle4Num(
-                          color: MyColorUtil.biz(),
-                          size: 30,
-                          fontWeight: FontWeight.w500),
-                      keyboardType:
-                          TextInputType.numberWithOptions(decimal: true),
-                      inputFormatters: [DoubleFormat(decimalRange: 6)],
-                      onChanged: (String value) {
-                        _rightOnChange(value);
-                      },
-                      onSaved: (String value) {},
-                      onEditingComplete: () {},
-                    )),
-                Expanded(
-                  child: InkWell(
-                    onTap: () {
-                      _rightMax();
-                    },
-                    child: Container(
-                      padding: MyCommonUtil.edge(top: 3, bottom: 3),
-                      alignment: Alignment.center,
-                      child: Text(
-                        'MAX',
-                        style: MyTextUtil.textStyle4En(2,
-                            color: MyColorUtil.biz(), spacing: 0.0, size: 25),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          MyCommonUtil.sizedBox(height: 10),
-          _flag1 && _flag2
-              ? Container(
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        padding: MyCommonUtil.edge(left: 5),
-                        child: Text(
-                          '1  ${_swapRows[_rightSelectIndex].swapTokenName} ≈ ${MyCommonUtil.formatNum(double.parse(_rightPrice), 4)}  ${_swapRows[_leftSelectIndex].swapTokenName}',
-                          style: MyTextUtil.textStyle4En(2,
-                              color: MyColorUtil.subBiz(),
-                              spacing: 0.0,
-                              size: 21),
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        padding: MyCommonUtil.edge(right: 5),
-                        child: Text(
-                          ' ≈ ${MyCommonUtil.formatNum(_swapRows[_rightSelectIndex].swapTokenPrice2, 4)}  USD',
-                          style: MyTextUtil.textStyle4En(2,
-                              color: MyColorUtil.subBiz(),
-                              spacing: 0.0,
-                              size: 21),
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              : Container(
-                  alignment: Alignment.centerLeft,
-                  padding: MyCommonUtil.edge(left: 5),
-                  child: Text(
-                    '1 USDT ≈ 1 USD',
-                    style: MyTextUtil.textStyle4En(2,
-                        color: MyColorUtil.white, spacing: 0.0, size: 21),
-                  ),
-                ),
-        ],
-      ),
     );
   }
 
@@ -1615,7 +1437,7 @@ class _SwapSubPageState extends State<SwapSubPage>
     };
   }
 
-  Widget _bottomSheetWidget(BuildContext context, int type) {
+  Widget _bottomSheetWidget(BuildContext context, bool isLeft) {
     return Container(
       height: MyScreenUtil.height(800),
       child: Column(
@@ -1630,7 +1452,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                   itemCount: _swapRows.length,
                   itemBuilder: (context, index) {
                     return _selectTokenItemWidget(
-                        context, index, _swapRows[index], type);
+                        context, index, _swapRows[index], isLeft);
                   }),
             ),
           ),
@@ -1678,17 +1500,17 @@ class _SwapSubPageState extends State<SwapSubPage>
   }
 
   Widget _selectTokenItemWidget(
-      BuildContext context, int index, SwapRow item, int type) {
+      BuildContext context, int index, SwapRow item, isLeft) {
     bool flag = false;
-    if (type == 1) {
+    if (isLeft) {
       flag = index == _leftSelectIndex ? true : false;
-    } else if (type == 2) {
+    } else {
       flag = index == _rightSelectIndex ? true : false;
     }
     double change = item.swapTokenChange2 * 100;
     return InkWell(
       onTap: () async {
-        if (type == 1 && index != _rightSelectIndex) {
+        if (isLeft && index != _rightSelectIndex) {
           _leftSwapAmount = '';
           _leftSwapValue = '';
           _rightSwapAmount = '';
@@ -1697,7 +1519,7 @@ class _SwapSubPageState extends State<SwapSubPage>
           setState(() {});
           Navigator.pop(context);
           await GlobalService.to.changeSwapLeftIndex(index);
-        } else if (type == 2 && index != _leftSelectIndex) {
+        } else if (index != _leftSelectIndex) {
           _leftSwapAmount = '';
           _leftSwapValue = '';
           _rightSwapAmount = '';
@@ -1721,7 +1543,7 @@ class _SwapSubPageState extends State<SwapSubPage>
               child: Text(
                 '${item.swapTokenName}',
                 style: MyTextUtil.textStyle4En(2,
-                    color: type == 1
+                    color: isLeft
                         ? (index != _rightSelectIndex
                             ? MyColorUtil.biz()
                             : Colors.grey[400])
@@ -1738,7 +1560,7 @@ class _SwapSubPageState extends State<SwapSubPage>
               child: Text(
                 '${item.swapTokenPrice2}',
                 style: MyTextUtil.textStyle4Num(
-                    color: type == 1
+                    color: isLeft
                         ? (index != _rightSelectIndex
                             ? MyColorUtil.biz()
                             : Colors.grey[400])

@@ -14,6 +14,8 @@ class MyIconUtil {
 
   static const IconData done = Icons.done_rounded;
 
+  static const IconData arrowDropDown = Icons.arrow_drop_down;
+
   static const copyExt = IconData(0xe618, fontFamily: 'ICON');
 
   static const plusExt = IconData(0xe7b8, fontFamily: 'ICON');

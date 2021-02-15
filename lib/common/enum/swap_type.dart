@@ -1,0 +1,4 @@
+enum SwapType {
+  send,
+  receive,
+}

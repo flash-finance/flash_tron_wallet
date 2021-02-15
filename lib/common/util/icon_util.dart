@@ -21,4 +21,10 @@ class MyIconUtil {
   static const scanExt = IconData(0xe606, fontFamily: 'ICON');
 
   static const noteExt = IconData(0xe635, fontFamily: 'ICON');
+
+  static const walletExt = IconData(0xe6e0, fontFamily: 'ICON');
+
+  static const globalExt = IconData(0xe676, fontFamily: 'ICON');
+
+  static const manageExt = IconData(0xe6db, fontFamily: 'ICON');
 }

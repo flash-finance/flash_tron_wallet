@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/common_util.dart';
-import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
 import 'package:flash_tron_wallet/locale/app_Locale.dart';
 import 'package:flutter/cupertino.dart';
@@ -53,12 +52,11 @@ class _DownloadPageState extends State<DownloadPage> {
                         ),
                         TextSpan(
                           text: '$progress%',
-                          style: TextStyle(
-                            fontFamily: 'EN-M',
-                            letterSpacing: 0.0,
+                          style: MyTextUtil.textStyle4En(
+                            2,
+                            size: 32,
+                            spacing: 0.0,
                             color: MyColorUtil.biz(),
-                            fontSize: MyScreenUtil.sp(32),
-                            height: MyScreenUtil.sp(3.2),
                           ),
                         ),
                       ],

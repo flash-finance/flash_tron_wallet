@@ -5,6 +5,7 @@ import 'package:flash_tron_wallet/common/config/common_config.dart';
 import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/common_util.dart';
 import 'package:flash_tron_wallet/common/util/http_util.dart';
+import 'package:flash_tron_wallet/common/util/icon_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
 import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
@@ -148,7 +149,6 @@ class _SwapSubPageState extends State<SwapSubPage>
 
   Widget _mainWidget(BuildContext context) {
     return Container(
-      width: MyScreenUtil.width(750),
       child: ListView(
         children: <Widget>[
           _bizWidget(context),
@@ -260,7 +260,9 @@ class _SwapSubPageState extends State<SwapSubPage>
                         TextSpan(
                           text: '${MyLocaleKey.swapBalance.tr}:  ',
                           style: MyTextUtil.textStyle(2,
-                              color: MyColorUtil.subBiz(), spacing: 0.0, size: 26),
+                              color: MyColorUtil.subBiz(),
+                              spacing: 0.0,
+                              size: 26),
                         ),
                         TextSpan(
                           text:
@@ -299,7 +301,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                     child: Container(
                       child: Row(
                         children: <Widget>[
-                          MyCommonUtil.sizedBox(width: 5),
+                          MyCommonUtil.sizedBox(width: 15),
                           Container(
                             child: ClipOval(
                               child: _flag1
@@ -471,7 +473,9 @@ class _SwapSubPageState extends State<SwapSubPage>
                         child: Text(
                           '1  ${_swapRows[_leftSelectIndex].swapTokenName} ≈ ${MyCommonUtil.formatNum(double.parse(_leftPrice), 4)}  ${_swapRows[_rightSelectIndex].swapTokenName}',
                           style: MyTextUtil.textStyle4En(2,
-                              color: MyColorUtil.subBiz(), spacing: 0.0, size: 21),
+                              color: MyColorUtil.subBiz(),
+                              spacing: 0.0,
+                              size: 21),
                         ),
                       ),
                       Container(
@@ -480,7 +484,9 @@ class _SwapSubPageState extends State<SwapSubPage>
                         child: Text(
                           ' ≈ ${MyCommonUtil.formatNum(_swapRows[_leftSelectIndex].swapTokenPrice2, 4)}  USD',
                           style: MyTextUtil.textStyle4En(2,
-                              color: MyColorUtil.subBiz(), spacing: 0.0, size: 21),
+                              color: MyColorUtil.subBiz(),
+                              spacing: 0.0,
+                              size: 21),
                         ),
                       ),
                     ],
@@ -506,45 +512,16 @@ class _SwapSubPageState extends State<SwapSubPage>
       margin: MyCommonUtil.edge(top: 20, bottom: 0),
       child: InkWell(
           onTap: () {
-            FocusScope.of(context).requestFocus(FocusNode());
-            int temp11 = _leftSelectIndex;
-            int temp12 = _rightSelectIndex;
-            String temp2 = _leftSwapAmount;
-            _leftSwapAmount = _rightSwapAmount;
-            _rightSwapAmount = temp2;
-            String temp3 = _leftSwapValue;
-            _leftSwapValue = _rightSwapValue;
-            _rightSwapValue = temp3;
-
-            String temp4 = _leftBalanceAmount;
-            _leftBalanceAmount = _rightBalanceAmount;
-            _rightBalanceAmount = temp4;
-
-            String temp5 = _leftPrice;
-            _leftPrice = _rightPrice;
-            _rightPrice = temp5;
-
-            if (_leftSwapAmount != '' && _leftBalanceAmount != '') {
-              double value1 = double.parse(_leftSwapAmount);
-              double value2 = double.parse(_leftBalanceAmount);
-              if (value1 > value2) {
-                _swapFlag = false;
-              } else {
-                _swapFlag = true;
-              }
-            }
-            setState(() {});
-            GlobalService.to.changeSwapLeftIndex(temp12);
-            GlobalService.to.changeSwapRightIndex(temp11);
+            _midOnTap(context);
           },
           child: Container(
             color: MyColorUtil.white,
             alignment: Alignment.center,
             width: MyScreenUtil.width(150),
-            child: Icon(
-              Icons.sync_rounded,
-              size: MyScreenUtil.sp(45),
-              color: Colors.grey[700],
+            child: MyCommonUtil.icon(
+              MyIconUtil.sync,
+              size: 45,
+              color: MyColorUtil.biz().withOpacity(0.7),
             ),
           )),
     );
@@ -575,7 +552,9 @@ class _SwapSubPageState extends State<SwapSubPage>
                         TextSpan(
                           text: '${MyLocaleKey.swapBalance.tr}:  ',
                           style: MyTextUtil.textStyle(2,
-                              color: MyColorUtil.subBiz(), spacing: 0.0, size: 26),
+                              color: MyColorUtil.subBiz(),
+                              spacing: 0.0,
+                              size: 26),
                         ),
                         TextSpan(
                           text:
@@ -790,7 +769,9 @@ class _SwapSubPageState extends State<SwapSubPage>
                         child: Text(
                           '1  ${_swapRows[_rightSelectIndex].swapTokenName} ≈ ${MyCommonUtil.formatNum(double.parse(_rightPrice), 4)}  ${_swapRows[_leftSelectIndex].swapTokenName}',
                           style: MyTextUtil.textStyle4En(2,
-                              color: MyColorUtil.subBiz(), spacing: 0.0, size: 21),
+                              color: MyColorUtil.subBiz(),
+                              spacing: 0.0,
+                              size: 21),
                         ),
                       ),
                       Container(
@@ -799,7 +780,9 @@ class _SwapSubPageState extends State<SwapSubPage>
                         child: Text(
                           ' ≈ ${MyCommonUtil.formatNum(_swapRows[_rightSelectIndex].swapTokenPrice2, 4)}  USD',
                           style: MyTextUtil.textStyle4En(2,
-                              color: MyColorUtil.subBiz(), spacing: 0.0, size: 21),
+                              color: MyColorUtil.subBiz(),
+                              spacing: 0.0,
+                              size: 21),
                         ),
                       ),
                     ],
@@ -857,6 +840,39 @@ class _SwapSubPageState extends State<SwapSubPage>
         ],
       ),
     );
+  }
+
+  void _midOnTap(BuildContext context) {
+    FocusScope.of(context).requestFocus(FocusNode());
+    int temp11 = _leftSelectIndex;
+    int temp12 = _rightSelectIndex;
+    String temp2 = _leftSwapAmount;
+    _leftSwapAmount = _rightSwapAmount;
+    _rightSwapAmount = temp2;
+    String temp3 = _leftSwapValue;
+    _leftSwapValue = _rightSwapValue;
+    _rightSwapValue = temp3;
+
+    String temp4 = _leftBalanceAmount;
+    _leftBalanceAmount = _rightBalanceAmount;
+    _rightBalanceAmount = temp4;
+
+    String temp5 = _leftPrice;
+    _leftPrice = _rightPrice;
+    _rightPrice = temp5;
+
+    if (_leftSwapAmount != '' && _leftBalanceAmount != '') {
+      double value1 = double.parse(_leftSwapAmount);
+      double value2 = double.parse(_leftBalanceAmount);
+      if (value1 > value2) {
+        _swapFlag = false;
+      } else {
+        _swapFlag = true;
+      }
+    }
+    setState(() {});
+    GlobalService.to.changeSwapLeftIndex(temp12);
+    GlobalService.to.changeSwapRightIndex(temp11);
   }
 
   _showPoolTokenOneDialLog(BuildContext context) {

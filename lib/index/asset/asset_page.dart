@@ -694,7 +694,7 @@ class _AssetPageState extends State<AssetPage>
             list[index].tronAddress.length);
     return Container(
       margin: MyCommonUtil.edge(left: 30, right: 30, bottom: 20),
-      padding: MyCommonUtil.edge(left: 40, right: 40, top: 30, bottom: 30),
+      padding: MyCommonUtil.edge(left: 40, right: 40, top: 40, bottom: 40),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
         //color: MyScreenUtil.themeColor,
@@ -726,7 +726,7 @@ class _AssetPageState extends State<AssetPage>
                     ),
                   ),
                 ),
-                MyCommonUtil.sizedBox(height: 15),
+                MyCommonUtil.sizedBox(height: 20),
                 InkWell(
                   onTap: () {
                     Clipboard.setData(

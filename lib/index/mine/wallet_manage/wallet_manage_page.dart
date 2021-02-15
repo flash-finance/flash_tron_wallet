@@ -1,5 +1,6 @@
 import 'package:flash_tron_wallet/common/util/color_util.dart';
 import 'package:flash_tron_wallet/common/util/common_util.dart';
+import 'package:flash_tron_wallet/common/util/icon_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
 import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
@@ -90,7 +91,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
     return Container(
       margin: MyCommonUtil.edge(
           left: 30, right: 30, top: index == 0 ? 10 : 0, bottom: 20),
-      padding: MyCommonUtil.edge(left: 40, right: 40, top: 30, bottom: 30),
+      padding: MyCommonUtil.edge(left: 40, right: 40, top: 40, bottom: 40),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
         image: DecorationImage(
@@ -144,15 +145,15 @@ class _WalletManagePageState extends State<WalletManagePage> {
                   ),
                 ),
                 Container(
-                  child: Icon(
-                    Icons.arrow_forward_ios,
-                    size: MyScreenUtil.sp(28),
+                  child: MyCommonUtil.icon(
+                    MyIconUtil.arrowForwardIos,
+                    size: 28,
                     color: MyColorUtil.white,
                   ),
                 ),
               ],
             ),
-            MyCommonUtil.sizedBox(height: 10),
+            MyCommonUtil.sizedBox(height: 20),
             InkWell(
               onTap: () {
                 Clipboard.setData(ClipboardData(text: list[index].tronAddress));
@@ -170,9 +171,9 @@ class _WalletManagePageState extends State<WalletManagePage> {
                     ),
                     MyCommonUtil.sizedBox(width: 50),
                     Container(
-                      child: Icon(
-                        IconData(0xe618, fontFamily: 'ICON'),
-                        size: MyScreenUtil.sp(28),
+                      child: MyCommonUtil.icon(
+                        MyIconUtil.copyExt,
+                        size: 28,
                         color: MyColorUtil.white,
                       ),
                     ),

@@ -64,7 +64,6 @@ class GlobalService extends GetxService {
   }
 
   changeCurrentIndex(int value) {
-    print('changeCurrentIndex:$value');
     _currentIndex.value = value;
     _pvController.jumpToPage(value);
   }
@@ -131,7 +130,6 @@ class GlobalService extends GetxService {
   getSelectWalletIndex() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     int temp = prefs.getInt(_selectWalletIndexKey);
-    print('getSelectWalletIndex temp: $temp');
     if (temp != null) {
       _selectWalletIndex.value = temp;
     }
@@ -152,8 +150,6 @@ class GlobalService extends GetxService {
         _selectWalletEntity.value = _walletList.value[_selectWalletIndex.value];
       }
     }
-    print(
-        'getSelectWallet _selectWalletEntity: ${_selectWalletEntity.toJson()}');
   }
 
   Future<bool> saveSelectWalletIndex(int value) async {
@@ -162,7 +158,7 @@ class GlobalService extends GetxService {
       _selectWalletIndex.value = value;
       prefs.setInt(_selectWalletIndexKey, _selectWalletIndex.value);
     } catch (e) {
-      print(e);
+      print('saveSelectWalletIndex error: ${e.toString()}');
       return false;
     }
     return true;
@@ -179,14 +175,13 @@ class GlobalService extends GetxService {
       }
       prefs.setStringList(_selectWalletListKey, tempList);
     } catch (e) {
-      print(e);
+      print('saveSelectWalletList error: ${e.toString()}');
       return false;
     }
     return true;
   }
 
   Future<bool> addWallet(WalletEntity item) async {
-    print('addWallet: ${item.toJson()}');
     try {
       _walletList.value.insert(0, item);
       _selectWalletIndex.value = 0;
@@ -194,7 +189,6 @@ class GlobalService extends GetxService {
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
 
-      _selectWalletIndex = _selectWalletIndex;
       prefs.setInt(_selectWalletIndexKey, _selectWalletIndex.value);
 
       List<String> tempList = [];
@@ -203,9 +197,8 @@ class GlobalService extends GetxService {
         tempList.add(temp);
       }
       prefs.setStringList(_selectWalletListKey, tempList);
-      print('_walletList: ${_walletList.value.length}');
     } catch (e) {
-      print(e);
+      print('addWallet error: ${e.toString()}');
       return false;
     }
     return true;
@@ -219,7 +212,7 @@ class GlobalService extends GetxService {
         await saveSelectWalletIndex(index);
       }
     } catch (e) {
-      print(e);
+      print('changeSelectWallet error: ${e.toString()}');
       return false;
     }
     return true;
@@ -232,7 +225,7 @@ class GlobalService extends GetxService {
         await saveSelectWalletList(_walletList.value);
       }
     } catch (e) {
-      print(e);
+      print('updateName error: ${e.toString()}');
       return false;
     }
     return true;
@@ -245,7 +238,7 @@ class GlobalService extends GetxService {
         await saveSelectWalletList(_walletList.value);
       }
     } catch (e) {
-      print(e);
+      print('updatePwd error: ${e.toString()}');
       return false;
     }
     return true;
@@ -261,7 +254,7 @@ class GlobalService extends GetxService {
             _selectWalletEntity.value = _walletList.value[0];
           } else {
             _selectWalletIndex.value = -1;
-            _selectWalletEntity = null;
+            _selectWalletEntity.value = null;
           }
         } else if (_selectWalletIndex.value > index) {
           _selectWalletIndex.value--;
@@ -271,7 +264,7 @@ class GlobalService extends GetxService {
         await saveSelectWalletList(_walletList.value);
       }
     } catch (e) {
-      print(e);
+      print('delWallet error: ${e.toString()}');
       return false;
     }
     return true;
@@ -357,7 +350,7 @@ class GlobalService extends GetxService {
         }
       });
     } catch (e) {
-      print(e);
+      print('getTronInfo error: ${e.toString()}');
     }
   }
 
@@ -386,7 +379,7 @@ class GlobalService extends GetxService {
       }
       _assetList.value = list;
     } catch (e) {
-      print(e);
+      print('getAsset4Init error: ${e.toString()}');
     }
   }
 
@@ -408,7 +401,7 @@ class GlobalService extends GetxService {
         }
       }
     } catch (e) {
-      print(e);
+      print('getAsset4ReloadAsync error: ${e.toString()}');
     }
   }
 

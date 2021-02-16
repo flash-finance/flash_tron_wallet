@@ -257,7 +257,7 @@ class _BuildWalletFirstPageState extends State<BuildWalletFirstPage> {
     if (result) {
       _getAsset(context);
     }
-    await Future.delayed(Duration(milliseconds: 1000), () {});
+    await Future.delayed(Duration(milliseconds: 500), () {});
 
     return result;
   }

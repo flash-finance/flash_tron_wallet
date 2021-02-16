@@ -31,7 +31,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
       hasAppBar: true,
       hasBack: true,
       title: '${MyLocaleKey.assetWalletDetails.tr}',
-      body: Obx(() => _bodyWidget(context)),
+      body: _bodyWidget(context),
     );
   }
 

@@ -15,7 +15,10 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class WalletDetailPage extends StatefulWidget {
-  final String selectIndex = Get.parameters['selectIndex'];
+  final int index;
+  final WalletEntity wallet;
+
+  WalletDetailPage(this.index, this.wallet);
 
   @override
   _WalletDetailPageState createState() => _WalletDetailPageState();
@@ -31,18 +34,17 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
       hasAppBar: true,
       hasBack: true,
       title: '${MyLocaleKey.assetWalletDetails.tr}',
-      body: _bodyWidget(context),
+      body: Obx(() => _bodyWidget(context)),
     );
   }
 
   Widget _bodyWidget(BuildContext context) {
-    WalletEntity wallet = GlobalService.to.selectWalletEntity;
-    bool flag = wallet.mnemonic != null;
+    bool flag = widget.wallet.mnemonic != null;
     return Container(
       child: ListView(
         children: <Widget>[
           MyCommonUtil.interval(value: 20),
-          _topWidget(context, wallet),
+          _topWidget(context),
           MyCommonUtil.interval(value: 20),
           flag
               ? _itemWidget(context, '${MyLocaleKey.assetBackupMnemonic.tr}',
@@ -60,8 +62,8 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
     );
   }
 
-  Widget _topWidget(BuildContext context, WalletEntity wallet) {
-    String temp = wallet.tronAddress;
+  Widget _topWidget(BuildContext context) {
+    String temp = widget.wallet.tronAddress;
     String tronAddress = temp.substring(0, 8) +
         '...' +
         temp.substring(temp.length - 8, temp.length);
@@ -87,15 +89,14 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
               children: <Widget>[
                 InkWell(
                   onTap: () {
-                    _showUpdateNameDialLog(
-                        context, int.parse(widget.selectIndex));
+                    _showUpdateNameDialLog(context, widget.index);
                   },
                   child: Container(
                     child: Row(
                       children: <Widget>[
                         Container(
                           child: Text(
-                            '${wallet.name}',
+                            '${widget.wallet.name}',
                             style: MyTextUtil.textStyle(2,
                                 color: MyColorUtil.biz(),
                                 spacing: 0.0,
@@ -119,7 +120,8 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                 MyCommonUtil.sizedBox(height: 10),
                 InkWell(
                   onTap: () {
-                    Clipboard.setData(ClipboardData(text: wallet.tronAddress));
+                    Clipboard.setData(
+                        ClipboardData(text: widget.wallet.tronAddress));
                     MyCommonUtil.showToast(
                         '${MyLocaleKey.commonCopySuccess.tr}');
                   },
@@ -159,15 +161,14 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
 
   Widget _itemWidget(
       BuildContext context, String name, DetailWalletType type, bool flag) {
-    WalletEntity wallet = GlobalService.to.selectWalletEntity;
     return InkWell(
       onTap: () {
         switch (type) {
           case DetailWalletType.backupMnemonic:
-            _showInputPwdDialLog(context, 1, wallet.pwd);
+            _showInputPwdDialLog(context, 1, widget.wallet.pwd);
             break;
           case DetailWalletType.backupKey:
-            _showInputPwdDialLog(context, 2, wallet.pwd);
+            _showInputPwdDialLog(context, 2, widget.wallet.pwd);
             break;
           case DetailWalletType.updatePwd:
             Get.toNamed(AppRoute.assetUpdatePwd);
@@ -392,7 +393,6 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
   }
 
   Future<bool> _delWallet(BuildContext context) async {
-    int index = GlobalService.to.selectWalletIndex;
-    return await GlobalService.to.delWallet(index);
+    return await GlobalService.to.delWallet(widget.index);
   }
 }

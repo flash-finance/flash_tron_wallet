@@ -168,6 +168,8 @@ class GlobalService extends GetxService {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       _walletList.value = dataList;
+      print(
+          'saveSelectWalletList _walletList 222: ${_walletList.value.length}');
       List<String> tempList = [];
       for (int i = 0; i < dataList.length; i++) {
         String temp = json.encode(dataList[i]);
@@ -261,7 +263,13 @@ class GlobalService extends GetxService {
           _selectWalletEntity.value =
               _walletList.value[_selectWalletIndex.value];
         }
-        await saveSelectWalletList(_walletList.value);
+
+        ///_walletList.value.removeAt()后需要此处理 不然页面无法刷新?
+        List<WalletEntity> tempList = [];
+        for (int i = 0; i < _walletList.value.length; i++) {
+          tempList.add(_walletList.value[i]);
+        }
+        await saveSelectWalletList(tempList);
       }
     } catch (e) {
       print('delWallet error: ${e.toString()}');

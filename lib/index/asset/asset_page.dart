@@ -9,6 +9,7 @@ import 'package:flash_tron_wallet/common/util/text_util.dart';
 import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
 import 'package:flash_tron_wallet/entity/tron/asset_entity.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
+import 'package:flash_tron_wallet/index/asset/wallet_detail/wallet_detail_page.dart';
 import 'package:flash_tron_wallet/locale/app_Locale.dart';
 import 'package:flash_tron_wallet/provider/global_service.dart';
 import 'package:flash_tron_wallet/route/app_route.dart';
@@ -253,9 +254,11 @@ class _AssetPageState extends State<AssetPage>
         totalAssetUsd += item.usd;
       }
     }
+    List<WalletEntity> walletList = GlobalService.to.walletList;
     return InkWell(
       onTap: () {
-        Get.toNamed(AppRoute.assetWalletDetail + '/$selectIndex');
+        //Get.toNamed(AppRoute.assetWalletDetail + '/$selectIndex');
+        Get.to(WalletDetailPage(selectIndex, walletList[selectIndex]));
       },
       child: Container(
         padding: MyCommonUtil.edge(left: 40, right: 40, top: 30),
@@ -317,7 +320,7 @@ class _AssetPageState extends State<AssetPage>
             SizedBox(height: MyScreenUtil.height(10)),
             InkWell(
               onTap: () {
-                Get.toNamed(AppRoute.assetWalletDetail + '/$selectIndex');
+                Get.to(WalletDetailPage(selectIndex, walletList[selectIndex]));
               },
               child: Container(
                 alignment: Alignment.centerLeft,
@@ -675,7 +678,7 @@ class _AssetPageState extends State<AssetPage>
                   scrollDirection: Axis.vertical,
                   itemCount: walletList.length,
                   itemBuilder: (context, index) {
-                    return _walletItemWidget(context, walletList, index);
+                    return _walletItemWidget(context, walletList[index], index);
                   }),
             ),
           ),
@@ -684,14 +687,13 @@ class _AssetPageState extends State<AssetPage>
     );
   }
 
-  Widget _walletItemWidget(
-      BuildContext context, List<WalletEntity> list, int index) {
+  Widget _walletItemWidget(BuildContext context, WalletEntity item, int index) {
     int selectIndex = GlobalService.to.selectWalletIndex;
-    String name = list[index].name;
-    String tronAddress = list[index].tronAddress.substring(0, 10) +
+    String name = item.name;
+    String tronAddress = item.tronAddress.substring(0, 10) +
         '...' +
-        list[index].tronAddress.substring(list[index].tronAddress.length - 10,
-            list[index].tronAddress.length);
+        item.tronAddress
+            .substring(item.tronAddress.length - 10, item.tronAddress.length);
     return Container(
       margin: MyCommonUtil.edge(left: 30, right: 30, bottom: 20),
       padding: MyCommonUtil.edge(left: 40, right: 40, top: 40, bottom: 40),
@@ -729,8 +731,7 @@ class _AssetPageState extends State<AssetPage>
                 MyCommonUtil.sizedBox(height: 20),
                 InkWell(
                   onTap: () {
-                    Clipboard.setData(
-                        ClipboardData(text: list[index].tronAddress));
+                    Clipboard.setData(ClipboardData(text: item.tronAddress));
                     MyCommonUtil.showToast(
                         '${MyLocaleKey.commonCopySuccess.tr}');
                   },

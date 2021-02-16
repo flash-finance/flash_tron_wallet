@@ -5,9 +5,9 @@ import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
 import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
+import 'package:flash_tron_wallet/index/asset/wallet_detail/wallet_detail_page.dart';
 import 'package:flash_tron_wallet/locale/app_Locale.dart';
 import 'package:flash_tron_wallet/provider/global_service.dart';
-import 'package:flash_tron_wallet/route/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -74,20 +74,19 @@ class _WalletManagePageState extends State<WalletManagePage> {
           scrollDirection: Axis.vertical,
           itemCount: walletList.length,
           itemBuilder: (context, index) {
-            return _walletItemWidget(context, walletList, index);
+            return _walletItemWidget(context, walletList[index], index);
           }),
     );
   }
 
-  Widget _walletItemWidget(
-      BuildContext context, List<WalletEntity> list, int index) {
+  Widget _walletItemWidget(BuildContext context, WalletEntity item, int index) {
     int selectIndex = GlobalService.to.selectWalletIndex;
     bool flag = selectIndex == index;
-    String name = list[index].name;
-    String tronAddress = list[index].tronAddress.substring(0, 10) +
+    String name = item.name;
+    String tronAddress = item.tronAddress.substring(0, 10) +
         '...' +
-        list[index].tronAddress.substring(list[index].tronAddress.length - 10,
-            list[index].tronAddress.length);
+        item.tronAddress
+            .substring(item.tronAddress.length - 10, item.tronAddress.length);
     return Container(
       margin: MyCommonUtil.edge(
           left: 30, right: 30, top: index == 0 ? 10 : 0, bottom: 20),
@@ -101,7 +100,8 @@ class _WalletManagePageState extends State<WalletManagePage> {
       ),
       child: InkWell(
         onTap: () {
-          Get.toNamed(AppRoute.assetWalletDetail + '/$index');
+          //Get.toNamed(AppRoute.assetWalletDetail + '/$index');
+          Get.to(WalletDetailPage(index, item));
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -156,7 +156,7 @@ class _WalletManagePageState extends State<WalletManagePage> {
             MyCommonUtil.sizedBox(height: 20),
             InkWell(
               onTap: () {
-                Clipboard.setData(ClipboardData(text: list[index].tronAddress));
+                Clipboard.setData(ClipboardData(text: item.tronAddress));
                 MyCommonUtil.showToast('${MyLocaleKey.commonCopySuccess.tr}');
               },
               child: Container(

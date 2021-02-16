@@ -8,7 +8,6 @@ import 'package:flash_tron_wallet/index/asset/import_mnemonic/import_mnemonic_pa
 import 'package:flash_tron_wallet/index/asset/recevice_token/receive_token_page.dart';
 import 'package:flash_tron_wallet/index/asset/send_token/send_token_page.dart';
 import 'package:flash_tron_wallet/index/asset/update_pwd/update_pwd_page.dart';
-import 'package:flash_tron_wallet/index/asset/wallet_detail/wallet_detail_page.dart';
 import 'package:flash_tron_wallet/index/mine/wallet_manage/wallet_manage_page.dart';
 import 'package:flash_tron_wallet/index/qr/qr_scan_page.dart';
 import 'package:get/get.dart';
@@ -35,8 +34,8 @@ class AppRoute {
   static String assetBuildSecondWalletSuffix =
       assetBuildSecondWallet + '/:type';
 
-  static String assetWalletDetail = 'asset/walletDetail';
-  static String assetWalletDetailSuffix = assetWalletDetail + '/:selectIndex';
+  // static String assetWalletDetail = 'asset/walletDetail';
+  // static String assetWalletDetailSuffix = assetWalletDetail + '/:selectIndex';
 
   static String assetBackupKey = '/asset/backupKey';
   static String assetBackupMnemonic = '/asset/backupMnemonic';
@@ -76,10 +75,10 @@ class AppRoute {
       name: assetBuildSecondWalletSuffix,
       page: () => BuildWalletSecondPage(),
     ),
-    GetPage(
+    /*GetPage(
       name: assetWalletDetailSuffix,
       page: () => WalletDetailPage(),
-    ),
+    ),*/
     GetPage(
       name: assetBackupKey,
       page: () => BackupKeyPage(),

@@ -7,6 +7,7 @@ import 'package:flash_tron_wallet/common/util/http_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
 import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
+import 'package:flash_tron_wallet/index/trade/trade_controller.dart';
 import 'package:flash_tron_wallet/locale/app_Locale.dart';
 import 'package:flash_tron_wallet/model/swap_model.dart';
 import 'package:flash_tron_wallet/provider/global_service.dart';
@@ -26,6 +27,8 @@ class MarketPage extends StatefulWidget {
 
 class _MarketPageState extends State<MarketPage>
     with AutomaticKeepAliveClientMixin {
+  TradeController _tronController;
+
   Timer _timer;
 
   @override
@@ -50,6 +53,7 @@ class _MarketPageState extends State<MarketPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    _tronController = Get.find<TradeController>();
     return MyScaffold(
       hasAppBar: false,
       body: _bodyWidget(context),
@@ -137,8 +141,8 @@ class _MarketPageState extends State<MarketPage>
       onTap: () {
         int _swapLeftIndex = index == 0 ? 0 : index;
         int _swapRightIndex = index == 0 ? 1 : 0;
-        GlobalService.to.changeSwapLeftIndex(_swapLeftIndex);
-        GlobalService.to.changeSwapRightIndex(_swapRightIndex);
+        _tronController.changeSwapLeftIndex(_swapLeftIndex);
+        _tronController.changeSwapRightIndex(_swapRightIndex);
         widget.tabController.index = 1;
       },
       child: Container(

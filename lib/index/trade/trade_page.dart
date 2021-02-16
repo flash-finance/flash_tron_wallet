@@ -3,6 +3,7 @@ import 'package:flash_tron_wallet/common/util/common_util.dart';
 import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
 import 'package:flash_tron_wallet/index/trade/market/market_page.dart';
 import 'package:flash_tron_wallet/index/trade/swap/swap_page.dart';
+import 'package:flash_tron_wallet/index/trade/trade_controller.dart';
 import 'package:flash_tron_wallet/locale/app_Locale.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,6 +28,7 @@ class _TradePageState extends State<TradePage>
 
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut<TradeController>(() => TradeController());
     return MyScaffold(
       hasAppBar: false,
       body: Obx(() => _bodyWidget(context)),

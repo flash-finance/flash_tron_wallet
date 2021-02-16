@@ -10,6 +10,7 @@ import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
 import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
+import 'package:flash_tron_wallet/index/trade/trade_controller.dart';
 import 'package:flash_tron_wallet/locale/app_Locale.dart';
 import 'package:flash_tron_wallet/model/swap_model.dart';
 import 'package:flash_tron_wallet/model/tron_info_model.dart';
@@ -24,33 +25,12 @@ class SwapPage extends StatefulWidget {
   _SwapPageState createState() => _SwapPageState();
 }
 
-class _SwapPageState extends State<SwapPage> {
-  int _swapLeftIndex = 0;
-  int _swapRightIndex = 1;
-
-  @override
-  Widget build(BuildContext context) {
-    _swapLeftIndex = GlobalService.to.swapLeftIndex;
-    _swapRightIndex = GlobalService.to.swapRightIndex;
-    return Container(
-      child: SwapSubPage(_swapLeftIndex, _swapRightIndex),
-    );
-  }
-}
-
-class SwapSubPage extends StatefulWidget {
-  final int swapLeftIndex;
-  final int swapRightIndex;
-  SwapSubPage(this.swapLeftIndex, this.swapRightIndex);
-
-  @override
-  _SwapSubPageState createState() => _SwapSubPageState();
-}
-
-class _SwapSubPageState extends State<SwapSubPage>
+class _SwapPageState extends State<SwapPage>
     with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
+
+  TradeController _tronController;
 
   bool _langType = true;
   String _account = '';
@@ -60,9 +40,6 @@ class _SwapSubPageState extends State<SwapSubPage>
 
   bool _flag1 = false;
   bool _flag2 = false;
-
-  int _leftSelectIndex = 0;
-  int _rightSelectIndex = 1;
 
   String _leftPrice = '0.0';
   String _rightPrice = '0.0';
@@ -103,6 +80,7 @@ class _SwapSubPageState extends State<SwapSubPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    _tronController = Get.find<TradeController>();
     return MyScaffold(
       hasAppBar: false,
       body: Obx(() => _bodyWidget(context)),
@@ -110,9 +88,25 @@ class _SwapSubPageState extends State<SwapSubPage>
   }
 
   Widget _bodyWidget(BuildContext context) {
+    initData();
+    return Container(
+      width: MyScreenUtil.width(750),
+      color: MyColorUtil.white,
+      child: Column(
+        children: <Widget>[
+          MyCommonUtil.sizedBox(height: 20),
+          _topWidget(context),
+          MyCommonUtil.sizedBox(height: 30),
+          Expanded(
+            child: _mainWidget(context),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void initData() {
     _langType = GlobalService.to.langType;
-    _leftSelectIndex = widget.swapLeftIndex;
-    _rightSelectIndex = widget.swapRightIndex;
     WalletEntity wallet = GlobalService.to.selectWalletEntity;
     if (wallet != null && wallet.tronAddress != null) {
       _account = wallet.tronAddress;
@@ -130,20 +124,6 @@ class _SwapSubPageState extends State<SwapSubPage>
             selection: TextSelection.fromPosition(TextPosition(
                 affinity: TextAffinity.downstream,
                 offset: _rightSwapAmount.length))));
-    return Container(
-      width: MyScreenUtil.width(750),
-      color: MyColorUtil.white,
-      child: Column(
-        children: <Widget>[
-          MyCommonUtil.sizedBox(height: 20),
-          _topWidget(context),
-          MyCommonUtil.sizedBox(height: 30),
-          Expanded(
-            child: _mainWidget(context),
-          ),
-        ],
-      ),
-    );
   }
 
   Widget _mainWidget(BuildContext context) {
@@ -312,8 +292,8 @@ class _SwapSubPageState extends State<SwapSubPage>
                               child: _flag1
                                   ? Image.network(
                                       isLeft
-                                          ? '${_swapRows[_leftSelectIndex].swapPicUrl}'
-                                          : '${_swapRows[_rightSelectIndex].swapPicUrl}',
+                                          ? '${_swapRows[_tronController.swapLeftIndex].swapPicUrl}'
+                                          : '${_swapRows[_tronController.swapRightIndex].swapPicUrl}',
                                       width: MyScreenUtil.width(42),
                                       height: MyScreenUtil.width(42),
                                       fit: BoxFit.cover,
@@ -331,8 +311,8 @@ class _SwapSubPageState extends State<SwapSubPage>
                             child: Text(
                               _flag1
                                   ? isLeft
-                                      ? '${_swapRows[_leftSelectIndex].swapTokenName}'
-                                      : '${_swapRows[_rightSelectIndex].swapTokenName}'
+                                      ? '${_swapRows[_tronController.swapLeftIndex].swapTokenName}'
+                                      : '${_swapRows[_tronController.swapRightIndex].swapTokenName}'
                                   : '',
                               style: MyTextUtil.textStyle4En(2,
                                   color: MyColorUtil.biz(),
@@ -414,8 +394,8 @@ class _SwapSubPageState extends State<SwapSubPage>
                         padding: EdgeInsets.only(left: MyScreenUtil.width(5)),
                         child: Text(
                           isLeft
-                              ? '1  ${_swapRows[_leftSelectIndex].swapTokenName} ≈ ${MyCommonUtil.formatNum(double.parse(_leftPrice), 4)}  ${_swapRows[_rightSelectIndex].swapTokenName}'
-                              : '1  ${_swapRows[_rightSelectIndex].swapTokenName} ≈ ${MyCommonUtil.formatNum(double.parse(_rightPrice), 4)}  ${_swapRows[_leftSelectIndex].swapTokenName}',
+                              ? '1  ${_swapRows[_tronController.swapLeftIndex].swapTokenName} ≈ ${MyCommonUtil.formatNum(double.parse(_leftPrice), 4)}  ${_swapRows[_tronController.swapRightIndex].swapTokenName}'
+                              : '1  ${_swapRows[_tronController.swapRightIndex].swapTokenName} ≈ ${MyCommonUtil.formatNum(double.parse(_rightPrice), 4)}  ${_swapRows[_tronController.swapLeftIndex].swapTokenName}',
                           style: MyTextUtil.textStyle4En(2,
                               color: MyColorUtil.subBiz(),
                               spacing: 0.0,
@@ -427,8 +407,8 @@ class _SwapSubPageState extends State<SwapSubPage>
                         padding: EdgeInsets.only(right: MyScreenUtil.width(5)),
                         child: Text(
                           isLeft
-                              ? ' ≈ ${MyCommonUtil.formatNum(_swapRows[_leftSelectIndex].swapTokenPrice2, 4)}  USD'
-                              : ' ≈ ${MyCommonUtil.formatNum(_swapRows[_rightSelectIndex].swapTokenPrice2, 4)}  USD',
+                              ? ' ≈ ${MyCommonUtil.formatNum(_swapRows[_tronController.swapLeftIndex].swapTokenPrice2, 4)}  USD'
+                              : ' ≈ ${MyCommonUtil.formatNum(_swapRows[_tronController.swapRightIndex].swapTokenPrice2, 4)}  USD',
                           style: MyTextUtil.textStyle4En(2,
                               color: MyColorUtil.subBiz(),
                               spacing: 0.0,
@@ -462,14 +442,15 @@ class _SwapSubPageState extends State<SwapSubPage>
         _leftSwapValue = _balanceMap[_leftKey];
       }
 
-      if (_swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
+      if (_swapRows[_tronController.swapRightIndex].swapTokenPrice1 > 0) {
         double rightAmount = leftAmount *
-            _swapRows[_leftSelectIndex].swapTokenPrice1 /
-            _swapRows[_rightSelectIndex].swapTokenPrice1;
+            _swapRows[_tronController.swapLeftIndex].swapTokenPrice1 /
+            _swapRows[_tronController.swapRightIndex].swapTokenPrice1;
         _rightSwapAmount = MyCommonUtil.formatNum(rightAmount, 6);
         _rightSwapValue = (Decimal.tryParse(rightAmount.toString()) *
-                Decimal.fromInt(10)
-                    .pow(_swapRows[_rightSelectIndex].swapTokenPrecision))
+                Decimal.fromInt(10).pow(
+                    _swapRows[_tronController.swapRightIndex]
+                        .swapTokenPrecision))
             .toStringAsFixed(0);
 
         if (leftAmount > double.parse(_leftBalanceAmount)) {
@@ -487,20 +468,21 @@ class _SwapSubPageState extends State<SwapSubPage>
       _leftSwapAmount = value;
       double leftAmount = Decimal.tryParse(_leftSwapAmount).toDouble();
       _leftSwapValue = (Decimal.tryParse(_leftSwapAmount) *
-              Decimal.fromInt(10)
-                  .pow(_swapRows[_leftSelectIndex].swapTokenPrecision))
+              Decimal.fromInt(10).pow(
+                  _swapRows[_tronController.swapLeftIndex].swapTokenPrecision))
           .toStringAsFixed(0);
 
       if (_flag1 &&
           _flag2 &&
-          _swapRows[_rightSelectIndex].swapTokenPrice1 > 0) {
+          _swapRows[_tronController.swapRightIndex].swapTokenPrice1 > 0) {
         double rightAmount = leftAmount *
-            _swapRows[_leftSelectIndex].swapTokenPrice1 /
-            _swapRows[_rightSelectIndex].swapTokenPrice1;
+            _swapRows[_tronController.swapLeftIndex].swapTokenPrice1 /
+            _swapRows[_tronController.swapRightIndex].swapTokenPrice1;
         _rightSwapAmount = MyCommonUtil.formatNum(rightAmount, 6);
         _rightSwapValue = (Decimal.tryParse(rightAmount.toString()) *
-                Decimal.fromInt(10)
-                    .pow(_swapRows[_rightSelectIndex].swapTokenPrecision))
+                Decimal.fromInt(10).pow(
+                    _swapRows[_tronController.swapRightIndex]
+                        .swapTokenPrecision))
             .toStringAsFixed(0);
 
         if (leftAmount > double.parse(_leftBalanceAmount)) {
@@ -552,14 +534,15 @@ class _SwapSubPageState extends State<SwapSubPage>
           _rightSwapValue = _balanceMap[_rightKey];
         }
 
-        if (_swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
+        if (_swapRows[_tronController.swapLeftIndex].swapTokenPrice1 > 0) {
           double leftAmount = rightAmount *
-              _swapRows[_rightSelectIndex].swapTokenPrice1 /
-              _swapRows[_leftSelectIndex].swapTokenPrice1;
+              _swapRows[_tronController.swapRightIndex].swapTokenPrice1 /
+              _swapRows[_tronController.swapLeftIndex].swapTokenPrice1;
           _leftSwapAmount = MyCommonUtil.formatNum(leftAmount, 4);
           _leftSwapValue = (Decimal.tryParse(leftAmount.toString()) *
-                  Decimal.fromInt(10)
-                      .pow(_swapRows[_leftSelectIndex].swapTokenPrecision))
+                  Decimal.fromInt(10).pow(
+                      _swapRows[_tronController.swapLeftIndex]
+                          .swapTokenPrecision))
               .toStringAsFixed(0);
 
           if (_balanceMap[_leftKey] != null &&
@@ -580,18 +563,20 @@ class _SwapSubPageState extends State<SwapSubPage>
       _rightSwapAmount = value;
       double rightAmount = Decimal.tryParse(_rightSwapAmount).toDouble();
       _rightSwapValue = (Decimal.tryParse(_rightSwapAmount) *
-              Decimal.fromInt(10)
-                  .pow(_swapRows[_rightSelectIndex].swapTokenPrecision))
+              Decimal.fromInt(10).pow(
+                  _swapRows[_tronController.swapRightIndex].swapTokenPrecision))
           .toStringAsFixed(0);
 
-      if (_flag1 && _flag2 && _swapRows[_leftSelectIndex].swapTokenPrice1 > 0) {
+      if (_flag1 &&
+          _flag2 &&
+          _swapRows[_tronController.swapLeftIndex].swapTokenPrice1 > 0) {
         double leftAmount = rightAmount *
-            _swapRows[_rightSelectIndex].swapTokenPrice1 /
-            _swapRows[_leftSelectIndex].swapTokenPrice1;
+            _swapRows[_tronController.swapRightIndex].swapTokenPrice1 /
+            _swapRows[_tronController.swapLeftIndex].swapTokenPrice1;
         _leftSwapAmount = MyCommonUtil.formatNum(leftAmount, 6);
         _leftSwapValue = (Decimal.tryParse(leftAmount.toString()) *
-                Decimal.fromInt(10)
-                    .pow(_swapRows[_leftSelectIndex].swapTokenPrecision))
+                Decimal.fromInt(10).pow(_swapRows[_tronController.swapLeftIndex]
+                    .swapTokenPrecision))
             .toStringAsFixed(0);
 
         if (_balanceMap[_leftKey] != null &&
@@ -623,13 +608,17 @@ class _SwapSubPageState extends State<SwapSubPage>
             onTap: () {
               if (_flag1 &&
                   _flag2 &&
-                  (_swapRows[_leftSelectIndex].swapTokenType == 1 ||
-                      _swapRows[_rightSelectIndex].swapTokenType == 1)) {
+                  (_swapRows[_tronController.swapLeftIndex].swapTokenType ==
+                          1 ||
+                      _swapRows[_tronController.swapRightIndex].swapTokenType ==
+                          1)) {
                 _showPoolTokenOneDialLog(context);
               } else if (_flag1 &&
                   _flag2 &&
-                  (_swapRows[_leftSelectIndex].swapTokenType != 1 &&
-                      _swapRows[_rightSelectIndex].swapTokenType != 1)) {
+                  (_swapRows[_tronController.swapLeftIndex].swapTokenType !=
+                          1 &&
+                      _swapRows[_tronController.swapRightIndex].swapTokenType !=
+                          1)) {
                 _showPoolTokenTwoDialLog(context);
               }
             },
@@ -655,8 +644,8 @@ class _SwapSubPageState extends State<SwapSubPage>
 
   void _midOnTap(BuildContext context) {
     FocusScope.of(context).requestFocus(FocusNode());
-    int temp11 = _leftSelectIndex;
-    int temp12 = _rightSelectIndex;
+    int temp11 = _tronController.swapLeftIndex;
+    int temp12 = _tronController.swapRightIndex;
     String temp2 = _leftSwapAmount;
     _leftSwapAmount = _rightSwapAmount;
     _rightSwapAmount = temp2;
@@ -682,8 +671,8 @@ class _SwapSubPageState extends State<SwapSubPage>
       }
     }
     setState(() {});
-    GlobalService.to.changeSwapLeftIndex(temp12);
-    GlobalService.to.changeSwapRightIndex(temp11);
+    _tronController.changeSwapLeftIndex(temp12);
+    _tronController.changeSwapRightIndex(temp11);
   }
 
   _showPoolTokenOneDialLog(BuildContext context) {
@@ -707,7 +696,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                   children: <Widget>[
                     Container(
                       child: Text(
-                        '${_swapRows[_leftSelectIndex].swapTokenName}/${_swapRows[_rightSelectIndex].swapTokenName}',
+                        '${_swapRows[_tronController.swapLeftIndex].swapTokenName}/${_swapRows[_tronController.swapRightIndex].swapTokenName}',
                         style: MyTextUtil.textStyle4En(2,
                             color: MyColorUtil.biz(), spacing: 0.0, size: 30),
                       ),
@@ -746,9 +735,11 @@ class _SwapSubPageState extends State<SwapSubPage>
                           Container(
                             padding: MyCommonUtil.edge(left: 15),
                             child: Text(
-                              _swapRows[_leftSelectIndex].swapTokenType == 2
-                                  ? '${_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0)}'
-                                  : '${_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0)}',
+                              _swapRows[_tronController.swapLeftIndex]
+                                          .swapTokenType ==
+                                      2
+                                  ? '${_swapRows[_tronController.swapLeftIndex].totalLiquidity.toStringAsFixed(0)}'
+                                  : '${_swapRows[_tronController.swapRightIndex].totalLiquidity.toStringAsFixed(0)}',
                               style: MyTextUtil.textStyle4Num(
                                 color: MyColorUtil.biz(),
                                 size: 28,
@@ -787,7 +778,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                           Container(
                             child: ClipOval(
                               child: Image.network(
-                                '${_swapRows[_leftSelectIndex].swapPicUrl}',
+                                '${_swapRows[_tronController.swapLeftIndex].swapPicUrl}',
                                 width: MyScreenUtil.width(35),
                                 height: MyScreenUtil.width(35),
                                 fit: BoxFit.cover,
@@ -797,9 +788,11 @@ class _SwapSubPageState extends State<SwapSubPage>
                           Container(
                             padding: MyCommonUtil.edge(left: 15),
                             child: Text(
-                              _swapRows[_leftSelectIndex].swapTokenType == 2
-                                  ? '${_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0)}'
-                                  : '${_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
+                              _swapRows[_tronController.swapLeftIndex]
+                                          .swapTokenType ==
+                                      2
+                                  ? '${_swapRows[_tronController.swapLeftIndex].swapTokenAmount.toStringAsFixed(0)}'
+                                  : '${_swapRows[_tronController.swapRightIndex].baseTokenAmount.toStringAsFixed(0)}',
                               style: MyTextUtil.textStyle4Num(
                                 color: MyColorUtil.biz(),
                                 size: 28,
@@ -811,7 +804,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                           ),
                           Container(
                             child: Text(
-                              '  ${_swapRows[_leftSelectIndex].swapTokenName}',
+                              '  ${_swapRows[_tronController.swapLeftIndex].swapTokenName}',
                               style: MyTextUtil.textStyle4En(2,
                                   color: MyColorUtil.biz(),
                                   spacing: 0.0,
@@ -829,7 +822,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                           Container(
                             child: ClipOval(
                               child: Image.network(
-                                '${_swapRows[_rightSelectIndex].swapPicUrl}',
+                                '${_swapRows[_tronController.swapRightIndex].swapPicUrl}',
                                 width: MyScreenUtil.width(35),
                                 height: MyScreenUtil.width(35),
                                 fit: BoxFit.cover,
@@ -839,9 +832,11 @@ class _SwapSubPageState extends State<SwapSubPage>
                           Container(
                             padding: MyCommonUtil.edge(left: 15),
                             child: Text(
-                              _swapRows[_leftSelectIndex].swapTokenType == 2
-                                  ? '${_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0)}'
-                                  : '${_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
+                              _swapRows[_tronController.swapLeftIndex]
+                                          .swapTokenType ==
+                                      2
+                                  ? '${_swapRows[_tronController.swapLeftIndex].baseTokenAmount.toStringAsFixed(0)}'
+                                  : '${_swapRows[_tronController.swapRightIndex].swapTokenAmount.toStringAsFixed(0)}',
                               style: MyTextUtil.textStyle4Num(
                                 color: MyColorUtil.biz(),
                                 size: 28,
@@ -853,7 +848,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                           ),
                           Container(
                             child: Text(
-                              '  ${_swapRows[_rightSelectIndex].swapTokenName}',
+                              '  ${_swapRows[_tronController.swapRightIndex].swapTokenName}',
                               style: MyTextUtil.textStyle4En(2,
                                   color: MyColorUtil.biz(),
                                   spacing: 0.2,
@@ -896,7 +891,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                         children: <Widget>[
                           Container(
                             child: Text(
-                              '${_swapRows[_leftSelectIndex].swapTokenName}/${_swapRows[_leftSelectIndex].baseTokenName}',
+                              '${_swapRows[_tronController.swapLeftIndex].swapTokenName}/${_swapRows[_tronController.swapLeftIndex].baseTokenName}',
                               style: MyTextUtil.textStyle4En(2,
                                   color: MyColorUtil.biz(),
                                   spacing: 0.0,
@@ -939,7 +934,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                 Container(
                                   padding: MyCommonUtil.edge(left: 15),
                                   child: Text(
-                                    '${_swapRows[_leftSelectIndex].totalLiquidity.toStringAsFixed(0)}',
+                                    '${_swapRows[_tronController.swapLeftIndex].totalLiquidity.toStringAsFixed(0)}',
                                     style: MyTextUtil.textStyle4Num(
                                       color: MyColorUtil.biz(),
                                       size: 28,
@@ -980,7 +975,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                 Container(
                                   child: ClipOval(
                                     child: Image.network(
-                                      '${_swapRows[_leftSelectIndex].swapPicUrl}',
+                                      '${_swapRows[_tronController.swapLeftIndex].swapPicUrl}',
                                       width: MyScreenUtil.width(35),
                                       height: MyScreenUtil.width(35),
                                       fit: BoxFit.cover,
@@ -990,7 +985,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                 Container(
                                   padding: MyCommonUtil.edge(left: 15),
                                   child: Text(
-                                    '${_swapRows[_leftSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
+                                    '${_swapRows[_tronController.swapLeftIndex].swapTokenAmount.toStringAsFixed(0)}',
                                     style: MyTextUtil.textStyle4Num(
                                       color: MyColorUtil.biz(),
                                       size: 28,
@@ -1002,7 +997,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                 ),
                                 Container(
                                   child: Text(
-                                    '  ${_swapRows[_leftSelectIndex].swapTokenName}',
+                                    '  ${_swapRows[_tronController.swapLeftIndex].swapTokenName}',
                                     style: MyTextUtil.textStyle4En(2,
                                         color: MyColorUtil.biz(),
                                         spacing: 0.0,
@@ -1020,7 +1015,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                 Container(
                                   child: ClipOval(
                                     child: Image.network(
-                                      '${_swapRows[_leftSelectIndex].basePicUrl}',
+                                      '${_swapRows[_tronController.swapLeftIndex].basePicUrl}',
                                       width: MyScreenUtil.width(35),
                                       height: MyScreenUtil.width(35),
                                       fit: BoxFit.cover,
@@ -1030,7 +1025,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                 Container(
                                   padding: MyCommonUtil.edge(left: 15),
                                   child: Text(
-                                    '${_swapRows[_leftSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
+                                    '${_swapRows[_tronController.swapLeftIndex].baseTokenAmount.toStringAsFixed(0)}',
                                     style: MyTextUtil.textStyle4Num(
                                       color: MyColorUtil.biz(),
                                       size: 28,
@@ -1042,7 +1037,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                 ),
                                 Container(
                                   child: Text(
-                                    '  ${_swapRows[_leftSelectIndex].baseTokenName}',
+                                    '  ${_swapRows[_tronController.swapLeftIndex].baseTokenName}',
                                     style: MyTextUtil.textStyle4En(2,
                                         color: MyColorUtil.biz(),
                                         spacing: 0.0,
@@ -1069,7 +1064,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                         children: <Widget>[
                           Container(
                             child: Text(
-                              '${_swapRows[_rightSelectIndex].baseTokenName}/${_swapRows[_rightSelectIndex].swapTokenName}',
+                              '${_swapRows[_tronController.swapRightIndex].baseTokenName}/${_swapRows[_tronController.swapRightIndex].swapTokenName}',
                               style: MyTextUtil.textStyle4En(2,
                                   color: MyColorUtil.biz(),
                                   spacing: 0.0,
@@ -1112,7 +1107,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                 Container(
                                   padding: MyCommonUtil.edge(left: 15),
                                   child: Text(
-                                    '${_swapRows[_rightSelectIndex].totalLiquidity.toStringAsFixed(0)}',
+                                    '${_swapRows[_tronController.swapRightIndex].totalLiquidity.toStringAsFixed(0)}',
                                     style: MyTextUtil.textStyle4Num(
                                       color: MyColorUtil.biz(),
                                       size: 28,
@@ -1153,7 +1148,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                 Container(
                                   child: ClipOval(
                                     child: Image.network(
-                                      '${_swapRows[_rightSelectIndex].basePicUrl}',
+                                      '${_swapRows[_tronController.swapRightIndex].basePicUrl}',
                                       width: MyScreenUtil.width(35),
                                       height: MyScreenUtil.width(35),
                                       fit: BoxFit.cover,
@@ -1163,7 +1158,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                 Container(
                                   padding: MyCommonUtil.edge(left: 15),
                                   child: Text(
-                                    '${_swapRows[_rightSelectIndex].baseTokenAmount.toStringAsFixed(0)}',
+                                    '${_swapRows[_tronController.swapRightIndex].baseTokenAmount.toStringAsFixed(0)}',
                                     style: MyTextUtil.textStyle4Num(
                                       color: MyColorUtil.biz(),
                                       size: 28,
@@ -1175,7 +1170,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                 ),
                                 Container(
                                   child: Text(
-                                    '  ${_swapRows[_rightSelectIndex].baseTokenName}',
+                                    '  ${_swapRows[_tronController.swapRightIndex].baseTokenName}',
                                     style: MyTextUtil.textStyle4En(2,
                                         color: MyColorUtil.biz(),
                                         spacing: 0.0,
@@ -1193,7 +1188,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                 Container(
                                   child: ClipOval(
                                     child: Image.network(
-                                      '${_swapRows[_rightSelectIndex].swapPicUrl}',
+                                      '${_swapRows[_tronController.swapRightIndex].swapPicUrl}',
                                       width: MyScreenUtil.width(35),
                                       height: MyScreenUtil.width(35),
                                       fit: BoxFit.cover,
@@ -1203,7 +1198,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                 Container(
                                   padding: MyCommonUtil.edge(left: 15),
                                   child: Text(
-                                    '${_swapRows[_rightSelectIndex].swapTokenAmount.toStringAsFixed(0)}',
+                                    '${_swapRows[_tronController.swapRightIndex].swapTokenAmount.toStringAsFixed(0)}',
                                     style: MyTextUtil.textStyle4Num(
                                       color: MyColorUtil.biz(),
                                       size: 28,
@@ -1215,7 +1210,7 @@ class _SwapSubPageState extends State<SwapSubPage>
                                 ),
                                 Container(
                                   child: Text(
-                                    '  ${_swapRows[_rightSelectIndex].swapTokenName}',
+                                    '  ${_swapRows[_tronController.swapRightIndex].swapTokenName}',
                                     style: MyTextUtil.textStyle4En(2,
                                         color: MyColorUtil.biz(),
                                         spacing: 0.0,
@@ -1288,17 +1283,18 @@ class _SwapSubPageState extends State<SwapSubPage>
               privateKey = wallet.privateKey;
             }
 
-            if (_swapRows[_leftSelectIndex].swapTokenType == 2) {
+            if (_swapRows[_tronController.swapLeftIndex].swapTokenType == 2) {
               String swapTokenAddress =
-                  _swapRows[_leftSelectIndex].swapTokenAddress;
+                  _swapRows[_tronController.swapLeftIndex].swapTokenAddress;
               String lpTokenAddress =
-                  _swapRows[_leftSelectIndex].lpTokenAddress;
+                  _swapRows[_tronController.swapLeftIndex].lpTokenAddress;
               String tokensSold = _leftSwapValue;
 
               String targetTokenAddress =
-                  _swapRows[_rightSelectIndex].swapTokenAddress;
+                  _swapRows[_tronController.swapRightIndex].swapTokenAddress;
 
-              int baseTokenType = _swapRows[_rightSelectIndex].swapTokenType;
+              int baseTokenType =
+                  _swapRows[_tronController.swapRightIndex].swapTokenType;
               String allowanceAmount = await TronSwap().allowance(
                   tronGrpcIP, userAddress, swapTokenAddress, flashSwapAddress);
               print('allowanceAmount: $allowanceAmount');
@@ -1368,13 +1364,14 @@ class _SwapSubPageState extends State<SwapSubPage>
                 }
                 return;
               }
-            } else if (_swapRows[_leftSelectIndex].swapTokenType == 1 &&
-                _swapRows[_rightSelectIndex].swapTokenType == 2) {
+            } else if (_swapRows[_tronController.swapLeftIndex].swapTokenType ==
+                    1 &&
+                _swapRows[_tronController.swapRightIndex].swapTokenType == 2) {
               print('swapTokenType == 1 && swapTokenType == 2');
               String swapTokenAddress =
-                  _swapRows[_rightSelectIndex].swapTokenAddress;
+                  _swapRows[_tronController.swapRightIndex].swapTokenAddress;
               String lpTokenAddress =
-                  _swapRows[_rightSelectIndex].lpTokenAddress;
+                  _swapRows[_tronController.swapRightIndex].lpTokenAddress;
               String trxSold = _leftSwapValue;
 
               /// trxToTokenSwap
@@ -1409,25 +1406,25 @@ class _SwapSubPageState extends State<SwapSubPage>
         List<TokenRows> tokenList = GlobalService.to.tokenList;
         for (int i = 0; i < 5; i++) {
           await Future.delayed(Duration(milliseconds: 1000), () {
-            if (_swapRows[_leftSelectIndex].swapTokenType == 1 &&
-                tokenList.length > _leftSelectIndex) {
-              GlobalService.to
-                  .getTrxBalance4Async(_account, tokenList[_leftSelectIndex]);
+            if (_swapRows[_tronController.swapLeftIndex].swapTokenType == 1 &&
+                tokenList.length > _tronController.swapLeftIndex) {
+              GlobalService.to.getTrxBalance4Async(
+                  _account, tokenList[_tronController.swapLeftIndex]);
             }
-            if (_swapRows[_leftSelectIndex].swapTokenType == 2 &&
-                tokenList.length > _leftSelectIndex) {
-              GlobalService.to
-                  .getTrc20Balance4Async(_account, tokenList[_leftSelectIndex]);
-            }
-            if (_swapRows[_rightSelectIndex].swapTokenType == 1 &&
-                tokenList.length > _rightSelectIndex) {
-              GlobalService.to
-                  .getTrxBalance4Async(_account, tokenList[_rightSelectIndex]);
-            }
-            if (_swapRows[_rightSelectIndex].swapTokenType == 2 &&
-                tokenList.length > _rightSelectIndex) {
+            if (_swapRows[_tronController.swapLeftIndex].swapTokenType == 2 &&
+                tokenList.length > _tronController.swapLeftIndex) {
               GlobalService.to.getTrc20Balance4Async(
-                  _account, tokenList[_rightSelectIndex]);
+                  _account, tokenList[_tronController.swapLeftIndex]);
+            }
+            if (_swapRows[_tronController.swapRightIndex].swapTokenType == 1 &&
+                tokenList.length > _tronController.swapRightIndex) {
+              GlobalService.to.getTrxBalance4Async(
+                  _account, tokenList[_tronController.swapRightIndex]);
+            }
+            if (_swapRows[_tronController.swapRightIndex].swapTokenType == 2 &&
+                tokenList.length > _tronController.swapRightIndex) {
+              GlobalService.to.getTrc20Balance4Async(
+                  _account, tokenList[_tronController.swapRightIndex]);
             }
             GlobalService.to.getTrxBalance4Async(_account, tokenList[0]);
           });
@@ -1502,33 +1499,33 @@ class _SwapSubPageState extends State<SwapSubPage>
       BuildContext context, int index, SwapRow item, isLeft) {
     bool flag = false;
     if (isLeft) {
-      flag = index == _leftSelectIndex ? true : false;
+      flag = index == _tronController.swapLeftIndex ? true : false;
     } else {
-      flag = index == _rightSelectIndex ? true : false;
+      flag = index == _tronController.swapRightIndex ? true : false;
     }
     double change = item.swapTokenChange2 * 100;
     return InkWell(
       onTap: () async {
-        if (isLeft && index != _rightSelectIndex) {
+        if (isLeft && index != _tronController.swapRightIndex) {
           print('1111');
           _leftSwapAmount = '';
           _leftSwapValue = '';
           _rightSwapAmount = '';
           _rightSwapValue = '';
-          _reloadSub(index, _rightSelectIndex);
+          _reloadSub(index, _tronController.swapRightIndex);
           setState(() {});
           Navigator.pop(context);
-          await GlobalService.to.changeSwapLeftIndex(index);
-        } else if (index != _leftSelectIndex) {
+          await _tronController.changeSwapLeftIndex(index);
+        } else if (index != _tronController.swapLeftIndex) {
           print('222');
           _leftSwapAmount = '';
           _leftSwapValue = '';
           _rightSwapAmount = '';
           _rightSwapValue = '';
-          _reloadSub(_leftSelectIndex, index);
+          _reloadSub(_tronController.swapLeftIndex, index);
           setState(() {});
           Navigator.pop(context);
-          await GlobalService.to.changeSwapRightIndex(index);
+          await _tronController.changeSwapRightIndex(index);
         }
       },
       child: Container(
@@ -1545,10 +1542,10 @@ class _SwapSubPageState extends State<SwapSubPage>
                 '${item.swapTokenName}',
                 style: MyTextUtil.textStyle4En(2,
                     color: isLeft
-                        ? (index != _rightSelectIndex
+                        ? (index != _tronController.swapRightIndex
                             ? MyColorUtil.biz()
                             : Colors.grey[400])
-                        : (index != _leftSelectIndex
+                        : (index != _tronController.swapLeftIndex
                             ? MyColorUtil.biz()
                             : Colors.grey[400]),
                     spacing: 0.0,
@@ -1562,10 +1559,10 @@ class _SwapSubPageState extends State<SwapSubPage>
                 '${item.swapTokenPrice2}',
                 style: MyTextUtil.textStyle4Num(
                     color: isLeft
-                        ? (index != _rightSelectIndex
+                        ? (index != _tronController.swapRightIndex
                             ? MyColorUtil.biz()
                             : Colors.grey[400])
-                        : (index != _leftSelectIndex
+                        : (index != _tronController.swapLeftIndex
                             ? MyColorUtil.biz()
                             : Colors.grey[400]),
                     spacing: 0.0,
@@ -1635,7 +1632,7 @@ class _SwapSubPageState extends State<SwapSubPage>
       });
       _flag1 = _swapRows.length > 0 ? true : false;
       _flag2 = _swapRows.length > 1 ? true : false;
-      _reloadSub(_leftSelectIndex, _rightSelectIndex);
+      _reloadSub(_tronController.swapLeftIndex, _tronController.swapRightIndex);
       if (mounted) {
         setState(() {});
       }
@@ -1651,6 +1648,7 @@ class _SwapSubPageState extends State<SwapSubPage>
       _leftKey = '$_account+${_swapRows[_leftSelectIndex].swapTokenAddress}';
       _rightKey = '$_account+${_swapRows[_rightSelectIndex].swapTokenAddress}';
     }
+
     if (_flag1 &&
         _flag2 &&
         _swapRows[_leftSelectIndex].swapTokenPrecision > 0 &&

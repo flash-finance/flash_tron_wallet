@@ -608,14 +608,20 @@ class _SwapPageState extends State<SwapPage>
                           1 ||
                       _swapRows[_tronController.swapRightIndex].swapTokenType ==
                           1)) {
-                _showPoolTokenOneDialLog(context);
+                MyCommonUtil.bottomSheet(
+                  context,
+                  _poolTokenOneWidget(context),
+                );
               } else if (_flag1 &&
                   _flag2 &&
                   (_swapRows[_tronController.swapLeftIndex].swapTokenType !=
                           1 &&
                       _swapRows[_tronController.swapRightIndex].swapTokenType !=
                           1)) {
-                _showPoolTokenTwoDialLog(context);
+                MyCommonUtil.bottomSheet(
+                  context,
+                  _poolTokenTwoWidget(context),
+                );
               }
             },
             child: Container(
@@ -671,83 +677,68 @@ class _SwapPageState extends State<SwapPage>
     _tronController.changeSwapRightIndex(temp11);
   }
 
-  _showPoolTokenOneDialLog(BuildContext context) {
-    showDialog(
-      context: context,
-      child: AlertDialog(
-        elevation: 3,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-        ),
-        content: Container(
-          width: MyScreenUtil.width(600),
-          height: MyScreenUtil.height(380),
-          padding: MyCommonUtil.edge(top: 10),
-          child: ListView(
-            children: <Widget>[
-              _poolItemWidget(
-                context,
-                '${_swapRows[_tronController.swapLeftIndex].swapTokenName}/${_swapRows[_tronController.swapRightIndex].swapTokenName}',
-                _swapRows[_tronController.swapLeftIndex].swapTokenType == 2
-                    ? '${_swapRows[_tronController.swapLeftIndex].totalLiquidity.toStringAsFixed(0)}'
-                    : '${_swapRows[_tronController.swapRightIndex].totalLiquidity.toStringAsFixed(0)}',
-                '${_swapRows[_tronController.swapLeftIndex].swapPicUrl}',
-                _swapRows[_tronController.swapLeftIndex].swapTokenType == 2
-                    ? '${_swapRows[_tronController.swapLeftIndex].swapTokenAmount.toStringAsFixed(0)}'
-                    : '${_swapRows[_tronController.swapRightIndex].baseTokenAmount.toStringAsFixed(0)}',
-                '  ${_swapRows[_tronController.swapLeftIndex].swapTokenName}',
-                '${_swapRows[_tronController.swapRightIndex].swapPicUrl}',
-                _swapRows[_tronController.swapLeftIndex].swapTokenType == 2
-                    ? '${_swapRows[_tronController.swapLeftIndex].baseTokenAmount.toStringAsFixed(0)}'
-                    : '${_swapRows[_tronController.swapRightIndex].swapTokenAmount.toStringAsFixed(0)}',
-                '  ${_swapRows[_tronController.swapRightIndex].swapTokenName}',
-              )
-            ],
-          ),
-        ),
+  Widget _poolTokenOneWidget(BuildContext context) {
+    return Container(
+      height: MyScreenUtil.height(460),
+      alignment: Alignment.center,
+      padding: MyCommonUtil.edge(left: 40, right: 40, top: 30, bottom: 30),
+      margin: MyCommonUtil.edge(bottom: 25),
+      child: ListView(
+        children: <Widget>[
+          _poolItemWidget(
+            context,
+            '${_swapRows[_tronController.swapLeftIndex].swapTokenName}/${_swapRows[_tronController.swapRightIndex].swapTokenName}',
+            _swapRows[_tronController.swapLeftIndex].swapTokenType == 2
+                ? '${_swapRows[_tronController.swapLeftIndex].totalLiquidity.toStringAsFixed(0)}'
+                : '${_swapRows[_tronController.swapRightIndex].totalLiquidity.toStringAsFixed(0)}',
+            '${_swapRows[_tronController.swapLeftIndex].swapPicUrl}',
+            _swapRows[_tronController.swapLeftIndex].swapTokenType == 2
+                ? '${_swapRows[_tronController.swapLeftIndex].swapTokenAmount.toStringAsFixed(0)}'
+                : '${_swapRows[_tronController.swapRightIndex].baseTokenAmount.toStringAsFixed(0)}',
+            '  ${_swapRows[_tronController.swapLeftIndex].swapTokenName}',
+            '${_swapRows[_tronController.swapRightIndex].swapPicUrl}',
+            _swapRows[_tronController.swapLeftIndex].swapTokenType == 2
+                ? '${_swapRows[_tronController.swapLeftIndex].baseTokenAmount.toStringAsFixed(0)}'
+                : '${_swapRows[_tronController.swapRightIndex].swapTokenAmount.toStringAsFixed(0)}',
+            '  ${_swapRows[_tronController.swapRightIndex].swapTokenName}',
+          )
+        ],
       ),
     );
   }
 
-  _showPoolTokenTwoDialLog(BuildContext context) {
-    showDialog(
-      context: context,
-      child: AlertDialog(
-        elevation: 3,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20.0))),
-        content: Container(
-          width: MyScreenUtil.width(600),
-          height: MyScreenUtil.height(800),
-          padding: MyCommonUtil.edge(top: 10),
-          child: ListView(
-            children: <Widget>[
-              _poolItemWidget(
-                context,
-                '${_swapRows[_tronController.swapLeftIndex].swapTokenName}/${_swapRows[_tronController.swapLeftIndex].baseTokenName}',
-                '${_swapRows[_tronController.swapLeftIndex].totalLiquidity.toStringAsFixed(0)}',
-                '${_swapRows[_tronController.swapLeftIndex].swapPicUrl}',
-                '${_swapRows[_tronController.swapLeftIndex].swapTokenAmount.toStringAsFixed(0)}',
-                '  ${_swapRows[_tronController.swapLeftIndex].swapTokenName}',
-                '${_swapRows[_tronController.swapLeftIndex].basePicUrl}',
-                '${_swapRows[_tronController.swapLeftIndex].baseTokenAmount.toStringAsFixed(0)}',
-                '  ${_swapRows[_tronController.swapLeftIndex].baseTokenName}',
-              ),
-              MyCommonUtil.sizedBox(height: 30),
-              _poolItemWidget(
-                context,
-                '${_swapRows[_tronController.swapRightIndex].baseTokenName}/${_swapRows[_tronController.swapRightIndex].swapTokenName}',
-                '${_swapRows[_tronController.swapRightIndex].totalLiquidity.toStringAsFixed(0)}',
-                '${_swapRows[_tronController.swapRightIndex].basePicUrl}',
-                '${_swapRows[_tronController.swapRightIndex].baseTokenAmount.toStringAsFixed(0)}',
-                '  ${_swapRows[_tronController.swapRightIndex].baseTokenName}',
-                '${_swapRows[_tronController.swapRightIndex].swapPicUrl}',
-                '${_swapRows[_tronController.swapRightIndex].swapTokenAmount.toStringAsFixed(0)}',
-                '  ${_swapRows[_tronController.swapRightIndex].swapTokenName}',
-              ),
-            ],
+  Widget _poolTokenTwoWidget(BuildContext context) {
+    return Container(
+      height: MyScreenUtil.height(860),
+      alignment: Alignment.center,
+      padding: MyCommonUtil.edge(left: 40, right: 40, top: 30, bottom: 30),
+      margin: MyCommonUtil.edge(bottom: 25),
+      child: ListView(
+        children: <Widget>[
+          _poolItemWidget(
+            context,
+            '${_swapRows[_tronController.swapLeftIndex].swapTokenName}/${_swapRows[_tronController.swapLeftIndex].baseTokenName}',
+            '${_swapRows[_tronController.swapLeftIndex].totalLiquidity.toStringAsFixed(0)}',
+            '${_swapRows[_tronController.swapLeftIndex].swapPicUrl}',
+            '${_swapRows[_tronController.swapLeftIndex].swapTokenAmount.toStringAsFixed(0)}',
+            '  ${_swapRows[_tronController.swapLeftIndex].swapTokenName}',
+            '${_swapRows[_tronController.swapLeftIndex].basePicUrl}',
+            '${_swapRows[_tronController.swapLeftIndex].baseTokenAmount.toStringAsFixed(0)}',
+            '  ${_swapRows[_tronController.swapLeftIndex].baseTokenName}',
           ),
-        ),
+          MyCommonUtil.sizedBox(height: 30),
+          _poolItemWidget(
+            context,
+            '${_swapRows[_tronController.swapRightIndex].baseTokenName}/${_swapRows[_tronController.swapRightIndex].swapTokenName}',
+            '${_swapRows[_tronController.swapRightIndex].totalLiquidity.toStringAsFixed(0)}',
+            '${_swapRows[_tronController.swapRightIndex].basePicUrl}',
+            '${_swapRows[_tronController.swapRightIndex].baseTokenAmount.toStringAsFixed(0)}',
+            '  ${_swapRows[_tronController.swapRightIndex].baseTokenName}',
+            '${_swapRows[_tronController.swapRightIndex].swapPicUrl}',
+            '${_swapRows[_tronController.swapRightIndex].swapTokenAmount.toStringAsFixed(0)}',
+            '  ${_swapRows[_tronController.swapRightIndex].swapTokenName}',
+          ),
+        ],
       ),
     );
   }

@@ -218,13 +218,13 @@ class _SendTokenPageState extends State<SendTokenPage> {
                             style: MyTextUtil.textStyle4En(2,
                                 color: MyColorUtil.biz(),
                                 spacing: 0.0,
-                                size: 26),
+                                size: 28),
                           ),
                         ),
                         Container(
                           child: MyCommonUtil.icon(
                             MyIconUtil.arrowForwardIos,
-                            size: 25,
+                            size: 26,
                             color: MyColorUtil.biz(),
                           ),
                         ),
@@ -335,7 +335,12 @@ class _SendTokenPageState extends State<SendTokenPage> {
   Widget _selectTokenWidget(BuildContext context, int index, AssetEntity item) {
     int selectAssetFilterIndex = GlobalService.to.selectAssetFilterIndex;
     bool flag = index == selectAssetFilterIndex;
-
+    String address = '';
+    if (item.type == 2) {
+      address = item.address.substring(0, 6) +
+          '...' +
+          item.address.substring(item.address.length - 6, item.address.length);
+    }
     return InkWell(
       onTap: () {
         GlobalService.to.changeSelectAssetFilterIndex(index);
@@ -348,7 +353,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
-              width: MyScreenUtil.width(300),
+              //width: MyScreenUtil.width(300),
               alignment: Alignment.centerLeft,
               padding: EdgeInsets.only(left: MyScreenUtil.width(10)),
               child: Row(
@@ -364,12 +369,24 @@ class _SendTokenPageState extends State<SendTokenPage> {
                     ),
                   ),
                   Container(
+                    width: MyScreenUtil.width(150),
                     padding: MyCommonUtil.edge(left: 30),
                     alignment: Alignment.centerLeft,
                     child: Text(
                       '${item.name}',
                       style: MyTextUtil.textStyle4En(2,
                           color: MyColorUtil.biz(), spacing: 0.0, size: 30),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  Container(
+                    padding: MyCommonUtil.edge(left: 10),
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      '$address',
+                      style: MyTextUtil.textStyle4En(1,
+                          color: MyColorUtil.subBiz(), spacing: 0.0, size: 28),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),

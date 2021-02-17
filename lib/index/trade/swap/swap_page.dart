@@ -8,7 +8,6 @@ import 'package:flash_tron_wallet/common/util/http_util.dart';
 import 'package:flash_tron_wallet/common/util/icon_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
-import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/index/trade/trade_controller.dart';
 import 'package:flash_tron_wallet/locale/app_Locale.dart';
@@ -81,10 +80,7 @@ class _SwapPageState extends State<SwapPage>
   Widget build(BuildContext context) {
     super.build(context);
     _tronController = Get.find<TradeController>();
-    return MyScaffold(
-      hasAppBar: false,
-      body: Obx(() => _bodyWidget(context)),
-    );
+    return Obx(() => _bodyWidget(context));
   }
 
   Widget _bodyWidget(BuildContext context) {

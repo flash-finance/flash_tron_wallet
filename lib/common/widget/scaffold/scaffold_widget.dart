@@ -27,6 +27,7 @@ class MyScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: MyColorUtil.background(),
         appBar:
             hasAppBar ? _appBarWidget(context) : _preferredSizeWidget(context),

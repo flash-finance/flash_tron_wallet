@@ -6,7 +6,6 @@ import 'package:flash_tron_wallet/common/util/common_util.dart';
 import 'package:flash_tron_wallet/common/util/http_util.dart';
 import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
-import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
 import 'package:flash_tron_wallet/index/trade/trade_controller.dart';
 import 'package:flash_tron_wallet/locale/app_Locale.dart';
 import 'package:flash_tron_wallet/model/swap_model.dart';
@@ -54,10 +53,7 @@ class _MarketPageState extends State<MarketPage>
   Widget build(BuildContext context) {
     super.build(context);
     _tronController = Get.find<TradeController>();
-    return MyScaffold(
-      hasAppBar: false,
-      body: _bodyWidget(context),
-    );
+    return Obx(() => _bodyWidget(context));
   }
 
   Widget _bodyWidget(BuildContext context) {

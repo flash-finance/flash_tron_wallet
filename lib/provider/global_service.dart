@@ -224,7 +224,9 @@ class GlobalService extends GetxService {
     try {
       if (_walletList.value.length > index) {
         _walletList.value[index].name = newName;
-        await saveSelectWalletList(_walletList.value);
+
+        ///reloadWalletList
+        reloadWalletList();
       }
     } catch (e) {
       print('updateName error: ${e.toString()}');
@@ -237,7 +239,9 @@ class GlobalService extends GetxService {
     try {
       if (_walletList.value.length > index) {
         _walletList.value[index].pwd = newPwd;
-        await saveSelectWalletList(_walletList.value);
+
+        ///reloadWalletList
+        reloadWalletList();
       }
     } catch (e) {
       print('updatePwd error: ${e.toString()}');
@@ -264,18 +268,23 @@ class GlobalService extends GetxService {
               _walletList.value[_selectWalletIndex.value];
         }
 
-        ///_walletList.value.removeAt()后需要此处理 不然页面无法刷新?
-        List<WalletEntity> tempList = [];
-        for (int i = 0; i < _walletList.value.length; i++) {
-          tempList.add(_walletList.value[i]);
-        }
-        await saveSelectWalletList(tempList);
+        ///reloadWalletList
+        reloadWalletList();
       }
     } catch (e) {
       print('delWallet error: ${e.toString()}');
       return false;
     }
     return true;
+  }
+
+  reloadWalletList() async {
+    ///_walletList.value.removeAt()后需要此处理 不然页面无法刷新?
+    List<WalletEntity> tempList = [];
+    for (int i = 0; i < _walletList.value.length; i++) {
+      tempList.add(_walletList.value[i]);
+    }
+    await saveSelectWalletList(tempList);
   }
 
   var _firstRandom = Rx<String>('');

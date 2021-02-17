@@ -1297,36 +1297,26 @@ class _SwapPageState extends State<SwapPage>
                   _swapRows[_tronController.swapRightIndex].swapTokenType;
               String allowanceAmount = await TronSwap().allowance(
                   tronGrpcIP, userAddress, swapTokenAddress, flashSwapAddress);
-              print('allowanceAmount: $allowanceAmount');
               if (allowanceAmount == '') {
-                print('allowanceAmount null');
                 MyCommonUtil.showToast('${MyLocaleKey.swapTip1.tr}');
                 return;
               }
               double allowanceValue =
                   Decimal.tryParse(allowanceAmount).toDouble();
               double swapValue = double.parse(_leftSwapValue);
-              print('swapValue: $swapValue, allowanceValue:$allowanceValue');
-
               if (swapValue > allowanceValue) {
-                print('swapValue > allowanceValue');
                 bool approveFlag = await TronSwap().approve(
                     tronGrpcIP,
                     userAddress,
                     privateKey,
                     swapTokenAddress,
                     flashSwapAddress);
-                print('approveFlag:$approveFlag');
                 if (!approveFlag) {
                   MyCommonUtil.showToast('${MyLocaleKey.swapTip1.tr}');
                   return;
                 }
               }
-
-              print('swapValue < allowanceValue');
               if (_account != '' && baseTokenType == 1) {
-                print('baseTokenType == 1');
-
                 /// tokenToTrxSwap
                 bool result = await TronSwap().tokenToTrxSwap(
                     tronGrpcIP,
@@ -1336,7 +1326,6 @@ class _SwapPageState extends State<SwapPage>
                     swapTokenAddress,
                     lpTokenAddress,
                     tokensSold);
-                print('result: $result');
                 if (result) {
                   MyCommonUtil.showToast('${MyLocaleKey.swapSuccess.tr}');
                 } else {
@@ -1344,8 +1333,6 @@ class _SwapPageState extends State<SwapPage>
                 }
                 return;
               } else if (_account != '' && baseTokenType == 2) {
-                print('baseTokenType == 2');
-
                 /// tokenToTokenSwap
                 bool result = await TronSwap().tokenToTokenSwap(
                     tronGrpcIP,
@@ -1356,7 +1343,6 @@ class _SwapPageState extends State<SwapPage>
                     lpTokenAddress,
                     tokensSold,
                     targetTokenAddress);
-                print('result: $result');
                 if (result) {
                   MyCommonUtil.showToast('${MyLocaleKey.swapSuccess.tr}');
                 } else {
@@ -1367,7 +1353,6 @@ class _SwapPageState extends State<SwapPage>
             } else if (_swapRows[_tronController.swapLeftIndex].swapTokenType ==
                     1 &&
                 _swapRows[_tronController.swapRightIndex].swapTokenType == 2) {
-              print('swapTokenType == 1 && swapTokenType == 2');
               String swapTokenAddress =
                   _swapRows[_tronController.swapRightIndex].swapTokenAddress;
               String lpTokenAddress =
@@ -1383,7 +1368,6 @@ class _SwapPageState extends State<SwapPage>
                   swapTokenAddress,
                   lpTokenAddress,
                   trxSold);
-              print('result: $result');
               if (result) {
                 MyCommonUtil.showToast('${MyLocaleKey.swapSuccess.tr}');
               } else {

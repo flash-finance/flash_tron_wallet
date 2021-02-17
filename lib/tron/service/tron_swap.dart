@@ -194,8 +194,6 @@ class TronSwap {
       String swapTokenAddress,
       String lpTokenAddress,
       String trxSold) async {
-    print('TronSwap trxToTokenSwap');
-
     final channel = ClientChannelManager.getChannel(tronGrpcIP);
     final stub = WalletClient(channel);
     try {
@@ -311,8 +309,6 @@ class TronSwap {
       String lpTokenAddress,
       String tokensSold,
       String targetTokenAddress) async {
-    print('TronSwap tokenToTokenSwap');
-
     final channel = ClientChannelManager.getChannel(tronGrpcIP);
     final stub = WalletClient(channel);
     try {
@@ -382,7 +378,6 @@ class TronSwap {
     Return result = await stub.broadcastTransaction(trans);
 
     if (result.toProto3Json().toString().contains('true') == true) {
-      print('execute success');
       return true;
     } else {
       print('execute error msg: ${utf8.decode(result.message)}');
@@ -415,7 +410,7 @@ class TronSwap {
         .sublist(8, 16);
     trans.rawData.timestamp =
         Int64(DateTime.now().toUtc().millisecondsSinceEpoch);
-    trans.rawData.feeLimit = Int64(10 * 1000000);
+    trans.rawData.feeLimit = Int64(100 * 1000000);
     trans.rawData.expiration = Int64(DateTime.now()
         .toUtc()
         .add(Duration(seconds: 180))

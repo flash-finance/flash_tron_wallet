@@ -447,6 +447,9 @@ class GlobalService extends GetxService {
           break;
         }
       }
+
+      ///reloadWalletList
+      reloadWalletList();
       return;
     } catch (e) {
       print('getTrxBalance4Async error: ${e.toString()}');
@@ -475,6 +478,9 @@ class GlobalService extends GetxService {
           break;
         }
       }
+
+      ///reloadWalletList
+      reloadWalletList();
       return;
     } catch (e) {
       print('getTrc20Balance4Async error: ${e.toString()}');

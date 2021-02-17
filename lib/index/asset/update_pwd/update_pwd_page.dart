@@ -242,7 +242,6 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
   }
 
   Future<bool> _submit(BuildContext context) async {
-    int index = GlobalService.to.selectWalletIndex;
-    return await GlobalService.to.updatePwd(index, _setPwd);
+    return await GlobalService.to.updatePwd(widget.index, _setPwd);
   }
 }

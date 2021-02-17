@@ -6,12 +6,15 @@ import 'package:flash_tron_wallet/common/util/text_util.dart';
 import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
 import 'package:flash_tron_wallet/locale/app_Locale.dart';
-import 'package:flash_tron_wallet/provider/global_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class BackupMnemonicPage extends StatefulWidget {
+  final int index;
+  final WalletEntity wallet;
+  BackupMnemonicPage(this.index, this.wallet);
+
   @override
   _BackupMnemonicPageState createState() => _BackupMnemonicPageState();
 }
@@ -28,7 +31,6 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
   }
 
   Widget _bodyWidget(BuildContext context) {
-    WalletEntity wallet = GlobalService.to.selectWalletEntity;
     return Container(
       child: ListView(
         children: <Widget>[
@@ -39,7 +41,7 @@ class _BackupMnemonicPageState extends State<BackupMnemonicPage> {
             margin: MyCommonUtil.edge(left: 30, right: 30),
             child: Column(
               children: <Widget>[
-                _dataWidget(context, wallet.mnemonic),
+                _dataWidget(context, widget.wallet.mnemonic),
                 MyCommonUtil.sizedBox(height: 150),
                 _submitButton(context),
               ],

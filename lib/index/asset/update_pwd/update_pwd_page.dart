@@ -12,6 +12,10 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class UpdatePwdPage extends StatefulWidget {
+  final int index;
+  final WalletEntity wallet;
+  UpdatePwdPage(this.index, this.wallet);
+
   @override
   _UpdatePwdPageState createState() => _UpdatePwdPageState();
 }
@@ -41,7 +45,6 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
   }
 
   Widget _bodyWidget(BuildContext context) {
-    WalletEntity wallet = GlobalService.to.selectWalletEntity;
     return Container(
       child: Form(
         key: _formKey,
@@ -54,7 +57,7 @@ class _UpdatePwdPageState extends State<UpdatePwdPage> {
               margin: MyCommonUtil.edge(left: 30, right: 30),
               child: Column(
                 children: <Widget>[
-                  _oldPwdWidget(wallet.pwd),
+                  _oldPwdWidget(widget.wallet.pwd),
                   _setPwdWidget(),
                   _confirmPwdWidget(),
                   MyCommonUtil.sizedBox(height: 50),

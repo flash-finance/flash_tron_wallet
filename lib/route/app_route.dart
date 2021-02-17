@@ -1,13 +1,10 @@
 import 'package:flash_tron_wallet/index/asset/add_wallet/add_wallet_page.dart';
-import 'package:flash_tron_wallet/index/asset/backup_key/backup_key_page.dart';
-import 'package:flash_tron_wallet/index/asset/backup_mnemonic/backup_mnemonic_page.dart';
 import 'package:flash_tron_wallet/index/asset/build_wallet/build_wallet_first_page.dart';
 import 'package:flash_tron_wallet/index/asset/build_wallet/build_wallet_second_page.dart';
 import 'package:flash_tron_wallet/index/asset/import_key/import_key_page.dart';
 import 'package:flash_tron_wallet/index/asset/import_mnemonic/import_mnemonic_page.dart';
 import 'package:flash_tron_wallet/index/asset/recevice_token/receive_token_page.dart';
 import 'package:flash_tron_wallet/index/asset/send_token/send_token_page.dart';
-import 'package:flash_tron_wallet/index/asset/update_pwd/update_pwd_page.dart';
 import 'package:flash_tron_wallet/index/mine/wallet_manage/wallet_manage_page.dart';
 import 'package:flash_tron_wallet/index/qr/qr_scan_page.dart';
 import 'package:get/get.dart';
@@ -34,12 +31,12 @@ class AppRoute {
   static String assetBuildSecondWalletSuffix =
       assetBuildSecondWallet + '/:type';
 
-  // static String assetWalletDetail = 'asset/walletDetail';
-  // static String assetWalletDetailSuffix = assetWalletDetail + '/:selectIndex';
+  /*static String assetWalletDetail = 'asset/walletDetail';
+  static String assetWalletDetailSuffix = assetWalletDetail + '/:selectIndex';
 
   static String assetBackupKey = '/asset/backupKey';
   static String assetBackupMnemonic = '/asset/backupMnemonic';
-  static String assetUpdatePwd = '/asset/updatePwd';
+  static String assetUpdatePwd = '/asset/updatePwd';*/
 
   static String assetQrScan = '/asset/qrScan';
   static String assetQrScanSuffix = assetQrScan + '/:type';
@@ -78,7 +75,7 @@ class AppRoute {
     /*GetPage(
       name: assetWalletDetailSuffix,
       page: () => WalletDetailPage(),
-    ),*/
+    ),
     GetPage(
       name: assetBackupKey,
       page: () => BackupKeyPage(),
@@ -90,7 +87,7 @@ class AppRoute {
     GetPage(
       name: assetUpdatePwd,
       page: () => UpdatePwdPage(),
-    ),
+    ),*/
     GetPage(
       name: assetQrScanSuffix,
       page: () => QrScanPage(),

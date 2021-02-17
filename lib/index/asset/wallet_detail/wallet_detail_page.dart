@@ -6,9 +6,11 @@ import 'package:flash_tron_wallet/common/util/screen_util.dart';
 import 'package:flash_tron_wallet/common/util/text_util.dart';
 import 'package:flash_tron_wallet/common/widget/scaffold/scaffold_widget.dart';
 import 'package:flash_tron_wallet/entity/tron/wallet_entity.dart';
+import 'package:flash_tron_wallet/index/asset/backup_key/backup_key_page.dart';
+import 'package:flash_tron_wallet/index/asset/backup_mnemonic/backup_mnemonic_page.dart';
+import 'package:flash_tron_wallet/index/asset/update_pwd/update_pwd_page.dart';
 import 'package:flash_tron_wallet/locale/app_Locale.dart';
 import 'package:flash_tron_wallet/provider/global_service.dart';
-import 'package:flash_tron_wallet/route/app_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -171,7 +173,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
             _showInputPwdDialLog(context, 2, widget.wallet.pwd);
             break;
           case DetailWalletType.updatePwd:
-            Get.toNamed(AppRoute.assetUpdatePwd);
+            Get.to(UpdatePwdPage(widget.index, widget.wallet));
             break;
           case DetailWalletType.delWallet:
             _showDelWalletDialLog(context);
@@ -268,9 +270,10 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                         if (val == true) {
                           Navigator.pop(context);
                           if (type == 1) {
-                            Get.toNamed(AppRoute.assetBackupMnemonic);
+                            Get.to(BackupMnemonicPage(
+                                widget.index, widget.wallet));
                           } else if (type == 2) {
-                            Get.toNamed(AppRoute.assetBackupKey);
+                            Get.to(BackupKeyPage(widget.index, widget.wallet));
                           }
                         } else {
                           MyCommonUtil.showToast(
@@ -315,8 +318,8 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                         maxLength: 10,
                         maxLengthEnforced: true,
                         validator: (String value) {
-                          if (value.length > 10) {
-                            return '${MyLocaleKey.assetNameLong.tr}';
+                          if (value.isEmpty) {
+                            return '${MyLocaleKey.commonCanNotBeEmpty.tr}';
                           } else {
                             return null;
                           }

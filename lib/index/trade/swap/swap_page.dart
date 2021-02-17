@@ -274,7 +274,7 @@ class _SwapPageState extends State<SwapPage>
                   onTap: () {
                     MyCommonUtil.bottomSheet(
                       context,
-                      _bottomSheetWidget(context, isLeft),
+                      _tokenBottomSheetWidget(context, isLeft),
                     );
                   },
                   child: Container(
@@ -685,178 +685,23 @@ class _SwapPageState extends State<SwapPage>
           padding: MyCommonUtil.edge(top: 10),
           child: ListView(
             children: <Widget>[
-              Container(
-                padding: MyCommonUtil.edge(top: 10, bottom: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Container(
-                      child: Text(
-                        '${_swapRows[_tronController.swapLeftIndex].swapTokenName}/${_swapRows[_tronController.swapRightIndex].swapTokenName}',
-                        style: MyTextUtil.textStyle4En(2,
-                            color: MyColorUtil.biz(), spacing: 0.0, size: 30),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                padding:
-                    MyCommonUtil.edge(left: 20, right: 20, top: 20, bottom: 20),
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        '${MyLocaleKey.swapTotalLiquidity.tr}',
-                        style: MyTextUtil.textStyle(2,
-                            color: Colors.grey[700], spacing: 0.2, size: 26),
-                      ),
-                    ),
-                    MyCommonUtil.sizedBox(height: 15),
-                    Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Container(
-                            child: ClipOval(
-                              child: Image.asset(
-                                'asset/image/usd.png',
-                                width: MyScreenUtil.width(38),
-                                height: MyScreenUtil.width(38),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: MyCommonUtil.edge(left: 15),
-                            child: Text(
-                              _swapRows[_tronController.swapLeftIndex]
-                                          .swapTokenType ==
-                                      2
-                                  ? '${_swapRows[_tronController.swapLeftIndex].totalLiquidity.toStringAsFixed(0)}'
-                                  : '${_swapRows[_tronController.swapRightIndex].totalLiquidity.toStringAsFixed(0)}',
-                              style: MyTextUtil.textStyle4Num(
-                                color: MyColorUtil.biz(),
-                                size: 28,
-                                fontWeight: FontWeight.w500,
-                              ),
-                              maxLines: 1,
-                              overflow: TextOverflow.clip,
-                            ),
-                          ),
-                          Container(
-                            child: Text(
-                              '  USD',
-                              style: MyTextUtil.textStyle4En(2,
-                                  color: MyColorUtil.biz(),
-                                  spacing: 0.2,
-                                  size: 27),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    MyCommonUtil.sizedBox(height: 40),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        '${MyLocaleKey.swapToken.tr}',
-                        style: MyTextUtil.textStyle4En(2,
-                            color: Colors.grey[700], spacing: 0.2, size: 26),
-                      ),
-                    ),
-                    MyCommonUtil.sizedBox(height: 15),
-                    Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Container(
-                            child: ClipOval(
-                              child: Image.network(
-                                '${_swapRows[_tronController.swapLeftIndex].swapPicUrl}',
-                                width: MyScreenUtil.width(35),
-                                height: MyScreenUtil.width(35),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: MyCommonUtil.edge(left: 15),
-                            child: Text(
-                              _swapRows[_tronController.swapLeftIndex]
-                                          .swapTokenType ==
-                                      2
-                                  ? '${_swapRows[_tronController.swapLeftIndex].swapTokenAmount.toStringAsFixed(0)}'
-                                  : '${_swapRows[_tronController.swapRightIndex].baseTokenAmount.toStringAsFixed(0)}',
-                              style: MyTextUtil.textStyle4Num(
-                                color: MyColorUtil.biz(),
-                                size: 28,
-                                fontWeight: FontWeight.w500,
-                              ),
-                              maxLines: 1,
-                              overflow: TextOverflow.clip,
-                            ),
-                          ),
-                          Container(
-                            child: Text(
-                              '  ${_swapRows[_tronController.swapLeftIndex].swapTokenName}',
-                              style: MyTextUtil.textStyle4En(2,
-                                  color: MyColorUtil.biz(),
-                                  spacing: 0.0,
-                                  size: 27),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    MyCommonUtil.sizedBox(height: 15),
-                    Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Container(
-                            child: ClipOval(
-                              child: Image.network(
-                                '${_swapRows[_tronController.swapRightIndex].swapPicUrl}',
-                                width: MyScreenUtil.width(35),
-                                height: MyScreenUtil.width(35),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: MyCommonUtil.edge(left: 15),
-                            child: Text(
-                              _swapRows[_tronController.swapLeftIndex]
-                                          .swapTokenType ==
-                                      2
-                                  ? '${_swapRows[_tronController.swapLeftIndex].baseTokenAmount.toStringAsFixed(0)}'
-                                  : '${_swapRows[_tronController.swapRightIndex].swapTokenAmount.toStringAsFixed(0)}',
-                              style: MyTextUtil.textStyle4Num(
-                                color: MyColorUtil.biz(),
-                                size: 28,
-                                fontWeight: FontWeight.w500,
-                              ),
-                              maxLines: 1,
-                              overflow: TextOverflow.clip,
-                            ),
-                          ),
-                          Container(
-                            child: Text(
-                              '  ${_swapRows[_tronController.swapRightIndex].swapTokenName}',
-                              style: MyTextUtil.textStyle4En(2,
-                                  color: MyColorUtil.biz(),
-                                  spacing: 0.2,
-                                  size: 27),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              _poolItemWidget(
+                context,
+                '${_swapRows[_tronController.swapLeftIndex].swapTokenName}/${_swapRows[_tronController.swapRightIndex].swapTokenName}',
+                _swapRows[_tronController.swapLeftIndex].swapTokenType == 2
+                    ? '${_swapRows[_tronController.swapLeftIndex].totalLiquidity.toStringAsFixed(0)}'
+                    : '${_swapRows[_tronController.swapRightIndex].totalLiquidity.toStringAsFixed(0)}',
+                '${_swapRows[_tronController.swapLeftIndex].swapPicUrl}',
+                _swapRows[_tronController.swapLeftIndex].swapTokenType == 2
+                    ? '${_swapRows[_tronController.swapLeftIndex].swapTokenAmount.toStringAsFixed(0)}'
+                    : '${_swapRows[_tronController.swapRightIndex].baseTokenAmount.toStringAsFixed(0)}',
+                '  ${_swapRows[_tronController.swapLeftIndex].swapTokenName}',
+                '${_swapRows[_tronController.swapRightIndex].swapPicUrl}',
+                _swapRows[_tronController.swapLeftIndex].swapTokenType == 2
+                    ? '${_swapRows[_tronController.swapLeftIndex].baseTokenAmount.toStringAsFixed(0)}'
+                    : '${_swapRows[_tronController.swapRightIndex].swapTokenAmount.toStringAsFixed(0)}',
+                '  ${_swapRows[_tronController.swapRightIndex].swapTokenName}',
+              )
             ],
           ),
         ),
@@ -873,350 +718,197 @@ class _SwapPageState extends State<SwapPage>
             borderRadius: BorderRadius.all(Radius.circular(20.0))),
         content: Container(
           width: MyScreenUtil.width(600),
-          height: MyScreenUtil.height(700),
+          height: MyScreenUtil.height(800),
           padding: MyCommonUtil.edge(top: 10),
           child: ListView(
             children: <Widget>[
+              _poolItemWidget(
+                context,
+                '${_swapRows[_tronController.swapLeftIndex].swapTokenName}/${_swapRows[_tronController.swapLeftIndex].baseTokenName}',
+                '${_swapRows[_tronController.swapLeftIndex].totalLiquidity.toStringAsFixed(0)}',
+                '${_swapRows[_tronController.swapLeftIndex].swapPicUrl}',
+                '${_swapRows[_tronController.swapLeftIndex].swapTokenAmount.toStringAsFixed(0)}',
+                '  ${_swapRows[_tronController.swapLeftIndex].swapTokenName}',
+                '${_swapRows[_tronController.swapLeftIndex].basePicUrl}',
+                '${_swapRows[_tronController.swapLeftIndex].baseTokenAmount.toStringAsFixed(0)}',
+                '  ${_swapRows[_tronController.swapLeftIndex].baseTokenName}',
+              ),
+              MyCommonUtil.sizedBox(height: 30),
+              _poolItemWidget(
+                context,
+                '${_swapRows[_tronController.swapRightIndex].baseTokenName}/${_swapRows[_tronController.swapRightIndex].swapTokenName}',
+                '${_swapRows[_tronController.swapRightIndex].totalLiquidity.toStringAsFixed(0)}',
+                '${_swapRows[_tronController.swapRightIndex].basePicUrl}',
+                '${_swapRows[_tronController.swapRightIndex].baseTokenAmount.toStringAsFixed(0)}',
+                '  ${_swapRows[_tronController.swapRightIndex].baseTokenName}',
+                '${_swapRows[_tronController.swapRightIndex].swapPicUrl}',
+                '${_swapRows[_tronController.swapRightIndex].swapTokenAmount.toStringAsFixed(0)}',
+                '  ${_swapRows[_tronController.swapRightIndex].swapTokenName}',
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _poolItemWidget(
+      BuildContext context,
+      String title,
+      String usdValue,
+      String pic1,
+      String value1,
+      String name1,
+      String pic2,
+      String value2,
+      String name2) {
+    return Column(
+      children: <Widget>[
+        Container(
+          padding: MyCommonUtil.edge(top: 10, bottom: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
               Container(
-                child: Column(
+                child: Text(
+                  '$title',
+                  style: MyTextUtil.textStyle4En(2,
+                      color: MyColorUtil.biz(), spacing: 0.0, size: 30),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Container(
+          padding: MyCommonUtil.edge(left: 20, right: 20, top: 20, bottom: 20),
+          child: Column(
+            children: <Widget>[
+              Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  '${MyLocaleKey.swapTotalLiquidity.tr}',
+                  style: MyTextUtil.textStyle(2,
+                      color: MyColorUtil.subBiz(), spacing: 0.2, size: 26),
+                ),
+              ),
+              MyCommonUtil.sizedBox(height: 15),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Container(
-                      padding: MyCommonUtil.edge(top: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Container(
-                            child: Text(
-                              '${_swapRows[_tronController.swapLeftIndex].swapTokenName}/${_swapRows[_tronController.swapLeftIndex].baseTokenName}',
-                              style: MyTextUtil.textStyle4En(2,
-                                  color: MyColorUtil.biz(),
-                                  spacing: 0.0,
-                                  size: 30),
-                            ),
-                          ),
-                        ],
+                      child: ClipOval(
+                        child: Image.asset(
+                          'asset/image/usd.png',
+                          width: MyScreenUtil.width(38),
+                          height: MyScreenUtil.width(38),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                     Container(
-                      padding: MyCommonUtil.edge(
-                          left: 20, right: 20, top: 20, bottom: 20),
-                      child: Column(
-                        children: <Widget>[
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              '${MyLocaleKey.swapTotalLiquidity.tr}',
-                              style: MyTextUtil.textStyle(2,
-                                  color: Colors.grey[700],
-                                  spacing: 0.2,
-                                  size: 26),
-                            ),
-                          ),
-                          MyCommonUtil.sizedBox(height: 15),
-                          Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Container(
-                                  child: ClipOval(
-                                    child: Image.asset(
-                                      'asset/image/usd.png',
-                                      width: MyScreenUtil.width(38),
-                                      height: MyScreenUtil.width(38),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  padding: MyCommonUtil.edge(left: 15),
-                                  child: Text(
-                                    '${_swapRows[_tronController.swapLeftIndex].totalLiquidity.toStringAsFixed(0)}',
-                                    style: MyTextUtil.textStyle4Num(
-                                      color: MyColorUtil.biz(),
-                                      size: 28,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.clip,
-                                  ),
-                                ),
-                                Container(
-                                  child: Text(
-                                    '  USD',
-                                    style: MyTextUtil.textStyle4En(2,
-                                        color: MyColorUtil.biz(),
-                                        spacing: 0.0,
-                                        size: 27),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          MyCommonUtil.sizedBox(height: 20),
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              '${MyLocaleKey.swapToken.tr}',
-                              style: MyTextUtil.textStyle4En(2,
-                                  color: Colors.grey[700],
-                                  spacing: 0.0,
-                                  size: 26),
-                            ),
-                          ),
-                          MyCommonUtil.sizedBox(height: 15),
-                          Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Container(
-                                  child: ClipOval(
-                                    child: Image.network(
-                                      '${_swapRows[_tronController.swapLeftIndex].swapPicUrl}',
-                                      width: MyScreenUtil.width(35),
-                                      height: MyScreenUtil.width(35),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  padding: MyCommonUtil.edge(left: 15),
-                                  child: Text(
-                                    '${_swapRows[_tronController.swapLeftIndex].swapTokenAmount.toStringAsFixed(0)}',
-                                    style: MyTextUtil.textStyle4Num(
-                                      color: MyColorUtil.biz(),
-                                      size: 28,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.clip,
-                                  ),
-                                ),
-                                Container(
-                                  child: Text(
-                                    '  ${_swapRows[_tronController.swapLeftIndex].swapTokenName}',
-                                    style: MyTextUtil.textStyle4En(2,
-                                        color: MyColorUtil.biz(),
-                                        spacing: 0.0,
-                                        size: 27),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          MyCommonUtil.sizedBox(height: 15),
-                          Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Container(
-                                  child: ClipOval(
-                                    child: Image.network(
-                                      '${_swapRows[_tronController.swapLeftIndex].basePicUrl}',
-                                      width: MyScreenUtil.width(35),
-                                      height: MyScreenUtil.width(35),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  padding: MyCommonUtil.edge(left: 15),
-                                  child: Text(
-                                    '${_swapRows[_tronController.swapLeftIndex].baseTokenAmount.toStringAsFixed(0)}',
-                                    style: MyTextUtil.textStyle4Num(
-                                      color: MyColorUtil.biz(),
-                                      size: 28,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.clip,
-                                  ),
-                                ),
-                                Container(
-                                  child: Text(
-                                    '  ${_swapRows[_tronController.swapLeftIndex].baseTokenName}',
-                                    style: MyTextUtil.textStyle4En(2,
-                                        color: MyColorUtil.biz(),
-                                        spacing: 0.0,
-                                        size: 27),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                      padding: MyCommonUtil.edge(left: 15),
+                      child: Text(
+                        '$usdValue',
+                        style: MyTextUtil.textStyle4Num(
+                          color: MyColorUtil.biz(),
+                          size: 28,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.clip,
+                      ),
+                    ),
+                    Container(
+                      child: Text(
+                        '  USD',
+                        style: MyTextUtil.textStyle4En(2,
+                            color: MyColorUtil.biz(), spacing: 0.2, size: 28),
                       ),
                     ),
                   ],
                 ),
               ),
-              MyCommonUtil.sizedBox(height: 20),
+              MyCommonUtil.sizedBox(height: 40),
               Container(
-                child: Column(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  '${MyLocaleKey.swapToken.tr}',
+                  style: MyTextUtil.textStyle(2,
+                      color: MyColorUtil.subBiz(), spacing: 0.2, size: 26),
+                ),
+              ),
+              MyCommonUtil.sizedBox(height: 15),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Container(
-                      padding: MyCommonUtil.edge(top: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Container(
-                            child: Text(
-                              '${_swapRows[_tronController.swapRightIndex].baseTokenName}/${_swapRows[_tronController.swapRightIndex].swapTokenName}',
-                              style: MyTextUtil.textStyle4En(2,
-                                  color: MyColorUtil.biz(),
-                                  spacing: 0.0,
-                                  size: 30),
-                            ),
-                          ),
-                        ],
+                      child: ClipOval(
+                        child: Image.network(
+                          '$pic1',
+                          width: MyScreenUtil.width(35),
+                          height: MyScreenUtil.width(35),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                     Container(
-                      padding: MyCommonUtil.edge(
-                          left: 20, right: 20, top: 20, bottom: 20),
-                      child: Column(
-                        children: <Widget>[
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              '${MyLocaleKey.swapTotalLiquidity.tr}',
-                              style: MyTextUtil.textStyle(2,
-                                  color: Colors.grey[700],
-                                  spacing: 0.0,
-                                  size: 26),
-                            ),
-                          ),
-                          MyCommonUtil.sizedBox(height: 15),
-                          Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Container(
-                                  child: ClipOval(
-                                    child: Image.asset(
-                                      'asset/image/usd.png',
-                                      width: MyScreenUtil.width(38),
-                                      height: MyScreenUtil.width(38),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  padding: MyCommonUtil.edge(left: 15),
-                                  child: Text(
-                                    '${_swapRows[_tronController.swapRightIndex].totalLiquidity.toStringAsFixed(0)}',
-                                    style: MyTextUtil.textStyle4Num(
-                                      color: MyColorUtil.biz(),
-                                      size: 28,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.clip,
-                                  ),
-                                ),
-                                Container(
-                                  child: Text(
-                                    '  USD',
-                                    style: MyTextUtil.textStyle4En(2,
-                                        color: MyColorUtil.biz(),
-                                        spacing: 0.0,
-                                        size: 27),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          MyCommonUtil.sizedBox(height: 20),
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              '${MyLocaleKey.swapToken.tr}',
-                              style: MyTextUtil.textStyle4En(2,
-                                  color: Colors.grey[700],
-                                  spacing: 0.0,
-                                  size: 26),
-                            ),
-                          ),
-                          MyCommonUtil.sizedBox(height: 15),
-                          Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Container(
-                                  child: ClipOval(
-                                    child: Image.network(
-                                      '${_swapRows[_tronController.swapRightIndex].basePicUrl}',
-                                      width: MyScreenUtil.width(35),
-                                      height: MyScreenUtil.width(35),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  padding: MyCommonUtil.edge(left: 15),
-                                  child: Text(
-                                    '${_swapRows[_tronController.swapRightIndex].baseTokenAmount.toStringAsFixed(0)}',
-                                    style: MyTextUtil.textStyle4Num(
-                                      color: MyColorUtil.biz(),
-                                      size: 28,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.clip,
-                                  ),
-                                ),
-                                Container(
-                                  child: Text(
-                                    '  ${_swapRows[_tronController.swapRightIndex].baseTokenName}',
-                                    style: MyTextUtil.textStyle4En(2,
-                                        color: MyColorUtil.biz(),
-                                        spacing: 0.0,
-                                        size: 27),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          MyCommonUtil.sizedBox(height: 15),
-                          Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Container(
-                                  child: ClipOval(
-                                    child: Image.network(
-                                      '${_swapRows[_tronController.swapRightIndex].swapPicUrl}',
-                                      width: MyScreenUtil.width(35),
-                                      height: MyScreenUtil.width(35),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  padding: MyCommonUtil.edge(left: 15),
-                                  child: Text(
-                                    '${_swapRows[_tronController.swapRightIndex].swapTokenAmount.toStringAsFixed(0)}',
-                                    style: MyTextUtil.textStyle4Num(
-                                      color: MyColorUtil.biz(),
-                                      size: 28,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.clip,
-                                  ),
-                                ),
-                                Container(
-                                  child: Text(
-                                    '  ${_swapRows[_tronController.swapRightIndex].swapTokenName}',
-                                    style: MyTextUtil.textStyle4En(2,
-                                        color: MyColorUtil.biz(),
-                                        spacing: 0.0,
-                                        size: 27),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                      padding: MyCommonUtil.edge(left: 15),
+                      child: Text(
+                        '$value1',
+                        style: MyTextUtil.textStyle4Num(
+                          color: MyColorUtil.biz(),
+                          size: 28,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.clip,
+                      ),
+                    ),
+                    Container(
+                      child: Text(
+                        '  $name1',
+                        style: MyTextUtil.textStyle4En(2,
+                            color: MyColorUtil.biz(), spacing: 0.0, size: 28),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              MyCommonUtil.sizedBox(height: 15),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      child: ClipOval(
+                        child: Image.network(
+                          '$pic2',
+                          width: MyScreenUtil.width(35),
+                          height: MyScreenUtil.width(35),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      padding: MyCommonUtil.edge(left: 15),
+                      child: Text(
+                        '$value2',
+                        style: MyTextUtil.textStyle4Num(
+                          color: MyColorUtil.biz(),
+                          size: 28,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.clip,
+                      ),
+                    ),
+                    Container(
+                      child: Text(
+                        '  $name2',
+                        style: MyTextUtil.textStyle4En(2,
+                            color: MyColorUtil.biz(), spacing: 0.2, size: 28),
                       ),
                     ),
                   ],
@@ -1225,7 +917,7 @@ class _SwapPageState extends State<SwapPage>
             ],
           ),
         ),
-      ),
+      ],
     );
   }
 
@@ -1413,7 +1105,7 @@ class _SwapPageState extends State<SwapPage>
     };
   }
 
-  Widget _bottomSheetWidget(BuildContext context, bool isLeft) {
+  Widget _tokenBottomSheetWidget(BuildContext context, bool isLeft) {
     return Container(
       height: MyScreenUtil.height(800),
       child: Column(

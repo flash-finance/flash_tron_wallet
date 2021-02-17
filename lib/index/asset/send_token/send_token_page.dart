@@ -39,6 +39,10 @@ class _SendTokenPageState extends State<SendTokenPage> {
   @override
   void initState() {
     super.initState();
+    initData();
+  }
+
+  void initData() {
     transferLoading = false;
     _receiveAddress = widget.value;
     _receiveAddressController = TextEditingController.fromValue(
@@ -353,7 +357,6 @@ class _SendTokenPageState extends State<SendTokenPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
-              //width: MyScreenUtil.width(300),
               alignment: Alignment.centerLeft,
               padding: EdgeInsets.only(left: MyScreenUtil.width(10)),
               child: Row(

@@ -358,7 +358,7 @@ class MyLocale {
     MyLocaleKey.swapTokenBalance: '余额',
     MyLocaleKey.swapPool: '资金池',
     MyLocaleKey.swapTotalLiquidity: '总流动性',
-    MyLocaleKey.swapToken: 'Token',
+    MyLocaleKey.swapToken: '通证',
     MyLocaleKey.swapTokenNotEnough: '余额不足',
     MyLocaleKey.swapSuccess: '交易成功',
     MyLocaleKey.swapTip1: '交易失败，请稍后再试',

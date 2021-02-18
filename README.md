@@ -10,23 +10,23 @@
 
 ## 主要开源插件选型
 
-- 01. 状态和路由管理getx插件
+- 1.  状态和路由管理getx插件
 
-- 02. Http请求库dio插件
+- 2.  Http请求库dio插件
 
-- 03. 调用公链服务gRPC插件
+- 3.  调用公链服务gRPC插件
 
-- 04. 屏幕适配flutter_screenutil插件
+- 4.  屏幕适配flutter_screenutil插件
 
-- 05. 上拉加载下拉刷新flutter_easyrefresh插件
+- 5.  上拉加载下拉刷新flutter_easyrefresh插件
 
-- 06. 轻提示fluttertoast插件
+- 6.  轻提示fluttertoast插件
 
-- 07. 数据存储shared_preferences插件
+- 7.  数据存储shared_preferences插件
 
-- 08. 生成二维码qr_flutter插件
+- 8.  生成二维码qr_flutter插件
 
-- 09. 扫描二维码scan插件
+- 9.  扫描二维码scan插件
 
 - 10. 版本更新ota_update插件
 

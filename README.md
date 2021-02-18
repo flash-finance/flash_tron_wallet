@@ -1,8 +1,8 @@
-# Flash Tron Wallet 
+## Flash Tron Wallet 
 
-## 数字钱包
-## 聚合交易
-## 借贷(TODO)
+- 1.数字钱包
+- 2.聚合交易
+- 3.借贷(TODO)
 
 <img src="asset/doc/ft-wallet01.jpeg"  width="320" alt="image-01" style="display: inline-block" /><img src="asset/doc/ft-wallet03.jpeg"  width="320" alt="image-03" style="display: inline-block" />
 
@@ -41,17 +41,17 @@
 >>util                          工具<br>
 >>widget                        组件<br>
 
->entity                         数据模型
->model                          数据模型
+>entity                         数据模型<br>
+>model                          数据模型<br>
 
 >index                          页面相关
 >>asset                         资产<br>
 >>trade                         交易<br>
 >>mine                          我的<br>
 
->locale                         中英文国际化
->provider                       状态管理(调用服务、数据变更)
->route                          路由管理
->tron                           tron公链gRPC服务
+>locale                         中英文国际化<br>
+>provider                       状态管理(调用服务、数据变更)<br>
+>route                          路由管理<br>
+>tron                           tron公链gRPC服务<br>
 
->main.dart                      执行入口
+>main.dart                      执行入口<br>

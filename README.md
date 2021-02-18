@@ -52,6 +52,6 @@
 >locale                         中英文国际化<br>
 >provider                       状态管理(调用服务、数据变更)<br>
 >route                          路由管理<br>
->tron                           tron公链gRPC服务<br>
+>tron                           公链gRPC服务<br>
 
 >main.dart                      执行入口<br>

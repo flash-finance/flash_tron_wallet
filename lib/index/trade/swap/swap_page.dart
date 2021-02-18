@@ -1171,7 +1171,6 @@ class _SwapPageState extends State<SwapPage>
     return InkWell(
       onTap: () async {
         if (isLeft && index != _tronController.swapRightIndex) {
-          print('1111');
           _leftSwapAmount = '';
           _leftSwapValue = '';
           _rightSwapAmount = '';
@@ -1181,7 +1180,6 @@ class _SwapPageState extends State<SwapPage>
           Navigator.pop(context);
           await _tronController.changeSwapLeftIndex(index);
         } else if (index != _tronController.swapLeftIndex) {
-          print('222');
           _leftSwapAmount = '';
           _leftSwapValue = '';
           _rightSwapAmount = '';
@@ -1220,7 +1218,7 @@ class _SwapPageState extends State<SwapPage>
               width: MyScreenUtil.width(250),
               alignment: Alignment.centerLeft,
               child: Text(
-                '${item.swapTokenPrice2}',
+                '${item.swapTokenPrice2.toStringAsFixed(item.swapTokenDecimal)}',
                 style: MyTextUtil.textStyle4Num(
                     color: isLeft
                         ? (index != _tronController.swapRightIndex

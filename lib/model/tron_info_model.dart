@@ -60,11 +60,13 @@ class TronInfo {
   double trxPriceUsd;
   String swapContract;
   String androidVersionNum;
+  int androidBuildNum;
   String androidDownloadUrl;
   String androidUpdateInfo1;
   String androidUpdateInfo2;
   int androidUpdateType;
   String iosVersionNum;
+  int iosBuildNum;
   String iosDownloadUrl;
   String iosUpdateInfo1;
   String iosUpdateInfo2;
@@ -77,11 +79,13 @@ class TronInfo {
       this.trxPriceUsd,
       this.swapContract,
       this.androidVersionNum,
+      this.androidBuildNum,
       this.androidDownloadUrl,
       this.androidUpdateInfo1,
       this.androidUpdateInfo2,
       this.androidUpdateType,
       this.iosVersionNum,
+      this.iosBuildNum,
       this.iosDownloadUrl,
       this.iosUpdateInfo1,
       this.iosUpdateInfo2,
@@ -94,11 +98,13 @@ class TronInfo {
     trxPriceUsd = (json['trxPriceUsd'] as num)?.toDouble();
     swapContract = json['swapContract'];
     androidVersionNum = json['androidVersionNum'];
+    androidBuildNum = json['androidBuildNum'];
     androidDownloadUrl = json['androidDownloadUrl'];
     androidUpdateInfo1 = json['androidUpdateInfo1'];
     androidUpdateInfo2 = json['androidUpdateInfo2'];
     androidUpdateType = json['androidUpdateType'];
     iosVersionNum = json['iosVersionNum'];
+    iosBuildNum = json['iosBuildNum'];
     iosDownloadUrl = json['iosDownloadUrl'];
     iosUpdateInfo1 = json['iosUpdateInfo1'];
     iosUpdateInfo2 = json['iosUpdateInfo2'];
@@ -113,11 +119,13 @@ class TronInfo {
     data['trxPriceUsd'] = this.trxPriceUsd;
     data['swapContract'] = this.swapContract;
     data['androidVersionNum'] = this.androidVersionNum;
+    data['androidBuildNum'] = this.androidBuildNum;
     data['androidDownloadUrl'] = this.androidDownloadUrl;
     data['androidUpdateInfo1'] = this.androidUpdateInfo1;
     data['androidUpdateInfo2'] = this.androidUpdateInfo2;
     data['androidUpdateType'] = this.androidUpdateType;
     data['iosVersionNum'] = this.iosVersionNum;
+    data['iosBuildNum'] = this.iosBuildNum;
     data['iosDownloadUrl'] = this.iosDownloadUrl;
     data['iosUpdateInfo1'] = this.iosUpdateInfo1;
     data['iosUpdateInfo2'] = this.iosUpdateInfo2;

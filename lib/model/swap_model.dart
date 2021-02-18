@@ -76,36 +76,38 @@ class SwapRow {
   double swapTokenOpenPrice2;
   double swapTokenChange1;
   double swapTokenChange2;
+  int swapTokenDecimal;
 
-  SwapRow(
-      {this.id,
-        this.lpTokenAddress,
-        this.swapTokenAddress,
-        this.swapTokenName,
-        this.swapTokenType,
-        this.swapTokenPrecision,
-        this.swapPicUrl,
-        this.swapPairName,
-        this.swapPairAddress,
-        this.baseTokenAddress,
-        this.baseTokenName,
-        this.baseTokenType,
-        this.baseTokenPrecision,
-        this.basePicUrl,
-        this.swapTokenAmount,
-        this.baseTokenAmount,
-        this.totalLiquidity,
-        this.swapTokenPrice1,
-        this.swapTokenPrice2,
-        this.baseTokenPrice1,
-        this.baseTokenPrice2,
-        this.volume24h,
-        this.transaction24h,
-        this.swapTokenOpenPrice1,
-        this.swapTokenOpenPrice2,
-        this.swapTokenChange1,
-        this.swapTokenChange2,
-      });
+  SwapRow({
+    this.id,
+    this.lpTokenAddress,
+    this.swapTokenAddress,
+    this.swapTokenName,
+    this.swapTokenType,
+    this.swapTokenPrecision,
+    this.swapPicUrl,
+    this.swapPairName,
+    this.swapPairAddress,
+    this.baseTokenAddress,
+    this.baseTokenName,
+    this.baseTokenType,
+    this.baseTokenPrecision,
+    this.basePicUrl,
+    this.swapTokenAmount,
+    this.baseTokenAmount,
+    this.totalLiquidity,
+    this.swapTokenPrice1,
+    this.swapTokenPrice2,
+    this.baseTokenPrice1,
+    this.baseTokenPrice2,
+    this.volume24h,
+    this.transaction24h,
+    this.swapTokenOpenPrice1,
+    this.swapTokenOpenPrice2,
+    this.swapTokenChange1,
+    this.swapTokenChange2,
+    this.swapTokenDecimal,
+  });
 
   SwapRow.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -135,6 +137,7 @@ class SwapRow {
     swapTokenOpenPrice2 = (json['swapTokenOpenPrice2'] as num)?.toDouble();
     swapTokenChange1 = (json['swapTokenChange1'] as num)?.toDouble();
     swapTokenChange2 = (json['swapTokenChange2'] as num)?.toDouble();
+    swapTokenDecimal = json['swapTokenDecimal'];
   }
 
   Map<String, dynamic> toJson() {
@@ -166,6 +169,7 @@ class SwapRow {
     data['swapTokenOpenPrice2'] = this.swapTokenOpenPrice2;
     data['swapTokenChange1'] = this.swapTokenChange1;
     data['swapTokenChange2'] = this.swapTokenChange2;
+    data['swapTokenDecimal'] = this.swapTokenDecimal;
     return data;
   }
 }

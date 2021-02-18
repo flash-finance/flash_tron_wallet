@@ -210,7 +210,7 @@ class _MarketPageState extends State<MarketPage>
               width: MyScreenUtil.width(250),
               alignment: Alignment.centerLeft,
               child: Text(
-                '${item.swapTokenPrice2}',
+                '${item.swapTokenPrice2.toStringAsFixed(item.swapTokenDecimal)}',
                 style: MyTextUtil.textStyle4Num(
                     color: MyColorUtil.biz(),
                     spacing: 0.0,

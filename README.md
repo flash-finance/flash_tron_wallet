@@ -2,9 +2,9 @@
 
 ## flash tron wallet 
 
-- 1.数字钱包(创建钱包、导入助记词、导入私钥、转账、收款)
+- 1.数字钱包(创建钱包、导入助记词、导入私钥、备份助记词、备份私钥、转账、收款)
 - 2.聚合交易(聚合JustSwap、 行情、兑换)
-- 3.聚合借贷(聚合JustLend、借贷) todo
+- 3.聚合借贷(聚合JustLend、借贷) TODO
 
 <img src="asset/doc/ft-wallet01.jpeg"  width="320" alt="image-01" style="display: inline-block" /><img src="asset/doc/ft-wallet03.jpeg"  width="320" alt="image-03" style="display: inline-block" />
 

@@ -335,6 +335,7 @@ class _SwapPageState extends State<SwapPage>
                     color: MyColorUtil.white,
                     alignment: Alignment.centerLeft,
                     child: TextFormField(
+                      keyboardAppearance: Brightness.light,
                       controller: isLeft
                           ? _leftSwapAmountController
                           : _rightSwapAmountController,

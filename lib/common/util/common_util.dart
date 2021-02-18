@@ -138,6 +138,7 @@ class MyCommonUtil {
     Function validator,
   }) {
     return TextFormField(
+      keyboardAppearance: Brightness.light,
       readOnly: readOnly ?? false,
       obscureText: obscureText ?? false,
       onSaved: onSaved,

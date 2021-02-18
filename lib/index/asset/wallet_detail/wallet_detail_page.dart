@@ -219,6 +219,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                     Form(
                       key: _formKey,
                       child: TextFormField(
+                        keyboardAppearance: Brightness.light,
                         onSaved: (String value) {
                           if (value.length > 6) {
                             value = value.substring(0, 6);
@@ -303,6 +304,7 @@ class _WalletDetailPageState extends State<WalletDetailPage> {
                     Form(
                       key: _formKey,
                       child: TextFormField(
+                        keyboardAppearance: Brightness.light,
                         onSaved: (String value) {
                           _name = value;
                         },

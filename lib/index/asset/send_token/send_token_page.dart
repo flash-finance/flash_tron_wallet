@@ -141,6 +141,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                 Container(
                   width: MyScreenUtil.width(600),
                   child: TextFormField(
+                    keyboardAppearance: Brightness.light,
                     controller: _receiveAddressController,
                     cursorColor: MyColorUtil.biz(),
                     decoration: InputDecoration(
@@ -248,6 +249,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                 Container(
                   width: MyScreenUtil.width(500),
                   child: TextFormField(
+                    keyboardAppearance: Brightness.light,
                     controller: _assetAmountController,
                     cursorColor: MyColorUtil.biz(),
                     decoration: InputDecoration(
@@ -521,6 +523,7 @@ class _SendTokenPageState extends State<SendTokenPage> {
                     Form(
                       key: _sendFormKey,
                       child: TextFormField(
+                        keyboardAppearance: Brightness.light,
                         onSaved: (String value) {
                           if (value.length > 6) {
                             value = value.substring(0, 6);

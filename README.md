@@ -2,9 +2,11 @@
 
 ## Flash Tron Wallet(简单、易用、安全)
 
-- 1.数字钱包(创建钱包、导入助记词、导入私钥、备份助记词、备份私钥、代币余额查询、多地址切换管理、转账、收款)
+- 1.数字钱包(创建钱包、导入助记词、导入私钥、备份助记词、备份私钥、代币余额查询、多地址切换管理、转账、收款等)
 - 2.聚合交易(聚合JustSwap、 行情价格、资金池、代币兑换)
 - 3.聚合借贷(聚合JustLend、借贷) TODO
+- 4.中英文切换
+- 5.白天和黑夜模式切换 TODO
 
 <img src="asset/doc/ft-wallet01.jpeg"  width="320" alt="image-01" style="display: inline-block" /><img src="asset/doc/ft-wallet03.jpeg"  width="320" alt="image-03" style="display: inline-block" />
 

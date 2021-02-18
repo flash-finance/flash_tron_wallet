@@ -5,9 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'ColorizeAnimatedText.dart';
-import 'ScaleAnimatedText.dart';
-import 'TyperAnimatedText.dart';
+import 'colorize_animated_text.dart';
+import 'scale_animated_text.dart';
+import 'typer_animated_text.dart';
 
 enum TextType {
   ColorizeAnimationText,

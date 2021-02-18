@@ -26,13 +26,19 @@ class MyScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: MyColorUtil.background(),
-        appBar:
-            hasAppBar ? _appBarWidget(context) : _preferredSizeWidget(context),
-        body: body,
-        bottomNavigationBar: bottomNavigationBar,
+      () => GestureDetector(
+        onTap: () {
+          _hideKeyboard(context);
+        },
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          backgroundColor: MyColorUtil.background(),
+          appBar: hasAppBar
+              ? _appBarWidget(context)
+              : _preferredSizeWidget(context),
+          body: body,
+          bottomNavigationBar: bottomNavigationBar,
+        ),
       ),
     );
   }
@@ -74,5 +80,12 @@ class MyScaffold extends StatelessWidget {
       ),
       preferredSize: Size.fromHeight(0),
     );
+  }
+
+  void _hideKeyboard(BuildContext context) {
+    FocusScopeNode currentFocus = FocusScope.of(context);
+    if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+      FocusManager.instance.primaryFocus.unfocus();
+    }
   }
 }

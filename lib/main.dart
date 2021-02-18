@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flash_tron_wallet/common/util/color_util.dart';
-import 'package:flash_tron_wallet/common/widget/splash/SplashScreenView.dart';
+import 'package:flash_tron_wallet/common/widget/splash/splash_screen_view.dart';
 import 'package:flash_tron_wallet/index/index_page.dart';
 import 'package:flash_tron_wallet/locale/app_Locale.dart';
 import 'package:flash_tron_wallet/provider/global_injection.dart';
@@ -36,14 +36,6 @@ class MyApp extends StatelessWidget {
       locale:
           GlobalService.to.langType ? Locale('zh', 'CN') : Locale('en', 'US'),
       translationsKeys: AppLocale.translations,
-      builder: (context, child) => Scaffold(
-        body: GestureDetector(
-          onTap: () {
-            hideKeyboard(context);
-          },
-          child: child,
-        ),
-      ),
       home: _splashWidget(context),
     );
   }
@@ -64,12 +56,5 @@ class MyApp extends StatelessWidget {
       ),
       backgroundColor: flag ? MyColorUtil.theme : MyColorUtil.white,
     );
-  }
-}
-
-void hideKeyboard(BuildContext context) {
-  FocusScopeNode currentFocus = FocusScope.of(context);
-  if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
-    FocusManager.instance.primaryFocus.unfocus();
   }
 }

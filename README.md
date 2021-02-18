@@ -2,39 +2,39 @@
 
 ## flash tron wallet 
 
-- 1.数字钱包
-- 2.聚合交易
-- 3.聚合借贷(todo)
+- 1.数字钱包(创建钱包、导入助记词、导入私钥、转账、收款)
+- 2.聚合交易(聚合JustSwap、 行情、兑换)
+- 3.聚合借贷(聚合JustLend、借贷) todo
 
 <img src="asset/doc/ft-wallet01.jpeg"  width="320" alt="image-01" style="display: inline-block" /><img src="asset/doc/ft-wallet03.jpeg"  width="320" alt="image-03" style="display: inline-block" />
 
 ## 主要开源插件选型
 
-- 1.状态和路由管理getx插件
+- 1.状态和路由管理getx
 
-- 2.Http请求库dio插件
+- 2.http请求库dio
 
-- 3.调用公链服务gRPC插件
+- 3.调用公链服务gRPC
 
-- 4.屏幕适配flutter_screenutil插件
+- 4.屏幕适配flutter_screenutil
 
-- 5.上拉加载下拉刷新flutter_easyrefresh插件
+- 5.上拉加载下拉刷新flutter_easyrefresh
 
-- 6.轻提示fluttertoast插件
+- 6.轻提示fluttertoast
 
-- 7.数据存储shared_preferences插件
+- 7.数据存储shared_preferences
 
-- 8.生成二维码qr_flutter插件
+- 8.生成二维码qr_flutter
 
-- 9.扫描二维码scan插件
+- 9.扫描二维码scan
 
-- 10.版本更新ota_update插件
+- 10.版本更新ota_update
 
-- 11.获取版本信息package_info插件
+- 11.获取版本信息package_info
 
-- 12.获取app路径path_provider插件
+- 12.获取app路径path_provider
 
-- 13.加载页面url_launcher插件
+- 13.加载页面url_launcher
 
 ## lib目录分层
 >common

@@ -20,7 +20,7 @@
 
 - 6.轻提示fluttertoast插件
 
-- 8.数据存储shared_preferences插件
+- 7.数据存储shared_preferences插件
 
 - 8.生成二维码qr_flutter插件
 

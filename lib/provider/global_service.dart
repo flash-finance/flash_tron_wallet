@@ -168,8 +168,6 @@ class GlobalService extends GetxService {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       _walletList.value = dataList;
-      print(
-          'saveSelectWalletList _walletList 222: ${_walletList.value.length}');
       List<String> tempList = [];
       for (int i = 0; i < dataList.length; i++) {
         String temp = json.encode(dataList[i]);
@@ -344,6 +342,7 @@ class GlobalService extends GetxService {
       String url = CommonConfig.servicePath[CommonConfig.tronInfoQueryUrl];
       PackageInfo packageInfo = await PackageInfo.fromPlatform();
       _currentVersion.value = packageInfo.version;
+      _currentBuildNum.value = packageInfo.buildNumber;
       await HttpUtil.get(url).then((val) {
         var respData = Map<String, dynamic>.from(val);
         TronInfoRespModel respModel = TronInfoRespModel.fromJson(respData);
@@ -501,6 +500,10 @@ class GlobalService extends GetxService {
   var _currentVersion = Rx<String>('');
 
   String get currentVersion => _currentVersion.value;
+
+  var _currentBuildNum = Rx<String>('0');
+
+  String get currentBuildNum => _currentBuildNum.value;
 }
 
 class MyTheme {

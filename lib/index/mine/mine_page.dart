@@ -154,17 +154,17 @@ class _MinePageState extends State<MinePage> {
   Widget _versionWidget(BuildContext context) {
     TronInfo tronInfo = GlobalService.to.tronInfo;
     String currentVersion = GlobalService.to.currentVersion;
-
+    int currentBuildNum = int.parse(GlobalService.to.currentBuildNum);
     bool isAndroid = Platform.isAndroid;
     int androidNeedUpdateType = 0;
     int iosNeedUpdateType = 0;
 
     if (isAndroid && tronInfo != null) {
-      if (currentVersion.compareTo(tronInfo.androidVersionNum) == -1) {
+      if (currentBuildNum < tronInfo.androidBuildNum) {
         androidNeedUpdateType = tronInfo.androidUpdateType;
       }
     } else if (tronInfo != null) {
-      if (currentVersion.compareTo(tronInfo.iosVersionNum) == -1) {
+      if (currentBuildNum < tronInfo.iosBuildNum) {
         iosNeedUpdateType = tronInfo.iosUpdateType;
       }
     }

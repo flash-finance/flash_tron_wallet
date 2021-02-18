@@ -13,7 +13,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 class MyCommonUtil {
   static isLightTheme() {
     int themeModeValue = GlobalService.to.themeModeValue;
-    print('flag: $themeModeValue');
     return themeModeValue == 0;
   }
 

@@ -5,12 +5,15 @@ import 'package:flash_tron_wallet/index/asset/import_key/import_key_page.dart';
 import 'package:flash_tron_wallet/index/asset/import_mnemonic/import_mnemonic_page.dart';
 import 'package:flash_tron_wallet/index/asset/recevice_token/receive_token_page.dart';
 import 'package:flash_tron_wallet/index/asset/send_token/send_token_page.dart';
+import 'package:flash_tron_wallet/index/index_page.dart';
 import 'package:flash_tron_wallet/index/mine/wallet_manage/wallet_manage_page.dart';
 import 'package:flash_tron_wallet/index/qr/qr_scan_page.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 class AppRoute {
+  static String index = '/index';
+
   static String assetAddWallet = '/asset/addWallet';
 
   static String assetSendToken = '/asset/sendToken';
@@ -44,6 +47,11 @@ class AppRoute {
   static String mineWalletManage = '/mine/walletManage';
 
   static List<GetPage> pages = [
+    GetPage(
+      name: index,
+      page: () => IndexPage(),
+      transition: Transition.fadeIn,
+    ),
     GetPage(
       name: assetAddWallet,
       page: () => AddWalletPage(),

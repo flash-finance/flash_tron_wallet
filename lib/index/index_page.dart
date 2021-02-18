@@ -23,7 +23,6 @@ class _IndexPageState extends State<IndexPage> {
 
   @override
   Widget build(BuildContext context) {
-    print('index 000');
     ScreenUtil.init(context,
         designSize: Size(750, 1624), allowFontScaling: false);
     return Scaffold(

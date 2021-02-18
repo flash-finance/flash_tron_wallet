@@ -1,6 +1,6 @@
-# [flash finance](https://flash2c.cn/)
+# [Flash Finance](https://flash2c.cn/)
 
-## flash tron wallet 
+## Flash Tron Wallet(简单、易用、安全)
 
 - 1.数字钱包(创建钱包、导入助记词、导入私钥、备份助记词、备份私钥、代币余额查询、多地址切换管理、转账、收款)
 - 2.聚合交易(聚合JustSwap、 行情价格、资金池、代币兑换)

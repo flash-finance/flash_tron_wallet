@@ -2,7 +2,7 @@
 
 - 1.数字钱包
 - 2.聚合交易
-- 3.聚合借贷(TODO)
+- 3.聚合借贷(todo)
 
 <img src="asset/doc/ft-wallet01.jpeg"  width="320" alt="image-01" style="display: inline-block" /><img src="asset/doc/ft-wallet03.jpeg"  width="320" alt="image-03" style="display: inline-block" />
 

@@ -1,3 +1,5 @@
+# [flash finance](https://flash2c.cn/)
+
 ## flash tron wallet 
 
 - 1.数字钱包

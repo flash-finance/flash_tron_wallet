@@ -30,7 +30,7 @@
 
 - 11.获取版本信息package_info插件
 
-- 12.获取App路径path_provider插件
+- 12.获取app路径path_provider插件
 
 - 13.加载页面url_launcher插件
 
